@@ -1,6 +1,6 @@
 # Supabase email templates
 
-These are the brand-customised email templates for ClaimLens™. Supabase
+These are the brand-customised email templates for Vvon. Supabase
 stores email templates in its dashboard, not in source control — this
 folder is the canonical source so we have a version history and can
 roll back if the dashboard gets edited by hand.
@@ -23,7 +23,7 @@ roll back if the dashboard gets edited by hand.
 
    | File                   | Supabase template          | Subject                           |
    | ---------------------- | -------------------------- | --------------------------------- |
-   | `magic-link.html`      | "Magic Link"               | `Sign in to ClaimLens™`           |
+   | `magic-link.html`      | "Magic Link"               | `Sign in to Vvon`           |
 
 5. If the Supabase editor strips the HTML on paste, enable the **Source**
    / `<>` mode before pasting (some plain-text editors auto-escape on
@@ -70,7 +70,7 @@ Once the template is saved in Supabase, do a smoke test:
 1. Sign out (if you're signed in).
 2. Open `/login`, enter your email, click "Email me a sign-in link".
 3. Open the email. You should see:
-   - Dark "ClaimLens™" header with the gold subhead
+   - Dark "Vvon" header with the gold subhead
    - Black "SIGN IN TO CLAIMLENS™" button
    - A fallback URL below the button
    - The disclaimer footer

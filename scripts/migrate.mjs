@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Migration runner for the ClaimLens™ Supabase schema.
+// Migration runner for the Vvon Supabase schema.
 //
 // Reads every .sql file in supabase/migrations/, executes each one
 // against the project's Postgres database in a single transaction, and

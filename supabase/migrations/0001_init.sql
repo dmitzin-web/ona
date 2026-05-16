@@ -1,6 +1,6 @@
--- ClaimLens™ — initial schema.
+-- Vvon — initial schema.
 --
--- Run this once in the Supabase SQL Editor for the onarestore-claimlens
+-- Run this once in the Supabase SQL Editor for the onarestore-vvon
 -- project. It is idempotent (uses if-not-exists / create-or-replace) so
 -- re-running it is safe.
 --
@@ -156,7 +156,7 @@ values (
   'claim-files',
   'claim-files',
   false,
-  26214400, -- 25 MB per file, matches MAX_FILE_BYTES in lib/claimlens/config.ts
+  26214400, -- 25 MB per file, matches MAX_FILE_BYTES in lib/vvon/config.ts
   array[
     'application/pdf',
     'image/jpeg',
@@ -174,24 +174,24 @@ on conflict (id) do update set
 
 -- Storage policies — own folder only.
 
-drop policy if exists "claimlens: upload to own folder" on storage.objects;
-create policy "claimlens: upload to own folder" on storage.objects
+drop policy if exists "vvon: upload to own folder" on storage.objects;
+create policy "vvon: upload to own folder" on storage.objects
   for insert to authenticated
   with check (
     bucket_id = 'claim-files'
     and auth.uid()::text = (storage.foldername(name))[1]
   );
 
-drop policy if exists "claimlens: read own folder" on storage.objects;
-create policy "claimlens: read own folder" on storage.objects
+drop policy if exists "vvon: read own folder" on storage.objects;
+create policy "vvon: read own folder" on storage.objects
   for select to authenticated
   using (
     bucket_id = 'claim-files'
     and auth.uid()::text = (storage.foldername(name))[1]
   );
 
-drop policy if exists "claimlens: delete own folder" on storage.objects;
-create policy "claimlens: delete own folder" on storage.objects
+drop policy if exists "vvon: delete own folder" on storage.objects;
+create policy "vvon: delete own folder" on storage.objects
   for delete to authenticated
   using (
     bucket_id = 'claim-files'

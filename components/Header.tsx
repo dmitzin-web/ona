@@ -23,7 +23,7 @@ type NavItem =
 
 const nav: NavItem[] = [
   { href: "/services", label: "Services" },
-  { href: "/claimlens", label: "ClaimLens™", accent: true },
+  { href: "/vvon", label: "Vvon", accent: true },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
   { action: "ask-ona", label: "✦ Ask ONA" },

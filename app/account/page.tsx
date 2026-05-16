@@ -2,15 +2,15 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { ClaimLensWordmark } from "@/components/claimlens/ClaimLensWordmark";
+import { VvonWordmark } from "@/components/vvon/VvonWordmark";
 import { buildMetadata } from "@/lib/seo";
 import { createClient } from "@/lib/supabase/server";
 import { DeleteAccountForm } from "./DeleteAccountForm";
-import { DeleteClaimButton } from "@/components/claimlens/DeleteClaimButton";
+import { DeleteClaimButton } from "@/components/vvon/DeleteClaimButton";
 
 export const metadata: Metadata = buildMetadata({
   title: "Your account",
-  description: "Manage your ClaimLens™ account, view your claims, or delete your account.",
+  description: "Manage your Vvon account, view your claims, or delete your account.",
   path: "/account",
   noindex: true,
 });
@@ -66,7 +66,7 @@ export default async function AccountPage() {
 
           <div className="mt-10 border border-line-light bg-ivory p-8">
             <p className="eyebrow text-charcoal/55">
-              <ClaimLensWordmark tone="dark" /> claims
+              <VvonWordmark tone="dark" /> claims
             </p>
             <p className="mt-2 text-3xl font-light tracking-tight">
               {count ?? 0}{" "}
@@ -94,7 +94,7 @@ export default async function AccountPage() {
                     </div>
                     <div className="flex items-center gap-5">
                       <Link
-                        href={`/claimlens/report/${c.id}`}
+                        href={`/vvon/report/${c.id}`}
                         className="eyebrow text-charcoal/70 transition hover:text-charcoal"
                       >
                         Open report →
@@ -108,7 +108,7 @@ export default async function AccountPage() {
               <p className="mt-4 text-sm text-charcoal/60">
                 You haven&apos;t analyzed any claims yet.{" "}
                 <Link
-                  href="/claimlens/upload"
+                  href="/vvon/upload"
                   className="underline hover:text-charcoal"
                 >
                   Start one →

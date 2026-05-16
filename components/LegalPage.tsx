@@ -6,7 +6,7 @@ type Section = { heading: string; body: string[] };
 
 // Renders a legal/policy page. Optionally splits into two groups with a
 // distinct section heading between them — used so the restoration-
-// company policy and the ClaimLens™ product-specific policy live on the
+// company policy and the Vvon product-specific policy live on the
 // same URL without visually blending into each other.
 export function LegalPage({
   title,

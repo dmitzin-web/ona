@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { LegalPage } from "@/components/LegalPage";
 import { buildMetadata } from "@/lib/seo";
 import {
-  claimLensTermsSections,
+  vvonTermsSections,
   draftBanner,
   legalUpdated,
   termsSections,
@@ -11,7 +11,7 @@ import {
 export const metadata: Metadata = buildMetadata({
   title: "Terms of Service",
   description:
-    "The terms that govern use of the ONA Restoration website, our restoration services, and the ClaimLens™ AI claim review product.",
+    "The terms that govern use of the ONA Restoration website, our restoration services, and the Vvon AI claim review product.",
   path: "/terms",
 });
 
@@ -23,8 +23,8 @@ export default function TermsPage() {
       updated={legalUpdated}
       banner={draftBanner}
       sections={termsSections}
-      secondaryHeading="ClaimLens™ product-specific terms"
-      secondarySections={claimLensTermsSections}
+      secondaryHeading="Vvon product-specific terms"
+      secondarySections={vvonTermsSections}
       breadcrumb={[
         { name: "Home", href: "/" },
         { name: "Terms", href: "/terms" },

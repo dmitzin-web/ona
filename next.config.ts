@@ -66,6 +66,25 @@ const nextConfig: NextConfig = {
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 60 * 60 * 24 * 30,
   },
+  // Permanent redirects from the legacy /claimlens/* paths to /vvon/*
+  // after the May 2026 brand rename. permanent: true issues a 308 (the
+  // method-preserving permanent redirect), which is what Google wants
+  // for indexed URLs that have changed location.
+  async redirects() {
+    return [
+      { source: "/claimlens", destination: "/vvon", permanent: true },
+      {
+        source: "/claimlens/:path*",
+        destination: "/vvon/:path*",
+        permanent: true,
+      },
+      {
+        source: "/api/claimlens/:path*",
+        destination: "/api/vvon/:path*",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       { source: "/:path*", headers: securityHeaders },

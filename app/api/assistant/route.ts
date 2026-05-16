@@ -190,8 +190,8 @@ function buildMockStream(messages: ChatMessage[]): ReadableStream<Uint8Array> {
       : "";
 
   let reply: string;
-  if (/(claimlens|estimate review|missing scope|supplement)/.test(userText)) {
-    reply = `${site.name} runs **${site.url}/claimlens** for AI-assisted forensic review of insurance estimates. Upload your carrier estimate, photos, and any related documents and you'll get a structured report on potential scope gaps and carrier-consistency issues — informational only, not legal advice.\n\n[Try ClaimLens →](${site.url}/claimlens)`;
+  if (/(vvon|claimlens|estimate review|missing scope|supplement)/.test(userText)) {
+    reply = `${site.name} runs **${site.url}/vvon** for AI-assisted forensic review of insurance estimates. Upload your carrier estimate, photos, and any related documents and you'll get a structured report on potential scope gaps and carrier-consistency issues — informational only, not legal advice.\n\n[Try Vvon →](${site.url}/vvon)`;
   } else if (/(area|zip|portland|vancouver|beaverton|tigard|gresham)/.test(userText)) {
     reply = `${site.name} serves Vancouver, WA and the entire Portland, OR metro — Clark, Multnomah, Washington, and Clackamas counties. Response target is **60 minutes** anywhere in the metro, 24/7.\n\n[See our full service area →](${site.url}/areas)`;
   } else if (/(water|leak|flood|drying)/.test(userText)) {
@@ -201,7 +201,7 @@ function buildMockStream(messages: ChatMessage[]): ReadableStream<Uint8Array> {
   } else if (/(mold|musty|mildew)/.test(userText)) {
     reply = `Visible mold growth on porous materials usually needs remediation by an IICRC-certified crew working inside containment. If you can already see or smell it, don't disturb it — call **${site.phoneDisplay}** and we'll scope an inspection.\n\n[Mold remediation →](${site.url}/services/mold-removal)`;
   } else {
-    reply = `I'm Ask ONA — the assistant for ${site.name}. I can help with restoration questions, service-area coverage, insurance basics, or our forensic estimate review tool **ClaimLens™**. What's going on?\n\n_(Demo response — set ANTHROPIC_API_KEY to switch to the live model.)_`;
+    reply = `I'm Ask ONA — the assistant for ${site.name}. I can help with restoration questions, service-area coverage, insurance basics, or our forensic estimate review tool **Vvon**. What's going on?\n\n_(Demo response — set ANTHROPIC_API_KEY to switch to the live model.)_`;
   }
 
   const encoder = new TextEncoder();

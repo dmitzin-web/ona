@@ -106,7 +106,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* New: ClaimLens™ — AI claim review tool */}
+      {/* New: Vvon — AI claim review tool */}
       <section className="bg-ivory">
         <div className="mx-auto max-w-7xl px-6 pb-24 lg:px-10">
           <div className="relative overflow-hidden border border-line-light bg-charcoal text-ivory">
@@ -122,26 +122,26 @@ export default function HomePage() {
                 <h2 className="mt-6 text-4xl font-light leading-tight tracking-tight sm:text-5xl">
                   Not sure if your insurance estimate is complete?{" "}
                   <span className="font-medium text-gold">
-                    Run it through ClaimLens™.
+                    Run it through Vvon.
                   </span>
                 </h2>
                 <p className="mt-6 max-w-xl text-base leading-relaxed text-ivory/75">
                   Upload your insurance estimate and related documents.
-                  ClaimLens™ helps identify possible missing scope, underpayment
+                  Vvon helps identify possible missing scope, underpayment
                   signals, and documentation gaps — informational only.
                 </p>
               </div>
 
               <div className="flex flex-col items-start gap-4 lg:col-span-5 lg:items-end lg:justify-center">
                 <Link
-                  href="/claimlens"
+                  href="/vvon"
                   className="inline-flex items-center gap-3 border border-ivory bg-ivory px-7 py-4 text-sm font-medium uppercase tracking-[0.22em] text-charcoal transition hover:bg-transparent hover:text-ivory"
                 >
-                  Try ClaimLens™
+                  Try Vvon
                   <ArrowIcon className="h-4 w-4 stroke-current" />
                 </Link>
                 <Link
-                  href="/claimlens/upload"
+                  href="/vvon/upload"
                   className="text-sm uppercase tracking-[0.22em] text-ivory/60 transition hover:text-ivory"
                 >
                   Analyze a claim →

@@ -2,15 +2,15 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import { redirect } from "next/navigation";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { ClaimLensWordmark } from "@/components/claimlens/ClaimLensWordmark";
+import { VvonWordmark } from "@/components/vvon/VvonWordmark";
 import { LoginForm } from "./LoginForm";
 import { buildMetadata } from "@/lib/seo";
 import { createClient } from "@/lib/supabase/server";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Sign in to ClaimLens™",
+  title: "Sign in to Vvon",
   description:
-    "Sign in to ClaimLens™ to upload claim documents and run an AI-assisted analysis. Magic-link sign-in — no password needed.",
+    "Sign in to Vvon to upload claim documents and run an AI-assisted analysis. Magic-link sign-in — no password needed.",
   path: "/login",
   noindex: true,
 });
@@ -25,7 +25,7 @@ export default async function LoginPage({
   const { data } = await supabase.auth.getUser();
   if (data.user) {
     const { next } = await searchParams;
-    redirect(next ?? "/claimlens/upload");
+    redirect(next ?? "/vvon/upload");
   }
 
   return (
@@ -43,12 +43,12 @@ export default async function LoginPage({
             <h1 className="mt-6 text-5xl font-light leading-[1.05] tracking-tight sm:text-6xl">
               Sign in to{" "}
               <span className="font-medium">
-                <ClaimLensWordmark tone="dark" />
+                <VvonWordmark tone="dark" />
               </span>
               .
             </h1>
             <p className="mt-8 max-w-md text-base leading-relaxed text-charcoal/75">
-              ClaimLens™ uses magic-link sign-in — we email you a one-tap
+              Vvon uses magic-link sign-in — we email you a one-tap
               link instead of asking for a password. Your claim documents
               are tied to your account and only visible to you.
             </p>

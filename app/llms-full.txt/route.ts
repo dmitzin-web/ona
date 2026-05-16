@@ -2,11 +2,11 @@ import { site } from "@/lib/site";
 import { services } from "@/lib/services";
 import {
   analysisCategories,
-  claimLens,
-  faqs as claimLensFaqs,
-  features as claimLensFeatures,
+  vvon,
+  faqs as vvonFaqs,
+  features as vvonFeatures,
   howItWorks,
-} from "@/lib/claimlens/config";
+} from "@/lib/vvon/config";
 
 // llms-full.txt — verbose Markdown export of all primary content.
 // Used by LLMs that prefer a single, dense source over crawling individual pages.
@@ -74,18 +74,18 @@ export function GET() {
   for (const a of site.serviceArea)
     out.push(`- ${a.name}, ${a.region} — ${site.url}/areas/${a.slug}`);
 
-  // ----- ClaimLens™ product section -----
+  // ----- Vvon product section -----
   out.push(`\n---\n`);
-  out.push(`## ${claimLens.name}${claimLens.symbol} — AI claim review product\n`);
-  out.push(`URL: ${site.url}/claimlens\n`);
-  out.push(`> ${claimLens.tagline}\n`);
-  out.push(`${claimLens.shortDescription}\n`);
+  out.push(`## ${vvon.name}${vvon.symbol} — AI claim review product\n`);
+  out.push(`URL: ${site.url}/vvon\n`);
+  out.push(`> ${vvon.tagline}\n`);
+  out.push(`${vvon.shortDescription}\n`);
   out.push("");
-  out.push(`### Important — what ${claimLens.name}${claimLens.symbol} is NOT\n`);
-  out.push(claimLens.disclaimer);
+  out.push(`### Important — what ${vvon.name}${vvon.symbol} is NOT\n`);
+  out.push(vvon.disclaimer);
   out.push("");
   out.push(
-    `${claimLens.name}${claimLens.symbol} is not a public adjuster, not an attorney, not a substitute for licensed professionals. It does not interpret policy language as applied to a specific case, does not negotiate with insurers on the user's behalf, and does not guarantee any claim outcome.`,
+    `${vvon.name}${vvon.symbol} is not a public adjuster, not an attorney, not a substitute for licensed professionals. It does not interpret policy language as applied to a specific case, does not negotiate with insurers on the user's behalf, and does not guarantee any claim outcome.`,
   );
   out.push("");
 
@@ -94,7 +94,7 @@ export function GET() {
   out.push("");
 
   out.push(`### Features\n`);
-  for (const f of claimLensFeatures) out.push(`- **${f.title}**: ${f.body}`);
+  for (const f of vvonFeatures) out.push(`- **${f.title}**: ${f.body}`);
   out.push("");
 
   out.push(`### Analysis categories\n`);
@@ -121,7 +121,7 @@ export function GET() {
   out.push("");
 
   out.push(`### FAQ\n`);
-  for (const f of claimLensFaqs) {
+  for (const f of vvonFaqs) {
     out.push(`**Q: ${f.q}**`);
     out.push(`A: ${f.a}`);
     out.push("");

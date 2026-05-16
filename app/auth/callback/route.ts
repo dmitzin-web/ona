@@ -11,10 +11,10 @@ import { createClient } from "@/lib/supabase/server";
 export async function GET(request: NextRequest) {
   const url = new URL(request.url);
   const code = url.searchParams.get("code");
-  const next = url.searchParams.get("next") ?? "/claimlens/upload";
+  const next = url.searchParams.get("next") ?? "/vvon/upload";
 
   // Never let an open redirector through. `next` must be a same-origin path.
-  const safeNext = next.startsWith("/") && !next.startsWith("//") ? next : "/claimlens/upload";
+  const safeNext = next.startsWith("/") && !next.startsWith("//") ? next : "/vvon/upload";
 
   if (!code) {
     return NextResponse.redirect(new URL("/login?error=missing-code", url.origin));

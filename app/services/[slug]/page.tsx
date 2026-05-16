@@ -196,9 +196,9 @@ export default async function ServicePage(
 
       <FAQ items={service.faqs} title={`${service.shortName} — FAQ`} />
 
-      {/* ClaimLens™ cross-link — surfaces the AI estimate-review product
+      {/* Vvon cross-link — surfaces the AI estimate-review product
           on every service page. Restoration clients with a carrier
-          estimate in hand are the highest-intent ClaimLens audience. */}
+          estimate in hand are the highest-intent Vvon audience. */}
       <section className="bg-ivory">
         <div className="mx-auto max-w-7xl px-6 pb-24 lg:px-10">
           <div className="relative overflow-hidden border border-line-light bg-charcoal text-ivory">
@@ -208,26 +208,26 @@ export default async function ServicePage(
             />
             <div className="relative grid gap-8 px-8 py-10 lg:grid-cols-12 lg:gap-12 lg:px-12 lg:py-12">
               <div className="lg:col-span-8">
-                <p className="eyebrow text-gold-soft">ClaimLens™ · AI claim review</p>
+                <p className="eyebrow text-gold-soft">Vvon · AI claim review</p>
                 <h2 className="mt-5 text-3xl font-light leading-tight tracking-tight sm:text-4xl">
                   Got a carrier estimate for your {service.shortName.toLowerCase()} loss?{" "}
                   <span className="font-medium text-gold">
-                    Run it through ClaimLens™.
+                    Run it through Vvon.
                   </span>
                 </h2>
                 <p className="mt-5 max-w-xl text-base leading-relaxed text-ivory/75">
                   Upload your insurance estimate and related documents.
-                  ClaimLens™ flags possible missing scope, line-item
+                  Vvon flags possible missing scope, line-item
                   inconsistencies, and documentation gaps — informational
                   only, not legal advice or public adjusting.
                 </p>
               </div>
               <div className="flex items-end lg:col-span-4 lg:justify-end">
                 <Link
-                  href="/claimlens"
+                  href="/vvon"
                   className="inline-flex items-center gap-3 border border-ivory bg-ivory px-6 py-3 text-sm font-medium uppercase tracking-[0.22em] text-charcoal transition hover:bg-transparent hover:text-ivory"
                 >
-                  Try ClaimLens™
+                  Try Vvon
                   <ArrowIcon className="h-4 w-4 stroke-current" />
                 </Link>
               </div>

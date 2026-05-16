@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
-import { claimLens } from "@/lib/claimlens/config";
+import { vvon } from "@/lib/vvon/config";
 
 // Magic-link login form. Supabase emails the user a one-tap link that,
 // when clicked, hits /auth/callback with a code, the callback exchanges
@@ -11,7 +11,7 @@ import { claimLens } from "@/lib/claimlens/config";
 // originally tried to reach (the ?next= query param).
 export function LoginForm() {
   const sp = useSearchParams();
-  const next = sp.get("next") ?? "/claimlens/upload";
+  const next = sp.get("next") ?? "/vvon/upload";
   const [email, setEmail] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [sent, setSent] = useState(false);
@@ -111,8 +111,8 @@ export function LoginForm() {
       </button>
 
       <p className="border-t border-charcoal/15 pt-6 text-xs leading-relaxed text-charcoal/55">
-        By continuing you acknowledge that {claimLens.name}
-        {claimLens.symbol} provides informational analysis only and does not
+        By continuing you acknowledge that {vvon.name}
+        {vvon.symbol} provides informational analysis only and does not
         provide legal advice, public adjusting services, or guaranteed
         claim outcomes.
       </p>

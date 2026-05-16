@@ -1,6 +1,6 @@
 import { site } from "@/lib/site";
 import { services } from "@/lib/services";
-import { claimLens } from "@/lib/claimlens/config";
+import { vvon } from "@/lib/vvon/config";
 
 // llms.txt — Markdown index for AI/LLM crawlers (llmstxt.org standard).
 // Provides a clean, structured view of the site so LLMs can cite us accurately.
@@ -50,13 +50,13 @@ export function GET() {
   lines.push("## Products");
   lines.push("");
   lines.push(
-    `- [${claimLens.name}${claimLens.symbol}](${site.url}/claimlens): AI-assisted insurance estimate review. Informational analysis only — not legal advice, not public adjusting, not a guarantee of claim outcomes. Users upload carrier estimates, contractor estimates, photos, policies and denial letters; the tool returns a structured report on possible missing scope, inconsistencies, and documentation gaps. Magic-link sign-in required to run an analysis.`,
+    `- [${vvon.name}${vvon.symbol}](${site.url}/vvon): AI-assisted insurance estimate review. Informational analysis only — not legal advice, not public adjusting, not a guarantee of claim outcomes. Users upload carrier estimates, contractor estimates, photos, policies and denial letters; the tool returns a structured report on possible missing scope, inconsistencies, and documentation gaps. Magic-link sign-in required to run an analysis.`,
   );
   lines.push(
-    `- [${claimLens.name}${claimLens.symbol} — upload](${site.url}/claimlens/upload): Upload form for claim documents (auth required).`,
+    `- [${vvon.name}${vvon.symbol} — upload](${site.url}/vvon/upload): Upload form for claim documents (auth required).`,
   );
   lines.push(
-    `- [${claimLens.name}${claimLens.symbol} — sample report](${site.url}/claimlens/report): Public sample of what a ClaimLens report looks like.`,
+    `- [${vvon.name}${vvon.symbol} — sample report](${site.url}/vvon/report): Public sample of what a Vvon report looks like.`,
   );
   lines.push("");
 

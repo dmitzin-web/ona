@@ -80,10 +80,10 @@ export function Footer() {
             </li>
             <li>
               <Link
-                href="/claimlens"
+                href="/vvon"
                 className="text-gold-soft transition hover:text-gold"
               >
-                ClaimLens™
+                Vvon
               </Link>
             </li>
           </ul>

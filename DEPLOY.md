@@ -1,4 +1,4 @@
-# Deploy ClaimLens / ONA Restoration to Vercel
+# Deploy Vvon / ONA Restoration to Vercel
 
 This is a one-time checklist that takes the project from "works on
 localhost" to "live on the public internet at onarestore.com". Follow
@@ -41,7 +41,7 @@ cd /Users/mag2/onarestore
 git init -b main
 git add .
 git status   # sanity check — should NOT list .env.local
-git commit -m "Initial commit: ONA Restoration + ClaimLens™"
+git commit -m "Initial commit: ONA Restoration + Vvon"
 ```
 
 If `git status` lists `.env.local`, **stop immediately** — secrets
@@ -119,13 +119,13 @@ URL like `onarestore-abc123.vercel.app`.
 PREV=https://onarestore-abc123.vercel.app
 
 curl -s -o /dev/null -w "%{http_code}\n" $PREV/
-curl -s -o /dev/null -w "%{http_code}\n" $PREV/claimlens
+curl -s -o /dev/null -w "%{http_code}\n" $PREV/vvon
 curl -s $PREV/api/health
 ```
 
 Expected:
 - `/` → 200
-- `/claimlens` → 200
+- `/vvon` → 200
 - `/api/health` → `{"ok":true,"ai":"live","supabase":"configured",...}`
 
 If `ai` is `mock`, the Anthropic key didn't land — check env vars in
@@ -155,7 +155,7 @@ Click **Save**.
 ### D2 (YOU) — Paste the magic-link email template
 
 1. Supabase → Authentication → Email Templates → **Magic Link**
-2. Subject: `Sign in to ClaimLens™`
+2. Subject: `Sign in to Vvon`
 3. Open `supabase/email-templates/magic-link.html` in any text editor,
    select all, copy, paste into the Message Body field
 4. Save
@@ -167,7 +167,7 @@ In a private/incognito browser window:
 1. Open `$PREV/login` (your preview URL + /login)
 2. Enter your email → submit
 3. Email should arrive within 1 minute. Click the magic link.
-4. You should be redirected to `$PREV/claimlens/upload` signed in.
+4. You should be redirected to `$PREV/vvon/upload` signed in.
 
 If the magic link redirects to `localhost`, you forgot D1.
 
@@ -236,7 +236,7 @@ Now that DNS points to Vercel:
 ```
 
 Common things to keep an eye on:
-- `/api/claimlens/analyze` errors → Sentry if configured, otherwise
+- `/api/vvon/analyze` errors → Sentry if configured, otherwise
   Vercel Function Logs
 - `/api/health` should be 200 every minute (if you wired up an uptime
   monitor like Better Uptime)

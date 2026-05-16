@@ -10,7 +10,7 @@
 const DEFAULT_PROMPTS: readonly string[] = [
   "Do you serve my area?",
   "I have a water leak — what should I do first?",
-  "Can ClaimLens™ review my insurance estimate?",
+  "Can Vvon review my insurance estimate?",
 ];
 
 const PROMPTS_BY_PREFIX: { match: (path: string) => boolean; prompts: string[] }[] = [
@@ -19,7 +19,7 @@ const PROMPTS_BY_PREFIX: { match: (path: string) => boolean; prompts: string[] }
     prompts: [
       "Do you serve my area?",
       "How fast can a crew get to me?",
-      "What is ClaimLens™?",
+      "What is Vvon?",
     ],
   },
   {
@@ -71,7 +71,7 @@ const PROMPTS_BY_PREFIX: { match: (path: string) => boolean; prompts: string[] }
     ],
   },
   {
-    match: (p) => p.startsWith("/claimlens/upload"),
+    match: (p) => p.startsWith("/vvon/upload"),
     prompts: [
       "What documents should I upload?",
       "How long does the analysis take?",
@@ -79,7 +79,7 @@ const PROMPTS_BY_PREFIX: { match: (path: string) => boolean; prompts: string[] }
     ],
   },
   {
-    match: (p) => p.startsWith("/claimlens/report"),
+    match: (p) => p.startsWith("/vvon/report"),
     prompts: [
       "Explain a finding in plain language.",
       "What's my next step?",
@@ -87,10 +87,10 @@ const PROMPTS_BY_PREFIX: { match: (path: string) => boolean; prompts: string[] }
     ],
   },
   {
-    match: (p) => p.startsWith("/claimlens"),
+    match: (p) => p.startsWith("/vvon"),
     prompts: [
-      "What is ClaimLens™?",
-      "Is ClaimLens™ a public adjuster?",
+      "What is Vvon?",
+      "Is Vvon a public adjuster?",
       "What does the report look like?",
     ],
   },
