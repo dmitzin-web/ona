@@ -33,10 +33,10 @@ export function ClaimLensReportView({
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div>
               <p className="eyebrow text-gold-soft">
-                {isDemo ? "Sample report · demo only" : "ClaimLens™ report"}
+                {isDemo ? "Sample report · demo only" : "ClaimLens™ forensic review"}
               </p>
               <h1 className="mt-4 text-4xl font-light leading-tight tracking-tight sm:text-5xl">
-                <ClaimLensWordmark tone="light" /> claim analysis
+                <ClaimLensWordmark tone="light" /> forensic estimate analysis
               </h1>
               <p className="mt-3 text-sm text-ivory/60">
                 Generated {formatDate(report.generatedAt)} ·{" "}
@@ -73,11 +73,11 @@ export function ClaimLensReportView({
         </div>
       </div>
 
-      {/* Key findings */}
+      {/* Forensic findings — summary view */}
       <ReportSection
-        title="Key findings"
-        eyebrow="A. Overview"
-        body="A short list of what stood out across the documents you uploaded. Each finding is tied to a severity and a specific document reference."
+        title="Forensic findings"
+        eyebrow="A. Findings summary"
+        body="Senior-estimator-level observations across the documents reviewed. Each finding cites a specific document or photo and is rated for concern level."
       >
         {report.keyFindings.length === 0 ? (
           <EmptyState label="No key findings yet — upload more documents for a deeper read." />
@@ -100,9 +100,9 @@ export function ClaimLensReportView({
 
       {/* Missing scope */}
       <ReportSection
-        title="Possible missing scope"
-        eyebrow="B. Scope review"
-        body="Line items or scope elements that may belong on the estimate. Confidence reflects how directly the uploaded documents support each finding."
+        title="Scope gap analysis"
+        eyebrow="B. Scope gap analysis"
+        body="Scope elements that the uploaded documents suggest may belong on the carrier estimate. Each item is rated for evidentiary confidence and concern level, and includes a clarification request you can use with the carrier."
       >
         {report.missingScope.length === 0 ? (
           <EmptyState label="No scope-gap findings — upload the carrier estimate, contractor estimate, and photos to enable this section." />
@@ -129,7 +129,7 @@ export function ClaimLensReportView({
                 </div>
 
                 <div className="mt-5 border-l-2 border-gold/60 bg-ivory-soft/60 px-5 py-4">
-                  <p className="eyebrow text-gold-deep">Question to ask</p>
+                  <p className="eyebrow text-gold-deep">Carrier clarification request</p>
                   <p className="mt-2 text-sm leading-relaxed text-charcoal">
                     {m.recommendedQuestion}
                   </p>
@@ -142,9 +142,9 @@ export function ClaimLensReportView({
 
       {/* Inconsistencies */}
       <ReportSection
-        title="Estimate inconsistencies"
-        eyebrow="C. Cross-checks"
-        body="Places where one document appears to conflict with another, or where the line-item logic does not seem to add up against the documented loss."
+        title="Internal consistency analysis"
+        eyebrow="C. Carrier-consistency review"
+        body="Places where the carrier estimate's own approved operations imply scope that isn't itemised, or where line-item quantities don't appear to match the documented affected area."
       >
         {report.inconsistencies.length === 0 ? (
           <EmptyState label="No inconsistencies detected in the documents reviewed." />
@@ -167,9 +167,9 @@ export function ClaimLensReportView({
 
       {/* Questions */}
       <ReportSection
-        title="Questions to ask the carrier"
-        eyebrow="D. Conversation prompts"
-        body="Professional, non-accusatory questions you can use as a starting point in your next call or email."
+        title="Carrier clarification requests"
+        eyebrow="D. Clarification requests"
+        body="Professional, non-accusatory questions you can put to the carrier or contractor. Phrased as requests for information, not assertions of error."
       >
         {report.questionsToAsk.length === 0 ? (
           <EmptyState label="No questions generated — review your uploaded documents and try again." />
@@ -178,7 +178,7 @@ export function ClaimLensReportView({
             {report.questionsToAsk.map((q, i) => (
               <li key={i} className="flex gap-6 bg-ivory p-6">
                 <span className="eyebrow flex-none text-gold-deep">
-                  Q · {String(i + 1).padStart(2, "0")}
+                  CR · {String(i + 1).padStart(2, "0")}
                 </span>
                 <p className="text-base leading-relaxed text-charcoal/85">{q}</p>
               </li>
@@ -190,8 +190,8 @@ export function ClaimLensReportView({
       {/* Documentation checklist */}
       <ReportSection
         title="Documentation checklist"
-        eyebrow="E. What to gather"
-        body="Evidence that typically strengthens a claim file. Bring as much of this as you can to your next conversation."
+        eyebrow="E. Evidence to gather"
+        body="Documentary evidence that materially strengthens the claim file. Bring as much of this as is available to your next conversation with the carrier or contractor."
       >
         {report.documentationChecklist.length === 0 ? (
           <EmptyState label="No checklist items yet." />

@@ -9,17 +9,17 @@ export const claimLens = {
   // Symbol kept as a separate string so we can render it as a styled <sup>
   // wherever appropriate without polluting page titles.
   symbol: "™",
-  tagline: "AI-assisted insurance estimate review.",
+  tagline: "AI-assisted forensic estimate analysis.",
   hero: {
-    eyebrow: "ClaimLens™ · AI claim review",
+    eyebrow: "ClaimLens™ · Forensic estimate analysis",
     headline: "Find What Your Insurance Estimate May Be Missing.",
     subheadline:
-      "ClaimLens™ reviews claim estimates, photos, policies, invoices, and denial letters to flag missing scope, underpaid items, inconsistencies, and documentation gaps — before you accept less than the work may require.",
+      "ClaimLens™ performs forensic-style analysis of property-insurance estimates, photos, policies, invoices, and denial letters — surfacing potential scope gaps, internal inconsistencies, and documentation deficiencies the same way a senior IICRC estimator would on a desk review.",
     primaryCta: { label: "Analyze My Claim", href: "/claimlens/upload" },
     secondaryCta: { label: "See How It Works", href: "#how-it-works" },
   },
   shortDescription:
-    "ClaimLens™ is an AI-assisted reality check for property insurance estimates. Upload your claim documents and get a structured report on possible missing scope, inconsistencies, and documentation gaps.",
+    "ClaimLens™ is an AI-assisted forensic estimate analysis platform for property-insurance restoration claims. Upload your claim documents and receive a structured forensic review of potential scope gaps, carrier-consistency issues, and documentation deficiencies.",
   // The exact disclaimer string the project brief requires — used in every
   // report, in the upload-consent checkbox, and at the bottom of every
   // ClaimLens page. Do not paraphrase.
@@ -223,22 +223,22 @@ export const howItWorks = [
   {
     n: "01",
     title: "Upload Documents",
-    body: "Insurance estimate, contractor estimate, photos, policy, denial letter, mitigation invoice, Matterport screenshots, or notes.",
+    body: "Carrier estimate, contractor estimate, photos, policy, denial letter, mitigation invoice, Matterport screenshots, or scope notes.",
   },
   {
     n: "02",
-    title: "AI Claim Review",
-    body: "The system reads scope, quantities, line-item logic, dependencies, and document consistency.",
+    title: "Forensic Analysis",
+    body: "The system performs a senior-estimator-level review — line-item logic, quantity consistency, trade sequencing, and carrier-consistency cross-checks against IICRC standards.",
   },
   {
     n: "03",
-    title: "Missing Scope Report",
-    body: "You get a structured report — possible missing items, underpaid areas, questions to ask, and evidence needed.",
+    title: "Structured Report",
+    body: "You receive a forensic report — scope gap analysis, internal consistency findings, evidentiary confidence on each item, and carrier clarification requests.",
   },
   {
     n: "04",
     title: "Next Action Packet",
-    body: "A clean summary you can use to talk to the carrier, contractor, or a licensed claim professional.",
+    body: "A clean summary you can use in conversation with the carrier, contractor, or a licensed claim professional.",
   },
 ] as const;
 
@@ -287,17 +287,21 @@ export const severityLevels = [
 ] as const;
 export type Severity = (typeof severityLevels)[number];
 
+// Severity labels use the forensic-review register — "concern" rather
+// than bare adjectives. Keeps the report reading as professional
+// analysis, not chatbot output.
 export const severityLabel: Record<Severity, string> = {
-  critical: "Critical",
-  high: "High",
-  medium: "Medium",
-  low: "Low",
-  "needs-documentation": "Needs Documentation",
+  critical: "Critical concern",
+  high: "High concern",
+  medium: "Moderate concern",
+  low: "Low concern",
+  "needs-documentation": "Documentation gap",
 };
 
-// Confidence is intentionally a 3-step scale so we never imply false
-// precision. The AI is instructed to map "confirmed" only to items the
-// uploaded documents directly support.
+// Confidence is a 4-step scale. The AI is instructed to map "confirmed"
+// only to items directly cited by an uploaded document line. Labels are
+// chosen so the reader sees them as an evidentiary scale, not a
+// chatbot's hedge words ("likely", "possible").
 export const confidenceLevels = [
   "confirmed",
   "likely",
@@ -307,10 +311,10 @@ export const confidenceLevels = [
 export type Confidence = (typeof confidenceLevels)[number];
 
 export const confidenceLabel: Record<Confidence, string> = {
-  confirmed: "Confirmed by documents",
-  likely: "Likely",
-  possible: "Possible",
-  "needs-verification": "Needs verification",
+  confirmed: "Documented in file",
+  likely: "High confidence",
+  possible: "Moderate confidence",
+  "needs-verification": "Requires verification",
 };
 
 export type ClaimSnapshot = {
