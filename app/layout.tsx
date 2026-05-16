@@ -3,7 +3,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { JsonLd } from "@/components/JsonLd";
 import { Analytics } from "@/components/Analytics";
-import { TriageWidget } from "@/components/triage/TriageWidget";
+import { AskOna } from "@/components/assistant/AskOna";
 import { site } from "@/lib/site";
 import { localBusinessJsonLd, websiteJsonLd } from "@/lib/jsonld";
 import { satoshi } from "./fonts";
@@ -75,7 +75,7 @@ export default function RootLayout({
         <Header />
         <main id="main">{children}</main>
         <Footer />
-        <TriageWidget />
+        <AskOna />
         <Analytics />
         <JsonLd data={[localBusinessJsonLd(), websiteJsonLd()]} />
       </body>

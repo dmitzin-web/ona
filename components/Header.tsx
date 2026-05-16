@@ -6,6 +6,7 @@ import { site } from "@/lib/site";
 import { Logo } from "./Logo";
 import { PhoneLink } from "./contact/ContactLinks";
 import { PhoneIcon } from "./icons/ServiceIcons";
+import { AskOnaTrigger } from "./assistant/AskOnaTrigger";
 
 const nav = [
   { href: "/services", label: "Services" },
@@ -60,6 +61,7 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
+          <AskOnaTrigger />
           <Link
             href="/quote"
             className="hidden border border-ivory/30 px-4 py-2 text-sm font-medium text-ivory transition hover:border-ivory sm:inline-flex"
