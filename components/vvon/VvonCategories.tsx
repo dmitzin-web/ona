@@ -8,7 +8,7 @@ export function VvonCategories() {
           <div className="lg:col-span-4">
             <p className="eyebrow text-gold-soft">Analysis categories</p>
             <h2 className="mt-6 text-4xl font-light leading-tight tracking-tight sm:text-5xl">
-              What Vvon looks at.
+              What Vvon™ looks at.
             </h2>
             <p className="mt-6 max-w-md text-base leading-relaxed text-ivory/70">
               Every uploaded document is read against four lenses — the

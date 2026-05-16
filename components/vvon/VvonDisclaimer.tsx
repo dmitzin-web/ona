@@ -1,6 +1,6 @@
 import { vvon } from "@/lib/vvon/config";
 
-// Re-rendered on every Vvon surface — landing, upload, report. The
+// Re-rendered on every Vvon™ surface — landing, upload, report. The
 // disclaimer string lives in lib/vvon/config.ts and is the canonical
 // version. Do not paraphrase per the project brief.
 export function VvonDisclaimer({

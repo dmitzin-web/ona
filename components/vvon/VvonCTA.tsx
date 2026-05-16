@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowIcon } from "@/components/icons/ServiceIcons";
 
 export function VvonCTA({
-  title = "Run your claim through Vvon.",
+  title = "Run your claim through Vvon™.",
   subtitle = "Upload your insurance estimate and related documents. Get a structured report on possible missing scope, inconsistencies, and documentation gaps in minutes.",
 }: {
   title?: string;

@@ -3,7 +3,7 @@ import { VvonWordmark } from "./VvonWordmark";
 import { VvonDisclaimer } from "./VvonDisclaimer";
 import { SeverityBadge, ConfidenceLabel } from "./SeverityBadge";
 
-// Renders a full Vvon report. Used by /vvon/report (real
+// Renders a full Vvon™ report. Used by /vvon/report (real
 // analysis read from sessionStorage) and by the demo path that ships the
 // sample report when accessed directly. Pure presentational — receives
 // a `ClaimReport` and renders it. No data fetching here.
@@ -33,7 +33,7 @@ export function VvonReportView({
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div>
               <p className="eyebrow text-gold-soft">
-                {isDemo ? "Sample report · demo only" : "Vvon forensic review"}
+                {isDemo ? "Sample report · demo only" : "Vvon™ forensic review"}
               </p>
               <h1 className="mt-4 text-4xl font-light leading-tight tracking-tight sm:text-5xl">
                 <VvonWordmark tone="light" /> forensic estimate analysis
@@ -228,7 +228,7 @@ export function VvonReportView({
             advice, public adjusting, or a guarantee of payment.
           </h2>
           <p className="mt-5 max-w-3xl text-sm leading-relaxed text-ivory/70">
-            Vvon surfaces possibilities tied to the documents you
+            Vvon™ surfaces possibilities tied to the documents you
             uploaded. Coverage, settlement amounts, and outcomes depend on the
             terms of your insurance policy, the evidence in your claim file,
             the carrier&apos;s adjustment of that evidence, and applicable

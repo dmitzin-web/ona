@@ -135,7 +135,7 @@ export function VvonUploadForm() {
     setProgressLabel(
       attachments.length > 0
         ? `Uploading ${attachments.length} file${attachments.length === 1 ? "" : "s"}…`
-        : "Sending to Vvon for review…",
+        : "Sending to Vvon™ for review…",
     );
 
     try {
@@ -165,7 +165,7 @@ export function VvonUploadForm() {
         form.append("file", a.file, a.file.name);
       }
 
-      setProgressLabel("Sending to Vvon for review…");
+      setProgressLabel("Sending to Vvon™ for review…");
       const res = await fetch("/api/vvon/analyze", {
         method: "POST",
         body: form,

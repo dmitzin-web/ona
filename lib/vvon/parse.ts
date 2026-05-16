@@ -1,4 +1,4 @@
-// Document text extraction for Vvon.
+// Document text extraction for Vvon™.
 //
 // V0 supports:
 //   - PDF with a text layer (carrier estimates, contractor scopes, denial

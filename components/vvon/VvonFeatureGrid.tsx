@@ -12,7 +12,7 @@ export function VvonFeatureGrid() {
             </h2>
             <p className="mt-6 max-w-md text-base leading-relaxed text-charcoal/75">
               Carrier estimates often use complex line items, abbreviations,
-              depreciation tables, and limited explanations. Vvon
+              depreciation tables, and limited explanations. Vvon™
               organizes the information into a clear, evidence-based report so
               you can understand what was included, what may be missing, and
               what questions to ask next.

@@ -119,7 +119,8 @@
       "Bash(curl -s -o /dev/null -w \"/vvon/upload: %{http_code}\\\\n\" http://localhost:3000/vvon/upload)",
       "Bash(curl -s -o /dev/null -w \"/vvon/report: %{http_code}\\\\n\" http://localhost:3000/vvon/report)",
       "Bash(curl -s -o /dev/null -w \"/claimlens: %{http_code} → %{redirect_url}\\\\n\" http://localhost:3000/claimlens)",
-      "Bash(curl -s -o /dev/null -w \"/claimlens/upload: %{http_code} → %{redirect_url}\\\\n\" http://localhost:3000/claimlens/upload)"
+      "Bash(curl -s -o /dev/null -w \"/claimlens/upload: %{http_code} → %{redirect_url}\\\\n\" http://localhost:3000/claimlens/upload)",
+      "Bash(curl -s http://localhost:3000/vvon)"
     ]
   }
 }

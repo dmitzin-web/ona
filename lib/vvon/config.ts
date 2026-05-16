@@ -6,30 +6,30 @@
 
 export const vvon = {
   name: "Vvon",
-  // Product is launched without a registered trademark yet. We keep the
-  // `symbol` field on the config so callers like <VvonWordmark> can opt
-  // back into the ™ glyph with one line change if/when USPTO approves.
-  symbol: "",
+  // Trademark glyph rendered next to the name in the <VvonWordmark>
+  // component and in user-facing copy throughout the product. Set to ""
+  // if/when the brand decides to drop the ™.
+  symbol: "™",
   // Brand domain — referenced in OG copy and email footers.
   domain: "vvon.ai",
   tagline: "AI-assisted forensic estimate analysis.",
   hero: {
-    eyebrow: "Vvon · Forensic estimate analysis",
+    eyebrow: "Vvon™ · Forensic estimate analysis",
     headline: "Find What Your Insurance Estimate May Be Missing.",
     subheadline:
-      "Vvon performs forensic-style analysis of property-insurance estimates, photos, policies, invoices, and denial letters — surfacing potential scope gaps, internal inconsistencies, and documentation deficiencies the same way a senior IICRC estimator would on a desk review.",
+      "Vvon™ performs forensic-style analysis of property-insurance estimates, photos, policies, invoices, and denial letters — surfacing potential scope gaps, internal inconsistencies, and documentation deficiencies the same way a senior IICRC estimator would on a desk review.",
     primaryCta: { label: "Analyze My Claim", href: "/vvon/upload" },
     secondaryCta: { label: "See How It Works", href: "#how-it-works" },
   },
   shortDescription:
-    "Vvon is an AI-assisted forensic estimate analysis platform for property-insurance restoration claims. Upload your claim documents and receive a structured forensic review of potential scope gaps, carrier-consistency issues, and documentation deficiencies.",
+    "Vvon™ is an AI-assisted forensic estimate analysis platform for property-insurance restoration claims. Upload your claim documents and receive a structured forensic review of potential scope gaps, carrier-consistency issues, and documentation deficiencies.",
   // The exact disclaimer string the project brief requires — used in every
   // report, in the upload-consent checkbox, and at the bottom of every
-  // Vvon page. Do not paraphrase.
+  // Vvon™ page. Do not paraphrase.
   disclaimer:
-    "Vvon provides informational estimate and document analysis only. It does not provide legal advice, public adjusting services, or guarantee claim outcomes.",
+    "Vvon™ provides informational estimate and document analysis only. It does not provide legal advice, public adjusting services, or guarantee claim outcomes.",
   consentLabel:
-    "I understand Vvon provides informational analysis only and does not provide legal advice, public adjusting services, or guaranteed claim outcomes.",
+    "I understand Vvon™ provides informational analysis only and does not provide legal advice, public adjusting services, or guaranteed claim outcomes.",
 } as const;
 
 // ---------------------------------------------------------------------------
@@ -251,11 +251,11 @@ export const howItWorks = [
 
 export const faqs = [
   {
-    q: "Is Vvon a public adjuster?",
-    a: "No. Vvon provides informational document and estimate analysis only. It does not negotiate, represent you, or adjust your claim.",
+    q: "Is Vvon™ a public adjuster?",
+    a: "No. Vvon™ provides informational document and estimate analysis only. It does not negotiate, represent you, or adjust your claim.",
   },
   {
-    q: "Does Vvon guarantee more money from insurance?",
+    q: "Does Vvon™ guarantee more money from insurance?",
     a: "No. It identifies possible issues and documentation gaps, but claim outcomes depend on policy terms, evidence, carrier review, and applicable law.",
   },
   {
@@ -263,7 +263,7 @@ export const faqs = [
     a: "Carrier estimate, contractor estimate, photos, policy, denial letter, mitigation invoice, and any claim correspondence. The more context the system has, the more grounded the report.",
   },
   {
-    q: "Can contractors use Vvon?",
+    q: "Can contractors use Vvon™?",
     a: "Yes. Contractors and estimators can use it as a second-pass scope review to identify possible omissions before submitting a supplement.",
   },
   {

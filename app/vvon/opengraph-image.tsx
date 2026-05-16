@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-// Vvon Open Graph image (1200x630). Shared when /vvon or any
+// Vvon™ Open Graph image (1200x630). Shared when /vvon or any
 // of its subpages are linked in chat / social. Visually distinct from
 // the main ONA Restoration OG image: gold accent on charcoal, product
 // wordmark prominent, "AI claim review" framing.

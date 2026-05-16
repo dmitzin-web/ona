@@ -137,7 +137,7 @@ export default function HomePage() {
                   href="/vvon"
                   className="inline-flex items-center gap-3 border border-ivory bg-ivory px-7 py-4 text-sm font-medium uppercase tracking-[0.22em] text-charcoal transition hover:bg-transparent hover:text-ivory"
                 >
-                  Try Vvon
+                  Try Vvon™
                   <ArrowIcon className="h-4 w-4 stroke-current" />
                 </Link>
                 <Link

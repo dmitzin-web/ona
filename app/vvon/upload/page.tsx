@@ -12,7 +12,7 @@ import { createClient } from "@/lib/supabase/server";
 export const metadata: Metadata = buildMetadata({
   title: "Analyze a Claim — Vvon",
   description:
-    "Upload your insurance estimate, contractor estimate, photos, policy, denial letter, or mitigation invoice. Vvon returns a structured report on possible missing scope and documentation gaps.",
+    "Upload your insurance estimate, contractor estimate, photos, policy, denial letter, or mitigation invoice. Vvon™ returns a structured report on possible missing scope and documentation gaps.",
   path: "/vvon/upload",
   image: "/vvon/opengraph-image",
 });
@@ -33,7 +33,7 @@ export default async function VvonUploadPage() {
       <Breadcrumbs
         items={[
           { name: "Home", href: "/" },
-          { name: "Vvon", href: "/vvon" },
+          { name: "Vvon™", href: "/vvon" },
           { name: "Analyze a claim", href: "/vvon/upload" },
         ]}
       />
@@ -103,7 +103,7 @@ export default async function VvonUploadPage() {
       <JsonLd
         data={breadcrumbJsonLd([
           { name: "Home", url: "/" },
-          { name: "Vvon", url: "/vvon" },
+          { name: "Vvon™", url: "/vvon" },
           { name: "Analyze a claim", url: "/vvon/upload" },
         ])}
       />

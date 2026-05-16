@@ -9,9 +9,9 @@ import { createClient } from "@/lib/supabase/server";
 import type { ClaimReport } from "@/lib/vvon/config";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Your Vvon report",
+  title: "Your Vvon™ report",
   description:
-    "Your Vvon report — severity-ranked findings, possible missing scope, inconsistencies, questions to ask, and a documentation checklist.",
+    "Your Vvon™ report — severity-ranked findings, possible missing scope, inconsistencies, questions to ask, and a documentation checklist.",
   path: "/vvon/report",
   noindex: true,
 });
@@ -72,7 +72,7 @@ export default async function ClaimReportPage({
         <Breadcrumbs
           items={[
             { name: "Home", href: "/" },
-            { name: "Vvon", href: "/vvon" },
+            { name: "Vvon™", href: "/vvon" },
             { name: "Report", href: `/vvon/report/${id}` },
           ]}
         />
@@ -134,7 +134,7 @@ export default async function ClaimReportPage({
       <Breadcrumbs
         items={[
           { name: "Home", href: "/" },
-          { name: "Vvon", href: "/vvon" },
+          { name: "Vvon™", href: "/vvon" },
           { name: "Report", href: `/vvon/report/${id}` },
         ]}
       />

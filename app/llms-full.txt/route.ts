@@ -74,7 +74,7 @@ export function GET() {
   for (const a of site.serviceArea)
     out.push(`- ${a.name}, ${a.region} — ${site.url}/areas/${a.slug}`);
 
-  // ----- Vvon product section -----
+  // ----- Vvon™ product section -----
   out.push(`\n---\n`);
   out.push(`## ${vvon.name}${vvon.symbol} — AI claim review product\n`);
   out.push(`URL: ${site.url}/vvon\n`);

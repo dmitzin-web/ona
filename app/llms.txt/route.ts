@@ -56,7 +56,7 @@ export function GET() {
     `- [${vvon.name}${vvon.symbol} — upload](${site.url}/vvon/upload): Upload form for claim documents (auth required).`,
   );
   lines.push(
-    `- [${vvon.name}${vvon.symbol} — sample report](${site.url}/vvon/report): Public sample of what a Vvon report looks like.`,
+    `- [${vvon.name}${vvon.symbol} — sample report](${site.url}/vvon/report): Public sample of what a Vvon™ report looks like.`,
   );
   lines.push("");
 

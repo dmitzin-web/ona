@@ -12,9 +12,9 @@ import { faqJsonLd, breadcrumbJsonLd } from "@/lib/jsonld";
 import { faqs, vvon } from "@/lib/vvon/config";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Vvon — AI Insurance Estimate Review",
+  title: "Vvon™ — AI Insurance Estimate Review",
   description:
-    "Vvon is an AI-assisted reality check for property insurance estimates. Upload your claim documents and get a structured report on possible missing scope, inconsistencies, and documentation gaps.",
+    "Vvon™ is an AI-assisted reality check for property insurance estimates. Upload your claim documents and get a structured report on possible missing scope, inconsistencies, and documentation gaps.",
   path: "/vvon",
   image: "/vvon/opengraph-image",
   keywords: [
@@ -96,7 +96,7 @@ export default function VvonLandingPage() {
         data={[
           breadcrumbJsonLd([
             { name: "Home", url: "/" },
-            { name: "Vvon", url: "/vvon" },
+            { name: "Vvon™", url: "/vvon" },
           ]),
           faqJsonLd(faqs.map((f) => ({ q: f.q, a: f.a }))),
           {

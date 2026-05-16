@@ -8,7 +8,7 @@ import { ReportClient } from "./ReportClient";
 export const metadata: Metadata = buildMetadata({
   title: "Sample Report — Vvon",
   description:
-    "Preview a Vvon claim report. Severity-ranked findings, possible missing scope, inconsistencies, questions to ask, and a documentation checklist.",
+    "Preview a Vvon™ claim report. Severity-ranked findings, possible missing scope, inconsistencies, questions to ask, and a documentation checklist.",
   path: "/vvon/report",
   // The "report" page is also used for live reports stored in
   // sessionStorage, so we let search engines index the demo view but the
@@ -21,7 +21,7 @@ export default function VvonReportPage() {
       <Breadcrumbs
         items={[
           { name: "Home", href: "/" },
-          { name: "Vvon", href: "/vvon" },
+          { name: "Vvon™", href: "/vvon" },
           { name: "Report", href: "/vvon/report" },
         ]}
       />
@@ -29,7 +29,7 @@ export default function VvonReportPage() {
       <JsonLd
         data={breadcrumbJsonLd([
           { name: "Home", url: "/" },
-          { name: "Vvon", url: "/vvon" },
+          { name: "Vvon™", url: "/vvon" },
           { name: "Report", url: "/vvon/report" },
         ])}
       />

@@ -11,7 +11,7 @@ export function VvonHowItWorks() {
               Four steps. No guesswork.
             </h2>
             <p className="mt-6 max-w-md text-base leading-relaxed text-charcoal/75">
-              You upload what you have. Vvon reads it, organizes it,
+              You upload what you have. Vvon™ reads it, organizes it,
               and gives you a structured report you can use to ask better
               questions.
             </p>
