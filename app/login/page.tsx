@@ -48,9 +48,10 @@ export default async function LoginPage({
               .
             </h1>
             <p className="mt-8 max-w-md text-base leading-relaxed text-charcoal/75">
-              Vvon uses magic-link sign-in — we email you a one-tap
-              link instead of asking for a password. Your claim documents
-              are tied to your account and only visible to you.
+              Continue with Google for one-click sign-in, or use a
+              magic link sent to your email. No password to remember
+              either way. Your claim documents are tied to your account
+              and only visible to you.
             </p>
 
             <ul className="mt-10 space-y-3 border-t border-charcoal/15 pt-8 text-sm text-charcoal/80">
@@ -60,7 +61,7 @@ export default async function LoginPage({
               </li>
               <li className="flex items-start gap-3">
                 <span aria-hidden="true" className="mt-1.5 h-1.5 w-1.5 flex-none rounded-full bg-gold" />
-                <span>One-tap email links, no password to remember.</span>
+                <span>Sign in with Google or a one-tap email link.</span>
               </li>
               <li className="flex items-start gap-3">
                 <span aria-hidden="true" className="mt-1.5 h-1.5 w-1.5 flex-none rounded-full bg-gold" />
