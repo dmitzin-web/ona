@@ -96,7 +96,7 @@ export default function HomePage() {
               <ArrowIcon className="h-3 w-3 stroke-current" />
             </Link>
           </div>
-          <div className="mt-14 grid gap-px overflow-hidden border border-line-light bg-line-light sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-14 grid gap-px overflow-hidden border border-line-light bg-line-light sm:grid-cols-2 lg:grid-cols-5">
             {services.map((s) => (
               <div key={s.slug}>
                 <ServiceCard service={s} />

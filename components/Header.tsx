@@ -6,22 +6,33 @@ import { site } from "@/lib/site";
 import { Logo } from "./Logo";
 import { PhoneLink } from "./contact/ContactLinks";
 import { PhoneIcon } from "./icons/ServiceIcons";
-import { AskOnaTrigger } from "./assistant/AskOnaTrigger";
 
-const nav = [
+// Primary navigation. Two kinds of entries:
+//   - `link` (default): renders an <a> via next/link, target href required
+//   - `action: "ask-ona"`: renders a button that opens the Ask ONA drawer
+//     via the global "askona:open" window event. Used to put Ask ONA in
+//     the nav stream rather than competing with Get a quote / phone CTAs.
+//
+// The mobile burger + drawer use a native <details>/<summary> pair so the
+// toggle is a pure HTML behavior — no useState, no useEffect, no waiting on
+// hydration. lg:hidden keeps it off desktop.
+
+type NavItem =
+  | { href: string; label: string; accent?: boolean; action?: never }
+  | { action: "ask-ona"; label: string };
+
+const nav: NavItem[] = [
   { href: "/services", label: "Services" },
   { href: "/claimlens", label: "ClaimLens™", accent: true },
-  { href: "/areas", label: "Service Area" },
   { href: "/blog", label: "Blog" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
+  { action: "ask-ona", label: "✦ Ask ONA" },
 ];
 
-// The mobile burger + drawer use a native <details>/<summary> pair so the
-// toggle is a pure HTML behavior — no useState, no useEffect, no waiting on
-// hydration. Even if the client bundle is stale or React fails to mount,
-// the menu still opens and closes via the browser's built-in disclosure
-// behavior. lg:hidden keeps the whole thing off the desktop layout.
+function openAskOna() {
+  window.dispatchEvent(new Event("askona:open"));
+}
 
 export function Header() {
   const pathname = usePathname() ?? "/";
@@ -33,12 +44,25 @@ export function Header() {
 
         <nav aria-label="Primary" className="hidden lg:block">
           <ul className="flex items-center gap-9 eyebrow text-ivory/80">
-            {nav.map((item) => {
+            {nav.map((item, i) => {
+              if ("action" in item) {
+                return (
+                  <li key="ask-ona">
+                    <button
+                      type="button"
+                      onClick={openAskOna}
+                      className="eyebrow text-gold-soft transition hover:text-gold"
+                    >
+                      {item.label}
+                    </button>
+                  </li>
+                );
+              }
               const active =
                 pathname === item.href ||
                 pathname.startsWith(`${item.href}/`);
               return (
-                <li key={item.href}>
+                <li key={item.href ?? `nav-${i}`}>
                   <Link
                     href={item.href}
                     aria-current={active ? "page" : undefined}
@@ -61,7 +85,6 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <AskOnaTrigger />
           <Link
             href="/quote"
             className="hidden border border-ivory/30 px-4 py-2 text-sm font-medium text-ivory transition hover:border-ivory sm:inline-flex"
@@ -74,10 +97,7 @@ export function Header() {
             <span className="sm:hidden">Call</span>
           </PhoneLink>
 
-          {/* Burger — only renders below lg. Native <details> handles the
-              open/close state without any JavaScript. The drawer is
-              absolutely positioned below the header so it spans full width
-              regardless of where the burger sits in the row. */}
+          {/* Burger — only renders below lg. */}
           <details className="group relative lg:hidden">
             <summary
               aria-label="Toggle menu"
@@ -98,13 +118,32 @@ export function Header() {
               className="fixed inset-x-0 top-[81px] z-40 max-h-[calc(100vh-81px)] overflow-y-auto border-t border-charcoal-mute bg-charcoal/95 backdrop-blur"
             >
               <ul className="mx-auto max-w-7xl px-6 py-2">
-                {nav.map((item) => {
+                {nav.map((item, i) => {
+                  if ("action" in item) {
+                    return (
+                      <li
+                        key="ask-ona-mobile"
+                        className="border-b border-charcoal-mute last:border-b-0"
+                      >
+                        <button
+                          type="button"
+                          onClick={openAskOna}
+                          className="flex w-full items-center justify-between py-4 text-base font-medium tracking-tight text-gold-soft transition"
+                        >
+                          <span>{item.label}</span>
+                          <span aria-hidden="true" className="text-ivory/40">
+                            →
+                          </span>
+                        </button>
+                      </li>
+                    );
+                  }
                   const active =
                     pathname === item.href ||
                     pathname.startsWith(`${item.href}/`);
                   return (
                     <li
-                      key={item.href}
+                      key={item.href ?? `nav-mob-${i}`}
                       className="border-b border-charcoal-mute last:border-b-0"
                     >
                       <Link

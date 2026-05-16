@@ -254,6 +254,91 @@ export const services: Service[] = [
       },
     ],
   },
+  {
+    slug: "remodeling",
+    name: "Remodeling & Reconstruction",
+    shortName: "Remodeling",
+    title: "High-end Remodeling & Reconstruction — Vancouver, WA & Portland Metro",
+    description:
+      "Premium kitchen, bath, and whole-house remodeling in Vancouver, WA and Portland, OR — built to the same IICRC-grade documentation and craftsmanship as our restoration work. Licensed, bonded, insured.",
+    hero: "From kitchen and bath remodels to whole-house renovations and additions — built by a crew that already meets insurance-grade documentation standards every day.",
+    intro:
+      "After we put a property back together, many clients keep us on for the renovation they actually want. ONA Restoration's remodeling division handles full kitchen and bath renovations, whole-house remodels, structural additions, basement and ADU build-outs, and custom millwork — all delivered with the same crew, the same documentation discipline, and the same IICRC-grade workmanship as our restoration projects.",
+    body: [
+      {
+        heading: "What we build",
+        paragraphs: [
+          "Full kitchen renovations — cabinetry, countertops, tile, lighting, electrical, plumbing relocation. Bathroom remodels from shower-only refresh to full gut-and-replace including curbless wet rooms and steam showers. Whole-house renovations including layout reconfiguration, structural openings, and finish-package upgrades. Basement and attic build-outs, ADU and garage conversions, and second-story additions.",
+          "Custom millwork — built-ins, paneling, wainscoting, libraries, integrated banquettes, mantels, closet systems. Hardwood, stone, and large-format tile installation. Trade-grade electrical, plumbing, and HVAC work coordinated under one general contractor.",
+        ],
+      },
+      {
+        heading: "Why our restoration roots matter",
+        paragraphs: [
+          "Restoration contractors know how houses fail. We see what's behind the drywall every week — the rotted sill plates, the undersized headers, the abandoned shut-offs, the surprises that turn a 6-week remodel into 16. That knowledge means we scope projects with fewer change orders and fewer end-of-project surprises than firms that only do new finish work.",
+          "We document every project the way an insurance adjuster expects — measurements, daily progress photos, a written scope, and weekly client updates. It's overkill for most remodels, and it's exactly why our clients keep us on for everything after the first restoration job.",
+        ],
+      },
+      {
+        heading: "Upgrades during a restoration claim",
+        paragraphs: [
+          "When insurance is rebuilding a damaged room, you can often upgrade finishes and pay only the difference — the carrier pays for like-kind replacement, you pay the betterment delta. This is the cleanest way to fund a kitchen or bath upgrade and we handle the documentation so the carrier-paid portion and the owner-paid portion are tracked separately from day one.",
+        ],
+      },
+    ],
+    process: [
+      {
+        step: "1. Consultation & scope",
+        text: "In-home consultation, scope outline, photo documentation, and an honest preliminary budget range before any drawings start.",
+      },
+      {
+        step: "2. Design & specifications",
+        text: "Drawings, finish selections, fixture and appliance specifications, and a fixed-scope written agreement before demolition.",
+      },
+      {
+        step: "3. Permitting & pre-construction",
+        text: "Permits pulled where required (Vancouver, WA / Portland metro), subs scheduled, materials ordered with lead-time tracked weekly.",
+      },
+      {
+        step: "4. Build",
+        text: "Demolition, framing, MEP rough-in, drywall, finish carpentry, paint, and final installations. Weekly progress photos and client check-ins.",
+      },
+      {
+        step: "5. Walkthrough & punch list",
+        text: "Final walkthrough with the client, documented punch list, and warranty issued on completion.",
+      },
+    ],
+    signs: [
+      "Your kitchen or bath is original to the house and showing wear",
+      "Layout no longer fits how you actually live in the space",
+      "You're considering an addition, ADU, or basement build-out",
+      "Insurance is rebuilding a damaged room and you'd like to upgrade",
+      "You've inherited or purchased a property that needs full renovation",
+      "Multiple subs gave you wildly different timelines — you want one accountable contractor",
+    ],
+    faqs: [
+      {
+        q: "Do you take on remodels without a prior restoration project?",
+        a: "Yes. Remodeling and reconstruction is a full division — clients come to us directly for new renovations as often as they come to us after a loss. Restoration credentials apply the same craftsmanship discipline either way.",
+      },
+      {
+        q: "Can I upgrade finishes during an insurance claim?",
+        a: "Yes — this is called betterment. The carrier pays for like-kind replacement of the damaged finishes, and you pay only the difference for the upgrade. We document the carrier-paid scope and the owner-paid overage separately so the math is clean for everyone.",
+      },
+      {
+        q: "What's the timeline for a full kitchen remodel?",
+        a: "Most full kitchen renovations run 8–12 weeks from demolition to final install once permits are in hand. Long-lead items (custom cabinetry, specialty stone, imported tile) can extend that — we surface the critical path at design stage so you know what's driving the schedule.",
+      },
+      {
+        q: "Do you handle architectural drawings and permits?",
+        a: "For non-structural remodels (kitchens, baths, layout changes within existing walls) we handle drawings in-house. For additions, structural changes, and projects requiring engineered drawings, we partner with licensed architects and structural engineers and manage the permit process end-to-end.",
+      },
+      {
+        q: "Are you licensed for new construction in both WA and OR?",
+        a: "Yes — licensed, bonded, and insured for both restoration and new construction in Washington and Oregon. Permitting jurisdictions across the Portland metro know us by name.",
+      },
+    ],
+  },
 ];
 
 export const findService = (slug: string) =>

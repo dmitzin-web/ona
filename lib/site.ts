@@ -14,7 +14,7 @@ export const site = {
   legalName: "ONA Restoration LLC",
   tagline: "Precision. Restoration. Built to Last.",
   shortDescription:
-    "High-end property restoration in Vancouver, WA and Portland, OR. IICRC-certified water, fire, mold and storm damage restoration with insurance-grade documentation.",
+    "High-end property restoration and remodeling in Vancouver, WA and Portland, OR. IICRC-certified water, fire, mold and storm damage restoration plus premium kitchen, bath and whole-house remodeling — insurance-grade documentation throughout.",
   url: "https://onarestore.com",
   locale: "en_US",
   phone: "+13608233196",

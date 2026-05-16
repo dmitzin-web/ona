@@ -49,6 +49,18 @@ export function StormIcon({ className = base }: IconProps) {
   );
 }
 
+// Remodeling — house silhouette with a measurement square overlay,
+// signalling construction + precision craftsmanship.
+export function RemodelingIcon({ className = base }: IconProps) {
+  return (
+    <svg className={className} {...props}>
+      <path d="M8 22 L24 8 L40 22 V40 H8 Z" />
+      <path d="M18 40 V28 H30 V40" />
+      <path d="M28 16 L36 24" opacity="0.55" />
+    </svg>
+  );
+}
+
 export function PrecisionIcon({ className = base }: IconProps) {
   return (
     <svg className={className} {...props}>
@@ -145,4 +157,5 @@ export const serviceIcons = {
   "fire-damage": FireIcon,
   "mold-removal": MoldIcon,
   "storm-damage": StormIcon,
+  remodeling: RemodelingIcon,
 } satisfies Record<string, IconComponent>;

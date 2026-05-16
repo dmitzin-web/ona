@@ -11,9 +11,12 @@ import { askOnaGreeting } from "@/lib/assistant/prompts";
 //
 // Mounted once in app/layout.tsx. Listens for the global event
 // `askona:open` so any button anywhere on the page can open the drawer
-// without needing React context. The Header's <AskOnaTrigger> uses that
-// event. A small floating button below also opens it (mobile + when
-// the desktop header link is off-screen on long pages).
+// without needing React context. The Header's "Ask ONA" nav button
+// dispatches that event. A small floating button below also opens it
+// (mobile, since the desktop nav is hidden there).
+//
+// Keyboard: "/" or Cmd/Ctrl+K opens the drawer from anywhere on the
+// page (unless the user is typing in a form field).
 //
 // UX:
 //   - Desktop: opens as a side drawer pinned to the right, ~440px.
@@ -135,6 +138,31 @@ export function AskOna() {
     window.addEventListener("askona:open", onOpen);
     return () => window.removeEventListener("askona:open", onOpen);
   }, []);
+
+  // Keyboard shortcuts: "/" or Cmd/Ctrl+K opens the drawer from anywhere
+  // on the page. Skipped when the user is typing in a form field — we
+  // don't want to hijack "/" inside a search box or note field.
+  useEffect(() => {
+    function isEditable(el: EventTarget | null): boolean {
+      if (!(el instanceof HTMLElement)) return false;
+      const tag = el.tagName;
+      if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return true;
+      return el.isContentEditable;
+    }
+    function onKey(e: KeyboardEvent) {
+      if (open) return;
+      const cmdK = (e.metaKey || e.ctrlKey) && (e.key === "k" || e.key === "K");
+      const slash = e.key === "/" && !e.metaKey && !e.ctrlKey && !e.altKey;
+      if (!cmdK && !slash) return;
+      if (slash && isEditable(e.target)) return;
+      e.preventDefault();
+      // No focusable trigger — just open. Focus will return to body on close.
+      triggerRef.current = null;
+      setOpen(true);
+    }
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
 
   // Esc to close + body scroll lock + focus input.
   useEffect(() => {
