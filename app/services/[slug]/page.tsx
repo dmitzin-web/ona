@@ -12,6 +12,7 @@ import {
 import { EmailLink, PhoneLink } from "@/components/contact/ContactLinks";
 import { ServiceCardCompact } from "@/components/ServiceCardCompact";
 import { findService, services } from "@/lib/services";
+import { areaProfiles } from "@/lib/areas";
 import { site } from "@/lib/site";
 import { buildMetadata } from "@/lib/seo";
 import {
@@ -232,6 +233,43 @@ export default async function ServicePage(
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* City × service pages — programmatic local landing pages for
+          this specific service across the entire Portland metro. Drives
+          buy-intent local SEO (e.g., "water damage restoration beaverton"). */}
+      <section className="bg-ivory">
+        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
+          <div className="flex flex-wrap items-end justify-between gap-3">
+            <div>
+              <p className="eyebrow text-charcoal/60">
+                {service.shortName} by city
+              </p>
+              <h2 className="mt-4 text-3xl font-light leading-tight tracking-tight sm:text-4xl">
+                Local landing pages.
+              </h2>
+            </div>
+            <p className="max-w-md text-sm text-charcoal/55">
+              Same crew, same documentation. Tap a city for response times,
+              local loss patterns, and neighborhood coverage.
+            </p>
+          </div>
+          <ul className="mt-10 grid gap-px overflow-hidden border border-line-light bg-line-light sm:grid-cols-2 lg:grid-cols-3">
+            {areaProfiles.map((a) => (
+              <li key={a.slug}>
+                <Link
+                  href={`/services/${service.slug}/${a.slug}`}
+                  className="flex items-center justify-between bg-ivory px-5 py-4 text-sm font-medium text-charcoal transition hover:bg-ivory-soft"
+                >
+                  <span>
+                    {service.shortName} · {a.name}, {a.region}
+                  </span>
+                  <ArrowIcon className="h-3 w-3 stroke-current opacity-50" />
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 

@@ -29,6 +29,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   }));
 
+  // Programmatic service × city pages — 5 services × 10 areas = 50 URLs.
+  // Higher priority than generic city pages because these target
+  // buy-intent queries directly ("water damage restoration beaverton").
+  const serviceCityUrls: MetadataRoute.Sitemap = services.flatMap((s) =>
+    areaProfiles.map((a) => ({
+      url: `${site.url}/services/${s.slug}/${a.slug}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.85,
+    })),
+  );
+
   const areaUrls: MetadataRoute.Sitemap = areaProfiles.map((a) => ({
     url: `${site.url}/areas/${a.slug}`,
     lastModified: now,
@@ -43,5 +55,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...staticUrls, ...serviceUrls, ...areaUrls, ...postUrls];
+  return [
+    ...staticUrls,
+    ...serviceUrls,
+    ...serviceCityUrls,
+    ...areaUrls,
+    ...postUrls,
+  ];
 }

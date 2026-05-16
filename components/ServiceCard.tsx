@@ -5,16 +5,21 @@ import { serviceIcons, ArrowIcon } from "./icons/ServiceIcons";
 export function ServiceCard({
   service,
   tone = "light",
+  hrefOverride,
 }: {
   service: Service;
   tone?: "light" | "dark";
+  // Optional: override the link target. Used on /areas/[slug] pages to
+  // deep-link directly into the programmatic /services/[slug]/[area]
+  // landing pages for buy-intent local SEO.
+  hrefOverride?: string;
 }) {
   const Icon = serviceIcons[service.slug as keyof typeof serviceIcons];
   const dark = tone === "dark";
 
   return (
     <Link
-      href={`/services/${service.slug}`}
+      href={hrefOverride ?? `/services/${service.slug}`}
       className={`group relative block border p-8 transition ${
         dark
           ? "border-charcoal-mute bg-charcoal text-ivory hover:border-ivory/40"

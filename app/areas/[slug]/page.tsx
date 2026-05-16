@@ -184,20 +184,27 @@ export default async function AreaPage(
         </div>
       </section>
 
-      {/* Services available */}
+      {/* Services available — links to programmatic service × city
+          landing pages for buy-intent local SEO ("water damage
+          restoration <city>"). Falls back to the generic service page
+          on hover/click for users who want the full overview. */}
       <section className="bg-ivory">
         <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
           <p className="eyebrow text-charcoal/60">Available in {area.name}</p>
           <h2 className="mt-6 text-4xl font-light leading-tight tracking-tight sm:text-5xl">
             Services we provide here.
           </h2>
-          <div className="mt-14 grid gap-px overflow-hidden border border-line-light bg-line-light sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-14 grid gap-px overflow-hidden border border-line-light bg-line-light sm:grid-cols-2 lg:grid-cols-5">
             {services.map((s) => (
               <div key={s.slug}>
-                <ServiceCard service={s} />
+                <ServiceCard service={s} hrefOverride={`/services/${s.slug}/${area.slug}`} />
               </div>
             ))}
           </div>
+          <p className="mt-6 text-sm text-charcoal/55">
+            Each link opens the {area.name}-specific page for that service —
+            response time, neighborhoods, and local loss patterns included.
+          </p>
         </div>
       </section>
 

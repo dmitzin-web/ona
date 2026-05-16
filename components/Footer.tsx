@@ -108,11 +108,6 @@ export function Footer() {
             </Link>
           </li>
           <li>
-            <Link href="/blog" className="transition hover:text-ivory">
-              Blog
-            </Link>
-          </li>
-          <li>
             <Link href="/quote" className="transition hover:text-ivory">
               Get a quote
             </Link>
