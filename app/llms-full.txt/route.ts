@@ -1,12 +1,5 @@
 import { site } from "@/lib/site";
 import { services } from "@/lib/services";
-import {
-  analysisCategories,
-  vvon,
-  faqs as vvonFaqs,
-  features as vvonFeatures,
-  howItWorks,
-} from "@/lib/vvon/config";
 
 // llms-full.txt — verbose Markdown export of all primary content.
 // Used by LLMs that prefer a single, dense source over crawling individual pages.
@@ -74,58 +67,11 @@ export function GET() {
   for (const a of site.serviceArea)
     out.push(`- ${a.name}, ${a.region} — ${site.url}/areas/${a.slug}`);
 
-  // ----- Vvon™ product section -----
+  // ----- Sister product Vvon™ — short outbound reference -----
   out.push(`\n---\n`);
-  out.push(`## ${vvon.name}${vvon.symbol} — AI claim review product\n`);
-  out.push(`URL: ${site.url}/vvon\n`);
-  out.push(`> ${vvon.tagline}\n`);
-  out.push(`${vvon.shortDescription}\n`);
-  out.push("");
-  out.push(`### Important — what ${vvon.name}${vvon.symbol} is NOT\n`);
-  out.push(vvon.disclaimer);
-  out.push("");
-  out.push(
-    `${vvon.name}${vvon.symbol} is not a public adjuster, not an attorney, not a substitute for licensed professionals. It does not interpret policy language as applied to a specific case, does not negotiate with insurers on the user's behalf, and does not guarantee any claim outcome.`,
-  );
-  out.push("");
-
-  out.push(`### How it works\n`);
-  for (const step of howItWorks) out.push(`- **${step.n} — ${step.title}**: ${step.body}`);
-  out.push("");
-
-  out.push(`### Features\n`);
-  for (const f of vvonFeatures) out.push(`- **${f.title}**: ${f.body}`);
-  out.push("");
-
-  out.push(`### Analysis categories\n`);
-  for (const cat of analysisCategories) {
-    out.push(`- **${cat.title}** — ${cat.blurb} Includes: ${cat.items.join(", ")}.`);
-  }
-  out.push("");
-
-  out.push(`### Sub-processors\n`);
-  out.push(`- Supabase Inc. — authentication, Postgres database, private file storage (region: AWS us-west-2 / Oregon).`);
-  out.push(`- Anthropic PBC — AI document analysis via the Claude API. Per Anthropic's commercial API policies, inputs and outputs are not used to train Anthropic's models.`);
-  out.push(`- Vercel Inc. — application hosting.`);
-  out.push("");
-
-  out.push(`### Data handling\n`);
-  out.push(`- All transit is TLS. Data at rest is encrypted by the storage provider.`);
-  out.push(`- Documents are stored in a private object-storage bucket with per-user folder policies — files are not accessible to other users.`);
-  out.push(`- Users can delete their account and all associated documents by emailing ${site.email}.`);
-  out.push(`- The product does not require Social Security numbers, account numbers, or other sensitive identifiers; users are asked to redact these before upload.`);
-  out.push("");
-
-  out.push(`### Rate limits\n`);
-  out.push(`- 10 analyses per 24-hour period per user. Counts all attempts including drafts/errors.`);
-  out.push("");
-
-  out.push(`### FAQ\n`);
-  for (const f of vvonFaqs) {
-    out.push(`**Q: ${f.q}**`);
-    out.push(`A: ${f.a}`);
-    out.push("");
-  }
+  out.push(`## Sister product: Vvon™\n`);
+  out.push(`URL: https://vvon.ai\n`);
+  out.push(`> AI-assisted forensic estimate analysis platform for property-insurance restoration claims. Standalone SaaS built by the ${site.name} team. Informational analysis only — not legal advice, not public adjusting, not a guarantee of payment.\n`);
 
   return new Response(out.join("\n") + "\n", {
     headers: {

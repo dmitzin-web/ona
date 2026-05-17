@@ -24,7 +24,7 @@ const ContentSecurityPolicy = [
   "style-src 'self' 'unsafe-inline'",
   // Supabase: REST (https) + realtime (wss) + storage on the project's
   // pinned subdomain. Plausible covers analytics.
-  "connect-src 'self' https://plausible.io https://*.supabase.co wss://*.supabase.co",
+  "connect-src 'self' https://plausible.io",
   "manifest-src 'self'",
   "media-src 'self'",
   "worker-src 'self' blob:",
@@ -66,21 +66,29 @@ const nextConfig: NextConfig = {
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 60 * 60 * 24 * 30,
   },
-  // Permanent redirects from the legacy /claimlens/* paths to /vvon/*
-  // after the May 2026 brand rename. permanent: true issues a 308 (the
-  // method-preserving permanent redirect), which is what Google wants
-  // for indexed URLs that have changed location.
+  // Permanent redirects: the Vvon™ SaaS product was spun out of this
+  // repo into github.com/dmitzin-web/vvon and lives at vvon.ai. We send
+  // any inbound traffic to the legacy /vvon/* or /claimlens/* paths
+  // (which Google may still have indexed from before the spin-out) to
+  // the corresponding URL on the new domain. permanent: true issues a
+  // 308 (method-preserving permanent redirect) so search engines
+  // transfer ranking equity to vvon.ai.
   async redirects() {
     return [
-      { source: "/claimlens", destination: "/vvon", permanent: true },
+      { source: "/vvon", destination: "https://vvon.ai", permanent: true },
       {
-        source: "/claimlens/:path*",
-        destination: "/vvon/:path*",
+        source: "/vvon/:path*",
+        destination: "https://vvon.ai/:path*",
         permanent: true,
       },
       {
-        source: "/api/claimlens/:path*",
-        destination: "/api/vvon/:path*",
+        source: "/claimlens",
+        destination: "https://vvon.ai",
+        permanent: true,
+      },
+      {
+        source: "/claimlens/:path*",
+        destination: "https://vvon.ai/:path*",
         permanent: true,
       },
     ];

@@ -4,13 +4,6 @@
   "framework": "nextjs",
   "regions": ["pdx1"],
   "functions": {
-    "app/api/claimlens/analyze/route.ts": {
-      "maxDuration": 60,
-      "memory": 1024
-    },
-    "app/api/account/delete/route.ts": {
-      "maxDuration": 30
-    },
     "app/api/assistant/route.ts": {
       "maxDuration": 60
     }

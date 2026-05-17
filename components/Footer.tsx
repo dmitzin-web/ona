@@ -79,12 +79,14 @@ export function Footer() {
               </Link>
             </li>
             <li>
-              <Link
-                href="/vvon"
+              <a
+                href="https://vvon.ai"
+                target="_blank"
+                rel="noopener"
                 className="text-gold-soft transition hover:text-gold"
               >
-                Vvon
-              </Link>
+                Vvon™ ↗
+              </a>
             </li>
           </ul>
         </div>

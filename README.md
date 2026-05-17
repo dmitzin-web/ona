@@ -2,11 +2,19 @@
 
 Production-ready marketing site for ONA Restoration (Vancouver, WA / Portland metro).
 
+The Vvon™ AI claim-review SaaS that was originally built in this repo
+was spun out in May 2026 and lives in its own repo and domain:
+**[github.com/dmitzin-web/vvon](https://github.com/dmitzin-web/vvon)** → **[vvon.ai](https://vvon.ai)**.
+Legacy `/vvon/*` and `/claimlens/*` paths on this site 308-redirect to
+the corresponding URL on vvon.ai (see `next.config.ts`).
+
 ## Stack
 - Next.js 15 (App Router, SSG)
 - React 19
 - Tailwind CSS v4 (PostCSS-only config)
 - TypeScript strict
+- `@anthropic-ai/sdk` for Ask ONA (the floating assistant) — mock fallback when key missing
+- `react-markdown` for the assistant's message rendering
 
 ## Run locally
 ```bash
@@ -16,50 +24,37 @@ npm run build  # production build
 npm start
 ```
 
-> If you run `npm run build` while `npm run dev` is also running, both processes write to `.next/` and the dev server will start throwing `Cannot read properties of undefined (reading 'call')` from missing webpack chunks. Stop the dev server first (or build into a separate directory: `next build --distDir .next-prod`). To recover: stop dev, `rm -rf .next`, restart dev.
-
 ## Edit the brand
-All business data lives in **`lib/site.ts`** — phone, email, service area, certifications, ratings, social links. Change one file, the whole site updates (header, footer, contact page, JSON-LD schema, all metadata).
+All business data lives in **`lib/site.ts`** — phone, email, service area, certifications, ratings, social links. Change one file, the whole site updates.
 
-Service copy lives in **`lib/services.ts`** — one entry per service, drives 4 service pages + index.
+Service copy lives in **`lib/services.ts`** — one entry per service, drives the service pages + index + programmatic city × service pages.
+
+Local-area profiles (weather pattern, common losses, neighborhoods, drive-time-from-HQ) live in **`lib/areas.ts`** and feed the city pages plus the programmatic city × service landing pages.
+
+## What's here
+
+| Route group | Purpose |
+| ----------- | ------- |
+| `/`         | Marketing home |
+| `/services`, `/services/[slug]` | Service catalog and per-service pages |
+| `/services/[slug]/[area]` | **50 programmatic city × service pages** (water-damage-restoration-beaverton-or, etc.) — buy-intent local SEO |
+| `/areas`, `/areas/[slug]` | City pages with weather pattern, common losses, neighborhoods |
+| `/quote` | Quote form |
+| `/about`, `/contact`, `/blog`, `/privacy`, `/terms` | Standard marketing surfaces |
+| `/api/assistant` | Ask ONA chat (streamed Claude with prompt caching, mock fallback) |
+| `/api/health` | Uptime monitor endpoint |
+| `/llms.txt`, `/llms-full.txt` | Markdown indexes for AI/LLM crawlers |
 
 ## SEO features built in
 - Per-page `<title>`, `<meta description>`, canonical URL, Open Graph and Twitter Card
 - Dynamic OG image at `/opengraph-image` (Edge runtime)
 - `sitemap.xml` and `robots.txt` generated from data
 - JSON-LD: `LocalBusiness` + `ProfessionalService`, `WebSite`, `Service` per service page, `FAQPage`, `BreadcrumbList`
-- Programmatic local SEO: 10 city pages auto-generated from `site.serviceArea`
-- Semantic HTML: `<header>`, `<nav>`, `<main>`, `<footer>`, single `<h1>` per page, skip link
+- Programmatic local SEO: 10 city pages and 50 service × city pages auto-generated
+- Semantic HTML, single `<h1>` per page, skip link
 - Security headers configured in `next.config.ts`
 
-## Vvon — AI claim review product
-
-Vvon is a new AI-assisted product surface that lets a homeowner or contractor upload property-insurance claim documents and receive a structured report on possible missing scope, inconsistencies, and documentation gaps. **Informational only — never legal advice, public adjusting, or a guarantee of payment.**
-
-Routes:
-- `/vvon` — landing page (hero, problem, how-it-works, features, categories, FAQ, CTA, JSON-LD)
-- `/vvon/upload` — upload form (drag-and-drop, per-file category, claim context, consent checkbox)
-- `/vvon/report` — report renderer; shows the sample report by default and an analysis result if one is in `sessionStorage`
-- `POST /api/vvon/analyze` — analyses the uploaded claim context and returns a typed `ClaimReport`. Uses Claude via `@anthropic-ai/sdk` with `cache_control: ephemeral` on the system prompt, identical pattern to `/api/triage`. Falls back to a deterministic mock when `ANTHROPIC_API_KEY` is missing.
-
-Tweak product copy in **`lib/vvon/config.ts`** (taxonomies, FAQs, hero, disclaimer string, severity scale, types). Tweak the AI behaviour in **`lib/vvon/prompts.ts`**.
-
-### Operations
-
-- **Health check**: `GET /api/health` returns 200 with `{ ok, ai, supabase }`. Point Better Uptime / UptimeRobot at it.
-- **Error tracking (optional)**: `@sentry/nextjs` is installed and wired into the heavier API paths (`/api/vvon/analyze`, `/api/account/delete`). Set `SENTRY_DSN` and `NEXT_PUBLIC_SENTRY_DSN` in your environment to start receiving events. Without the DSN the SDK initialises to no-op and falls back to `console.error` + Vercel logs.
-- **Per-claim deletion**: every report has a "Delete this claim" button. The `/account` page lists all claims with an inline Delete action. Cascades through `claim_files` and `claim_reports` via FK, then removes the matching storage prefix.
-- **Account deletion**: `/account` has a danger-zone section that wipes auth user, all owned rows (FK cascade), and the user's storage folder.
-
-### What's mock vs. production-ready (Vvon)
-- ✅ Landing page, upload UI, report UI, sitemap, navigation, JSON-LD, disclaimer copy, severity/confidence taxonomies, API route shape.
-- ✅ Anthropic SDK integration (uses `claude-opus-4-7`, prompt caching, strict JSON parsing with validator).
-- ⚠️ **No persistent storage.** Reports are passed from upload → report via `sessionStorage`. There is no DB or file store yet. For production, wire `lib/vvon/config.ts` types (`ClaimReport`, `ClaimSnapshot`, etc.) into the schema your team prefers (Supabase / Postgres / Firebase). The data-model the brief calls for (`users`, `claims`, `claim_files`, `claim_reports`) maps cleanly onto those types.
-- ⚠️ **No file parsing.** The upload form ships file metadata (name, size, mime, category) but not file bytes. PDF text extraction and OCR for scanned PDFs / images are stub work — the AI is instructed in `lib/vvon/prompts.ts` to hedge accordingly and label findings `needs-verification` when evidence isn't available. To upgrade: add a server-side parser pipeline (e.g. `pdf-parse` or PDFium for text PDFs, `tesseract.js` or a hosted OCR for scans), pass extracted text + image base64 into the model with `cache_control` on the file blocks.
-- ⚠️ **No virus scanning, no signed URLs.** When you add persistence, store files in private object storage and serve via signed URLs. Add a virus scan (`clamav` / hosted equivalent) before showing files back to other users.
-- ⚠️ **ESX (Xactimate export) parsing** is listed as "coming soon" in the upload UI. A dedicated parser is the natural follow-up to unlock high-precision quantity/line-item analysis.
-
 ## Deploy
-Anywhere that runs Next.js 15. Vercel is the easiest path.
+Deployed to Vercel at `https://www.onarestore.com`.
 
-Set `site.url` in `lib/site.ts` to your production origin before launch. Set `ANTHROPIC_API_KEY` in your deploy environment to switch the AI routes off mock mode.
+Set `ANTHROPIC_API_KEY` in your deploy environment to switch Ask ONA off mock mode.

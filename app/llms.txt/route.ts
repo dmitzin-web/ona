@@ -1,6 +1,5 @@
 import { site } from "@/lib/site";
 import { services } from "@/lib/services";
-import { vvon } from "@/lib/vvon/config";
 
 // llms.txt — Markdown index for AI/LLM crawlers (llmstxt.org standard).
 // Provides a clean, structured view of the site so LLMs can cite us accurately.
@@ -47,16 +46,10 @@ export function GET() {
   }
   lines.push("");
 
-  lines.push("## Products");
+  lines.push("## Sister product");
   lines.push("");
   lines.push(
-    `- [${vvon.name}${vvon.symbol}](${site.url}/vvon): AI-assisted insurance estimate review. Informational analysis only — not legal advice, not public adjusting, not a guarantee of claim outcomes. Users upload carrier estimates, contractor estimates, photos, policies and denial letters; the tool returns a structured report on possible missing scope, inconsistencies, and documentation gaps. Magic-link sign-in required to run an analysis.`,
-  );
-  lines.push(
-    `- [${vvon.name}${vvon.symbol} — upload](${site.url}/vvon/upload): Upload form for claim documents (auth required).`,
-  );
-  lines.push(
-    `- [${vvon.name}${vvon.symbol} — sample report](${site.url}/vvon/report): Public sample of what a Vvon™ report looks like.`,
+    `- [Vvon™ at vvon.ai](https://vvon.ai): AI-assisted forensic estimate analysis platform for property-insurance restoration claims. Built by the ${site.name} team and operated as a standalone SaaS. Informational analysis only — not legal advice, not public adjusting, not a guarantee of claim outcomes.`,
   );
   lines.push("");
 

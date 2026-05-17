@@ -191,7 +191,7 @@ function buildMockStream(messages: ChatMessage[]): ReadableStream<Uint8Array> {
 
   let reply: string;
   if (/(vvon|claimlens|estimate review|missing scope|supplement)/.test(userText)) {
-    reply = `${site.name} runs **${site.url}/vvon** for AI-assisted forensic review of insurance estimates. Upload your carrier estimate, photos, and any related documents and you'll get a structured report on potential scope gaps and carrier-consistency issues — informational only, not legal advice.\n\n[Try Vvon™ →](${site.url}/vvon)`;
+    reply = `${site.name} runs **https://vvon.ai** for AI-assisted forensic review of insurance estimates. Upload your carrier estimate, photos, and any related documents and you'll get a structured report on potential scope gaps and carrier-consistency issues — informational only, not legal advice.\n\n[Try Vvon™ →](https://vvon.ai)`;
   } else if (/(area|zip|portland|vancouver|beaverton|tigard|gresham)/.test(userText)) {
     reply = `${site.name} serves Vancouver, WA and the entire Portland, OR metro — Clark, Multnomah, Washington, and Clackamas counties. Response target is **60 minutes** anywhere in the metro, 24/7.\n\n[See our full service area →](${site.url}/areas)`;
   } else if (/(water|leak|flood|drying)/.test(userText)) {

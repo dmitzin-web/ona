@@ -122,30 +122,36 @@ export default function HomePage() {
                 <h2 className="mt-6 text-4xl font-light leading-tight tracking-tight sm:text-5xl">
                   Not sure if your insurance estimate is complete?{" "}
                   <span className="font-medium text-gold">
-                    Run it through Vvon.
+                    Run it through Vvon™.
                   </span>
                 </h2>
                 <p className="mt-6 max-w-xl text-base leading-relaxed text-ivory/75">
-                  Upload your insurance estimate and related documents.
-                  Vvon helps identify possible missing scope, underpayment
-                  signals, and documentation gaps — informational only.
+                  Our sister product at <strong>vvon.ai</strong> performs
+                  forensic-style AI analysis of property-insurance estimates,
+                  photos, policies, and denial letters — surfacing potential
+                  scope gaps, internal inconsistencies, and documentation
+                  deficiencies. Built by the ONA team. Informational only.
                 </p>
               </div>
 
               <div className="flex flex-col items-start gap-4 lg:col-span-5 lg:items-end lg:justify-center">
-                <Link
-                  href="/vvon"
+                <a
+                  href="https://vvon.ai"
+                  target="_blank"
+                  rel="noopener"
                   className="inline-flex items-center gap-3 border border-ivory bg-ivory px-7 py-4 text-sm font-medium uppercase tracking-[0.22em] text-charcoal transition hover:bg-transparent hover:text-ivory"
                 >
                   Try Vvon™
                   <ArrowIcon className="h-4 w-4 stroke-current" />
-                </Link>
-                <Link
-                  href="/vvon/upload"
+                </a>
+                <a
+                  href="https://vvon.ai/upload"
+                  target="_blank"
+                  rel="noopener"
                   className="text-sm uppercase tracking-[0.22em] text-ivory/60 transition hover:text-ivory"
                 >
                   Analyze a claim →
-                </Link>
+                </a>
               </div>
             </div>
           </div>

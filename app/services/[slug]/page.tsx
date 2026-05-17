@@ -223,13 +223,15 @@ export default async function ServicePage(
                 </p>
               </div>
               <div className="flex items-end lg:col-span-4 lg:justify-end">
-                <Link
-                  href="/vvon"
+                <a
+                  href="https://vvon.ai"
+                  target="_blank"
+                  rel="noopener"
                   className="inline-flex items-center gap-3 border border-ivory bg-ivory px-6 py-3 text-sm font-medium uppercase tracking-[0.22em] text-charcoal transition hover:bg-transparent hover:text-ivory"
                 >
                   Try Vvon™
                   <ArrowIcon className="h-4 w-4 stroke-current" />
-                </Link>
+                </a>
               </div>
             </div>
           </div>
