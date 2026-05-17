@@ -126,11 +126,9 @@ export default function HomePage() {
                   </span>
                 </h2>
                 <p className="mt-6 max-w-xl text-base leading-relaxed text-ivory/75">
-                  Our sister product at <strong>vvon.ai</strong> performs
-                  forensic-style AI analysis of property-insurance estimates,
-                  photos, policies, and denial letters — surfacing potential
-                  scope gaps, internal inconsistencies, and documentation
-                  deficiencies. Built by the ONA team. Informational only.
+                  Upload your insurance estimate and related documents.
+                  Vvon™ helps identify possible missing scope, underpayment
+                  signals, and documentation gaps — informational only.
                 </p>
               </div>
 
