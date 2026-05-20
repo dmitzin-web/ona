@@ -1,5 +1,11 @@
-export function JsonLd({ data }: { data: object | object[] }) {
-  const payload = Array.isArray(data) ? data : [data];
+export function JsonLd({
+  data,
+}: {
+  data: object | null | (object | null)[];
+}) {
+  const payload = (Array.isArray(data) ? data : [data]).filter(
+    (d): d is object => d != null,
+  );
   return (
     <>
       {payload.map((d, i) => (

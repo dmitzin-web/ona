@@ -10,7 +10,11 @@ import { services, findService } from "@/lib/services";
 import { areaProfiles } from "@/lib/areas";
 import { site } from "@/lib/site";
 import { buildMetadata } from "@/lib/seo";
-import { breadcrumbJsonLd, faqJsonLd } from "@/lib/jsonld";
+import {
+  breadcrumbJsonLd,
+  faqJsonLd,
+  serviceProcessHowToJsonLd,
+} from "@/lib/jsonld";
 
 // Programmatic service × city pages.
 //
@@ -322,6 +326,7 @@ export default async function ServiceCityPage({
             },
           ]),
           faqJsonLd(service.faqs),
+          serviceProcessHowToJsonLd(service.slug),
           {
             "@context": "https://schema.org",
             "@type": "Service",

@@ -282,7 +282,7 @@ export function AskOna() {
         type="button"
         aria-label="Open Ask ONA assistant"
         onClick={() => window.dispatchEvent(new Event("askona:open"))}
-        className="fixed bottom-5 right-5 z-30 inline-flex h-12 w-12 items-center justify-center border border-charcoal bg-charcoal text-ivory shadow-lg transition hover:bg-ivory hover:text-charcoal lg:hidden"
+        className="fixed bottom-20 right-5 z-30 inline-flex h-12 w-12 items-center justify-center border border-charcoal bg-charcoal text-ivory shadow-lg transition hover:bg-ivory hover:text-charcoal lg:hidden"
       >
         <ChatIcon className="h-5 w-5" />
         <span className="sr-only">Ask ONA</span>

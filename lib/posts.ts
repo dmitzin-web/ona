@@ -28,6 +28,376 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "atmospheric-river-prep-checklist-vancouver-wa",
+    title:
+      "Atmospheric River Prep Checklist for Vancouver, WA Homeowners",
+    description:
+      "An IICRC-certified restoration contractor's prep playbook for the 24 hours before an atmospheric river hits Vancouver, WA and the Portland metro — the seven things that matter, and the four that don't.",
+    excerpt:
+      "We see the same three losses every January and February: roof intrusion at the same valleys, basement seepage in the same neighborhoods, and downspout failures at the same five-foot setback. The forecast gives you 48-72 hours of warning. Here's what to actually do with it.",
+    category: "Storm",
+    readingMinutes: 8,
+    publishedAt: "2026-05-16",
+    author: { name: "Dmitry Zinovyev", title: "Founder, ONA Restoration" },
+    sections: [
+      {
+        kind: "p",
+        text: "Atmospheric rivers are now the dominant winter weather event in the Pacific Northwest. We get four to seven per season, and the worst of them deliver three to six inches of rain in 24 hours on saturated ground. The damage profile we see after each event is almost identical: same valleys leaking, same basements seeping, same downspouts overwhelmed. Most of it is preventable in the day before the event with two hours of work. This is the checklist we send our own clients when the forecast lights up.",
+      },
+      {
+        kind: "callout",
+        text: "If a flood watch or warning is already in effect for Clark or Multnomah county, focus on the first three items below — the rest matters less once water is actively landing. If the event is still 48-72 hours out, do everything.",
+      },
+      { kind: "h2", text: "What to do in the 48 hours before" },
+      { kind: "h3", text: "1. Clear every gutter and downspout" },
+      {
+        kind: "p",
+        text: "The number-one cause of roof intrusion we see is a clogged downspout. Water backs up in the gutter, overflows behind the fascia, runs down the wall cavity, and shows up in the ceiling below two days later — long after the homeowner blames the storm. A two-hour gutter clean before a forecast event prevents this entirely. Pay particular attention to gutters under deciduous trees (fir-needle pileup at the elbow is the most common failure point in this region) and to valley downspouts on multi-pitch roofs.",
+      },
+      { kind: "h3", text: "2. Check every downspout discharge point" },
+      {
+        kind: "p",
+        text: "Downspouts that discharge within five feet of the foundation are the number-one cause of basement and crawlspace water intrusion in the Portland metro. A six-foot flexible extension at each downspout, aimed away from the foundation and pitched downhill, costs $30 and prevents the most common basement-water call we run.",
+      },
+      { kind: "h3", text: "3. Walk the perimeter and identify the low spots" },
+      {
+        kind: "p",
+        text: "Look at the ground next to your foundation. If it slopes toward the house anywhere, water will pool there and find a path inside. You don't need to regrade in 24 hours — but you do need to know where the puddles will form so you can place sandbags or temporary diversion before they get critical. Pay attention to window wells, basement entries, and any cellar door.",
+      },
+      { kind: "h3", text: "4. Inspect roof penetrations and valleys" },
+      {
+        kind: "p",
+        text: "Vent boots, skylights, chimney flashing, and the valleys between roof pitches are where roof intrusion starts. From the ground with binoculars (don't climb a wet roof) check for visible flashing damage, lifted shingles, or dark patches that suggest existing moisture. If you can see daylight where you shouldn't, call a roofer that day — emergency tarping is much cheaper than the rebuild after three inches of water gets inside.",
+      },
+      { kind: "h3", text: "5. Test the sump pump and battery backup" },
+      {
+        kind: "p",
+        text: "Pour a five-gallon bucket of water into the sump pit and verify the pump cycles on and discharges. If you have a battery backup (you should, in this region), confirm it activates when you disconnect mains power. Forty percent of the basement-flood calls we run during major events trace back to a sump pump that wasn't tested before the season started.",
+      },
+      { kind: "h3", text: "6. Pull anything valuable off basement floors" },
+      {
+        kind: "p",
+        text: "Books, electronics, family photos, art, anything porous and irreplaceable — get it onto shelves, off the floor, or out of the basement entirely. Even a half-inch of intrusion is enough to total a stack of stored boxes that sat in standing water for six hours.",
+      },
+      { kind: "h3", text: "7. Document everything before the storm" },
+      {
+        kind: "p",
+        text: "Walk through your property with your phone camera and shoot the interior of every room, the exterior of every wall, the basement, the garage, and the yard. If a claim comes out of the event, this is your before-state evidence. It takes ten minutes and it has saved insurance claims for several of our clients when the adjuster questioned the pre-existing condition of a damaged item.",
+      },
+      { kind: "h2", text: "What not to bother with" },
+      {
+        kind: "p",
+        text: "Some prep advice gets repeated every winter that doesn't actually change outcomes much in this region. Skip these unless you have unusual exposure:",
+      },
+      {
+        kind: "list",
+        items: [
+          "Boarding up windows. Pacific Northwest atmospheric rivers don't produce the wind-driven debris that justifies window protection. Skip unless you're in a wildland edge where falling-branch risk is real.",
+          "Stocking sandbags for whole-house perimeters. Sandbags are point solutions for known leak paths (basement entries, low garages, identified low-grade sections). A perimeter of sandbags around a slab-on-grade house does nothing.",
+          "Filling the bathtub for drinking water. We do not lose municipal water to atmospheric river events in this region. Save the prep time for actual loss-reduction work.",
+          "Generators for a 24-hour outage. Most atmospheric river outages in the metro are under 24 hours; refrigerator and freezer contents survive that without intervention. Reserve generator prep for genuinely long-duration outages like the 2024 ice storm.",
+        ],
+      },
+      { kind: "h2", text: "What to do during the event" },
+      {
+        kind: "p",
+        text: "Once the rain is falling hard, your work has shifted from prevention to monitoring. Walk the basement and crawlspace every two hours. Watch the lowest spots in the yard. If you see standing water near the foundation, an active leak inside the envelope, or your sump pump running continuously without keeping up, that's the threshold for emergency response.",
+      },
+      {
+        kind: "p",
+        text: "Document any intrusion immediately with photos and video. The faster you document, the cleaner the insurance claim. Don't disturb materials yet — wet drywall, soaked carpet, and saturated framing all need to be assessed before anyone starts cutting and bagging.",
+      },
+      { kind: "h2", text: "When to call us" },
+      {
+        kind: "p",
+        text: "Standing water of any depth in a finished space, active intrusion through ceiling, wall, or foundation, or a sump pump that has been running continuously for more than four hours — all of those are restoration calls, not later-this-week calls. We dispatch 24/7 across Vancouver, WA and the Portland metro with a 60-minute on-site target. We tarp, extract, dry, and document — and we coordinate with your insurance carrier from the first hour.",
+      },
+    ],
+    howTo: {
+      name: "Prepare a Pacific Northwest home for an atmospheric river event",
+      description:
+        "A seven-step prep checklist for the 48 hours before a major rain event in Vancouver, WA and the Portland metro.",
+      steps: [
+        {
+          name: "Clear gutters and downspouts",
+          text: "Fir-needle pileup at the elbow is the most common failure point in this region. A clogged downspout is the leading cause of roof-cavity intrusion.",
+        },
+        {
+          name: "Extend downspout discharge points 5+ feet from foundation",
+          text: "Discharges within five feet are the leading cause of basement and crawlspace water intrusion. Flexible extensions cost $30 each.",
+        },
+        {
+          name: "Walk the perimeter and identify low spots",
+          text: "Look for slope toward the foundation, pooled water locations, window wells and basement entries. Sandbag the known leak paths only.",
+        },
+        {
+          name: "Inspect roof penetrations and valleys from the ground",
+          text: "Vent boots, skylights, chimney flashing, valley intersections. Don't climb a wet roof; call a roofer for emergency tarping if needed.",
+        },
+        {
+          name: "Test the sump pump and battery backup",
+          text: "Pour a five-gallon bucket into the sump pit. Verify pump cycles and battery backup activates. 40% of major-event basement floods trace to untested sumps.",
+        },
+        {
+          name: "Pull valuables off basement floors",
+          text: "Books, photos, electronics, art — onto shelves, out of harm's way. Even half an inch of standing water totals porous items in hours.",
+        },
+        {
+          name: "Document property condition before the storm",
+          text: "Wide shots of every room, exterior wall, basement, yard. Ten-minute walk-through that becomes evidence if a claim is filed afterward.",
+        },
+      ],
+    },
+    faqs: [
+      {
+        q: "How much warning do we usually get for an atmospheric river?",
+        a: "Atmospheric rivers are forecast 5-10 days out by NOAA's Climate Prediction Center, with high-confidence positioning typically 48-72 hours before landfall. The local NWS office (portland.weather.gov) issues flood watches when the forecast crosses thresholds for your county. Sign up for Clark or Multnomah county emergency alerts for hyper-local timing.",
+      },
+      {
+        q: "Will my homeowners insurance cover water that comes in during a storm?",
+        a: "Wind-driven rain entering through a damaged building element (lifted shingle, broken window, breached siding) is generally covered under standard HO-3 policies. Surface water rising up from the ground or groundwater seeping in is generally not covered without separate NFIP flood insurance. The cause documentation determines coverage, which is why photographing the entry path matters.",
+      },
+      {
+        q: "Should I file an insurance claim if the damage is small?",
+        a: "Calculate your deductible. If the documented mitigation + rebuild cost is below your deductible, filing a claim only hurts your future premium for no benefit. If it's above, file. We can give you a no-obligation scope range before you make the decision.",
+      },
+      {
+        q: "What's the worst atmospheric river the Portland metro has had?",
+        a: "The November 2021 event delivered approximately 6 inches in 72 hours across parts of Clark and Multnomah counties and produced the highest restoration-call volume we've ever logged. Damage was concentrated in older daylight basements and homes with deferred roof maintenance. The lesson: regular maintenance does more to reduce loss than any in-storm response.",
+      },
+      {
+        q: "Do I need flood insurance in Vancouver or Portland?",
+        a: "Standard homeowners policies do not cover flood. NFIP flood insurance is available for any address and is required by lenders in designated high-risk zones. Many homeowners in the Portland metro carry it voluntarily because atmospheric river runoff can produce ground-water intrusion even in non-floodplain locations. A $300-$700 annual NFIP policy is cheap compared to a $40,000 finished-basement flood.",
+      },
+    ],
+  },
+  {
+    slug: "iicrc-s500-explained-for-homeowners",
+    title:
+      "IICRC S500 Explained for Vancouver, WA Homeowners",
+    description:
+      "The industry standard that governs every legitimate water-damage restoration project in the US — what S500 actually requires, why it determines your insurance claim outcome, and how to verify your contractor follows it.",
+    excerpt:
+      "Most homeowners have never heard of IICRC S500, and most contractors don't volunteer it. But it's the standard your insurance adjuster judges the work against, and the difference between a job done to S500 and a job done to whatever the contractor felt like is usually thousands of dollars on your final claim.",
+    category: "Water",
+    readingMinutes: 9,
+    publishedAt: "2026-05-15",
+    author: { name: "Dmitry Zinovyev", title: "Founder, ONA Restoration" },
+    sections: [
+      {
+        kind: "p",
+        text: "If you have water damage and an insurance claim, the work done in your house is being measured against IICRC S500 whether you know it or not. The Institute of Inspection, Cleaning and Restoration Certification's Standard and Reference Guide for Professional Water Damage Restoration is the document every adjuster, every claims supervisor, and every halfway-competent restoration contractor in North America works from. Knowing what it requires gives you the same vocabulary they have — and it lets you spot a job that won't survive review.",
+      },
+      { kind: "h2", text: "What S500 is, and isn't" },
+      {
+        kind: "p",
+        text: "S500 is a consensus standard published and updated by the IICRC, an industry-wide certification body. It defines the categories of water loss, the classes of damage, the methods of mitigation, the documentation required, and the criteria for completion. It is not a law — there is no S500 inspector who will fine your contractor for skipping a step. But every major insurance carrier references S500 in their claim handling, every IICRC-certified contractor commits to it, and most disputes between adjusters and contractors get resolved by reference to it.",
+      },
+      {
+        kind: "p",
+        text: "When we say we run jobs to S500, that means specific things — categorization, monitoring cadence, drying targets, documentation. Here's the homeowner version.",
+      },
+      { kind: "h2", text: "Categories: how dirty is the water" },
+      { kind: "h3", text: "Category 1 — clean water" },
+      {
+        kind: "p",
+        text: "Water from a sanitary source — a supply line, a melted ice maker, rainwater that hasn't contacted surfaces. Category 1 losses can be mitigated and dried without replacing porous materials in most cases, provided drying starts within 24-48 hours before the water deteriorates to Category 2.",
+      },
+      { kind: "h3", text: "Category 2 — gray water" },
+      {
+        kind: "p",
+        text: "Water with significant contamination — dishwasher overflow, washing machine discharge, toilet overflow with urine but no feces, hydrostatic seepage through unsealed foundation. Porous materials that absorbed Category 2 water (drywall, insulation, carpet pad) generally must be removed. Wood framing can usually be cleaned, dried, and treated with antimicrobial.",
+      },
+      { kind: "h3", text: "Category 3 — black water" },
+      {
+        kind: "p",
+        text: "Water with grossly unsanitary contamination — sewage backup, flood water from outside the structure, toilet overflow with feces, standing water that has been sitting long enough to grow bacterial colonies. All porous materials in contact with Category 3 water must be removed and disposed of as contaminated waste. Containment, PPE, and EPA-registered antimicrobial protocols apply. The cost and timeline of a Category 3 job are dramatically higher than Categories 1 or 2.",
+      },
+      {
+        kind: "p",
+        text: "Water can degrade between categories with time. Category 1 becomes Category 2 within 24-48 hours; Category 2 becomes Category 3 within 72 hours. This is the single most important reason restoration response time matters: every hour of delay potentially upgrades the category and the cost.",
+      },
+      { kind: "h2", text: "Classes: how much got wet" },
+      {
+        kind: "p",
+        text: "Where Category measures contamination, Class measures scope. Class 1 is small — a part of one room, mostly minimal absorption. Class 4 is a whole-house event with deep saturation of low-permeance materials (hardwood, plaster, masonry). The class determines drying equipment quantity and duration; a Class 4 job needs aggressive equipment (multiple commercial dehumidifiers, dozens of air movers, possibly desiccant systems) and may take two to four weeks to dry to standard. The wrong equipment count on a Class 3 or 4 job is the single most common reason \"finished\" restorations come back with mold growth weeks later.",
+      },
+      { kind: "h2", text: "What S500 requires during a job" },
+      { kind: "h3", text: "Initial inspection and moisture mapping" },
+      {
+        kind: "p",
+        text: "A documented inspection within hours of arrival, including thermal imaging, penetrating moisture meters, and a written assessment of the category and class. This isn't optional — without it, the rest of the work has no baseline.",
+      },
+      { kind: "h3", text: "Documented daily monitoring" },
+      {
+        kind: "p",
+        text: "Daily moisture readings on every affected material, recorded on a moisture log that an adjuster can audit. Equipment adjustments tracked. Photos of progress on each visit. If your contractor isn't showing you moisture readings, they're not running to S500.",
+      },
+      { kind: "h3", text: "Drying to standard, not to deadline" },
+      {
+        kind: "p",
+        text: "Materials are considered dry when their moisture content matches an unaffected reference sample of the same material in the same building. Not \"feels dry,\" not \"looks dry,\" not \"the seven-day timeline is up.\" If the reference reads 11% and the affected wall reads 14%, drying continues. This is the single biggest variable in restoration quality.",
+      },
+      { kind: "h3", text: "Antimicrobial application matched to category" },
+      {
+        kind: "p",
+        text: "EPA-registered antimicrobials approved for each category of water. Application rate, contact time, and personal protective equipment all defined. Generic spray-bottle treatment doesn't qualify.",
+      },
+      { kind: "h3", text: "Documented completion" },
+      {
+        kind: "p",
+        text: "Final moisture readings on every affected material, dated and signed. A completion certificate. This is the document your insurance carrier needs to close the claim cleanly and the document you need if a related issue surfaces months later.",
+      },
+      { kind: "h2", text: "How to verify your contractor actually follows S500" },
+      {
+        kind: "p",
+        text: "Five questions to ask any restoration contractor in the first phone call:",
+      },
+      {
+        kind: "ordered",
+        items: [
+          "Are your technicians IICRC WRT or ASD certified? (Water Damage Restoration Technician, Applied Structural Drying.) The certificate names should be specific.",
+          "Will you provide a written moisture map with the initial inspection? (Yes is the only correct answer.)",
+          "How often will you take and record moisture readings? (Daily is the standard during active drying.)",
+          "What dry standard will you target? (\"Reference sample matching\" is the right answer. \"Until the meter reads under 15%\" is acceptable. \"Until it feels dry\" is not.)",
+          "Will I receive a completion certificate with the final moisture readings? (Yes is required.)",
+        ],
+      },
+      {
+        kind: "p",
+        text: "A contractor who can answer these five questions clearly is running to S500. One who deflects or substitutes \"we know what we're doing\" probably isn't.",
+      },
+      { kind: "h2", text: "Where ONA fits in" },
+      {
+        kind: "p",
+        text: "Our crews carry IICRC WRT, ASD, and AMRT certifications, and we run every water-damage job to S500 from the first hour. The documentation that S500 requires happens to be the same documentation your insurance adjuster wants and the same documentation that overturns denied claims on appeal — so it's not extra work, it's the work. If you'd like a second opinion on a job in progress that you suspect isn't being run to standard, we do free document reviews for losses we don't end up working on.",
+      },
+    ],
+    faqs: [
+      {
+        q: "Is IICRC S500 a law or a regulation?",
+        a: "No. S500 is a consensus industry standard, not a government regulation. There is no licensing body that requires it. But every major insurance carrier uses it as the reference standard for water-damage claims, and most disputes resolve by reference to it. Following S500 is what professional restoration looks like in 2026; not following it is what gets a contractor flagged on appeal.",
+      },
+      {
+        q: "How long does IICRC certification take, and what does WRT vs ASD mean?",
+        a: "WRT (Water Damage Restoration Technician) is a 19-hour foundational certification. ASD (Applied Structural Drying) is a follow-on 28-hour advanced certification focused on drying science. AMRT (Applied Microbial Remediation Technician) covers mold remediation under S520. A senior restoration technician typically holds all three.",
+      },
+      {
+        q: "Do all restoration contractors follow S500?",
+        a: "No. IICRC certification is voluntary, and many smaller or franchise contractors hold the credential but don't run jobs to the standard day-to-day. The difference shows up in the documentation — a job run to S500 produces a moisture map, daily logs, and a completion certificate. A job run to convenience produces an invoice and a hope-for-the-best.",
+      },
+      {
+        q: "What is Category 3 water and why does it cost so much more?",
+        a: "Category 3 (black water) is grossly unsanitary — sewage, outside flood water, or water that has degraded over time. S500 requires removal of all porous materials in contact with Category 3 water (drywall, insulation, carpet pad, sometimes subfloor), full containment with HEPA filtration, certified-technician protocols, and EPA-registered antimicrobial. A Category 1 job dries in place; a Category 3 job demolishes and reconstructs. The cost difference is typically 3-5x for the same square footage.",
+      },
+      {
+        q: "Can I refuse demolition that my contractor recommends?",
+        a: "Yes — you control the work in your own house. But if the contractor is recommending demolition because S500 requires it for the category and class assessed, refusing usually means the carrier won't honor a future claim related to growth or odor in the materials that should have been removed. The right path is to ask for the S500-referenced reasoning in writing, then make an informed decision. Competent contractors will provide it.",
+      },
+    ],
+  },
+  {
+    slug: "usaa-water-damage-claim-playbook",
+    title:
+      "USAA Water Damage Claim Playbook for Pacific Northwest Losses",
+    description:
+      "An IICRC-certified restoration contractor's guide to filing and winning a USAA water-damage claim in Washington and Oregon — what USAA's claim process looks like from inside, what they pay quickly, and what they push back on.",
+    excerpt:
+      "USAA generally pays clean water-damage claims faster than any other major carrier we work with. But there are three specific places USAA pushes back where the same claim with State Farm or Allstate would pay in full — and three places they're more generous than peers. Knowing which is which gets you a full settlement in a fraction of the time.",
+    category: "Insurance",
+    readingMinutes: 8,
+    publishedAt: "2026-05-14",
+    author: { name: "Dmitry Zinovyev", title: "Founder, ONA Restoration" },
+    sections: [
+      {
+        kind: "p",
+        text: "We run a steady volume of USAA-insured losses across the Portland metro — Pearl District condo bursts, Lake Oswego daylight basements, military retirees in Camas with twenty-year USAA tenure. USAA is one of the better insurance experiences a homeowner can have on a water loss, but there are still three patterns in their claim handling that catch policyholders off guard. This is what we tell our own USAA clients during the first-on-site briefing.",
+      },
+      {
+        kind: "callout",
+        text: "If your loss is active right now, call USAA at 1-800-531-USAA (8722) to file the first notice of loss before anything else. They open 24/7. The phone tree gets you to a property adjuster faster than the app.",
+      },
+      { kind: "h2", text: "What USAA does well" },
+      { kind: "h3", text: "Fast first-notice response" },
+      {
+        kind: "p",
+        text: "USAA typically dispatches an adjuster within 24 hours on a residential water loss, which is among the fastest in the industry. For commonly-cited losses (burst supply line, water heater rupture, dishwasher hose), the initial advance payment to start mitigation is often authorized over the phone the same day. We've started work the morning after the loss with the advance check in hand more times than we can count.",
+      },
+      { kind: "h3", text: "Direct payment to contractor on request" },
+      {
+        kind: "p",
+        text: "USAA will pay directly to the restoration contractor with a homeowner authorization, which keeps the cash-flow burden off the policyholder. Not every carrier offers this; State Farm, for instance, defaults to paying the homeowner. With USAA the form takes five minutes and removes a major friction point.",
+      },
+      { kind: "h3", text: "Reasonable on Xactimate pricing" },
+      {
+        kind: "p",
+        text: "USAA's pricing database tracks the regional Xactimate price publication closely, and their adjusters rarely push back hard on standard line items. Compare to carriers with proprietary modifiers that often produce contested estimates below the regional Xactimate baseline. If your contractor's scope matches Xactimate format and pricing, the negotiation with USAA is usually minimal.",
+      },
+      { kind: "h2", text: "Three places USAA pushes back" },
+      { kind: "h3", text: "1. \"Was this sudden?\" — the seepage question" },
+      {
+        kind: "p",
+        text: "Like every carrier, USAA's first filter on a water claim is whether the loss was sudden and accidental versus continuous seepage. They are more thorough than most about asking when the homeowner first noticed the leak, how long the previous-month water bill differed, and whether neighbors or other residents reported anything. If the adjuster believes the loss has been progressing for weeks or months, the claim is denied as excluded long-term seepage. Mitigation: document the discovery moment carefully and have the contractor's cause-and-origin opinion explicitly address why this was sudden, not chronic.",
+      },
+      { kind: "h3", text: "2. Mold sublimit" },
+      {
+        kind: "p",
+        text: "USAA in Washington and Oregon typically writes a $5,000 mold sublimit on standard HO-3 policies, with optional buy-up to $10,000-$25,000 that most policyholders don't take. If mold appears alongside the water damage, the mold remediation portion is capped at the sublimit regardless of the underlying water loss being covered. This catches people by surprise because the water portion may pay $30,000 while the mold portion is capped at $5,000. Mitigation: check your sublimit when you renew, not when you have a loss.",
+      },
+      { kind: "h3", text: "3. Content depreciation on ACV-only items" },
+      {
+        kind: "p",
+        text: "USAA's contents settlement uses moderate depreciation curves on electronics, furniture, and rugs. For items where the policy pays ACV (Actual Cash Value) rather than RCV (Replacement Cost Value), the settlement can feel low — a five-year-old leather sofa might depreciate to 50% of its original price, even if the replacement cost today is similar. Some USAA policies pay RCV after the homeowner replaces and submits receipts; verify your policy language before assuming the first check is the final settlement.",
+      },
+      { kind: "h2", text: "What to tell USAA on the first call" },
+      {
+        kind: "p",
+        text: "When you file the first notice of loss, USAA's intake script asks a specific set of questions. Have the answers ready:",
+      },
+      {
+        kind: "ordered",
+        items: [
+          "Date and time of discovery. (Not \"sometime this week\" — name the day.)",
+          "Source of water. (Specific component: burst angle stop under master bath sink, ruptured supply line at washing machine, etc.)",
+          "Rooms and approximate square footage affected. (You don't need to be precise — \"master bath, master bedroom, hallway, downstairs ceiling — roughly 400 sq ft\" is enough.)",
+          "Whether you have already engaged a restoration contractor. (If yes, name the contractor. USAA will not push you toward their preferred vendor if you've already engaged a qualified contractor.)",
+          "Whether anyone is displaced. (Loss of use coverage kicks in if you need to relocate.)",
+        ],
+      },
+      {
+        kind: "p",
+        text: "The adjuster's first decision is whether to approve emergency mitigation immediately or wait for the on-site visit. The cleaner your initial story, the faster that decision goes the right way.",
+      },
+      { kind: "h2", text: "How we work with USAA losses" },
+      {
+        kind: "p",
+        text: "Every USAA-insured loss we run gets the same package: thermal imaging on the first visit, daily moisture logs, Xactimate-formatted scope on day two, direct billing to USAA if the homeowner authorizes, and a closing packet with completion certificates and final photos. We've had USAA close mid-five-figure claims in under three weeks when the documentation is right. If you're a USAA member with an active water loss in the Portland metro, call us first — we'll have the scope to your adjuster before they're back at their desk.",
+      },
+    ],
+    faqs: [
+      {
+        q: "Does USAA require me to use their preferred restoration vendor?",
+        a: "No. USAA's Preferred Contractor Network (PCN) is offered as a convenience, not a requirement. You have the right to choose any qualified restoration contractor, and your settlement is the same either way. The PCN's main advantage is paperwork simplicity for USAA, not better outcomes for you. Independent IICRC-certified contractors typically produce more thorough documentation than franchise PCN vendors.",
+      },
+      {
+        q: "Will filing a USAA water-damage claim raise my premium?",
+        a: "USAA, like most carriers, considers loss history at renewal. A single water-damage claim in a multi-year tenure typically has minimal premium impact. Multiple water claims within a short period (especially seepage-style claims) can result in non-renewal at term end. The threshold is closer to three water claims in five years than one, but verify with your USAA agent.",
+      },
+      {
+        q: "How long do I have to file a USAA water-damage claim?",
+        a: "USAA requires prompt notice of loss, which they generally interpret as within days of discovery, not weeks or months. The policy itself sets a one-year limitation on filing suit on the claim, but the practical filing window is much shorter. File the first notice the same day you discover the loss, even if you haven't decided what to do next — the FNOL only opens the claim, it doesn't commit you to anything.",
+      },
+      {
+        q: "Will USAA pay for temporary housing during restoration?",
+        a: "Yes — Additional Living Expense (ALE) or Loss of Use coverage typically pays reasonable additional housing costs if your home is uninhabitable during restoration. The 'reasonable' threshold is the cost above your normal living expense, not the full hotel bill. Keep receipts, save grocery receipts (since you can't cook), and submit a clean expense report with the final claim.",
+      },
+      {
+        q: "What if USAA denies my water-damage claim?",
+        a: "Same path as any carrier denial: request the claim file, get an independent contractor's inspection and Xactimate scope, file a written appeal citing specific policy language and presenting new documentation, then escalate to the Washington OIC or Oregon DCBS if the appeal is denied. Our blog post on appealing State Farm denials (which applies equally to USAA and other carriers) walks through the process.",
+      },
+    ],
+  },
+  {
     slug: "mold-behind-drywall-5-steps",
     title:
       "Found Mold Behind Drywall? Five Steps Before You Call Anyone",
