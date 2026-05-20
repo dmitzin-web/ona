@@ -171,16 +171,16 @@ export default async function ServiceCityPage({
               </p>
             </div>
             <div className="lg:col-span-7">
-              <p className="eyebrow text-charcoal/55">
-                Local weather & loss pattern
-              </p>
+              <h3 className="eyebrow text-charcoal/55">
+                Local weather &amp; loss pattern
+              </h3>
               <p className="mt-3 text-base leading-relaxed text-charcoal/80">
                 {profile.weatherPattern}
               </p>
 
-              <p className="mt-8 eyebrow text-charcoal/55">
+              <h3 className="mt-8 eyebrow text-charcoal/55">
                 Common losses in {profile.county}
-              </p>
+              </h3>
               <ul className="mt-3 space-y-3 text-base text-charcoal/80">
                 {profile.commonLosses.map((loss) => (
                   <li key={loss} className="flex items-start gap-3">
@@ -195,9 +195,9 @@ export default async function ServiceCityPage({
 
               {profile.neighborhoods.length > 0 && (
                 <>
-                  <p className="mt-8 eyebrow text-charcoal/55">
+                  <h3 className="mt-8 eyebrow text-charcoal/55">
                     Neighborhoods we cover
-                  </p>
+                  </h3>
                   <p className="mt-3 text-base leading-relaxed text-charcoal/75">
                     {profile.neighborhoods.join(" · ")}
                   </p>
@@ -224,9 +224,9 @@ export default async function ServiceCityPage({
                 <p className="eyebrow text-charcoal/50">
                   {String(i + 1).padStart(2, "0")}
                 </p>
-                <p className="mt-3 text-xl font-light tracking-tight">
+                <h3 className="mt-3 text-xl font-light tracking-tight">
                   {p.step.replace(/^\d+\.\s*/, "")}
-                </p>
+                </h3>
                 <p className="mt-3 text-sm leading-relaxed text-charcoal/70">
                   {p.text}
                 </p>

@@ -14,7 +14,7 @@ export function FAQ({
             {title}
           </h2>
         </div>
-        <dl className="lg:col-span-8">
+        <div className="lg:col-span-8">
           {items.map((item, i) => (
             <details
               key={item.q}
@@ -22,8 +22,10 @@ export function FAQ({
                 i === 0 ? "border-t" : ""
               } border-b [&[open]_[data-faq-toggle]]:rotate-45`}
             >
-              <summary className="flex cursor-pointer list-none items-start justify-between gap-6 text-lg font-medium tracking-tight text-charcoal">
-                <span>{item.q}</span>
+              <summary className="flex cursor-pointer list-none items-start justify-between gap-6">
+                <h3 className="text-lg font-medium tracking-tight text-charcoal">
+                  {item.q}
+                </h3>
                 <span
                   data-faq-toggle
                   aria-hidden="true"
@@ -37,7 +39,7 @@ export function FAQ({
               </p>
             </details>
           ))}
-        </dl>
+        </div>
       </div>
     </section>
   );
