@@ -1,5 +1,6 @@
 import { site } from "./site";
 import { services } from "./services";
+import { reviews } from "./reviews";
 
 export function localBusinessJsonLd() {
   return {
@@ -8,6 +9,7 @@ export function localBusinessJsonLd() {
     "@id": `${site.url}/#business`,
     name: site.name,
     legalName: site.legalName,
+    slogan: site.tagline,
     url: site.url,
     telephone: site.phone,
     email: site.email,
@@ -16,6 +18,27 @@ export function localBusinessJsonLd() {
     priceRange: site.priceRange,
     description: site.shortDescription,
     foundingDate: site.founded,
+    founder: {
+      "@type": "Person",
+      "@id": `${site.url}/about#founder`,
+      name: "Dmitry Zinovyev",
+      jobTitle: "Founder",
+      worksFor: { "@id": `${site.url}/#business` },
+    },
+    knowsAbout: [
+      "Water damage restoration",
+      "Fire and smoke damage restoration",
+      "Mold remediation",
+      "Storm and wind damage restoration",
+      "Structural drying",
+      "Reconstruction and remodeling",
+      "IICRC S500 water damage standard",
+      "IICRC S520 mold remediation standard",
+      "Xactimate insurance estimating",
+      "Insurance claim documentation",
+      "Thermal imaging moisture mapping",
+      "HEPA filtration and containment",
+    ],
     address: {
       "@type": "PostalAddress",
       addressLocality: site.address.locality,
@@ -38,6 +61,35 @@ export function localBusinessJsonLd() {
       reviewCount: site.rating.count,
       bestRating: 5,
       worstRating: 1,
+    },
+    ...(reviews.length > 0 && {
+      review: reviews.map((r) => ({
+        "@type": "Review",
+        author: { "@type": "Person", name: r.author },
+        reviewRating: {
+          "@type": "Rating",
+          ratingValue: r.rating,
+          bestRating: 5,
+          worstRating: 1,
+        },
+        datePublished: r.datePublished,
+        reviewBody: r.reviewBody,
+        itemReviewed: { "@id": `${site.url}/#business` },
+      })),
+    }),
+    hasCredential: site.certifications.map((cert) => ({
+      "@type": "EducationalOccupationalCredential",
+      name: cert,
+      credentialCategory:
+        cert.toLowerCase().includes("licens") ||
+        cert.toLowerCase().includes("bond")
+          ? "license"
+          : "certification",
+    })),
+    memberOf: {
+      "@type": "Organization",
+      name: "Institute of Inspection, Cleaning and Restoration Certification (IICRC)",
+      url: "https://www.iicrc.org",
     },
     sameAs: Object.values(site.social),
     hasOfferCatalog: {

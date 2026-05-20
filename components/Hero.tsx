@@ -1,15 +1,38 @@
+import Image from "next/image";
 import Link from "next/link";
 import { site } from "@/lib/site";
 import { PhoneLink } from "./contact/ContactLinks";
 import { ArrowIcon, PhoneIcon } from "./icons/ServiceIcons";
 
-export function Hero() {
+export type HeroImage = {
+  src: string;
+  alt: string;
+};
+
+export function Hero({ image }: { image?: HeroImage } = {}) {
   return (
     <section className="relative overflow-hidden bg-charcoal text-ivory">
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(245,244,241,0.08),transparent_60%)]"
-      />
+      {image ? (
+        <>
+          <Image
+            src={image.src}
+            alt={image.alt}
+            fill
+            sizes="100vw"
+            priority
+            className="absolute inset-0 object-cover opacity-40"
+          />
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 bg-gradient-to-b from-charcoal/40 via-charcoal/70 to-charcoal"
+          />
+        </>
+      ) : (
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(245,244,241,0.08),transparent_60%)]"
+        />
+      )}
       <div className="relative mx-auto max-w-7xl px-6 pb-24 pt-20 lg:px-10 lg:pb-32 lg:pt-28">
         <p className="eyebrow text-warm-gray-soft">
           High-end property restoration · Vancouver, WA & Portland Metro

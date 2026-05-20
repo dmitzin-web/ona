@@ -28,6 +28,172 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "state-farm-denied-water-damage-claim",
+    title:
+      "State Farm Denied Your Water Damage Claim — What to Do Next",
+    description:
+      "An IICRC-certified restoration contractor's playbook for appealing a denied water-damage claim. The five reasons State Farm cites most often, the documentation that overturns each one, and when to escalate to the state insurance commissioner.",
+    excerpt:
+      "About one in three water-damage claims gets denied or paid short on the first pass. The denial letter is almost never the final answer — if you know which clause the adjuster cited and what evidence rebuts it, most decisions can be reversed within thirty days.",
+    category: "Insurance",
+    readingMinutes: 9,
+    publishedAt: "2026-05-20",
+    author: { name: "Dmitry Zinovyev", title: "Founder, ONA Restoration" },
+    sections: [
+      {
+        kind: "p",
+        text: "We see a denial letter on the kitchen counter at least once a month. Sometimes the claim was never going to be paid — long-term seepage that was always going to be excluded. But more often, the homeowner has been paying premiums for years, the loss is genuinely covered, and the adjuster cited a clause that doesn't actually apply once the cause is documented properly. This is the appeal process we walk our own clients through.",
+      },
+      {
+        kind: "callout",
+        text: "Important: read your denial letter carefully and identify the exact policy section the adjuster cited. Every step below depends on knowing what they actually said no to — not what you assume they said no to.",
+      },
+      { kind: "h2", text: "The five reasons State Farm denies water claims most often" },
+      {
+        kind: "p",
+        text: "On a standard HO-3 homeowner's policy, water damage is generally covered if it was sudden and accidental. Denials almost always hinge on one of five clauses:",
+      },
+      { kind: "h3", text: "1. Long-term seepage or leakage" },
+      {
+        kind: "p",
+        text: "This is the most common denial. The policy excludes damage from water that leaked over weeks or months — a slow drip under a sink, condensation in a wall cavity, a roof that has been failing for a season. The standard exclusion language is something like \"continuous or repeated seepage or leakage of water over a period of 14 days or more.\" If the adjuster believes the loss is long-term, they will deny it regardless of how dramatic the visible damage is.",
+      },
+      { kind: "h3", text: "2. Lack of maintenance" },
+      {
+        kind: "p",
+        text: "Closely related to seepage. The policy excludes damage caused by the homeowner's failure to maintain the property — a known leaking pipe that wasn't fixed, a gutter that was never cleaned, a roof at the end of its life. This is heavily weather- and inspection-dependent and often debatable.",
+      },
+      { kind: "h3", text: "3. Mold and microbial sublimit" },
+      {
+        kind: "p",
+        text: "Even when the underlying water loss is covered, mold is usually subject to a separate sublimit (often $5,000-$10,000 on Washington and Oregon policies) and is sometimes excluded entirely. If the claim has been open long enough that mold has appeared, the adjuster may pay the water-mitigation portion and decline the mold portion under this clause.",
+      },
+      { kind: "h3", text: "4. Flood, surface water, or sewer backup" },
+      {
+        kind: "p",
+        text: "Damage from rising surface water (atmospheric river runoff, creek overflow, storm surge) is not covered under a standard HO-3 — it requires separate NFIP flood insurance. Sewer backup is usually excluded unless you have a specific sewer backup rider. The trick is that suppression water from above (a burst pipe in the ceiling) is covered, while ground-up water (a sewer line backing up from below) usually isn't.",
+      },
+      { kind: "h3", text: "5. Anti-concurrent causation" },
+      {
+        kind: "p",
+        text: "The most aggressive clause. If two perils contribute to a loss and one of them is excluded, the entire loss may be denied even if the other peril is covered. State Farm's HO-3 includes language barring coverage when an excluded cause (flood, earth movement) combines with a covered cause (wind, burst pipe). Most denials citing this clause can be challenged when the covered peril clearly came first and caused the damage independently.",
+      },
+      { kind: "h2", text: "Step one: request the complete claim file" },
+      {
+        kind: "p",
+        text: "You are entitled to the full claim file, including the adjuster's notes, photos, the damage estimate (usually in Xactimate format), and any reports from independent experts the carrier hired. In Washington, RCW 48.18.140 and WAC 284-30 require insurers to handle claims in good faith and produce documentation on request; Oregon DCBS has similar consumer protections. Request the file in writing. Most insurers turn it over within ten business days.",
+      },
+      {
+        kind: "p",
+        text: "Once you have the file, you know exactly what the adjuster saw — and didn't see — when they made the decision. Most denials we overturn are based on incomplete documentation, not bad faith. The adjuster spent twenty minutes on-site, missed the bracket-stain pattern that proves a sudden release rather than seepage, and wrote the loss up accordingly.",
+      },
+      { kind: "h2", text: "Step two: get an independent inspection" },
+      {
+        kind: "p",
+        text: "An IICRC-certified restoration contractor can perform a moisture-mapping inspection and produce documentation an insurer's adjuster will recognize:",
+      },
+      {
+        kind: "list",
+        items: [
+          "Thermal imaging showing the moisture migration pattern (which proves whether the water came from a single sudden event or has been seeping over time).",
+          "Penetrating-meter readings with timestamps documenting the moisture content in framing, insulation, and finished materials.",
+          "Photographs of source — the failed component (pipe, valve, fitting) — preserved before any demolition.",
+          "An Xactimate-formatted scope of work matching the carrier's own pricing system, line-by-line.",
+          "A written cause-and-origin opinion from a certified technician explaining why the loss is sudden and accidental, not long-term.",
+        ],
+      },
+      {
+        kind: "p",
+        text: "This is the single highest-leverage step in a claim appeal. An adjuster will rarely overturn their own decision based on a homeowner's letter; they will overturn it based on an Xactimate from an IICRC-certified contractor with photographs and moisture readings. Restoration contractors do this routinely — we deliver this package to our clients' carriers on every job whether it gets denied or not.",
+      },
+      { kind: "h2", text: "Step three: file a written appeal" },
+      {
+        kind: "p",
+        text: "Write a formal appeal letter that does three things. First, cite the specific policy section the adjuster used as grounds for denial — quote it verbatim. Second, present the new evidence: the moisture readings, the cause-and-origin opinion, the Xactimate scope. Third, request a specific outcome (full coverage of the documented scope) and a deadline (30 days is standard).",
+      },
+      {
+        kind: "p",
+        text: "Keep the tone factual. Most appeals fail because the homeowner argues about how unfair the decision feels; appeals succeed when they present documentation the adjuster didn't have on the first pass. State Farm has internal escalation paths — your letter often gets reviewed by a different adjuster or a claims supervisor, not the original one.",
+      },
+      { kind: "h2", text: "Step four: escalate to the state insurance commissioner" },
+      {
+        kind: "p",
+        text: "If the carrier upholds the denial after appeal, file a complaint with the state regulator. In Washington, that's the Office of the Insurance Commissioner (insurance.wa.gov). In Oregon, it's the Department of Consumer and Business Services (dfr.oregon.gov). Both agencies have formal complaint processes; the insurer is required to respond within a set timeframe.",
+      },
+      {
+        kind: "p",
+        text: "Filing a complaint is not the same as suing. It's a regulatory step that often produces movement — insurers track their complaint counts and respond more carefully to claims with regulator attention. Many claims get resolved at this stage without litigation.",
+      },
+      { kind: "h2", text: "When to hire a public adjuster — and when not to" },
+      {
+        kind: "p",
+        text: "A public adjuster represents the homeowner (not the insurance company) on the claim, in exchange for a percentage of the settlement — typically 10-15% in Washington and Oregon. They are useful for large, complex claims where the disputed amount is substantial. They are usually not worth the cost on a clean $15,000 water claim that a restoration contractor's documentation can resolve on its own.",
+      },
+      {
+        kind: "p",
+        text: "Public adjusters must be licensed in the state where they practice. In Washington, verify the license at insurance.wa.gov. In Oregon, verify at dfr.oregon.gov/licensing. Unlicensed claim help is illegal in both states.",
+      },
+      { kind: "h2", text: "Where ONA fits in" },
+      {
+        kind: "p",
+        text: "We don't take a cut of your settlement. We do produce the IICRC-grade documentation that carriers respond to — Xactimate scopes matched to the carrier's pricing, moisture documentation, cause-and-origin opinions, and direct adjuster communication — as part of every restoration project we run. That documentation is what overturns most denials we see in the Vancouver, WA and Portland metro market. If you're staring at a denial letter and you'd like a second-opinion inspection, call the number at the top of the page or send us photos by email. The inspection is free for losses we end up working on.",
+      },
+    ],
+    howTo: {
+      name: "Appeal a denied water-damage insurance claim",
+      description:
+        "A six-step process for overturning a denied water-damage claim, from requesting the claim file through escalation to the state insurance regulator.",
+      steps: [
+        {
+          name: "Read the denial letter and identify the cited policy clause",
+          text: "Determine exactly which exclusion the adjuster used — seepage, lack of maintenance, flood, mold sublimit, or anti-concurrent causation. Quote the language verbatim for the appeal.",
+        },
+        {
+          name: "Request the full claim file in writing",
+          text: "Ask for the adjuster's notes, photos, Xactimate estimate, and any independent expert reports. Both Washington and Oregon require insurers to produce these on request.",
+        },
+        {
+          name: "Get an independent IICRC-certified inspection",
+          text: "A restoration contractor's moisture mapping, photographs, cause-and-origin opinion, and Xactimate-formatted scope produce the evidence adjusters respond to.",
+        },
+        {
+          name: "File a written appeal with new evidence",
+          text: "Cite the policy clause the adjuster used, present the contractor's documentation, and request a specific outcome and 30-day decision deadline.",
+        },
+        {
+          name: "Escalate to the state insurance regulator if appeal is denied",
+          text: "File a formal complaint with Washington OIC (insurance.wa.gov) or Oregon DCBS (dfr.oregon.gov). Insurers must respond within set timeframes.",
+        },
+        {
+          name: "Consider a licensed public adjuster for large or complex claims",
+          text: "Public adjusters take 10-15% of the settlement and make sense on large disputes. Verify their license at the state regulator before hiring.",
+        },
+      ],
+    },
+    faqs: [
+      {
+        q: "How long do I have to appeal a denied claim in Washington or Oregon?",
+        a: "Both states allow you to request reconsideration at any time, though insurers may treat very late requests as new claims. The practical window is 30-60 days after the denial letter. The statute of limitations on a bad-faith lawsuit is generally 3 years in Washington and Oregon, but you must complete the carrier's internal appeal process first.",
+      },
+      {
+        q: "Can I hire a restoration contractor before the appeal is resolved?",
+        a: "Yes — you can hire any IICRC-certified contractor at any time, and an independent contractor's inspection often becomes the evidence that overturns the denial. You are not required to use a carrier-preferred vendor. If the appeal succeeds, the carrier reimburses the documented scope.",
+      },
+      {
+        q: "What's the difference between ACV and RCV on a water claim?",
+        a: "Actual Cash Value is the depreciated value of damaged materials — what they're worth today after age and wear. Replacement Cost Value is what it takes to rebuild with new materials. Most policies pay ACV up front and the remaining RCV depreciation after the work is completed. If your policy is ACV-only, the depreciation is yours to absorb.",
+      },
+      {
+        q: "Will my premium go up if I appeal a denied claim?",
+        a: "Filing or appealing a claim that is ultimately denied does not directly affect premium. Filing a claim that is paid does affect future premiums and risk classification. Appealing a denial does not make your premium worse — declining to appeal a covered loss only makes the financial outcome worse for you.",
+      },
+      {
+        q: "Does State Farm specifically deny more water claims than other carriers?",
+        a: "No carrier publishes denial rates. Anecdotally, every major carrier denies water claims they believe to be long-term seepage or lack of maintenance, and the criteria they apply are similar. The variation is in how thoroughly each adjuster documents the cause — which is exactly why independent contractor documentation matters on appeal regardless of which carrier you have.",
+      },
+    ],
+  },
+  {
     slug: "water-damage-first-hour-checklist",
     title:
       "Water Damage in Your Home: What to Do in the First Hour (and What Not to Touch)",

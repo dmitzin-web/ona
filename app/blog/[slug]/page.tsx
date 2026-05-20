@@ -188,11 +188,19 @@ export default async function BlogPostPage(
             mainEntityOfPage: `${site.url}/blog/${post.slug}`,
             datePublished: post.publishedAt,
             dateModified: post.updatedAt ?? post.publishedAt,
-            author: {
-              "@type": "Organization",
-              name: post.author.name,
-              "@id": `${site.url}/#business`,
-            },
+            author: post.author.name === site.name
+              ? {
+                  "@type": "Organization",
+                  name: post.author.name,
+                  "@id": `${site.url}/#business`,
+                }
+              : {
+                  "@type": "Person",
+                  "@id": `${site.url}/about#founder`,
+                  name: post.author.name,
+                  jobTitle: post.author.title,
+                  worksFor: { "@id": `${site.url}/#business` },
+                },
             publisher: { "@id": `${site.url}/#business` },
             articleSection: post.category,
             timeRequired: `PT${post.readingMinutes}M`,

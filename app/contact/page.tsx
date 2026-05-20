@@ -58,31 +58,103 @@ export default function ContactPage() {
             </EmailLink>
           </div>
 
-          <div className="mt-16 grid gap-12 border-t border-line-light pt-12 md:grid-cols-3">
-            <div>
-              <p className="eyebrow text-charcoal/60">Headquarters</p>
-              <address className="mt-5 not-italic text-base leading-relaxed text-charcoal/85">
-                {site.name}
-                <br />
-                {site.address.locality}, {site.address.region}
-                <br />
-                {site.address.countryName}
-              </address>
+          <div className="mt-20 border-t border-line-light pt-16">
+            <h2 className="text-3xl font-light tracking-tight sm:text-4xl">
+              What happens after you call
+            </h2>
+            <p className="mt-4 max-w-2xl text-base leading-relaxed text-charcoal/70">
+              For emergencies we run a clean, fast playbook. Most callers are
+              on-site with a crew inside the hour.
+            </p>
+            <ol className="mt-10 grid gap-px overflow-hidden border border-line-light bg-line-light md:grid-cols-4">
+              {[
+                {
+                  step: "1",
+                  title: "Live answer",
+                  text: "A real technician picks up — day or night. We confirm your address and the loss in under two minutes.",
+                },
+                {
+                  step: "2",
+                  title: "Dispatch",
+                  text: "Closest available crew is on the road within minutes. We text you the technician's name and ETA.",
+                },
+                {
+                  step: "3",
+                  title: "On-site",
+                  text: "Target 60 minutes anywhere in the Portland metro. We stop the damage spreading before anything else.",
+                },
+                {
+                  step: "4",
+                  title: "Documentation",
+                  text: "Photos, moisture readings and Xactimate-formatted scope go to your insurance adjuster the same day.",
+                },
+              ].map((s) => (
+                <li key={s.step} className="bg-ivory p-8">
+                  <p className="eyebrow text-charcoal/40">Step {s.step}</p>
+                  <h3 className="mt-4 text-lg font-medium tracking-tight">
+                    {s.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-charcoal/70">
+                    {s.text}
+                  </p>
+                </li>
+              ))}
+            </ol>
+          </div>
+
+          <div className="mt-20 border-t border-line-light pt-16">
+            <h2 className="text-3xl font-light tracking-tight sm:text-4xl">
+              Headquarters &amp; hours
+            </h2>
+            <div className="mt-10 grid gap-12 md:grid-cols-3">
+              <div>
+                <h3 className="eyebrow text-charcoal/60">Headquarters</h3>
+                <address className="mt-5 not-italic text-base leading-relaxed text-charcoal/85">
+                  {site.name}
+                  <br />
+                  {site.address.locality}, {site.address.region}
+                  <br />
+                  {site.address.countryName}
+                </address>
+              </div>
+              <div>
+                <h3 className="eyebrow text-charcoal/60">Hours</h3>
+                <dl className="mt-5 space-y-3 text-base leading-relaxed text-charcoal/85">
+                  <div>
+                    <dt className="text-sm text-charcoal/60">
+                      Emergency dispatch
+                    </dt>
+                    <dd className="font-medium">24 / 7 / 365</dd>
+                  </div>
+                  <div>
+                    <dt className="text-sm text-charcoal/60">Office line</dt>
+                    <dd>Mon–Sat, business hours</dd>
+                  </div>
+                  <div>
+                    <dt className="text-sm text-charcoal/60">Quote email</dt>
+                    <dd>Reply within the hour during business hours</dd>
+                  </div>
+                </dl>
+              </div>
+              <div>
+                <h3 className="eyebrow text-charcoal/60">Service area</h3>
+                <p className="mt-5 text-base leading-relaxed text-charcoal/85">
+                  Vancouver, WA and the entire Portland metro — Clark,
+                  Multnomah, Washington and Clackamas counties.
+                </p>
+              </div>
             </div>
-            <div>
-              <p className="eyebrow text-charcoal/60">Hours</p>
-              <p className="mt-5 text-base leading-relaxed text-charcoal/85">
-                Emergency dispatch: <span className="font-medium">24 / 7 / 365</span>
-                <br />
-                Office line: business hours Mon–Sat
-              </p>
-            </div>
-            <div>
-              <p className="eyebrow text-charcoal/60">Service area</p>
-              <p className="mt-5 text-base leading-relaxed text-charcoal/85">
-                Vancouver, WA and the entire Portland metro — Clark, Multnomah,
-                Washington and Clackamas counties.
-              </p>
+
+            <div className="mt-12 overflow-hidden border border-line-light">
+              <iframe
+                title="ONA Restoration headquarters — Vancouver, WA"
+                src={`https://www.google.com/maps?q=${site.geo.latitude},${site.geo.longitude}&z=12&output=embed`}
+                width="100%"
+                height="380"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="block"
+              />
             </div>
           </div>
         </div>

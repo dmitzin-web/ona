@@ -94,6 +94,39 @@ export function Footer() {
 
       <div className="hairline-dark" />
 
+      <nav
+        aria-label="Service by city"
+        className="mx-auto max-w-7xl px-6 py-14 lg:px-10"
+      >
+        <p className="eyebrow text-ivory/50">Service by city</p>
+        <div className="mt-8 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-5">
+          {services.map((s) => (
+            <div key={s.slug}>
+              <Link
+                href={`/services/${s.slug}`}
+                className="block text-sm font-medium text-ivory transition hover:text-warm-gray-soft"
+              >
+                {s.shortName}
+              </Link>
+              <ul className="mt-3 space-y-2 text-xs">
+                {site.serviceArea.map((a) => (
+                  <li key={a.slug}>
+                    <Link
+                      href={`/services/${s.slug}/${a.slug}`}
+                      className="text-ivory/65 transition hover:text-ivory"
+                    >
+                      {a.name}, {a.region}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </nav>
+
+      <div className="hairline-dark" />
+
       <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-4 px-6 py-7 text-xs text-ivory/50 lg:flex-row lg:items-center lg:px-10">
         <p>
           © {new Date().getFullYear()} {site.legalName} · All rights reserved
