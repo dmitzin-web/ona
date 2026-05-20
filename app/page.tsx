@@ -49,7 +49,12 @@ export const metadata: Metadata = buildMetadata({
 export default function HomePage() {
   return (
     <>
-      <Hero />
+      <Hero
+        image={{
+          src: "/photos/hero-placeholder.svg",
+          alt: "Pacific Northwest atmospheric architectural pattern — ONA Restoration placeholder",
+        }}
+      />
 
       {/* Intro / proof strip */}
       <section className="border-b border-line-light bg-ivory">

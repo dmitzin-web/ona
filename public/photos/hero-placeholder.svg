@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" role="img" aria-label="ONA Restoration — Pacific Northwest atmospheric architectural pattern (placeholder)">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1c1d1f"/>
+      <stop offset="0.55" stop-color="#262729"/>
+      <stop offset="1" stop-color="#0e0f10"/>
+    </linearGradient>
+    <linearGradient id="rain" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#c9c4ba" stop-opacity="0.05"/>
+      <stop offset="1" stop-color="#c9c4ba" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.85" cy="0.15" r="0.7">
+      <stop offset="0" stop-color="#f5f4f1" stop-opacity="0.10"/>
+      <stop offset="1" stop-color="#f5f4f1" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#sky)"/>
+  <rect width="1600" height="900" fill="url(#glow)"/>
+  <g fill="none" stroke="#c9c4ba" stroke-opacity="0.10" stroke-width="1">
+    <path d="M 0 720 L 1600 720"/>
+    <path d="M 0 760 L 1600 760"/>
+    <path d="M 0 800 L 1600 800"/>
+  </g>
+  <g fill="none" stroke="#c9c4ba" stroke-opacity="0.18" stroke-width="1.5">
+    <polyline points="120,720 220,520 320,720"/>
+    <polyline points="320,720 320,560 440,560 440,720"/>
+    <line x1="350" y1="600" x2="350" y2="720"/>
+    <line x1="385" y1="600" x2="385" y2="720"/>
+    <line x1="420" y1="600" x2="420" y2="720"/>
+    <polyline points="440,720 540,510 640,720"/>
+    <polyline points="640,720 640,580 740,580 740,720"/>
+    <line x1="670" y1="615" x2="670" y2="720"/>
+    <line x1="710" y1="615" x2="710" y2="720"/>
+    <polyline points="740,720 840,500 940,720"/>
+    <polyline points="940,720 940,565 1080,565 1080,720"/>
+    <line x1="975" y1="600" x2="975" y2="720"/>
+    <line x1="1015" y1="600" x2="1015" y2="720"/>
+    <line x1="1055" y1="600" x2="1055" y2="720"/>
+    <polyline points="1080,720 1180,535 1280,720"/>
+    <polyline points="1280,720 1280,575 1380,575 1380,720"/>
+    <line x1="1315" y1="610" x2="1315" y2="720"/>
+    <line x1="1355" y1="610" x2="1355" y2="720"/>
+  </g>
+  <g fill="none" stroke="#c9c4ba" stroke-opacity="0.12" stroke-width="1">
+    <path d="M 80 200 Q 400 240 720 220 T 1520 200"/>
+    <path d="M 80 260 Q 400 290 720 275 T 1520 260"/>
+  </g>
+  <g stroke="#c9c4ba" stroke-opacity="0.08" stroke-width="0.5">
+    <line x1="120" y1="0" x2="80" y2="900"/>
+    <line x1="320" y1="0" x2="280" y2="900"/>
+    <line x1="540" y1="0" x2="500" y2="900"/>
+    <line x1="760" y1="0" x2="720" y2="900"/>
+    <line x1="980" y1="0" x2="940" y2="900"/>
+    <line x1="1200" y1="0" x2="1160" y2="900"/>
+    <line x1="1400" y1="0" x2="1360" y2="900"/>
+  </g>
+  <rect width="1600" height="900" fill="url(#rain)"/>
+</svg>

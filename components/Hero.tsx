@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { site } from "@/lib/site";
 import { PhoneLink } from "./contact/ContactLinks";
@@ -14,13 +13,14 @@ export function Hero({ image }: { image?: HeroImage } = {}) {
     <section className="relative overflow-hidden bg-charcoal text-ivory">
       {image ? (
         <>
-          <Image
+          {/* Plain <img> for placeholders + SVG. When raster photography is
+              dropped in /public/photos/, swap this back to next/image with
+              fill + priority + sizes="100vw". */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
             src={image.src}
             alt={image.alt}
-            fill
-            sizes="100vw"
-            priority
-            className="absolute inset-0 object-cover opacity-40"
+            className="absolute inset-0 h-full w-full object-cover opacity-40"
           />
           <div
             aria-hidden="true"

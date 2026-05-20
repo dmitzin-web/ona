@@ -88,10 +88,20 @@ export const site = {
       body: "For our clients, our teams, and the process.",
     },
   ] as const,
+  // Social/profile URLs surfaced as schema.org/sameAs in LocalBusiness JSON-LD.
+  // PLACEHOLDER URLs follow standard profile naming — replace with the real
+  // URL of each profile once it is claimed/created. Removing a key removes it
+  // from the JSON-LD; do not leave 404ing URLs live long-term.
   social: {
     facebook: "https://www.facebook.com/onarestoration",
     instagram: "https://www.instagram.com/onarestoration",
     google: "https://g.page/ona-restoration",
+    yelp: "https://www.yelp.com/biz/ona-restoration-vancouver",
+    bbb: "https://www.bbb.org/us/wa/vancouver/profile/restoration-services/ona-restoration",
+    angi: "https://www.angi.com/companylist/us/wa/vancouver/ona-restoration.htm",
+    houzz: "https://www.houzz.com/pro/ona-restoration",
+    nextdoor: "https://nextdoor.com/pages/ona-restoration-vancouver-wa",
+    linkedin: "https://www.linkedin.com/company/ona-restoration",
   },
 } as const;
 
