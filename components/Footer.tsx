@@ -94,36 +94,51 @@ export function Footer() {
 
       <div className="hairline-dark" />
 
-      <nav
-        aria-label="Service by city"
-        className="mx-auto max-w-7xl px-6 py-14 lg:px-10"
-      >
-        <p className="eyebrow text-ivory/50">Service by city</p>
-        <div className="mt-8 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-5">
-          {services.map((s) => (
-            <div key={s.slug}>
-              <Link
-                href={`/services/${s.slug}`}
-                className="block text-sm font-medium text-ivory transition hover:text-warm-gray-soft"
-              >
-                {s.shortName}
-              </Link>
-              <ul className="mt-3 space-y-2 text-xs">
-                {site.serviceArea.map((a) => (
-                  <li key={a.slug}>
-                    <Link
-                      href={`/services/${s.slug}/${a.slug}`}
-                      className="text-ivory/65 transition hover:text-ivory"
-                    >
-                      {a.name}, {a.region}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </nav>
+      {/* Service × city mega-section, collapsed by default to keep the footer
+          clean. <details> keeps the full 50-link grid in server-rendered HTML
+          regardless of open/closed state, so Google crawls and counts every
+          link — this is the canonical Google-compliant pattern for hiding
+          dense link content from the default visual while preserving SEO. */}
+      <details className="group mx-auto max-w-7xl px-6 lg:px-10">
+        <summary className="flex cursor-pointer list-none items-center justify-between py-7 [&::-webkit-details-marker]:hidden">
+          <span className="eyebrow text-ivory/50">Service by city</span>
+          <span
+            aria-hidden="true"
+            className="inline-flex h-6 w-6 items-center justify-center text-xl font-light leading-none text-ivory/60 transition-transform duration-200 group-open:rotate-45"
+          >
+            +
+          </span>
+        </summary>
+        <nav
+          aria-label="Service by city"
+          className="pb-12 pt-2"
+        >
+          <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-5">
+            {services.map((s) => (
+              <div key={s.slug}>
+                <Link
+                  href={`/services/${s.slug}`}
+                  className="block text-sm font-medium text-ivory transition hover:text-warm-gray-soft"
+                >
+                  {s.shortName}
+                </Link>
+                <ul className="mt-3 space-y-2 text-xs">
+                  {site.serviceArea.map((a) => (
+                    <li key={a.slug}>
+                      <Link
+                        href={`/services/${s.slug}/${a.slug}`}
+                        className="text-ivory/65 transition hover:text-ivory"
+                      >
+                        {a.name}, {a.region}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </nav>
+      </details>
 
       <div className="hairline-dark" />
 
