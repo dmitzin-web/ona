@@ -28,6 +28,591 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "water-heater-leak-3-valves-to-turn-now",
+    title:
+      "Your Water Heater Is Leaking — Turn These Three Valves Now",
+    description:
+      "An IICRC-certified water-damage restoration contractor's emergency playbook for the moment you find your water heater leaking. Three valves, two minutes, and the difference between a $400 repair and a $14,000 claim.",
+    excerpt:
+      "Water heaters fail at the rate of about one in four every year past their tenth birthday. When yours goes, you have a window of about ten minutes before flooring damage compounds. Here are the three valves to turn and the order to turn them in.",
+    category: "Water",
+    readingMinutes: 5,
+    publishedAt: "2026-05-13",
+    author: { name: "Dmitry Zinovyev", title: "Founder, ONA Restoration" },
+    sections: [
+      {
+        kind: "p",
+        text: "Water heaters in Pacific Northwest homes typically last 8-12 years. After year 10, the failure rate climbs every year, and the failure mode is almost always the same: corrosion eats through the tank wall, water starts seeping at the base, and within hours you have an inch of standing water spreading toward the nearest porous material. The first ten minutes determine the cost. Here is exactly what to do — and the order to do it in.",
+      },
+      {
+        kind: "callout",
+        text: "If you're reading this right now with a leaking water heater, jump to the valve sequence below. The intro can wait.",
+      },
+      { kind: "h2", text: "The valve sequence (do it in this order)" },
+      { kind: "h3", text: "Valve 1: Cold-water shut-off above the heater" },
+      {
+        kind: "p",
+        text: "Look at the top of the water heater. The cold-water supply line enters at the top, and there's a shut-off valve on that pipe — usually a quarter-turn ball valve (lever handle) or a gate valve (round handle). Turn it perpendicular to the pipe (ball valve) or clockwise until tight (gate valve). This stops new water from entering the tank.",
+      },
+      {
+        kind: "p",
+        text: "If this valve is corroded, painted shut, or you can't tell which valve is which — proceed to the main shut-off (Valve 2) immediately. Do not waste minutes wrestling with a stuck local valve.",
+      },
+      { kind: "h3", text: "Valve 2: Main water shut-off for the house" },
+      {
+        kind: "p",
+        text: "Located where the municipal water line enters the house — typically in the garage, basement, crawlspace access, or against the exterior wall where the water main comes in. In Pacific Northwest homes it's almost always indoors (frost protection), but check the basement first if your house has one. Turn the handle clockwise until it stops; this kills water to the entire house. You won't have water at any fixture until you reopen it, but the water heater can't keep leaking.",
+      },
+      {
+        kind: "p",
+        text: "If you don't know where your main shut-off is, find it tonight regardless of whether you have a current emergency. Every adult in the household should know where it is. It's one of the highest-leverage pieces of home safety knowledge there is.",
+      },
+      { kind: "h3", text: "Valve 3: Gas (gas heaters only) or breaker (electric heaters only)" },
+      {
+        kind: "p",
+        text: "For gas water heaters: the gas valve is on the gas supply line at the heater, usually near the bottom where the gas line enters. Turn perpendicular to the line to close. This prevents the burner from firing on an empty tank, which can damage the heater further and is a safety risk.",
+      },
+      {
+        kind: "p",
+        text: "For electric water heaters: open your electrical panel and find the breaker labeled \"water heater\" (usually a double-pole 30-amp breaker). Flip it off. Same reason: prevents the heating elements from running dry, which damages them and can trip safety systems in dangerous ways.",
+      },
+      { kind: "h2", text: "After the valves: stop the spread" },
+      {
+        kind: "p",
+        text: "With supply, main, and energy isolated, the leak stops growing — but the water already on the floor is still doing damage. The next ten minutes:",
+      },
+      {
+        kind: "ordered",
+        items: [
+          "Move anything porous off the wet floor — cardboard boxes, fabric, books, papers. Water wicks upward into porous materials faster than it spreads horizontally.",
+          "If standing water has reached carpet, lift the corner and check whether the carpet pad is saturated. (Pad saturation usually means replacement; carpet alone can sometimes be dried.)",
+          "Photograph everything. Wide shots, close-ups of the heater base, the standing water with a ruler for depth, any wet structural materials. Your insurance claim will use these.",
+          "Open windows or run a fan ONLY if you've confirmed the water is from a clean supply source (not a sewer backup or contaminated source). If you have any doubt, leave the air alone — running fans on contaminated water spreads pathogens.",
+          "Drain the heater tank if you can. The drain valve at the bottom of the tank takes a garden hose; route it to a floor drain or outside if accessible. This empties the remaining ~40 gallons of water that would otherwise continue leaking.",
+        ],
+      },
+      { kind: "h2", text: "When to call us, and when to handle it yourself" },
+      {
+        kind: "p",
+        text: "Three rules of thumb for when restoration matters:",
+      },
+      {
+        kind: "list",
+        items: [
+          "If standing water has been on the floor more than two hours, the carpet pad and any drywall it touched needs professional drying — call us.",
+          "If the leak reached hardwood floors, the floor needs specialized hardwood drying mats deployed within 24 hours to save the wood — call us immediately.",
+          "If the heater is in a finished basement or above a finished room (water dripped down through a ceiling), the structure needs moisture mapping with thermal imaging before any drywall work — call us.",
+        ],
+      },
+      {
+        kind: "p",
+        text: "If the leak was a slow seep on a garage slab, the water is contained, and you can wipe it dry yourself — you may not need restoration. Just call your plumber and your insurance carrier (in that order, so the plumber's repair is documented before the claim is filed).",
+      },
+      { kind: "h2", text: "Replacing the heater" },
+      {
+        kind: "p",
+        text: "Once the emergency is contained, you have a few days to choose a replacement strategy. Tank water heaters (40-50 gallon) cost $1,500-$3,500 installed in the Portland metro. Tankless gas units cost $4,000-$7,000 installed but pay back in efficiency over 15-20 years. Heat-pump water heaters are growing fast in this region — Energy Trust of Oregon and Clark Public Utilities both offer significant rebates. Talk to a licensed plumber about the right fit for your setup; we coordinate with several we trust if you'd like a referral.",
+      },
+      {
+        kind: "p",
+        text: "If you're reading this in the aftermath of a Vancouver, WA or Portland metro water-heater failure and the damage extends beyond the immediate area, call us at the number at the top of the page — we dispatch 24/7 and most calls reach an on-site target inside 60 minutes.",
+      },
+    ],
+    howTo: {
+      name: "Stop a leaking water heater",
+      description:
+        "Three-valve emergency response for a leaking residential water heater — the first ten minutes that prevent thousands in damage.",
+      steps: [
+        {
+          name: "Close the cold-water shut-off above the heater",
+          text: "Look at the top of the heater. The shut-off is on the cold inlet pipe — quarter-turn lever (perpendicular = closed) or gate valve (clockwise to close).",
+        },
+        {
+          name: "Close the main water shut-off for the whole house if local valve is stuck",
+          text: "Located where municipal water enters — usually garage, basement, or crawlspace access. Turn clockwise until tight.",
+        },
+        {
+          name: "Kill power: gas valve (gas heater) or breaker (electric heater)",
+          text: "Gas: close the gas supply valve at the heater. Electric: flip the water-heater breaker off at the panel. Prevents element/burner damage on an empty tank.",
+        },
+        {
+          name: "Move porous items off the wet floor",
+          text: "Cardboard, fabric, books, papers. Water wicks upward into porous materials faster than it spreads horizontally.",
+        },
+        {
+          name: "Photograph the damage before touching anything else",
+          text: "Wide shots, close-ups of the heater base, standing water with a ruler for depth. Insurance documentation starts now.",
+        },
+        {
+          name: "Drain the remaining tank water through the drain valve",
+          text: "Garden hose to floor drain or outside. Empties the ~40 gallons still in the tank so it stops contributing to the leak.",
+        },
+      ],
+    },
+    faqs: [
+      {
+        q: "How long do water heaters typically last in Vancouver, WA and Portland?",
+        a: "8-12 years for standard tank heaters in this region. The Pacific Northwest's relatively soft municipal water is gentler on tanks than hard-water regions, which is at the top of the typical range. Heaters past year 10 should be on a replacement watch list — proactive replacement before failure is cheaper than reactive after a leak.",
+      },
+      {
+        q: "Will my homeowners insurance cover a leaking water heater?",
+        a: "Sudden water-heater failure (tank rupture, ruptured supply line) is generally covered under standard HO-3 policies as a sudden and accidental water loss. Slow seepage over months, the heater itself, and any failure resulting from documented deferred maintenance are usually excluded. Document the discovery as a sudden event and the cause as a tank failure, not a slow drip.",
+      },
+      {
+        q: "How much does water-damage restoration cost from a heater failure?",
+        a: "In the Portland metro, a contained heater leak in a garage with no porous materials usually runs $400-$1,500 (extraction, drying, monitoring). A leak that reaches finished interior space with drywall and flooring runs $4,000-$15,000. A leak that traveled to a finished basement below the heater is typically $15,000-$40,000+ when reconstruction is included. The single biggest cost driver is how long water sat before mitigation began.",
+      },
+      {
+        q: "Can I dry out water-heater damage myself with fans?",
+        a: "For very small leaks (under a square foot, on impermeable flooring, dried within minutes), yes. For anything that reached drywall, baseboard, hardwood, or carpet pad — no. Household fans don't achieve the dry standard that IICRC S500 requires, and 'looks dry' isn't dry; structural materials hold moisture inside the wall cavity that produces mold within 48-72 hours. Use a contractor with calibrated moisture meters to verify before walking away.",
+      },
+      {
+        q: "Should I replace my water heater preventively?",
+        a: "If your heater is past year 10 and you have valuable finished space below or near it (finished basement, hardwood floors, mid-century home with original plumbing), yes — proactive replacement is dramatically cheaper than reactive water damage. A $2,500 preventive replacement beats a $25,000 emergency restoration every time.",
+      },
+    ],
+  },
+  {
+    slug: "ice-dam-portland-before-the-thaw",
+    title:
+      "Ice Dam in Portland: Pull These Moves Before the Thaw",
+    description:
+      "When the temperature is about to swing back above freezing after a Portland metro snow event, you have a 24-hour window to prevent ice-dam-driven water intrusion. An IICRC-certified restoration contractor's pre-thaw playbook.",
+    excerpt:
+      "Portland gets one or two real ice events per winter, and each one produces a predictable wave of attic and ceiling damage when the thaw arrives. The damage isn't caused by the snow — it's caused by what happens at the eaves while you're inside enjoying the snow day. Here's how to get ahead of it.",
+    category: "Storm",
+    readingMinutes: 7,
+    publishedAt: "2026-05-12",
+    author: { name: "Dmitry Zinovyev", title: "Founder, ONA Restoration" },
+    sections: [
+      {
+        kind: "p",
+        text: "Ice dams aren't a Pacific Northwest hallmark the way they are in Buffalo or Minneapolis, but Portland metro homes get them often enough that we run a wave of attic-water and ceiling-stain calls every February. The mechanism: snow on the roof melts because the attic is warmer than 32°F, the meltwater runs down the slope, refreezes at the eaves (which are colder than the heated attic above), builds an ice ridge, and dams subsequent meltwater behind it. That dammed water finds the smallest gap in your roof's water-shedding system — usually under shingles at the eave — and runs sideways into the building.",
+      },
+      {
+        kind: "p",
+        text: "By the time the homeowner sees a brown stain on the ceiling, days of intrusion have already happened. The window to prevent the damage is between when the snow lands and when the temperature swings back above freezing — typically 24-48 hours in this metro.",
+      },
+      { kind: "h2", text: "Signs you have an ice dam forming" },
+      {
+        kind: "p",
+        text: "Walk outside and look at the eaves and gutters of every roof slope. Things to look for:",
+      },
+      {
+        kind: "list",
+        items: [
+          "An ice ridge or icicle bank along the gutter line. Small icicles are normal; a continuous wall of ice across the eave is a dam.",
+          "A wet patch on the underside of the soffit. That means water has already found a path inside the eave assembly.",
+          "Snow melting in patches on the roof, especially at the ridge or above heated rooms. This indicates uneven attic heat loss — the precondition for ice damming.",
+          "A stain or wet spot at the corner of an interior ceiling, especially near an exterior wall. By the time you see this, intrusion has been happening for 24+ hours.",
+        ],
+      },
+      { kind: "h2", text: "What to do RIGHT NOW (before the thaw)" },
+      { kind: "h3", text: "1. Cool the attic" },
+      {
+        kind: "p",
+        text: "Ice dams form when the attic is warm enough to melt the snow above it. The fastest way to stop active melt is to cool the attic — open every accessible attic vent, leave the access hatch open, and turn down the heat in the rooms below for the night. This won't fix anything long-term, but it slows the dam's growth dramatically over the next 12-24 hours.",
+      },
+      { kind: "h3", text: "2. Remove snow from the lower three to six feet of the roof" },
+      {
+        kind: "p",
+        text: "If you have a roof rake (a long-handled rake designed to pull snow off a roof from the ground), use it. Pull snow off the lowest three to six feet of every accessible roof slope. Don't try to remove the dam itself — that requires safer access. Removing the snow upstream of the dam starves it of future meltwater.",
+      },
+      {
+        kind: "p",
+        text: "Do not climb on the roof. Pacific Northwest roof pitches plus ice equals a serious fall risk. Roof rakes work from the ground; if your roof is two-story or has a complex shape, call a roofing or restoration contractor before climbing anything.",
+      },
+      { kind: "h3", text: "3. Calcium chloride socks at the eave" },
+      {
+        kind: "p",
+        text: "Fill an old sock or pantyhose leg with calcium chloride ice-melt pellets (not rock salt — rock salt damages roof shingles and gutters). Lay the sock vertically across the ice dam at the eave. As it melts, it creates a channel through the dam that lets the meltwater drain. You can usually toss the sock onto the dam from a ladder positioned at the edge of the gutter without needing to climb the roof.",
+      },
+      { kind: "h3", text: "4. Put towels at the ceiling stain" },
+      {
+        kind: "p",
+        text: "If you already see staining or active dripping at an interior ceiling, place a tarp on the floor and pile towels on top to catch ongoing drips. Don't poke a hole in the ceiling — wait for restoration. Document the staining with photos every few hours so you have a timeline.",
+      },
+      { kind: "h2", text: "What to do AFTER the thaw" },
+      {
+        kind: "p",
+        text: "Once temperatures are back above freezing, the dam will melt over a few days. Resist the urge to declare victory — much of the intrusion damage shows up in the week AFTER the thaw, as wet insulation slowly transfers moisture into framing, drywall, and ceiling assemblies.",
+      },
+      {
+        kind: "p",
+        text: "Two checks in the week after:",
+      },
+      {
+        kind: "ordered",
+        items: [
+          "Walk the attic with a flashlight and look for wet insulation, staining on the underside of the roof deck, or water trickles down the rafters. Any of these = active intrusion damage.",
+          "Walk every interior ceiling and the upper foot of every exterior wall. Look for fresh staining, paint bubbling, or warping. Touch suspect spots — they'll feel cool and damp.",
+        ],
+      },
+      {
+        kind: "p",
+        text: "If you find any of the above, call us. Wet insulation rarely recovers; soaked drywall must be removed before mold colonizes it (24-72 hours from saturation). The clock starts the day the snow falls, not the day you notice the stain.",
+      },
+      { kind: "h2", text: "Long-term: stop next year's ice dam" },
+      {
+        kind: "p",
+        text: "Ice dams are caused by attic heat loss, not by snow itself. The permanent fixes:",
+      },
+      {
+        kind: "list",
+        items: [
+          "Improve attic insulation to R-49 or above (R-30 is typical in pre-2000 Portland metro homes — undersized for current code).",
+          "Seal attic air leaks: recessed lights, plumbing penetrations, attic hatch perimeter, top plates above interior walls. Air leaks dump warm interior air into the attic and create localized melt zones.",
+          "Improve attic ventilation — soffit intake plus ridge exhaust, sized for the attic area. Most Portland metro homes are under-ventilated.",
+          "Install heat cable at the eaves on chronically-problematic roof sections (last resort, but inexpensive and effective).",
+        ],
+      },
+      {
+        kind: "p",
+        text: "These are off-season projects, typically $2,000-$6,000 depending on attic size and current state. We don't do attic work directly, but we coordinate with insulation and roofing contractors we trust if you'd like a referral after we restore the immediate damage.",
+      },
+    ],
+    faqs: [
+      {
+        q: "Does homeowners insurance cover ice dam damage?",
+        a: "Generally yes for the resulting water damage to interior finishes (drywall, paint, flooring, ceilings). The ice dam itself and the underlying roof condition are not covered — those are maintenance items. Document the loss as 'water intrusion from ice dam formation during [date]' and submit photos of the dam from the same day if you have them.",
+      },
+      {
+        q: "Should I knock the icicles off?",
+        a: "Big icicles can be dangerous to people below — knock them off with care from the ground (pole, not by climbing). But removing icicles doesn't remove the dam itself, which sits behind the icicle wall along the gutter line. The icicle removal is a safety measure, not a fix.",
+      },
+      {
+        q: "Will hiring a contractor to steam the ice dam off cause damage?",
+        a: "Professional steam removal (low-pressure steam, not high-pressure water) is the safest way to remove an active ice dam without damaging shingles. High-pressure pressure-washer methods or chipping with axes/picks do damage roofs. If you hire someone, verify they're using a steam system, not a pressure washer.",
+      },
+      {
+        q: "How fast does mold start growing in wet attic insulation?",
+        a: "24-72 hours from saturation, like any other porous material. Wet attic insulation is particularly bad because it sits in a low-air-circulation space against framing, ideal mold conditions. If you find wet insulation after an ice dam, schedule remediation immediately rather than 'letting it dry out' — it won't.",
+      },
+      {
+        q: "Does Portland get ice dams every winter?",
+        a: "Not every winter — we typically see one to two ice events per season in the metro, and not all of them produce damming. The recipe is sustained sub-freezing temperatures with snow accumulation, then a slow thaw with above-freezing days and below-freezing nights for several days. The 2024 ice storm produced widespread ice damage; many winters pass with no significant ice events at all.",
+      },
+    ],
+  },
+  {
+    slug: "pacific-northwest-wildfire-smoke-hvac-cleanup",
+    title:
+      "Pacific Northwest Wildfire Smoke: HVAC and Air Quality After the Smoke Clears",
+    description:
+      "Cleaning up after smoke event days is more than wiping windows. An IICRC-certified contractor explains what wildfire smoke actually does to HVAC systems, ductwork and contents in Pacific Northwest homes — and the cleaning protocols that matter.",
+    excerpt:
+      "Most homeowners breathe a sigh of relief when the smoke clears outside. But indoor air can stay smoke-saturated for weeks, and the residue that settled on contents and inside HVAC ductwork keeps releasing odor and particulate long after the air outside is clean.",
+    category: "Fire",
+    readingMinutes: 7,
+    publishedAt: "2026-05-11",
+    author: { name: "Dmitry Zinovyev", title: "Founder, ONA Restoration" },
+    sections: [
+      {
+        kind: "p",
+        text: "Pacific Northwest wildfire smoke events are now a yearly fixture. The Bootleg, Chetco, Riverside, and Eagle Creek fires each produced multi-week smoke episodes that pushed PM2.5 readings above 300 across the Portland metro. Even when the smoke clears outside, three things continue affecting indoor air quality for weeks: smoke that infiltrated through the building envelope and settled on contents, smoke that entered the HVAC system and lined the ductwork, and porous materials throughout the home that absorbed odor compounds.",
+      },
+      { kind: "h2", text: "What wildfire smoke actually deposits" },
+      {
+        kind: "p",
+        text: "Wildfire smoke contains particulate (PM2.5 and PM10), volatile organic compounds (VOCs), carbon monoxide, and a long list of products of incomplete combustion. The visible particulate is the easy part — it settles, you wipe it. The harder part is the VOCs and combustion byproducts that adsorb into porous materials and continue off-gassing for weeks. That's what produces the persistent campfire smell long after the smoke clears.",
+      },
+      { kind: "h2", text: "Indoor surfaces, ranked by what cleaning matters" },
+      { kind: "h3", text: "1. HVAC system (highest priority)" },
+      {
+        kind: "p",
+        text: "Your HVAC pulls 1,000+ cubic feet of air per minute through the ductwork. During smoke events, particulate and VOCs accumulate on every interior surface of the duct system, on the air handler coils, and on the air handler blower. Once the smoke clears, the system continues recirculating the captured contamination through the house every time it runs. Cleaning the HVAC is the single most important step.",
+      },
+      {
+        kind: "p",
+        text: "What proper HVAC remediation looks like: replace all filters with new high-MERV (13+) filters. Have a NADCA-certified duct cleaner clean the full duct system (truck-mounted vacuum, agitation, sanitization). Have an HVAC tech clean the air handler coils, blower wheel, and condensate pan. Run the system with HEPA air scrubbers in the house for 2-7 days to capture remaining airborne particulate.",
+      },
+      { kind: "h3", text: "2. Soft furnishings and textiles (high priority)" },
+      {
+        kind: "p",
+        text: "Upholstery, draperies, area rugs, mattresses, and clothing absorb smoke odor and continue releasing it for weeks. Surface cleaning doesn't fully remove it; deep extraction (hot water with appropriate detergents and agitation) is the cleaning standard. Heavy contamination requires off-site cleaning at a textile facility. Some items — especially mattresses with significant exposure — may need replacement.",
+      },
+      { kind: "h3", text: "3. Porous building materials (medium priority)" },
+      {
+        kind: "p",
+        text: "Drywall, exposed framing in attics and crawlspaces, and acoustic ceiling tiles absorb smoke compounds. Mild exposure usually responds to cleaning with smoke-restoration chemicals; heavy exposure may require sealing with an odor-blocking primer (KILZ Original or equivalent) before repainting. Acoustic ceiling tiles in commercial spaces frequently need replacement.",
+      },
+      { kind: "h3", text: "4. Hard surfaces (lower priority, but visible)" },
+      {
+        kind: "p",
+        text: "Windows, mirrors, glass tables, painted walls, and finished cabinetry get a visible film of smoke residue. These respond well to standard cleaning (mild detergent, microfiber, gentle agitation). Avoid abrasive cleaners that can drive contamination into the surface.",
+      },
+      { kind: "h3", text: "5. Contents in storage (variable)" },
+      {
+        kind: "p",
+        text: "Books, paper records, electronics, and stored fabrics in basements or attics where ventilation is limited may have heavy odor that's worse than the main living spaces. Inspect closets and storage rooms specifically — the lack of air movement concentrated the smoke compounds.",
+      },
+      { kind: "h2", text: "DIY vs professional smoke restoration" },
+      {
+        kind: "p",
+        text: "For light exposure (one or two smoke days, sealed-up house, HVAC ran minimally), DIY cleaning is reasonable: replace HVAC filters, run an air purifier, wash soft goods, wipe hard surfaces. For heavy exposure (multi-week smoke event, windows open part of the time, HVAC running normally, persistent odor weeks later), professional restoration is the right call.",
+      },
+      {
+        kind: "p",
+        text: "What professionals add: ozone or hydroxyl generation for serious odor situations (these address VOCs that surface cleaning can't reach), specialized HVAC duct cleaning equipment, off-site textile cleaning relationships, and insurance-billable scope documentation. Insurance carriers in the Pacific Northwest generally cover wildfire smoke contamination losses under standard HO-3 policies when documented as a sudden event from a covered peril.",
+      },
+      { kind: "h2", text: "Health considerations" },
+      {
+        kind: "p",
+        text: "Anyone in the household with asthma, COPD, allergies, cardiovascular conditions, or who is pregnant should not return to a heavily-smoke-contaminated home until remediation is complete. Indoor PM2.5 from wildfire smoke residue can stay elevated for days to weeks after the outdoor air clears. If you smell campfire when you walk in, the contamination is still active.",
+      },
+      { kind: "h2", text: "When to call us" },
+      {
+        kind: "p",
+        text: "If the smoke odor lasted more than a day in the house, you're seeing visible residue on windows or windowsills, your HVAC was running during the event, or anyone in the household is symptomatic — book an inspection. We do free initial assessments across the Portland metro and produce a written scope with insurance-billable documentation. The earlier the cleaning starts after the smoke clears, the less residue has time to set and the lower the total cost.",
+      },
+    ],
+    faqs: [
+      {
+        q: "Will insurance cover wildfire smoke cleanup?",
+        a: "Most homeowners policies in Washington and Oregon cover smoke contamination from a wildfire as a covered peril, especially when the smoke caused documentable damage (residue on contents, HVAC contamination, persistent odor). The claim is typically opened as 'smoke damage' under HO-3 policy section. Document the smoke event (dates, AQI readings, photos of residue) and file as soon as the smoke clears.",
+      },
+      {
+        q: "How long does it take for smoke odor to leave a house?",
+        a: "For minor exposure with thorough cleaning, 1-2 weeks. For heavy exposure without professional remediation, smoke odor can persist for months. Time alone doesn't fully resolve smoke contamination because the compounds bind into porous materials; physical removal or chemical treatment is required.",
+      },
+      {
+        q: "Are home air purifiers enough during a smoke event?",
+        a: "A true HEPA air purifier with adequate room coverage (look for CADR ratings) significantly reduces airborne particulate during the event. They don't address VOCs (carbon-activated filters help with that), and they don't clean residue that has already settled on surfaces. They're a useful part of the strategy, not the whole strategy.",
+      },
+      {
+        q: "Should I change my HVAC filter every day during a smoke event?",
+        a: "Filters clog faster during smoke events. Check (don't necessarily replace) every 3-7 days. A loaded filter increases system strain; an under-loaded filter passes more smoke through. Use the highest-MERV filter your system is rated for (typically MERV 11-13 for residential systems). Higher-MERV filters in undersized systems can cause coil freezing.",
+      },
+      {
+        q: "Is professional duct cleaning really worth it after smoke?",
+        a: "For heavy smoke exposure, yes — the ductwork is otherwise a permanent reservoir of contamination that recirculates every time the system runs. For light exposure with diligent filter changes, often not. The decision turns on whether you can still smell smoke when the system runs. If yes, clean the ducts. If no and the filters are fresh, you're probably fine.",
+      },
+    ],
+  },
+  {
+    slug: "fire-damage-cleanup-what-insurance-covers",
+    title:
+      "Fire Damage Cleanup: What Insurance Covers vs What They Fight",
+    description:
+      "An IICRC-certified restoration contractor's guide to what your homeowners insurance will pay for after a fire — and the four scope categories where carriers consistently push back. Vancouver, WA and Portland metro specific.",
+    excerpt:
+      "Fire claims are usually paid more generously than water claims, but they're also more complex — a typical kitchen fire involves five or six scope categories that all need separate documentation. Most claim shortfalls aren't denials; they're under-paid line items the homeowner didn't know to fight for.",
+    category: "Insurance",
+    readingMinutes: 8,
+    publishedAt: "2026-05-10",
+    author: { name: "Dmitry Zinovyev", title: "Founder, ONA Restoration" },
+    sections: [
+      {
+        kind: "p",
+        text: "Fire claims are simultaneously the most generous and the most complicated homeowners insurance claims. Generous because the loss is sudden, visible, and indisputable — no adjuster argues whether the fire happened. Complicated because the damage from a single fire event spans five or six independent scope categories — structure, contents, smoke, water from suppression, odor, and additional living expenses — and each one gets adjudicated separately. Most homeowners under-collect on fire claims not because the insurer denied the claim, but because line items got under-paid that the homeowner didn't realize they could push back on.",
+      },
+      { kind: "h2", text: "The six scope categories of a fire claim" },
+      { kind: "h3", text: "1. Structural damage from fire and heat" },
+      {
+        kind: "p",
+        text: "Direct fire damage to framing, drywall, insulation, electrical systems, plumbing, roofing, and finishes in the burn zone. Usually paid generously because the damage is visible. Pushback points are usually around how far structural repair extends beyond the visible damage zone — heat can compromise framing and electrical that doesn't look damaged. A thorough scope addresses this with documented engineering assessment.",
+      },
+      { kind: "h3", text: "2. Smoke damage throughout the structure" },
+      {
+        kind: "p",
+        text: "Smoke migrates everywhere — through the HVAC system, into closets, across the attic, into rooms remote from the fire. Smoke damage is a separate scope from structural fire damage and is the single most common shortfall area on a fire claim. Carriers often try to scope smoke damage as 'clean surfaces in affected rooms,' which understates the work. Proper scope includes HVAC duct cleaning, coil cleaning, sealing of porous building materials, off-site cleaning of contents, ozone or hydroxyl treatment, and odor verification testing.",
+      },
+      { kind: "h3", text: "3. Water damage from fire suppression" },
+      {
+        kind: "p",
+        text: "The fire department pumps thousands of gallons of water on the fire. That water saturates the structure, runs into floors below, and pools in places the firefighters couldn't see. Suppression water damage is usually under-scoped because the adjuster's first visit focuses on the visible burn area. Insist on thermal imaging and moisture mapping of the entire affected level and the level below before the structural scope is closed.",
+      },
+      { kind: "h3", text: "4. Contents" },
+      {
+        kind: "p",
+        text: "Furniture, appliances, electronics, clothing, kitchenware, art, books, decor, and the contents of every closet, drawer, and storage area. Contents settlement is paid via inventory: every damaged item itemized with date acquired, original purchase price, current depreciated value (ACV), and current replacement cost (RCV). Most homeowners massively under-inventory contents because they don't realize how much they own. Walk every closet, drawer, kitchen cabinet, and storage container. Photograph everything before disposal.",
+      },
+      { kind: "h3", text: "5. Additional Living Expenses (ALE)" },
+      {
+        kind: "p",
+        text: "Hotel/rental costs, restaurant meals (the delta above your normal grocery spend), pet boarding, laundry costs, transportation if your normal vehicle isn't usable, and other reasonable expenses you wouldn't incur in your normal home. ALE has a sublimit and a time limit on most policies — verify both at the first call. Save every receipt; submit ALE separately from the structural and contents claims.",
+      },
+      { kind: "h3", text: "6. Code upgrades" },
+      {
+        kind: "p",
+        text: "If the structure needs to be brought up to current building code during the rebuild, code-upgrade coverage pays the difference between like-kind replacement and current-code construction. Pacific Northwest building codes have tightened on seismic bracing, electrical, insulation, fire-rated assemblies, and egress in the last decade. A 1970s house being rebuilt to 2026 code can have $20,000-$80,000 in code upgrades that are paid only if your policy has the coverage and the scope itemizes them.",
+      },
+      { kind: "h2", text: "Where carriers consistently push back" },
+      { kind: "h3", text: "Smoke odor remediation scope" },
+      {
+        kind: "p",
+        text: "Carriers often try to limit smoke remediation to surface cleaning of affected rooms. Proper remediation per IICRC FSRT often requires whole-house HVAC cleaning, contents pack-out and off-site cleaning, sealing porous materials with smoke-blocking primer before repainting, and third-party odor verification before the job closes. The contractor scope and the carrier estimate should align on the standard, not just the room count.",
+      },
+      { kind: "h3", text: "Contents replacement vs cleaning" },
+      {
+        kind: "p",
+        text: "Carriers prefer cleaning over replacement when possible (it's cheaper). Restoration contractors should make the cleaning vs replace decision per the IICRC standard for the specific item — heavy smoke contamination, heat damage, or water damage often makes replacement the correct call even when cleaning is technically possible. Get the recommendation in writing from the restoration contractor before agreeing to cleaning that won't fully resolve.",
+      },
+      { kind: "h3", text: "Code-upgrade applicability" },
+      {
+        kind: "p",
+        text: "Carriers will sometimes argue that a code upgrade isn't required because the original assembly is grandfathered. Permitting jurisdictions in the Portland metro (Vancouver, Portland, Beaverton, Hillsboro, Gresham) often disagree, requiring the permit applicant to build to current code regardless of grandfathering. Get the local permit office's written position when you and the carrier disagree on a code-upgrade line item.",
+      },
+      { kind: "h3", text: "ALE duration" },
+      {
+        kind: "p",
+        text: "Carriers sometimes try to limit ALE to the contractor's promised completion timeline. Real construction timelines often slip due to permit delays, supply chain, and discovered scope. Reasonable ALE follows the actual displacement period (subject to policy time limits), not the original estimate. Document delays the contractor and permit office cause; submit updated ALE claims monthly.",
+      },
+      { kind: "h2", text: "How to set yourself up for a clean claim" },
+      {
+        kind: "ordered",
+        items: [
+          "Stay out of the structure until the fire department releases it. Document everything from the outside in the meantime.",
+          "Open the claim with your carrier immediately — the FNOL starts the clock on emergency mitigation and ALE.",
+          "Engage an IICRC FSRT-certified restoration contractor for emergency board-up and securement. Insurance pays for emergency mitigation independent of the rest of the claim approval.",
+          "Inventory contents room by room with photos before any disposal. Catalog every item — yes, including the contents of every drawer.",
+          "Keep every receipt — temporary housing, meals out, laundry, replacement essentials, pet boarding. All of these are reimbursable under ALE.",
+          "Don't accept the carrier's first estimate as final. Ask the restoration contractor to review it and identify gaps. Submit a written response to anything that looks short.",
+        ],
+      },
+      { kind: "h2", text: "Where ONA fits in" },
+      {
+        kind: "p",
+        text: "We hold IICRC FSRT (Fire & Smoke Restoration Technician) certification and handle every stage from emergency board-up through final reconstruction. We document everything to insurance-adjuster standard from the first hour, and we coordinate with your carrier directly so you don't navigate the claim alone. If you're in Vancouver, WA or the Portland metro and you've had a fire — call us. We answer 24/7 and the first 24 hours are the most important.",
+      },
+    ],
+    faqs: [
+      {
+        q: "How long does a typical fire claim take to settle in Washington and Oregon?",
+        a: "Small kitchen-fire scope (1-2 rooms, no displacement) typically settles within 30-60 days. Medium-scope (multi-room, displacement, contents, ALE) takes 60-120 days. Major-loss settlements (whole-house, complex contents, code upgrades) routinely take 6-12 months. The timeline correlates with the complexity of the scope, not the size of the loss in dollars.",
+      },
+      {
+        q: "Will the insurance carrier pay for upgrades during rebuild?",
+        a: "Standard insurance pays for like-kind replacement — same material, same quality, same configuration. Upgrades (better cabinets, nicer flooring, layout changes) are paid by the homeowner via betterment. The carrier-paid like-kind portion and the homeowner-paid upgrade portion are tracked separately in the estimate. Code-required upgrades are different — those are paid by the carrier if you have ordinance-and-law coverage.",
+      },
+      {
+        q: "What if I want to take the cash settlement and not rebuild?",
+        a: "Most policies pay ACV (actual cash value, depreciated) up front and the remaining RCV (replacement cost value) only after the work is completed. If you take the cash without rebuilding, you forfeit the RCV depreciation portion. This can be a substantial difference — sometimes 30-50% of the total settlement. Talk to a public adjuster or attorney before making this decision on a major loss.",
+      },
+      {
+        q: "Should I hire a public adjuster for a fire claim?",
+        a: "On a small kitchen-fire scope (under $50K), usually no — a competent IICRC-certified restoration contractor handles the documentation. On large or complex losses (whole-house, contents over $100K, significant code upgrades, multi-policy coverage), a licensed public adjuster often pays for themselves through better recovery on the contents and code-upgrade portions. They take 10-15% of the settlement; the marginal recovery typically exceeds the fee on large losses.",
+      },
+      {
+        q: "Does my insurance pay for hotel during fire restoration?",
+        a: "Yes — Additional Living Expense coverage pays reasonable additional housing costs when the home is uninhabitable. Coverage is the difference between your normal cost of living and the displaced cost (not the full hotel bill). Save every receipt and submit ALE separately from the structural claim. Most policies have both a percentage-of-dwelling sublimit (often 20%) and a time limit (often 12-24 months).",
+      },
+    ],
+  },
+  {
+    slug: "anti-concurrent-causation-clause-explained",
+    title:
+      "Anti-Concurrent Causation Clause Explained for Pacific NW Homeowners",
+    description:
+      "The single most aggressive clause in modern homeowners insurance — what 'anti-concurrent causation' actually means, when carriers use it to deny otherwise-covered losses, and the case law in Washington and Oregon that limits its use.",
+    excerpt:
+      "An anti-concurrent causation (ACC) clause says that if a loss involves both a covered cause and an excluded cause, the entire loss may be denied. It's how some carriers deny burst-pipe water damage by tying it to a flood event. Knowing how the clause works — and where the case law limits it — is the difference between a paid claim and a denied one.",
+    category: "Insurance",
+    readingMinutes: 7,
+    publishedAt: "2026-05-09",
+    author: { name: "Dmitry Zinovyev", title: "Founder, ONA Restoration" },
+    sections: [
+      {
+        kind: "p",
+        text: "About fifteen years ago, after a wave of unfavorable storm-damage judgments, the homeowners insurance industry adopted a clause that has since changed how complex losses are adjudicated. Anti-concurrent causation (ACC) language says, in plain English: if any excluded cause contributed to a loss — even partially, even simultaneously, even if a covered cause was the dominant trigger — the entire loss may be denied. The clause is buried in the policy exclusions section and most homeowners never know it exists until they have a claim that triggers it.",
+      },
+      {
+        kind: "callout",
+        text: "Important: ACC clause interpretation varies meaningfully between states. Washington and Oregon both have case law that limits how aggressively carriers can apply ACC. This post is a general explainer, not legal advice — for a denied claim that hinges on ACC, consult an insurance attorney licensed in your state.",
+      },
+      { kind: "h2", text: "What ACC language actually says" },
+      {
+        kind: "p",
+        text: "Typical ACC language in a modern HO-3 policy reads something like: \"We do not insure for loss caused directly or indirectly by any of the following. Such loss is excluded regardless of any other cause or event contributing concurrently or in any sequence to the loss.\" That last phrase — \"contributing concurrently or in any sequence\" — is the bite. Without it, a homeowner could argue that the covered cause (burst pipe) was the dominant cause and the loss should be paid. With it, the carrier can argue that any contribution from an excluded cause (flooding, earth movement, neglect) denies the entire loss.",
+      },
+      { kind: "h2", text: "Three scenarios where ACC commonly applies" },
+      { kind: "h3", text: "1. Storm-driven losses with flooding" },
+      {
+        kind: "p",
+        text: "An atmospheric river drops six inches of rain. Wind drives water through a roof intersection (a covered peril under HO-3). The same storm produces ground-water flooding that enters the basement (excluded under HO-3 without NFIP coverage). The carrier may invoke ACC to deny the entire loss including the roof intrusion, arguing that flood contributed concurrently. This is the most common ACC denial scenario in the Pacific Northwest.",
+      },
+      { kind: "h3", text: "2. Burst-pipe + slow-leak hybrid" },
+      {
+        kind: "p",
+        text: "A pipe bursts (covered) in a wall that had been slow-leaking for months (excluded as long-term seepage). The carrier may deny the burst-pipe loss by tying it to the pre-existing seepage. Adjuster's argument: the wall was already compromised, and the burst is merely the symptom of the long-term failure. Defendable, but the carrier's first move is often denial under ACC.",
+      },
+      { kind: "h3", text: "3. Sewer backup + storm" },
+      {
+        kind: "p",
+        text: "Heavy rainfall overwhelms the municipal sewer system; the backup enters your basement. The storm itself isn't directly causing your loss (the sewer is), but the storm caused the sewer overload. Without a sewer backup endorsement, sewer water is excluded. If you have the endorsement, the carrier may try to invoke ACC to argue the storm-driven flooding contributed. Tighter case law in WA and OR has limited this particular maneuver.",
+      },
+      { kind: "h2", text: "How Washington and Oregon limit ACC" },
+      {
+        kind: "p",
+        text: "Both Washington and Oregon are 'efficient proximate cause' states by case law and statute interpretation, which is a meaningful constraint on ACC.",
+      },
+      { kind: "h3", text: "Washington: Vision One, Sherry, Bordeaux" },
+      {
+        kind: "p",
+        text: "Washington case law (Vision One v. Philadelphia Indemnity Insurance, 2012, and earlier Sherry and Bordeaux decisions) established that when a covered peril is the efficient proximate cause of a loss, the loss is covered even if an excluded peril is part of the causal chain. ACC clauses cannot override the efficient proximate cause doctrine in Washington. This means: if the burst pipe was the dominant cause and the seepage was incidental, the loss should be covered despite ACC language.",
+      },
+      { kind: "h3", text: "Oregon: similar doctrine" },
+      {
+        kind: "p",
+        text: "Oregon case law similarly recognizes the efficient proximate cause doctrine, though with somewhat narrower application than Washington. Oregon courts have been receptive to ACC defenses in genuinely-concurrent scenarios (two simultaneous independent causes) but more skeptical in sequential-cause scenarios where one cause clearly preceded and triggered the other.",
+      },
+      { kind: "h2", text: "What to do if your claim is denied under ACC" },
+      {
+        kind: "ordered",
+        items: [
+          "Request the denial in writing and ask the adjuster to specifically cite which excluded peril triggered the ACC clause. Force precision.",
+          "Document the efficient proximate cause clearly. The contractor's cause-and-origin analysis should explicitly identify which covered peril was the dominant cause and demonstrate why the excluded contribution was incidental.",
+          "Cite Vision One (Washington) or comparable Oregon case law in your written appeal if your contractor's documentation supports a covered efficient proximate cause.",
+          "If the appeal fails, escalate to the Washington OIC or Oregon DCBS. Both regulators are familiar with ACC litigation and will often pressure carriers toward settlement.",
+          "On large losses, consult an insurance coverage attorney. ACC denials are one of the most-litigated clause categories and an attorney with relevant case experience can often produce settlement leverage.",
+        ],
+      },
+      { kind: "h2", text: "Preventing ACC issues at the policy level" },
+      {
+        kind: "p",
+        text: "Two adjustments to a typical Pacific Northwest homeowners policy substantially reduce ACC exposure:",
+      },
+      {
+        kind: "list",
+        items: [
+          "Add a sewer backup endorsement (usually $50-$150/year). Removes sewer water from the excluded list, eliminating one common ACC scenario.",
+          "Add NFIP flood insurance (typically $300-$700/year). Removes ground-water flooding from the excluded list, eliminating the most common Pacific Northwest ACC scenario.",
+        ],
+      },
+      {
+        kind: "p",
+        text: "Both endorsements pay for themselves the first time you have a complex storm loss. We strongly recommend Pacific Northwest homeowners with any below-grade finished space carry both — the cost is small relative to the exposure.",
+      },
+      { kind: "h2", text: "Where we fit in" },
+      {
+        kind: "p",
+        text: "If your loss involves complex causation (storm + interior damage, water + mold, fire + suppression water), the restoration contractor's documentation determines whether your carrier can credibly invoke ACC. We produce written cause-and-origin opinions, thermal imaging documentation, and Xactimate-formatted scopes that make the efficient proximate cause unmistakable. If you're staring at an ACC-based denial right now, call us for a documentation review — we do these free for losses we work on, and the right documentation overturns most ACC denials in this region.",
+      },
+    ],
+    faqs: [
+      {
+        q: "Does every homeowners policy have an ACC clause?",
+        a: "Most modern HO-3 policies issued by major US carriers since approximately 2010 contain ACC language in the exclusions section. The wording varies. Older policies (pre-2005) often lack the clause. If you have an older policy or a non-ISO-form policy (some regional carriers use proprietary forms), check the specific language before assuming.",
+      },
+      {
+        q: "Is ACC enforceable in Washington state?",
+        a: "Yes, but with significant limits. The Washington Supreme Court has held that ACC clauses cannot override the efficient proximate cause doctrine — when a covered peril is the dominant cause of a loss, the loss is covered regardless of contributions from excluded perils. This is more limiting than the carrier-friendly interpretations in some other states.",
+      },
+      {
+        q: "What's the difference between concurrent and sequential causation?",
+        a: "Concurrent: two causes operating simultaneously and independently (a fire and an earthquake happening at the same time, both contributing to the loss). Sequential: one cause triggers another (a storm causes a power outage which causes a sump pump failure which causes a flood). Sequential-cause scenarios are more often resolved in favor of the homeowner under efficient proximate cause; concurrent scenarios are more often resolved in favor of the carrier under ACC.",
+      },
+      {
+        q: "Should I hire an attorney for an ACC denial?",
+        a: "For small claims (under $25K), usually no — the attorney's fee will eat the recovery. For mid-size claims with credible efficient proximate cause arguments, often yes — the attorney's pressure plus regulator complaint frequently produces settlement at 60-90% of disputed amount. For large losses, definitely yes — ACC litigation is well-developed and an experienced coverage attorney has substantial leverage.",
+      },
+      {
+        q: "Can I challenge ACC in Oregon as effectively as in Washington?",
+        a: "Generally yes for clearly-sequential-cause losses, though Oregon case law is somewhat narrower than Washington's. An experienced Oregon insurance attorney can evaluate the specific facts and case law applicable to your loss. The Oregon DCBS Division of Financial Regulation also handles consumer complaints and can apply settlement pressure.",
+      },
+    ],
+  },
+  {
     slug: "atmospheric-river-prep-checklist-vancouver-wa",
     title:
       "Atmospheric River Prep Checklist for Vancouver, WA Homeowners",

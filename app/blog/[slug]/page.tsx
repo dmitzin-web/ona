@@ -7,9 +7,64 @@ import { CTA } from "@/components/CTA";
 import { JsonLd } from "@/components/JsonLd";
 import { ArrowIcon } from "@/components/icons/ServiceIcons";
 import { findPost, posts, type PostSection } from "@/lib/posts";
+import { services } from "@/lib/services";
+import { areaProfiles } from "@/lib/areas";
 import { site } from "@/lib/site";
 import { buildMetadata } from "@/lib/seo";
 import { breadcrumbJsonLd, faqJsonLd } from "@/lib/jsonld";
+
+// Map post category → primary service slug. Used to surface the right
+// programmatic service×city pages in the "Get help near you" block at the
+// end of each post. Insurance posts don't map to a single service so they
+// surface water-damage (the most common loss type) as a default.
+const CATEGORY_TO_SERVICE: Record<string, string> = {
+  Water: "water-damage",
+  Fire: "fire-damage",
+  Mold: "mold-removal",
+  Storm: "storm-damage",
+  Insurance: "water-damage",
+};
+
+// Top-of-mind cities for the "Get help near you" block. Three cities surfaced
+// per post — local-leaning so the user clicking from a Portland-focused post
+// lands in the highest-intent programmatic page.
+const HIGHLIGHT_CITIES = ["vancouver-wa", "portland-or", "camas-wa"];
+
+// Parses markdown-style inline links: "...text [label](/url) more text..."
+// Returns an array of strings and { text, href } objects for the renderer.
+// Internal-link only (href must start with "/") — external links are kept as
+// plain text to keep blog content unambiguously internal.
+function parseInlineLinks(text: string) {
+  const re = /\[([^\]]+)\]\((\/[^)]+)\)/g;
+  const out: Array<string | { text: string; href: string }> = [];
+  let cursor = 0;
+  for (const m of text.matchAll(re)) {
+    const idx = m.index ?? 0;
+    if (idx > cursor) out.push(text.slice(cursor, idx));
+    out.push({ text: m[1], href: m[2] });
+    cursor = idx + m[0].length;
+  }
+  if (cursor < text.length) out.push(text.slice(cursor));
+  return out;
+}
+
+function renderInline(text: string) {
+  const parts = parseInlineLinks(text);
+  if (parts.length === 1 && typeof parts[0] === "string") return parts[0];
+  return parts.map((part, i) =>
+    typeof part === "string" ? (
+      <span key={i}>{part}</span>
+    ) : (
+      <Link
+        key={i}
+        href={part.href}
+        className="underline decoration-charcoal/30 underline-offset-4 transition hover:decoration-charcoal"
+      >
+        {part.text}
+      </Link>
+    ),
+  );
+}
 
 export function generateStaticParams() {
   return posts.map((p) => ({ slug: p.slug }));
@@ -54,7 +109,7 @@ function renderSection(s: PostSection, i: number) {
           key={i}
           className="mt-5 text-lg leading-relaxed text-charcoal/85"
         >
-          {s.text}
+          {renderInline(s.text)}
         </p>
       );
     case "list":
@@ -65,7 +120,7 @@ function renderSection(s: PostSection, i: number) {
         >
           {s.items.map((item, j) => (
             <li key={j} className="text-base leading-relaxed text-charcoal/80">
-              {item}
+              {renderInline(item)}
             </li>
           ))}
         </ul>
@@ -78,7 +133,7 @@ function renderSection(s: PostSection, i: number) {
         >
           {s.items.map((item, j) => (
             <li key={j} className="pl-1">
-              {item}
+              {renderInline(item)}
             </li>
           ))}
         </ol>
@@ -89,7 +144,7 @@ function renderSection(s: PostSection, i: number) {
           key={i}
           className="mt-8 border-l-2 border-charcoal bg-ivory-soft p-6 text-base leading-relaxed text-charcoal"
         >
-          {s.text}
+          {renderInline(s.text)}
         </aside>
       );
   }
@@ -103,6 +158,16 @@ export default async function BlogPostPage(
   if (!post) notFound();
 
   const others = posts.filter((p) => p.slug !== post.slug).slice(0, 3);
+
+  // Build the "Get help near you" block — three programmatic city×service
+  // pages plus the parent service hub. Drives link juice from the blog post
+  // (which earns external links from how-to searches) into the high-intent
+  // programmatic landing pages that actually convert to phone calls.
+  const serviceSlug = CATEGORY_TO_SERVICE[post.category] ?? "water-damage";
+  const service = services.find((s) => s.slug === serviceSlug);
+  const cityLinks = HIGHLIGHT_CITIES.map((slug) =>
+    areaProfiles.find((a) => a.slug === slug),
+  ).filter((a): a is NonNullable<typeof a> => a != null);
 
   return (
     <>
@@ -141,6 +206,55 @@ export default async function BlogPostPage(
           </div>
         </div>
       </article>
+
+      {service && (
+        <section className="border-t border-charcoal/10 bg-ivory">
+          <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10">
+            <p className="eyebrow text-charcoal/60">Get help near you</p>
+            <h2 className="mt-4 max-w-3xl text-3xl font-light leading-tight tracking-tight sm:text-4xl">
+              {service.shortName} in your part of the Portland metro.
+            </h2>
+            <ul className="mt-10 grid gap-px overflow-hidden border border-line-light bg-line-light sm:grid-cols-2 lg:grid-cols-4">
+              {cityLinks.map((a) => (
+                <li key={a.slug}>
+                  <Link
+                    href={`/services/${service.slug}/${a.slug}`}
+                    className="flex h-full flex-col justify-between gap-6 bg-ivory p-6 transition hover:bg-charcoal hover:text-ivory"
+                  >
+                    <div>
+                      <p className="eyebrow opacity-60">
+                        {a.name}, {a.region}
+                      </p>
+                      <p className="mt-3 text-base font-medium tracking-tight">
+                        {service.shortName} in {a.name}
+                      </p>
+                    </div>
+                    <p className="inline-flex items-center gap-2 eyebrow">
+                      Service area <ArrowIcon className="h-3 w-3 stroke-current" />
+                    </p>
+                  </Link>
+                </li>
+              ))}
+              <li>
+                <Link
+                  href={`/services/${service.slug}`}
+                  className="flex h-full flex-col justify-between gap-6 bg-charcoal p-6 text-ivory transition hover:bg-charcoal-soft"
+                >
+                  <div>
+                    <p className="eyebrow text-ivory/60">All locations</p>
+                    <p className="mt-3 text-base font-medium tracking-tight">
+                      Full {service.shortName.toLowerCase()} overview
+                    </p>
+                  </div>
+                  <p className="inline-flex items-center gap-2 eyebrow">
+                    Read more <ArrowIcon className="h-3 w-3 stroke-current" />
+                  </p>
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </section>
+      )}
 
       {post.faqs && <FAQ items={post.faqs} title="Questions we hear" />}
 
