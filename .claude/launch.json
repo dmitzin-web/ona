@@ -6,6 +6,20 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev"],
       "port": 3000
+    },
+    {
+      "name": "vvon-marketing",
+      "runtimeExecutable": "/usr/local/lib/node_modules/corepack/shims/pnpm",
+      "runtimeArgs": [
+        "-C",
+        "/Users/mag2/vvon-os/apps/marketing",
+        "exec",
+        "next",
+        "dev",
+        "-p",
+        "3210"
+      ],
+      "port": 3210
     }
   ]
 }

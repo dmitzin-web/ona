@@ -36,8 +36,8 @@ export const metadata: Metadata = buildMetadata({
   description: site.shortDescription,
   path: "/",
   keywords: [
-    "high-end restoration Vancouver WA",
-    "luxury restoration Portland OR",
+    "property restoration Vancouver WA",
+    "trusted restoration Portland OR",
     "water damage restoration Portland metro",
     "fire damage restoration Portland",
     "mold remediation Vancouver WA",
@@ -52,7 +52,7 @@ export default function HomePage() {
       <Hero
         image={{
           src: "/photos/hero.svg",
-          alt: "High-end property restoration crews dispatching across Vancouver, WA and the Portland metro — ONA Restoration",
+          alt: "Property restoration crews dispatching across Vancouver, WA and the Portland metro — ONA Restoration",
         }}
       />
 
@@ -68,9 +68,9 @@ export default function HomePage() {
             </div>
             <div className="lg:col-span-7">
               <p className="text-lg leading-relaxed text-charcoal/80">
-                ONA Restoration is a specialist contractor for high-end
-                residential and commercial property losses across the Portland
-                metro. We run every job to IICRC S500 and S520 standards,
+                ONA Restoration is a specialist contractor for residential
+                and commercial property losses across the Portland metro.
+                We run every job to IICRC S500 and S520 standards,
                 document everything to the level your adjuster expects, and
                 rebuild with the craftsmanship the property deserves.
               </p>

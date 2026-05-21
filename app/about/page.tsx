@@ -135,7 +135,7 @@ export default function AboutPage() {
                   Dmitry is the technical lead on the most complex projects
                   the company takes — large-loss water, multi-room fires,
                   mold remediation jobs that involve third-party Indoor
-                  Environmental Professional clearance, and high-end custom
+                  Environmental Professional clearance, and custom
                   reconstruction. He is also the person who answers the phone
                   if you call after hours. That&apos;s by design.
                 </p>

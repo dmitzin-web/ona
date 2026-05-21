@@ -258,9 +258,9 @@ export const services: Service[] = [
     slug: "remodeling",
     name: "Remodeling & Reconstruction",
     shortName: "Remodeling",
-    title: "High-end Remodeling & Reconstruction — Vancouver, WA & Portland Metro",
+    title: "Custom Remodeling & Reconstruction — Vancouver, WA & Portland Metro",
     description:
-      "Premium kitchen, bath, and whole-house remodeling in Vancouver, WA and Portland, OR — built to the same IICRC-grade documentation and craftsmanship as our restoration work. Licensed, bonded, insured.",
+      "Custom kitchen, bath, and whole-house remodeling in Vancouver, WA and Portland, OR — built to the same IICRC-grade documentation and craftsmanship as our restoration work. Licensed, bonded, insured.",
     hero: "From kitchen and bath remodels to whole-house renovations and additions — built by a crew that already meets insurance-grade documentation standards every day.",
     intro:
       "After we put a property back together, many clients keep us on for the renovation they actually want. ONA Restoration's remodeling division handles full kitchen and bath renovations, whole-house remodels, structural additions, basement and ADU build-outs, and custom millwork — all delivered with the same crew, the same documentation discipline, and the same IICRC-grade workmanship as our restoration projects.",

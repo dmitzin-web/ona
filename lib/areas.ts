@@ -213,7 +213,7 @@ export const areaProfiles: AreaProfile[] = [
       "High-value contents claims — fine art, custom millwork, antiques",
     ],
     localNote:
-      "Lake Oswego is our high-end residential focus — we run dedicated white-glove contents handling and on-site security protocols here.",
+      "Lake Oswego is one of our most established residential markets — we run dedicated white-glove contents handling and on-site security protocols here.",
   },
   {
     slug: "camas-wa",

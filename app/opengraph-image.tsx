@@ -70,7 +70,7 @@ export default function OpengraphImage() {
               letterSpacing: 4,
             }}
           >
-            High-end property restoration · Vancouver, WA & Portland Metro
+            Property restoration · Vancouver, WA & Portland Metro
           </div>
           <div
             style={{

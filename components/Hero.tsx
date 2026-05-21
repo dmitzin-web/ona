@@ -43,7 +43,7 @@ export function Hero({ image }: { image?: HeroImage } = {}) {
             to Last." that used to be H1 now lives as the styled subtitle
             below — same visual weight, but H1 now does its SEO job. */}
         <h1 className="mt-10 max-w-4xl text-5xl font-light leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">
-          <span className="block">High-end property</span>
+          <span className="block">Trusted property</span>
           <span className="block">restoration in</span>
           <span className="block font-medium">Vancouver, WA &amp; Portland.</span>
         </h1>
@@ -52,7 +52,7 @@ export function Hero({ image }: { image?: HeroImage } = {}) {
         </p>
 
         <p className="mt-10 max-w-xl text-lg leading-relaxed text-ivory/75">
-          Specialized in high-end property restoration with integrity,
+          Specialist property restoration delivered with integrity,
           craftsmanship, and precision. We restore more than properties —
           we restore trust.
         </p>

@@ -14,7 +14,7 @@ export const site = {
   legalName: "ONA Restoration LLC",
   tagline: "Precision. Restoration. Built to Last.",
   shortDescription:
-    "High-end property restoration and remodeling in Vancouver, WA and Portland, OR. IICRC-certified water, fire, mold and storm damage restoration plus premium kitchen, bath and whole-house remodeling — insurance-grade documentation throughout.",
+    "Trusted property restoration and remodeling in Vancouver, WA and Portland, OR. IICRC-certified water, fire, mold and storm damage restoration plus kitchen, bath and whole-house remodeling — insurance-grade documentation throughout.",
   // Canonical host. Production redirects apex (onarestore.com) → www
   // (308 permanent). Keep this aligned with www so JSON-LD @id, canonical
   // tags, OG urls, sitemap entries and assistant URLs all match the served

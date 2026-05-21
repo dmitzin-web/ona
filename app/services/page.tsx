@@ -13,7 +13,7 @@ import { breadcrumbJsonLd } from "@/lib/jsonld";
 export const metadata: Metadata = buildMetadata({
   title: "Restoration & Remodeling Services — Vancouver, WA & Portland, OR",
   description:
-    "Full restoration and remodeling services in Vancouver, WA and Portland, OR: water damage, fire & smoke, mold remediation, storm damage, and high-end remodeling. 24/7 emergency response, IICRC-certified.",
+    "Full restoration and remodeling services in Vancouver, WA and Portland, OR: water damage, fire & smoke, mold remediation, storm damage, and custom remodeling. 24/7 emergency response, IICRC-certified.",
   path: "/services",
 });
 
