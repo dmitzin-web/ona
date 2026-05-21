@@ -237,7 +237,7 @@ export default async function ServicePage(
                   <ArrowIcon className="h-4 w-4 stroke-current" />
                 </a>
                 <a
-                  href="https://vvon.ai/upload"
+                  href="https://vvon.ai/policy/upload"
                   target="_blank"
                   rel="noopener"
                   className="text-sm uppercase tracking-[0.22em] text-ivory/60 transition hover:text-ivory"

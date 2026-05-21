@@ -51,8 +51,8 @@ export default function HomePage() {
     <>
       <Hero
         image={{
-          src: "/photos/hero-placeholder.svg",
-          alt: "Pacific Northwest atmospheric architectural pattern — ONA Restoration placeholder",
+          src: "/photos/hero.svg",
+          alt: "High-end property restoration crews dispatching across Vancouver, WA and the Portland metro — ONA Restoration",
         }}
       />
 
@@ -111,9 +111,64 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Insurance billing explainer — removes the "do I pay first?" friction
+          that audit identified as a conversion blocker. Most homeowners with
+          a covered loss don't realize the contractor bills the carrier
+          directly; making it visible up front converts hesitant calls. */}
+      <section className="border-t border-line-light bg-ivory-soft">
+        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
+          <div className="grid gap-12 lg:grid-cols-12">
+            <div className="lg:col-span-4">
+              <p className="eyebrow text-charcoal/60">Insurance billing</p>
+              <h2 className="mt-6 text-4xl font-light leading-tight tracking-tight sm:text-5xl">
+                We bill your carrier directly.
+              </h2>
+              <p className="mt-6 max-w-md text-base leading-relaxed text-charcoal/75">
+                Most covered losses cost you only the deductible at the end.
+                Here is how the money actually moves.
+              </p>
+            </div>
+            <ol className="lg:col-span-8 grid gap-px overflow-hidden border border-line-light bg-line-light sm:grid-cols-2">
+              {[
+                {
+                  step: "1",
+                  title: "First notice of loss",
+                  text: "You call your carrier (or we help). The claim is opened and an adjuster assigned, usually within 24 hours.",
+                },
+                {
+                  step: "2",
+                  title: "Emergency mitigation, authorized on the phone",
+                  text: "Most carriers authorize emergency drying/board-up immediately. We start the same day — you do not front the cost.",
+                },
+                {
+                  step: "3",
+                  title: "Xactimate scope to the adjuster",
+                  text: "We document the loss in the same software the carrier uses. Reduces back-and-forth and underpayment risk.",
+                },
+                {
+                  step: "4",
+                  title: "Carrier pays us, you pay your deductible",
+                  text: "Final invoice goes to the carrier. You pay only the deductible (typically $1,000–$2,500) at completion.",
+                },
+              ].map((s) => (
+                <li key={s.step} className="bg-ivory p-8">
+                  <p className="eyebrow text-charcoal/40">Step {s.step}</p>
+                  <h3 className="mt-4 text-lg font-medium tracking-tight">
+                    {s.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-charcoal/70">
+                    {s.text}
+                  </p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
+      </section>
+
       {/* New: Vvon — AI claim review tool */}
       <section className="bg-ivory">
-        <div className="mx-auto max-w-7xl px-6 pb-24 lg:px-10">
+        <div className="mx-auto max-w-7xl px-6 pt-24 pb-24 lg:px-10">
           <div className="relative overflow-hidden border border-line-light bg-charcoal text-ivory">
             <div
               aria-hidden="true"
@@ -148,7 +203,7 @@ export default function HomePage() {
                   <ArrowIcon className="h-4 w-4 stroke-current" />
                 </a>
                 <a
-                  href="https://vvon.ai/upload"
+                  href="https://vvon.ai/policy/upload"
                   target="_blank"
                   rel="noopener"
                   className="text-sm uppercase tracking-[0.22em] text-ivory/60 transition hover:text-ivory"

@@ -61,7 +61,7 @@ export function QuoteForm() {
         </div>
         <div>
           <label htmlFor="phone" className={labelClass}>
-            Phone
+            Phone <span className="text-charcoal/40">* or email</span>
           </label>
           <input
             id="phone"
@@ -85,7 +85,7 @@ export function QuoteForm() {
       <div className="grid gap-6 sm:grid-cols-2">
         <div>
           <label htmlFor="email" className={labelClass}>
-            Email
+            Email <span className="text-charcoal/40">* or phone</span>
           </label>
           <input
             id="email"

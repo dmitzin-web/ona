@@ -8,11 +8,11 @@ the filename, and the image goes live without further code changes.
 
 | File | Used by | Component prop |
 | --- | --- | --- |
-| `hero-placeholder.svg` | `app/page.tsx` Hero | `<Hero image={{src,alt}} />` |
+| `hero.svg` | `app/page.tsx` Hero | `<Hero image={{src,alt}} />` |
 
 ## What to replace (and how)
 
-1. **Hero (`hero-placeholder.svg`)** — currently an abstract architectural SVG.
+1. **Hero (`hero.svg`)** — currently an abstract architectural SVG.
    Replace with a wide landscape JPG/AVIF (3000×1688 minimum, dark/moody to
    keep light text legible over it). Then in [app/page.tsx](../../app/page.tsx)
    change the Hero call to point at the new file and update the alt text. The

@@ -35,14 +35,21 @@ export function Hero({ image }: { image?: HeroImage } = {}) {
       )}
       <div className="relative mx-auto max-w-7xl px-6 pb-24 pt-20 lg:px-10 lg:pb-32 lg:pt-28">
         <p className="eyebrow text-warm-gray-soft">
-          High-end property restoration · Vancouver, WA & Portland Metro
+          24/7 emergency dispatch · IICRC-certified
         </p>
 
+        {/* H1 carries the SEO keyword (restoration) and geo (Vancouver, WA +
+            Portland metro). The brand poetry "Precision. Restoration. Built
+            to Last." that used to be H1 now lives as the styled subtitle
+            below — same visual weight, but H1 now does its SEO job. */}
         <h1 className="mt-10 max-w-4xl text-5xl font-light leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">
-          <span className="block">Precision.</span>
-          <span className="block">Restoration.</span>
-          <span className="block font-medium">Built to Last.</span>
+          <span className="block">High-end property</span>
+          <span className="block">restoration in</span>
+          <span className="block font-medium">Vancouver, WA &amp; Portland.</span>
         </h1>
+        <p className="mt-6 max-w-xl text-lg uppercase tracking-[0.22em] text-warm-gray-soft">
+          Precision. Restoration. Built to Last.
+        </p>
 
         <p className="mt-10 max-w-xl text-lg leading-relaxed text-ivory/75">
           Specialized in high-end property restoration with integrity,

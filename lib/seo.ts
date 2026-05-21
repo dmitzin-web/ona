@@ -7,6 +7,12 @@ type BuildMetadataInput = {
   path?: string;
   image?: string;
   noindex?: boolean;
+  /**
+   * @deprecated meta keywords is ignored by every major search engine since
+   * ~2009 and only leaks your target-keyword strategy to competitors who
+   * read your HTML. The field is kept on the type so existing call sites
+   * don't fail to compile, but the value is no longer emitted.
+   */
   keywords?: string[];
 };
 
@@ -19,7 +25,6 @@ export function buildMetadata({
   path = "/",
   image = "/opengraph-image",
   noindex = false,
-  keywords,
 }: BuildMetadataInput): Metadata {
   const fullTitle = title.includes(site.name) ? title : `${title} | ${site.name}`;
   const url = ABSOLUTE(path);
@@ -32,7 +37,6 @@ export function buildMetadata({
     //   "Restoration Services | ONA Restoration | ONA Restoration"
     title: { absolute: fullTitle },
     description,
-    keywords,
     alternates: { canonical: url },
     openGraph: {
       type: "website",

@@ -15,11 +15,19 @@ export const site = {
   tagline: "Precision. Restoration. Built to Last.",
   shortDescription:
     "High-end property restoration and remodeling in Vancouver, WA and Portland, OR. IICRC-certified water, fire, mold and storm damage restoration plus premium kitchen, bath and whole-house remodeling — insurance-grade documentation throughout.",
-  url: "https://onarestore.com",
+  // Canonical host. Production redirects apex (onarestore.com) → www
+  // (308 permanent). Keep this aligned with www so JSON-LD @id, canonical
+  // tags, OG urls, sitemap entries and assistant URLs all match the served
+  // URL — otherwise Google sees two URLs for every page.
+  url: "https://www.onarestore.com",
   locale: "en_US",
   phone: "+13608233196",
   phoneDisplay: "(360) 823-3196",
-  email: "dmitry@onarestore.com",
+  // Use a role-based dispatch mailbox, not a personal address. Personal
+  // emails on a public site invite spam and look unprofessional for a
+  // premium brand. The dispatch@ mailbox should forward to whoever is on
+  // call (currently the founder).
+  email: "dispatch@onarestore.com",
   founded: "2018",
   priceRange: "$$$",
   address: {

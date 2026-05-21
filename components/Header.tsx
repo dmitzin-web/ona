@@ -23,6 +23,8 @@ type NavItem =
 
 const nav: NavItem[] = [
   { href: "/services", label: "Services" },
+  { href: "/areas", label: "Service areas" },
+  { href: "/blog", label: "Field notes" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
   { action: "ask-ona", label: "✦ Ask ONA" },
