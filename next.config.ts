@@ -91,6 +91,14 @@ const nextConfig: NextConfig = {
         destination: "https://vvon.ai/:path*",
         permanent: true,
       },
+      // Remodeling is a co-equal business line — surface it via a short
+      // typable URL that mirrors how clients refer to the division.
+      { source: "/remodeling", destination: "/services/remodeling", permanent: true },
+      {
+        source: "/remodeling/:path*",
+        destination: "/services/remodeling/:path*",
+        permanent: true,
+      },
     ];
   },
   async headers() {

@@ -14,7 +14,7 @@ export type Post = {
   title: string;
   description: string;
   excerpt: string;
-  category: "Water" | "Fire" | "Mold" | "Storm" | "Insurance";
+  category: "Water" | "Fire" | "Mold" | "Storm" | "Insurance" | "Remodeling";
   readingMinutes: number;
   publishedAt: string; // ISO date
   updatedAt?: string;
@@ -27,6 +27,137 @@ export type Post = {
 };
 
 export const posts: Post[] = [
+  {
+    slug: "kitchen-remodel-portland-metro-what-to-expect",
+    title:
+      "Kitchen Remodel in the Portland Metro: What an Insurance-Grade Contractor Actually Delivers",
+    description:
+      "What a custom kitchen remodel costs in Vancouver, WA and the Portland metro, how the timeline really runs, and why a contractor with restoration roots produces fewer change orders than a finish-only remodeler.",
+    excerpt:
+      "Most kitchen remodels go over budget and over schedule for the same reason: surprises behind the drywall that the contractor scoped around instead of into. Restoration contractors see what's behind the drywall every week. That's the difference.",
+    category: "Remodeling",
+    readingMinutes: 8,
+    publishedAt: "2026-05-11",
+    author: { name: "Dmitry Zinovyev", title: "Founder, ONA Restoration" },
+    sections: [
+      {
+        kind: "p",
+        text: "Kitchen remodels are the highest-volume renovation in the Portland metro and the most common project where homeowners feel burned by a contractor. The two complaints we hear from clients who came to us after a bad experience elsewhere are always the same: the price went up by 30-50% after demolition, and the schedule slipped by months because of structural or mechanical surprises that should have been scoped from day one. The fix isn't a different contractor personality. The fix is a contractor who scopes what's behind the drywall before quoting the finish work.",
+      },
+      { kind: "h2", text: "What a real kitchen-remodel scope looks like" },
+      {
+        kind: "p",
+        text: "A full kitchen renovation in Vancouver, WA or the Portland metro typically touches:",
+      },
+      {
+        kind: "list",
+        items: [
+          "Demolition: cabinetry, countertops, tile, flooring, often soffits and walls if layout is changing.",
+          "Plumbing: relocation or upgrade of supply lines, drains, dishwasher, refrigerator, pot filler if added.",
+          "Electrical: panel-load assessment, dedicated circuits for appliances, under-cabinet lighting, recessed lighting, GFCI requirements.",
+          "HVAC: any ducting that ran through walls being removed, range hood ducting (most older Portland homes vent inadequately).",
+          "Structural: load-bearing wall removal (common when opening kitchen to a living space), header sizing, and any required engineering.",
+          "Finishes: cabinetry, countertops (slab quartz or stone), tile, flooring, paint, trim, hardware.",
+        ],
+      },
+      {
+        kind: "p",
+        text: "Most of these have lead times — custom cabinetry alone runs 8-14 weeks in the Portland metro right now. The order of operations matters: design fully, source fully, then demo. Demoing before specifications are locked is the single most common cause of project drift.",
+      },
+      { kind: "h2", text: "Where Pacific Northwest kitchens hide expensive surprises" },
+      { kind: "h3", text: "1. Old wiring and undersized panels" },
+      {
+        kind: "p",
+        text: "Pre-1970 Portland metro homes often have 60-amp panels and original copper-rubber wiring. A modern kitchen wants induction ranges, double ovens, beverage centers, dishwasher, garbage disposal, microwave drawer — typically 30-50 amps of dedicated load. The first kitchen remodel almost always needs panel work, sometimes a full panel replacement and service upgrade. Budget for $4,000-$12,000 of electrical surprise on any house older than 1980.",
+      },
+      { kind: "h3", text: "2. Plumbing in galvanized or polybutylene" },
+      {
+        kind: "p",
+        text: "Galvanized supply lines (common pre-1960) and polybutylene (1978-1995) both fail by the early 2000s if they haven't already. If we're opening kitchen walls and the lines are either material, the conservative call is to replumb the run while access is easy. Skipping that step means tearing into new finishes within 5 years.",
+      },
+      { kind: "h3", text: "3. Subfloor rot under the dishwasher and sink" },
+      {
+        kind: "p",
+        text: "A slow leak under a dishwasher or sink can rot the subfloor for years before anyone notices. Pulling cabinets often reveals subfloor that needs partial replacement before new cabinets can install over it. Scoping this in upfront prevents a one-week schedule slip mid-project.",
+      },
+      { kind: "h3", text: "4. Structural surprises on open-concept conversions" },
+      {
+        kind: "p",
+        text: "Opening the kitchen to a dining room or living room is the most common Pacific Northwest kitchen reconfiguration. The wall in question is almost always load-bearing. Sizing the replacement header correctly requires engineering. The carpentry isn't expensive; the engineering review, structural connections, and inspection coordination are what people miss in their initial quotes.",
+      },
+      { kind: "h2", text: "Realistic timeline for a Portland metro kitchen" },
+      {
+        kind: "p",
+        text: "Honest timelines for a full kitchen renovation in this market:",
+      },
+      {
+        kind: "list",
+        items: [
+          "Design & specification: 4-8 weeks. Drawings, finish selections, cabinetry shop drawings, appliance specifications, electrical and plumbing plans.",
+          "Permitting: 3-6 weeks for non-structural; 6-12 weeks if structural changes require engineering review.",
+          "Lead time on long-lead items: 8-14 weeks for custom cabinetry, 4-6 weeks for stone counters, longer for imported tile or specialty appliances.",
+          "Construction phase: 6-10 weeks of active build once materials are on site.",
+        ],
+      },
+      {
+        kind: "p",
+        text: "End to end: most full kitchen renovations are 4-6 months from signed agreement to final walk-through. Compressing under 4 months requires either off-the-shelf finishes (in-stock cabinets, in-stock stone) or accepting parallel work that increases risk of error. The contractor's job is to surface this critical path at design stage, not after demolition.",
+      },
+      { kind: "h2", text: "Cost ranges that hold up across the metro" },
+      {
+        kind: "p",
+        text: "Honest 2026 ranges for full kitchen renovations in Vancouver, WA and the Portland metro:",
+      },
+      {
+        kind: "list",
+        items: [
+          "Mid-range refresh (cabinet refacing or stock cabinetry, laminate or stock quartz, refresh-only electrical/plumbing, no layout changes): $35,000 - $65,000.",
+          "Full custom (semi-custom or custom cabinetry, slab quartz or natural stone, new electrical/plumbing, minor layout changes, paint and finishes refreshed throughout): $75,000 - $150,000.",
+          "Major reconfiguration (load-bearing wall removal, plumbing relocation, panel upgrade, hardwood floor extension, custom millwork beyond cabinetry): $150,000 - $300,000+.",
+        ],
+      },
+      {
+        kind: "p",
+        text: "These ranges include labor, materials, permits, design, and reasonable contingency. The contingency is the part that gets cut in shopping quotes and then reappears as change orders. Build it in upfront and most projects finish at or under their original scope.",
+      },
+      { kind: "h2", text: "Why our restoration roots matter for remodel quality" },
+      {
+        kind: "p",
+        text: "Restoration contractors see what fails. Every week we pull cabinetry off rotten subfloors, find galvanized lines mid-failure, discover undersized panels at the heart of an electrical fire, and document moisture damage that the homeowner had no idea was there. When we scope a remodel, that knowledge translates directly to fewer surprises. We've seen this exact pattern of failure in this exact era of house in this exact neighborhood. The scope reflects that.",
+      },
+      {
+        kind: "p",
+        text: "We also document remodels the way we document restoration losses: drawings, daily photos, written scope, signed change orders. It's overkill for most remodels and it's exactly why our remodeling clients come back for second and third projects.",
+      },
+      { kind: "h2", text: "Where to start" },
+      {
+        kind: "p",
+        text: "If you're thinking about a kitchen remodel in Vancouver, WA, Portland, OR, or anywhere in between, the right first step is an in-home consultation: we look at the existing space, the systems behind the walls (panel, plumbing material, structural framing), and your goals for the new kitchen. That conversation usually produces a realistic budget range within a week. Call the number at the top of the page or submit the quote form — there's no charge for the consultation.",
+      },
+    ],
+    faqs: [
+      {
+        q: "Do you handle architectural drawings or do I need to hire an architect?",
+        a: "For non-structural kitchen remodels (cabinetry, finishes, layout changes within existing walls) we handle drawings in-house. For projects that involve load-bearing wall removal, structural openings, or significant electrical/plumbing reconfiguration, we partner with licensed architects and structural engineers and manage the permit process end-to-end.",
+      },
+      {
+        q: "Can I live in the house during the kitchen remodel?",
+        a: "Most of our kitchen clients stay in the home. We set up a temporary kitchen with a microwave, sink, and refrigerator in a basement, garage, or dining-room corner. The active demolition phase is dusty and noisy for about a week; the rest of the project is manageable to live around. Households with infants or anyone with respiratory sensitivity sometimes choose to relocate for the demolition week.",
+      },
+      {
+        q: "Do you work with Vancouver, WA and Portland city permits?",
+        a: "Yes. We pull permits in both Vancouver, WA (Clark County) and across the Portland metro (Multnomah, Washington, and Clackamas counties). Permit timelines vary by jurisdiction and complexity — we surface realistic timelines at design stage so the construction schedule reflects reality, not optimism.",
+      },
+      {
+        q: "What's the minimum kitchen project size you take?",
+        a: "We take projects from $25,000 (cabinet refacing, fixture upgrades, countertop replacement) up through full whole-house renovations. Below that range we'll usually refer you to a handyman or finish specialist rather than charge general-contractor overhead on a small job.",
+      },
+      {
+        q: "Can I see kitchens you've completed?",
+        a: "We're building a gallery of completed projects with client permission. In the meantime, the best way to see our work is to schedule an in-home consultation — we'll show you photos from comparable projects during the visit.",
+      },
+    ],
+  },
   {
     slug: "water-heater-leak-3-valves-to-turn-now",
     title:

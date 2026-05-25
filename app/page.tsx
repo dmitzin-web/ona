@@ -83,15 +83,23 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Services */}
+      {/* Restoration services — emergency / insurance-driven side of the
+          business. Four cards in a 4-column grid (was 5 with remodeling
+          mixed in, which buried it). Remodeling now has its own dedicated
+          promo block immediately below this section. */}
       <section className="bg-ivory">
         <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div className="max-w-2xl">
-              <p className="eyebrow text-charcoal/60">Services</p>
+              <p className="eyebrow text-charcoal/60">Restoration</p>
               <h2 className="mt-6 text-4xl font-light leading-tight tracking-tight sm:text-5xl">
-                Full-service restoration.
+                Emergency restoration, end to end.
               </h2>
+              <p className="mt-5 max-w-xl text-base leading-relaxed text-charcoal/70">
+                24/7 dispatch with a 60-minute on-site target. IICRC-certified
+                crews, insurance-grade documentation, one contractor from the
+                first call to the final walkthrough.
+              </p>
             </div>
             <Link
               href="/services"
@@ -101,13 +109,71 @@ export default function HomePage() {
               <ArrowIcon className="h-3 w-3 stroke-current" />
             </Link>
           </div>
-          <div className="mt-14 grid gap-px overflow-hidden border border-line-light bg-line-light sm:grid-cols-2 lg:grid-cols-5">
-            {services.map((s) => (
-              <div key={s.slug}>
-                <ServiceCard service={s} />
-              </div>
-            ))}
+          <div className="mt-14 grid gap-px overflow-hidden border border-line-light bg-line-light sm:grid-cols-2 lg:grid-cols-4">
+            {services
+              .filter((s) => s.slug !== "remodeling")
+              .map((s) => (
+                <div key={s.slug}>
+                  <ServiceCard service={s} />
+                </div>
+              ))}
           </div>
+        </div>
+      </section>
+
+      {/* Remodeling — co-equal business line, surfaced as a full-width
+          dark-contrast promo block in the same visual register as the
+          Vvon promo below. The point: signal that remodeling is its own
+          division, not a 5th-place add-on hidden in the services grid. */}
+      <section className="bg-ivory">
+        <div className="mx-auto max-w-7xl px-6 pb-24 lg:px-10">
+          <Link
+            href="/services/remodeling"
+            className="group relative block overflow-hidden border border-line-light bg-charcoal text-ivory transition hover:border-gold"
+          >
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(184,152,94,0.16),transparent_60%)]"
+            />
+            <div className="relative grid gap-10 px-8 py-14 lg:grid-cols-12 lg:gap-12 lg:px-12 lg:py-16">
+              <div className="lg:col-span-7">
+                <p className="eyebrow text-gold-soft">
+                  Remodeling &amp; reconstruction
+                </p>
+                <h2 className="mt-6 text-4xl font-light leading-tight tracking-tight sm:text-5xl">
+                  Kitchens, baths, whole-house renovations.{" "}
+                  <span className="font-medium text-gold">
+                    Built by a restoration crew.
+                  </span>
+                </h2>
+                <p className="mt-6 max-w-xl text-base leading-relaxed text-ivory/75">
+                  Most clients meet us through a loss, then keep us on for the
+                  renovation they actually want. Same crew, same insurance-grade
+                  documentation discipline, no handoff to a second contractor
+                  for the rebuild.
+                </p>
+              </div>
+              <div className="flex items-end lg:col-span-5 lg:justify-end">
+                <div className="flex flex-col items-start gap-4 lg:items-end">
+                  <ul className="flex flex-wrap gap-x-5 gap-y-2 text-sm tracking-wide text-ivory/65">
+                    <li>Kitchens</li>
+                    <li>·</li>
+                    <li>Baths</li>
+                    <li>·</li>
+                    <li>Whole-house</li>
+                    <li>·</li>
+                    <li>Additions</li>
+                    <li>·</li>
+                    <li>Custom millwork</li>
+                  </ul>
+                  <span className="inline-flex items-center gap-3 border border-ivory bg-ivory px-7 py-4 text-sm font-medium uppercase tracking-[0.22em] text-charcoal transition group-hover:bg-transparent group-hover:text-ivory">
+                    Explore remodeling
+                    <ArrowIcon className="h-4 w-4 stroke-current" />
+                  </span>
+                </div>
+              </div>
+            </div>
+          </Link>
         </div>
       </section>
 

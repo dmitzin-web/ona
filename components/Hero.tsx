@@ -35,7 +35,7 @@ export function Hero({ image }: { image?: HeroImage } = {}) {
       )}
       <div className="relative mx-auto max-w-7xl px-6 pb-24 pt-20 lg:px-10 lg:pb-32 lg:pt-28">
         <p className="eyebrow text-warm-gray-soft">
-          24/7 emergency dispatch · IICRC-certified
+          Restoration &amp; remodeling · Vancouver, WA &amp; Portland metro
         </p>
 
         {/* H1 carries the SEO keyword (restoration) and geo (Vancouver, WA +

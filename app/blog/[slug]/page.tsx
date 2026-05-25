@@ -23,6 +23,7 @@ const CATEGORY_TO_SERVICE: Record<string, string> = {
   Mold: "mold-removal",
   Storm: "storm-damage",
   Insurance: "water-damage",
+  Remodeling: "remodeling",
 };
 
 // Top-of-mind cities for the "Get help near you" block. Three cities surfaced
