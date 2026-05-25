@@ -37,7 +37,7 @@ export default function ContactPage() {
           <div className="mt-14 grid gap-px overflow-hidden border border-line-light bg-line-light md:grid-cols-2">
             <PhoneLink className="group block bg-charcoal p-10 text-ivory transition hover:bg-charcoal-soft">
               <p className="eyebrow text-warm-gray-soft">24/7 emergency</p>
-              <p className="mt-6 flex items-center gap-4 text-4xl font-light tracking-tight">
+              <p className="mt-6 flex items-center gap-4 whitespace-nowrap text-3xl font-light tracking-tight sm:text-4xl">
                 <PhoneIcon className="h-8 w-8 stroke-current" />
                 {site.phoneDisplay}
               </p>

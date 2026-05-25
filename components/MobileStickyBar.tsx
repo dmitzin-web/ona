@@ -22,15 +22,19 @@ export function MobileStickyBar() {
       className="fixed inset-x-0 bottom-0 z-30 grid grid-cols-2 border-t border-charcoal-mute bg-charcoal/95 text-ivory backdrop-blur lg:hidden"
       style={{ paddingBottom: "env(safe-area-inset-bottom, 0px)" }}
     >
-      <PhoneLink className="flex items-center justify-center gap-2 bg-ivory py-4 text-sm font-medium uppercase tracking-[0.18em] text-charcoal transition active:bg-ivory-soft">
-        <PhoneIcon className="h-4 w-4 stroke-current" />
-        <span>Call {site.phoneDisplay}</span>
+      {/* Phone number "(360) 823-3196" + "CALL " label is 19 chars at
+          tracking-[0.18em] — overflows a 375px viewport split 50/50 and
+          wraps to two lines. text-xs + tighter tracking + whitespace-nowrap
+          keeps it on one line down to 320px (iPhone SE). */}
+      <PhoneLink className="flex items-center justify-center gap-2 bg-ivory py-4 text-xs font-medium uppercase tracking-[0.12em] text-charcoal transition active:bg-ivory-soft sm:text-sm sm:tracking-[0.18em]">
+        <PhoneIcon className="h-4 w-4 flex-none stroke-current" />
+        <span className="whitespace-nowrap">Call {site.phoneDisplay}</span>
       </PhoneLink>
       <Link
         href="/quote"
-        className="flex items-center justify-center gap-2 py-4 text-sm font-medium uppercase tracking-[0.18em] text-ivory transition active:bg-charcoal"
+        className="flex items-center justify-center gap-2 py-4 text-xs font-medium uppercase tracking-[0.12em] text-ivory transition active:bg-charcoal sm:text-sm sm:tracking-[0.18em]"
       >
-        Get a quote
+        <span className="whitespace-nowrap">Get a quote</span>
       </Link>
     </div>
   );
