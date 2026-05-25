@@ -13,8 +13,8 @@
   --color-line: #2a2a2a;
   --color-line-light: #e5e2db;
 
-  /* Accent — used by Vvon AI claim review product. Restrained gold
-     for the product wordmark, severity dots, and key data accents. */
+  /* Accent — restrained gold used for division accents (Remodeling
+     promo block, severity dots, key data accents). */
   --color-gold: #b8985e;
   --color-gold-soft: #d6bf91;
   --color-gold-deep: #8a6f3f;

@@ -46,13 +46,6 @@ export function GET() {
   }
   lines.push("");
 
-  lines.push("## Sister product");
-  lines.push("");
-  lines.push(
-    `- [Vvon™ at vvon.ai](https://vvon.ai): AI-assisted forensic estimate analysis platform for property-insurance restoration claims. Built by the ${site.name} team and operated as a standalone SaaS. Informational analysis only — not legal advice, not public adjusting, not a guarantee of claim outcomes.`,
-  );
-  lines.push("");
-
   lines.push("## Company");
   lines.push("");
   lines.push(`- [About](${site.url}/about): Company background, certifications, brand values.`);

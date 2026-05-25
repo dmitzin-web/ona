@@ -67,12 +67,6 @@ export function GET() {
   for (const a of site.serviceArea)
     out.push(`- ${a.name}, ${a.region} — ${site.url}/areas/${a.slug}`);
 
-  // ----- Sister product Vvon™ — short outbound reference -----
-  out.push(`\n---\n`);
-  out.push(`## Sister product: Vvon™\n`);
-  out.push(`URL: https://vvon.ai\n`);
-  out.push(`> AI-assisted forensic estimate analysis platform for property-insurance restoration claims. Standalone SaaS built by the ${site.name} team. Informational analysis only — not legal advice, not public adjusting, not a guarantee of payment.\n`);
-
   return new Response(out.join("\n") + "\n", {
     headers: {
       "Content-Type": "text/markdown; charset=utf-8",

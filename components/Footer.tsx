@@ -78,16 +78,6 @@ export function Footer() {
                 Contact
               </Link>
             </li>
-            <li>
-              <a
-                href="https://vvon.ai"
-                target="_blank"
-                rel="noopener"
-                className="text-gold-soft transition hover:text-gold"
-              >
-                Vvon™ ↗
-              </a>
-            </li>
           </ul>
         </div>
       </div>

@@ -5,9 +5,9 @@ import { breadcrumbJsonLd } from "@/lib/jsonld";
 type Section = { heading: string; body: string[] };
 
 // Renders a legal/policy page. Optionally splits into two groups with a
-// distinct section heading between them — used so the restoration-
-// company policy and the Vvon product-specific policy live on the
-// same URL without visually blending into each other.
+// distinct section heading between them — used when a single policy URL
+// needs to host two visually-distinct sections (e.g. company terms +
+// website terms) without them blending into each other.
 export function LegalPage({
   title,
   eyebrow,

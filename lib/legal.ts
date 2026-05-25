@@ -1,12 +1,8 @@
 // Centralized legal copy. Edit here, both pages stay in sync.
-// Last reviewed: 2026-05-16. Replace before production launch with counsel-reviewed copy.
-//
-// NOTE: The Vvon-specific sections below are a working draft authored
-// in-house. They have NOT been reviewed by counsel. Before public launch,
-// have a Washington / Oregon attorney with insurance-services experience
-// review the Vvon™ disclaimers in particular — both states have
-// specific definitions of public adjusting and unauthorized practice of
-// law that AI claim-review products have run afoul of in the past.
+// Last reviewed: 2026-05-16. Replace before production launch with
+// counsel-reviewed copy. This is a working in-house draft; have a
+// Washington / Oregon attorney with restoration-services experience
+// review before public launch.
 
 import { site } from "./site";
 
@@ -14,7 +10,7 @@ export const legalUpdated = "May 16, 2026";
 
 // Banner copy that flags the draft status on both legal pages.
 export const draftBanner =
-  "Draft — these terms are a working version pending review by counsel. They are published in good faith to disclose how Vvon™ operates, but they are not a substitute for a lawyer-reviewed agreement and may be updated before public launch.";
+  "Draft — these terms are a working version pending review by counsel. They are published in good faith to disclose how the website and our restoration services operate, but they are not a substitute for a lawyer-reviewed agreement and may be updated before public launch.";
 
 export const privacySections: { heading: string; body: string[] }[] = [
   {

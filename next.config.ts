@@ -66,31 +66,8 @@ const nextConfig: NextConfig = {
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 60 * 60 * 24 * 30,
   },
-  // Permanent redirects: the Vvon™ SaaS product was spun out of this
-  // repo into github.com/dmitzin-web/vvon and lives at vvon.ai. We send
-  // any inbound traffic to the legacy /vvon/* or /claimlens/* paths
-  // (which Google may still have indexed from before the spin-out) to
-  // the corresponding URL on the new domain. permanent: true issues a
-  // 308 (method-preserving permanent redirect) so search engines
-  // transfer ranking equity to vvon.ai.
   async redirects() {
     return [
-      { source: "/vvon", destination: "https://vvon.ai", permanent: true },
-      {
-        source: "/vvon/:path*",
-        destination: "https://vvon.ai/:path*",
-        permanent: true,
-      },
-      {
-        source: "/claimlens",
-        destination: "https://vvon.ai",
-        permanent: true,
-      },
-      {
-        source: "/claimlens/:path*",
-        destination: "https://vvon.ai/:path*",
-        permanent: true,
-      },
       // Remodeling is a co-equal business line — surface it via a short
       // typable URL that mirrors how clients refer to the division.
       { source: "/remodeling", destination: "/services/remodeling", permanent: true },

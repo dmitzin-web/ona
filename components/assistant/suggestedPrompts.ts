@@ -10,7 +10,7 @@
 const DEFAULT_PROMPTS: readonly string[] = [
   "Do you serve my area?",
   "I have a water leak — what should I do first?",
-  "Can Vvon review my insurance estimate?",
+  "Do you handle remodeling too?",
 ];
 
 const PROMPTS_BY_PREFIX: { match: (path: string) => boolean; prompts: string[] }[] = [
@@ -19,7 +19,7 @@ const PROMPTS_BY_PREFIX: { match: (path: string) => boolean; prompts: string[] }
     prompts: [
       "Do you serve my area?",
       "How fast can a crew get to me?",
-      "What is Vvon?",
+      "Do you handle kitchen remodels?",
     ],
   },
   {
@@ -71,27 +71,11 @@ const PROMPTS_BY_PREFIX: { match: (path: string) => boolean; prompts: string[] }
     ],
   },
   {
-    match: (p) => p.startsWith("/vvon/upload"),
+    match: (p) => p.startsWith("/services/remodeling"),
     prompts: [
-      "What documents should I upload?",
-      "How long does the analysis take?",
-      "What if I don't have my policy?",
-    ],
-  },
-  {
-    match: (p) => p.startsWith("/vvon/report"),
-    prompts: [
-      "Explain a finding in plain language.",
-      "What's my next step?",
-      "Help me draft an email to my adjuster.",
-    ],
-  },
-  {
-    match: (p) => p.startsWith("/vvon"),
-    prompts: [
-      "What is Vvon?",
-      "Is Vvon a public adjuster?",
-      "What does the report look like?",
+      "How long does a kitchen remodel take?",
+      "Do you handle permits and architectural drawings?",
+      "Can I upgrade finishes during an insurance claim?",
     ],
   },
   {

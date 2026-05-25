@@ -196,60 +196,6 @@ export default async function ServicePage(
 
       <FAQ items={service.faqs} title={`${service.shortName} — FAQ`} />
 
-      {/* Vvon cross-link — identical block to the homepage Vvon block
-          so the brand reads as one unified product across the site.
-          Surfaces the AI estimate-review SaaS on every service page;
-          restoration clients with a carrier estimate in hand are the
-          highest-intent Vvon audience. Links outbound to vvon.ai. */}
-      <section className="bg-ivory">
-        <div className="mx-auto max-w-7xl px-6 pb-24 lg:px-10">
-          <div className="relative overflow-hidden border border-line-light bg-charcoal text-ivory">
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(184,152,94,0.14),transparent_60%)]"
-            />
-            <div className="relative grid gap-10 px-8 py-14 lg:grid-cols-12 lg:gap-12 lg:px-12 lg:py-16">
-              <div className="lg:col-span-7">
-                <p className="eyebrow text-gold-soft">
-                  New · AI claim estimate review
-                </p>
-                <h2 className="mt-6 text-4xl font-light leading-tight tracking-tight sm:text-5xl">
-                  Not sure if your insurance estimate is complete?{" "}
-                  <span className="font-medium text-gold">
-                    Run it through Vvon™.
-                  </span>
-                </h2>
-                <p className="mt-6 max-w-xl text-base leading-relaxed text-ivory/75">
-                  Upload your insurance estimate and related documents.
-                  Vvon™ helps identify possible missing scope, underpayment
-                  signals, and documentation gaps — informational only.
-                </p>
-              </div>
-
-              <div className="flex flex-col items-start gap-4 lg:col-span-5 lg:items-end lg:justify-center">
-                <a
-                  href="https://vvon.ai"
-                  target="_blank"
-                  rel="noopener"
-                  className="inline-flex items-center gap-3 border border-ivory bg-ivory px-7 py-4 text-sm font-medium uppercase tracking-[0.22em] text-charcoal transition hover:bg-transparent hover:text-ivory"
-                >
-                  Try Vvon™
-                  <ArrowIcon className="h-4 w-4 stroke-current" />
-                </a>
-                <a
-                  href="https://vvon.ai/policy/upload"
-                  target="_blank"
-                  rel="noopener"
-                  className="text-sm uppercase tracking-[0.22em] text-ivory/60 transition hover:text-ivory"
-                >
-                  Analyze a claim →
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* City × service pages — programmatic local landing pages for
           this specific service across the entire Portland metro. Drives
           buy-intent local SEO (e.g., "water damage restoration beaverton"). */}
