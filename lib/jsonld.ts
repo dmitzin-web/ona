@@ -8,6 +8,12 @@ export function localBusinessJsonLd() {
     "@type": ["LocalBusiness", "ProfessionalService"],
     "@id": `${site.url}/#business`,
     name: site.name,
+    // `alternateName` carries the legal entity name minus the corporate
+    // suffix — gives Google's GBP reviewer a second string to match the
+    // listing against the WA SOS Certificate of Formation. The DBA
+    // 'ONA Restoration' is the public-facing name; the LLC is the
+    // registered entity. Both should resolve to the same business.
+    alternateName: "ONA Restoration & Remodeling",
     legalName: site.legalName,
     slogan: site.tagline,
     url: site.url,

@@ -10,12 +10,17 @@ const derivedServiceArea = areaProfiles.map(({ slug, name, region }) => ({
 }));
 
 export const site = {
+  // `name` is the public DBA / trade name — what customers see, what's
+  // on the GBP listing, what's on trucks and uniforms. Keep this short.
   name: "ONA Restoration",
   // Legal entity name exactly as filed with WA Secretary of State.
-  // UBI 606 225 235, formation date 2026-05-13. Must match the LLC
-  // certificate of formation character-for-character — Google GBP
-  // verification cross-checks state filings, and a mismatch between the
-  // schema legalName and the state record causes verification failures.
+  // UBI 606 225 235, formation date 2026-05-13. The LLC name differs
+  // from the DBA — Google GBP and structured data need both:
+  //   - schema.org `name` field uses the DBA
+  //   - schema.org `legalName` field uses the LLC name
+  // and `alternateName` (rendered in lib/jsonld.ts) carries the full
+  // legal display so Google's reviewer can match either string when
+  // cross-checking WA SOS state filings.
   legalName: "ONA Restoration & Remodeling LLC",
   tagline: "Precision. Restoration. Built to Last.",
   shortDescription:
