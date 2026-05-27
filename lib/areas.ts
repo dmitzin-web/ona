@@ -213,7 +213,7 @@ export const areaProfiles: AreaProfile[] = [
       "High-value contents claims — fine art, custom millwork, antiques",
     ],
     localNote:
-      "Lake Oswego is one of our most established residential markets — we run dedicated white-glove contents handling and on-site security protocols here.",
+      "Lake Oswego work calls for dedicated white-glove contents handling and on-site security protocols — these are our defaults here.",
   },
   {
     slug: "camas-wa",
@@ -239,7 +239,7 @@ export const areaProfiles: AreaProfile[] = [
       "Slab-leak detection in newer Grass Valley construction",
     ],
     localNote:
-      "Camas is a 20-minute dispatch for us and our most common east-Clark deployment. We know the gorge weather patterns intimately.",
+      "Camas is a 20-minute dispatch for us — a natural east-Clark coverage target with gorge-weather patterns we plan for in dispatch and equipment staging.",
   },
   {
     slug: "battle-ground-wa",
@@ -290,7 +290,7 @@ export const areaProfiles: AreaProfile[] = [
       "Roof failures on 1990s-era subdivision builds reaching end of shingle life",
     ],
     localNote:
-      "Salmon Creek is one of our highest-volume areas — second only to central Vancouver. Crews can typically be on-site in 15 minutes.",
+      "Salmon Creek is one of our shortest dispatches — crews can typically be on-site in 15 minutes from our Vancouver base.",
   },
 ];
 

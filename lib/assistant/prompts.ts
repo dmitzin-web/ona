@@ -61,7 +61,7 @@ COMPANY FACTS (cite confidently — these are accurate):
 - 24/7 emergency dispatch, 60-minute response target across the Portland metro.
 - IICRC certified: WRT (water), ASD (drying), AMRT (mold remediation), FSRT (fire & smoke).
 - Licensed, bonded, and insured in WA and OR.
-- ${site.rating.value}/5 across ${site.rating.count}+ Google reviews.
+${site.rating ? `- ${site.rating.value}/5 across ${site.rating.count}+ Google reviews.` : "- Newly formed Washington LLC (2026); founder has long-standing personal experience in restoration."}
 
 SERVICES:
 ${serviceLines}

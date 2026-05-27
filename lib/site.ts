@@ -11,7 +11,12 @@ const derivedServiceArea = areaProfiles.map(({ slug, name, region }) => ({
 
 export const site = {
   name: "ONA Restoration",
-  legalName: "ONA Restoration LLC",
+  // Legal entity name exactly as filed with WA Secretary of State.
+  // UBI 606 225 235, formation date 2026-05-13. Must match the LLC
+  // certificate of formation character-for-character — Google GBP
+  // verification cross-checks state filings, and a mismatch between the
+  // schema legalName and the state record causes verification failures.
+  legalName: "ONA Restoration & Remodeling LLC",
   tagline: "Precision. Restoration. Built to Last.",
   shortDescription:
     "Trusted property restoration and remodeling in Vancouver, WA and Portland, OR. IICRC-certified water, fire, mold and storm damage restoration plus kitchen, bath and whole-house remodeling — insurance-grade documentation throughout.",
@@ -24,11 +29,16 @@ export const site = {
   phone: "+13608233196",
   phoneDisplay: "(360) 823-3196",
   // Use a role-based dispatch mailbox, not a personal address. Personal
-  // emails on a public site invite spam and look unprofessional for a
-  // premium brand. The dispatch@ mailbox should forward to whoever is on
-  // call (currently the founder).
+  // emails on a public site invite spam and look unprofessional. The
+  // dispatch@ mailbox should forward to whoever is on call (currently
+  // the founder).
   email: "dispatch@onarestore.com",
-  founded: "2018",
+  // Legal entity formation date (WA SOS — 2026-05-13). The founder's
+  // personal restoration experience pre-dates this; surface that in the
+  // /about copy if/when the founder confirms specifics. Do NOT inflate
+  // this field — it is cross-checked against state records during GBP
+  // verification.
+  founded: "2026",
   priceRange: "$$$",
   address: {
     locality: "Vancouver",
@@ -58,10 +68,12 @@ export const site = {
     },
   ],
   serviceArea: derivedServiceArea,
-  rating: {
-    value: 4.9,
-    count: 187,
-  },
+  // Rating: intentionally absent until the GBP profile is verified and
+  // accumulates real Google reviews. Emitting an AggregateRating without
+  // backing reviews is a synthetic-signal flag for Google's review
+  // detection and works against GBP verification. When real reviews
+  // exist, re-add { value, count } here and the JSON-LD will fill in.
+  rating: null as { value: number; count: number } | null,
   certifications: [
     "IICRC Water Damage Restoration (WRT)",
     "IICRC Applied Structural Drying (ASD)",
@@ -97,19 +109,13 @@ export const site = {
     },
   ] as const,
   // Social/profile URLs surfaced as schema.org/sameAs in LocalBusiness JSON-LD.
-  // PLACEHOLDER URLs follow standard profile naming — replace with the real
-  // URL of each profile once it is claimed/created. Removing a key removes it
-  // from the JSON-LD; do not leave 404ing URLs live long-term.
+  // Only list profiles that actually exist and resolve to active pages.
+  // Dead/404 sameAs entries are picked up by crawlers and used as
+  // negative trust signals — keep this list narrow until profiles are
+  // claimed and verified one-by-one.
   social: {
     facebook: "https://www.facebook.com/onarestoration",
     instagram: "https://www.instagram.com/onarestoration",
-    google: "https://g.page/ona-restoration",
-    yelp: "https://www.yelp.com/biz/ona-restoration-vancouver",
-    bbb: "https://www.bbb.org/us/wa/vancouver/profile/restoration-services/ona-restoration",
-    angi: "https://www.angi.com/companylist/us/wa/vancouver/ona-restoration.htm",
-    houzz: "https://www.houzz.com/pro/ona-restoration",
-    nextdoor: "https://nextdoor.com/pages/ona-restoration-vancouver-wa",
-    linkedin: "https://www.linkedin.com/company/ona-restoration",
   },
 } as const;
 

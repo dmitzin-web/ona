@@ -74,7 +74,7 @@ export function Hero({ image }: { image?: HeroImage } = {}) {
         <div className="mt-20 grid grid-cols-2 gap-y-8 border-t border-charcoal-mute pt-10 sm:grid-cols-4 sm:gap-x-8">
           <Stat label="Response target" value="60 min" />
           <Stat label="Dispatch" value="24 / 7" />
-          <Stat label="Google rating" value={`${site.rating.value} / 5`} />
+          <Stat label="Service area" value="10 cities" />
           <Stat label="Certifications" value="IICRC" />
         </div>
       </div>

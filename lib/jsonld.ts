@@ -55,13 +55,22 @@ export function localBusinessJsonLd() {
       name: `${a.name}, ${a.region}`,
     })),
     openingHoursSpecification: site.hoursSpec,
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: site.rating.value,
-      reviewCount: site.rating.count,
-      bestRating: 5,
-      worstRating: 1,
-    },
+    // Both aggregateRating and review[] are emitted only when there are
+    // real reviews backing them. A new LLC with fabricated rating values
+    // is detectable by Google's review-quality systems and risks a
+    // synthetic-signal flag during GBP verification. When reviews arrive,
+    // populate lib/reviews.ts and set site.rating.
+    ...(site.rating
+      ? {
+          aggregateRating: {
+            "@type": "AggregateRating",
+            ratingValue: site.rating.value,
+            reviewCount: site.rating.count,
+            bestRating: 5,
+            worstRating: 1,
+          },
+        }
+      : {}),
     ...(reviews.length > 0 && {
       review: reviews.map((r) => ({
         "@type": "Review",

@@ -311,13 +311,9 @@ export default function HomePage() {
                 IICRC certifications, carry the insurance, and document every
                 job to the S500 / S520 standards your adjuster expects.
               </p>
-              <p className="mt-6 text-base text-charcoal">
-                <span className="font-medium">{site.rating.value} / 5</span>
-                <span className="text-charcoal/60">
-                  {" "}
-                  across {site.rating.count}+ Google reviews
-                </span>
-              </p>
+              {/* Google rating line intentionally omitted until the GBP
+                  profile is verified and accumulates real reviews. Re-add
+                  here when site.rating is populated in lib/site.ts. */}
             </div>
             <ul className="space-y-px overflow-hidden border border-line-light bg-line-light lg:col-span-7">
               {site.certifications.map((c) => (

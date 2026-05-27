@@ -17,7 +17,7 @@ export const metadata: Metadata = buildMetadata({
 const aboutFaqs = [
   {
     q: "Is ONA Restoration a franchise?",
-    a: "No. ONA Restoration is a locally-owned, independent contractor founded in Vancouver, WA in 2018. We are not affiliated with SERVPRO, PuroClean, ServiceMaster, or any other national restoration brand. Every job is run by our own crew, supervised by our own founder.",
+    a: "No. ONA Restoration & Remodeling is a locally-owned, independent contractor based in Vancouver, WA. We are not affiliated with SERVPRO, PuroClean, ServiceMaster, or any other national restoration brand. Every job is run by our own crew, supervised by our founder.",
   },
   {
     q: "What areas do you serve?",
@@ -113,28 +113,29 @@ export default function AboutPage() {
             <div className="lg:col-span-8">
               <div className="space-y-6 text-base leading-relaxed text-charcoal/80">
                 <p>
-                  Dmitry founded ONA Restoration in {site.founded} after years
-                  of watching the Pacific Northwest restoration market run the
-                  same playbook over and over: turn up late, demo aggressively,
-                  bill heavily, and disappear before the rebuild is finished.
-                  Homeowners deserved better, and the carriers were ready to
-                  pay for better — they just needed a contractor on the ground
-                  who would deliver insurance-grade documentation, IICRC-spec
-                  work, and finish carpentry good enough that the rebuild was
+                  Dmitry built ONA Restoration &amp; Remodeling after watching
+                  the Pacific Northwest restoration market run the same playbook
+                  over and over: turn up late, demo aggressively, bill heavily,
+                  and disappear before the rebuild is finished. Homeowners
+                  deserved better, and the carriers were ready to pay for
+                  better — they just needed a contractor on the ground who
+                  would deliver insurance-grade documentation, IICRC-spec work,
+                  and finish carpentry good enough that the rebuild was
                   invisible.
                 </p>
                 <p>
-                  That&apos;s the company he built. Every crew runs the same
-                  documentation discipline he runs himself when he&apos;s the
-                  one on site at 3 a.m. Every estimate is in Xactimate,
-                  line-itemed, and matches the carrier&apos;s own pricing
-                  database. Every job has one named point of contact — usually
-                  Dmitry himself for the first 24 hours of an emergency loss.
+                  That&apos;s the company he&apos;s building. Every crew runs
+                  the same documentation discipline he runs himself when
+                  he&apos;s the one on site at 3 a.m. Every estimate is in
+                  Xactimate, line-itemed, and matches the carrier&apos;s own
+                  pricing database. Every job has one named point of contact —
+                  usually Dmitry himself for the first 24 hours of an
+                  emergency loss.
                 </p>
                 <p>
                   Dmitry is the technical lead on the most complex projects
-                  the company takes — large-loss water, multi-room fires,
-                  mold remediation jobs that involve third-party Indoor
+                  ONA takes — large-loss water, multi-room fires, mold
+                  remediation jobs that involve third-party Indoor
                   Environmental Professional clearance, and custom
                   reconstruction. He is also the person who answers the phone
                   if you call after hours. That&apos;s by design.
@@ -215,28 +216,26 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* By the numbers */}
+      {/* By the numbers — facts that are verifiable on day one. Google rating
+          is intentionally omitted until the GBP profile is verified and
+          accumulates real reviews; surfacing a fabricated count works
+          against verification. Add a fourth stat here once GBP is live. */}
       <section className="border-t border-line-light bg-charcoal text-ivory">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
-          <p className="eyebrow text-warm-gray-soft">By the numbers</p>
+          <p className="eyebrow text-warm-gray-soft">How we&apos;re set up</p>
           <h2 className="mt-6 max-w-3xl text-4xl font-light leading-tight tracking-tight sm:text-5xl">
-            Eight years on the ground in the Portland metro.
+            Locally owned. IICRC-certified. Built for the Pacific Northwest.
           </h2>
-          <dl className="mt-14 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
-            <Stat
-              label="Founded"
-              value={site.founded}
-              note="Locally owned and operated since"
-            />
+          <dl className="mt-14 grid gap-x-8 gap-y-10 sm:grid-cols-3">
             <Stat
               label="Service area"
               value="10 cities"
-              note="Across WA & OR — Clark, Multnomah, Washington & Clackamas counties"
+              note="Vancouver, WA + Portland metro — Clark, Multnomah, Washington & Clackamas counties"
             />
             <Stat
-              label="Google rating"
-              value={`${site.rating.value} / 5`}
-              note={`${site.rating.count}+ verified reviews`}
+              label="Certifications"
+              value="IICRC"
+              note="WRT, ASD, AMRT, FSRT — water, drying, mold, fire & smoke"
             />
             <Stat
               label="Dispatch"
