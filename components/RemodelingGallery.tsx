@@ -12,11 +12,11 @@
 // flip `label` from "Reference" to "Completed", and the gallery becomes a
 // real-projects gallery without further code changes.
 //
-// Photo source: picsum.photos with stable per-seed URLs. The images are
-// landscape/architecture stock — generic but visually consistent — and the
-// per-card text below tells the visitor what room type and finish target
-// each card represents. When real photos arrive, the picsum URLs become
-// /photos/remodel/kitchen-pearl-district.jpg etc.
+// Photo source: Pexels CDN. Pexels license allows free commercial use
+// without attribution. URL pattern is stable:
+//   https://images.pexels.com/photos/{id}/pexels-photo-{id}.jpeg?w=1200
+// When real project photos arrive, replace each `image` URL with a path
+// under /public/photos/remodel/.
 
 import Link from "next/link";
 import { ArrowIcon } from "./icons/ServiceIcons";
@@ -29,66 +29,70 @@ type Reference = {
   notes: string;
 };
 
+// Helper: Pexels CDN URL. Stable photo IDs are listed below.
+const pexels = (id: number) =>
+  `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=1200`;
+
 const references: Reference[] = [
   {
-    image: "https://picsum.photos/seed/ona-kitchen-1/1200/900",
-    imageAlt: "Reference: modern Pacific Northwest kitchen — quartz waterfall island, walnut shaker cabinetry, brass hardware",
+    image: pexels(7166645),
+    imageAlt: "Reference: modern kitchen — light cabinetry, quartz countertop, island seating",
     roomType: "Kitchen",
     title: "Full kitchen renovation",
     notes:
       "Quartz waterfall island · Walnut shaker cabinetry · Brass hardware · Induction cooktop · Under-cabinet lighting",
   },
   {
-    image: "https://picsum.photos/seed/ona-bath-1/1200/900",
-    imageAlt: "Reference: curbless wet-room bathroom — large-format tile, walk-in shower, double vanity",
+    image: pexels(6957081),
+    imageAlt: "Reference: modern bathroom — large-format tile, walk-in shower, contemporary vanity",
     roomType: "Primary bath",
     title: "Curbless wet-room remodel",
     notes:
       "Large-format porcelain tile · Curbless walk-in shower · Double vanity · Heated floor · Integrated steam",
   },
   {
-    image: "https://picsum.photos/seed/ona-whole-house-1/1200/900",
-    imageAlt: "Reference: open-concept main living level — engineered hardwood, structural opening, custom millwork",
+    image: pexels(7174113),
+    imageAlt: "Reference: spacious open-concept living room — engineered floors, large windows, neutral palette",
     roomType: "Whole-house",
     title: "Open-concept conversion",
     notes:
       "Load-bearing wall removal · Engineered hardwood throughout · Recessed lighting · Custom built-ins",
   },
   {
-    image: "https://picsum.photos/seed/ona-millwork-1/1200/900",
-    imageAlt: "Reference: custom built-in library with integrated lighting and panel-ready cabinetry",
+    image: pexels(6908565),
+    imageAlt: "Reference: kitchen with custom cabinetry and built-in storage details",
     roomType: "Custom millwork",
     title: "Built-in library + study",
     notes:
       "Floor-to-ceiling shelving · Integrated lighting · Panel-ready fronts · Rolling ladder · Hidden cable management",
   },
   {
-    image: "https://picsum.photos/seed/ona-kitchen-2/1200/900",
-    imageAlt: "Reference: transitional kitchen — painted shaker, matte black hardware, soapstone counters",
+    image: pexels(7045356),
+    imageAlt: "Reference: transitional kitchen — painted shaker, contrast hardware, stone counters",
     roomType: "Kitchen",
     title: "Transitional refresh",
     notes:
       "Painted shaker cabinetry · Matte black hardware · Honed soapstone counters · Apron-front sink · Open shelving",
   },
   {
-    image: "https://picsum.photos/seed/ona-bath-2/1200/900",
-    imageAlt: "Reference: guest bath remodel — penny tile floor, wainscot, wall-mount fixtures",
+    image: pexels(6899357),
+    imageAlt: "Reference: guest bath — patterned tile, wall-mount fixtures, statement mirror",
     roomType: "Guest bath",
     title: "Compact bath remodel",
     notes:
       "Penny tile floor · Wainscot wall panels · Wall-mount fixtures · Statement mirror · Single-vanity layout",
   },
   {
-    image: "https://picsum.photos/seed/ona-addition-1/1200/900",
-    imageAlt: "Reference: second-story addition — gabled roofline, matched siding, full-width windows",
+    image: pexels(8135492),
+    imageAlt: "Reference: refined finished interior with chandeliers and natural light",
     roomType: "Addition",
     title: "Second-story addition",
     notes:
       "Gabled roofline match · Siding & trim continuity · Structural engineering · Full-width windows · Permit-led process",
   },
   {
-    image: "https://picsum.photos/seed/ona-adu-1/1200/900",
-    imageAlt: "Reference: detached ADU — single-story studio, exterior siding match, separate utilities",
+    image: pexels(7173661),
+    imageAlt: "Reference: compact kitchen with full appliance package and clean cabinetry",
     roomType: "ADU / garage conversion",
     title: "Detached ADU build-out",
     notes:
