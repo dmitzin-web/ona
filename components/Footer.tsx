@@ -36,14 +36,23 @@ export function Footer() {
               Portland metro
             </p>
           </div>
-          {/* License slots — left intentionally blank so the placeholders are
-              visible and obviously waiting for real numbers from WA L&I, OR
-              CCB, and IICRC. Replace `pending` strings with actual IDs as
-              they are issued; do not invent or estimate. */}
+          {/* License slots — replace `pending` strings with actual IDs as
+              they are issued; do not invent or estimate.
+              WA L&I: ONARER*748K8 (issued, verifiable at lni.wa.gov)
+              OR CCB / IICRC: still pending. */}
           <dl className="mt-6 grid grid-cols-1 gap-1 text-xs text-ivory/55">
             <div className="flex flex-wrap gap-x-2">
               <dt className="eyebrow text-ivory/45">WA L&amp;I</dt>
-              <dd className="font-mono">pending</dd>
+              <dd className="font-mono">
+                <a
+                  href="https://secure.lni.wa.gov/verify/"
+                  rel="noopener"
+                  target="_blank"
+                  className="text-ivory/80 underline-offset-2 transition hover:text-ivory hover:underline"
+                >
+                  ONARER*748K8
+                </a>
+              </dd>
             </div>
             <div className="flex flex-wrap gap-x-2">
               <dt className="eyebrow text-ivory/45">OR CCB</dt>

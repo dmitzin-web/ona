@@ -80,6 +80,9 @@ export const site = {
   // exist, re-add { value, count } here and the JSON-LD will fill in.
   rating: null as { value: number; count: number } | null,
   certifications: [
+    // WA L&I contractor registration — verifiable at
+    // https://secure.lni.wa.gov/verify/. Issued 2026-05-28.
+    "WA L&I Contractor Registration ONARER*748K8",
     "IICRC Water Damage Restoration (WRT)",
     "IICRC Applied Structural Drying (ASD)",
     "IICRC Applied Microbial Remediation (AMRT)",
