@@ -59,17 +59,20 @@ export function Hero({ image }: { image?: HeroImage } = {}) {
         </ul>
 
         <div className="mt-12 flex flex-wrap items-center gap-5">
+          {/* Phone CTA is primary — restoration is a phone-first industry,
+              calls at 3 a.m. convert via tel: tap, not a form. Free quote
+              is the secondary path for non-emergency planning inquiries. */}
+          <PhoneLink className="inline-flex items-center gap-3 border border-ivory bg-ivory px-7 py-4 text-sm font-medium uppercase tracking-[0.22em] text-charcoal transition hover:bg-transparent hover:text-ivory">
+            <PhoneIcon className="h-4 w-4 stroke-current" />
+            Call Now
+          </PhoneLink>
           <Link
             href="/quote"
-            className="inline-flex items-center gap-3 border border-ivory bg-ivory px-7 py-4 text-sm font-medium uppercase tracking-[0.22em] text-charcoal transition hover:bg-transparent hover:text-ivory"
+            className="inline-flex items-center gap-3 border border-ivory/30 px-7 py-4 text-sm font-medium uppercase tracking-[0.22em] text-ivory transition hover:border-ivory"
           >
             Get a free quote
             <span aria-hidden="true">→</span>
           </Link>
-          <PhoneLink className="inline-flex items-center gap-3 border border-ivory/30 px-7 py-4 text-sm font-medium uppercase tracking-[0.22em] text-ivory transition hover:border-ivory">
-            <PhoneIcon className="h-4 w-4 stroke-current" />
-            {site.phoneDisplay}
-          </PhoneLink>
         </div>
 
         <div className="mt-20 grid grid-cols-2 gap-y-8 border-t border-charcoal-mute pt-10 sm:grid-cols-4 sm:gap-x-8">
