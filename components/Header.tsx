@@ -3,29 +3,32 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { site } from "@/lib/site";
+import { Logo } from "./Logo";
+import { PhoneLink } from "./contact/ContactLinks";
+import { PhoneIcon } from "./icons/ServiceIcons";
 
-// ─────────────────────────────────────────────────────────────
-// Header — Project File concept
-// ────────────────────────────────────────────────────────────
-// Minimal sticky bar on a light surface. Five nav items, no
-// dropdowns. Two CTAs on the right:
-//   - Phone (accent green, primary)
-//   - Start a project (ink outline, secondary)
-// Ask ONA is kept as a quiet nav-stream button — it still
-// dispatches the same window event so the existing AskOna
-// drawer continues to work, but it doesn't shout.
+// Primary navigation. Two kinds of entries:
+//   - `link` (default): renders an <a> via next/link, target href required
+//   - `action: "ask-ona"`: renders a button that opens the Ask ONA drawer
+//     via the global "askona:open" window event. Used to put Ask ONA in
+//     the nav stream rather than competing with Get a quote / phone CTAs.
 //
-// Mobile: native <details>/<summary> drawer, no JS state.
+// The mobile burger + drawer use a native <details>/<summary> pair so the
+// toggle is a pure HTML behavior — no useState, no useEffect, no waiting on
+// hydration. lg:hidden keeps it off desktop.
 
 type NavItem =
-  | { href: string; label: string; action?: never }
-  | { action: "ask-ona"; label: string; href?: never };
+  | { href: string; label: string; accent?: boolean; action?: never }
+  | { action: "ask-ona"; label: string };
 
+// Top-level nav. Remodeling is a co-equal business line to Services
+// (restoration) — owner promoted it from buried-under-Services to its
+// own nav slot. Projects/reviews/areas live under their respective hubs;
+// they get nav slots when the underlying pages exist (PR 2).
 const nav: NavItem[] = [
-  { href: "/services", label: "Restoration" },
+  { href: "/services", label: "Services" },
   { href: "/services/remodeling", label: "Remodeling" },
-  { href: "/about", label: "How we work" },
-  { href: "/blog", label: "Notes" },
+  { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
   { action: "ask-ona", label: "✦ Ask ONA" },
 ];
@@ -38,17 +41,12 @@ export function Header() {
   const pathname = usePathname() ?? "/";
 
   return (
-    <header className="sticky top-0 z-40 border-b border-line-light bg-ivory/90 backdrop-blur">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-4 lg:px-10">
-        <Link
-          href="/"
-          className="text-[15px] font-semibold tracking-tight text-charcoal"
-        >
-          ONA Restoration
-        </Link>
+    <header className="sticky top-0 z-40 border-b border-charcoal-mute bg-charcoal/95 text-ivory backdrop-blur">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-5 lg:px-10">
+        <Logo variant="horizontal" tone="light" />
 
         <nav aria-label="Primary" className="hidden lg:block">
-          <ul className="flex items-center gap-8 text-[14px] text-warm-gray-deep">
+          <ul className="flex items-center gap-9 eyebrow text-ivory/80">
             {nav.map((item, i) => {
               if ("action" in item) {
                 return (
@@ -56,7 +54,7 @@ export function Header() {
                     <button
                       type="button"
                       onClick={openAskOna}
-                      className="text-gold transition hover:text-gold-deep"
+                      className="eyebrow text-gold-soft transition hover:text-gold"
                     >
                       {item.label}
                     </button>
@@ -71,8 +69,14 @@ export function Header() {
                   <Link
                     href={item.href}
                     aria-current={active ? "page" : undefined}
-                    className={`transition ${
-                      active ? "text-charcoal" : "hover:text-charcoal"
+                    className={`transition-colors ${
+                      item.accent
+                        ? active
+                          ? "text-gold"
+                          : "text-gold-soft hover:text-gold"
+                        : active
+                          ? "text-ivory"
+                          : "hover:text-ivory"
                     }`}
                   >
                     {item.label}
@@ -84,25 +88,24 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <a
-            href={`tel:${site.phone}`}
-            className="hidden rounded-full bg-gold px-5 py-2.5 text-[13px] font-medium text-white transition hover:bg-gold-deep sm:inline-flex"
-          >
-            {site.phoneDisplay}
-          </a>
           <Link
-            href="/start-project"
-            className="hidden rounded-full border border-charcoal px-5 py-2.5 text-[13px] font-medium text-charcoal transition hover:bg-charcoal hover:text-ivory sm:inline-flex"
+            href="/quote"
+            className="hidden border border-ivory/30 px-4 py-2 text-sm font-medium text-ivory transition hover:border-ivory sm:inline-flex"
           >
-            Start a project
+            Get a free quote
           </Link>
+          <PhoneLink className="inline-flex items-center gap-2 border border-ivory bg-ivory px-4 py-2 text-sm font-medium text-charcoal transition hover:bg-transparent hover:text-ivory">
+            <PhoneIcon />
+            <span className="hidden sm:inline">{site.phoneDisplay}</span>
+            <span className="sm:hidden">Call</span>
+          </PhoneLink>
 
-          {/* Mobile burger */}
+          {/* Burger — only renders below lg. */}
           <details className="group relative lg:hidden">
             <summary
               aria-label="Toggle menu"
               aria-controls="mobile-nav"
-              className="inline-flex h-10 w-10 cursor-pointer list-none items-center justify-center rounded-full border border-line-light text-charcoal transition hover:border-charcoal [&::-webkit-details-marker]:hidden"
+              className="inline-flex h-10 w-10 cursor-pointer list-none items-center justify-center border border-ivory/30 text-ivory transition hover:border-ivory [&::-webkit-details-marker]:hidden"
             >
               <span className="sr-only">Menu</span>
               <span aria-hidden="true" className="relative block h-3 w-5">
@@ -115,7 +118,7 @@ export function Header() {
             <nav
               id="mobile-nav"
               aria-label="Mobile primary"
-              className="fixed inset-x-0 top-[65px] z-40 max-h-[calc(100vh-65px)] overflow-y-auto border-t border-line-light bg-ivory/95 backdrop-blur"
+              className="fixed inset-x-0 top-[81px] z-40 max-h-[calc(100vh-81px)] overflow-y-auto border-t border-charcoal-mute bg-charcoal/95 backdrop-blur"
             >
               <ul className="mx-auto max-w-7xl px-6 py-2">
                 {nav.map((item, i) => {
@@ -123,15 +126,15 @@ export function Header() {
                     return (
                       <li
                         key="ask-ona-mobile"
-                        className="border-b border-line-light last:border-b-0"
+                        className="border-b border-charcoal-mute last:border-b-0"
                       >
                         <button
                           type="button"
                           onClick={openAskOna}
-                          className="flex w-full items-center justify-between py-4 text-[15px] font-medium tracking-tight text-gold transition"
+                          className="flex w-full items-center justify-between py-4 text-base font-medium tracking-tight text-gold-soft transition"
                         >
                           <span>{item.label}</span>
-                          <span aria-hidden="true" className="text-warm-gray-deep">
+                          <span aria-hidden="true" className="text-ivory/40">
                             →
                           </span>
                         </button>
@@ -144,35 +147,35 @@ export function Header() {
                   return (
                     <li
                       key={item.href ?? `nav-mob-${i}`}
-                      className="border-b border-line-light last:border-b-0"
+                      className="border-b border-charcoal-mute last:border-b-0"
                     >
                       <Link
                         href={item.href}
                         aria-current={active ? "page" : undefined}
-                        className={`flex items-center justify-between py-4 text-[15px] font-medium tracking-tight transition ${
-                          active ? "text-charcoal" : "text-warm-gray-deep"
+                        className={`flex items-center justify-between py-4 text-base font-medium tracking-tight transition ${
+                          item.accent
+                            ? active
+                              ? "text-gold"
+                              : "text-gold-soft"
+                            : active
+                              ? "text-ivory"
+                              : "text-ivory/80"
                         }`}
                       >
                         <span>{item.label}</span>
-                        <span aria-hidden="true" className="text-warm-gray-deep">
+                        <span aria-hidden="true" className="text-ivory/40">
                           →
                         </span>
                       </Link>
                     </li>
                   );
                 })}
-                <li className="grid gap-2 pt-3 pb-5">
-                  <a
-                    href={`tel:${site.phone}`}
-                    className="inline-flex w-full items-center justify-center rounded-full bg-gold px-4 py-3 text-[13px] font-medium text-white"
-                  >
-                    Call {site.phoneDisplay}
-                  </a>
+                <li className="pt-3 pb-5">
                   <Link
-                    href="/start-project"
-                    className="inline-flex w-full items-center justify-center rounded-full border border-charcoal px-4 py-3 text-[13px] font-medium text-charcoal"
+                    href="/quote"
+                    className="inline-flex w-full items-center justify-center border border-ivory/30 px-4 py-3 text-sm font-medium uppercase tracking-[0.22em] text-ivory transition hover:border-ivory"
                   >
-                    Start a project
+                    Get a free quote
                   </Link>
                 </li>
               </ul>

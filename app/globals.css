@@ -68,17 +68,6 @@ a {
   text-transform: uppercase;
 }
 
-/* Live status pulse — the only animation on the site.
-   Slow, calm. Used by hero overlay, "Available now" strip,
-   and the In Progress signal chip on Real Work cards. */
-@keyframes ona-pulse {
-  0%, 100% { opacity: 1; }
-  50%      { opacity: 0.55; }
-}
-.ona-pulse {
-  animation: ona-pulse 2.4s ease-in-out infinite;
-}
-
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;
