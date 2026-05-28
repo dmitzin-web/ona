@@ -5,6 +5,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { Analytics } from "@/components/Analytics";
 import { AskOna } from "@/components/assistant/AskOna";
 import { MobileStickyBar } from "@/components/MobileStickyBar";
+import { EmergencyBanner } from "@/components/EmergencyBanner";
 import { site } from "@/lib/site";
 import { localBusinessJsonLd, websiteJsonLd } from "@/lib/jsonld";
 import { satoshi } from "./fonts";
@@ -73,6 +74,7 @@ export default function RootLayout({
         >
           Skip to content
         </a>
+        <EmergencyBanner />
         <Header />
         <main id="main">{children}</main>
         <Footer />

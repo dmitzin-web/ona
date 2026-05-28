@@ -1,199 +1,177 @@
 import Link from "next/link";
 import { site } from "@/lib/site";
-import { services } from "@/lib/services";
-import { Logo } from "./Logo";
-import { EmailLink, PhoneLink } from "./contact/ContactLinks";
+
+// ─────────────────────────────────────────────────────────────
+// Footer — Project File concept, warmth pass
+// ────────────────────────────────────────────────────────────
+// Light footer with calm rhythm:
+//   - Brand + tagline
+//   - Three checked one-liners (human reassurance)
+//   - 3-col operational facts: Call / Service area / Hours
+//   - Credentials row — actual WA L&I number with verify link,
+//     OR CCB / IICRC placeholders ready to be swapped
+//   - Quick nav: All services / Service areas / Field notes
+//   - Legal row
+//
+// Lives in the warm production palette (ivory + charcoal + gold).
 
 export function Footer() {
   return (
-    <footer className="bg-charcoal text-ivory">
-      <div className="mx-auto grid max-w-7xl gap-12 px-6 py-20 md:grid-cols-12 lg:px-10">
-        <div className="md:col-span-4">
-          <Logo variant="horizontal" tone="light" />
-          <div className="mt-8 max-w-sm space-y-3 text-sm leading-relaxed text-ivory/75">
-            <p>
-              Restoration and remodeling in Vancouver, WA and the Portland
-              metro.
-            </p>
-            <p>
-              Water · Fire · Mold · Storm · Reconstruction · Kitchen &amp;
-              Bath remodels.
-            </p>
-            <p>
-              Insurance billed direct · Fixed-scope agreements · 24/7
-              emergency dispatch.
-            </p>
-          </div>
-          <div className="mt-8 space-y-1 text-sm text-ivory/80">
-            <PhoneLink className="block text-ivory transition hover:text-warm-gray-soft">
-              {site.phoneDisplay}
-            </PhoneLink>
-            <EmailLink className="block transition hover:text-ivory">
-              {site.email}
-            </EmailLink>
-            <p className="pt-3 text-ivory/60">
-              {site.address.locality}, {site.address.region} · Serving the
-              Portland metro
-            </p>
-          </div>
-          {/* License slots — replace `pending` strings with actual IDs as
-              they are issued; do not invent or estimate.
-              WA L&I: ONARER*748K8 (issued, verifiable at lni.wa.gov)
-              OR CCB / IICRC: still pending. */}
-          <dl className="mt-6 grid grid-cols-1 gap-1 text-xs text-ivory/55">
-            <div className="flex flex-wrap gap-x-2">
-              <dt className="eyebrow text-ivory/45">WA L&amp;I</dt>
-              <dd className="font-mono">
-                <a
-                  href="https://secure.lni.wa.gov/verify/"
-                  rel="noopener"
-                  target="_blank"
-                  className="text-ivory/80 underline-offset-2 transition hover:text-ivory hover:underline"
-                >
-                  ONARER*748K8
-                </a>
-              </dd>
-            </div>
-            <div className="flex flex-wrap gap-x-2">
-              <dt className="eyebrow text-ivory/45">OR CCB</dt>
-              <dd className="font-mono">pending</dd>
-            </div>
-            <div className="flex flex-wrap gap-x-2">
-              <dt className="eyebrow text-ivory/45">IICRC</dt>
-              <dd className="font-mono">pending</dd>
-            </div>
-          </dl>
-        </div>
-
-        <div className="md:col-span-3">
-          <p className="eyebrow text-ivory/50">Services</p>
-          <ul className="mt-5 space-y-3 text-sm">
-            {services.map((s) => (
-              <li key={s.slug}>
-                <Link
-                  href={`/services/${s.slug}`}
-                  className="text-ivory/80 transition hover:text-ivory"
-                >
-                  {s.shortName}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="md:col-span-3">
-          <p className="eyebrow text-ivory/50">Service Area</p>
-          <ul className="mt-5 grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
-            {site.serviceArea.map((a) => (
-              <li key={a.slug}>
-                <Link
-                  href={`/areas/${a.slug}`}
-                  className="text-ivory/80 transition hover:text-ivory"
-                >
-                  {a.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="md:col-span-2">
-          <p className="eyebrow text-ivory/50">Company</p>
-          <ul className="mt-5 space-y-3 text-sm">
-            <li>
-              <Link
-                href="/about"
-                className="text-ivory/80 transition hover:text-ivory"
-              >
-                About
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/contact"
-                className="text-ivory/80 transition hover:text-ivory"
-              >
-                Contact
-              </Link>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div className="hairline-dark" />
-
-      {/* Service × city mega-section, collapsed by default to keep the footer
-          clean. <details> keeps the full 50-link grid in server-rendered HTML
-          regardless of open/closed state, so Google crawls and counts every
-          link — this is the canonical Google-compliant pattern for hiding
-          dense link content from the default visual while preserving SEO. */}
-      <details className="group mx-auto max-w-7xl px-6 lg:px-10">
-        <summary className="flex cursor-pointer list-none items-center justify-between py-7 [&::-webkit-details-marker]:hidden">
-          <span className="eyebrow text-ivory/50">Service by city</span>
-          <span
-            aria-hidden="true"
-            className="inline-flex h-6 w-6 items-center justify-center text-xl font-light leading-none text-ivory/60 transition-transform duration-200 group-open:rotate-45"
+    <footer className="border-t border-line-light bg-ivory text-charcoal">
+      <div className="mx-auto max-w-7xl px-6 py-14 lg:px-10">
+        {/* Row 1 — brand + one-line promise */}
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-baseline sm:justify-between">
+          <Link
+            href="/"
+            className="text-[15px] font-semibold tracking-tight text-charcoal"
           >
-            +
-          </span>
-        </summary>
-        <nav
-          aria-label="Service by city"
-          className="pb-12 pt-2"
-        >
-          <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-5">
-            {services.map((s) => (
-              <div key={s.slug}>
-                <Link
-                  href={`/services/${s.slug}`}
-                  className="block text-sm font-medium text-ivory transition hover:text-warm-gray-soft"
-                >
-                  {s.shortName}
-                </Link>
-                <ul className="mt-3 space-y-2 text-xs">
-                  {site.serviceArea.map((a) => (
-                    <li key={a.slug}>
-                      <Link
-                        href={`/services/${s.slug}/${a.slug}`}
-                        className="text-ivory/65 transition hover:text-ivory"
-                      >
-                        {a.name}, {a.region}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+            {site.name}
+          </Link>
+          <p className="text-[13px] text-warm-gray-deep">
+            Restoration &amp; remodeling. One team, from damage to rebuild.
+          </p>
+        </div>
+
+        {/* Row 2 — human reassurance */}
+        <div className="mt-6 grid gap-3 border-t border-line-light pt-6 sm:grid-cols-3">
+          {[
+            "Same person from first call to final walkthrough",
+            "Phone answered in person — day or night",
+            "Project File live from day one — every job",
+          ].map((line) => (
+            <div
+              key={line}
+              className="flex items-start gap-2.5 text-[13px] text-warm-gray-deep"
+            >
+              <span
+                aria-hidden
+                className="mt-0.5 inline-flex h-4 w-4 flex-none items-center justify-center rounded-full border border-gold text-[9px] font-semibold text-gold"
+              >
+                ✓
+              </span>
+              <span className="text-charcoal">{line}</span>
+            </div>
+          ))}
+        </div>
+
+        {/* Row 3 — operational facts */}
+        <div className="mt-8 grid gap-6 border-t border-line-light pt-8 text-[13px] text-warm-gray-deep sm:grid-cols-3">
+          <div>
+            <div className="text-charcoal">Call</div>
+            <a
+              href={`tel:${site.phone}`}
+              className="mt-1 block transition hover:text-charcoal"
+            >
+              {site.phoneDisplay}
+            </a>
+            <a
+              href={`mailto:${site.email}`}
+              className="mt-1 block transition hover:text-charcoal"
+            >
+              {site.email}
+            </a>
           </div>
-        </nav>
-      </details>
+          <div>
+            <div className="text-charcoal">Service area</div>
+            <div className="mt-1">
+              {site.address.locality}, {site.address.region}
+            </div>
+            <div className="mt-1">Clark County · Portland metro</div>
+            <div className="mt-1">25-min response across Clark County</div>
+          </div>
+          <div>
+            <div className="text-charcoal">Hours</div>
+            <div className="mt-1">
+              <span className="text-charcoal">Restoration</span> — 24 hours,
+              every day
+            </div>
+            <div className="mt-1">
+              <span className="text-charcoal">Remodel</span> — Mon–Fri, 8a–5p
+            </div>
+          </div>
+        </div>
 
-      <div className="hairline-dark" />
+        {/* Row 4 — credentials. WA L&I issued and verifiable;
+            OR CCB / IICRC still pending. Replace `pending` with
+            actual numbers as they issue. Do not invent. */}
+        <dl className="mt-8 grid gap-6 border-t border-line-light pt-8 text-[12px] text-warm-gray-deep sm:grid-cols-3">
+          <div>
+            <dt className="eyebrow text-warm-gray-deep">WA L&amp;I</dt>
+            <dd className="mt-1 font-mono">
+              <a
+                href="https://secure.lni.wa.gov/verify/"
+                rel="noopener"
+                target="_blank"
+                className="text-charcoal underline-offset-2 transition hover:underline"
+              >
+                ONARER*748K8
+              </a>
+            </dd>
+            <dd className="mt-1 text-[11px]">Verify at lni.wa.gov</dd>
+          </div>
+          <div>
+            <dt className="eyebrow text-warm-gray-deep">OR CCB</dt>
+            <dd className="mt-1 font-mono">pending</dd>
+          </div>
+          <div>
+            <dt className="eyebrow text-warm-gray-deep">IICRC</dt>
+            <dd className="mt-1 font-mono">pending</dd>
+          </div>
+        </dl>
 
-      <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-4 px-6 py-7 text-xs text-ivory/50 lg:flex-row lg:items-center lg:px-10">
-        <p>
-          © {new Date().getFullYear()} {site.legalName} · All rights reserved
-        </p>
-        <ul className="flex flex-wrap items-center gap-x-6 gap-y-2">
-          <li>
-            <Link href="/privacy" className="transition hover:text-ivory">
+        {/* Row 5 — quick nav */}
+        <div className="mt-6 flex flex-col gap-3 border-t border-line-light pt-6 text-[13px] sm:flex-row sm:gap-8">
+          <Link
+            href="/services"
+            className="inline-flex items-center gap-1.5 text-charcoal transition hover:text-gold-deep"
+          >
+            All services
+            <span aria-hidden className="text-warm-gray">
+              →
+            </span>
+          </Link>
+          <Link
+            href="/areas"
+            className="inline-flex items-center gap-1.5 text-charcoal transition hover:text-gold-deep"
+          >
+            Service areas
+            <span aria-hidden className="text-warm-gray">
+              →
+            </span>
+          </Link>
+          <Link
+            href="/blog"
+            className="inline-flex items-center gap-1.5 text-charcoal transition hover:text-gold-deep"
+          >
+            Field notes
+            <span aria-hidden className="text-warm-gray">
+              →
+            </span>
+          </Link>
+        </div>
+
+        {/* Row 6 — legal */}
+        <div className="mt-6 flex flex-col gap-3 border-t border-line-light pt-6 text-[12px] text-warm-gray-deep sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            {site.legalName} · {site.address.locality}, {site.address.region} ·
+            Licensed and insured.
+          </div>
+          <div className="flex items-center gap-5">
+            <Link
+              href="/privacy"
+              className="transition hover:text-charcoal"
+            >
               Privacy
             </Link>
-          </li>
-          <li>
-            <Link href="/terms" className="transition hover:text-ivory">
+            <Link
+              href="/terms"
+              className="transition hover:text-charcoal"
+            >
               Terms
             </Link>
-          </li>
-          <li>
-            <Link href="/quote" className="transition hover:text-ivory">
-              Get a free quote
-            </Link>
-          </li>
-        </ul>
-        <p className="eyebrow text-ivory/40">
-          Licensed · Bonded · Insured · WA & OR
-        </p>
+            <span>© {new Date().getFullYear()} {site.name}</span>
+          </div>
+        </div>
       </div>
     </footer>
   );
