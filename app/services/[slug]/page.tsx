@@ -10,6 +10,7 @@ import {
   serviceIcons,
 } from "@/components/icons/ServiceIcons";
 import { EmailLink, PhoneLink } from "@/components/contact/ContactLinks";
+import { RemodelingGallery } from "@/components/RemodelingGallery";
 import { ServiceCardCompact } from "@/components/ServiceCardCompact";
 import { findService, services } from "@/lib/services";
 import { areaProfiles } from "@/lib/areas";
@@ -193,6 +194,13 @@ export default async function ServicePage(
           </div>
         </div>
       </section>
+
+      {/* Remodeling-specific style-reference gallery. Only renders on
+          /services/remodeling because restoration services don't use a
+          style gallery (they're emergency, not aesthetic). When real
+          project photography arrives, swap the references in the
+          RemodelingGallery component for real photos. */}
+      {service.slug === "remodeling" && <RemodelingGallery />}
 
       <FAQ items={service.faqs} title={`${service.shortName} — FAQ`} />
 
