@@ -21,8 +21,13 @@ type NavItem =
   | { href: string; label: string; accent?: boolean; action?: never }
   | { action: "ask-ona"; label: string };
 
+// Top-level nav. Remodeling is a co-equal business line to Services
+// (restoration) — owner promoted it from buried-under-Services to its
+// own nav slot. Projects/reviews/areas live under their respective hubs;
+// they get nav slots when the underlying pages exist (PR 2).
 const nav: NavItem[] = [
   { href: "/services", label: "Services" },
+  { href: "/services/remodeling", label: "Remodeling" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
   { action: "ask-ona", label: "✦ Ask ONA" },
@@ -87,7 +92,7 @@ export function Header() {
             href="/quote"
             className="hidden border border-ivory/30 px-4 py-2 text-sm font-medium text-ivory transition hover:border-ivory sm:inline-flex"
           >
-            Get a quote
+            Get a free quote
           </Link>
           <PhoneLink className="inline-flex items-center gap-2 border border-ivory bg-ivory px-4 py-2 text-sm font-medium text-charcoal transition hover:bg-transparent hover:text-ivory">
             <PhoneIcon />
@@ -170,7 +175,7 @@ export function Header() {
                     href="/quote"
                     className="inline-flex w-full items-center justify-center border border-ivory/30 px-4 py-3 text-sm font-medium uppercase tracking-[0.22em] text-ivory transition hover:border-ivory"
                   >
-                    Get a quote
+                    Get a free quote
                   </Link>
                 </li>
               </ul>

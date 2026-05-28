@@ -50,7 +50,7 @@ export function GET() {
   lines.push("");
   lines.push(`- [About](${site.url}/about): Company background, certifications, brand values.`);
   lines.push(`- [Contact](${site.url}/contact): Dispatch details and hours.`);
-  lines.push(`- [Get a quote](${site.url}/quote): Submit a damage report with photos.`);
+  lines.push(`- [Get a free quote](${site.url}/quote): Submit a damage report with photos.`);
   lines.push(`- [Blog](${site.url}/blog): Restoration guides and answers.`);
   lines.push("");
 

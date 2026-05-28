@@ -34,7 +34,7 @@ export function MobileStickyBar() {
         href="/quote"
         className="flex items-center justify-center gap-2 py-4 text-xs font-medium uppercase tracking-[0.12em] text-ivory transition active:bg-charcoal sm:text-sm sm:tracking-[0.18em]"
       >
-        <span className="whitespace-nowrap">Get a quote</span>
+        <span className="whitespace-nowrap">Free quote</span>
       </Link>
     </div>
   );

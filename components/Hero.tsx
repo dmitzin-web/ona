@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { site } from "@/lib/site";
 import { PhoneLink } from "./contact/ContactLinks";
-import { ArrowIcon, PhoneIcon } from "./icons/ServiceIcons";
+import { PhoneIcon } from "./icons/ServiceIcons";
 
 export type HeroImage = {
   src: string;
@@ -35,40 +35,41 @@ export function Hero({ image }: { image?: HeroImage } = {}) {
       )}
       <div className="relative mx-auto max-w-7xl px-6 pb-24 pt-20 lg:px-10 lg:pb-32 lg:pt-28">
         <p className="eyebrow text-warm-gray-soft">
-          Restoration &amp; remodeling · Vancouver, WA &amp; Portland metro
+          Vancouver, WA · Portland metro
         </p>
 
-        {/* H1 carries the SEO keyword (restoration) and geo (Vancouver, WA +
-            Portland metro). The brand poetry "Precision. Restoration. Built
-            to Last." that used to be H1 now lives as the styled subtitle
-            below — same visual weight, but H1 now does its SEO job. */}
+        {/* H1 names the three business lines (restoration, reconstruction,
+            remodeling) — this is the full-service positioning. Reads as
+            three discrete pillars rather than one product. */}
         <h1 className="mt-10 max-w-4xl text-5xl font-light leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">
-          <span className="block">Trusted property</span>
-          <span className="block">restoration in</span>
-          <span className="block font-medium">Vancouver, WA &amp; Portland.</span>
+          <span className="block">Restoration.</span>
+          <span className="block">Reconstruction.</span>
+          <span className="block font-medium">Remodeling.</span>
         </h1>
-        <p className="mt-6 max-w-xl text-lg uppercase tracking-[0.22em] text-warm-gray-soft">
-          Precision. Restoration. Built to Last.
-        </p>
 
-        <p className="mt-10 max-w-xl text-lg leading-relaxed text-ivory/75">
-          Specialist property restoration delivered with integrity,
-          craftsmanship, and precision. We restore more than properties —
-          we restore trust.
+        <p className="mt-10 max-w-xl text-lg leading-relaxed text-ivory/80">
+          When something breaks, we bring it back — and make it better.
         </p>
+        <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm text-ivory/70">
+          <li>24/7 emergency dispatch</li>
+          <li aria-hidden="true">·</li>
+          <li>Insurance billed direct</li>
+          <li aria-hidden="true">·</li>
+          <li>Fixed-scope agreement before any work</li>
+        </ul>
 
         <div className="mt-12 flex flex-wrap items-center gap-5">
-          <PhoneLink className="inline-flex items-center gap-3 border border-ivory bg-ivory px-7 py-4 text-sm font-medium uppercase tracking-[0.22em] text-charcoal transition hover:bg-transparent hover:text-ivory">
-            <PhoneIcon className="h-4 w-4 stroke-current" />
-            Call {site.phoneDisplay}
-          </PhoneLink>
           <Link
-            href="/services"
-            className="inline-flex items-center gap-3 border border-ivory/30 px-7 py-4 text-sm font-medium uppercase tracking-[0.22em] text-ivory transition hover:border-ivory"
+            href="/quote"
+            className="inline-flex items-center gap-3 border border-ivory bg-ivory px-7 py-4 text-sm font-medium uppercase tracking-[0.22em] text-charcoal transition hover:bg-transparent hover:text-ivory"
           >
-            Our Services
-            <ArrowIcon className="h-4 w-4 stroke-current" />
+            Get a free quote
+            <span aria-hidden="true">→</span>
           </Link>
+          <PhoneLink className="inline-flex items-center gap-3 border border-ivory/30 px-7 py-4 text-sm font-medium uppercase tracking-[0.22em] text-ivory transition hover:border-ivory">
+            <PhoneIcon className="h-4 w-4 stroke-current" />
+            {site.phoneDisplay}
+          </PhoneLink>
         </div>
 
         <div className="mt-20 grid grid-cols-2 gap-y-8 border-t border-charcoal-mute pt-10 sm:grid-cols-4 sm:gap-x-8">

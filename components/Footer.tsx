@@ -10,9 +10,20 @@ export function Footer() {
       <div className="mx-auto grid max-w-7xl gap-12 px-6 py-20 md:grid-cols-12 lg:px-10">
         <div className="md:col-span-4">
           <Logo variant="horizontal" tone="light" />
-          <p className="mt-8 max-w-sm text-sm leading-relaxed text-ivory/70">
-            {site.shortDescription}
-          </p>
+          <div className="mt-8 max-w-sm space-y-3 text-sm leading-relaxed text-ivory/75">
+            <p>
+              Restoration and remodeling in Vancouver, WA and the Portland
+              metro.
+            </p>
+            <p>
+              Water · Fire · Mold · Storm · Reconstruction · Kitchen &amp;
+              Bath remodels.
+            </p>
+            <p>
+              Insurance billed direct · Fixed-scope agreements · 24/7
+              emergency dispatch.
+            </p>
+          </div>
           <div className="mt-8 space-y-1 text-sm text-ivory/80">
             <PhoneLink className="block text-ivory transition hover:text-warm-gray-soft">
               {site.phoneDisplay}
@@ -25,6 +36,24 @@ export function Footer() {
               Portland metro
             </p>
           </div>
+          {/* License slots — left intentionally blank so the placeholders are
+              visible and obviously waiting for real numbers from WA L&I, OR
+              CCB, and IICRC. Replace `pending` strings with actual IDs as
+              they are issued; do not invent or estimate. */}
+          <dl className="mt-6 grid grid-cols-1 gap-1 text-xs text-ivory/55">
+            <div className="flex flex-wrap gap-x-2">
+              <dt className="eyebrow text-ivory/45">WA L&amp;I</dt>
+              <dd className="font-mono">pending</dd>
+            </div>
+            <div className="flex flex-wrap gap-x-2">
+              <dt className="eyebrow text-ivory/45">OR CCB</dt>
+              <dd className="font-mono">pending</dd>
+            </div>
+            <div className="flex flex-wrap gap-x-2">
+              <dt className="eyebrow text-ivory/45">IICRC</dt>
+              <dd className="font-mono">pending</dd>
+            </div>
+          </dl>
         </div>
 
         <div className="md:col-span-3">
@@ -149,7 +178,7 @@ export function Footer() {
           </li>
           <li>
             <Link href="/quote" className="transition hover:text-ivory">
-              Get a quote
+              Get a free quote
             </Link>
           </li>
         </ul>

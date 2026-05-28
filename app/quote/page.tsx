@@ -51,7 +51,7 @@ export default function QuotePage() {
       <Breadcrumbs
         items={[
           { name: "Home", href: "/" },
-          { name: "Get a quote", href: "/quote" },
+          { name: "Get a free quote", href: "/quote" },
         ]}
       />
       <section className="bg-ivory">
