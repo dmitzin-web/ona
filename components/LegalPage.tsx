@@ -33,7 +33,7 @@ export function LegalPage({
       <section className="bg-charcoal">
         <div className="mx-auto max-w-4xl px-6 py-20 lg:px-10">
           <p className="eyebrow text-ivory/60">{eyebrow}</p>
-          <h1 className="mt-6 text-5xl font-light leading-[1.05] tracking-tight sm:text-6xl">
+          <h1 className="text-ivory mt-6 text-5xl font-light leading-[1.05] tracking-tight sm:text-6xl">
             {title}
           </h1>
           <p className="mt-6 text-sm text-ivory/60">
@@ -52,7 +52,7 @@ export function LegalPage({
           <div className="mt-12 space-y-12">
             {sections.map((s) => (
               <section key={s.heading}>
-                <h2 className="text-2xl font-light tracking-tight">
+                <h2 className="text-ivory text-2xl font-light tracking-tight">
                   {s.heading}
                 </h2>
                 <div className="mt-4 space-y-4 text-base leading-relaxed text-ivory/80">
@@ -74,7 +74,7 @@ export function LegalPage({
               <div className="mt-8 space-y-12">
                 {secondarySections.map((s) => (
                   <section key={s.heading}>
-                    <h2 className="text-2xl font-light tracking-tight">
+                    <h2 className="text-ivory text-2xl font-light tracking-tight">
                       {s.heading}
                     </h2>
                     <div className="mt-4 space-y-4 text-base leading-relaxed text-ivory/80">

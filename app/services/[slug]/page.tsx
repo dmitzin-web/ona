@@ -75,7 +75,7 @@ export default async function ServicePage(
                 <p className="eyebrow text-warm-gray-soft">
                   {service.shortName}
                 </p>
-                <h1 className="mt-8 text-5xl font-light leading-[1.05] tracking-tight sm:text-6xl">
+                <h1 className="text-ivory mt-8 text-5xl font-light leading-[1.05] tracking-tight sm:text-6xl">
                   {service.name}
                   <span className="block text-ivory/60 sm:text-5xl">
                     in {site.address.locality}, {site.address.region} &
@@ -123,7 +123,7 @@ export default async function ServicePage(
                 key={b.heading}
                 className="grid gap-10 border-t border-ivory/15 pt-12 lg:grid-cols-12"
               >
-                <h2 className="text-3xl font-light leading-tight tracking-tight sm:text-4xl lg:col-span-4">
+                <h2 className="text-ivory text-3xl font-light leading-tight tracking-tight sm:text-4xl lg:col-span-4">
                   {b.heading}
                 </h2>
                 <div className="space-y-5 lg:col-span-8">
@@ -143,7 +143,7 @@ export default async function ServicePage(
       <section className="bg-charcoal text-ivory">
         <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
           <p className="eyebrow text-warm-gray-soft">Process</p>
-          <h2 className="mt-6 max-w-3xl text-4xl font-light leading-tight tracking-tight sm:text-5xl">
+          <h2 className="text-ivory mt-6 max-w-3xl text-4xl font-light leading-tight tracking-tight sm:text-5xl">
             How the job runs.
           </h2>
           <ol className="mt-16 grid gap-px overflow-hidden border border-ivory/15 bg-charcoal-mute sm:grid-cols-2 lg:grid-cols-3">
@@ -152,7 +152,7 @@ export default async function ServicePage(
                 key={p.step}
                 className="bg-charcoal p-8"
               >
-                <p className="eyebrow text-ivory/40">
+                <p className="eyebrow text-ivory/60">
                   {String(i + 1).padStart(2, "0")}
                 </p>
                 <h3 className="mt-5 text-lg font-medium tracking-tight text-ivory">
@@ -173,7 +173,7 @@ export default async function ServicePage(
           <div className="grid gap-12 lg:grid-cols-12">
             <div className="lg:col-span-4">
               <p className="eyebrow text-ivory/60">Warning signs</p>
-              <h2 className="mt-6 text-4xl font-light leading-tight tracking-tight sm:text-5xl">
+              <h2 className="text-ivory mt-6 text-4xl font-light leading-tight tracking-tight sm:text-5xl">
                 When to call.
               </h2>
               <p className="mt-6 text-base leading-relaxed text-ivory/70">
@@ -214,7 +214,7 @@ export default async function ServicePage(
               <p className="eyebrow text-ivory/60">
                 {service.shortName} by city
               </p>
-              <h2 className="mt-4 text-3xl font-light leading-tight tracking-tight sm:text-4xl">
+              <h2 className="text-ivory mt-4 text-3xl font-light leading-tight tracking-tight sm:text-4xl">
                 Local landing pages.
               </h2>
             </div>

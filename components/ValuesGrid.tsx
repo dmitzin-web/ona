@@ -19,7 +19,7 @@ export function ValuesGrid({
         >
           Brand values
         </p>
-        <h2 className="mt-6 max-w-2xl text-4xl font-light leading-tight tracking-tight sm:text-5xl">
+        <h2 className="text-ivory mt-6 max-w-2xl text-4xl font-light leading-tight tracking-tight sm:text-5xl">
           What guides every job.
         </h2>
 
@@ -47,7 +47,7 @@ export function ValuesGrid({
                   />
                 )}
                 <div>
-                  <h3 className="text-lg font-medium tracking-tight">
+                  <h3 className="text-ivory text-lg font-medium tracking-tight">
                     {v.title}
                   </h3>
                   <p

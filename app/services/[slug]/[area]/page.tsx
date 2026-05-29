@@ -122,7 +122,7 @@ export default async function ServiceCityPage({
           <p className="eyebrow text-warm-gray-soft">
             {service.shortName} · {cityName}
           </p>
-          <h1 className="mt-8 max-w-3xl text-4xl font-light leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
+          <h1 className="text-ivory mt-8 max-w-3xl text-4xl font-light leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
             {service.name} in <span className="font-medium">{cityName}</span>.
           </h1>
           <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ivory/75">
@@ -148,7 +148,7 @@ export default async function ServiceCityPage({
             <div className="lg:col-span-4">
               {Icon && <Icon className="h-12 w-12 stroke-current text-ivory" />}
               <p className="eyebrow mt-6 text-ivory/60">About the service</p>
-              <h2 className="mt-4 text-3xl font-light leading-tight tracking-tight sm:text-4xl">
+              <h2 className="text-ivory mt-4 text-3xl font-light leading-tight tracking-tight sm:text-4xl">
                 {service.shortName} in {profile.name}.
               </h2>
             </div>
@@ -167,7 +167,7 @@ export default async function ServiceCityPage({
           <div className="grid gap-12 lg:grid-cols-12">
             <div className="lg:col-span-5">
               <p className="eyebrow text-ivory/60">{profile.name} context</p>
-              <h2 className="mt-4 text-3xl font-light leading-tight tracking-tight sm:text-4xl">
+              <h2 className="text-ivory mt-4 text-3xl font-light leading-tight tracking-tight sm:text-4xl">
                 What we see in {profile.name}.
               </h2>
               <p className="mt-6 max-w-md text-base leading-relaxed text-ivory/75">
@@ -216,7 +216,7 @@ export default async function ServiceCityPage({
       <section className="bg-charcoal-soft">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
           <p className="eyebrow text-ivory/60">Process</p>
-          <h2 className="mt-4 text-3xl font-light leading-tight tracking-tight sm:text-4xl">
+          <h2 className="text-ivory mt-4 text-3xl font-light leading-tight tracking-tight sm:text-4xl">
             How a {service.shortName.toLowerCase()} job runs in {profile.name}.
           </h2>
           <ol className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
@@ -228,7 +228,7 @@ export default async function ServiceCityPage({
                 <p className="eyebrow text-ivory/50">
                   {String(i + 1).padStart(2, "0")}
                 </p>
-                <h3 className="mt-3 text-xl font-light tracking-tight">
+                <h3 className="text-ivory mt-3 text-xl font-light tracking-tight">
                   {p.step.replace(/^\d+\.\s*/, "")}
                 </h3>
                 <p className="mt-3 text-sm leading-relaxed text-ivory/70">

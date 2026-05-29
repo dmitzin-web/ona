@@ -85,7 +85,7 @@ export default async function AreaPage(
             <p className="eyebrow text-warm-gray-soft">
               {area.county} · {area.regionName}
             </p>
-            <h1 className="mt-8 max-w-4xl text-5xl font-light leading-[1.05] tracking-tight sm:text-6xl">
+            <h1 className="text-ivory mt-8 max-w-4xl text-5xl font-light leading-[1.05] tracking-tight sm:text-6xl">
               Restoration in {area.name},
               <span className="block text-ivory/60">{area.region}.</span>
             </h1>
@@ -117,7 +117,7 @@ export default async function AreaPage(
           <div className="grid gap-12 lg:grid-cols-12">
             <div className="lg:col-span-4">
               <p className="eyebrow text-ivory/60">Local context</p>
-              <h2 className="mt-6 text-4xl font-light leading-tight tracking-tight sm:text-5xl">
+              <h2 className="text-ivory mt-6 text-4xl font-light leading-tight tracking-tight sm:text-5xl">
                 Why restoration in {area.name} is different.
               </h2>
             </div>
@@ -153,7 +153,7 @@ export default async function AreaPage(
           <div className="grid gap-12 lg:grid-cols-12">
             <div className="lg:col-span-5">
               <p className="eyebrow text-ivory/60">Coverage</p>
-              <h2 className="mt-6 text-3xl font-light leading-tight tracking-tight sm:text-4xl">
+              <h2 className="text-ivory mt-6 text-3xl font-light leading-tight tracking-tight sm:text-4xl">
                 Neighborhoods we work in.
               </h2>
               <ul className="mt-8 space-y-2 text-base text-ivory/80">
@@ -166,7 +166,7 @@ export default async function AreaPage(
             </div>
             <div className="lg:col-span-7">
               <p className="eyebrow text-ivory/60">ZIP codes</p>
-              <h2 className="mt-6 text-3xl font-light leading-tight tracking-tight sm:text-4xl">
+              <h2 className="text-ivory mt-6 text-3xl font-light leading-tight tracking-tight sm:text-4xl">
                 {area.zips.length} ZIPs · {area.county}.
               </h2>
               <ul className="mt-8 grid grid-cols-3 gap-3 sm:grid-cols-4 lg:grid-cols-5">
@@ -191,7 +191,7 @@ export default async function AreaPage(
       <section className="bg-charcoal">
         <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
           <p className="eyebrow text-ivory/60">Available in {area.name}</p>
-          <h2 className="mt-6 text-4xl font-light leading-tight tracking-tight sm:text-5xl">
+          <h2 className="text-ivory mt-6 text-4xl font-light leading-tight tracking-tight sm:text-5xl">
             Services we provide here.
           </h2>
           <div className="mt-14 grid gap-px overflow-hidden border border-ivory/10 bg-charcoal/10 sm:grid-cols-2 lg:grid-cols-5">

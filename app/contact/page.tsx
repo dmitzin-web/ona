@@ -25,7 +25,7 @@ export default function ContactPage() {
       <section className="bg-charcoal">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
           <p className="eyebrow text-ivory/60">Contact</p>
-          <h1 className="mt-6 max-w-3xl text-5xl font-light leading-[1.05] tracking-tight sm:text-6xl">
+          <h1 className="text-ivory mt-6 max-w-3xl text-5xl font-light leading-[1.05] tracking-tight sm:text-6xl">
             Get in touch with dispatch.
           </h1>
           <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ivory/75">
@@ -59,7 +59,7 @@ export default function ContactPage() {
           </div>
 
           <div className="mt-20 border-t border-ivory/10 pt-16">
-            <h2 className="text-3xl font-light tracking-tight sm:text-4xl">
+            <h2 className="text-ivory text-3xl font-light tracking-tight sm:text-4xl">
               What happens after you call
             </h2>
             <p className="mt-4 max-w-2xl text-base leading-relaxed text-ivory/70">
@@ -90,8 +90,8 @@ export default function ContactPage() {
                 },
               ].map((s) => (
                 <li key={s.step} className="bg-charcoal p-8">
-                  <p className="eyebrow text-ivory/40">Step {s.step}</p>
-                  <h3 className="mt-4 text-lg font-medium tracking-tight">
+                  <p className="eyebrow text-ivory/60">Step {s.step}</p>
+                  <h3 className="text-ivory mt-4 text-lg font-medium tracking-tight">
                     {s.title}
                   </h3>
                   <p className="mt-3 text-sm leading-relaxed text-ivory/70">
@@ -103,7 +103,7 @@ export default function ContactPage() {
           </div>
 
           <div className="mt-20 border-t border-ivory/10 pt-16">
-            <h2 className="text-3xl font-light tracking-tight sm:text-4xl">
+            <h2 className="text-ivory text-3xl font-light tracking-tight sm:text-4xl">
               Headquarters &amp; hours
             </h2>
             <div className="mt-10 grid gap-12 md:grid-cols-3">

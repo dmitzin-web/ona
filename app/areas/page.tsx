@@ -27,7 +27,7 @@ export default function AreasPage() {
       <section className="bg-charcoal">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
           <p className="eyebrow text-ivory/60">Where we work</p>
-          <h1 className="mt-6 max-w-3xl text-5xl font-light leading-[1.05] tracking-tight sm:text-6xl">
+          <h1 className="text-ivory mt-6 max-w-3xl text-5xl font-light leading-[1.05] tracking-tight sm:text-6xl">
             Vancouver, WA and the entire Portland metro.
           </h1>
           <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ivory/75">

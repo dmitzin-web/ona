@@ -191,7 +191,7 @@ export function Footer() {
             </Link>
           </li>
         </ul>
-        <p className="eyebrow text-ivory/40">
+        <p className="eyebrow text-ivory/60">
           Licensed · Bonded · Insured · WA & OR
         </p>
       </div>

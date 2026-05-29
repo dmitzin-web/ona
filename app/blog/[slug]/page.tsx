@@ -185,7 +185,7 @@ export default async function BlogPostPage(
           <p className="eyebrow text-ivory/60">
             {post.category} · {post.readingMinutes} min read
           </p>
-          <h1 className="mt-6 text-4xl font-light leading-[1.1] tracking-tight sm:text-5xl">
+          <h1 className="text-ivory mt-6 text-4xl font-light leading-[1.1] tracking-tight sm:text-5xl">
             {post.title}
           </h1>
           <p className="mt-8 text-lg leading-relaxed text-ivory/75">
@@ -212,7 +212,7 @@ export default async function BlogPostPage(
         <section className="border-t border-ivory/10 bg-charcoal">
           <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10">
             <p className="eyebrow text-ivory/60">Get help near you</p>
-            <h2 className="mt-4 max-w-3xl text-3xl font-light leading-tight tracking-tight sm:text-4xl">
+            <h2 className="text-ivory mt-4 max-w-3xl text-3xl font-light leading-tight tracking-tight sm:text-4xl">
               {service.shortName} in your part of the Portland metro.
             </h2>
             <ul className="mt-10 grid gap-px overflow-hidden border border-ivory/10 bg-charcoal/10 sm:grid-cols-2 lg:grid-cols-4">

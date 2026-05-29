@@ -8,7 +8,7 @@ export default function NotFound() {
     <section className="bg-charcoal text-ivory">
       <div className="mx-auto max-w-3xl px-6 py-32 text-center lg:px-10">
         <p className="eyebrow text-warm-gray-soft">404</p>
-        <h1 className="mt-6 text-5xl font-light leading-[1.05] tracking-tight sm:text-6xl">
+        <h1 className="text-ivory mt-6 text-5xl font-light leading-[1.05] tracking-tight sm:text-6xl">
           Page not found.
         </h1>
         <p className="mt-8 text-lg leading-relaxed text-ivory/75">

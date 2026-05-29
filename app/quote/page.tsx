@@ -58,7 +58,7 @@ export default function QuotePage() {
         <div className="mx-auto grid max-w-7xl gap-12 px-6 py-20 lg:grid-cols-12 lg:px-10">
           <aside className="lg:col-span-4">
             <p className="eyebrow text-ivory/60">Quote request</p>
-            <h1 className="mt-6 text-5xl font-light leading-[1.05] tracking-tight sm:text-6xl">
+            <h1 className="text-ivory mt-6 text-5xl font-light leading-[1.05] tracking-tight sm:text-6xl">
               Tell us what happened.
             </h1>
             <p className="mt-8 text-base leading-relaxed text-ivory/75">
@@ -93,7 +93,7 @@ export default function QuotePage() {
       <section className="border-t border-ivory/10 bg-charcoal-soft">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
           <p className="eyebrow text-ivory/60">What to include</p>
-          <h2 className="mt-6 max-w-3xl text-4xl font-light leading-tight tracking-tight sm:text-5xl">
+          <h2 className="text-ivory mt-6 max-w-3xl text-4xl font-light leading-tight tracking-tight sm:text-5xl">
             Five things that get you an accurate quote faster.
           </h2>
           <ol className="mt-12 grid gap-px overflow-hidden border border-ivory/10 bg-charcoal/10 md:grid-cols-2 lg:grid-cols-5">
@@ -120,10 +120,10 @@ export default function QuotePage() {
               },
             ].map((item, i) => (
               <li key={item.title} className="bg-charcoal p-8">
-                <p className="eyebrow text-ivory/40">
+                <p className="eyebrow text-ivory/60">
                   {String(i + 1).padStart(2, "0")}
                 </p>
-                <h3 className="mt-4 text-lg font-medium tracking-tight">
+                <h3 className="text-ivory mt-4 text-lg font-medium tracking-tight">
                   {item.title}
                 </h3>
                 <p className="mt-3 text-sm leading-relaxed text-ivory/70">
@@ -139,7 +139,7 @@ export default function QuotePage() {
       <section className="border-t border-ivory/10 bg-charcoal">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
           <p className="eyebrow text-ivory/60">After you submit</p>
-          <h2 className="mt-6 max-w-3xl text-4xl font-light leading-tight tracking-tight sm:text-5xl">
+          <h2 className="text-ivory mt-6 max-w-3xl text-4xl font-light leading-tight tracking-tight sm:text-5xl">
             What happens next.
           </h2>
           <ol className="mt-12 grid gap-px overflow-hidden border border-ivory/10 bg-charcoal/10 md:grid-cols-4">
@@ -166,8 +166,8 @@ export default function QuotePage() {
               },
             ].map((s) => (
               <li key={s.step} className="bg-charcoal p-8">
-                <p className="eyebrow text-ivory/40">Step {s.step}</p>
-                <h3 className="mt-4 text-lg font-medium tracking-tight">
+                <p className="eyebrow text-ivory/60">Step {s.step}</p>
+                <h3 className="text-ivory mt-4 text-lg font-medium tracking-tight">
                   {s.title}
                 </h3>
                 <p className="mt-3 text-sm leading-relaxed text-ivory/70">
@@ -183,7 +183,7 @@ export default function QuotePage() {
       <section className="border-t border-ivory/10 bg-charcoal text-ivory">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
           <p className="eyebrow text-warm-gray-soft">Response times</p>
-          <h2 className="mt-6 max-w-3xl text-4xl font-light leading-tight tracking-tight sm:text-5xl">
+          <h2 className="text-ivory mt-6 max-w-3xl text-4xl font-light leading-tight tracking-tight sm:text-5xl">
             When you&apos;ll hear back.
           </h2>
           <dl className="mt-12 grid gap-x-8 gap-y-10 md:grid-cols-3">

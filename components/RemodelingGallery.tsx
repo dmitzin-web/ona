@@ -113,7 +113,7 @@ export function RemodelingGallery() {
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div className="max-w-2xl">
             <p className="eyebrow text-ivory/60">Style references</p>
-            <h2 className="mt-6 text-4xl font-light leading-tight tracking-tight sm:text-5xl">
+            <h2 className="text-ivory mt-6 text-4xl font-light leading-tight tracking-tight sm:text-5xl">
               The kind of remodel we&apos;re set up to deliver.
             </h2>
             <p className="mt-5 max-w-xl text-base leading-relaxed text-ivory/70">

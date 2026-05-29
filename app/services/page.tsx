@@ -35,7 +35,7 @@ export default function ServicesPage() {
       <section className="bg-charcoal">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
           <p className="eyebrow text-ivory/60">Our services</p>
-          <h1 className="mt-6 max-w-3xl text-5xl font-light leading-[1.05] tracking-tight sm:text-6xl">
+          <h1 className="text-ivory mt-6 max-w-3xl text-5xl font-light leading-[1.05] tracking-tight sm:text-6xl">
             Restoration and remodeling, executed with precision.
           </h1>
           <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ivory/75">
@@ -76,7 +76,7 @@ export default function ServicesPage() {
               >
                 <div className="grid gap-8 px-8 py-12 lg:grid-cols-12 lg:px-12 lg:py-14">
                   <div className="lg:col-span-8">
-                    <h2 className="text-3xl font-light leading-tight tracking-tight sm:text-4xl">
+                    <h2 className="text-ivory text-3xl font-light leading-tight tracking-tight sm:text-4xl">
                       {remodeling.shortName}.{" "}
                       <span className="font-medium text-gold">
                         Built by a restoration crew.
@@ -102,7 +102,7 @@ export default function ServicesPage() {
             <div className="grid gap-10 lg:grid-cols-12">
               <div className="lg:col-span-5">
                 <p className="eyebrow text-ivory/60">Service area</p>
-                <h2 className="mt-4 text-3xl font-light leading-tight tracking-tight sm:text-4xl">
+                <h2 className="text-ivory mt-4 text-3xl font-light leading-tight tracking-tight sm:text-4xl">
                   Vancouver, WA and the entire Portland metro.
                 </h2>
                 <p className="mt-5 max-w-md text-base leading-relaxed text-ivory/75">

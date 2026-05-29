@@ -53,7 +53,7 @@ export default function AboutPage() {
       <section className="bg-charcoal">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
           <p className="eyebrow text-ivory/60">About</p>
-          <h1 className="mt-6 max-w-3xl text-5xl font-light leading-[1.05] tracking-tight sm:text-6xl">
+          <h1 className="text-ivory mt-6 max-w-3xl text-5xl font-light leading-[1.05] tracking-tight sm:text-6xl">
             We restore more than properties. We restore trust.
           </h1>
           <div className="mt-16 grid gap-12 lg:grid-cols-12">
@@ -106,7 +106,7 @@ export default function AboutPage() {
       <section id="founder" className="border-t border-ivory/10 bg-charcoal scroll-mt-24">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
           <p className="eyebrow text-ivory/60">Founder</p>
-          <h2 className="mt-6 max-w-3xl text-4xl font-light leading-tight tracking-tight sm:text-5xl">
+          <h2 className="text-ivory mt-6 max-w-3xl text-4xl font-light leading-tight tracking-tight sm:text-5xl">
             Founded and led by Dmitry Zinovyev.
           </h2>
           <div className="mt-12 grid gap-12 lg:grid-cols-12">
@@ -171,13 +171,13 @@ export default function AboutPage() {
       <section className="border-t border-ivory/10 bg-charcoal-soft">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
           <p className="eyebrow text-ivory/60">How we work</p>
-          <h2 className="mt-6 max-w-3xl text-4xl font-light leading-tight tracking-tight sm:text-5xl">
+          <h2 className="text-ivory mt-6 max-w-3xl text-4xl font-light leading-tight tracking-tight sm:text-5xl">
             Three things we do differently.
           </h2>
           <div className="mt-14 grid gap-px overflow-hidden border border-ivory/10 bg-charcoal/10 md:grid-cols-3">
             <div className="bg-charcoal p-10">
-              <p className="eyebrow text-ivory/40">01</p>
-              <h3 className="mt-4 text-xl font-medium tracking-tight">
+              <p className="eyebrow text-ivory/60">01</p>
+              <h3 className="text-ivory mt-4 text-xl font-medium tracking-tight">
                 Documentation by default
               </h3>
               <p className="mt-4 text-sm leading-relaxed text-ivory/70">
@@ -188,8 +188,8 @@ export default function AboutPage() {
               </p>
             </div>
             <div className="bg-charcoal p-10">
-              <p className="eyebrow text-ivory/40">02</p>
-              <h3 className="mt-4 text-xl font-medium tracking-tight">
+              <p className="eyebrow text-ivory/60">02</p>
+              <h3 className="text-ivory mt-4 text-xl font-medium tracking-tight">
                 One contractor, end to end
               </h3>
               <p className="mt-4 text-sm leading-relaxed text-ivory/70">
@@ -200,8 +200,8 @@ export default function AboutPage() {
               </p>
             </div>
             <div className="bg-charcoal p-10">
-              <p className="eyebrow text-ivory/40">03</p>
-              <h3 className="mt-4 text-xl font-medium tracking-tight">
+              <p className="eyebrow text-ivory/60">03</p>
+              <h3 className="text-ivory mt-4 text-xl font-medium tracking-tight">
                 Insurance-grade handover
               </h3>
               <p className="mt-4 text-sm leading-relaxed text-ivory/70">
@@ -223,7 +223,7 @@ export default function AboutPage() {
       <section className="border-t border-ivory/10 bg-charcoal text-ivory">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
           <p className="eyebrow text-warm-gray-soft">How we&apos;re set up</p>
-          <h2 className="mt-6 max-w-3xl text-4xl font-light leading-tight tracking-tight sm:text-5xl">
+          <h2 className="text-ivory mt-6 max-w-3xl text-4xl font-light leading-tight tracking-tight sm:text-5xl">
             Locally owned. IICRC-certified. Built for the Pacific Northwest.
           </h2>
           <dl className="mt-14 grid gap-x-8 gap-y-10 sm:grid-cols-3">

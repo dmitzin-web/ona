@@ -41,7 +41,7 @@ export function Hero({ image }: { image?: HeroImage } = {}) {
         {/* H1 names the three business lines (restoration, reconstruction,
             remodeling) — this is the full-service positioning. Reads as
             three discrete pillars rather than one product. */}
-        <h1 className="mt-10 max-w-4xl text-5xl font-light leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">
+        <h1 className="text-ivory mt-10 max-w-4xl text-5xl font-light leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">
           <span className="block">Restoration.</span>
           <span className="block">Reconstruction.</span>
           <span className="block font-medium">Remodeling.</span>

@@ -14,7 +14,7 @@ export function CTA({
       <div className="mx-auto grid max-w-7xl gap-12 px-6 py-24 lg:grid-cols-12 lg:px-10">
         <div className="lg:col-span-7">
           <p className="eyebrow text-warm-gray-soft">Get in touch</p>
-          <h2 className="mt-6 text-4xl font-light leading-tight tracking-tight sm:text-5xl">
+          <h2 className="text-ivory mt-6 text-4xl font-light leading-tight tracking-tight sm:text-5xl">
             {title}
           </h2>
           <p className="mt-6 max-w-xl text-base leading-relaxed text-ivory/70">
