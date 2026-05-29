@@ -23,7 +23,7 @@ export function MobileStickyBar() {
   return (
     <div
       aria-label="Mobile call to action"
-      className="fixed inset-x-0 bottom-0 z-30 border-t border-ivory/10/50 bg-charcoal/50 px-3 py-1.5 backdrop-blur-md lg:hidden"
+      className="fixed inset-x-0 bottom-0 z-30 border-t border-ivory/10 bg-charcoal/50 px-3 py-1.5 backdrop-blur-md lg:hidden"
       style={{ paddingBottom: "calc(0.375rem + env(safe-area-inset-bottom, 0px))" }}
     >
       <div className="grid grid-cols-2 gap-2">

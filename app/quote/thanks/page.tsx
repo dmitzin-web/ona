@@ -32,7 +32,7 @@ export default function QuoteThanksPage() {
           </PhoneLink>
           <Link
             href="/"
-            className="inline-flex items-center gap-3 border border-ivory/30 px-7 py-4 text-sm font-medium uppercase tracking-[0.22em] text-ivory transition hover:border-charcoal"
+            className="inline-flex items-center gap-3 border border-ivory/30 px-7 py-4 text-sm font-medium uppercase tracking-[0.22em] text-ivory transition hover:border-ivory"
           >
             Back home
           </Link>

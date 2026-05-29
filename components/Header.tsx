@@ -102,7 +102,7 @@ export function Header() {
             <summary
               aria-label="Toggle menu"
               aria-controls="mobile-nav"
-              className="inline-flex h-10 w-10 cursor-pointer list-none items-center justify-center rounded-full border border-ivory/10 text-ivory transition hover:border-charcoal [&::-webkit-details-marker]:hidden"
+              className="inline-flex h-10 w-10 cursor-pointer list-none items-center justify-center rounded-full border border-ivory/10 text-ivory transition hover:border-ivory/40 [&::-webkit-details-marker]:hidden"
             >
               <span className="sr-only">Menu</span>
               <span aria-hidden="true" className="relative block h-3 w-5">

@@ -59,7 +59,7 @@ function renderInline(text: string) {
       <Link
         key={i}
         href={part.href}
-        className="underline decoration-charcoal/30 underline-offset-4 transition hover:decoration-charcoal"
+        className="underline decoration-ivory/30 underline-offset-4 transition hover:decoration-ivory"
       >
         {part.text}
       </Link>

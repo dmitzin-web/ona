@@ -95,7 +95,7 @@ export default async function AreaPage(
               direct insurance billing, 24/7.
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
-              <PhoneLink className="inline-flex items-center gap-3 border border-ivory bg-charcoal px-7 py-4 text-sm font-medium uppercase tracking-[0.22em] text-ivory transition hover:bg-transparent hover:text-charcoal">
+              <PhoneLink className="inline-flex items-center gap-3 border border-ivory bg-charcoal px-7 py-4 text-sm font-medium uppercase tracking-[0.22em] text-ivory transition hover:bg-ivory hover:text-charcoal">
                 <PhoneIcon className="h-4 w-4 stroke-current" />
                 Call {site.phoneDisplay}
               </PhoneLink>

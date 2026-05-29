@@ -26,7 +26,7 @@ export function ValuesGrid({
         <ul
           className={`mt-16 grid grid-cols-1 gap-px overflow-hidden border md:grid-cols-3 lg:grid-cols-5 ${
             dark
-              ? "border-ivory-mute bg-charcoal-mute"
+              ? "border-ivory/15 bg-charcoal-mute"
               : "border-ivory/10 bg-charcoal/10"
           }`}
         >

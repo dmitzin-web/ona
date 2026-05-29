@@ -40,7 +40,7 @@ export default function BlogIndex() {
             no SEO-bait — just what we tell our own families.
           </p>
 
-          <ul className="mt-16 divide-y divide-charcoal/15 border-y border-ivory/15">
+          <ul className="mt-16 divide-y divide-ivory/15 border-y border-ivory/15">
             {sorted.map((p) => (
               <li key={p.slug}>
                 <Link

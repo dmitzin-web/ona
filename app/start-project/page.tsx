@@ -252,7 +252,7 @@ export default function StartProjectPage() {
                 canAdvance && setStep((s) => (s + 1) as Step)
               }
               disabled={!canAdvance}
-              className="inline-flex items-center justify-center rounded-full bg-charcoal px-6 py-3 text-[14px] font-medium text-ivory transition hover:bg-ivory-soft disabled:opacity-30"
+              className="inline-flex items-center justify-center rounded-full border border-ivory/30 bg-charcoal px-6 py-3 text-[14px] font-medium text-ivory transition hover:border-ivory hover:bg-ivory hover:text-charcoal disabled:cursor-default disabled:border-ivory/15 disabled:bg-charcoal disabled:text-ivory disabled:opacity-30"
             >
               Continue
             </button>
@@ -320,7 +320,7 @@ function RadioCard<T extends string>({
         "block w-full rounded-xl border p-5 text-left transition",
         isOn
           ? "border-ivory bg-charcoal-soft"
-          : "border-ivory/10 bg-charcoal-soft hover:border-charcoal/40",
+          : "border-ivory/10 bg-charcoal-soft hover:border-ivory/30",
       ].join(" ")}
     >
       <div className="flex items-center justify-between">

@@ -1331,7 +1331,7 @@ export default function HomePage() {
                   </div>
                 ) : (
                   <div className="flex aspect-[16/10] items-center justify-center bg-charcoal-soft">
-                    <span className="rounded-full border border-dashed border-warm-gray-deep px-4 py-2 text-[11px] uppercase tracking-[0.22em] text-ivory/75">
+                    <span className="rounded-full border border-dashed border-ivory/25 px-4 py-2 text-[11px] uppercase tracking-[0.22em] text-ivory/75">
                       Available
                     </span>
                   </div>

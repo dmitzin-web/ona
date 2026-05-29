@@ -22,8 +22,8 @@ export function ServiceCard({
       href={hrefOverride ?? `/services/${service.slug}`}
       className={`group relative block border p-8 transition ${
         dark
-          ? "border-ivory-mute bg-charcoal text-ivory hover:border-ivory/40"
-          : "border-ivory/10 bg-charcoal text-ivory hover:border-charcoal"
+          ? "border-ivory/15 bg-charcoal text-ivory hover:border-ivory/40"
+          : "border-ivory/10 bg-charcoal text-ivory hover:border-ivory/40"
       }`}
     >
       {Icon && (

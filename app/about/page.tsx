@@ -151,13 +151,13 @@ export default function AboutPage() {
                 </p>
                 <a
                   href={`mailto:${site.email}`}
-                  className="mt-5 block text-base font-medium tracking-tight text-ivory underline decoration-charcoal/30 underline-offset-4 transition hover:decoration-charcoal break-words"
+                  className="mt-5 block text-base font-medium tracking-tight text-ivory underline decoration-ivory/30 underline-offset-4 transition hover:decoration-ivory break-words"
                 >
                   {site.email}
                 </a>
                 <a
                   href={`tel:${site.phone}`}
-                  className="mt-3 block text-base font-medium tracking-tight text-ivory underline decoration-charcoal/30 underline-offset-4 transition hover:decoration-charcoal"
+                  className="mt-3 block text-base font-medium tracking-tight text-ivory underline decoration-ivory/30 underline-offset-4 transition hover:decoration-ivory"
                 >
                   {site.phoneDisplay}
                 </a>

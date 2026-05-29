@@ -132,7 +132,7 @@ export default async function ServiceCityPage({
             {responseLine}
           </p>
 
-          <div className="mt-12 grid grid-cols-2 gap-y-6 border-t border-ivory-mute pt-8 sm:grid-cols-4 sm:gap-x-8">
+          <div className="mt-12 grid grid-cols-2 gap-y-6 border-t border-ivory/15 pt-8 sm:grid-cols-4 sm:gap-x-8">
             <Stat label="Response target" value="60 min" />
             <Stat label="From HQ" value={profile.driveMinutesFromHQ === 0 ? "Local" : `~${profile.driveMinutesFromHQ} min`} />
             <Stat label="County" value={profile.county} />
@@ -190,7 +190,7 @@ export default async function ServiceCityPage({
                   <li key={loss} className="flex items-start gap-3">
                     <span
                       aria-hidden="true"
-                      className="mt-1.5 h-1.5 w-1.5 flex-none rounded-full bg-charcoal/60"
+                      className="mt-1.5 h-1.5 w-1.5 flex-none rounded-full bg-warm-gray-soft"
                     />
                     <span>{loss}</span>
                   </li>

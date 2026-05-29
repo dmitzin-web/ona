@@ -86,7 +86,7 @@ export default async function ServicePage(
                   {service.hero}
                 </p>
                 <div className="mt-10 flex flex-wrap gap-4">
-                  <PhoneLink className="inline-flex items-center gap-3 border border-ivory bg-charcoal px-7 py-4 text-sm font-medium uppercase tracking-[0.22em] text-ivory transition hover:bg-transparent hover:text-charcoal">
+                  <PhoneLink className="inline-flex items-center gap-3 border border-ivory bg-charcoal px-7 py-4 text-sm font-medium uppercase tracking-[0.22em] text-ivory transition hover:bg-ivory hover:text-charcoal">
                     <PhoneIcon className="h-4 w-4 stroke-current" />
                     Call {site.phoneDisplay}
                   </PhoneLink>
@@ -146,7 +146,7 @@ export default async function ServicePage(
           <h2 className="mt-6 max-w-3xl text-4xl font-light leading-tight tracking-tight sm:text-5xl">
             How the job runs.
           </h2>
-          <ol className="mt-16 grid gap-px overflow-hidden border border-ivory-mute bg-charcoal-mute sm:grid-cols-2 lg:grid-cols-3">
+          <ol className="mt-16 grid gap-px overflow-hidden border border-ivory/15 bg-charcoal-mute sm:grid-cols-2 lg:grid-cols-3">
             {service.process.map((p, i) => (
               <li
                 key={p.step}

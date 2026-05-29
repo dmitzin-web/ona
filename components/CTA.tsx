@@ -23,7 +23,7 @@ export function CTA({
         </div>
 
         <div className="flex flex-col gap-4 lg:col-span-5 lg:items-end lg:justify-end">
-          <PhoneLink className="inline-flex items-center justify-center gap-3 border border-ivory bg-charcoal px-8 py-4 text-sm font-medium uppercase tracking-[0.22em] text-ivory transition hover:bg-transparent hover:text-charcoal">
+          <PhoneLink className="inline-flex items-center justify-center gap-3 border border-ivory bg-charcoal px-8 py-4 text-sm font-medium uppercase tracking-[0.22em] text-ivory transition hover:bg-ivory hover:text-charcoal">
             <PhoneIcon className="h-4 w-4 stroke-current" />
             {site.phoneDisplay}
           </PhoneLink>

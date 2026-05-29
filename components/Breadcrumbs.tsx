@@ -30,9 +30,7 @@ export function Breadcrumbs({
               ) : (
                 <Link
                   href={item.href}
-                  className={`transition ${
-                    dark ? "hover:text-charcoal" : "hover:text-ivory"
-                  }`}
+                  className="transition hover:text-ivory"
                 >
                   {item.name}
                 </Link>
