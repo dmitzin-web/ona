@@ -131,29 +131,19 @@ export function Header() {
             Start a project
           </Link>
 
-          {/* Mobile burger — React-state-driven toggle.
-              `touch-action: manipulation` removes the iOS 300ms
-              tap delay. `pointer-events-none` on the decorative
-              icon spans guarantees the tap target is always the
-              <button> itself — without it, iOS sometimes records
-              the touch on an inner <span> and the bubbled click
-              behaves inconsistently across iOS versions. */}
+          {/* Mobile burger — React-state-driven toggle. */}
           <button
             type="button"
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-controls="mobile-nav"
             aria-expanded={menuOpen}
             onClick={toggleMenu}
-            style={{ touchAction: "manipulation" }}
             className="relative inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-ivory/10 text-ivory transition hover:border-ivory/40 lg:hidden"
           >
             <span className="sr-only">
               {menuOpen ? "Close menu" : "Menu"}
             </span>
-            <span
-              aria-hidden="true"
-              className="pointer-events-none relative block h-3 w-5"
-            >
+            <span aria-hidden="true" className="relative block h-3 w-5">
               <span
                 className={`absolute left-0 top-0 block h-px w-5 bg-current transition-transform duration-200 ${
                   menuOpen ? "translate-y-[6px] rotate-45" : ""
