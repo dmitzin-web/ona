@@ -2,10 +2,11 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { site } from "@/lib/site";
+import { ProjectScrubber, type Phase } from "@/components/project/ProjectScrubber";
 
 // ─────────────────────────────────────────────────────────────
 // Project File — public page template
-// ────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────
 // This is the actual page real customers will see for their
 // project. The current implementation ships ONE seeded sample
 // at /work/sample, clearly labeled as a sample so it isn't
@@ -19,13 +20,6 @@ import { site } from "@/lib/site";
 //
 // `sample` is noindex'd so we don't accidentally rank a
 // fictional address.
-
-type TimelineEntry = {
-  day: string;
-  date: string;
-  title: string;
-  body: string;
-};
 
 type Doc = {
   label: string;
@@ -44,7 +38,7 @@ type Project = {
   currentDay: number;
   adjuster?: string;
   approvedScope?: string;
-  timeline: TimelineEntry[];
+  phases: Phase[];
   photosCount: number;
   docs: Doc[];
 };
@@ -62,42 +56,151 @@ const projects: Record<string, Project> = {
     currentDay: 7,
     adjuster: "Liberty Mutual",
     approvedScope: "$14,820",
-    timeline: [
+    phases: [
       {
         day: "Day 1",
+        dayNumber: 1,
         date: "May 18",
         title: "Initial moisture mapping",
-        body: "Identified 6.2 m² of saturated subfloor under sink and dishwasher. Containment set, three dehumidifiers placed. Homeowner walkthrough completed; signed mitigation authorization.",
+        body: "Crew on site 9:42 AM. Mapped 6.2 m² of saturated subfloor under sink and dishwasher. Containment set, three dehumidifiers placed, six air movers running. Homeowner walkthrough completed; mitigation authorization signed.",
+        moisture: [
+          { location: "Subfloor (sink)", pct: 32 },
+          { location: "Subfloor (DW)", pct: 28 },
+          { location: 'Drywall (lower 18")', pct: 24 },
+          { location: "Cabinet base", pct: 21 },
+        ],
+        equipment: [
+          "3 × Dri-Eaz LGR 7000XLi dehumidifiers",
+          "6 × axial air movers",
+          "6 mil containment, kitchen perimeter",
+        ],
+        photosAdded: 18,
+        docsAdded: ["Mitigation authorization (signed)"],
+        changeNotes: [
+          "Affected area mapped — 6.2 m²",
+          "Containment up — rest of the home isolated",
+        ],
       },
       {
         day: "Day 2",
+        dayNumber: 2,
         date: "May 19",
         title: "Photo + scope upload to insurer",
-        body: "Uploaded 38 photos and moisture map to Liberty Mutual claim portal. Requested adjuster site visit for May 20.",
+        body: "Uploaded 38 photos and the Day 1–2 moisture map to the Liberty Mutual claim portal. Requested adjuster site visit for May 20. Overnight readings down 4–6 points across all four locations.",
+        moisture: [
+          { location: "Subfloor (sink)", pct: 28 },
+          { location: "Subfloor (DW)", pct: 23 },
+          { location: 'Drywall (lower 18")', pct: 19 },
+          { location: "Cabinet base", pct: 17 },
+        ],
+        equipment: [
+          "3 × Dri-Eaz LGR 7000XLi dehumidifiers",
+          "6 × axial air movers",
+          "6 mil containment, kitchen perimeter",
+        ],
+        photosAdded: 38,
+        docsAdded: [
+          "Moisture map (Day 1–2)",
+          "Scope of loss to Liberty Mutual",
+        ],
+        changeNotes: [
+          "Claim filed with insurer",
+          "Adjuster site visit requested for Day 3",
+        ],
       },
       {
         day: "Day 3",
+        dayNumber: 3,
         date: "May 20",
-        title: "Adjuster walkthrough",
-        body: 'Scope agreed: lower cabinets (4), subfloor 8\' x 6\', drywall to 18", baseboards. Insurer photos uploaded to file. No coverage disputes.',
+        title: "Adjuster walkthrough — scope agreed",
+        body: 'Liberty Mutual adjuster on site 1:10 PM. Scope agreed: lower cabinets (4), 8\' × 6\' subfloor, drywall to 18", baseboards. Total approved: $14,820. No coverage disputes. Cabinet drying past hope — replacement confirmed.',
+        moisture: [
+          { location: "Subfloor (sink)", pct: 24 },
+          { location: "Subfloor (DW)", pct: 19 },
+          { location: 'Drywall (lower 18")', pct: 16 },
+          { location: "Cabinet base", pct: 15 },
+        ],
+        equipment: [
+          "3 × Dri-Eaz LGR 7000XLi dehumidifiers",
+          "6 × axial air movers",
+          "6 mil containment, kitchen perimeter",
+        ],
+        photosAdded: 27,
+        docsAdded: ["Liberty Mutual adjuster scope (PDF)"],
+        changeNotes: [
+          "Scope approved — $14,820 billed direct",
+          "Cabinet replacement spec confirmed",
+        ],
       },
       {
         day: "Day 5",
+        dayNumber: 5,
         date: "May 22",
-        title: "Drying complete",
-        body: "All moisture readings below 16% threshold. Equipment removed. Demo of damaged finishes scheduled for Day 6.",
+        title: "Drying complete — equipment off",
+        body: "All four readings below 16% MC threshold. Equipment removed and logged out at 4:30 PM. Demo scheduled for Day 6. Power-bill reimbursement form filed with the carrier.",
+        moisture: [
+          { location: "Subfloor (sink)", pct: 15 },
+          { location: "Subfloor (DW)", pct: 14 },
+          { location: 'Drywall (lower 18")', pct: 12 },
+          { location: "Cabinet base", pct: 13 },
+        ],
+        equipment: ["All drying equipment removed"],
+        photosAdded: 14,
+        docsAdded: [
+          "Daily moisture log (Day 1–5, CSV)",
+          "Equipment removal log",
+        ],
+        changeNotes: [
+          "Structure dry — under 16% MC across all readings",
+          "Power-bill reimbursement form filed",
+        ],
       },
       {
         day: "Day 6",
+        dayNumber: 6,
         date: "May 23",
         title: "Demo complete",
-        body: "Cabinets, subfloor, drywall removed. Disposal logged. Cabinet order placed (8-day lead time on the maple shaker spec).",
+        body: 'Lower cabinets (4), 8\' × 6\' subfloor, drywall to 18" and baseboards removed and disposed. Disposal weight logged with the haul-away receipt. Cabinet order placed — 8-day lead time on the Cardinal maple shaker spec.',
+        equipment: ["Hand tools only", "Dust containment in place"],
+        photosAdded: 22,
+        docsAdded: [
+          "Demo disposal log",
+          "Cabinet spec — Cardinal Maple Shaker (PDF)",
+        ],
+        changeNotes: [
+          "Demo scope complete",
+          "Cabinets ordered — arrival ~Day 9",
+        ],
       },
       {
         day: "Day 7",
+        dayNumber: 7,
         date: "May 24",
         title: "Rebuild started",
-        body: 'New subfloor laid and squared. Drywall to 18" hung and taped, first coat of mud. On schedule for cabinet install Day 9 — kitchen usable again by Day 14.',
+        body: 'Subfloor laid and squared 8:00 AM (Marcus + James on site since 7:30 AM). Drywall to 18" hung and taped, first coat of mud on. On schedule for cabinet install Day 9 — kitchen back in full use by Day 14.',
+        equipment: [
+          "Marcus + James on site since 7:30 AM",
+          "Drywall + flooring tools",
+        ],
+        photosAdded: 23,
+        docsAdded: ["Subfloor material receipts (3)"],
+        changeNotes: [
+          "New subfloor in",
+          "Drywall up + first coat of mud",
+        ],
+      },
+      {
+        day: "Day 14",
+        dayNumber: 14,
+        date: "Est. May 31",
+        title: "Estimated complete",
+        body: "Cabinets installed, flooring laid, paint complete, final walkthrough with homeowner. Project closed in the Project File. Three-year workmanship warranty starts.",
+        estimated: true,
+        changeNotes: [
+          "Final walkthrough scheduled",
+          "Kitchen back in full use",
+          "3-year workmanship warranty starts",
+        ],
       },
     ],
     photosCount: 142,
@@ -186,83 +289,59 @@ export default async function ProjectPage({
           </div>
         </div>
 
-        {/* Two columns: timeline + sidebar */}
-        <div className="mt-14 grid gap-12 md:grid-cols-[1.6fr_1fr] md:gap-16">
-          <section>
-            <h2 className="eyebrow text-ivory/75">Daily updates</h2>
-            <div className="mt-6 space-y-8">
-              {p.timeline.map((entry) => (
-                <article
-                  key={entry.day}
-                  className="grid gap-3 border-t border-ivory/10 pt-6 sm:grid-cols-[110px_1fr] sm:gap-6"
+        {/* The wow moment — interactive timeline scrubber.
+            Full-width on the page so the scrub feels like the
+            page's centerpiece, not a sidebar widget. */}
+        <div className="mt-16">
+          <ProjectScrubber
+            phases={p.phases}
+            currentDayNumber={p.currentDay}
+          />
+        </div>
+
+        {/* Aggregate strip — totals across the whole project.
+            Kept compact and below the scrubber so the interactive
+            timeline gets the full canvas. */}
+        <div className="mt-20 grid gap-10 border-t border-ivory/10 pt-12 md:grid-cols-3 md:gap-12">
+          {p.approvedScope ? (
+            <div>
+              <div className="eyebrow text-ivory/50">Approved scope</div>
+              <div className="mt-3 text-[32px] font-semibold tabular-nums leading-none text-ivory">
+                {p.approvedScope}
+              </div>
+              <div className="mt-3 text-[13px] text-ivory/65">
+                Billed directly to insurer. Homeowner pays deductible
+                only.
+              </div>
+            </div>
+          ) : null}
+
+          <div>
+            <div className="eyebrow text-ivory/50">Photo record</div>
+            <div className="mt-3 text-[32px] font-semibold tabular-nums leading-none text-ivory">
+              {p.photosCount}
+            </div>
+            <div className="mt-3 text-[13px] text-ivory/65">
+              Uploaded daily. Every reading, every change of scope.
+            </div>
+          </div>
+
+          <div>
+            <div className="eyebrow text-ivory/50">Documents on file</div>
+            <ul className="mt-3 space-y-2 text-[13px]">
+              {p.docs.map((d) => (
+                <li
+                  key={d.label}
+                  className="flex items-start justify-between gap-3 border-t border-ivory/10 pt-2 text-ivory/75"
                 >
-                  <div>
-                    <div className="text-[13px] font-medium text-ivory">
-                      {entry.day}
-                    </div>
-                    <div className="mt-0.5 text-[12px] text-ivory/75">
-                      {entry.date}
-                    </div>
-                  </div>
-                  <div>
-                    <h3 className="text-[17px] font-medium leading-snug text-ivory">
-                      {entry.title}
-                    </h3>
-                    <p className="mt-2 text-[15px] leading-relaxed text-ivory/75">
-                      {entry.body}
-                    </p>
-                  </div>
-                </article>
+                  <span className="text-ivory">{d.label}</span>
+                  <span className="shrink-0 text-[10px] uppercase tracking-wider text-ivory/45">
+                    {d.type}
+                  </span>
+                </li>
               ))}
-            </div>
-          </section>
-
-          <aside className="space-y-10 md:border-l md:border-ivory/10 md:pl-12">
-            {p.approvedScope ? (
-              <div>
-                <div className="eyebrow text-ivory/75">Approved scope</div>
-                <div className="mt-2 text-[28px] font-semibold tabular-nums text-ivory">
-                  {p.approvedScope}
-                </div>
-                <div className="mt-2 text-[13px] text-ivory/75">
-                  Billed directly to insurer. Homeowner pays deductible
-                  only.
-                </div>
-              </div>
-            ) : null}
-
-            <div>
-              <div className="eyebrow text-ivory/75">Photos</div>
-              <div className="mt-3 grid grid-cols-4 gap-1.5">
-                {Array.from({ length: 8 }).map((_, i) => (
-                  <div
-                    key={i}
-                    className="aspect-square rounded-md border border-ivory/10 bg-charcoal-soft"
-                  />
-                ))}
-              </div>
-              <div className="mt-3 text-[13px] text-ivory/75">
-                {p.photosCount} photos · uploaded daily
-              </div>
-            </div>
-
-            <div>
-              <div className="eyebrow text-ivory/75">Documents</div>
-              <ul className="mt-3 space-y-2 text-[14px]">
-                {p.docs.map((d) => (
-                  <li
-                    key={d.label}
-                    className="flex items-center justify-between border-t border-ivory/10 pt-2 text-ivory/75"
-                  >
-                    <span className="text-ivory">{d.label}</span>
-                    <span className="text-[11px] uppercase tracking-wider">
-                      {d.type}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </aside>
+            </ul>
+          </div>
         </div>
 
         {/* Closing CTA */}
