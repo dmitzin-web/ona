@@ -24,6 +24,10 @@
 }
 
 html {
+  /* `bg-charcoal` is also on <body> via Tailwind, but painting it on
+     <html> too kills any FOUC flash of white in the area outside body
+     (overscroll, sticky header gap, browser default html background). */
+  background: var(--color-charcoal);
   scroll-behavior: smooth;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -32,8 +36,8 @@ html {
 
 body {
   font-family: var(--font-satoshi), ui-sans-serif, system-ui, sans-serif;
-  color: var(--color-charcoal);
-  background: var(--color-ivory);
+  color: var(--color-ivory);
+  background: var(--color-charcoal);
   font-feature-settings: "ss01", "ss02";
 }
 
@@ -42,12 +46,12 @@ a {
 }
 
 ::selection {
-  background: var(--color-charcoal);
-  color: var(--color-ivory);
+  background: var(--color-ivory);
+  color: var(--color-charcoal);
 }
 
 :focus-visible {
-  outline: 1px solid var(--color-charcoal);
+  outline: 1px solid var(--color-ivory);
   outline-offset: 3px;
 }
 
