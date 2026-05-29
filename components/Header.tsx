@@ -2,20 +2,25 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useCallback, useEffect, useState } from "react";
 import { site } from "@/lib/site";
 
 // ─────────────────────────────────────────────────────────────
 // Header — Project File concept
 // ────────────────────────────────────────────────────────────
-// Minimal sticky bar on a light surface. Five nav items, no
-// dropdowns. Two CTAs on the right:
-//   - Phone (accent green, primary)
-//   - Start a project (ink outline, secondary)
-// Ask ONA is kept as a quiet nav-stream button — it still
-// dispatches the same window event so the existing AskOna
-// drawer continues to work, but it doesn't shout.
+// Sticky charcoal bar with five nav items, two CTAs on the
+// right (gold phone pill + outlined "Start a project"), plus
+// the quiet Ask ONA button that dispatches the existing
+// askona:open event.
 //
-// Mobile: native <details>/<summary> drawer, no JS state.
+// Mobile menu is a React-state-driven drawer. The earlier
+// implementation used a native <details> + <summary> for
+// JS-free toggling, but that approach was fragile under
+// Tailwind (any class with `display: flex` or `display: grid`
+// on a child of <details> overrides the UA stylesheet's
+// hidden state and breaks the toggle on iOS Safari). The
+// state-driven version gives us reliable open/close plus
+// body-scroll lock and ESC-to-close as nice-to-haves.
 
 type NavItem =
   | { href: string; label: string; action?: never }
@@ -36,6 +41,34 @@ function openAskOna() {
 
 export function Header() {
   const pathname = usePathname() ?? "/";
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const closeMenu = useCallback(() => setMenuOpen(false), []);
+  const toggleMenu = useCallback(() => setMenuOpen((o) => !o), []);
+
+  // Close the mobile drawer on route change. Pathname is a
+  // dep on this effect, so navigating to any new URL fires it.
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [pathname]);
+
+  // Body-scroll lock + ESC-to-close while the drawer is open.
+  // We only touch document/body once on mount-with-open and clean
+  // up on close, so multiple drawers (Ask ONA, mobile menu)
+  // don't fight each other.
+  useEffect(() => {
+    if (!menuOpen) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMenuOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = prev;
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [menuOpen]);
 
   return (
     <header className="sticky top-0 z-40 border-b border-ivory/10 bg-charcoal/90 backdrop-blur">
@@ -43,6 +76,7 @@ export function Header() {
         <Link
           href="/"
           className="text-[15px] font-semibold tracking-tight text-ivory"
+          onClick={closeMenu}
         >
           ONA Restoration
         </Link>
@@ -97,120 +131,133 @@ export function Header() {
             Start a project
           </Link>
 
-          {/* Mobile burger */}
-          <details className="group relative lg:hidden">
-            <summary
-              aria-label="Toggle menu"
-              aria-controls="mobile-nav"
-              className="inline-flex h-10 w-10 cursor-pointer list-none items-center justify-center rounded-full border border-ivory/10 text-ivory transition hover:border-ivory/40 [&::-webkit-details-marker]:hidden"
-            >
-              <span className="sr-only">Menu</span>
-              <span aria-hidden="true" className="relative block h-3 w-5">
-                <span className="absolute left-0 top-0 block h-px w-5 bg-current transition-transform duration-200 group-open:translate-y-[6px] group-open:rotate-45" />
-                <span className="absolute left-0 top-[6px] block h-px w-5 bg-current transition-opacity duration-200 group-open:opacity-0" />
-                <span className="absolute left-0 top-[12px] block h-px w-5 bg-current transition-transform duration-200 group-open:-translate-y-[6px] group-open:-rotate-45" />
-              </span>
-            </summary>
-
-            {/* Mobile drawer — overlays everything below the sticky header
-                down to the bottom of the viewport. Solid charcoal, not
-                bg-charcoal/95, so neither the page content nor the
-                MobileStickyBar bleed through. The peer group-open hides
-                the sticky bar via the parent <details>[open] selector
-                so the user sees only the drawer's own CTAs. */}
-            {/* Mobile drawer.
-                IMPORTANT: <nav> can only carry positional classes here.
-                <details> hides non-<summary> children via a UA rule that
-                sets display:none; if we put `flex` or `grid` directly
-                on this element, Tailwind's higher-specificity class
-                overrides the UA rule and the drawer stays permanently
-                visible (or fails to toggle correctly across browsers).
-                Layout / flex column lives on the inner wrapper. */}
-            <nav
-              id="mobile-nav"
-              aria-label="Mobile primary"
-              className="fixed inset-x-0 top-[65px] bottom-0 z-50 overflow-y-auto border-t border-ivory/10 bg-charcoal"
-            >
-              <div className="mx-auto flex h-full w-full max-w-7xl flex-col px-6">
-                <ul className="pt-2">
-                  {nav.map((item, i) => {
-                    if ("action" in item) {
-                      return (
-                        <li
-                          key="ask-ona-mobile"
-                          className="border-b border-ivory/10 last:border-b-0"
-                        >
-                          <button
-                            type="button"
-                            onClick={openAskOna}
-                            className="flex w-full items-center justify-between py-5 text-[16px] font-medium tracking-tight text-gold transition"
-                          >
-                            <span>{item.label}</span>
-                            <span
-                              aria-hidden="true"
-                              className="text-ivory/75"
-                            >
-                              →
-                            </span>
-                          </button>
-                        </li>
-                      );
-                    }
-                    const active =
-                      pathname === item.href ||
-                      pathname.startsWith(`${item.href}/`);
-                    return (
-                      <li
-                        key={item.href ?? `nav-mob-${i}`}
-                        className="border-b border-ivory/10 last:border-b-0"
-                      >
-                        <Link
-                          href={item.href}
-                          aria-current={active ? "page" : undefined}
-                          className={`flex items-center justify-between py-5 text-[16px] font-medium tracking-tight transition ${
-                            active ? "text-ivory" : "text-ivory/80"
-                          }`}
-                        >
-                          <span>{item.label}</span>
-                          <span
-                            aria-hidden="true"
-                            className="text-ivory/75"
-                          >
-                            →
-                          </span>
-                        </Link>
-                      </li>
-                    );
-                  })}
-                </ul>
-                {/* CTAs anchored to bottom of drawer via mt-auto on
-                    the parent flex column. Safe-area-aware padding so
-                    the buttons clear the iOS home indicator. */}
-                <div
-                  className="mt-auto grid gap-3 pt-6"
-                  style={{
-                    paddingBottom:
-                      "calc(1.5rem + env(safe-area-inset-bottom, 0px))",
-                  }}
-                >
-                  <a
-                    href={`tel:${site.phone}`}
-                    className="inline-flex w-full items-center justify-center rounded-full bg-gold px-4 py-4 text-[14px] font-medium text-white transition active:bg-gold-deep"
-                  >
-                    Call {site.phoneDisplay}
-                  </a>
-                  <Link
-                    href="/start-project"
-                    className="inline-flex w-full items-center justify-center rounded-full border border-ivory px-4 py-4 text-[14px] font-medium text-ivory transition active:bg-ivory active:text-charcoal"
-                  >
-                    Start a project
-                  </Link>
-                </div>
-              </div>
-            </nav>
-          </details>
+          {/* Mobile burger — React-state-driven toggle. */}
+          <button
+            type="button"
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-controls="mobile-nav"
+            aria-expanded={menuOpen}
+            onClick={toggleMenu}
+            className="relative inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-ivory/10 text-ivory transition hover:border-ivory/40 lg:hidden"
+          >
+            <span className="sr-only">
+              {menuOpen ? "Close menu" : "Menu"}
+            </span>
+            <span aria-hidden="true" className="relative block h-3 w-5">
+              <span
+                className={`absolute left-0 top-0 block h-px w-5 bg-current transition-transform duration-200 ${
+                  menuOpen ? "translate-y-[6px] rotate-45" : ""
+                }`}
+              />
+              <span
+                className={`absolute left-0 top-[6px] block h-px w-5 bg-current transition-opacity duration-200 ${
+                  menuOpen ? "opacity-0" : ""
+                }`}
+              />
+              <span
+                className={`absolute left-0 top-[12px] block h-px w-5 bg-current transition-transform duration-200 ${
+                  menuOpen ? "-translate-y-[6px] -rotate-45" : ""
+                }`}
+              />
+            </span>
+          </button>
         </div>
       </div>
+
+      {/* Mobile drawer — rendered when menuOpen is true. Solid
+          bg-charcoal so neither the page content nor the
+          MobileStickyBar bleeds through. z-50 keeps it above
+          both the sticky header (z-40) and the sticky bar
+          (z-30). */}
+      {menuOpen ? (
+        <div
+          id="mobile-nav"
+          className="fixed inset-x-0 top-[65px] bottom-0 z-50 overflow-y-auto bg-charcoal lg:hidden"
+        >
+          <div className="mx-auto flex h-full w-full max-w-7xl flex-col px-6">
+            <ul className="pt-2">
+              {nav.map((item, i) => {
+                if ("action" in item) {
+                  return (
+                    <li
+                      key="ask-ona-mobile"
+                      className="border-b border-ivory/10 last:border-b-0"
+                    >
+                      <button
+                        type="button"
+                        onClick={() => {
+                          closeMenu();
+                          openAskOna();
+                        }}
+                        className="flex w-full items-center justify-between py-5 text-[16px] font-medium tracking-tight text-gold transition"
+                      >
+                        <span>{item.label}</span>
+                        <span
+                          aria-hidden="true"
+                          className="text-ivory/75"
+                        >
+                          →
+                        </span>
+                      </button>
+                    </li>
+                  );
+                }
+                const active =
+                  pathname === item.href ||
+                  pathname.startsWith(`${item.href}/`);
+                return (
+                  <li
+                    key={item.href ?? `nav-mob-${i}`}
+                    className="border-b border-ivory/10 last:border-b-0"
+                  >
+                    <Link
+                      href={item.href}
+                      aria-current={active ? "page" : undefined}
+                      onClick={closeMenu}
+                      className={`flex items-center justify-between py-5 text-[16px] font-medium tracking-tight transition ${
+                        active ? "text-ivory" : "text-ivory/80"
+                      }`}
+                    >
+                      <span>{item.label}</span>
+                      <span
+                        aria-hidden="true"
+                        className="text-ivory/75"
+                      >
+                        →
+                      </span>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+            {/* CTAs anchored to the bottom of the drawer via
+                mt-auto. Safe-area-aware padding so the bottom
+                button clears the iOS home indicator. */}
+            <div
+              className="mt-auto grid gap-3 pt-6"
+              style={{
+                paddingBottom:
+                  "calc(1.5rem + env(safe-area-inset-bottom, 0px))",
+              }}
+            >
+              <a
+                href={`tel:${site.phone}`}
+                onClick={closeMenu}
+                className="inline-flex w-full items-center justify-center rounded-full bg-gold px-4 py-4 text-[14px] font-medium text-white transition active:bg-gold-deep"
+              >
+                Call {site.phoneDisplay}
+              </a>
+              <Link
+                href="/start-project"
+                onClick={closeMenu}
+                className="inline-flex w-full items-center justify-center rounded-full border border-ivory px-4 py-4 text-[14px] font-medium text-ivory transition active:bg-ivory active:text-charcoal"
+              >
+                Start a project
+              </Link>
+            </div>
+          </div>
+        </div>
+      ) : null}
     </header>
   );
 }
