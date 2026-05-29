@@ -37,15 +37,8 @@ function openAskOna() {
 export function Header() {
   const pathname = usePathname() ?? "/";
 
-  // NOTE: solid bg-charcoal on <header>, not bg-charcoal/90 +
-  // backdrop-blur. `backdrop-filter` creates a containing block
-  // for fixed-positioned descendants — that trapped the mobile
-  // drawer's `bottom-0` inside the header rather than anchoring
-  // to the viewport, collapsing the drawer to ~0px height. Solid
-  // bg keeps `position: fixed` truly viewport-relative for any
-  // child element.
   return (
-    <header className="sticky top-0 z-40 border-b border-ivory/10 bg-charcoal">
+    <header className="sticky top-0 z-40 border-b border-ivory/10 bg-charcoal/90 backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-4 lg:px-10">
         <Link
           href="/"
@@ -119,35 +112,10 @@ export function Header() {
               </span>
             </summary>
 
-            {/* Mobile drawer — CSS-only adjustments to the
-                original <details>-toggled drawer:
-                  - h-[calc(100vh-65px)] (was max-h-…) so the
-                    drawer fills the full viewport below the
-                    sticky header instead of sizing to content.
-                    NOTE: we can't use `bottom-0` here because
-                    the sticky header has `backdrop-blur`, which
-                    creates a containing block for fixed-
-                    positioned descendants. That traps `bottom-0`
-                    against the header, not the viewport, and
-                    collapses the drawer to 0px. `vh` is
-                    viewport-based regardless of containing
-                    block, so it sidesteps the trap.
-                  - z-50 (was z-40) so the drawer sits above the
-                    MobileStickyBar at z-30.
-                  - bg-charcoal (was bg-charcoal/95 backdrop-blur)
-                    so neither the page content nor the sticky
-                    bar bleed through.
-                IMPORTANT: do NOT add `flex` / `grid` / any
-                display-* class directly on <nav>. <details>
-                hides non-summary children via a UA rule whose
-                specificity is fragile under any class-based
-                display override — that broke the toggle in
-                earlier iterations. Layout / flex column belongs
-                on an inner wrapper, not on the <nav> itself. */}
             <nav
               id="mobile-nav"
               aria-label="Mobile primary"
-              className="fixed inset-x-0 top-[65px] bottom-0 z-50 overflow-y-auto border-t border-ivory/10 bg-charcoal"
+              className="fixed inset-x-0 top-[65px] z-40 max-h-[calc(100vh-65px)] overflow-y-auto border-t border-ivory/10 bg-charcoal/95 backdrop-blur"
             >
               <ul className="mx-auto max-w-7xl px-6 py-2">
                 {nav.map((item, i) => {
