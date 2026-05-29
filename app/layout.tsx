@@ -67,10 +67,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en-US" className={satoshi.variable}>
-      <body className="min-h-screen bg-ivory pb-16 font-sans text-charcoal antialiased lg:pb-0">
+      <body className="min-h-screen bg-charcoal pb-16 font-sans text-ivory antialiased lg:pb-0">
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-50 focus:bg-charcoal focus:px-3 focus:py-2 focus:text-ivory"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-50 focus:bg-ivory focus:px-3 focus:py-2 focus:text-charcoal"
         >
           Skip to content
         </a>

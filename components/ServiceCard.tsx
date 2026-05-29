@@ -22,34 +22,34 @@ export function ServiceCard({
       href={hrefOverride ?? `/services/${service.slug}`}
       className={`group relative block border p-8 transition ${
         dark
-          ? "border-charcoal-mute bg-charcoal text-ivory hover:border-ivory/40"
-          : "border-line-light bg-ivory text-charcoal hover:border-charcoal"
+          ? "border-ivory-mute bg-charcoal text-ivory hover:border-ivory/40"
+          : "border-ivory/10 bg-charcoal text-ivory hover:border-charcoal"
       }`}
     >
       {Icon && (
         <Icon
           className={`h-10 w-10 stroke-current ${
-            dark ? "text-warm-gray-soft" : "text-charcoal"
+            dark ? "text-warm-gray-soft" : "text-ivory"
           }`}
         />
       )}
       <h3
         className={`mt-8 text-xl font-medium tracking-tight ${
-          dark ? "text-ivory" : "text-charcoal"
+          dark ? "text-ivory" : "text-ivory"
         }`}
       >
         {service.shortName}
       </h3>
       <p
         className={`mt-4 text-sm leading-relaxed ${
-          dark ? "text-ivory/70" : "text-charcoal/70"
+          dark ? "text-ivory/70" : "text-ivory/70"
         }`}
       >
         {service.hero}
       </p>
       <span
         className={`mt-8 inline-flex items-center gap-2 eyebrow ${
-          dark ? "text-ivory/80" : "text-charcoal/80"
+          dark ? "text-ivory/80" : "text-ivory/80"
         }`}
       >
         Learn more

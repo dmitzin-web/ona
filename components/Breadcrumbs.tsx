@@ -12,7 +12,7 @@ export function Breadcrumbs({
     <nav
       aria-label="Breadcrumb"
       className={`mx-auto max-w-7xl px-6 pt-8 lg:px-10 ${
-        dark ? "text-ivory/60" : "text-charcoal/60"
+        dark ? "text-ivory/60" : "text-ivory/60"
       }`}
     >
       <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 eyebrow">
@@ -23,7 +23,7 @@ export function Breadcrumbs({
               {isLast ? (
                 <span
                   aria-current="page"
-                  className={dark ? "text-ivory" : "text-charcoal"}
+                  className={dark ? "text-ivory" : "text-ivory"}
                 >
                   {item.name}
                 </span>
@@ -31,7 +31,7 @@ export function Breadcrumbs({
                 <Link
                   href={item.href}
                   className={`transition ${
-                    dark ? "hover:text-ivory" : "hover:text-charcoal"
+                    dark ? "hover:text-charcoal" : "hover:text-ivory"
                   }`}
                 >
                   {item.name}

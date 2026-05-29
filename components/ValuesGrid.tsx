@@ -10,12 +10,12 @@ export function ValuesGrid({
   return (
     <section
       className={
-        dark ? "bg-charcoal text-ivory" : "bg-ivory text-charcoal"
+        dark ? "bg-charcoal text-ivory" : "bg-charcoal text-ivory"
       }
     >
       <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
         <p
-          className={`eyebrow ${dark ? "text-warm-gray-soft" : "text-charcoal/60"}`}
+          className={`eyebrow ${dark ? "text-warm-gray-soft" : "text-ivory/60"}`}
         >
           Brand values
         </p>
@@ -26,8 +26,8 @@ export function ValuesGrid({
         <ul
           className={`mt-16 grid grid-cols-1 gap-px overflow-hidden border md:grid-cols-3 lg:grid-cols-5 ${
             dark
-              ? "border-charcoal-mute bg-charcoal-mute"
-              : "border-line-light bg-line-light"
+              ? "border-ivory-mute bg-charcoal-mute"
+              : "border-ivory/10 bg-charcoal/10"
           }`}
         >
           {site.values.map((v) => {
@@ -36,13 +36,13 @@ export function ValuesGrid({
               <li
                 key={v.key}
                 className={`flex flex-col gap-6 p-8 ${
-                  dark ? "bg-charcoal" : "bg-ivory"
+                  dark ? "bg-charcoal" : "bg-charcoal"
                 }`}
               >
                 {Icon && (
                   <Icon
                     className={`h-9 w-9 stroke-current ${
-                      dark ? "text-warm-gray-soft" : "text-charcoal"
+                      dark ? "text-warm-gray-soft" : "text-ivory"
                     }`}
                   />
                 )}
@@ -52,7 +52,7 @@ export function ValuesGrid({
                   </h3>
                   <p
                     className={`mt-3 text-sm leading-relaxed ${
-                      dark ? "text-ivory/65" : "text-charcoal/65"
+                      dark ? "text-ivory/65" : "text-ivory/65"
                     }`}
                   >
                     {v.body}

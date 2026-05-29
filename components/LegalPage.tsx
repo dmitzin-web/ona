@@ -30,20 +30,20 @@ export function LegalPage({
   return (
     <>
       <Breadcrumbs items={breadcrumb} />
-      <section className="bg-ivory">
+      <section className="bg-charcoal">
         <div className="mx-auto max-w-4xl px-6 py-20 lg:px-10">
-          <p className="eyebrow text-charcoal/60">{eyebrow}</p>
+          <p className="eyebrow text-ivory/60">{eyebrow}</p>
           <h1 className="mt-6 text-5xl font-light leading-[1.05] tracking-tight sm:text-6xl">
             {title}
           </h1>
-          <p className="mt-6 text-sm text-charcoal/60">
+          <p className="mt-6 text-sm text-ivory/60">
             Last updated: {updated}
           </p>
 
           {banner && (
-            <div className="mt-8 border-l-2 border-gold/60 bg-ivory-soft/60 px-5 py-4">
-              <p className="eyebrow text-gold-deep">Draft</p>
-              <p className="mt-2 text-sm leading-relaxed text-charcoal/80">
+            <div className="mt-8 border-l-2 border-gold/60 bg-charcoal-soft/60 px-5 py-4">
+              <p className="eyebrow text-gold">Draft</p>
+              <p className="mt-2 text-sm leading-relaxed text-ivory/80">
                 {banner}
               </p>
             </div>
@@ -55,7 +55,7 @@ export function LegalPage({
                 <h2 className="text-2xl font-light tracking-tight">
                   {s.heading}
                 </h2>
-                <div className="mt-4 space-y-4 text-base leading-relaxed text-charcoal/80">
+                <div className="mt-4 space-y-4 text-base leading-relaxed text-ivory/80">
                   {s.body.map((p, i) => (
                     <p key={i}>{p}</p>
                   ))}
@@ -66,9 +66,9 @@ export function LegalPage({
 
           {secondarySections && secondarySections.length > 0 && (
             <>
-              <div className="mt-20 border-t border-charcoal/15 pt-12">
+              <div className="mt-20 border-t border-ivory/15 pt-12">
                 {secondaryHeading && (
-                  <p className="eyebrow text-gold-deep">{secondaryHeading}</p>
+                  <p className="eyebrow text-gold">{secondaryHeading}</p>
                 )}
               </div>
               <div className="mt-8 space-y-12">
@@ -77,7 +77,7 @@ export function LegalPage({
                     <h2 className="text-2xl font-light tracking-tight">
                       {s.heading}
                     </h2>
-                    <div className="mt-4 space-y-4 text-base leading-relaxed text-charcoal/80">
+                    <div className="mt-4 space-y-4 text-base leading-relaxed text-ivory/80">
                       {s.body.map((p, i) => (
                         <p key={i}>{p}</p>
                       ))}

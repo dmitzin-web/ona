@@ -90,7 +90,7 @@ function renderSection(s: PostSection, i: number) {
       return (
         <h2
           key={i}
-          className="mt-14 text-3xl font-light leading-tight tracking-tight text-charcoal sm:text-4xl"
+          className="mt-14 text-3xl font-light leading-tight tracking-tight text-ivory sm:text-4xl"
         >
           {s.text}
         </h2>
@@ -99,7 +99,7 @@ function renderSection(s: PostSection, i: number) {
       return (
         <h3
           key={i}
-          className="mt-10 text-xl font-medium tracking-tight text-charcoal"
+          className="mt-10 text-xl font-medium tracking-tight text-ivory"
         >
           {s.text}
         </h3>
@@ -108,7 +108,7 @@ function renderSection(s: PostSection, i: number) {
       return (
         <p
           key={i}
-          className="mt-5 text-lg leading-relaxed text-charcoal/85"
+          className="mt-5 text-lg leading-relaxed text-ivory/85"
         >
           {renderInline(s.text)}
         </p>
@@ -117,10 +117,10 @@ function renderSection(s: PostSection, i: number) {
       return (
         <ul
           key={i}
-          className="mt-5 space-y-2 border-l border-charcoal/15 pl-5"
+          className="mt-5 space-y-2 border-l border-ivory/15 pl-5"
         >
           {s.items.map((item, j) => (
-            <li key={j} className="text-base leading-relaxed text-charcoal/80">
+            <li key={j} className="text-base leading-relaxed text-ivory/80">
               {renderInline(item)}
             </li>
           ))}
@@ -130,7 +130,7 @@ function renderSection(s: PostSection, i: number) {
       return (
         <ol
           key={i}
-          className="mt-5 list-decimal space-y-2 pl-6 text-base leading-relaxed text-charcoal/80 marker:text-charcoal/40"
+          className="mt-5 list-decimal space-y-2 pl-6 text-base leading-relaxed text-ivory/80 marker:text-ivory/40"
         >
           {s.items.map((item, j) => (
             <li key={j} className="pl-1">
@@ -143,7 +143,7 @@ function renderSection(s: PostSection, i: number) {
       return (
         <aside
           key={i}
-          className="mt-8 border-l-2 border-charcoal bg-ivory-soft p-6 text-base leading-relaxed text-charcoal"
+          className="mt-8 border-l-2 border-ivory bg-charcoal-soft p-6 text-base leading-relaxed text-ivory"
         >
           {renderInline(s.text)}
         </aside>
@@ -180,18 +180,18 @@ export default async function BlogPostPage(
         ]}
       />
 
-      <article className="bg-ivory">
+      <article className="bg-charcoal">
         <header className="mx-auto max-w-3xl px-6 pb-16 pt-12 lg:px-10">
-          <p className="eyebrow text-charcoal/60">
+          <p className="eyebrow text-ivory/60">
             {post.category} · {post.readingMinutes} min read
           </p>
           <h1 className="mt-6 text-4xl font-light leading-[1.1] tracking-tight sm:text-5xl">
             {post.title}
           </h1>
-          <p className="mt-8 text-lg leading-relaxed text-charcoal/75">
+          <p className="mt-8 text-lg leading-relaxed text-ivory/75">
             {post.excerpt}
           </p>
-          <p className="mt-10 text-sm text-charcoal/60">
+          <p className="mt-10 text-sm text-ivory/60">
             {new Date(post.publishedAt).toLocaleDateString("en-US", {
               month: "long",
               day: "numeric",
@@ -202,25 +202,25 @@ export default async function BlogPostPage(
         </header>
 
         <div className="mx-auto max-w-3xl px-6 pb-20 lg:px-10">
-          <div className="border-t border-charcoal/15 pt-2">
+          <div className="border-t border-ivory/15 pt-2">
             {post.sections.map(renderSection)}
           </div>
         </div>
       </article>
 
       {service && (
-        <section className="border-t border-charcoal/10 bg-ivory">
+        <section className="border-t border-ivory/10 bg-charcoal">
           <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10">
-            <p className="eyebrow text-charcoal/60">Get help near you</p>
+            <p className="eyebrow text-ivory/60">Get help near you</p>
             <h2 className="mt-4 max-w-3xl text-3xl font-light leading-tight tracking-tight sm:text-4xl">
               {service.shortName} in your part of the Portland metro.
             </h2>
-            <ul className="mt-10 grid gap-px overflow-hidden border border-line-light bg-line-light sm:grid-cols-2 lg:grid-cols-4">
+            <ul className="mt-10 grid gap-px overflow-hidden border border-ivory/10 bg-charcoal/10 sm:grid-cols-2 lg:grid-cols-4">
               {cityLinks.map((a) => (
                 <li key={a.slug}>
                   <Link
                     href={`/services/${service.slug}/${a.slug}`}
-                    className="flex h-full flex-col justify-between gap-6 bg-ivory p-6 transition hover:bg-charcoal hover:text-ivory"
+                    className="flex h-full flex-col justify-between gap-6 bg-charcoal p-6 transition hover:bg-ivory hover:text-charcoal"
                   >
                     <div>
                       <p className="eyebrow opacity-60">
@@ -239,7 +239,7 @@ export default async function BlogPostPage(
               <li>
                 <Link
                   href={`/services/${service.slug}`}
-                  className="flex h-full flex-col justify-between gap-6 bg-charcoal p-6 text-ivory transition hover:bg-charcoal-soft"
+                  className="flex h-full flex-col justify-between gap-6 bg-charcoal p-6 text-ivory transition hover:bg-ivory-soft"
                 >
                   <div>
                     <p className="eyebrow text-ivory/60">All locations</p>
@@ -260,15 +260,15 @@ export default async function BlogPostPage(
       {post.faqs && <FAQ items={post.faqs} title="Questions we hear" />}
 
       {others.length > 0 && (
-        <section className="bg-ivory-soft">
+        <section className="bg-charcoal-soft">
           <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10">
-            <p className="eyebrow text-charcoal/60">More from the field</p>
-            <ul className="mt-8 grid gap-px overflow-hidden border border-line-light bg-line-light sm:grid-cols-3">
+            <p className="eyebrow text-ivory/60">More from the field</p>
+            <ul className="mt-8 grid gap-px overflow-hidden border border-ivory/10 bg-charcoal/10 sm:grid-cols-3">
               {others.map((o) => (
                 <li key={o.slug}>
                   <Link
                     href={`/blog/${o.slug}`}
-                    className="block bg-ivory p-6 transition hover:bg-charcoal hover:text-ivory"
+                    className="block bg-charcoal p-6 transition hover:bg-ivory hover:text-charcoal"
                   >
                     <p className="eyebrow opacity-60">{o.category}</p>
                     <p className="mt-3 text-base font-medium tracking-tight">

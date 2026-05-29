@@ -102,7 +102,7 @@ const references: Reference[] = [
 
 export function RemodelingGallery() {
   return (
-    <section className="border-t border-line-light bg-ivory">
+    <section className="border-t border-ivory/10 bg-charcoal">
       <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
         {/* Section header with explicit disclaimer. This framing is the
             entire point — it signals to visitors and to Google's crawlers
@@ -112,11 +112,11 @@ export function RemodelingGallery() {
             flip its individual label badge. */}
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div className="max-w-2xl">
-            <p className="eyebrow text-charcoal/60">Style references</p>
+            <p className="eyebrow text-ivory/60">Style references</p>
             <h2 className="mt-6 text-4xl font-light leading-tight tracking-tight sm:text-5xl">
               The kind of remodel we&apos;re set up to deliver.
             </h2>
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-charcoal/70">
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-ivory/70">
               Reference photos showing the style and finish quality our
               remodeling division targets. Our project gallery launches with
               our first completed remodel — these references will be replaced
@@ -125,16 +125,16 @@ export function RemodelingGallery() {
           </div>
           <Link
             href="/quote"
-            className="inline-flex items-center gap-2 eyebrow text-charcoal transition hover:gap-3"
+            className="inline-flex items-center gap-2 eyebrow text-ivory transition hover:gap-3"
           >
             Start your project
             <ArrowIcon className="h-3 w-3 stroke-current" />
           </Link>
         </div>
 
-        <ul className="mt-14 grid gap-px overflow-hidden border border-line-light bg-line-light sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="mt-14 grid gap-px overflow-hidden border border-ivory/10 bg-charcoal/10 sm:grid-cols-2 lg:grid-cols-4">
           {references.map((r) => (
-            <li key={r.title} className="bg-ivory">
+            <li key={r.title} className="bg-charcoal">
               <article className="flex h-full flex-col">
                 <div className="relative aspect-[4/3] overflow-hidden">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -144,16 +144,16 @@ export function RemodelingGallery() {
                     loading="lazy"
                     className="h-full w-full object-cover"
                   />
-                  <span className="absolute left-4 top-4 inline-flex items-center bg-ivory/95 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.18em] text-charcoal">
+                  <span className="absolute left-4 top-4 inline-flex items-center bg-charcoal/95 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.18em] text-ivory">
                     Reference
                   </span>
                 </div>
                 <div className="flex flex-1 flex-col p-6">
-                  <p className="eyebrow text-charcoal/50">{r.roomType}</p>
-                  <h3 className="mt-3 text-lg font-medium tracking-tight text-charcoal">
+                  <p className="eyebrow text-ivory/50">{r.roomType}</p>
+                  <h3 className="mt-3 text-lg font-medium tracking-tight text-ivory">
                     {r.title}
                   </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-charcoal/65">
+                  <p className="mt-3 text-sm leading-relaxed text-ivory/65">
                     {r.notes}
                   </p>
                 </div>
@@ -162,7 +162,7 @@ export function RemodelingGallery() {
           ))}
         </ul>
 
-        <p className="mt-10 max-w-3xl text-xs leading-relaxed text-charcoal/55">
+        <p className="mt-10 max-w-3xl text-xs leading-relaxed text-ivory/55">
           Reference photography is generic stock imagery. Each card describes
           the room type, finish targets, and scope our remodeling division
           delivers — not a specific completed project. Real project photos

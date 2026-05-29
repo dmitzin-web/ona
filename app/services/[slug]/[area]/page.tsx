@@ -132,7 +132,7 @@ export default async function ServiceCityPage({
             {responseLine}
           </p>
 
-          <div className="mt-12 grid grid-cols-2 gap-y-6 border-t border-charcoal-mute pt-8 sm:grid-cols-4 sm:gap-x-8">
+          <div className="mt-12 grid grid-cols-2 gap-y-6 border-t border-ivory-mute pt-8 sm:grid-cols-4 sm:gap-x-8">
             <Stat label="Response target" value="60 min" />
             <Stat label="From HQ" value={profile.driveMinutesFromHQ === 0 ? "Local" : `~${profile.driveMinutesFromHQ} min`} />
             <Stat label="County" value={profile.county} />
@@ -142,18 +142,18 @@ export default async function ServiceCityPage({
       </section>
 
       {/* Service intro */}
-      <section className="bg-ivory">
+      <section className="bg-charcoal">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
           <div className="grid gap-12 lg:grid-cols-12">
             <div className="lg:col-span-4">
-              {Icon && <Icon className="h-12 w-12 stroke-current text-charcoal" />}
-              <p className="eyebrow mt-6 text-charcoal/60">About the service</p>
+              {Icon && <Icon className="h-12 w-12 stroke-current text-ivory" />}
+              <p className="eyebrow mt-6 text-ivory/60">About the service</p>
               <h2 className="mt-4 text-3xl font-light leading-tight tracking-tight sm:text-4xl">
                 {service.shortName} in {profile.name}.
               </h2>
             </div>
             <div className="lg:col-span-8">
-              <p className="text-lg leading-relaxed text-charcoal/80">
+              <p className="text-lg leading-relaxed text-ivory/80">
                 {service.intro}
               </p>
             </div>
@@ -162,30 +162,30 @@ export default async function ServiceCityPage({
       </section>
 
       {/* City-specific section */}
-      <section className="border-t border-line-light bg-ivory">
+      <section className="border-t border-ivory/10 bg-charcoal">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
           <div className="grid gap-12 lg:grid-cols-12">
             <div className="lg:col-span-5">
-              <p className="eyebrow text-charcoal/60">{profile.name} context</p>
+              <p className="eyebrow text-ivory/60">{profile.name} context</p>
               <h2 className="mt-4 text-3xl font-light leading-tight tracking-tight sm:text-4xl">
                 What we see in {profile.name}.
               </h2>
-              <p className="mt-6 max-w-md text-base leading-relaxed text-charcoal/75">
+              <p className="mt-6 max-w-md text-base leading-relaxed text-ivory/75">
                 {profile.localNote}
               </p>
             </div>
             <div className="lg:col-span-7">
-              <h3 className="eyebrow text-charcoal/55">
+              <h3 className="eyebrow text-ivory/55">
                 Local weather &amp; loss pattern
               </h3>
-              <p className="mt-3 text-base leading-relaxed text-charcoal/80">
+              <p className="mt-3 text-base leading-relaxed text-ivory/80">
                 {profile.weatherPattern}
               </p>
 
-              <h3 className="mt-8 eyebrow text-charcoal/55">
+              <h3 className="mt-8 eyebrow text-ivory/55">
                 Common losses in {profile.county}
               </h3>
-              <ul className="mt-3 space-y-3 text-base text-charcoal/80">
+              <ul className="mt-3 space-y-3 text-base text-ivory/80">
                 {profile.commonLosses.map((loss) => (
                   <li key={loss} className="flex items-start gap-3">
                     <span
@@ -199,10 +199,10 @@ export default async function ServiceCityPage({
 
               {profile.neighborhoods.length > 0 && (
                 <>
-                  <h3 className="mt-8 eyebrow text-charcoal/55">
+                  <h3 className="mt-8 eyebrow text-ivory/55">
                     Neighborhoods we cover
                   </h3>
-                  <p className="mt-3 text-base leading-relaxed text-charcoal/75">
+                  <p className="mt-3 text-base leading-relaxed text-ivory/75">
                     {profile.neighborhoods.join(" · ")}
                   </p>
                 </>
@@ -213,9 +213,9 @@ export default async function ServiceCityPage({
       </section>
 
       {/* Process */}
-      <section className="bg-ivory-soft">
+      <section className="bg-charcoal-soft">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
-          <p className="eyebrow text-charcoal/60">Process</p>
+          <p className="eyebrow text-ivory/60">Process</p>
           <h2 className="mt-4 text-3xl font-light leading-tight tracking-tight sm:text-4xl">
             How a {service.shortName.toLowerCase()} job runs in {profile.name}.
           </h2>
@@ -223,15 +223,15 @@ export default async function ServiceCityPage({
             {service.process.map((p, i) => (
               <li
                 key={p.step}
-                className="border-t border-charcoal/20 pt-6"
+                className="border-t border-ivory/20 pt-6"
               >
-                <p className="eyebrow text-charcoal/50">
+                <p className="eyebrow text-ivory/50">
                   {String(i + 1).padStart(2, "0")}
                 </p>
                 <h3 className="mt-3 text-xl font-light tracking-tight">
                   {p.step.replace(/^\d+\.\s*/, "")}
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-charcoal/70">
+                <p className="mt-3 text-sm leading-relaxed text-ivory/70">
                   {p.text}
                 </p>
               </li>
@@ -247,17 +247,17 @@ export default async function ServiceCityPage({
       />
 
       {/* Cross-linking — same service in other cities */}
-      <section className="bg-ivory">
+      <section className="bg-charcoal">
         <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10">
-          <p className="eyebrow text-charcoal/60">
+          <p className="eyebrow text-ivory/60">
             {service.shortName} in other Portland-metro cities
           </p>
-          <ul className="mt-6 grid gap-px overflow-hidden border border-line-light bg-line-light sm:grid-cols-3">
+          <ul className="mt-6 grid gap-px overflow-hidden border border-ivory/10 bg-charcoal/10 sm:grid-cols-3">
             {otherCitiesForService.map((a) => (
               <li key={a.slug}>
                 <Link
                   href={`/services/${service.slug}/${a.slug}`}
-                  className="flex items-center justify-between bg-ivory px-5 py-4 text-sm font-medium text-charcoal transition hover:bg-ivory-soft"
+                  className="flex items-center justify-between bg-charcoal px-5 py-4 text-sm font-medium text-ivory transition hover:bg-charcoal-soft"
                 >
                   <span>
                     {service.shortName} · {a.name}, {a.region}
@@ -271,17 +271,17 @@ export default async function ServiceCityPage({
       </section>
 
       {/* Cross-linking — other services in same city */}
-      <section className="bg-ivory">
+      <section className="bg-charcoal">
         <div className="mx-auto max-w-7xl px-6 pb-20 lg:px-10">
-          <p className="eyebrow text-charcoal/60">
+          <p className="eyebrow text-ivory/60">
             Other services in {profile.name}, {profile.region}
           </p>
-          <ul className="mt-6 grid gap-px overflow-hidden border border-line-light bg-line-light sm:grid-cols-3">
+          <ul className="mt-6 grid gap-px overflow-hidden border border-ivory/10 bg-charcoal/10 sm:grid-cols-3">
             {otherServicesForCity.map((s) => (
               <li key={s.slug}>
                 <Link
                   href={`/services/${s.slug}/${profile.slug}`}
-                  className="flex items-center justify-between bg-ivory px-5 py-4 text-sm font-medium text-charcoal transition hover:bg-ivory-soft"
+                  className="flex items-center justify-between bg-charcoal px-5 py-4 text-sm font-medium text-ivory transition hover:bg-charcoal-soft"
                 >
                   <span>
                     {s.shortName} · {profile.name}
@@ -295,13 +295,13 @@ export default async function ServiceCityPage({
           <div className="mt-8 flex flex-wrap items-center gap-6 text-sm">
             <Link
               href={`/services/${service.slug}`}
-              className="eyebrow text-charcoal transition hover:text-charcoal/70"
+              className="eyebrow text-ivory transition hover:text-ivory/70"
             >
               ← All {service.shortName.toLowerCase()} info
             </Link>
             <Link
               href={`/areas/${profile.slug}`}
-              className="eyebrow text-charcoal transition hover:text-charcoal/70"
+              className="eyebrow text-ivory transition hover:text-ivory/70"
             >
               ← All services in {profile.name}
             </Link>

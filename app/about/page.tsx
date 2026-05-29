@@ -50,15 +50,15 @@ export default function AboutPage() {
           { name: "About", href: "/about" },
         ]}
       />
-      <section className="bg-ivory">
+      <section className="bg-charcoal">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
-          <p className="eyebrow text-charcoal/60">About</p>
+          <p className="eyebrow text-ivory/60">About</p>
           <h1 className="mt-6 max-w-3xl text-5xl font-light leading-[1.05] tracking-tight sm:text-6xl">
             We restore more than properties. We restore trust.
           </h1>
           <div className="mt-16 grid gap-12 lg:grid-cols-12">
             <div className="lg:col-span-7">
-              <div className="space-y-6 text-lg leading-relaxed text-charcoal/80">
+              <div className="space-y-6 text-lg leading-relaxed text-ivory/80">
                 <p>
                   {site.name} is a locally owned restoration contractor based
                   in Vancouver, Washington, serving homeowners, property
@@ -84,13 +84,13 @@ export default function AboutPage() {
               </div>
             </div>
             <aside className="lg:col-span-5">
-              <div className="border border-line-light p-8">
-                <p className="eyebrow text-charcoal/60">Credentials</p>
-                <ul className="mt-6 space-y-3 text-base text-charcoal/85">
+              <div className="border border-ivory/10 p-8">
+                <p className="eyebrow text-ivory/60">Credentials</p>
+                <ul className="mt-6 space-y-3 text-base text-ivory/85">
                   {site.certifications.map((c) => (
                     <li
                       key={c}
-                      className="border-t border-line-light pt-3 first:border-t-0 first:pt-0"
+                      className="border-t border-ivory/10 pt-3 first:border-t-0 first:pt-0"
                     >
                       {c}
                     </li>
@@ -103,15 +103,15 @@ export default function AboutPage() {
       </section>
 
       {/* Founder section — DOM anchor for the Person @id used in JSON-LD */}
-      <section id="founder" className="border-t border-line-light bg-ivory scroll-mt-24">
+      <section id="founder" className="border-t border-ivory/10 bg-charcoal scroll-mt-24">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
-          <p className="eyebrow text-charcoal/60">Founder</p>
+          <p className="eyebrow text-ivory/60">Founder</p>
           <h2 className="mt-6 max-w-3xl text-4xl font-light leading-tight tracking-tight sm:text-5xl">
             Founded and led by Dmitry Zinovyev.
           </h2>
           <div className="mt-12 grid gap-12 lg:grid-cols-12">
             <div className="lg:col-span-8">
-              <div className="space-y-6 text-base leading-relaxed text-charcoal/80">
+              <div className="space-y-6 text-base leading-relaxed text-ivory/80">
                 <p>
                   Dmitry built ONA Restoration &amp; Remodeling after watching
                   the Pacific Northwest restoration market run the same playbook
@@ -143,21 +143,21 @@ export default function AboutPage() {
               </div>
             </div>
             <aside className="lg:col-span-4">
-              <div className="border border-line-light p-8">
-                <p className="eyebrow text-charcoal/60">Contact</p>
-                <p className="mt-5 text-sm leading-relaxed text-charcoal/80">
+              <div className="border border-ivory/10 p-8">
+                <p className="eyebrow text-ivory/60">Contact</p>
+                <p className="mt-5 text-sm leading-relaxed text-ivory/80">
                   For project consultations, partnership, press, or anything
                   that should reach the founder directly:
                 </p>
                 <a
                   href={`mailto:${site.email}`}
-                  className="mt-5 block text-base font-medium tracking-tight text-charcoal underline decoration-charcoal/30 underline-offset-4 transition hover:decoration-charcoal break-words"
+                  className="mt-5 block text-base font-medium tracking-tight text-ivory underline decoration-charcoal/30 underline-offset-4 transition hover:decoration-charcoal break-words"
                 >
                   {site.email}
                 </a>
                 <a
                   href={`tel:${site.phone}`}
-                  className="mt-3 block text-base font-medium tracking-tight text-charcoal underline decoration-charcoal/30 underline-offset-4 transition hover:decoration-charcoal"
+                  className="mt-3 block text-base font-medium tracking-tight text-ivory underline decoration-charcoal/30 underline-offset-4 transition hover:decoration-charcoal"
                 >
                   {site.phoneDisplay}
                 </a>
@@ -168,43 +168,43 @@ export default function AboutPage() {
       </section>
 
       {/* How we work */}
-      <section className="border-t border-line-light bg-ivory-soft">
+      <section className="border-t border-ivory/10 bg-charcoal-soft">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
-          <p className="eyebrow text-charcoal/60">How we work</p>
+          <p className="eyebrow text-ivory/60">How we work</p>
           <h2 className="mt-6 max-w-3xl text-4xl font-light leading-tight tracking-tight sm:text-5xl">
             Three things we do differently.
           </h2>
-          <div className="mt-14 grid gap-px overflow-hidden border border-line-light bg-line-light md:grid-cols-3">
-            <div className="bg-ivory p-10">
-              <p className="eyebrow text-charcoal/40">01</p>
+          <div className="mt-14 grid gap-px overflow-hidden border border-ivory/10 bg-charcoal/10 md:grid-cols-3">
+            <div className="bg-charcoal p-10">
+              <p className="eyebrow text-ivory/40">01</p>
               <h3 className="mt-4 text-xl font-medium tracking-tight">
                 Documentation by default
               </h3>
-              <p className="mt-4 text-sm leading-relaxed text-charcoal/70">
+              <p className="mt-4 text-sm leading-relaxed text-ivory/70">
                 Thermal imaging, moisture readings, daily progress photos and
                 an Xactimate-formatted scope on every job — not just the ones
                 that look complicated. It&apos;s the same standard your
                 adjuster uses, applied from the first call.
               </p>
             </div>
-            <div className="bg-ivory p-10">
-              <p className="eyebrow text-charcoal/40">02</p>
+            <div className="bg-charcoal p-10">
+              <p className="eyebrow text-ivory/40">02</p>
               <h3 className="mt-4 text-xl font-medium tracking-tight">
                 One contractor, end to end
               </h3>
-              <p className="mt-4 text-sm leading-relaxed text-charcoal/70">
+              <p className="mt-4 text-sm leading-relaxed text-ivory/70">
                 Mitigation, demolition, structural repair and the final
                 finish-carpentry rebuild are all the same crew. No handoffs
                 to subcontractors you&apos;ve never met. One contract, one
                 point of contact, one final walkthrough.
               </p>
             </div>
-            <div className="bg-ivory p-10">
-              <p className="eyebrow text-charcoal/40">03</p>
+            <div className="bg-charcoal p-10">
+              <p className="eyebrow text-ivory/40">03</p>
               <h3 className="mt-4 text-xl font-medium tracking-tight">
                 Insurance-grade handover
               </h3>
-              <p className="mt-4 text-sm leading-relaxed text-charcoal/70">
+              <p className="mt-4 text-sm leading-relaxed text-ivory/70">
                 We talk to your adjuster so you don&apos;t have to. Every
                 disputed line item is backed by photo and moisture
                 documentation captured the first day. We close more claims at
@@ -220,7 +220,7 @@ export default function AboutPage() {
           is intentionally omitted until the GBP profile is verified and
           accumulates real reviews; surfacing a fabricated count works
           against verification. Add a fourth stat here once GBP is live. */}
-      <section className="border-t border-line-light bg-charcoal text-ivory">
+      <section className="border-t border-ivory/10 bg-charcoal text-ivory">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
           <p className="eyebrow text-warm-gray-soft">How we&apos;re set up</p>
           <h2 className="mt-6 max-w-3xl text-4xl font-light leading-tight tracking-tight sm:text-5xl">

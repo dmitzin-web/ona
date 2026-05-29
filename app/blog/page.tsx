@@ -29,18 +29,18 @@ export default function BlogIndex() {
           { name: "Blog", href: "/blog" },
         ]}
       />
-      <section className="bg-ivory">
+      <section className="bg-charcoal">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
-          <p className="eyebrow text-charcoal/60">Field notes</p>
+          <p className="eyebrow text-ivory/60">Field notes</p>
           <h1 className="mt-6 max-w-3xl text-5xl font-light leading-[1.05] tracking-tight sm:text-6xl">
             Notes from the trucks.
           </h1>
-          <p className="mt-8 max-w-2xl text-lg leading-relaxed text-charcoal/75">
+          <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ivory/75">
             Practical guides, written by the people running the jobs. No fluff,
             no SEO-bait — just what we tell our own families.
           </p>
 
-          <ul className="mt-16 divide-y divide-charcoal/15 border-y border-charcoal/15">
+          <ul className="mt-16 divide-y divide-charcoal/15 border-y border-ivory/15">
             {sorted.map((p) => (
               <li key={p.slug}>
                 <Link
@@ -48,10 +48,10 @@ export default function BlogIndex() {
                   className="group grid gap-6 py-8 lg:grid-cols-12"
                 >
                   <div className="lg:col-span-3">
-                    <p className="eyebrow text-charcoal/60">
+                    <p className="eyebrow text-ivory/60">
                       {p.category} · {p.readingMinutes} min read
                     </p>
-                    <p className="mt-3 text-sm text-charcoal/60">
+                    <p className="mt-3 text-sm text-ivory/60">
                       {new Date(p.publishedAt).toLocaleDateString("en-US", {
                         month: "long",
                         day: "numeric",
@@ -60,13 +60,13 @@ export default function BlogIndex() {
                     </p>
                   </div>
                   <div className="lg:col-span-9">
-                    <h2 className="text-2xl font-light leading-tight tracking-tight text-charcoal sm:text-3xl">
+                    <h2 className="text-2xl font-light leading-tight tracking-tight text-ivory sm:text-3xl">
                       {p.title}
                     </h2>
-                    <p className="mt-4 max-w-2xl text-base leading-relaxed text-charcoal/75">
+                    <p className="mt-4 max-w-2xl text-base leading-relaxed text-ivory/75">
                       {p.excerpt}
                     </p>
-                    <p className="mt-6 inline-flex items-center gap-2 eyebrow text-charcoal transition group-hover:gap-3">
+                    <p className="mt-6 inline-flex items-center gap-2 eyebrow text-ivory transition group-hover:gap-3">
                       Read article
                       <ArrowIcon className="h-3 w-3 stroke-current" />
                     </p>

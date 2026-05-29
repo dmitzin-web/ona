@@ -434,7 +434,7 @@ export function AskOna() {
                 }}
                 rows={1}
                 placeholder="Ask anything about ONA, services, or your claim…"
-                className="block min-h-10 max-h-32 w-full resize-none border border-charcoal/20 bg-ivory px-3 py-2 text-sm text-charcoal placeholder:text-charcoal/40 focus:border-charcoal focus:outline-none"
+                className="block min-h-10 max-h-32 w-full resize-none border border-charcoal/20 bg-ivory px-3 py-2 text-sm text-charcoal placeholder:text-charcoal/40 focus:border-ivory focus:outline-none"
               />
               <button
                 type="submit"

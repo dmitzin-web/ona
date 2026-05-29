@@ -54,35 +54,35 @@ export default function QuotePage() {
           { name: "Get a free quote", href: "/quote" },
         ]}
       />
-      <section className="bg-ivory">
+      <section className="bg-charcoal">
         <div className="mx-auto grid max-w-7xl gap-12 px-6 py-20 lg:grid-cols-12 lg:px-10">
           <aside className="lg:col-span-4">
-            <p className="eyebrow text-charcoal/60">Quote request</p>
+            <p className="eyebrow text-ivory/60">Quote request</p>
             <h1 className="mt-6 text-5xl font-light leading-[1.05] tracking-tight sm:text-6xl">
               Tell us what happened.
             </h1>
-            <p className="mt-8 text-base leading-relaxed text-charcoal/75">
+            <p className="mt-8 text-base leading-relaxed text-ivory/75">
               Not an emergency? Use the form — we&apos;ll come back with a
               preliminary scope and next steps. For active losses please call
               instead.
             </p>
 
-            <div className="mt-10 space-y-4 border-t border-charcoal/15 pt-8">
-              <PhoneLink className="flex items-center gap-3 text-base font-medium text-charcoal hover:text-charcoal/70">
+            <div className="mt-10 space-y-4 border-t border-ivory/15 pt-8">
+              <PhoneLink className="flex items-center gap-3 text-base font-medium text-ivory hover:text-ivory/70">
                 <PhoneIcon className="h-5 w-5 stroke-current" />
                 {site.phoneDisplay} · 24/7 dispatch
               </PhoneLink>
-              <SmsLink className="flex items-center gap-3 text-base font-medium text-charcoal hover:text-charcoal/70">
+              <SmsLink className="flex items-center gap-3 text-base font-medium text-ivory hover:text-ivory/70">
                 <span aria-hidden="true">✆</span> Text dispatch
               </SmsLink>
-              <EmailLink className="flex items-center gap-3 text-base font-medium text-charcoal hover:text-charcoal/70">
+              <EmailLink className="flex items-center gap-3 text-base font-medium text-ivory hover:text-ivory/70">
                 <span aria-hidden="true">@</span> {site.email}
               </EmailLink>
             </div>
           </aside>
 
           <div className="lg:col-span-8">
-            <div className="border border-charcoal/15 bg-ivory p-8 lg:p-10">
+            <div className="border border-ivory/15 bg-charcoal p-8 lg:p-10">
               <QuoteForm />
             </div>
           </div>
@@ -90,13 +90,13 @@ export default function QuotePage() {
       </section>
 
       {/* What to include */}
-      <section className="border-t border-line-light bg-ivory-soft">
+      <section className="border-t border-ivory/10 bg-charcoal-soft">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
-          <p className="eyebrow text-charcoal/60">What to include</p>
+          <p className="eyebrow text-ivory/60">What to include</p>
           <h2 className="mt-6 max-w-3xl text-4xl font-light leading-tight tracking-tight sm:text-5xl">
             Five things that get you an accurate quote faster.
           </h2>
-          <ol className="mt-12 grid gap-px overflow-hidden border border-line-light bg-line-light md:grid-cols-2 lg:grid-cols-5">
+          <ol className="mt-12 grid gap-px overflow-hidden border border-ivory/10 bg-charcoal/10 md:grid-cols-2 lg:grid-cols-5">
             {[
               {
                 title: "Property address",
@@ -119,14 +119,14 @@ export default function QuotePage() {
                 text: "Filed a claim yet? Adjuster assigned? We work with every major carrier directly.",
               },
             ].map((item, i) => (
-              <li key={item.title} className="bg-ivory p-8">
-                <p className="eyebrow text-charcoal/40">
+              <li key={item.title} className="bg-charcoal p-8">
+                <p className="eyebrow text-ivory/40">
                   {String(i + 1).padStart(2, "0")}
                 </p>
                 <h3 className="mt-4 text-lg font-medium tracking-tight">
                   {item.title}
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-charcoal/70">
+                <p className="mt-3 text-sm leading-relaxed text-ivory/70">
                   {item.text}
                 </p>
               </li>
@@ -136,13 +136,13 @@ export default function QuotePage() {
       </section>
 
       {/* What happens next */}
-      <section className="border-t border-line-light bg-ivory">
+      <section className="border-t border-ivory/10 bg-charcoal">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
-          <p className="eyebrow text-charcoal/60">After you submit</p>
+          <p className="eyebrow text-ivory/60">After you submit</p>
           <h2 className="mt-6 max-w-3xl text-4xl font-light leading-tight tracking-tight sm:text-5xl">
             What happens next.
           </h2>
-          <ol className="mt-12 grid gap-px overflow-hidden border border-line-light bg-line-light md:grid-cols-4">
+          <ol className="mt-12 grid gap-px overflow-hidden border border-ivory/10 bg-charcoal/10 md:grid-cols-4">
             {[
               {
                 step: "1",
@@ -165,12 +165,12 @@ export default function QuotePage() {
                 text: "Written agreement with a fixed scope and price before work begins. Insurance billing handled directly if applicable.",
               },
             ].map((s) => (
-              <li key={s.step} className="bg-ivory p-8">
-                <p className="eyebrow text-charcoal/40">Step {s.step}</p>
+              <li key={s.step} className="bg-charcoal p-8">
+                <p className="eyebrow text-ivory/40">Step {s.step}</p>
                 <h3 className="mt-4 text-lg font-medium tracking-tight">
                   {s.title}
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-charcoal/70">
+                <p className="mt-3 text-sm leading-relaxed text-ivory/70">
                   {s.text}
                 </p>
               </li>
@@ -180,7 +180,7 @@ export default function QuotePage() {
       </section>
 
       {/* Response times */}
-      <section className="border-t border-line-light bg-charcoal text-ivory">
+      <section className="border-t border-ivory/10 bg-charcoal text-ivory">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
           <p className="eyebrow text-warm-gray-soft">Response times</p>
           <h2 className="mt-6 max-w-3xl text-4xl font-light leading-tight tracking-tight sm:text-5xl">

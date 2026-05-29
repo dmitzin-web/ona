@@ -95,7 +95,7 @@ export default async function AreaPage(
               direct insurance billing, 24/7.
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
-              <PhoneLink className="inline-flex items-center gap-3 border border-ivory bg-ivory px-7 py-4 text-sm font-medium uppercase tracking-[0.22em] text-charcoal transition hover:bg-transparent hover:text-ivory">
+              <PhoneLink className="inline-flex items-center gap-3 border border-ivory bg-charcoal px-7 py-4 text-sm font-medium uppercase tracking-[0.22em] text-ivory transition hover:bg-transparent hover:text-charcoal">
                 <PhoneIcon className="h-4 w-4 stroke-current" />
                 Call {site.phoneDisplay}
               </PhoneLink>
@@ -112,30 +112,30 @@ export default async function AreaPage(
       </div>
 
       {/* Local context — what makes restoration in this specific city different */}
-      <section className="bg-ivory">
+      <section className="bg-charcoal">
         <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
           <div className="grid gap-12 lg:grid-cols-12">
             <div className="lg:col-span-4">
-              <p className="eyebrow text-charcoal/60">Local context</p>
+              <p className="eyebrow text-ivory/60">Local context</p>
               <h2 className="mt-6 text-4xl font-light leading-tight tracking-tight sm:text-5xl">
                 Why restoration in {area.name} is different.
               </h2>
             </div>
-            <div className="space-y-6 text-lg leading-relaxed text-charcoal/80 lg:col-span-8">
+            <div className="space-y-6 text-lg leading-relaxed text-ivory/80 lg:col-span-8">
               <p>{area.localNote}</p>
               <p>
-                <strong className="font-medium text-charcoal">Weather:</strong>{" "}
+                <strong className="font-medium text-ivory">Weather:</strong>{" "}
                 {area.weatherPattern}
               </p>
               <div>
-                <p className="font-medium text-charcoal">
+                <p className="font-medium text-ivory">
                   Common restoration calls here:
                 </p>
-                <ul className="mt-3 space-y-2 text-base text-charcoal/75">
+                <ul className="mt-3 space-y-2 text-base text-ivory/75">
                   {area.commonLosses.map((c) => (
                     <li
                       key={c}
-                      className="border-l border-charcoal/15 pl-4"
+                      className="border-l border-ivory/15 pl-4"
                     >
                       {c}
                     </li>
@@ -148,24 +148,24 @@ export default async function AreaPage(
       </section>
 
       {/* Neighborhoods + ZIPs */}
-      <section className="bg-ivory-soft">
+      <section className="bg-charcoal-soft">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
           <div className="grid gap-12 lg:grid-cols-12">
             <div className="lg:col-span-5">
-              <p className="eyebrow text-charcoal/60">Coverage</p>
+              <p className="eyebrow text-ivory/60">Coverage</p>
               <h2 className="mt-6 text-3xl font-light leading-tight tracking-tight sm:text-4xl">
                 Neighborhoods we work in.
               </h2>
-              <ul className="mt-8 space-y-2 text-base text-charcoal/80">
+              <ul className="mt-8 space-y-2 text-base text-ivory/80">
                 {area.neighborhoods.map((n) => (
-                  <li key={n} className="border-b border-charcoal/10 pb-2">
+                  <li key={n} className="border-b border-ivory/10 pb-2">
                     {n}
                   </li>
                 ))}
               </ul>
             </div>
             <div className="lg:col-span-7">
-              <p className="eyebrow text-charcoal/60">ZIP codes</p>
+              <p className="eyebrow text-ivory/60">ZIP codes</p>
               <h2 className="mt-6 text-3xl font-light leading-tight tracking-tight sm:text-4xl">
                 {area.zips.length} ZIPs · {area.county}.
               </h2>
@@ -173,7 +173,7 @@ export default async function AreaPage(
                 {area.zips.map((z) => (
                   <li
                     key={z}
-                    className="border border-line-light bg-ivory px-3 py-3 text-center text-sm font-medium text-charcoal/85"
+                    className="border border-ivory/10 bg-charcoal px-3 py-3 text-center text-sm font-medium text-ivory/85"
                   >
                     {z}
                   </li>
@@ -188,20 +188,20 @@ export default async function AreaPage(
           landing pages for buy-intent local SEO ("water damage
           restoration <city>"). Falls back to the generic service page
           on hover/click for users who want the full overview. */}
-      <section className="bg-ivory">
+      <section className="bg-charcoal">
         <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
-          <p className="eyebrow text-charcoal/60">Available in {area.name}</p>
+          <p className="eyebrow text-ivory/60">Available in {area.name}</p>
           <h2 className="mt-6 text-4xl font-light leading-tight tracking-tight sm:text-5xl">
             Services we provide here.
           </h2>
-          <div className="mt-14 grid gap-px overflow-hidden border border-line-light bg-line-light sm:grid-cols-2 lg:grid-cols-5">
+          <div className="mt-14 grid gap-px overflow-hidden border border-ivory/10 bg-charcoal/10 sm:grid-cols-2 lg:grid-cols-5">
             {services.map((s) => (
               <div key={s.slug}>
                 <ServiceCard service={s} hrefOverride={`/services/${s.slug}/${area.slug}`} />
               </div>
             ))}
           </div>
-          <p className="mt-6 text-sm text-charcoal/55">
+          <p className="mt-6 text-sm text-ivory/55">
             Each link opens the {area.name}-specific page for that service —
             response time, neighborhoods, and local loss patterns included.
           </p>

@@ -32,13 +32,13 @@ export default function ServicesPage() {
           { name: "Services", href: "/services" },
         ]}
       />
-      <section className="bg-ivory">
+      <section className="bg-charcoal">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
-          <p className="eyebrow text-charcoal/60">Our services</p>
+          <p className="eyebrow text-ivory/60">Our services</p>
           <h1 className="mt-6 max-w-3xl text-5xl font-light leading-[1.05] tracking-tight sm:text-6xl">
             Restoration and remodeling, executed with precision.
           </h1>
-          <p className="mt-8 max-w-2xl text-lg leading-relaxed text-charcoal/75">
+          <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ivory/75">
             Single-source mitigation, reconstruction, and remodeling across the
             Portland metro. IICRC-certified, licensed in WA and OR, available
             24/7.
@@ -47,12 +47,12 @@ export default function ServicesPage() {
           {/* Restoration grid */}
           <div className="mt-16">
             <div className="flex flex-wrap items-end justify-between gap-3">
-              <p className="eyebrow text-charcoal/60">Restoration</p>
-              <p className="text-sm text-charcoal/55">
+              <p className="eyebrow text-ivory/60">Restoration</p>
+              <p className="text-sm text-ivory/55">
                 24/7 emergency response · 60-minute target
               </p>
             </div>
-            <div className="mt-6 grid gap-px overflow-hidden border border-line-light bg-line-light sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mt-6 grid gap-px overflow-hidden border border-ivory/10 bg-charcoal/10 sm:grid-cols-2 lg:grid-cols-4">
               {restoration.map((s) => (
                 <div key={s.slug}>
                   <ServiceCard service={s} />
@@ -65,14 +65,14 @@ export default function ServicesPage() {
           {remodeling && (
             <div className="mt-16">
               <div className="flex flex-wrap items-end justify-between gap-3">
-                <p className="eyebrow text-gold-deep">Remodeling</p>
-                <p className="text-sm text-charcoal/55">
+                <p className="eyebrow text-gold">Remodeling</p>
+                <p className="text-sm text-ivory/55">
                   Kitchens · Baths · Additions · Custom millwork
                 </p>
               </div>
               <Link
                 href={`/services/${remodeling.slug}`}
-                className="group mt-6 block border border-line-light bg-charcoal text-ivory transition hover:border-gold"
+                className="group mt-6 block border border-ivory/10 bg-charcoal text-ivory transition hover:border-gold"
               >
                 <div className="grid gap-8 px-8 py-12 lg:grid-cols-12 lg:px-12 lg:py-14">
                   <div className="lg:col-span-8">
@@ -98,25 +98,25 @@ export default function ServicesPage() {
           )}
 
           {/* Service area — moved here from the global nav */}
-          <div className="mt-20 border-t border-charcoal/15 pt-12">
+          <div className="mt-20 border-t border-ivory/15 pt-12">
             <div className="grid gap-10 lg:grid-cols-12">
               <div className="lg:col-span-5">
-                <p className="eyebrow text-charcoal/60">Service area</p>
+                <p className="eyebrow text-ivory/60">Service area</p>
                 <h2 className="mt-4 text-3xl font-light leading-tight tracking-tight sm:text-4xl">
                   Vancouver, WA and the entire Portland metro.
                 </h2>
-                <p className="mt-5 max-w-md text-base leading-relaxed text-charcoal/75">
+                <p className="mt-5 max-w-md text-base leading-relaxed text-ivory/75">
                   Headquartered in Vancouver, WA. Crews staged across the metro
                   so we hit our 60-minute response target through Clark,
                   Multnomah, Washington, and Clackamas counties.
                 </p>
               </div>
-              <ul className="grid gap-px overflow-hidden border border-line-light bg-line-light lg:col-span-7 sm:grid-cols-2">
+              <ul className="grid gap-px overflow-hidden border border-ivory/10 bg-charcoal/10 lg:col-span-7 sm:grid-cols-2">
                 {site.serviceArea.map((a) => (
                   <li key={a.slug}>
                     <Link
                       href={`/areas/${a.slug}`}
-                      className="block bg-ivory px-6 py-4 text-sm font-medium tracking-tight text-charcoal/85 transition hover:bg-ivory-soft hover:text-charcoal"
+                      className="block bg-charcoal px-6 py-4 text-sm font-medium tracking-tight text-ivory/85 transition hover:bg-charcoal-soft hover:text-ivory"
                     >
                       {a.name}, {a.region}
                     </Link>

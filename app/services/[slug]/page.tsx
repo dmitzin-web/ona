@@ -86,7 +86,7 @@ export default async function ServicePage(
                   {service.hero}
                 </p>
                 <div className="mt-10 flex flex-wrap gap-4">
-                  <PhoneLink className="inline-flex items-center gap-3 border border-ivory bg-ivory px-7 py-4 text-sm font-medium uppercase tracking-[0.22em] text-charcoal transition hover:bg-transparent hover:text-ivory">
+                  <PhoneLink className="inline-flex items-center gap-3 border border-ivory bg-charcoal px-7 py-4 text-sm font-medium uppercase tracking-[0.22em] text-ivory transition hover:bg-transparent hover:text-charcoal">
                     <PhoneIcon className="h-4 w-4 stroke-current" />
                     Call {site.phoneDisplay}
                   </PhoneLink>
@@ -106,29 +106,29 @@ export default async function ServicePage(
       </div>
 
       {/* Intro */}
-      <section className="bg-ivory">
+      <section className="bg-charcoal">
         <div className="mx-auto max-w-4xl px-6 py-24 lg:px-10">
-          <p className="text-xl leading-relaxed text-charcoal/85">
+          <p className="text-xl leading-relaxed text-ivory/85">
             {service.intro}
           </p>
         </div>
       </section>
 
       {/* Body */}
-      <section className="bg-ivory-soft">
+      <section className="bg-charcoal-soft">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
           <div className="space-y-20">
             {service.body.map((b) => (
               <div
                 key={b.heading}
-                className="grid gap-10 border-t border-charcoal/15 pt-12 lg:grid-cols-12"
+                className="grid gap-10 border-t border-ivory/15 pt-12 lg:grid-cols-12"
               >
                 <h2 className="text-3xl font-light leading-tight tracking-tight sm:text-4xl lg:col-span-4">
                   {b.heading}
                 </h2>
                 <div className="space-y-5 lg:col-span-8">
                   {b.paragraphs.map((p, i) => (
-                    <p key={i} className="text-lg leading-relaxed text-charcoal/80">
+                    <p key={i} className="text-lg leading-relaxed text-ivory/80">
                       {p}
                     </p>
                   ))}
@@ -146,7 +146,7 @@ export default async function ServicePage(
           <h2 className="mt-6 max-w-3xl text-4xl font-light leading-tight tracking-tight sm:text-5xl">
             How the job runs.
           </h2>
-          <ol className="mt-16 grid gap-px overflow-hidden border border-charcoal-mute bg-charcoal-mute sm:grid-cols-2 lg:grid-cols-3">
+          <ol className="mt-16 grid gap-px overflow-hidden border border-ivory-mute bg-charcoal-mute sm:grid-cols-2 lg:grid-cols-3">
             {service.process.map((p, i) => (
               <li
                 key={p.step}
@@ -168,15 +168,15 @@ export default async function ServicePage(
       </section>
 
       {/* Signs */}
-      <section className="bg-ivory">
+      <section className="bg-charcoal">
         <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
           <div className="grid gap-12 lg:grid-cols-12">
             <div className="lg:col-span-4">
-              <p className="eyebrow text-charcoal/60">Warning signs</p>
+              <p className="eyebrow text-ivory/60">Warning signs</p>
               <h2 className="mt-6 text-4xl font-light leading-tight tracking-tight sm:text-5xl">
                 When to call.
               </h2>
-              <p className="mt-6 text-base leading-relaxed text-charcoal/70">
+              <p className="mt-6 text-base leading-relaxed text-ivory/70">
                 Early action saves money and prevents permanent damage. If any
                 of these apply, call us.
               </p>
@@ -185,7 +185,7 @@ export default async function ServicePage(
               {service.signs.map((s) => (
                 <li
                   key={s}
-                  className="border border-line-light px-5 py-5 text-base text-charcoal/85"
+                  className="border border-ivory/10 px-5 py-5 text-base text-ivory/85"
                 >
                   {s}
                 </li>
@@ -207,28 +207,28 @@ export default async function ServicePage(
       {/* City × service pages — programmatic local landing pages for
           this specific service across the entire Portland metro. Drives
           buy-intent local SEO (e.g., "water damage restoration beaverton"). */}
-      <section className="bg-ivory">
+      <section className="bg-charcoal">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
           <div className="flex flex-wrap items-end justify-between gap-3">
             <div>
-              <p className="eyebrow text-charcoal/60">
+              <p className="eyebrow text-ivory/60">
                 {service.shortName} by city
               </p>
               <h2 className="mt-4 text-3xl font-light leading-tight tracking-tight sm:text-4xl">
                 Local landing pages.
               </h2>
             </div>
-            <p className="max-w-md text-sm text-charcoal/55">
+            <p className="max-w-md text-sm text-ivory/55">
               Same crew, same documentation. Tap a city for response times,
               local loss patterns, and neighborhood coverage.
             </p>
           </div>
-          <ul className="mt-10 grid gap-px overflow-hidden border border-line-light bg-line-light sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="mt-10 grid gap-px overflow-hidden border border-ivory/10 bg-charcoal/10 sm:grid-cols-2 lg:grid-cols-3">
             {areaProfiles.map((a) => (
               <li key={a.slug}>
                 <Link
                   href={`/services/${service.slug}/${a.slug}`}
-                  className="flex items-center justify-between bg-ivory px-5 py-4 text-sm font-medium text-charcoal transition hover:bg-ivory-soft"
+                  className="flex items-center justify-between bg-charcoal px-5 py-4 text-sm font-medium text-ivory transition hover:bg-charcoal-soft"
                 >
                   <span>
                     {service.shortName} · {a.name}, {a.region}
@@ -242,18 +242,18 @@ export default async function ServicePage(
       </section>
 
       {/* Related services */}
-      <section className="bg-ivory-soft">
+      <section className="bg-charcoal-soft">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
           <div className="flex items-end justify-between">
-            <p className="eyebrow text-charcoal/60">Other services</p>
+            <p className="eyebrow text-ivory/60">Other services</p>
             <Link
               href="/services"
-              className="inline-flex items-center gap-2 eyebrow text-charcoal"
+              className="inline-flex items-center gap-2 eyebrow text-ivory"
             >
               All <ArrowIcon className="h-3 w-3 stroke-current" />
             </Link>
           </div>
-          <div className="mt-10 grid gap-px overflow-hidden border border-line-light bg-line-light sm:grid-cols-3">
+          <div className="mt-10 grid gap-px overflow-hidden border border-ivory/10 bg-charcoal/10 sm:grid-cols-3">
             {services
               .filter((s) => s.slug !== service.slug)
               .map((s) => (

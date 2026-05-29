@@ -24,28 +24,28 @@ export default function AreasPage() {
           { name: "Service Area", href: "/areas" },
         ]}
       />
-      <section className="bg-ivory">
+      <section className="bg-charcoal">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
-          <p className="eyebrow text-charcoal/60">Where we work</p>
+          <p className="eyebrow text-ivory/60">Where we work</p>
           <h1 className="mt-6 max-w-3xl text-5xl font-light leading-[1.05] tracking-tight sm:text-6xl">
             Vancouver, WA and the entire Portland metro.
           </h1>
-          <p className="mt-8 max-w-2xl text-lg leading-relaxed text-charcoal/75">
+          <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ivory/75">
             Headquartered in Vancouver, WA. Crews staged across the metro so we
             can hit a 60-minute response target — Salmon Creek to Lake Oswego.
           </p>
-          <ul className="mt-16 grid gap-px overflow-hidden border border-line-light bg-line-light sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="mt-16 grid gap-px overflow-hidden border border-ivory/10 bg-charcoal/10 sm:grid-cols-2 lg:grid-cols-3">
             {site.serviceArea.map((a) => (
               <li key={a.slug}>
                 <Link
                   href={`/areas/${a.slug}`}
-                  className="group flex items-center justify-between bg-ivory p-7 transition hover:bg-charcoal hover:text-ivory"
+                  className="group flex items-center justify-between bg-charcoal p-7 transition hover:bg-ivory hover:text-charcoal"
                 >
                   <div>
                     <p className="text-xl font-medium tracking-tight">
                       {a.name}
                     </p>
-                    <p className="mt-1 text-sm text-charcoal/55 group-hover:text-ivory/60">
+                    <p className="mt-1 text-sm text-ivory/55 group-hover:text-charcoal/60">
                       {a.region}
                     </p>
                   </div>
