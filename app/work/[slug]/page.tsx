@@ -228,9 +228,20 @@ export async function generateMetadata({
   return {
     title: `${prefix}${p.title}`,
     description: `${p.kind} project in ${p.area}. ${p.service}, day ${p.currentDay} of ${p.estDays}.`,
-    robots: p.isSample
-      ? { index: false, follow: false }
-      : { index: true, follow: true },
+    // Project File pages are PRIVATE by policy — they carry a homeowner's
+    // neighborhood, adjuster, approved claim amount and document labels.
+    // ALL of them are noindex/nofollow, real and sample alike: the sample
+    // is illustrative (no need to rank fictional data) and real client
+    // pages must never appear in search. Access control for real projects
+    // is the unguessable slug (treated as a bearer token in the URL) plus
+    // this noindex; a hard X-Robots-Tag header in next.config.ts backs it
+    // up at the edge. See the projects-map comment for how to add one.
+    robots: {
+      index: false,
+      follow: false,
+      nocache: true,
+      googleBot: { index: false, follow: false },
+    },
   };
 }
 

@@ -47,6 +47,16 @@ export const privacySections: { heading: string; body: string[] }[] = [
     ],
   },
   {
+    heading: "Third-party services we use",
+    body: [
+      "Our website runs on infrastructure and tools operated by third parties. Each receives only the data needed to perform its function, and none are authorized to use your information for their own advertising:",
+      "Hosting (Vercel): serves the website and processes form submissions. Standard server logs (IP address, request time, user agent) are retained briefly for security and reliability.",
+      "Analytics (Plausible): cookieless, privacy-first web analytics. It does not use cookies, does not collect personal identifiers, and does not track you across other websites.",
+      "Maps (Google Maps): our Contact page embeds a Google map. When it loads, Google may receive your IP address and device information under Google's own privacy policy. The map only loads on that page.",
+      'AI assistant "Ask ONA" (Anthropic): if you use the optional chat assistant, the text you type — and any photo you choose to attach — is sent to Anthropic\'s Claude API to generate a reply. Anthropic processes it to return an answer and, per its commercial terms, does not use it to train its models. Do not paste sensitive personal, financial, or medical details into the chat; for those, call us instead.',
+    ],
+  },
+  {
     heading: "Health-related information (Washington residents)",
     body: [
       `Under the Washington My Health My Data Act (RCW 19.373), "consumer health data" is treated with elevated protections. If you describe health-related effects of property damage (for example, mold exposure or smoke inhalation) when contacting us, we collect this data only with your authorization, use it strictly to scope and document the restoration work, and do not sell it or share it for advertising. You may request access, correction, or deletion of this data at any time.`,

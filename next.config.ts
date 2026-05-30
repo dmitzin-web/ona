@@ -88,6 +88,19 @@ const nextConfig: NextConfig = {
     return [
       { source: "/:path*", headers: securityHeaders },
       {
+        // Project File pages are private client/claim records. Belt-and-
+        // suspenders with the per-page `robots: noindex` metadata: a hard
+        // X-Robots-Tag at the edge keeps them out of every crawler index
+        // even for non-HTML responses or if a page ever forgets the meta.
+        source: "/work/:path*",
+        headers: [
+          {
+            key: "X-Robots-Tag",
+            value: "noindex, nofollow, noarchive, nosnippet",
+          },
+        ],
+      },
+      {
         source: "/_next/static/:path*",
         headers: [
           {

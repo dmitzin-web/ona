@@ -33,8 +33,19 @@ const aiCrawlers = [
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
-      { userAgent: "*", allow: "/", disallow: ["/api/", "/_next/", "/quote/thanks"] },
-      ...aiCrawlers.map((bot) => ({ userAgent: bot, allow: "/" })),
+      {
+        userAgent: "*",
+        allow: "/",
+        // /work/* are private Project File pages (client + claim data) —
+        // keep them, the API, Next internals and the thank-you page out
+        // of every index. AI crawlers below inherit /work/ exclusion too.
+        disallow: ["/api/", "/_next/", "/quote/thanks", "/work/"],
+      },
+      ...aiCrawlers.map((bot) => ({
+        userAgent: bot,
+        allow: "/",
+        disallow: ["/work/", "/api/"],
+      })),
     ],
     sitemap: `${site.url}/sitemap.xml`,
     host: site.url,
