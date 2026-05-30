@@ -1,6 +1,7 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { askOnaSystemPrompt } from "@/lib/assistant/prompts";
 import { site } from "@/lib/site";
+import { checkRateLimit, clientIp } from "@/lib/rate-limit";
 
 // POST /api/assistant
 //
@@ -21,6 +22,11 @@ export const maxDuration = 60;
 const MAX_MESSAGES = 30;
 const MAX_TEXT_LENGTH = 12_000; // a bit more than triage — page context can be long
 const MAX_IMAGES_PER_MESSAGE = 4;
+// Aggregate body cap. The per-block image limit (4 × ~7MB base64) lets a
+// single photo-heavy message reach ~28MB legitimately, but the per-message
+// caps alone permit a pathological ~MAX_MESSAGES × that. This Content-Length
+// pre-check cheaply rejects absurd payloads before we ever read the body.
+const MAX_BODY_BYTES = 32 * 1024 * 1024; // 32 MB
 
 type ImageMediaType = "image/jpeg" | "image/png" | "image/gif" | "image/webp";
 const ALLOWED_MEDIA_TYPES: ReadonlyArray<ImageMediaType> = [
@@ -76,6 +82,36 @@ function isValidMessage(m: unknown): m is ChatMessage {
 }
 
 export async function POST(req: Request) {
+  // Reject obviously-oversized bodies before reading them. Content-Length can
+  // be spoofed or absent, so this is a cheap pre-filter, not the only guard —
+  // the per-message/per-block caps below still apply to the parsed payload.
+  const declaredLength = Number(req.headers.get("content-length") ?? "0");
+  if (Number.isFinite(declaredLength) && declaredLength > MAX_BODY_BYTES) {
+    return new Response("Payload too large.", { status: 413 });
+  }
+
+  // Per-IP rate limit. Runs before body parsing so a flood of malformed or
+  // huge requests is throttled too. Counts every POST against the IP's window;
+  // returns null (allow) when Upstash isn't configured (dev/preview).
+  const rl = await checkRateLimit(clientIp(req));
+  if (rl && !rl.success) {
+    const retryAfterSec = Math.max(1, Math.ceil((rl.reset - Date.now()) / 1000));
+    return new Response(
+      `Too many requests. Please wait a moment, or call ${site.phoneDisplay} for live help.`,
+      {
+        status: 429,
+        headers: {
+          "Content-Type": "text/plain; charset=utf-8",
+          "Retry-After": String(retryAfterSec),
+          "X-RateLimit-Limit": String(rl.limit),
+          "X-RateLimit-Remaining": String(rl.remaining),
+          "X-RateLimit-Reset": String(rl.reset),
+          "Cache-Control": "no-store",
+        },
+      },
+    );
+  }
+
   let body: unknown;
   try {
     body = await req.json();
