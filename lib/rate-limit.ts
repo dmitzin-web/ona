@@ -14,9 +14,15 @@ import { Redis } from "@upstash/redis";
 // in /api/assistant, so the UI stays exercisable without external infra.
 // In production we log a loud warning so a missing binding is noticed.
 //
-// Setup (Vercel → Upstash integration, or manual):
-//   UPSTASH_REDIS_REST_URL   = https://<db>.upstash.io
-//   UPSTASH_REDIS_REST_TOKEN = <rest token>
+// Setup — two accepted naming schemes (we read whichever is present):
+//   * Manual / @upstash canonical:
+//       UPSTASH_REDIS_REST_URL   = https://<db>.upstash.io
+//       UPSTASH_REDIS_REST_TOKEN = <rest token>
+//   * Vercel Marketplace Upstash/KV integration (what it auto-provisions):
+//       KV_REST_API_URL          = https://<db>.upstash.io
+//       KV_REST_API_TOKEN        = <rest token>
+// The integration does NOT create the UPSTASH_*-prefixed names, so we fall
+// back to the KV_* ones — otherwise the limiter silently fails open in prod.
 
 // `undefined` = not yet resolved; `null` = resolved-but-disabled. The tri-state
 // lets us build the limiter exactly once per server instance (lazy singleton).
@@ -25,13 +31,15 @@ let limiter: Ratelimit | null | undefined;
 function getLimiter(): Ratelimit | null {
   if (limiter !== undefined) return limiter;
 
-  const url = process.env.UPSTASH_REDIS_REST_URL;
-  const token = process.env.UPSTASH_REDIS_REST_TOKEN;
+  const url =
+    process.env.UPSTASH_REDIS_REST_URL ?? process.env.KV_REST_API_URL;
+  const token =
+    process.env.UPSTASH_REDIS_REST_TOKEN ?? process.env.KV_REST_API_TOKEN;
 
   if (!url || !token) {
     if (process.env.NODE_ENV === "production") {
       console.warn(
-        "[rate-limit] UPSTASH_REDIS_REST_URL/TOKEN unset — /api/assistant is UNTHROTTLED in production. Wire the Upstash integration to enable per-IP limits.",
+        "[rate-limit] No Upstash credentials (UPSTASH_REDIS_REST_URL/TOKEN or KV_REST_API_URL/TOKEN) — /api/assistant is UNTHROTTLED in production. Wire the Upstash integration to enable per-IP limits.",
       );
     }
     limiter = null;
@@ -60,14 +68,22 @@ export type RateLimitResult = {
 };
 
 // Returns the limit verdict, or null when rate limiting is disabled
-// (env unset) — callers treat null as "allow".
+// (env unset) or unavailable — callers treat null as "allow".
 export async function checkRateLimit(
   identifier: string,
 ): Promise<RateLimitResult | null> {
   const l = getLimiter();
   if (!l) return null;
-  const { success, limit, remaining, reset } = await l.limit(identifier);
-  return { success, limit, remaining, reset };
+  try {
+    const { success, limit, remaining, reset } = await l.limit(identifier);
+    return { success, limit, remaining, reset };
+  } catch (err) {
+    // Fail open: a Redis hiccup must not 500 every request. Briefly serving
+    // unthrottled is better than taking the assistant down on a transient
+    // store outage.
+    console.error("[rate-limit] Upstash unavailable — failing open", err);
+    return null;
+  }
 }
 
 // Best-effort client IP from proxy headers. On Vercel, x-forwarded-for is set
