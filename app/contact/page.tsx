@@ -145,10 +145,24 @@ export default function ContactPage() {
               </div>
             </div>
 
+            {/* Map embed via OpenStreetMap. Google's keyless
+                ?output=embed endpoint sends X-Frame-Options and
+                refuses to be framed, so it renders as an empty box;
+                OSM frames cleanly with no API key. The bbox is a
+                ~city-level window around the Vancouver, WA coords
+                with a marker dropped on the exact point. A
+                "View on Google Maps" link sits below for anyone who
+                wants turn-by-turn directions. */}
             <div className="mt-12 overflow-hidden border border-ivory/10">
               <iframe
-                title="ONA Restoration headquarters — Vancouver, WA"
-                src={`https://www.google.com/maps?q=${site.geo.latitude},${site.geo.longitude}&z=12&output=embed`}
+                title="ONA Restoration service area — Vancouver, WA"
+                src={`https://www.openstreetmap.org/export/embed.html?bbox=${
+                  site.geo.longitude - 0.08
+                }%2C${site.geo.latitude - 0.04}%2C${
+                  site.geo.longitude + 0.08
+                }%2C${site.geo.latitude + 0.04}&layer=mapnik&marker=${
+                  site.geo.latitude
+                }%2C${site.geo.longitude}`}
                 width="100%"
                 height="380"
                 loading="lazy"
@@ -156,6 +170,15 @@ export default function ContactPage() {
                 className="block"
               />
             </div>
+            <a
+              href={`https://www.google.com/maps/search/?api=1&query=${site.geo.latitude},${site.geo.longitude}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-flex items-center gap-2 text-[14px] text-ivory/80 underline-offset-4 transition hover:text-ivory hover:underline"
+            >
+              View on Google Maps
+              <span aria-hidden="true">→</span>
+            </a>
           </div>
         </div>
       </section>

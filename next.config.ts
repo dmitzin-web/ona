@@ -15,6 +15,12 @@ const ContentSecurityPolicy = [
   "form-action 'self'",
   "frame-ancestors 'none'",
   "object-src 'none'",
+  // The /contact page embeds a map iframe. Without an explicit frame-src
+  // the browser falls back to default-src 'self' and blocks it. We use
+  // OpenStreetMap's embed because Google's keyless ?output=embed endpoint
+  // now sends X-Frame-Options and refuses to be framed (net::ERR_ABORTED)
+  // regardless of our CSP. OSM frames cleanly with no API key.
+  "frame-src 'self' https://www.openstreetmap.org",
   "img-src 'self' data: blob: https:",
   "font-src 'self' data:",
   // JSON-LD is inlined via dangerouslySetInnerHTML; Next.js also inlines small
