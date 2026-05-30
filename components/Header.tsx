@@ -112,10 +112,28 @@ export function Header() {
               </span>
             </summary>
 
+            {/* Drawer. Three CSS-only changes vs. the original —
+                no JS, no structural changes, the <details>/<summary>
+                toggle is untouched.
+                  1. `hidden group-open:block` — visibility is now
+                     EXPLICIT, driven by the parent <details open>
+                     via the same `group` the burger-line animation
+                     already uses. The original relied on the browser
+                     hiding non-summary children of a closed <details>,
+                     but that UA behavior is unreliable for a
+                     `position: fixed` child — in some engines the
+                     drawer stayed painted after closing. Explicit
+                     hidden→block removes all doubt.
+                  2. bg-charcoal/95 backdrop-blur → bg-charcoal:
+                     solid, so page text no longer bleeds through.
+                  3. max-h-[calc(100vh-65px)] → min-h-[calc(100dvh-65px)]:
+                     the drawer fills the screen below the header
+                     instead of sizing to its short content, so the
+                     MobileStickyBar no longer peeks out underneath. */}
             <nav
               id="mobile-nav"
               aria-label="Mobile primary"
-              className="fixed inset-x-0 top-[65px] z-40 max-h-[calc(100vh-65px)] overflow-y-auto border-t border-ivory/10 bg-charcoal/95 backdrop-blur"
+              className="fixed inset-x-0 top-[65px] z-40 hidden min-h-[calc(100dvh-65px)] overflow-y-auto border-t border-ivory/10 bg-charcoal group-open:block"
             >
               <ul className="mx-auto max-w-7xl px-6 py-2">
                 {nav.map((item, i) => {
