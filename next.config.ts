@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { site } from "./lib/site";
 
 // Strict security headers are applied only to production builds. Applying HSTS
 // or `upgrade-insecure-requests` to a localhost dev server causes Safari to
@@ -8,6 +9,11 @@ import type { NextConfig } from "next";
 // always-harmless ones.
 
 const isProd = process.env.NODE_ENV === "production";
+
+// Absolute URL for CSP violation reports. Headers are prod-only, so the
+// canonical production host is the right base. Single source of truth in
+// lib/site.ts so it never drifts from the rest of the app's URLs.
+const cspReportEndpoint = `${site.url}/api/csp-report`;
 
 const ContentSecurityPolicy = [
   "default-src 'self'",
@@ -21,7 +27,11 @@ const ContentSecurityPolicy = [
   // explicit frame-src the browser falls back to default-src 'self'
   // and blocks it, so we allow only the Google origins it loads from.
   "frame-src 'self' https://www.google.com https://maps.google.com",
-  "img-src 'self' data: blob: https:",
+  // Narrowed from a blanket `https:`. The site loads images only from its own
+  // origin (Next Image is local-only — no remotePatterns), plus data:/blob:
+  // for inline SVGs and the assistant's photo-upload previews. The Google Maps
+  // embed is an <iframe> (frame-src), not an image, so it is unaffected.
+  "img-src 'self' data: blob:",
   "font-src 'self' data:",
   // JSON-LD is inlined via dangerouslySetInnerHTML; Next.js also inlines small
   // runtime scripts. 'unsafe-inline' is acceptable here because there is no
@@ -35,6 +45,13 @@ const ContentSecurityPolicy = [
   "media-src 'self'",
   "worker-src 'self' blob:",
   "upgrade-insecure-requests",
+  // Observability only — these directives do NOT block anything. Violations of
+  // the policy above are POSTed to our own /api/csp-report, which logs a
+  // bounded summary (visible in Vercel logs). report-to is the modern Reporting
+  // API (the `csp-endpoint` group is declared in the Reporting-Endpoints header
+  // below); report-uri is the legacy fallback Chromium still honors.
+  "report-to csp-endpoint",
+  `report-uri ${cspReportEndpoint}`,
 ].join("; ");
 
 const baseHeaders = [
@@ -54,6 +71,8 @@ const productionOnlyHeaders = [
     value: "max-age=63072000; includeSubDomains; preload",
   },
   { key: "Content-Security-Policy", value: ContentSecurityPolicy },
+  // Declares the `csp-endpoint` reporting group referenced by `report-to`.
+  { key: "Reporting-Endpoints", value: `csp-endpoint="${cspReportEndpoint}"` },
   { key: "X-Frame-Options", value: "DENY" },
   { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
   { key: "Cross-Origin-Resource-Policy", value: "same-origin" },
