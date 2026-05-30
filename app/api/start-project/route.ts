@@ -18,10 +18,44 @@ import { NextResponse } from "next/server";
 // client component opens a mailto: with the same fields. Either
 // path delivers the lead.
 
+// Hard caps so a hostile client can't flood our logs or memory with a
+// giant payload. The form only ever sends a handful of short fields.
+const MAX_BODY_BYTES = 16 * 1024; // 16 KB is generous for 4 short answers
+const MAX_FIELDS = 25;
+const MAX_FIELD_LEN = 2_000;
+
 export async function POST(req: Request) {
-  let body: Record<string, unknown> = {};
+  // Reject oversized bodies before parsing. We check the declared
+  // Content-Length first (cheap), then re-check the actual text length
+  // after reading, since Content-Length can be spoofed or absent.
+  const declared = Number(req.headers.get("content-length") ?? "0");
+  if (Number.isFinite(declared) && declared > MAX_BODY_BYTES) {
+    return NextResponse.json(
+      { ok: false, error: "payload too large" },
+      { status: 413 },
+    );
+  }
+
+  let raw: string;
   try {
-    body = await req.json();
+    raw = await req.text();
+  } catch {
+    return NextResponse.json({ ok: false, error: "unreadable" }, { status: 400 });
+  }
+  if (raw.length > MAX_BODY_BYTES) {
+    return NextResponse.json(
+      { ok: false, error: "payload too large" },
+      { status: 413 },
+    );
+  }
+
+  let body: Record<string, unknown>;
+  try {
+    const parsed = JSON.parse(raw);
+    if (typeof parsed !== "object" || parsed === null || Array.isArray(parsed)) {
+      throw new Error("not an object");
+    }
+    body = parsed as Record<string, unknown>;
   } catch {
     return NextResponse.json(
       { ok: false, error: "invalid json" },
@@ -29,9 +63,25 @@ export async function POST(req: Request) {
     );
   }
 
+  // Build a sanitized, bounded record for logging. We do NOT spread the
+  // raw body into the log line — an attacker could otherwise inject
+  // newlines / fake log entries or dump huge values. Keys are capped in
+  // count, values coerced to truncated strings.
+  const safe: Record<string, string> = {};
+  let count = 0;
+  for (const [key, value] of Object.entries(body)) {
+    if (count >= MAX_FIELDS) break;
+    count++;
+    const k = String(key).slice(0, 80).replace(/[\r\n]+/g, " ");
+    const v = (typeof value === "string" ? value : JSON.stringify(value) ?? "")
+      .slice(0, MAX_FIELD_LEN)
+      .replace(/[\r\n]+/g, " ");
+    safe[k] = v;
+  }
+
   console.log("[start-project] submission", {
     receivedAt: new Date().toISOString(),
-    ...body,
+    fields: safe,
   });
 
   return NextResponse.json({ ok: true });

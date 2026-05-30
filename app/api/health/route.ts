@@ -10,17 +10,16 @@ export const runtime = "nodejs";
 // to log every invocation, but also don't let a stale body get cached.
 export const dynamic = "force-dynamic";
 
+// Public liveness only. We intentionally do NOT expose whether the AI
+// key or Supabase are configured — that's reconnaissance an attacker can
+// use to fingerprint the backend. Deploy-time misconfig checks should
+// read server logs or an authenticated internal endpoint instead.
 export function GET() {
   return Response.json(
     {
       ok: true,
       service: "onarestore",
       time: new Date().toISOString(),
-      // Surface whether the AI is in real or mock mode without exposing
-      // the key itself — useful for spotting "production is in mock mode"
-      // misconfigurations after deploy.
-      ai: process.env.ANTHROPIC_API_KEY ? "live" : "mock",
-      supabase: process.env.NEXT_PUBLIC_SUPABASE_URL ? "configured" : "missing",
     },
     {
       headers: {
