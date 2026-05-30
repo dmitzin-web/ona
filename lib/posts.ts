@@ -1707,7 +1707,7 @@ export const posts: Post[] = [
     category: "Water",
     readingMinutes: 6,
     publishedAt: "2026-05-15",
-    author: { name: "ONA Restoration", title: "IICRC-certified restoration team" },
+    author: { name: "ONA Restoration", title: "Restoration team — Vancouver, WA" },
     sections: [
       {
         kind: "p",
