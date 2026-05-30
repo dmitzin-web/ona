@@ -79,15 +79,30 @@ export const site = {
   // detection and works against GBP verification. When real reviews
   // exist, re-add { value, count } here and the JSON-LD will fill in.
   rating: null as { value: number; count: number } | null,
+  // `certifications` lists ONLY credentials we actually hold today. The
+  // four IICRC technician certs (WRT/ASD/AMRT/FSRT) are NOT listed here
+  // because they are not yet issued — listing them (in copy or JSON-LD)
+  // would be a false credential claim and a structured-data verification
+  // risk. They are expected in 2026; when the certificates are in hand,
+  // re-add them to this array and flip `iicrcCertified` to true below —
+  // the JSON-LD hasCredential and any "in progress" copy update from
+  // these two values.
   certifications: [
     // WA L&I contractor registration — verifiable at
     // https://secure.lni.wa.gov/verify/. Issued 2026-05-28.
     "WA L&I Contractor Registration ONARER*748K8",
+    "Licensed, bonded & insured in WA and OR",
+  ],
+  // Flip to true ONLY when the IICRC certificates are actually issued.
+  // Drives whether we assert the certs as held vs. "in progress".
+  iicrcCertified: false,
+  // IICRC technician certs we are pursuing — surfaced as "in progress",
+  // never as held, until `iicrcCertified` is true.
+  iicrcPending: [
     "IICRC Water Damage Restoration (WRT)",
     "IICRC Applied Structural Drying (ASD)",
     "IICRC Applied Microbial Remediation (AMRT)",
     "IICRC Fire & Smoke Restoration (FSRT)",
-    "Licensed, bonded & insured in WA and OR",
   ],
   values: [
     {

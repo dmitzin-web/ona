@@ -56,7 +56,7 @@ export async function generateMetadata({
   const cityName = `${profile.name}, ${profile.region}`;
   return buildMetadata({
     title: `${service.name} in ${cityName}`,
-    description: `${service.name} in ${cityName} — IICRC-certified, ${profile.driveMinutesFromHQ === 0 ? "based locally" : `${profile.driveMinutesFromHQ}-min dispatch from our Vancouver HQ`}, insurance-grade documentation. Call ${site.phoneDisplay} for 24/7 emergency response.`,
+    description: `${service.name} in ${cityName} — working to IICRC standards, ${profile.driveMinutesFromHQ === 0 ? "based locally" : `${profile.driveMinutesFromHQ}-min dispatch from our Vancouver HQ`}, insurance-grade documentation. Call ${site.phoneDisplay} for 24/7 emergency response.`,
     path: `/services/${service.slug}/${profile.slug}`,
     keywords: [
       `${service.shortName.toLowerCase()} ${profile.name.toLowerCase()}`,

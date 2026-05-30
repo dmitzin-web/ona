@@ -10,7 +10,7 @@ import { breadcrumbJsonLd, faqJsonLd } from "@/lib/jsonld";
 
 export const metadata: Metadata = buildMetadata({
   title: `About ${site.name} — Vancouver, WA Restoration Specialists`,
-  description: `${site.name} is an IICRC-certified restoration contractor based in Vancouver, WA, serving the Portland metro since ${site.founded}. Founded by Dmitry Zinovyev. Locally owned, licensed in WA and OR.`,
+  description: `${site.name} is a restoration contractor based in Vancouver, WA, serving the Portland metro since ${site.founded}. Founded by Dmitry Zinovyev. Locally owned, licensed in WA and OR.`,
   path: "/about",
 });
 
@@ -28,8 +28,8 @@ const aboutFaqs = [
     a: "Yes. We document losses in Xactimate format, which is the same estimating system every major carrier uses (State Farm, Allstate, USAA, Farmers, Liberty Mutual, etc.). We can bill the insurer directly so you don't front the cost of mitigation.",
   },
   {
-    q: "What does IICRC certified mean and why does it matter?",
-    a: "The Institute of Inspection, Cleaning and Restoration Certification (IICRC) is the standards body for the restoration industry. Their S500 (water) and S520 (mold) standards define what proper mitigation actually looks like. We hold WRT (water), ASD (structural drying), AMRT (mold remediation) and FSRT (fire/smoke) certifications and we run every job to those standards — not to whatever the homeowner happens to know.",
+    q: "What is IICRC and why does it matter?",
+    a: "The Institute of Inspection, Cleaning and Restoration Certification (IICRC) is the standards body for the restoration industry. Their S500 (water) and S520 (mold) standards define what proper mitigation actually looks like. We run every job to those standards — not to whatever the homeowner happens to know. Our technician IICRC certifications (WRT, ASD, AMRT, FSRT) are in progress and expected in 2026; the work itself already follows the published S500/S520 methodology.",
   },
   {
     q: "Do you handle both emergency mitigation and the final rebuild?",
@@ -76,7 +76,7 @@ export default function AboutPage() {
                   back.
                 </p>
                 <p>
-                  We&apos;re certified, licensed, bonded and insured in both
+                  We&apos;re licensed, bonded and insured in both
                   Washington and Oregon — which matters in this metro because
                   half our calls are on one side of the Columbia and half are
                   on the other.
@@ -224,7 +224,7 @@ export default function AboutPage() {
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
           <p className="eyebrow text-warm-gray-soft">How we&apos;re set up</p>
           <h2 className="text-ivory mt-6 max-w-3xl text-4xl font-light leading-tight tracking-tight sm:text-5xl">
-            Locally owned. IICRC-certified. Built for the Pacific Northwest.
+            Locally owned. Standards-driven. Built for the Pacific Northwest.
           </h2>
           <dl className="mt-14 grid gap-x-8 gap-y-10 sm:grid-cols-3">
             <Stat
@@ -233,9 +233,9 @@ export default function AboutPage() {
               note="Vancouver, WA + Portland metro — Clark, Multnomah, Washington & Clackamas counties"
             />
             <Stat
-              label="Certifications"
-              value="IICRC"
-              note="WRT, ASD, AMRT, FSRT — water, drying, mold, fire & smoke"
+              label="Standards"
+              value="IICRC S500 / S520"
+              note="Every job run to IICRC water & mold standards. Technician certifications (WRT, ASD, AMRT, FSRT) in progress, expected 2026."
             />
             <Stat
               label="Dispatch"

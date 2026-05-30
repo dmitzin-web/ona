@@ -14,7 +14,7 @@ export function GET() {
   lines.push(`> ${site.tagline} ${site.shortDescription}`);
   lines.push("");
   lines.push(
-    `${site.name} is a locally owned, IICRC-certified restoration contractor based in ${site.address.locality}, ${site.address.region}, serving the entire Portland metro area since ${site.founded}. We handle water, fire, smoke, mold and storm damage — single-source mitigation plus full reconstruction — with insurance-grade documentation and 24/7 dispatch.`,
+    `${site.name} is a locally owned restoration contractor based in ${site.address.locality}, ${site.address.region}, serving the entire Portland metro area since ${site.founded}. We handle water, fire, smoke, mold and storm damage — single-source mitigation plus full reconstruction — with insurance-grade documentation and 24/7 dispatch.`,
   );
   lines.push("");
 

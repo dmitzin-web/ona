@@ -195,11 +195,11 @@ function buildMockStream(messages: ChatMessage[]): ReadableStream<Uint8Array> {
   } else if (/(area|zip|portland|vancouver|beaverton|tigard|gresham)/.test(userText)) {
     reply = `${site.name} serves Vancouver, WA and the entire Portland, OR metro — Clark, Multnomah, Washington, and Clackamas counties. Response target is **60 minutes** anywhere in the metro, 24/7.\n\n[See our full service area →](${site.url}/areas)`;
   } else if (/(water|leak|flood|drying)/.test(userText)) {
-    reply = `For active water intrusion: stop the source if it's safe, kill power to affected areas, move rugs and electronics off wet floors, and call us at **${site.phoneDisplay}** — we'll have a certified crew on site within an hour.\n\n[Water damage details →](${site.url}/services/water-damage)`;
+    reply = `For active water intrusion: stop the source if it's safe, kill power to affected areas, move rugs and electronics off wet floors, and call us at **${site.phoneDisplay}** — we'll have a crew on site within an hour.\n\n[Water damage details →](${site.url}/services/water-damage)`;
   } else if (/(fire|smoke|soot)/.test(userText)) {
     reply = `After a fire — wait for the fire department to clear the property, then call us at **${site.phoneDisplay}**. We'll board up openings, run air filtration, and start the cleaning sequence in the first hour.\n\n[Fire & smoke restoration →](${site.url}/services/fire-damage)`;
   } else if (/(mold|musty|mildew)/.test(userText)) {
-    reply = `Visible mold growth on porous materials usually needs remediation by an IICRC-certified crew working inside containment. If you can already see or smell it, don't disturb it — call **${site.phoneDisplay}** and we'll scope an inspection.\n\n[Mold remediation →](${site.url}/services/mold-removal)`;
+    reply = `Visible mold growth on porous materials usually needs remediation by a trained crew working inside containment to the IICRC S520 standard. If you can already see or smell it, don't disturb it — call **${site.phoneDisplay}** and we'll scope an inspection.\n\n[Mold remediation →](${site.url}/services/mold-removal)`;
   } else {
     reply = `I'm Ask ONA — the assistant for ${site.name}. I can help with restoration questions, remodeling, service-area coverage, and insurance basics. What's going on?\n\n_(Demo response — set ANTHROPIC_API_KEY to switch to the live model.)_`;
   }

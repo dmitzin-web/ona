@@ -12,7 +12,7 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = buildMetadata({
   title: "Restoration Guides & Notes",
   description:
-    "Field-tested guides from an IICRC-certified restoration team in Vancouver, WA and Portland, OR. Water, fire, mold, storm, and insurance.",
+    "Field-tested guides from a restoration team in Vancouver, WA and Portland, OR. Water, fire, mold, storm, and insurance.",
   path: "/blog",
 });
 

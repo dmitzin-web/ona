@@ -163,7 +163,7 @@ export const posts: Post[] = [
     title:
       "Your Water Heater Is Leaking — Turn These Three Valves Now",
     description:
-      "An IICRC-certified water-damage restoration contractor's emergency playbook for the moment you find your water heater leaking. Three valves, two minutes, and the difference between a $400 repair and a $14,000 claim.",
+      "A water-damage restoration contractor's emergency playbook for the moment you find your water heater leaking. Three valves, two minutes, and the difference between a $400 repair and a $14,000 claim.",
     excerpt:
       "Water heaters fail at the rate of about one in four every year past their tenth birthday. When yours goes, you have a window of about ten minutes before flooring damage compounds. Here are the three valves to turn and the order to turn them in.",
     category: "Water",
@@ -308,7 +308,7 @@ export const posts: Post[] = [
     title:
       "Ice Dam in Portland: Pull These Moves Before the Thaw",
     description:
-      "When the temperature is about to swing back above freezing after a Portland metro snow event, you have a 24-hour window to prevent ice-dam-driven water intrusion. An IICRC-certified restoration contractor's pre-thaw playbook.",
+      "When the temperature is about to swing back above freezing after a Portland metro snow event, you have a 24-hour window to prevent ice-dam-driven water intrusion. A restoration contractor's pre-thaw playbook.",
     excerpt:
       "Portland gets one or two real ice events per winter, and each one produces a predictable wave of attic and ceiling damage when the thaw arrives. The damage isn't caused by the snow — it's caused by what happens at the eaves while you're inside enjoying the snow day. Here's how to get ahead of it.",
     category: "Storm",
@@ -430,7 +430,7 @@ export const posts: Post[] = [
     title:
       "Pacific Northwest Wildfire Smoke: HVAC and Air Quality After the Smoke Clears",
     description:
-      "Cleaning up after smoke event days is more than wiping windows. An IICRC-certified contractor explains what wildfire smoke actually does to HVAC systems, ductwork and contents in Pacific Northwest homes — and the cleaning protocols that matter.",
+      "Cleaning up after smoke event days is more than wiping windows. A restoration contractor explains what wildfire smoke actually does to HVAC systems, ductwork and contents in Pacific Northwest homes — and the cleaning protocols that matter.",
     excerpt:
       "Most homeowners breathe a sigh of relief when the smoke clears outside. But indoor air can stay smoke-saturated for weeks, and the residue that settled on contents and inside HVAC ductwork keeps releasing odor and particulate long after the air outside is clean.",
     category: "Fire",
@@ -525,7 +525,7 @@ export const posts: Post[] = [
     title:
       "Fire Damage Cleanup: What Insurance Covers vs What They Fight",
     description:
-      "An IICRC-certified restoration contractor's guide to what your homeowners insurance will pay for after a fire — and the four scope categories where carriers consistently push back. Vancouver, WA and Portland metro specific.",
+      "A restoration contractor's guide to what your homeowners insurance will pay for after a fire — and the four scope categories where carriers consistently push back. Vancouver, WA and Portland metro specific.",
     excerpt:
       "Fire claims are usually paid more generously than water claims, but they're also more complex — a typical kitchen fire involves five or six scope categories that all need separate documentation. Most claim shortfalls aren't denials; they're under-paid line items the homeowner didn't know to fight for.",
     category: "Insurance",

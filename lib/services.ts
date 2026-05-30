@@ -19,10 +19,10 @@ export const services: Service[] = [
     shortName: "Water Damage",
     title: "Water Damage Restoration in Vancouver, WA & Portland Metro",
     description:
-      "24/7 emergency water damage restoration in Vancouver, WA and Portland, OR. IICRC-certified water extraction, structural drying and reconstruction. We bill your insurance directly.",
+      "24/7 emergency water damage restoration in Vancouver, WA and Portland, OR. IICRC-standard water extraction, structural drying and reconstruction. We bill your insurance directly.",
     hero: "Burst pipe, flooded basement, or appliance leak? Our crews are on-site within 60 minutes across the Portland metro area.",
     intro:
-      "Standing water turns into structural damage and mold growth in as little as 24 hours. ONA Restoration is an IICRC-certified water damage company serving Vancouver, WA and the entire Portland metro. We extract water, dry the structure, and rebuild — and we coordinate the claim with your insurance carrier so you don't have to.",
+      "Standing water turns into structural damage and mold growth in as little as 24 hours. ONA Restoration is a water-damage restoration company working to IICRC standards, serving Vancouver, WA and the entire Portland metro. We extract water, dry the structure, and rebuild — and we coordinate the claim with your insurance carrier so you don't have to.",
     body: [
       {
         heading: "What we handle",
@@ -101,7 +101,7 @@ export const services: Service[] = [
       "Fire, smoke and soot damage restoration in Vancouver, WA and Portland, OR. Board-up, structural cleaning, odor removal and full reconstruction. 24/7 emergency response.",
     hero: "After the fire department leaves, the damage keeps spreading. We secure the property and stop secondary loss within hours.",
     intro:
-      "Fire damage is rarely just fire. Soot is acidic and continues to etch metal, glass, and finishes within hours. Water from suppression saturates the structure. Smoke odor migrates into HVAC and porous materials throughout the home. ONA Restoration is IICRC FSRT-certified and handles every stage from board-up through reconstruction.",
+      "Fire damage is rarely just fire. Soot is acidic and continues to etch metal, glass, and finishes within hours. Water from suppression saturates the structure. Smoke odor migrates into HVAC and porous materials throughout the home. ONA Restoration works to the IICRC FSRT standard and handles every stage from board-up through reconstruction.",
     body: [
       {
         heading: "Immediate stabilization",
@@ -154,10 +154,10 @@ export const services: Service[] = [
     shortName: "Mold Remediation",
     title: "Mold Removal & Remediation | Vancouver, WA & Portland, OR",
     description:
-      "IICRC AMRT-certified mold remediation in Vancouver, WA and Portland, OR. Third-party testing, containment, HEPA filtration, and full remediation per IICRC S520.",
+      "IICRC-standard mold remediation in Vancouver, WA and Portland, OR. Third-party testing, containment, HEPA filtration, and full remediation per IICRC S520.",
     hero: "Pacific Northwest humidity makes mold inevitable when there's a moisture source. We find the source and remove the mold safely.",
     intro:
-      "Mold isn't a cleaning problem — it's a moisture problem. Bleaching surface growth without identifying and stopping the moisture source guarantees regrowth within weeks. ONA Restoration is IICRC AMRT-certified and follows the S520 standard for assessment, containment, and remediation.",
+      "Mold isn't a cleaning problem — it's a moisture problem. Bleaching surface growth without identifying and stopping the moisture source guarantees regrowth within weeks. ONA Restoration follows the IICRC S520 standard for assessment, containment, and remediation.",
     body: [
       {
         heading: "Assessment first, demolition second",

@@ -26,7 +26,7 @@ export async function generateMetadata(
   if (!area) return {};
   return buildMetadata({
     title: `Restoration in ${area.name}, ${area.region} — Water, Fire & Mold`,
-    description: `24/7 restoration in ${area.name}, ${area.regionName} (${area.county}). ${area.driveMinutesFromHQ}-minute dispatch from our Vancouver, WA HQ. IICRC-certified, direct insurance billing.`,
+    description: `24/7 restoration in ${area.name}, ${area.regionName} (${area.county}). ${area.driveMinutesFromHQ}-minute dispatch from our Vancouver, WA HQ. direct insurance billing.`,
     path: `/areas/${area.slug}`,
     keywords: [
       `restoration ${area.name} ${area.region}`,
@@ -91,7 +91,7 @@ export default async function AreaPage(
             </h1>
             <p className="mt-10 max-w-2xl text-lg leading-relaxed text-ivory/75">
               {area.driveMinutesFromHQ}-minute dispatch from our Vancouver, WA
-              headquarters. Population {area.population}. IICRC-certified crews,
+              headquarters. Population {area.population}. experienced crews,
               direct insurance billing, 24/7.
             </p>
             <div className="mt-10 flex flex-wrap gap-4">

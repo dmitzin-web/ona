@@ -101,11 +101,9 @@ export function localBusinessJsonLd() {
           ? "license"
           : "certification",
     })),
-    memberOf: {
-      "@type": "Organization",
-      name: "Institute of Inspection, Cleaning and Restoration Certification (IICRC)",
-      url: "https://www.iicrc.org",
-    },
+    // No `memberOf: IICRC` claim until certifications are actually issued —
+    // asserting org affiliation we don't hold is a structured-data
+    // verification risk. Re-add when site.iicrcCertified is true.
     sameAs: Object.values(site.social),
     hasOfferCatalog: {
       "@type": "OfferCatalog",
