@@ -145,24 +145,15 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* Map embed via OpenStreetMap. Google's keyless
-                ?output=embed endpoint sends X-Frame-Options and
-                refuses to be framed, so it renders as an empty box;
-                OSM frames cleanly with no API key. The bbox is a
-                ~city-level window around the Vancouver, WA coords
-                with a marker dropped on the exact point. A
-                "View on Google Maps" link sits below for anyone who
-                wants turn-by-turn directions. */}
+            {/* Google Maps embed via the official /maps/embed endpoint.
+                This is the iframe-friendly one — unlike the plain
+                ?output=embed endpoint it does NOT send X-Frame-Options,
+                so it frames cleanly with no API key. The `pb` payload
+                centers a city-level view on the Vancouver, WA coords. */}
             <div className="mt-12 overflow-hidden border border-ivory/10">
               <iframe
                 title="ONA Restoration service area — Vancouver, WA"
-                src={`https://www.openstreetmap.org/export/embed.html?bbox=${
-                  site.geo.longitude - 0.08
-                }%2C${site.geo.latitude - 0.04}%2C${
-                  site.geo.longitude + 0.08
-                }%2C${site.geo.latitude + 0.04}&layer=mapnik&marker=${
-                  site.geo.latitude
-                }%2C${site.geo.longitude}`}
+                src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d44000!2d-122.6615!3d45.6387!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
                 width="100%"
                 height="380"
                 loading="lazy"
