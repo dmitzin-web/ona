@@ -604,7 +604,7 @@ export const posts: Post[] = [
       { kind: "h2", text: "Where ONA fits in" },
       {
         kind: "p",
-        text: "We hold IICRC FSRT (Fire & Smoke Restoration Technician) certification and handle every stage from emergency board-up through final reconstruction. We document everything to insurance-adjuster standard from the first hour, and we coordinate with your carrier directly so you don't navigate the claim alone. If you're in Vancouver, WA or the Portland metro and you've had a fire — call us. We answer 24/7 and the first 24 hours are the most important.",
+        text: "We run fire & smoke work to the IICRC FSRT (Fire & Smoke Restoration Technician) standard and handle every stage from emergency board-up through final reconstruction. We document everything to insurance-adjuster standard from the first hour, and we coordinate with your carrier directly so you don't navigate the claim alone. If you're in Vancouver, WA or the Portland metro and you've had a fire — call us. We answer 24/7 and the first 24 hours are the most important.",
       },
     ],
     faqs: [
@@ -748,7 +748,7 @@ export const posts: Post[] = [
     title:
       "Atmospheric River Prep Checklist for Vancouver, WA Homeowners",
     description:
-      "An IICRC-certified restoration contractor's prep playbook for the 24 hours before an atmospheric river hits Vancouver, WA and the Portland metro — the seven things that matter, and the four that don't.",
+      "A restoration contractor's prep playbook for the 24 hours before an atmospheric river hits Vancouver, WA and the Portland metro — the seven things that matter, and the four that don't.",
     excerpt:
       "We see the same three losses every January and February: roof intrusion at the same valleys, basement seepage in the same neighborhoods, and downspout failures at the same five-foot setback. The forecast gives you 48-72 hours of warning. Here's what to actually do with it.",
     category: "Storm",
@@ -1017,7 +1017,7 @@ export const posts: Post[] = [
     title:
       "USAA Water Damage Claim Playbook for Pacific Northwest Losses",
     description:
-      "An IICRC-certified restoration contractor's guide to filing and winning a USAA water-damage claim in Washington and Oregon — what USAA's claim process looks like from inside, what they pay quickly, and what they push back on.",
+      "A restoration contractor's guide to filing and winning a USAA water-damage claim in Washington and Oregon — what USAA's claim process looks like from inside, what they pay quickly, and what they push back on.",
     excerpt:
       "USAA generally pays clean water-damage claims faster than any other major carrier we work with. But there are three specific places USAA pushes back where the same claim with State Farm or Allstate would pay in full — and three places they're more generous than peers. Knowing which is which gets you a full settlement in a fraction of the time.",
     category: "Insurance",
@@ -1118,7 +1118,7 @@ export const posts: Post[] = [
     title:
       "Found Mold Behind Drywall? Five Steps Before You Call Anyone",
     description:
-      "An IICRC AMRT-certified contractor explains exactly what to do in the first hour after discovering mold inside a wall — and the three things that turn a $3,000 remediation into a $20,000 one.",
+      "A mold-remediation contractor explains exactly what to do in the first hour after discovering mold inside a wall — and the three things that turn a $3,000 remediation into a $20,000 one.",
     excerpt:
       "Most homeowners discover mold the same way: they pulled a baseboard, opened a closet, or kicked a hole in soft drywall. What happens in the next hour decides whether you're looking at a contained remediation or a whole-home decontamination.",
     category: "Mold",
@@ -1237,7 +1237,7 @@ export const posts: Post[] = [
     howTo: {
       name: "Respond to mold discovered behind drywall",
       description:
-        "A five-step homeowner playbook from an IICRC AMRT-certified remediation contractor — what to do in the first hour after finding mold inside a wall.",
+        "A five-step homeowner playbook from a mold-remediation contractor — what to do in the first hour after finding mold inside a wall.",
       steps: [
         {
           name: "Stop disturbing the area",
@@ -1256,7 +1256,7 @@ export const posts: Post[] = [
           text: "Test first if the growth is over 10 sq ft, anyone in the household has respiratory symptoms, or the insurance claim is in dispute. Otherwise scope from visible damage.",
         },
         {
-          name: "Call an IICRC AMRT-certified remediation contractor",
+          name: "Call a qualified mold-remediation contractor (IICRC AMRT-certified)",
           text: "Not a maid service, not a general handyman. Containment, HEPA filtration, certified technicians, EPA-registered antimicrobial, moisture-source repair, and clearance verification — that's the IICRC S520 standard.",
         },
       ],
@@ -1409,7 +1409,7 @@ export const posts: Post[] = [
     title:
       "Why Portland Basements Flood: Clay Soil and the Drainage Problem No One Talks About",
     description:
-      "Portland basements flood at a higher rate than almost any other US metro — and the cause isn't atmospheric rivers, it's what's under the foundation. An IICRC-certified water restoration contractor explains the clay-soil mechanism and what actually fixes it.",
+      "Portland basements flood at a higher rate than almost any other US metro — and the cause isn't atmospheric rivers, it's what's under the foundation. A water restoration contractor explains the clay-soil mechanism and what actually fixes it.",
     excerpt:
       "If you bought a house in Portland and it has a basement, there's a chance the basement is wet right now and you don't know it. The reason isn't your roof or your gutters. It's the dirt your house is sitting on — and the drainage assumptions that worked in 1925 don't work for the rainfall this region gets in 2026.",
     category: "Water",
@@ -1535,7 +1535,7 @@ export const posts: Post[] = [
     title:
       "State Farm Denied Your Water Damage Claim — What to Do Next",
     description:
-      "An IICRC-certified restoration contractor's playbook for appealing a denied water-damage claim. The five reasons State Farm cites most often, the documentation that overturns each one, and when to escalate to the state insurance commissioner.",
+      "A restoration contractor's playbook for appealing a denied water-damage claim. The five reasons State Farm cites most often, the documentation that overturns each one, and when to escalate to the state insurance commissioner.",
     excerpt:
       "About one in three water-damage claims gets denied or paid short on the first pass. The denial letter is almost never the final answer — if you know which clause the adjuster cited and what evidence rebuts it, most decisions can be reversed within thirty days.",
     category: "Insurance",
@@ -1701,7 +1701,7 @@ export const posts: Post[] = [
     title:
       "Water Damage in Your Home: What to Do in the First Hour (and What Not to Touch)",
     description:
-      "A step-by-step checklist from an IICRC-certified restoration contractor. What to shut off, what to photograph, what to move — and which mistakes will cost you most.",
+      "A step-by-step checklist from a restoration contractor. What to shut off, what to photograph, what to move — and which mistakes will cost you most.",
     excerpt:
       "The first sixty minutes after a burst pipe or flood decide whether you're looking at a $4,000 mitigation job or a $40,000 rebuild. Here's the exact sequence we tell our own families.",
     category: "Water",
@@ -1780,7 +1780,7 @@ export const posts: Post[] = [
     howTo: {
       name: "Respond to water damage in your home in the first hour",
       description:
-        "A six-step emergency response checklist from an IICRC-certified restoration contractor.",
+        "A six-step emergency response checklist from a restoration contractor.",
       steps: [
         {
           name: "Stop the water at the closest shut-off valve",
