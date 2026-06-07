@@ -36,6 +36,7 @@ export function localBusinessJsonLd() {
       "Reconstruction and remodeling",
       "IICRC S500 water damage standard",
       "IICRC S520 mold remediation standard",
+      "IICRC S700 fire and smoke damage standard",
       "Xactimate insurance estimating",
       "Insurance claim documentation",
       "Thermal imaging moisture mapping",

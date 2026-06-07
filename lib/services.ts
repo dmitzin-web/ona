@@ -101,7 +101,7 @@ export const services: Service[] = [
       "Fire, smoke and soot damage restoration in Vancouver, WA and Portland, OR. Board-up, structural cleaning, odor removal and full reconstruction. 24/7 emergency response.",
     hero: "After the fire department leaves, the damage keeps spreading. We secure the property and stop secondary loss within hours.",
     intro:
-      "Fire damage is rarely just fire. Soot is acidic and continues to etch metal, glass, and finishes within hours. Water from suppression saturates the structure. Smoke odor migrates into HVAC and porous materials throughout the home. ONA Restoration works to the IICRC FSRT standard and handles every stage from board-up through reconstruction.",
+      "Fire damage is rarely just fire. Soot is acidic and continues to etch metal, glass, and finishes within hours. Water from suppression saturates the structure. Smoke odor migrates into HVAC and porous materials throughout the home. ONA Restoration works to the IICRC S700 fire & smoke damage standard and handles every stage from board-up through reconstruction.",
     body: [
       {
         heading: "Immediate stabilization",

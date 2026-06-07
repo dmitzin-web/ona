@@ -29,7 +29,7 @@ const aboutFaqs = [
   },
   {
     q: "What is IICRC and why does it matter?",
-    a: "The Institute of Inspection, Cleaning and Restoration Certification (IICRC) is the standards body for the restoration industry. Their S500 (water) and S520 (mold) standards define what proper mitigation actually looks like. We run every job to those standards — not to whatever the homeowner happens to know. Our technician IICRC certifications (WRT, ASD, AMRT, FSRT) are in progress and expected in 2026; the work itself already follows the published S500/S520 methodology.",
+    a: "The Institute of Inspection, Cleaning and Restoration Certification (IICRC) is the standards body for the restoration industry. Their S500 (water), S520 (mold) and S700 (fire & smoke) standards define what proper mitigation actually looks like. We run every job to those standards — not to whatever the homeowner happens to know. Our technician IICRC certifications (WRT, ASD, AMRT, FSRT) are in progress and expected in 2026; the work itself already follows the published S500/S520/S700 methodology.",
   },
   {
     q: "Do you handle both emergency mitigation and the final rebuild?",
@@ -78,7 +78,7 @@ export default function AboutPage() {
                   already having the worst day of the month. Our job is to make
                   the next hour easier, the next week predictable, and the
                   final walkthrough drama-free. We do that by running every job
-                  to the IICRC S500 / S520 standards, documenting everything to
+                  to the IICRC S500 / S520 / S700 standards, documenting everything to
                   the level your insurance adjuster expects, and keeping you in
                   the loop with one point of contact from emergency call to keys
                   back.
@@ -245,8 +245,8 @@ export default function AboutPage() {
             />
             <Stat
               label="Standards"
-              value="IICRC S500 / S520"
-              note="Every job run to IICRC water & mold standards. Technician certifications (WRT, ASD, AMRT, FSRT) in progress, expected 2026."
+              value="IICRC S500 / S520 / S700"
+              note="Every job run to IICRC water, mold & fire/smoke standards. Technician certifications (WRT, ASD, AMRT, FSRT) in progress, expected 2026."
             />
             <Stat
               label="Dispatch"
@@ -296,7 +296,7 @@ export default function AboutPage() {
                     "Mold remediation",
                     "Insurance claim documentation",
                     "Xactimate insurance estimating",
-                    "IICRC S500 and S520 standards",
+                    "IICRC S500, S520 and S700 standards",
                   ],
                 },
               ]

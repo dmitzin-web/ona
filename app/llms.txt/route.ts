@@ -63,7 +63,7 @@ export function GET() {
   lines.push("");
   lines.push(`- Response target: 60 minutes anywhere in the Portland metro.`);
   lines.push(`- Dispatch availability: 24 / 7 / 365.`);
-  lines.push(`- Standards: IICRC S500 (water) and S520 (mold).`);
+  lines.push(`- Standards: IICRC S500 (water), S520 (mold) and S700 (fire & smoke).`);
   lines.push(`- Documentation: photo logs, moisture maps, Xactimate-formatted estimates.`);
   lines.push(`- Insurance: direct billing with all major carriers.`);
   lines.push(`- Licensing: licensed, bonded and insured in Washington and Oregon.`);
