@@ -4,7 +4,6 @@ import { Footer } from "@/components/Footer";
 import { JsonLd } from "@/components/JsonLd";
 import { Analytics } from "@/components/Analytics";
 import { AskOna } from "@/components/assistant/AskOna";
-import { MobileStickyBar } from "@/components/MobileStickyBar";
 import { EmergencyBanner } from "@/components/EmergencyBanner";
 import { site } from "@/lib/site";
 import { localBusinessJsonLd, websiteJsonLd } from "@/lib/jsonld";
@@ -67,7 +66,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en-US" className={satoshi.variable}>
-      <body className="min-h-screen bg-charcoal pb-16 font-sans text-ivory antialiased lg:pb-0">
+      <body className="min-h-screen bg-charcoal font-sans text-ivory antialiased">
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-50 focus:bg-ivory focus:px-3 focus:py-2 focus:text-charcoal"
@@ -78,7 +77,6 @@ export default function RootLayout({
         <Header />
         <main id="main">{children}</main>
         <Footer />
-        <MobileStickyBar />
         <AskOna />
         <Analytics />
         <JsonLd data={[localBusinessJsonLd(), websiteJsonLd()]} />

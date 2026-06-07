@@ -128,8 +128,7 @@ export function Header() {
                      solid, so page text no longer bleeds through.
                   3. max-h-[calc(100vh-65px)] → min-h-[calc(100dvh-65px)]:
                      the drawer fills the screen below the header
-                     instead of sizing to its short content, so the
-                     MobileStickyBar no longer peeks out underneath. */}
+                     instead of sizing to its short content. */}
             <nav
               id="mobile-nav"
               aria-label="Mobile primary"
