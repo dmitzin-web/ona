@@ -24,13 +24,9 @@ export function localBusinessJsonLd() {
     priceRange: site.priceRange,
     description: site.shortDescription,
     foundingDate: site.founded,
-    founder: {
-      "@type": "Person",
-      "@id": `${site.url}/about#founder`,
-      name: "Dmitry Zinovyev",
-      jobTitle: "Founder",
-      worksFor: { "@id": `${site.url}/#business` },
-    },
+    // Founder Person intentionally omitted for now (founder's name hidden
+    // site-wide — see SHOW_FOUNDER in app/about/page.tsx). Restore this
+    // block alongside that flag.
     knowsAbout: [
       "Water damage restoration",
       "Fire and smoke damage restoration",

@@ -571,7 +571,7 @@ export default function HomePage() {
                         title: "Initial moisture mapping",
                         body: "Identified 6.2 m² of saturated subfloor. Containment set, dehumidifiers placed.",
                         photos: 12,
-                        author: "Dmitry",
+                        author: "ONA tech",
                       },
                       {
                         day: "Day 3",
@@ -579,7 +579,7 @@ export default function HomePage() {
                         title: "Adjuster walkthrough — approved",
                         body: 'Scope agreed: lower cabinets, subfloor, drywall to 18". Insurer photos uploaded.',
                         photos: 38,
-                        author: "Dmitry + adjuster",
+                        author: "ONA tech + adjuster",
                       },
                       {
                         day: "Day 5",
@@ -587,7 +587,7 @@ export default function HomePage() {
                         title: "Drying complete",
                         body: "All readings below threshold. Demo scheduled for Day 6.",
                         photos: 18,
-                        author: "Dmitry",
+                        author: "ONA tech",
                       },
                       {
                         day: "Day 7",
@@ -595,7 +595,7 @@ export default function HomePage() {
                         title: "Rebuild started",
                         body: "Subfloor and drywall in. Cabinets arriving Day 9. On schedule — kitchen usable again by Day 14.",
                         photos: 24,
-                        author: "Dmitry",
+                        author: "ONA tech",
                         isNow: true,
                       },
                     ].map((entry) => (
@@ -769,7 +769,7 @@ export default function HomePage() {
                       <li className="flex gap-2">
                         <span className="mt-1 inline-block h-1 w-1 flex-none rounded-full bg-gold" />
                         <span>
-                          <span className="text-ivory">Dmitry</span>{" "}
+                          <span className="text-ivory">ONA tech</span>{" "}
                           uploaded 8 photos · 9:14a
                         </span>
                       </li>

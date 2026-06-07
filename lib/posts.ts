@@ -38,7 +38,7 @@ export const posts: Post[] = [
     category: "Remodeling",
     readingMinutes: 8,
     publishedAt: "2026-05-11",
-    author: { name: "Dmitry Zinovyev", title: "Founder, ONA Restoration" },
+    author: { name: "ONA Restoration", title: "Restoration & remodeling — Vancouver, WA" },
     sections: [
       {
         kind: "p",
@@ -169,7 +169,7 @@ export const posts: Post[] = [
     category: "Water",
     readingMinutes: 5,
     publishedAt: "2026-05-13",
-    author: { name: "Dmitry Zinovyev", title: "Founder, ONA Restoration" },
+    author: { name: "ONA Restoration", title: "Restoration & remodeling — Vancouver, WA" },
     sections: [
       {
         kind: "p",
@@ -314,7 +314,7 @@ export const posts: Post[] = [
     category: "Storm",
     readingMinutes: 7,
     publishedAt: "2026-05-12",
-    author: { name: "Dmitry Zinovyev", title: "Founder, ONA Restoration" },
+    author: { name: "ONA Restoration", title: "Restoration & remodeling — Vancouver, WA" },
     sections: [
       {
         kind: "p",
@@ -436,7 +436,7 @@ export const posts: Post[] = [
     category: "Fire",
     readingMinutes: 7,
     publishedAt: "2026-05-11",
-    author: { name: "Dmitry Zinovyev", title: "Founder, ONA Restoration" },
+    author: { name: "ONA Restoration", title: "Restoration & remodeling — Vancouver, WA" },
     sections: [
       {
         kind: "p",
@@ -531,7 +531,7 @@ export const posts: Post[] = [
     category: "Insurance",
     readingMinutes: 8,
     publishedAt: "2026-05-10",
-    author: { name: "Dmitry Zinovyev", title: "Founder, ONA Restoration" },
+    author: { name: "ONA Restoration", title: "Restoration & remodeling — Vancouver, WA" },
     sections: [
       {
         kind: "p",
@@ -641,7 +641,7 @@ export const posts: Post[] = [
     category: "Insurance",
     readingMinutes: 7,
     publishedAt: "2026-05-09",
-    author: { name: "Dmitry Zinovyev", title: "Founder, ONA Restoration" },
+    author: { name: "ONA Restoration", title: "Restoration & remodeling — Vancouver, WA" },
     sections: [
       {
         kind: "p",
@@ -754,7 +754,7 @@ export const posts: Post[] = [
     category: "Storm",
     readingMinutes: 8,
     publishedAt: "2026-05-16",
-    author: { name: "Dmitry Zinovyev", title: "Founder, ONA Restoration" },
+    author: { name: "ONA Restoration", title: "Restoration & remodeling — Vancouver, WA" },
     sections: [
       {
         kind: "p",
@@ -898,7 +898,7 @@ export const posts: Post[] = [
     category: "Water",
     readingMinutes: 9,
     publishedAt: "2026-05-15",
-    author: { name: "Dmitry Zinovyev", title: "Founder, ONA Restoration" },
+    author: { name: "ONA Restoration", title: "Restoration & remodeling — Vancouver, WA" },
     sections: [
       {
         kind: "p",
@@ -1023,7 +1023,7 @@ export const posts: Post[] = [
     category: "Insurance",
     readingMinutes: 8,
     publishedAt: "2026-05-14",
-    author: { name: "Dmitry Zinovyev", title: "Founder, ONA Restoration" },
+    author: { name: "ONA Restoration", title: "Restoration & remodeling — Vancouver, WA" },
     sections: [
       {
         kind: "p",
@@ -1124,7 +1124,7 @@ export const posts: Post[] = [
     category: "Mold",
     readingMinutes: 7,
     publishedAt: "2026-05-19",
-    author: { name: "Dmitry Zinovyev", title: "Founder, ONA Restoration" },
+    author: { name: "ONA Restoration", title: "Restoration & remodeling — Vancouver, WA" },
     sections: [
       {
         kind: "p",
@@ -1295,7 +1295,7 @@ export const posts: Post[] = [
     category: "Mold",
     readingMinutes: 8,
     publishedAt: "2026-05-18",
-    author: { name: "Dmitry Zinovyev", title: "Founder, ONA Restoration" },
+    author: { name: "ONA Restoration", title: "Restoration & remodeling — Vancouver, WA" },
     sections: [
       {
         kind: "p",
@@ -1415,7 +1415,7 @@ export const posts: Post[] = [
     category: "Water",
     readingMinutes: 9,
     publishedAt: "2026-05-17",
-    author: { name: "Dmitry Zinovyev", title: "Founder, ONA Restoration" },
+    author: { name: "ONA Restoration", title: "Restoration & remodeling — Vancouver, WA" },
     sections: [
       {
         kind: "p",
@@ -1541,7 +1541,7 @@ export const posts: Post[] = [
     category: "Insurance",
     readingMinutes: 9,
     publishedAt: "2026-05-20",
-    author: { name: "Dmitry Zinovyev", title: "Founder, ONA Restoration" },
+    author: { name: "ONA Restoration", title: "Restoration & remodeling — Vancouver, WA" },
     sections: [
       {
         kind: "p",

@@ -10,7 +10,7 @@ import { breadcrumbJsonLd, faqJsonLd } from "@/lib/jsonld";
 
 export const metadata: Metadata = buildMetadata({
   title: `About ${site.name} — Vancouver, WA Restoration Specialists`,
-  description: `${site.name} is a restoration contractor based in Vancouver, WA, serving the Portland metro since ${site.founded}. Founded by Dmitry Zinovyev. Locally owned, licensed in WA and OR.`,
+  description: `${site.name} is a restoration contractor based in Vancouver, WA, serving the Portland metro since ${site.founded}. Locally owned, licensed in WA and OR.`,
   path: "/about",
 });
 
@@ -40,6 +40,14 @@ const aboutFaqs = [
     a: "Yes. Licensed, bonded and insured for both restoration and reconstruction in WA and OR. Permitting jurisdictions across Clark, Multnomah, Washington and Clackamas counties know us by name.",
   },
 ];
+
+// Temporarily hiding the founder's name/section site-wide ("скрой пока").
+// Flip back to true to restore the visible Founder section AND its Person
+// JSON-LD below in one move. Coupled hides that live in other files when
+// this is false: the LocalBusiness `founder` in lib/jsonld.ts, the
+// "Founded by …" line in this file's metadata, and the blog bylines in
+// lib/posts.ts — restore those alongside this flag.
+const SHOW_FOUNDER = false;
 
 export default function AboutPage() {
   return (
@@ -102,7 +110,9 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Founder section — DOM anchor for the Person @id used in JSON-LD */}
+      {/* Founder section — DOM anchor for the Person @id used in JSON-LD.
+          Hidden for now via SHOW_FOUNDER. */}
+      {SHOW_FOUNDER && (
       <section id="founder" className="border-t border-ivory/10 bg-charcoal scroll-mt-24">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
           <p className="eyebrow text-ivory/60">Founder</p>
@@ -166,6 +176,7 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+      )}
 
       {/* How we work */}
       <section className="border-t border-ivory/10 bg-charcoal-soft">
@@ -265,25 +276,31 @@ export default function AboutPage() {
             mainEntity: { "@id": `${site.url}/#business` },
           },
           faqJsonLd(aboutFaqs),
-          {
-            "@context": "https://schema.org",
-            "@type": "Person",
-            "@id": `${site.url}/about#founder`,
-            name: "Dmitry Zinovyev",
-            jobTitle: "Founder",
-            email: site.email,
-            telephone: site.phone,
-            worksFor: { "@id": `${site.url}/#business` },
-            url: `${site.url}/about#founder`,
-            knowsAbout: [
-              "Water damage restoration",
-              "Fire and smoke damage restoration",
-              "Mold remediation",
-              "Insurance claim documentation",
-              "Xactimate insurance estimating",
-              "IICRC S500 and S520 standards",
-            ],
-          },
+          // Founder Person schema — hidden for now alongside the visible
+          // section (SHOW_FOUNDER). Restore by flipping the flag.
+          ...(SHOW_FOUNDER
+            ? [
+                {
+                  "@context": "https://schema.org",
+                  "@type": "Person",
+                  "@id": `${site.url}/about#founder`,
+                  name: "Dmitry Zinovyev",
+                  jobTitle: "Founder",
+                  email: site.email,
+                  telephone: site.phone,
+                  worksFor: { "@id": `${site.url}/#business` },
+                  url: `${site.url}/about#founder`,
+                  knowsAbout: [
+                    "Water damage restoration",
+                    "Fire and smoke damage restoration",
+                    "Mold remediation",
+                    "Insurance claim documentation",
+                    "Xactimate insurance estimating",
+                    "IICRC S500 and S520 standards",
+                  ],
+                },
+              ]
+            : []),
         ]}
       />
     </>
