@@ -76,7 +76,7 @@ export default async function ServicePage(
                   {service.shortName}
                 </p>
                 <h1 className="text-ivory mt-8 text-5xl font-light leading-[1.05] tracking-tight sm:text-6xl">
-                  {service.name}
+                  {service.name}{" "}
                   <span className="block text-ivory/60 sm:text-5xl">
                     in {site.address.locality}, {site.address.region} &
                     Portland Metro.
