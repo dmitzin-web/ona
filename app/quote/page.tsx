@@ -16,14 +16,14 @@ import { breadcrumbJsonLd, faqJsonLd } from "@/lib/jsonld";
 export const metadata: Metadata = buildMetadata({
   title: "Request a Restoration Quote",
   description:
-    "Send us a description and photos of the damage. We respond within the hour during business hours, same morning otherwise. No obligation. Or call (360) 823-3196 24/7 for emergencies.",
+    "Send us a description and photos of the damage. We respond within the hour during business hours, same morning otherwise. No obligation. Or call (360) 553-2138 24/7 for emergencies.",
   path: "/quote",
 });
 
 const quoteFaqs = [
   {
     q: "How fast will I hear back after I submit this form?",
-    a: "During business hours (Mon-Sat) we respond within one hour. After hours, we respond the next morning. If your loss is active or you're worried about ongoing damage, call (360) 823-3196 instead — dispatch is 24/7.",
+    a: "During business hours (Mon-Sat) we respond within one hour. After hours, we respond the next morning. If your loss is active or you're worried about ongoing damage, call (360) 553-2138 instead — dispatch is 24/7.",
   },
   {
     q: "Is the quote free, and am I committing to anything by requesting one?",

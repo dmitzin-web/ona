@@ -35,7 +35,7 @@ export const services: Service[] = [
         heading: "Why response time matters",
         paragraphs: [
           "Category 1 (clean) water becomes Category 2 (gray) within 48 hours and Category 3 (black) within 72. Drywall wicks moisture upward at roughly one inch per hour. Hardwood floors can cup permanently in 24 hours.",
-          "We staff 24/7/365 with trucks pre-loaded with extractors, air movers, dehumidifiers, and HEPA scrubbers. When you call (360) 823-3196, the technician on the truck has your address before they hang up.",
+          "We staff 24/7/365 with trucks pre-loaded with extractors, air movers, dehumidifiers, and HEPA scrubbers. When you call (360) 553-2138, the technician on the truck has your address before they hang up.",
         ],
       },
     ],

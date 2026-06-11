@@ -31,8 +31,8 @@ export const site = {
   // URL — otherwise Google sees two URLs for every page.
   url: "https://www.onarestore.com",
   locale: "en_US",
-  phone: "+13608233196",
-  phoneDisplay: "(360) 823-3196",
+  phone: "+13605532138",
+  phoneDisplay: "(360) 553-2138",
   // Use a role-based dispatch mailbox, not a personal address. Personal
   // emails on a public site invite spam and look unprofessional. The
   // dispatch@ mailbox should forward to whoever is on call (currently
