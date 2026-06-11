@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useRef } from "react";
 import { site } from "@/lib/site";
 
 // ─────────────────────────────────────────────────────────────
@@ -36,6 +37,15 @@ function openAskOna() {
 
 export function Header() {
   const pathname = usePathname() ?? "/";
+  const mobileMenuRef = useRef<HTMLDetailsElement>(null);
+
+  // Close the mobile drawer after a selection. The drawer is a native
+  // <details>; client-side <Link> navigation doesn't reload the page, so
+  // without this the menu stays open until you tap the X. Called on every
+  // interactive item inside the drawer.
+  function closeMobileMenu() {
+    if (mobileMenuRef.current) mobileMenuRef.current.open = false;
+  }
 
   return (
     <header className="sticky top-0 z-40 border-b border-ivory/10 bg-charcoal/90 backdrop-blur">
@@ -98,7 +108,7 @@ export function Header() {
           </Link>
 
           {/* Mobile burger */}
-          <details className="group relative lg:hidden">
+          <details ref={mobileMenuRef} className="group relative lg:hidden">
             <summary
               aria-label="Toggle menu"
               aria-controls="mobile-nav"
@@ -144,7 +154,10 @@ export function Header() {
                       >
                         <button
                           type="button"
-                          onClick={openAskOna}
+                          onClick={() => {
+                            closeMobileMenu();
+                            openAskOna();
+                          }}
                           className="flex w-full items-center justify-between py-4 text-[15px] font-medium tracking-tight text-gold transition"
                         >
                           <span>{item.label}</span>
@@ -165,6 +178,7 @@ export function Header() {
                     >
                       <Link
                         href={item.href}
+                        onClick={closeMobileMenu}
                         aria-current={active ? "page" : undefined}
                         className={`flex items-center justify-between py-4 text-[15px] font-medium tracking-tight transition ${
                           active ? "text-ivory" : "text-ivory/75"
@@ -181,12 +195,14 @@ export function Header() {
                 <li className="grid gap-2 pt-3 pb-5">
                   <a
                     href={`tel:${site.phone}`}
+                    onClick={closeMobileMenu}
                     className="inline-flex w-full items-center justify-center rounded-full bg-gold px-4 py-3 text-[13px] font-medium text-white"
                   >
                     Call {site.phoneDisplay}
                   </a>
                   <Link
                     href="/start-project"
+                    onClick={closeMobileMenu}
                     className="inline-flex w-full items-center justify-center rounded-full border border-ivory px-4 py-3 text-[13px] font-medium text-ivory"
                   >
                     Start a project
