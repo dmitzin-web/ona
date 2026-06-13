@@ -101,6 +101,13 @@ const nextConfig: NextConfig = {
         destination: "/services/remodeling/:path*",
         permanent: true,
       },
+      // Mold is the third co-equal business line — same short-URL treatment.
+      { source: "/mold", destination: "/services/mold-removal", permanent: true },
+      {
+        source: "/mold/:path*",
+        destination: "/services/mold-removal/:path*",
+        permanent: true,
+      },
     ];
   },
   async headers() {

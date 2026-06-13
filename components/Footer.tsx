@@ -12,8 +12,8 @@ export function Footer() {
           <Logo variant="horizontal" tone="light" />
           <div className="mt-8 max-w-sm space-y-3 text-sm leading-relaxed text-ivory/75">
             <p>
-              Restoration and remodeling in Vancouver, WA and the Portland
-              metro.
+              Restoration, mold, and remodeling in Vancouver, WA and the
+              Portland metro.
             </p>
             <p>
               Water · Fire · Mold · Storm · Reconstruction · Kitchen &amp;

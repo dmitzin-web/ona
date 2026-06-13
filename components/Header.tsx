@@ -24,6 +24,7 @@ type NavItem =
 
 const nav: NavItem[] = [
   { href: "/services", label: "Restoration" },
+  { href: "/services/mold-removal", label: "Mold" },
   { href: "/services/remodeling", label: "Remodeling" },
   { href: "/about", label: "How we work" },
   { href: "/blog", label: "Notes" },
@@ -45,6 +46,21 @@ export function Header() {
   // interactive item inside the drawer.
   function closeMobileMenu() {
     if (mobileMenuRef.current) mobileMenuRef.current.open = false;
+  }
+
+  // Active-nav matching. Mold and Remodeling live under /services/* but
+  // are their own top-level pillars, so the "/services" (Restoration) item
+  // must NOT light up on those sub-paths — otherwise two items highlight.
+  function isActive(href: string) {
+    if (href === "/services") {
+      return (
+        pathname === "/services" ||
+        (pathname.startsWith("/services/") &&
+          !pathname.startsWith("/services/mold-removal") &&
+          !pathname.startsWith("/services/remodeling"))
+      );
+    }
+    return pathname === href || pathname.startsWith(`${href}/`);
   }
 
   return (
@@ -73,9 +89,7 @@ export function Header() {
                   </li>
                 );
               }
-              const active =
-                pathname === item.href ||
-                pathname.startsWith(`${item.href}/`);
+              const active = isActive(item.href);
               return (
                 <li key={item.href ?? `nav-${i}`}>
                   <Link
@@ -168,9 +182,7 @@ export function Header() {
                       </li>
                     );
                   }
-                  const active =
-                    pathname === item.href ||
-                    pathname.startsWith(`${item.href}/`);
+                  const active = isActive(item.href);
                   return (
                     <li
                       key={item.href ?? `nav-mob-${i}`}

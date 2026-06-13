@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { JsonLd } from "@/components/JsonLd";
-import { services } from "@/lib/services";
+import { restorationServices } from "@/lib/services";
 import { site } from "@/lib/site";
 import { buildMetadata } from "@/lib/seo";
 import { faqJsonLd } from "@/lib/jsonld";
@@ -55,7 +55,7 @@ const homeFaqs = [
   },
   {
     q: "What services do you offer?",
-    a: "Restoration: water, fire and smoke, mold, storm and reconstruction. Remodeling: kitchen, bathroom, and combined kitchen + bath. One small team handles both.",
+    a: "Three lines of work. Restoration: water, fire and smoke, storm and reconstruction. Mold: inspection, testing, containment and IICRC S520 remediation. Remodeling: kitchen, bathroom, and combined kitchen + bath. One small team handles all three.",
   },
   {
     q: "Are you licensed?",
@@ -66,7 +66,7 @@ const homeFaqs = [
 export const metadata: Metadata = buildMetadata({
   title: `${site.name} — Restoration & Remodeling in Vancouver, WA`,
   description:
-    "Restoration and remodeling in Vancouver, WA — without the chaos. Every project comes with a live page: photos, daily updates, and what's next. One team from emergency cleanup to final paint.",
+    "Restoration, mold remediation, and remodeling in Vancouver, WA — without the chaos. Every project comes with a live page: photos, daily updates, and what's next. One team from emergency cleanup to final paint.",
   path: "/",
   keywords: [
     "restoration Vancouver WA",
@@ -214,10 +214,10 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl px-6 py-24 md:py-32 lg:px-10">
           <p className="eyebrow text-ivory/75">What we do</p>
           <h2 className="mt-6 max-w-3xl text-[32px] font-semibold leading-[1.1] tracking-[-0.02em] text-ivory md:text-[44px]">
-            Two distinct services. One small team that handles both.
+            Three lines of work. One small crew behind all of them.
           </h2>
 
-          <div className="mt-16 grid gap-12 md:grid-cols-2 md:gap-20">
+          <div className="mt-16 grid gap-12 md:grid-cols-3 md:gap-10">
             <div>
               <div className="flex items-center justify-between gap-3">
                 <div className="flex items-center gap-3">
@@ -229,28 +229,23 @@ export default function HomePage() {
                 </span>
               </div>
               <p className="mt-4 text-[18px] leading-relaxed text-ivory">
-                Something happened — water, fire, smoke, mold. We
+                Something happened — water, fire, smoke, storm. We
                 stabilize the damage, document the scope for your
                 insurer, and rebuild what was lost.
               </p>
 
               <ul className="mt-8 grid gap-3 text-[15px] text-ivory/75">
-                {services
-                  .filter((s) => s.slug !== "remodeling")
-                  .map((s) => (
-                    <li
-                      key={s.slug}
-                      className="border-t border-ivory/10 pt-3"
+                {restorationServices.map((s) => (
+                  <li key={s.slug} className="border-t border-ivory/10 pt-3">
+                    <Link
+                      href={`/services/${s.slug}`}
+                      className="flex items-center justify-between transition hover:text-ivory"
                     >
-                      <Link
-                        href={`/services/${s.slug}`}
-                        className="flex items-center justify-between transition hover:text-ivory"
-                      >
-                        <span>{s.shortName}</span>
-                        <span className="text-warm-gray-soft">→</span>
-                      </Link>
-                    </li>
-                  ))}
+                      <span>{s.shortName}</span>
+                      <span className="text-warm-gray-soft">→</span>
+                    </Link>
+                  </li>
+                ))}
               </ul>
 
               <div className="mt-10 rounded-xl border border-ivory/10 bg-charcoal-soft p-5">
@@ -280,7 +275,71 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="md:border-l md:border-ivory/10 md:pl-16">
+            {/* Mold — its own pillar (IICRC S520), pulled out of the
+                restoration list above. */}
+            <div className="md:border-l md:border-ivory/10 md:pl-10">
+              <div className="flex items-center justify-between gap-3">
+                <div className="flex items-center gap-3">
+                  <span className="h-2 w-2 rounded-full bg-gold" />
+                  <p className="eyebrow text-ivory/75">Mold</p>
+                </div>
+                <span className="text-[10px] uppercase tracking-[0.18em] text-gold">
+                  IICRC S520
+                </span>
+              </div>
+              <p className="mt-4 text-[18px] leading-relaxed text-ivory">
+                You can see it, smell it, or a test flagged it. We find
+                the moisture driving it, contain the area, and remediate
+                to the IICRC S520 standard — then verify before we close.
+              </p>
+
+              <ul className="mt-8 grid gap-3 text-[15px] text-ivory/75">
+                {[
+                  "Inspection & testing",
+                  "Containment & HEPA",
+                  "Remediation (IICRC S520)",
+                  "Clearance verification",
+                ].map((label) => (
+                  <li key={label} className="border-t border-ivory/10 pt-3">
+                    <Link
+                      href="/services/mold-removal"
+                      className="flex items-center justify-between transition hover:text-ivory"
+                    >
+                      <span>{label}</span>
+                      <span className="text-warm-gray-soft">→</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-10 rounded-xl border border-ivory/10 bg-charcoal-soft p-5">
+                <p className="eyebrow text-ivory/75">How we remediate</p>
+                <ol className="mt-3 space-y-2 text-[13px] text-ivory/75">
+                  <li className="flex gap-3">
+                    <span className="font-medium text-ivory">1.</span>
+                    <span>Inspect and find the moisture source.</span>
+                  </li>
+                  <li className="flex gap-3">
+                    <span className="font-medium text-ivory">2.</span>
+                    <span>Seal containment, set HEPA negative air.</span>
+                  </li>
+                  <li className="flex gap-3">
+                    <span className="font-medium text-ivory">3.</span>
+                    <span>Remove affected materials, treat what stays.</span>
+                  </li>
+                  <li className="flex gap-3">
+                    <span className="font-medium text-ivory">4.</span>
+                    <span>Fix the water source so it doesn&apos;t return.</span>
+                  </li>
+                  <li className="flex gap-3">
+                    <span className="font-medium text-ivory">5.</span>
+                    <span>Clearance verification before any rebuild.</span>
+                  </li>
+                </ol>
+              </div>
+            </div>
+
+            <div className="md:border-l md:border-ivory/10 md:pl-10">
               <div className="flex items-center justify-between gap-3">
                 <div className="flex items-center gap-3">
                   <span className="h-2 w-2 rounded-full bg-gold-deep" />
@@ -1409,6 +1468,13 @@ export default function HomePage() {
                 </dt>
                 <dd className="mt-2 text-charcoal">24 hours · every day</dd>
                 <dd className="mt-1 text-charcoal/55">Insurance billed direct</dd>
+              </div>
+              <div>
+                <dt className="text-[10px] uppercase tracking-[0.22em] text-charcoal/45">
+                  Mold
+                </dt>
+                <dd className="mt-2 text-charcoal">By appointment</dd>
+                <dd className="mt-1 text-charcoal/55">IICRC S520 · insurance billed</dd>
               </div>
               <div>
                 <dt className="text-[10px] uppercase tracking-[0.22em] text-charcoal/45">

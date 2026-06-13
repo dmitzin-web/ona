@@ -341,5 +341,29 @@ export const services: Service[] = [
   },
 ];
 
+// ─── Three co-equal business lines (pillars) ──────────────────
+// The site presents three directions of work. Mold and Remodeling
+// each get their own elevated landing/section; Restoration is the
+// multi-discipline emergency line. All three still live in the same
+// `services` array (so /services/<slug> + city pages auto-generate),
+// but these helpers are the single source of truth for which slug
+// belongs to which pillar — use them instead of ad-hoc
+// `s.slug !== "remodeling"` filters.
+export const RESTORATION_SLUGS = [
+  "water-damage",
+  "fire-damage",
+  "storm-damage",
+] as const;
+export const MOLD_SLUG = "mold-removal";
+export const REMODELING_SLUG = "remodeling";
+
+export const restorationServices = services.filter((s) =>
+  RESTORATION_SLUGS.includes(s.slug as (typeof RESTORATION_SLUGS)[number]),
+);
+export const moldService = services.find((s) => s.slug === MOLD_SLUG)!;
+export const remodelingService = services.find(
+  (s) => s.slug === REMODELING_SLUG,
+)!;
+
 export const findService = (slug: string) =>
   services.find((s) => s.slug === slug);

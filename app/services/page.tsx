@@ -5,24 +5,31 @@ import { ServiceCard } from "@/components/ServiceCard";
 import { CTA } from "@/components/CTA";
 import { JsonLd } from "@/components/JsonLd";
 import { ArrowIcon } from "@/components/icons/ServiceIcons";
-import { services } from "@/lib/services";
+import {
+  restorationServices,
+  moldService,
+  remodelingService,
+} from "@/lib/services";
 import { site } from "@/lib/site";
 import { buildMetadata } from "@/lib/seo";
 import { breadcrumbJsonLd } from "@/lib/jsonld";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Restoration & Remodeling Services — Vancouver, WA & Portland, OR",
+  title: "Restoration, Mold & Remodeling Services — Vancouver, WA & Portland, OR",
   description:
     "Full restoration and remodeling services in Vancouver, WA and Portland, OR: water damage, fire & smoke, mold remediation, storm damage, and custom remodeling. 24/7 emergency response, work performed to IICRC standards.",
   path: "/services",
 });
 
 export default function ServicesPage() {
-  // Restoration services are the four core mitigation/reconstruction
-  // offerings. Remodeling lives in the same list (so /services/remodeling
-  // works) but renders separately on this page as a featured division.
-  const restoration = services.filter((s) => s.slug !== "remodeling");
-  const remodeling = services.find((s) => s.slug === "remodeling");
+  // Three co-equal business lines. Restoration is the multi-discipline
+  // emergency grid (water, fire, storm); Mold and Remodeling each render
+  // as their own featured division. All slugs live in the same services
+  // array (so /services/<slug> + city pages auto-generate) — see
+  // lib/services.ts for the pillar split.
+  const restoration = restorationServices;
+  const remodeling = remodelingService;
+  const mold = moldService;
 
   return (
     <>
@@ -36,7 +43,7 @@ export default function ServicesPage() {
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
           <p className="eyebrow text-ivory/60">Our services</p>
           <h1 className="text-ivory mt-6 max-w-3xl text-5xl font-light leading-[1.05] tracking-tight sm:text-6xl">
-            Restoration and remodeling, executed with precision.
+            Restoration, mold, and remodeling, executed with precision.
           </h1>
           <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ivory/75">
             Single-source mitigation, reconstruction, and remodeling across the
@@ -52,7 +59,7 @@ export default function ServicesPage() {
                 24/7 emergency response · 60-minute target
               </p>
             </div>
-            <div className="mt-6 grid gap-px overflow-hidden border border-ivory/10 bg-charcoal/10 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mt-6 grid gap-px overflow-hidden border border-ivory/10 bg-charcoal/10 sm:grid-cols-2 lg:grid-cols-3">
               {restoration.map((s) => (
                 <div key={s.slug}>
                   <ServiceCard service={s} />
@@ -60,6 +67,42 @@ export default function ServicesPage() {
               ))}
             </div>
           </div>
+
+          {/* Mold — featured row, its own pillar (IICRC S520) */}
+          {mold && (
+            <div className="mt-16">
+              <div className="flex flex-wrap items-end justify-between gap-3">
+                <p className="eyebrow text-gold">Mold</p>
+                <p className="text-sm text-ivory/55">
+                  Inspection · Testing · Containment · S520 remediation
+                </p>
+              </div>
+              <Link
+                href={`/services/${mold.slug}`}
+                className="group mt-6 block border border-ivory/10 bg-charcoal text-ivory transition hover:border-gold"
+              >
+                <div className="grid gap-8 px-8 py-12 lg:grid-cols-12 lg:px-12 lg:py-14">
+                  <div className="lg:col-span-8">
+                    <h2 className="text-ivory text-3xl font-light leading-tight tracking-tight sm:text-4xl">
+                      {mold.shortName}.{" "}
+                      <span className="font-medium text-gold">
+                        Done to the IICRC S520 standard.
+                      </span>
+                    </h2>
+                    <p className="mt-5 max-w-2xl text-base leading-relaxed text-ivory/75">
+                      {mold.hero}
+                    </p>
+                  </div>
+                  <div className="flex items-end lg:col-span-4 lg:justify-end">
+                    <span className="inline-flex items-center gap-3 eyebrow text-ivory transition group-hover:gap-4">
+                      Explore mold remediation
+                      <ArrowIcon className="h-3 w-3 stroke-current" />
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            </div>
+          )}
 
           {/* Remodeling — featured row, separate visual treatment */}
           {remodeling && (
