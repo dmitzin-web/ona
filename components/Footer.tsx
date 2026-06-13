@@ -39,7 +39,7 @@ export function Footer() {
           {/* License slots — replace `pending` strings with actual IDs as
               they are issued; do not invent or estimate.
               WA L&I: ONARER*748K8 (issued, verifiable at lni.wa.gov)
-              OR CCB / IICRC: still pending. */}
+              IICRC: certified (WRT/ASD/AMRT/FSRT). OR CCB: still pending. */}
           <dl className="mt-6 grid grid-cols-1 gap-1 text-xs text-ivory/55">
             <div className="flex flex-wrap gap-x-2">
               <dt className="eyebrow text-ivory/45">WA L&amp;I</dt>
@@ -60,7 +60,7 @@ export function Footer() {
             </div>
             <div className="flex flex-wrap gap-x-2">
               <dt className="eyebrow text-ivory/45">IICRC</dt>
-              <dd className="font-mono">pending</dd>
+              <dd className="font-mono">Certified</dd>
             </div>
           </dl>
         </div>

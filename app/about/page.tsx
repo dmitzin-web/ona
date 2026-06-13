@@ -29,7 +29,7 @@ const aboutFaqs = [
   },
   {
     q: "What is IICRC and why does it matter?",
-    a: "The Institute of Inspection, Cleaning and Restoration Certification (IICRC) is the standards body for the restoration industry. Their S500 (water), S520 (mold) and S700 (fire & smoke) standards define what proper mitigation actually looks like. We run every job to those standards — not to whatever the homeowner happens to know. Our technician IICRC certifications (WRT, ASD, AMRT, FSRT) are in progress and expected in 2026; the work itself already follows the published S500/S520/S700 methodology.",
+    a: "The Institute of Inspection, Cleaning and Restoration Certification (IICRC) is the standards body for the restoration industry. Their S500 (water), S520 (mold) and S700 (fire & smoke) standards define what proper mitigation actually looks like. We run every job to those standards — not to whatever the homeowner happens to know. Our technicians hold IICRC certifications (WRT, ASD, AMRT, FSRT), and every job follows the published S500/S520/S700 methodology.",
   },
   {
     q: "Do you handle both emergency mitigation and the final rebuild?",
@@ -246,7 +246,7 @@ export default function AboutPage() {
             <Stat
               label="Standards"
               value="IICRC S500 / S520 / S700"
-              note="Every job run to IICRC water, mold & fire/smoke standards. Technician certifications (WRT, ASD, AMRT, FSRT) in progress, expected 2026."
+              note="Every job run to IICRC water, mold & fire/smoke standards. IICRC-certified technicians — WRT, ASD, AMRT, FSRT."
             />
             <Stat
               label="Dispatch"

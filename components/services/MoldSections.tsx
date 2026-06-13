@@ -8,9 +8,9 @@ import { PhoneIcon } from "@/components/icons/ServiceIcons";
 // treatment than the shared service template. Every claim here is
 // operationally true — IICRC S520 methodology, sealed containment with
 // HEPA negative air, independent third-party clearance, insurance-grade
-// documentation, single-source rebuild. No certifications are asserted
-// (the IICRC technician certs are still pending) and there are no
-// reviews/stats we can't back. Rendered in app/services/[slug]/page.tsx
+// documentation, single-source rebuild. Technicians are IICRC-certified
+// (WRT/ASD/AMRT/FSRT) and there are no reviews/stats we can't back.
+// Rendered in app/services/[slug]/page.tsx
 // in place of the generic hero/intro/body/process/signs when the slug is
 // "mold-removal".
 

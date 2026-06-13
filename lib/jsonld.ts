@@ -98,9 +98,10 @@ export function localBusinessJsonLd() {
           ? "license"
           : "certification",
     })),
-    // No `memberOf: IICRC` claim until certifications are actually issued —
-    // asserting org affiliation we don't hold is a structured-data
-    // verification risk. Re-add when site.iicrcCertified is true.
+    // IICRC technician certs (WRT/ASD/AMRT/FSRT) are emitted via
+    // hasCredential above (they're in site.certifications). We still omit a
+    // `memberOf: IICRC` org-membership claim — holding technician certs is
+    // not the same as a firm-level membership, so don't assert it.
     sameAs: Object.values(site.social),
     hasOfferCatalog: {
       "@type": "OfferCatalog",

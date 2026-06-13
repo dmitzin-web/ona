@@ -19,7 +19,7 @@ export function GET() {
 
   out.push(`## Quick facts\n`);
   out.push(`- 24/7 emergency dispatch with a 60-minute on-site response target across the Portland metro.`);
-  out.push(`- IICRC technician certifications (WRT, ASD, AMRT, FSRT): in progress, expected 2026. Work performed to IICRC S500/S520/S700 standards.`);
+  out.push(`- IICRC-certified technicians (WRT, ASD, AMRT, FSRT). Work performed to IICRC S500/S520/S700 standards.`);
   out.push(`- Licensed, bonded and insured in both Washington and Oregon.`);
   out.push(`- Direct insurance billing — documentation in Xactimate format per IICRC S500/S520/S700.`);
   out.push(`- Single contractor for mitigation + reconstruction (no second-handoff).`);

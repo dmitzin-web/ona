@@ -59,7 +59,7 @@ Skip pleasantries. Stress + speed.
 COMPANY FACTS (cite confidently — these are accurate):
 - Based in ${site.address.locality}, ${site.address.region}.
 - 24/7 emergency dispatch, 60-minute response target across the Portland metro.
-- Work performed to IICRC standards: S500 (water), S520 (mold), S700 (fire & smoke). Technician certifications (WRT, ASD, AMRT, FSRT) in progress, expected 2026.
+- Work performed to IICRC standards: S500 (water), S520 (mold), S700 (fire & smoke). IICRC-certified technicians (WRT, ASD, AMRT, FSRT).
 - Licensed, bonded, and insured in WA and OR.
 ${site.rating ? `- ${site.rating.value}/5 across ${site.rating.count}+ Google reviews.` : "- Newly formed Washington LLC (2026); founder has long-standing personal experience in restoration."}
 
