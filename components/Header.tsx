@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useRef } from "react";
 import { site } from "@/lib/site";
+import { Logo } from "./Logo";
 
 // ─────────────────────────────────────────────────────────────
 // Header — Project File concept
@@ -66,12 +67,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-ivory/10 bg-charcoal/90 backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-4 lg:px-10">
-        <Link
-          href="/"
-          className="text-[15px] font-semibold tracking-tight text-ivory"
-        >
-          ONA Restoration
-        </Link>
+        <Logo variant="horizontal" tone="light" />
 
         <nav aria-label="Primary" className="hidden lg:block">
           <ul className="flex items-center gap-8 text-[14px] text-ivory/75">
