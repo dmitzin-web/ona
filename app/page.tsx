@@ -163,359 +163,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ─── 1B. REASSURANCE STRIP ────────────────────────────
-          Four concrete operational promises. */}
-      <section className="border-t border-ivory/10 bg-charcoal-soft">
-        <div className="mx-auto max-w-7xl px-6 py-10 lg:px-10">
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              {
-                title: "Phone answered in person",
-                hint: "Day or night. No call centers.",
-              },
-              {
-                title: "Most of Clark County in 25 min",
-                hint: "Vancouver and the Portland metro.",
-              },
-              {
-                title: "Insurance billed direct",
-                hint: "You pay your deductible. That's it.",
-              },
-              {
-                title: "One team — damage to rebuild",
-                hint: "No handoffs to subcontractors.",
-              },
-            ].map((item) => (
-              <div key={item.title} className="flex items-start gap-3">
-                <span
-                  aria-hidden
-                  className="mt-1 inline-flex h-5 w-5 flex-none items-center justify-center rounded-full border border-gold text-[11px] font-semibold text-gold"
-                >
-                  ✓
-                </span>
-                <div>
-                  <div className="text-[14px] font-medium text-ivory">
-                    {item.title}
-                  </div>
-                  <div className="mt-1 text-[13px] text-ivory/75">
-                    {item.hint}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ─── 2. WHAT WE DO (emotional split) ──────────────────
-          Restoration urgent + stabilizing. Remodel inspiring +
-          craftsmanship. */}
-      <section className="border-t border-ivory/10 bg-charcoal">
-        <div className="mx-auto max-w-7xl px-6 py-24 md:py-32 lg:px-10">
-          <p className="eyebrow text-ivory/75">What we do</p>
-          <h2 className="mt-6 max-w-3xl text-[32px] font-semibold leading-[1.1] tracking-[-0.02em] text-ivory md:text-[44px]">
-            Three lines of work. One small crew behind all of them.
-          </h2>
-
-          <div className="mt-16 grid gap-12 md:grid-cols-3 md:gap-10">
-            {/* Display order is Remodeling → Mold → Restoration, set via
-                CSS `order` so the source order (and the divider borders
-                that depend on it) stay readable. */}
-            <div className="order-3 md:border-l md:border-ivory/10 md:pl-10">
-              <div className="flex items-center justify-between gap-3">
-                <div className="flex items-center gap-3">
-                  <span className="ona-pulse h-2 w-2 rounded-full bg-gold" />
-                  <p className="eyebrow text-ivory/75">Restoration</p>
-                </div>
-                <span className="text-[10px] uppercase tracking-[0.18em] text-gold">
-                  Available now · 24/7
-                </span>
-              </div>
-              <p className="mt-4 text-[18px] leading-relaxed text-ivory">
-                Something happened — water, fire, smoke, storm. We
-                stabilize the damage, document the scope for your
-                insurer, and rebuild what was lost.
-              </p>
-
-              <ul className="mt-8 grid gap-3 text-[15px] text-ivory/75">
-                {restorationServices.map((s) => (
-                  <li key={s.slug} className="border-t border-ivory/10 pt-3">
-                    <Link
-                      href={`/services/${s.slug}`}
-                      className="flex items-center justify-between transition hover:text-ivory"
-                    >
-                      <span>{s.shortName}</span>
-                      <span className="text-warm-gray-soft">→</span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-
-              <div className="mt-10 rounded-xl border border-ivory/10 bg-charcoal-soft p-5">
-                <p className="eyebrow text-ivory/75">When you call</p>
-                <ol className="mt-3 space-y-2 text-[13px] text-ivory/75">
-                  <li className="flex gap-3">
-                    <span className="font-medium text-ivory">1.</span>
-                    <span>Answered in person — triage on the call.</span>
-                  </li>
-                  <li className="flex gap-3">
-                    <span className="font-medium text-ivory">2.</span>
-                    <span>On-site within 25 min for most of Clark Co.</span>
-                  </li>
-                  <li className="flex gap-3">
-                    <span className="font-medium text-ivory">3.</span>
-                    <span>Walk-through, moisture readings, photos.</span>
-                  </li>
-                  <li className="flex gap-3">
-                    <span className="font-medium text-ivory">4.</span>
-                    <span>Documented scope sent to your insurer same day.</span>
-                  </li>
-                  <li className="flex gap-3">
-                    <span className="font-medium text-ivory">5.</span>
-                    <span>Mitigation starts the moment you sign off.</span>
-                  </li>
-                </ol>
-              </div>
-            </div>
-
-            {/* Mold — its own pillar (IICRC S520), pulled out of the
-                restoration list above. */}
-            <div className="order-2 md:border-l md:border-ivory/10 md:pl-10">
-              <div className="flex items-center justify-between gap-3">
-                <div className="flex items-center gap-3">
-                  <span className="h-2 w-2 rounded-full bg-gold" />
-                  <p className="eyebrow text-ivory/75">Mold</p>
-                </div>
-                <span className="text-[10px] uppercase tracking-[0.18em] text-gold">
-                  IICRC S520
-                </span>
-              </div>
-              <p className="mt-4 text-[18px] leading-relaxed text-ivory">
-                You can see it, smell it, or a test flagged it. We find
-                the moisture driving it, contain the area, and remediate
-                to the IICRC S520 standard — then verify before we close.
-              </p>
-
-              <ul className="mt-8 grid gap-3 text-[15px] text-ivory/75">
-                {[
-                  "Inspection & testing",
-                  "Containment & HEPA",
-                  "Remediation (IICRC S520)",
-                  "Clearance verification",
-                ].map((label) => (
-                  <li key={label} className="border-t border-ivory/10 pt-3">
-                    <Link
-                      href="/services/mold-removal"
-                      className="flex items-center justify-between transition hover:text-ivory"
-                    >
-                      <span>{label}</span>
-                      <span className="text-warm-gray-soft">→</span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-
-              <div className="mt-10 rounded-xl border border-ivory/10 bg-charcoal-soft p-5">
-                <p className="eyebrow text-ivory/75">How we remediate</p>
-                <ol className="mt-3 space-y-2 text-[13px] text-ivory/75">
-                  <li className="flex gap-3">
-                    <span className="font-medium text-ivory">1.</span>
-                    <span>Inspect and find the moisture source.</span>
-                  </li>
-                  <li className="flex gap-3">
-                    <span className="font-medium text-ivory">2.</span>
-                    <span>Seal containment, set HEPA negative air.</span>
-                  </li>
-                  <li className="flex gap-3">
-                    <span className="font-medium text-ivory">3.</span>
-                    <span>Remove affected materials, treat what stays.</span>
-                  </li>
-                  <li className="flex gap-3">
-                    <span className="font-medium text-ivory">4.</span>
-                    <span>Fix the water source so it doesn&apos;t return.</span>
-                  </li>
-                  <li className="flex gap-3">
-                    <span className="font-medium text-ivory">5.</span>
-                    <span>Clearance verification before any rebuild.</span>
-                  </li>
-                </ol>
-              </div>
-            </div>
-
-            <div className="order-1">
-              <div className="flex items-center justify-between gap-3">
-                <div className="flex items-center gap-3">
-                  <span className="h-2 w-2 rounded-full bg-gold-deep" />
-                  <p className="eyebrow text-ivory/75">Remodeling</p>
-                </div>
-                <span className="text-[10px] uppercase tracking-[0.18em] text-ivory/75">
-                  Booking · June
-                </span>
-              </div>
-              <p className="mt-4 text-[18px] leading-relaxed text-ivory">
-                You&apos;ve been planning a change — a kitchen, a bath, a
-                layout that finally works. We design the scope with you,
-                set an honest timeline, and build it.
-              </p>
-
-              <ul className="mt-8 grid gap-3 text-[15px] text-ivory/75">
-                <li className="border-t border-ivory/10 pt-3">
-                  <Link
-                    href="/services/remodeling"
-                    className="flex items-center justify-between transition hover:text-ivory"
-                  >
-                    <span>Kitchen remodel</span>
-                    <span className="text-warm-gray-soft">→</span>
-                  </Link>
-                </li>
-                <li className="border-t border-ivory/10 pt-3">
-                  <Link
-                    href="/services/remodeling"
-                    className="flex items-center justify-between transition hover:text-ivory"
-                  >
-                    <span>Bathroom remodel</span>
-                    <span className="text-warm-gray-soft">→</span>
-                  </Link>
-                </li>
-                <li className="border-t border-ivory/10 pt-3">
-                  <Link
-                    href="/services/remodeling"
-                    className="flex items-center justify-between transition hover:text-ivory"
-                  >
-                    <span>Combined kitchen + bath</span>
-                    <span className="text-warm-gray-soft">→</span>
-                  </Link>
-                </li>
-                <li className="border-t border-ivory/10 pt-3">
-                  <Link
-                    href="/services"
-                    className="flex items-center justify-between transition hover:text-ivory"
-                  >
-                    <span>Insurance-claim rebuilds</span>
-                    <span className="text-warm-gray-soft">→</span>
-                  </Link>
-                </li>
-              </ul>
-
-              <div className="mt-10 rounded-xl border border-ivory/10 bg-charcoal-soft p-5">
-                <p className="eyebrow text-ivory/75">How we build</p>
-                <ul className="mt-3 grid gap-2 text-[13px] text-ivory/75">
-                  <li>
-                    <span className="text-ivory">Materials —</span>{" "}
-                    quartz, butcher block, real wood cabinetry, porcelain
-                    tile, brass fixtures.
-                  </li>
-                  <li>
-                    <span className="text-ivory">Fit —</span> we measure
-                    twice, use shims like surgeons, and don&apos;t
-                    caulk-over imperfect cuts.
-                  </li>
-                  <li>
-                    <span className="text-ivory">Finish —</span> photos
-                    of every joint and reveal posted to your project page.
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ─── 2B. RESTORATION IN DATA ──────────────────────────
-          Operational-credibility section. Until we have real
-          restoration process photography (drying equipment,
-          containment, moisture readings, jobsite organization),
-          this section conveys the same trust signal through
-          *measured language*: actual numbers and units from the
-          kind of restoration log we keep on every job.
-
-          Visual rhythm: tighter density than surrounding
-          sections, more like a status panel — breaks the
-          card-and-column cadence and signals "operations." */}
-      <section className="border-t border-ivory/10 bg-charcoal-soft">
-        <div className="mx-auto max-w-7xl px-6 py-16 md:py-20 lg:px-10">
-          <div className="grid gap-10 md:grid-cols-[1fr_1.6fr] md:gap-16">
-            <div>
-              <p className="eyebrow text-ivory/75">
-                Restoration in data
-              </p>
-              <h2 className="mt-5 text-[26px] font-semibold leading-[1.15] tracking-[-0.015em] text-ivory md:text-[32px]">
-                What an organized restoration log
-                <span className="text-ivory/75">
-                  {" "}actually looks like.
-                </span>
-              </h2>
-              <p className="mt-5 text-[14px] leading-relaxed text-ivory/75">
-                Every restoration job runs against the same
-                operational checklist — moisture readings, equipment
-                runtime, photo coverage, adjuster communications. The
-                same numbers go into your project page, your insurer&apos;s
-                file, and our internal log.
-              </p>
-            </div>
-
-            <div className="rounded-2xl border border-ivory/10 bg-charcoal">
-              <div className="flex items-center justify-between border-b border-ivory/10 px-5 py-3 text-[11px] uppercase tracking-[0.22em] text-ivory/75">
-                <span>Sample mitigation — Day 5</span>
-                <span className="flex items-center gap-1.5 text-gold">
-                  <span className="ona-pulse h-1.5 w-1.5 rounded-full bg-gold" />
-                  on schedule
-                </span>
-              </div>
-              <dl className="divide-y divide-ivory/10 text-[13px]">
-                {[
-                  {
-                    label: "Moisture map",
-                    value: "14% → 12% → 9% → 7%",
-                    note: "Subfloor · below 16% threshold by Day 5",
-                  },
-                  {
-                    label: "Containment",
-                    value: "8 LF · poly · negative pressure",
-                    note: "Walked + photographed daily",
-                  },
-                  {
-                    label: "Drying equipment",
-                    value: "3× LGR dehu · 4× air mover",
-                    note: "Runtime 121h logged · 14 amp draw",
-                  },
-                  {
-                    label: "Photos uploaded",
-                    value: "142",
-                    note: "Scope-document grade · timestamped",
-                  },
-                  {
-                    label: "Adjuster comms",
-                    value: "28 messages · 3 site visits",
-                    note: "Average response 14 min, business hours",
-                  },
-                  {
-                    label: "Scope status",
-                    value: "$14,820 approved",
-                    note: "No coverage disputes · billed direct",
-                  },
-                ].map((row) => (
-                  <div
-                    key={row.label}
-                    className="grid items-baseline gap-3 px-5 py-3.5 sm:grid-cols-[160px_1fr_auto]"
-                  >
-                    <dt className="text-[11px] uppercase tracking-[0.18em] text-ivory/75">
-                      {row.label}
-                    </dt>
-                    <dd className="font-mono text-[13px] tabular-nums text-ivory">
-                      {row.value}
-                    </dd>
-                    <dd className="text-[12px] text-ivory/75 sm:text-right">
-                      {row.note}
-                    </dd>
-                  </div>
-                ))}
-              </dl>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* ─── 3. PROJECT FILE DEMO (now with real photos) ──────
           Mockup of what every customer gets on day one. Photo
           grid + phone feed thumbnails are real project shots,
@@ -914,7 +561,7 @@ export default function HomePage() {
                       },
                       {
                         title: "Adjuster approved",
-                        meta: "Mon · scope $14,820",
+                        meta: "Mon · scope signed off",
                         photo: photos[1],
                       },
                       {
@@ -964,6 +611,365 @@ export default function HomePage() {
               Open the full sample project page
               <span aria-hidden>→</span>
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── 2. WHAT WE DO (emotional split) ──────────────────
+          Restoration urgent + stabilizing. Remodel inspiring +
+          craftsmanship. */}
+      <section className="border-t border-ivory/10 bg-charcoal">
+        <div className="mx-auto max-w-7xl px-6 py-24 md:py-32 lg:px-10">
+          <p className="eyebrow text-ivory/75">What we do</p>
+          <h2 className="mt-6 max-w-3xl text-[32px] font-semibold leading-[1.1] tracking-[-0.02em] text-ivory md:text-[44px]">
+            Three lines of work. One small crew behind all of them.
+          </h2>
+
+          <div className="mt-16 grid gap-12 md:grid-cols-3 md:gap-10">
+            {/* Display order is Remodeling → Mold → Restoration, set via
+                CSS `order` so the source order (and the divider borders
+                that depend on it) stay readable. */}
+            <div className="order-3 md:border-l md:border-ivory/10 md:pl-10">
+              <div className="flex items-center justify-between gap-3">
+                <div className="flex items-center gap-3">
+                  <span className="ona-pulse h-2 w-2 rounded-full bg-gold" />
+                  <p className="eyebrow text-ivory/75">Restoration</p>
+                </div>
+                <span className="text-[10px] uppercase tracking-[0.18em] text-gold">
+                  Available now · 24/7
+                </span>
+              </div>
+              <p className="mt-4 text-[18px] leading-relaxed text-ivory">
+                Something happened — water, fire, smoke, storm. We
+                stabilize the damage, document the scope for your
+                insurer, and rebuild what was lost.
+              </p>
+
+              <ul className="mt-8 grid gap-3 text-[15px] text-ivory/75">
+                {restorationServices.map((s) => (
+                  <li key={s.slug} className="border-t border-ivory/10 pt-3">
+                    <Link
+                      href={`/services/${s.slug}`}
+                      className="flex items-center justify-between transition hover:text-ivory"
+                    >
+                      <span>{s.shortName}</span>
+                      <span className="text-warm-gray-soft">→</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-10 rounded-xl border border-ivory/10 bg-charcoal-soft p-5">
+                <p className="eyebrow text-ivory/75">When you call</p>
+                <ol className="mt-3 space-y-2 text-[13px] text-ivory/75">
+                  <li className="flex gap-3">
+                    <span className="font-medium text-ivory">1.</span>
+                    <span>Answered in person — triage on the call.</span>
+                  </li>
+                  <li className="flex gap-3">
+                    <span className="font-medium text-ivory">2.</span>
+                    <span>On-site within 25 min for most of Clark Co.</span>
+                  </li>
+                  <li className="flex gap-3">
+                    <span className="font-medium text-ivory">3.</span>
+                    <span>Walk-through, moisture readings, photos.</span>
+                  </li>
+                  <li className="flex gap-3">
+                    <span className="font-medium text-ivory">4.</span>
+                    <span>Documented scope sent to your insurer same day.</span>
+                  </li>
+                  <li className="flex gap-3">
+                    <span className="font-medium text-ivory">5.</span>
+                    <span>Mitigation starts the moment you sign off.</span>
+                  </li>
+                </ol>
+              </div>
+            </div>
+
+            {/* Mold — its own pillar (IICRC S520), pulled out of the
+                restoration list above. */}
+            <div className="order-2 md:border-l md:border-ivory/10 md:pl-10">
+              <div className="flex items-center justify-between gap-3">
+                <div className="flex items-center gap-3">
+                  <span className="h-2 w-2 rounded-full bg-gold" />
+                  <p className="eyebrow text-ivory/75">Mold</p>
+                </div>
+                <span className="text-[10px] uppercase tracking-[0.18em] text-gold">
+                  IICRC S520
+                </span>
+              </div>
+              <p className="mt-4 text-[18px] leading-relaxed text-ivory">
+                You can see it, smell it, or a test flagged it. We find
+                the moisture driving it, contain the area, and remediate
+                to the IICRC S520 standard — then verify before we close.
+              </p>
+
+              <ul className="mt-8 grid gap-3 text-[15px] text-ivory/75">
+                {[
+                  "Inspection & testing",
+                  "Containment & HEPA",
+                  "Remediation (IICRC S520)",
+                  "Clearance verification",
+                ].map((label) => (
+                  <li key={label} className="border-t border-ivory/10 pt-3">
+                    <Link
+                      href="/services/mold-removal"
+                      className="flex items-center justify-between transition hover:text-ivory"
+                    >
+                      <span>{label}</span>
+                      <span className="text-warm-gray-soft">→</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-10 rounded-xl border border-ivory/10 bg-charcoal-soft p-5">
+                <p className="eyebrow text-ivory/75">How we remediate</p>
+                <ol className="mt-3 space-y-2 text-[13px] text-ivory/75">
+                  <li className="flex gap-3">
+                    <span className="font-medium text-ivory">1.</span>
+                    <span>Inspect and find the moisture source.</span>
+                  </li>
+                  <li className="flex gap-3">
+                    <span className="font-medium text-ivory">2.</span>
+                    <span>Seal containment, set HEPA negative air.</span>
+                  </li>
+                  <li className="flex gap-3">
+                    <span className="font-medium text-ivory">3.</span>
+                    <span>Remove affected materials, treat what stays.</span>
+                  </li>
+                  <li className="flex gap-3">
+                    <span className="font-medium text-ivory">4.</span>
+                    <span>Fix the water source so it doesn&apos;t return.</span>
+                  </li>
+                  <li className="flex gap-3">
+                    <span className="font-medium text-ivory">5.</span>
+                    <span>Clearance verification before any rebuild.</span>
+                  </li>
+                </ol>
+              </div>
+            </div>
+
+            <div className="order-1">
+              <div className="flex items-center justify-between gap-3">
+                <div className="flex items-center gap-3">
+                  <span className="h-2 w-2 rounded-full bg-gold-deep" />
+                  <p className="eyebrow text-ivory/75">Remodeling</p>
+                </div>
+                <span className="text-[10px] uppercase tracking-[0.18em] text-ivory/75">
+                  Booking · June
+                </span>
+              </div>
+              <p className="mt-4 text-[18px] leading-relaxed text-ivory">
+                You&apos;ve been planning a change — a kitchen, a bath, a
+                layout that finally works. We design the scope with you,
+                set an honest timeline, and build it.
+              </p>
+
+              <ul className="mt-8 grid gap-3 text-[15px] text-ivory/75">
+                <li className="border-t border-ivory/10 pt-3">
+                  <Link
+                    href="/services/remodeling"
+                    className="flex items-center justify-between transition hover:text-ivory"
+                  >
+                    <span>Kitchen remodel</span>
+                    <span className="text-warm-gray-soft">→</span>
+                  </Link>
+                </li>
+                <li className="border-t border-ivory/10 pt-3">
+                  <Link
+                    href="/services/remodeling"
+                    className="flex items-center justify-between transition hover:text-ivory"
+                  >
+                    <span>Bathroom remodel</span>
+                    <span className="text-warm-gray-soft">→</span>
+                  </Link>
+                </li>
+                <li className="border-t border-ivory/10 pt-3">
+                  <Link
+                    href="/services/remodeling"
+                    className="flex items-center justify-between transition hover:text-ivory"
+                  >
+                    <span>Combined kitchen + bath</span>
+                    <span className="text-warm-gray-soft">→</span>
+                  </Link>
+                </li>
+                <li className="border-t border-ivory/10 pt-3">
+                  <Link
+                    href="/services"
+                    className="flex items-center justify-between transition hover:text-ivory"
+                  >
+                    <span>Insurance-claim rebuilds</span>
+                    <span className="text-warm-gray-soft">→</span>
+                  </Link>
+                </li>
+              </ul>
+
+              <div className="mt-10 rounded-xl border border-ivory/10 bg-charcoal-soft p-5">
+                <p className="eyebrow text-ivory/75">How we build</p>
+                <ol className="mt-3 space-y-2 text-[13px] text-ivory/75">
+                  <li className="flex gap-3">
+                    <span className="font-medium text-ivory">1.</span>
+                    <span>Design &amp; scope — measured, materials chosen with you.</span>
+                  </li>
+                  <li className="flex gap-3">
+                    <span className="font-medium text-ivory">2.</span>
+                    <span>Fixed-price agreement — line-itemed, no surprises.</span>
+                  </li>
+                  <li className="flex gap-3">
+                    <span className="font-medium text-ivory">3.</span>
+                    <span>Demo &amp; rough-in — framing, plumbing, electrical.</span>
+                  </li>
+                  <li className="flex gap-3">
+                    <span className="font-medium text-ivory">4.</span>
+                    <span>Finishes — cabinetry, tile, counters, paint.</span>
+                  </li>
+                  <li className="flex gap-3">
+                    <span className="font-medium text-ivory">5.</span>
+                    <span>Walkthrough — punch list, reveal, photos on your page.</span>
+                  </li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── 2B. RESTORATION IN DATA ──────────────────────────
+          Operational-credibility section. Until we have real
+          restoration process photography (drying equipment,
+          containment, moisture readings, jobsite organization),
+          this section conveys the same trust signal through
+          *measured language*: actual numbers and units from the
+          kind of restoration log we keep on every job.
+
+          Visual rhythm: tighter density than surrounding
+          sections, more like a status panel — breaks the
+          card-and-column cadence and signals "operations." */}
+      <section className="border-t border-ivory/10 bg-charcoal-soft">
+        <div className="mx-auto max-w-7xl px-6 py-16 md:py-20 lg:px-10">
+          <div className="grid gap-10 md:grid-cols-[1fr_1.6fr] md:gap-16">
+            <div>
+              <p className="eyebrow text-ivory/75">
+                Restoration in data
+              </p>
+              <h2 className="mt-5 text-[26px] font-semibold leading-[1.15] tracking-[-0.015em] text-ivory md:text-[32px]">
+                What an organized restoration log
+                <span className="text-ivory/75">
+                  {" "}actually looks like.
+                </span>
+              </h2>
+              <p className="mt-5 text-[14px] leading-relaxed text-ivory/75">
+                Every restoration job runs against the same
+                operational checklist — moisture readings, equipment
+                runtime, photo coverage, adjuster communications. The
+                same numbers go into your project page, your insurer&apos;s
+                file, and our internal log.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-ivory/10 bg-charcoal">
+              <div className="flex items-center justify-between border-b border-ivory/10 px-5 py-3 text-[11px] uppercase tracking-[0.22em] text-ivory/75">
+                <span>Sample mitigation — Day 5</span>
+                <span className="flex items-center gap-1.5 text-gold">
+                  <span className="ona-pulse h-1.5 w-1.5 rounded-full bg-gold" />
+                  on schedule
+                </span>
+              </div>
+              <dl className="divide-y divide-ivory/10 text-[13px]">
+                {[
+                  {
+                    label: "Moisture map",
+                    value: "14% → 12% → 9% → 7%",
+                    note: "Subfloor · below 16% threshold by Day 5",
+                  },
+                  {
+                    label: "Containment",
+                    value: "8 LF · poly · negative pressure",
+                    note: "Walked + photographed daily",
+                  },
+                  {
+                    label: "Drying equipment",
+                    value: "3× LGR dehu · 4× air mover",
+                    note: "Runtime 121h logged · 14 amp draw",
+                  },
+                  {
+                    label: "Photos uploaded",
+                    value: "142",
+                    note: "Scope-document grade · timestamped",
+                  },
+                  {
+                    label: "Adjuster comms",
+                    value: "28 messages · 3 site visits",
+                    note: "Average response 14 min, business hours",
+                  },
+                  {
+                    label: "Scope status",
+                    value: "$14,820 approved",
+                    note: "No coverage disputes · billed direct",
+                  },
+                ].map((row) => (
+                  <div
+                    key={row.label}
+                    className="grid items-baseline gap-3 px-5 py-3.5 sm:grid-cols-[160px_1fr_auto]"
+                  >
+                    <dt className="text-[11px] uppercase tracking-[0.18em] text-ivory/75">
+                      {row.label}
+                    </dt>
+                    <dd className="font-mono text-[13px] tabular-nums text-ivory">
+                      {row.value}
+                    </dd>
+                    <dd className="text-[12px] text-ivory/75 sm:text-right">
+                      {row.note}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── 1B. REASSURANCE STRIP ────────────────────────────
+          Four concrete operational promises. */}
+      <section className="border-t border-ivory/10 bg-charcoal-soft">
+        <div className="mx-auto max-w-7xl px-6 py-10 lg:px-10">
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              {
+                title: "Phone answered in person",
+                hint: "Day or night. No call centers.",
+              },
+              {
+                title: "Most of Clark County in 25 min",
+                hint: "Vancouver and the Portland metro.",
+              },
+              {
+                title: "Insurance billed direct",
+                hint: "You pay your deductible. That's it.",
+              },
+              {
+                title: "One team — damage to rebuild",
+                hint: "No handoffs to subcontractors.",
+              },
+            ].map((item) => (
+              <div key={item.title} className="flex items-start gap-3">
+                <span
+                  aria-hidden
+                  className="mt-1 inline-flex h-5 w-5 flex-none items-center justify-center rounded-full border border-gold text-[11px] font-semibold text-gold"
+                >
+                  ✓
+                </span>
+                <div>
+                  <div className="text-[14px] font-medium text-ivory">
+                    {item.title}
+                  </div>
+                  <div className="mt-1 text-[13px] text-ivory/75">
+                    {item.hint}
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>

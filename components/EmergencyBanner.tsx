@@ -14,20 +14,12 @@ import { site } from "@/lib/site";
 export function EmergencyBanner() {
   return (
     <div className="border-b border-ivory/10 bg-charcoal-soft">
-      <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-1.5 px-6 py-2 text-[12px] text-ivory/75 sm:flex-row lg:px-10">
-        <div className="flex items-center gap-2.5">
-          <span className="ona-pulse inline-block h-2 w-2 rounded-full bg-gold" />
-          <span>
-            <span className="text-ivory">Available now</span>
-            {" · Booking June restoration + remodel · Vancouver, WA + Portland metro"}
-          </span>
-        </div>
-        <a
-          href={`tel:${site.phone}`}
-          className="text-ivory underline-offset-4 hover:underline"
-        >
-          {site.phoneDisplay}
-        </a>
+      <div className="mx-auto flex max-w-7xl items-center justify-center gap-2.5 px-6 py-2 text-center text-[12px] text-ivory/75 lg:px-10">
+        <span className="ona-pulse inline-block h-2 w-2 flex-none rounded-full bg-gold" />
+        <span>
+          <span className="text-ivory">Available now</span>
+          {" · Booking June restoration + remodel · Vancouver, WA + Portland metro"}
+        </span>
       </div>
     </div>
   );

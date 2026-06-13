@@ -30,7 +30,7 @@ const nav: NavItem[] = [
   { href: "/about", label: "How we work" },
   { href: "/blog", label: "Notes" },
   { href: "/contact", label: "Contact" },
-  { action: "ask-ona", label: "✦ Ask ONA" },
+  { action: "ask-ona", label: "Ask AI" },
 ];
 
 function openAskOna() {
