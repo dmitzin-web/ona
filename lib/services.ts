@@ -202,6 +202,22 @@ export const services: Service[] = [
         q: "Does insurance cover mold?",
         a: "It depends on the policy and the cause. Mold from a sudden, covered water loss is often covered up to a sublimit. Mold from long-term seepage or neglected maintenance generally is not. We help you document the cause for the claim.",
       },
+      {
+        q: "How long does mold remediation take?",
+        a: "Most residential jobs run two to five days: a day to set containment and remove affected materials, a day or two of HEPA cleaning and drying, then clearance and rebuild. The driver is how far the moisture traveled and whether porous materials have to come out — which is exactly why we map it before we quote.",
+      },
+      {
+        q: "Will the mold come back after you're done?",
+        a: "Not if the moisture source is fixed — and that's the part most companies skip. We don't close a job until the leak, seepage, or condensation that fed the colony is repaired or rerouted and the area reads dry. Surface treatment without solving the water is why DIY and bargain jobs regrow within weeks.",
+      },
+      {
+        q: "Is it safe to stay in the house during remediation?",
+        a: "Usually yes. We seal the work area behind poly containment and run negative-air HEPA scrubbers so spores can't migrate into the rest of the home. For larger losses or sensitive occupants (asthma, allergies, compromised immunity) we'll advise whether to relocate during the active phase.",
+      },
+      {
+        q: "Do you remove the mold and rebuild, or just the removal?",
+        a: "Both — under one contract. The same crew that removes the contaminated materials puts the wall, insulation, and finishes back. No handing your half-finished house to a separate contractor, no second estimate, one accountable team from containment to final paint.",
+      },
     ],
   },
   {

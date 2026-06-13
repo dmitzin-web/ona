@@ -11,6 +11,7 @@ import {
 } from "@/components/icons/ServiceIcons";
 import { EmailLink, PhoneLink } from "@/components/contact/ContactLinks";
 import { RemodelingGallery } from "@/components/RemodelingGallery";
+import { MoldSections } from "@/components/services/MoldSections";
 import { ServiceCardCompact } from "@/components/ServiceCardCompact";
 import { findService, services } from "@/lib/services";
 import { areaProfiles } from "@/lib/areas";
@@ -55,6 +56,11 @@ export default async function ServicePage(
   if (!service) notFound();
 
   const Icon = serviceIcons[service.slug as keyof typeof serviceIcons];
+  // Mold is a co-equal business line and gets a dedicated, premium content
+  // block in place of the generic hero/intro/body/process/signs. All the
+  // shared scaffolding below (breadcrumbs, FAQ, city pages, related, CTA,
+  // JSON-LD) still applies.
+  const isMold = service.slug === "mold-removal";
 
   return (
     <>
@@ -68,6 +74,7 @@ export default async function ServicePage(
           ]}
         />
 
+        {!isMold && (
         <section className="text-ivory">
           <div className="mx-auto max-w-7xl px-6 pb-20 pt-12 lg:px-10 lg:pb-28 lg:pt-16">
             <div className="grid gap-12 lg:grid-cols-12">
@@ -103,8 +110,13 @@ export default async function ServicePage(
             </div>
           </div>
         </section>
+        )}
       </div>
 
+      {isMold && <MoldSections service={service} />}
+
+      {!isMold && (
+        <>
       {/* Intro */}
       <section className="bg-charcoal">
         <div className="mx-auto max-w-4xl px-6 py-24 lg:px-10">
@@ -194,6 +206,8 @@ export default async function ServicePage(
           </div>
         </div>
       </section>
+        </>
+      )}
 
       {/* Remodeling-specific style-reference gallery. Only renders on
           /services/remodeling because restoration services don't use a
