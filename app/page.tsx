@@ -55,7 +55,7 @@ const homeFaqs = [
   },
   {
     q: "What services do you offer?",
-    a: "Three lines of work. Restoration: water, fire and smoke, storm and reconstruction. Mold: inspection, testing, containment and IICRC S520 remediation. Remodeling: kitchen, bathroom, and combined kitchen + bath. One small team handles all three.",
+    a: "Three lines of work. Remodeling: kitchen, bathroom, and combined kitchen + bath. Mold: inspection, testing, containment and IICRC S520 remediation. Restoration: water, fire and smoke, storm and reconstruction. One small team handles all three.",
   },
   {
     q: "Are you licensed?",
@@ -66,7 +66,7 @@ const homeFaqs = [
 export const metadata: Metadata = buildMetadata({
   title: `${site.name} — Restoration & Remodeling in Vancouver, WA`,
   description:
-    "Restoration, mold remediation, and remodeling in Vancouver, WA — without the chaos. Every project comes with a live page: photos, daily updates, and what's next. One team from emergency cleanup to final paint.",
+    "Remodeling, mold remediation, and restoration in Vancouver, WA — without the chaos. Every project comes with a live page: photos, daily updates, and what's next. One team from emergency cleanup to final paint.",
   path: "/",
   keywords: [
     "restoration Vancouver WA",
@@ -218,7 +218,10 @@ export default function HomePage() {
           </h2>
 
           <div className="mt-16 grid gap-12 md:grid-cols-3 md:gap-10">
-            <div>
+            {/* Display order is Remodeling → Mold → Restoration, set via
+                CSS `order` so the source order (and the divider borders
+                that depend on it) stay readable. */}
+            <div className="order-3 md:border-l md:border-ivory/10 md:pl-10">
               <div className="flex items-center justify-between gap-3">
                 <div className="flex items-center gap-3">
                   <span className="ona-pulse h-2 w-2 rounded-full bg-gold" />
@@ -277,7 +280,7 @@ export default function HomePage() {
 
             {/* Mold — its own pillar (IICRC S520), pulled out of the
                 restoration list above. */}
-            <div className="md:border-l md:border-ivory/10 md:pl-10">
+            <div className="order-2 md:border-l md:border-ivory/10 md:pl-10">
               <div className="flex items-center justify-between gap-3">
                 <div className="flex items-center gap-3">
                   <span className="h-2 w-2 rounded-full bg-gold" />
@@ -339,7 +342,7 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="md:border-l md:border-ivory/10 md:pl-10">
+            <div className="order-1">
               <div className="flex items-center justify-between gap-3">
                 <div className="flex items-center gap-3">
                   <span className="h-2 w-2 rounded-full bg-gold-deep" />
@@ -1464,10 +1467,10 @@ export default function HomePage() {
               </div>
               <div>
                 <dt className="text-[10px] uppercase tracking-[0.22em] text-charcoal/45">
-                  Restoration
+                  Remodel
                 </dt>
-                <dd className="mt-2 text-charcoal">24 hours · every day</dd>
-                <dd className="mt-1 text-charcoal/55">Insurance billed direct</dd>
+                <dd className="mt-2 text-charcoal">Mon–Fri · 8a–5p</dd>
+                <dd className="mt-1 text-charcoal/55">Booking · June</dd>
               </div>
               <div>
                 <dt className="text-[10px] uppercase tracking-[0.22em] text-charcoal/45">
@@ -1478,10 +1481,10 @@ export default function HomePage() {
               </div>
               <div>
                 <dt className="text-[10px] uppercase tracking-[0.22em] text-charcoal/45">
-                  Remodel
+                  Restoration
                 </dt>
-                <dd className="mt-2 text-charcoal">Mon–Fri · 8a–5p</dd>
-                <dd className="mt-1 text-charcoal/55">Booking · June</dd>
+                <dd className="mt-2 text-charcoal">24 hours · every day</dd>
+                <dd className="mt-1 text-charcoal/55">Insurance billed direct</dd>
               </div>
             </dl>
           </div>

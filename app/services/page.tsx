@@ -15,7 +15,7 @@ import { buildMetadata } from "@/lib/seo";
 import { breadcrumbJsonLd } from "@/lib/jsonld";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Restoration, Mold & Remodeling Services — Vancouver, WA & Portland, OR",
+  title: "Remodeling, Mold & Restoration Services — Vancouver, WA & Portland, OR",
   description:
     "Full restoration and remodeling services in Vancouver, WA and Portland, OR: water damage, fire & smoke, mold remediation, storm damage, and custom remodeling. 24/7 emergency response, work performed to IICRC standards.",
   path: "/services",
@@ -43,7 +43,7 @@ export default function ServicesPage() {
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
           <p className="eyebrow text-ivory/60">Our services</p>
           <h1 className="text-ivory mt-6 max-w-3xl text-5xl font-light leading-[1.05] tracking-tight sm:text-6xl">
-            Restoration, mold, and remodeling, executed with precision.
+            Remodeling, mold, and restoration, executed with precision.
           </h1>
           <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ivory/75">
             Single-source mitigation, reconstruction, and remodeling across the
@@ -51,22 +51,41 @@ export default function ServicesPage() {
             24/7.
           </p>
 
-          {/* Restoration grid */}
-          <div className="mt-16">
-            <div className="flex flex-wrap items-end justify-between gap-3">
-              <p className="eyebrow text-ivory/60">Restoration</p>
-              <p className="text-sm text-ivory/55">
-                24/7 emergency response · 60-minute target
-              </p>
-            </div>
-            <div className="mt-6 grid gap-px overflow-hidden border border-ivory/10 bg-charcoal/10 sm:grid-cols-2 lg:grid-cols-3">
-              {restoration.map((s) => (
-                <div key={s.slug}>
-                  <ServiceCard service={s} />
+          {/* Remodeling — featured row, separate visual treatment */}
+          {remodeling && (
+            <div className="mt-16">
+              <div className="flex flex-wrap items-end justify-between gap-3">
+                <p className="eyebrow text-gold">Remodeling</p>
+                <p className="text-sm text-ivory/55">
+                  Kitchens · Baths · Additions · Custom millwork
+                </p>
+              </div>
+              <Link
+                href={`/services/${remodeling.slug}`}
+                className="group mt-6 block border border-ivory/10 bg-charcoal text-ivory transition hover:border-gold"
+              >
+                <div className="grid gap-8 px-8 py-12 lg:grid-cols-12 lg:px-12 lg:py-14">
+                  <div className="lg:col-span-8">
+                    <h2 className="text-ivory text-3xl font-light leading-tight tracking-tight sm:text-4xl">
+                      {remodeling.shortName}.{" "}
+                      <span className="font-medium text-gold">
+                        Built by a restoration crew.
+                      </span>
+                    </h2>
+                    <p className="mt-5 max-w-2xl text-base leading-relaxed text-ivory/75">
+                      {remodeling.hero}
+                    </p>
+                  </div>
+                  <div className="flex items-end lg:col-span-4 lg:justify-end">
+                    <span className="inline-flex items-center gap-3 eyebrow text-ivory transition group-hover:gap-4">
+                      Explore remodeling
+                      <ArrowIcon className="h-3 w-3 stroke-current" />
+                    </span>
+                  </div>
                 </div>
-              ))}
+              </Link>
             </div>
-          </div>
+          )}
 
           {/* Mold — featured row, its own pillar (IICRC S520) */}
           {mold && (
@@ -104,41 +123,22 @@ export default function ServicesPage() {
             </div>
           )}
 
-          {/* Remodeling — featured row, separate visual treatment */}
-          {remodeling && (
-            <div className="mt-16">
-              <div className="flex flex-wrap items-end justify-between gap-3">
-                <p className="eyebrow text-gold">Remodeling</p>
-                <p className="text-sm text-ivory/55">
-                  Kitchens · Baths · Additions · Custom millwork
-                </p>
-              </div>
-              <Link
-                href={`/services/${remodeling.slug}`}
-                className="group mt-6 block border border-ivory/10 bg-charcoal text-ivory transition hover:border-gold"
-              >
-                <div className="grid gap-8 px-8 py-12 lg:grid-cols-12 lg:px-12 lg:py-14">
-                  <div className="lg:col-span-8">
-                    <h2 className="text-ivory text-3xl font-light leading-tight tracking-tight sm:text-4xl">
-                      {remodeling.shortName}.{" "}
-                      <span className="font-medium text-gold">
-                        Built by a restoration crew.
-                      </span>
-                    </h2>
-                    <p className="mt-5 max-w-2xl text-base leading-relaxed text-ivory/75">
-                      {remodeling.hero}
-                    </p>
-                  </div>
-                  <div className="flex items-end lg:col-span-4 lg:justify-end">
-                    <span className="inline-flex items-center gap-3 eyebrow text-ivory transition group-hover:gap-4">
-                      Explore remodeling
-                      <ArrowIcon className="h-3 w-3 stroke-current" />
-                    </span>
-                  </div>
-                </div>
-              </Link>
+          {/* Restoration grid */}
+          <div className="mt-16">
+            <div className="flex flex-wrap items-end justify-between gap-3">
+              <p className="eyebrow text-ivory/60">Restoration</p>
+              <p className="text-sm text-ivory/55">
+                24/7 emergency response · 60-minute target
+              </p>
             </div>
-          )}
+            <div className="mt-6 grid gap-px overflow-hidden border border-ivory/10 bg-charcoal/10 sm:grid-cols-2 lg:grid-cols-3">
+              {restoration.map((s) => (
+                <div key={s.slug}>
+                  <ServiceCard service={s} />
+                </div>
+              ))}
+            </div>
+          </div>
 
           {/* Service area — moved here from the global nav */}
           <div className="mt-20 border-t border-ivory/15 pt-12">

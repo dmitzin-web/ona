@@ -23,9 +23,9 @@ type NavItem =
   | { action: "ask-ona"; label: string; href?: never };
 
 const nav: NavItem[] = [
-  { href: "/services", label: "Restoration" },
-  { href: "/services/mold-removal", label: "Mold" },
   { href: "/services/remodeling", label: "Remodeling" },
+  { href: "/services/mold-removal", label: "Mold" },
+  { href: "/services", label: "Restoration" },
   { href: "/about", label: "How we work" },
   { href: "/blog", label: "Notes" },
   { href: "/contact", label: "Contact" },
