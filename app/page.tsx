@@ -575,7 +575,7 @@ export default function HomePage() {
 
               {/* Phase progress bar */}
               <div className="mt-8 rounded-xl border border-ivory/10 bg-charcoal-soft p-5">
-                <div className="flex items-center justify-between text-[12px]">
+                <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 text-[12px]">
                   <span className="text-ivory/75">Day 7 of est. 14</span>
                   <span className="font-medium text-ivory">
                     50% complete · on schedule
