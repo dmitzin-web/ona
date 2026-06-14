@@ -78,7 +78,7 @@ export function Header() {
                     <button
                       type="button"
                       onClick={openAskOna}
-                      className="text-gold transition hover:text-gold"
+                      className="transition hover:text-ivory"
                     >
                       {item.label}
                     </button>

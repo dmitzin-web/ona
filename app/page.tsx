@@ -147,8 +147,8 @@ export default function HomePage() {
                   <div className="text-[14px] font-medium">
                     On schedule · Day 7 of 14
                   </div>
-                  <div className="text-[12px] tabular-nums text-ivory/70">
-                    $14,820 approved
+                  <div className="text-[12px] text-ivory/70">
+                    Scope approved
                   </div>
                 </div>
                 <div className="mt-2 h-1 w-full overflow-hidden rounded-full bg-charcoal/15">
@@ -501,8 +501,11 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Phone mockup w/ real photos */}
-          <div className="mt-12 grid items-center gap-10 md:grid-cols-[1fr_auto] md:gap-16">
+          {/* Phone mockup w/ real photos.
+              Hidden on mobile: the visitor is already on their phone, so a
+              phone-inside-a-phone mockup is pure redundant length there.
+              Kept on md+ where it usefully previews the mobile experience. */}
+          <div className="mt-12 hidden items-center gap-10 md:grid md:grid-cols-[1fr_auto] md:gap-16">
             <div className="max-w-lg">
               <p className="eyebrow text-ivory/75">
                 On your phone too
@@ -636,7 +639,7 @@ export default function HomePage() {
                   <p className="eyebrow text-ivory/75">Restoration</p>
                 </div>
                 <span className="text-[10px] uppercase tracking-[0.18em] text-gold">
-                  Available now · 24/7
+                  24/7 · Available now
                 </span>
               </div>
               <p className="mt-4 text-[18px] leading-relaxed text-ivory">
@@ -694,8 +697,8 @@ export default function HomePage() {
                   <span className="h-2 w-2 rounded-full bg-gold" />
                   <p className="eyebrow text-ivory/75">Mold</p>
                 </div>
-                <span className="text-[10px] uppercase tracking-[0.18em] text-gold">
-                  IICRC S520
+                <span className="text-[10px] uppercase tracking-[0.18em] text-ivory/75">
+                  By appointment
                 </span>
               </div>
               <p className="mt-4 text-[18px] leading-relaxed text-ivory">
@@ -724,7 +727,9 @@ export default function HomePage() {
               </ul>
 
               <div className="mt-10 rounded-xl border border-ivory/10 bg-charcoal-soft p-5">
-                <p className="eyebrow text-ivory/75">How we remediate</p>
+                <p className="eyebrow text-ivory/75">
+                  How we remediate · per IICRC S520
+                </p>
                 <ol className="mt-3 space-y-2 text-[13px] text-ivory/75">
                   <li className="flex gap-3">
                     <span className="font-medium text-ivory">1.</span>
@@ -1421,21 +1426,22 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ─── 7. CLOSING CTA — light anchor (rhythm break) ──────
-          The page has spent its length in dark charcoal tones.
-          The closing section flips to ivory: a final breath of
-          light, anchors the bottom with tonal contrast. */}
-      <section className="bg-ivory text-charcoal">
+      {/* ─── 7. CLOSING CTA — dark, cohesive finale ───────────
+          Previously this flipped to ivory as a "rhythm break,"
+          but it read as a single orphaned light panel between the
+          dark "Real work" section and the dark footer. Kept in the
+          page's charcoal family (charcoal-soft) so the bottom of
+          the page stays one continuous tone. The gold phone button
+          is the only accent. */}
+      <section className="border-t border-ivory/10 bg-charcoal-soft text-ivory">
         <div className="mx-auto max-w-7xl px-6 py-24 md:py-32 lg:px-10">
           <div className="grid gap-12 md:grid-cols-[1.2fr_1fr] md:items-end md:gap-20">
             <div>
-              <p className="text-[11px] uppercase tracking-[0.22em] text-charcoal/55">
-                Talk to us
-              </p>
-              <h2 className="mt-6 max-w-2xl text-[36px] font-semibold leading-[1.05] tracking-[-0.02em] text-charcoal md:text-[56px]">
+              <p className="eyebrow text-ivory/75">Talk to us</p>
+              <h2 className="mt-6 max-w-2xl text-[36px] font-semibold leading-[1.05] tracking-[-0.02em] text-ivory md:text-[56px]">
                 Tell us what happened.
               </h2>
-              <p className="mt-6 max-w-xl text-[16px] leading-relaxed text-charcoal/70">
+              <p className="mt-6 max-w-xl text-[16px] leading-relaxed text-ivory/75">
                 One call, one form, one number on the other end. We&apos;ll
                 tell you the same day whether we can help.
               </p>
@@ -1449,48 +1455,48 @@ export default function HomePage() {
                 </a>
                 <Link
                   href="/start-project"
-                  className="inline-flex items-center justify-center rounded-full border border-charcoal bg-transparent px-7 py-3.5 text-[14px] font-medium text-charcoal transition hover:bg-charcoal hover:text-ivory"
+                  className="inline-flex items-center justify-center rounded-full border border-ivory px-7 py-3.5 text-[14px] font-medium text-ivory transition hover:bg-ivory hover:text-charcoal"
                 >
                   Start a project
                 </Link>
               </div>
             </div>
 
-            <dl className="grid grid-cols-2 gap-6 border-t border-charcoal/15 pt-8 text-[13px] md:border-l md:border-t-0 md:pl-10 md:pt-0">
+            <dl className="grid grid-cols-2 gap-6 border-t border-ivory/10 pt-8 text-[13px] md:border-l md:border-t-0 md:pl-10 md:pt-0">
               <div>
-                <dt className="text-[10px] uppercase tracking-[0.22em] text-charcoal/45">
+                <dt className="text-[10px] uppercase tracking-[0.22em] text-ivory/55">
                   Phone
                 </dt>
-                <dd className="mt-2 text-charcoal">{site.phoneDisplay}</dd>
-                <dd className="mt-1 text-charcoal/55">Answered in person</dd>
+                <dd className="mt-2 text-ivory">{site.phoneDisplay}</dd>
+                <dd className="mt-1 text-ivory/55">Answered in person</dd>
               </div>
               <div>
-                <dt className="text-[10px] uppercase tracking-[0.22em] text-charcoal/45">
+                <dt className="text-[10px] uppercase tracking-[0.22em] text-ivory/55">
                   Response
                 </dt>
-                <dd className="mt-2 text-charcoal">25 min</dd>
-                <dd className="mt-1 text-charcoal/55">Across Clark County</dd>
+                <dd className="mt-2 text-ivory">25 min</dd>
+                <dd className="mt-1 text-ivory/55">Across Clark County</dd>
               </div>
               <div>
-                <dt className="text-[10px] uppercase tracking-[0.22em] text-charcoal/45">
+                <dt className="text-[10px] uppercase tracking-[0.22em] text-ivory/55">
                   Remodel
                 </dt>
-                <dd className="mt-2 text-charcoal">Mon–Fri · 8a–5p</dd>
-                <dd className="mt-1 text-charcoal/55">Booking · June</dd>
+                <dd className="mt-2 text-ivory">Mon–Fri · 8a–5p</dd>
+                <dd className="mt-1 text-ivory/55">Booking · June</dd>
               </div>
               <div>
-                <dt className="text-[10px] uppercase tracking-[0.22em] text-charcoal/45">
+                <dt className="text-[10px] uppercase tracking-[0.22em] text-ivory/55">
                   Mold
                 </dt>
-                <dd className="mt-2 text-charcoal">By appointment</dd>
-                <dd className="mt-1 text-charcoal/55">IICRC S520 · insurance billed</dd>
+                <dd className="mt-2 text-ivory">By appointment</dd>
+                <dd className="mt-1 text-ivory/55">IICRC S520 · insurance billed</dd>
               </div>
               <div>
-                <dt className="text-[10px] uppercase tracking-[0.22em] text-charcoal/45">
+                <dt className="text-[10px] uppercase tracking-[0.22em] text-ivory/55">
                   Restoration
                 </dt>
-                <dd className="mt-2 text-charcoal">24 hours · every day</dd>
-                <dd className="mt-1 text-charcoal/55">Insurance billed direct</dd>
+                <dd className="mt-2 text-ivory">24 hours · every day</dd>
+                <dd className="mt-1 text-ivory/55">Insurance billed direct</dd>
               </div>
             </dl>
           </div>
