@@ -211,7 +211,7 @@ export default function HomePage() {
                     NE Hazel Dell — kitchen leak rebuild
                   </h3>
                   <p className="mt-2 text-[13px] text-ivory/75">
-                    Opened May 18 · Day 7 of 14 · Adjuster: Liberty Mutual
+                    Opened July 29 · Day 7 of 14 · Adjuster: Liberty Mutual
                   </p>
                 </div>
                 <div className="inline-flex items-center gap-2 self-start rounded-full border border-gold/40 bg-gold/5 px-3 py-1.5 text-[12px] text-gold">
@@ -276,7 +276,7 @@ export default function HomePage() {
                     {[
                       {
                         day: "Day 1",
-                        ts: "May 18 · 8:42a",
+                        ts: "July 29 · 8:42a",
                         title: "Initial moisture mapping",
                         body: "Identified 6.2 m² of saturated subfloor. Containment set, dehumidifiers placed.",
                         photos: 12,
@@ -284,7 +284,7 @@ export default function HomePage() {
                       },
                       {
                         day: "Day 3",
-                        ts: "May 20 · 11:05a",
+                        ts: "July 31 · 11:05a",
                         title: "Adjuster walkthrough — approved",
                         body: 'Scope agreed: lower cabinets, subfloor, drywall to 18". Insurer photos uploaded.',
                         photos: 38,
@@ -292,7 +292,7 @@ export default function HomePage() {
                       },
                       {
                         day: "Day 5",
-                        ts: "May 22 · 4:18p",
+                        ts: "August 2 · 4:18p",
                         title: "Drying complete",
                         body: "All readings below threshold. Demo scheduled for Day 6.",
                         photos: 18,
@@ -762,7 +762,7 @@ export default function HomePage() {
                   <p className="eyebrow text-ivory/75">Remodeling</p>
                 </div>
                 <span className="text-[10px] uppercase tracking-[0.18em] text-ivory/75">
-                  Booking · June
+                  Booking · Fall
                 </span>
               </div>
               <p className="mt-4 text-[18px] leading-relaxed text-ivory">
@@ -1357,14 +1357,14 @@ export default function HomePage() {
               {
                 kind: "Booking",
                 title: "Salmon Creek — bathroom refresh",
-                meta: "Remodel · Starts June 9",
+                meta: "Remodel · Starts August 25",
                 photo: photos[7],
-                signal: { live: false, label: "Scope signed · Starts June 9" },
+                signal: { live: false, label: "Scope signed · Starts August 25" },
               },
               {
                 kind: "Open slot",
                 title: "Your project here",
-                meta: "Booking restoration + remodel for June",
+                meta: "Booking restoration + remodel for fall",
                 photo: null,
                 signal: null,
               },
@@ -1482,7 +1482,7 @@ export default function HomePage() {
                   Remodel
                 </dt>
                 <dd className="mt-2 text-ivory">Mon–Fri · 8a–5p</dd>
-                <dd className="mt-1 text-ivory/55">Booking · June</dd>
+                <dd className="mt-1 text-ivory/55">Booking · Fall</dd>
               </div>
               <div>
                 <dt className="text-[10px] uppercase tracking-[0.22em] text-ivory/55">

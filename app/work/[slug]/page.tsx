@@ -51,7 +51,7 @@ const projects: Record<string, Project> = {
     title: "NE Hazel Dell — kitchen leak rebuild",
     area: "NE Hazel Dell, Vancouver WA",
     status: "On schedule",
-    openedOn: "May 18, 2026",
+    openedOn: "July 29, 2026",
     estDays: 14,
     currentDay: 7,
     adjuster: "Liberty Mutual",
@@ -60,7 +60,7 @@ const projects: Record<string, Project> = {
       {
         day: "Day 1",
         dayNumber: 1,
-        date: "May 18",
+        date: "July 29",
         title: "Initial moisture mapping",
         body: "Crew on site 9:42 AM. Mapped 6.2 m² of saturated subfloor under sink and dishwasher. Containment set, three dehumidifiers placed, six air movers running. Homeowner walkthrough completed; mitigation authorization signed.",
         moisture: [
@@ -84,9 +84,9 @@ const projects: Record<string, Project> = {
       {
         day: "Day 2",
         dayNumber: 2,
-        date: "May 19",
+        date: "July 30",
         title: "Photo + scope upload to insurer",
-        body: "Uploaded 38 photos and the Day 1–2 moisture map to the Liberty Mutual claim portal. Requested adjuster site visit for May 20. Overnight readings down 4–6 points across all four locations.",
+        body: "Uploaded 38 photos and the Day 1–2 moisture map to the Liberty Mutual claim portal. Requested adjuster site visit for July 31. Overnight readings down 4–6 points across all four locations.",
         moisture: [
           { location: "Subfloor (sink)", pct: 28 },
           { location: "Subfloor (DW)", pct: 23 },
@@ -111,7 +111,7 @@ const projects: Record<string, Project> = {
       {
         day: "Day 3",
         dayNumber: 3,
-        date: "May 20",
+        date: "July 31",
         title: "Adjuster walkthrough — scope agreed",
         body: 'Liberty Mutual adjuster on site 1:10 PM. Scope agreed: lower cabinets (4), 8\' × 6\' subfloor, drywall to 18", baseboards. Total approved: $14,820. No coverage disputes. Cabinet drying past hope — replacement confirmed.',
         moisture: [
@@ -135,7 +135,7 @@ const projects: Record<string, Project> = {
       {
         day: "Day 5",
         dayNumber: 5,
-        date: "May 22",
+        date: "August 2",
         title: "Drying complete — equipment off",
         body: "All four readings below 16% MC threshold. Equipment removed and logged out at 4:30 PM. Demo scheduled for Day 6. Power-bill reimbursement form filed with the carrier.",
         moisture: [
@@ -158,7 +158,7 @@ const projects: Record<string, Project> = {
       {
         day: "Day 6",
         dayNumber: 6,
-        date: "May 23",
+        date: "August 3",
         title: "Demo complete",
         body: 'Lower cabinets (4), 8\' × 6\' subfloor, drywall to 18" and baseboards removed and disposed. Disposal weight logged with the haul-away receipt. Cabinet order placed — 8-day lead time on the Cardinal maple shaker spec.',
         equipment: ["Hand tools only", "Dust containment in place"],
@@ -175,7 +175,7 @@ const projects: Record<string, Project> = {
       {
         day: "Day 7",
         dayNumber: 7,
-        date: "May 24",
+        date: "August 4",
         title: "Rebuild started",
         body: 'Subfloor laid and squared 8:00 AM (Marcus + James on site since 7:30 AM). Drywall to 18" hung and taped, first coat of mud on. On schedule for cabinet install Day 9 — kitchen back in full use by Day 14.',
         equipment: [
@@ -192,7 +192,7 @@ const projects: Record<string, Project> = {
       {
         day: "Day 14",
         dayNumber: 14,
-        date: "Est. May 31",
+        date: "Est. August 11",
         title: "Estimated complete",
         body: "Cabinets installed, flooring laid, paint complete, final walkthrough with homeowner. Project closed in the Project File. Three-year workmanship warranty starts.",
         estimated: true,
