@@ -18,7 +18,7 @@ export function EmergencyBanner() {
         <span className="ona-pulse inline-block h-2 w-2 flex-none rounded-full bg-gold" />
         <span>
           <span className="text-ivory">Available now</span>
-          {" · Booking June restoration + remodel · Vancouver, WA + Portland metro"}
+          {" · Now booking fall projects · Vancouver, WA + Portland metro"}
         </span>
       </div>
     </div>
