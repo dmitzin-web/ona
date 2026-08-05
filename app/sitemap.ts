@@ -43,6 +43,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
   );
 
+  // One-off deployment routes outside the metro cluster (Spokane wildfire
+   // response). Kept out of areaProfiles by design.
+  const deploymentUrls: MetadataRoute.Sitemap = [
+    {
+      url: `${site.url}/services/fire-damage/spokane-wa`,
+      lastModified: STATIC_LAST_MODIFIED,
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+  ];
+
   const areaUrls: MetadataRoute.Sitemap = areaProfiles.map((a) => ({
     url: `${site.url}/areas/${a.slug}`,
     lastModified: STATIC_LAST_MODIFIED,
@@ -64,6 +75,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...staticUrls,
     ...serviceUrls,
     ...serviceCityUrls,
+    ...deploymentUrls,
     ...areaUrls,
     ...postUrls,
   ];

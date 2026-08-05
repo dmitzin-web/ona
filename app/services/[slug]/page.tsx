@@ -218,6 +218,38 @@ export default async function ServicePage(
 
       <FAQ items={service.faqs} title={`${service.shortName} — FAQ`} />
 
+      {/* Spokane wildfire deployment callout — only on /services/fire-damage.
+          Framed as a deployment, not a local branch. Keeps Spokane crawlable
+          without polluting the SW-WA/Portland metro city cluster below. */}
+      {service.slug === "fire-damage" && (
+        <section className="bg-charcoal-soft">
+          <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10">
+            <Link
+              href="/services/fire-damage/spokane-wa"
+              className="group flex flex-col gap-3 border border-gold/40 bg-gold/[0.06] px-6 py-6 transition hover:bg-gold/[0.10] sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:px-8 sm:py-7"
+            >
+              <div>
+                <p className="eyebrow text-gold">
+                  Spokane wildfire response
+                </p>
+                <p className="mt-2 text-lg text-ivory">
+                  We&apos;ve deployed a Washington-licensed mobile crew to
+                  Spokane County.
+                </p>
+                <p className="mt-1 text-sm text-ivory/70">
+                  Fire &amp; smoke restoration, board-up, and insurance
+                  documentation — from first response through rebuild.
+                </p>
+              </div>
+              <span className="inline-flex flex-none items-center gap-3 self-start text-sm font-medium uppercase tracking-[0.22em] text-ivory transition group-hover:text-gold sm:self-auto">
+                Spokane response
+                <ArrowIcon className="h-3 w-3 stroke-current" />
+              </span>
+            </Link>
+          </div>
+        </section>
+      )}
+
       {/* City × service pages — programmatic local landing pages for
           this specific service across the entire Portland metro. Drives
           buy-intent local SEO (e.g., "water damage restoration beaverton"). */}

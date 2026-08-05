@@ -6,6 +6,7 @@ import { CTA } from "@/components/CTA";
 import { FAQ } from "@/components/FAQ";
 import { JsonLd } from "@/components/JsonLd";
 import { ArrowIcon, serviceIcons } from "@/components/icons/ServiceIcons";
+import { SpokaneFireDeployment } from "@/components/services/SpokaneFireDeployment";
 import { services, findService } from "@/lib/services";
 import { areaProfiles } from "@/lib/areas";
 import { site } from "@/lib/site";
@@ -36,10 +37,21 @@ import {
 
 type RouteParams = { slug: string; area: string };
 
+// Extra one-off deployment routes that don't belong in areaProfiles (which
+// drives nav, footer, and city clusters). Currently: Spokane wildfire
+// response — a Washington-licensed mobile deployment, not a local branch.
+// See components/services/SpokaneFireDeployment.tsx.
+const EXTRA_ROUTES: RouteParams[] = [
+  { slug: "fire-damage", area: "spokane-wa" },
+];
+
 export function generateStaticParams(): RouteParams[] {
-  return services.flatMap((s) =>
-    areaProfiles.map((a) => ({ slug: s.slug, area: a.slug })),
-  );
+  return [
+    ...services.flatMap((s) =>
+      areaProfiles.map((a) => ({ slug: s.slug, area: a.slug })),
+    ),
+    ...EXTRA_ROUTES,
+  ];
 }
 
 export async function generateMetadata({
@@ -48,6 +60,23 @@ export async function generateMetadata({
   params: Promise<RouteParams>;
 }): Promise<Metadata> {
   const { slug, area } = await params;
+
+  // Bespoke Spokane wildfire deployment page.
+  if (slug === "fire-damage" && area === "spokane-wa") {
+    return buildMetadata({
+      title: "Fire & Smoke Damage Restoration in Spokane, WA",
+      description: `Washington-licensed fire, smoke & soot restoration deployed to Spokane County. 24/7 emergency board-up, cleanup & insurance documentation. Call ${site.phoneDisplay}.`,
+      path: "/services/fire-damage/spokane-wa",
+      keywords: [
+        "fire damage restoration spokane",
+        "smoke damage spokane wa",
+        "wildfire restoration spokane county",
+        "soot cleanup spokane",
+        "emergency board up spokane",
+      ],
+    });
+  }
+
   const service = findService(slug);
   const profile = areaProfiles.find((a) => a.slug === area);
   if (!service || !profile) {
@@ -74,6 +103,12 @@ export default async function ServiceCityPage({
   params: Promise<RouteParams>;
 }) {
   const { slug, area } = await params;
+
+  // Bespoke deployment page — see component file for rationale.
+  if (slug === "fire-damage" && area === "spokane-wa") {
+    return <SpokaneFireDeployment />;
+  }
+
   const service = findService(slug);
   const profile = areaProfiles.find((a) => a.slug === area);
   if (!service || !profile) notFound();
