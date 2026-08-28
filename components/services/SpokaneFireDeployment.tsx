@@ -46,7 +46,7 @@ const SITUATIONS = [
     h: "Your home burned",
     p: "We handle the whole rebuild — debris out, structure back up, finishes in. One crew, one scope, billed to your carrier.",
     detail:
-      "Before debris can move, Spokane Clean Air requires an asbestos survey by a certified inspector and a Notice of Intent on file — fees are currently waived. We coordinate that step for you so your permit isn't held up.",
+      "There are three required steps before rebuilding can start. We handle all three — see below.",
   },
   {
     tag: "Standing, but full of smoke",
@@ -215,7 +215,7 @@ export function SpokaneFireDeployment() {
             <div className="flex items-center gap-2.5">
               <span className="ona-pulse h-2 w-2 rounded-full bg-flare" />
               <p className="eyebrow text-flare-deep">
-                Crew on the ground · Spokane County
+                We&apos;re already in Spokane County
               </p>
             </div>
 
@@ -251,7 +251,8 @@ export function SpokaneFireDeployment() {
             </div>
 
             <p className="mt-5 text-[15px] text-day-ink-3">
-              Free assessment. No obligation. Answered in person, 24/7.
+              We&apos;ll come look at it for free. A real person answers, day
+              or night.
             </p>
 
             <dl className="mt-14 grid grid-cols-2 gap-y-7 border-t border-day-line pt-9 sm:grid-cols-4 sm:gap-x-8">
@@ -307,20 +308,99 @@ export function SpokaneFireDeployment() {
           <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3">
             <a
               href={`tel:${site.phone}`}
-              className="inline-flex items-center gap-3 rounded-full bg-flare px-7 py-3.5 text-[14px] font-semibold text-white transition hover:bg-flare-deep"
+              className="inline-flex items-center gap-3 rounded-full bg-flare px-8 py-[18px] text-[17px] font-semibold text-white shadow-[0_14px_32px_-12px_rgba(207,63,20,0.45)] transition hover:bg-flare-deep"
             >
               <PhoneIcon className="h-4 w-4 stroke-current" />
               Call {site.phoneDisplay}
             </a>
             <span className="text-[14px] text-day-ink-3">
-              Not sure which applies? Send photos and we&apos;ll tell you.
+              Not sure which one you&apos;re in? Send photos, we&apos;ll tell
+              you.
             </span>
           </div>
         </div>
       </section>
 
+      {/* ── THE THREE GATES ──────────────────────────────────────────
+          The asbestos survey / Notice of Intent sequence used to be a
+          dense paragraph inside a card. Nobody reads regulatory prose in
+          this situation, so it's a three-step diagram instead: what has to
+          happen, in what order, and who does it. Being the page that
+          explains this plainly is also the strongest competence signal
+          available — most competitors don't mention it at all. */}
+      <section className="border-t border-day-line bg-day">
+        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-24">
+          <p className="eyebrow text-flare-deep">If your property burned</p>
+          <h2 className="mt-5 max-w-3xl text-[30px] font-semibold leading-[1.1] tracking-[-0.02em] text-day-ink md:text-[38px]">
+            Three things have to happen before rebuilding. We do all three.
+          </h2>
+
+          <ol className="relative mt-14 grid gap-10 md:grid-cols-3 md:gap-8">
+            <span
+              aria-hidden="true"
+              className="absolute left-7 top-3 hidden h-[calc(100%-1.5rem)] w-px bg-day-line sm:block md:left-0 md:top-7 md:h-px md:w-full"
+            />
+            {[
+              {
+                n: "1",
+                t: "Asbestos survey",
+                p: "A certified inspector tests the debris. Required by Spokane Clean Air before anything is moved.",
+                who: "We arrange the inspector",
+              },
+              {
+                n: "2",
+                t: "Notice of Intent filed",
+                p: "Goes to Spokane Clean Air whatever the survey says. Fees are waived right now for fire-affected properties.",
+                who: "We file it",
+              },
+              {
+                n: "3",
+                t: "Debris out, permit in",
+                p: "The city and county both want the notice before they issue a building permit. Same-footprint rebuilds are running five to seven days.",
+                who: "We pull the permit",
+              },
+            ].map((s) => (
+              <li key={s.n} className="relative flex gap-5 md:flex-col md:gap-0">
+                <span className="relative z-10 flex h-14 w-14 flex-none items-center justify-center rounded-full border-2 border-flare bg-day text-[20px] font-bold text-flare-deep">
+                  {s.n}
+                </span>
+                <div className="md:mt-7">
+                  <h3 className="text-[20px] font-semibold tracking-[-0.015em] text-day-ink">
+                    {s.t}
+                  </h3>
+                  <p className="mt-2.5 max-w-sm text-[15px] leading-relaxed text-day-ink-2">
+                    {s.p}
+                  </p>
+                  <p className="mt-3 inline-flex items-center gap-2 rounded-full bg-flare/[0.08] px-3 py-1.5 text-[13px] font-semibold text-flare-deep">
+                    <svg
+                      className="h-3.5 w-3.5"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth={2.4}
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="m5 12.5 4.5 4.5L19 7" />
+                    </svg>
+                    {s.who}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ol>
+
+          <p className="mt-12 max-w-2xl text-[16px] leading-relaxed text-day-ink-2">
+            Skipping any of it stops your permit. If someone offers to start
+            hauling debris before the survey, that alone tells you what you
+            need to know about them.
+          </p>
+        </div>
+      </section>
+
       {/* ── WHAT WE HANDLE ───────────────────────────────────────── */}
-      <section className="bg-day">
+      <section className="border-t border-day-line bg-day-2">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-24">
           <div className="grid gap-12 lg:grid-cols-12">
             <div className="lg:col-span-5">
@@ -550,7 +630,7 @@ export function SpokaneFireDeployment() {
       {/* ── PROCESS ─────────────────────────────────────────────── */}
       <section className="border-t border-day-line bg-day-2">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-24">
-          <p className="eyebrow text-day-ink-3">How it runs</p>
+          <p className="eyebrow text-day-ink-3">What happens next</p>
           <h2 className="mt-5 text-[30px] font-semibold leading-[1.1] tracking-[-0.02em] text-day-ink md:text-[38px]">
             Five steps, and you see all of them.
           </h2>
@@ -588,7 +668,7 @@ export function SpokaneFireDeployment() {
       {/* ── AREAS ───────────────────────────────────────────────── */}
       <section className="border-t border-day-line bg-day-2">
         <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10">
-          <p className="eyebrow text-day-ink-3">Responding across</p>
+          <p className="eyebrow text-day-ink-3">We&apos;re working across</p>
           <p className="mt-5 max-w-4xl text-[19px] leading-relaxed text-day-ink-2">
             Spokane · Spokane Valley · Airway Heights · Medical Lake · Cheney ·
             Deer Park · Nine Mile Falls · Mead · and surrounding Spokane County
@@ -647,14 +727,14 @@ export function SpokaneFireDeployment() {
             <div className="flex flex-col gap-3 lg:col-span-5 lg:items-end">
               <a
                 href={`tel:${site.phone}`}
-                className="inline-flex items-center justify-center gap-3 rounded-full bg-flare px-8 py-4 text-[15px] font-semibold text-white shadow-[0_0_0_1px_rgba(224,78,31,0.25),0_14px_34px_-12px_rgba(224,78,31,0.45)] transition hover:bg-flare-deep"
+                className="inline-flex items-center justify-center gap-3 rounded-full bg-flare px-9 py-5 text-[17px] font-semibold text-white shadow-[0_0_0_1px_rgba(207,63,20,0.25),0_16px_36px_-12px_rgba(207,63,20,0.5)] transition hover:bg-flare-deep sm:text-[18px]"
               >
                 <PhoneIcon className="h-4 w-4 stroke-current" />
                 Call {site.phoneDisplay}
               </a>
               <a
                 href={`mailto:${site.email}?subject=Spokane%20fire%20-%20my%20property`}
-                className="inline-flex items-center justify-center gap-3 rounded-full border border-day-ink/30 px-8 py-4 text-[15px] font-medium text-day-ink transition hover:border-day-ink hover:bg-day-ink hover:text-day"
+                className="inline-flex items-center justify-center gap-3 rounded-full border-2 border-day-ink px-9 py-5 text-[17px] font-semibold text-day-ink transition hover:bg-day-ink hover:text-day sm:text-[18px]"
               >
                 Email photographs
               </a>
