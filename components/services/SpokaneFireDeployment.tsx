@@ -157,7 +157,10 @@ const SPOKANE_FAQ = [
 
 export function SpokaneFireDeployment() {
   return (
-    <div className="wildfire-page bg-day">
+    // text-day-ink-2 on the wrapper matters: <body> carries text-ivory for
+    // the rest of the site, so any element here without its own colour
+    // class would inherit near-white and vanish on this white ground.
+    <div className="wildfire-page bg-day text-day-ink-2">
       {/* ── HERO ─────────────────────────────────────────────────────
           Warm light from the top right, so a page about fire doesn't
           read as a dark basement. */}
@@ -223,33 +226,32 @@ export function SpokaneFireDeployment() {
               </span>
             </h1>
 
-            <p className="mt-8 max-w-2xl text-[17px] leading-relaxed text-day-ink-2 md:text-[19px]">
-              The Spokane fires damaged or destroyed around 850 buildings, and
-              left hundreds more standing but full of smoke. We brought a
-              Washington-licensed fire and smoke crew to Spokane County to help
-              rebuild them — debris removal, soot and odor, full
-              reconstruction, billed to your insurance.
+            {/* One line, not a paragraph. Someone reading this is in a car
+                or in temporary housing on a phone — the detail lives further
+                down the page, the hero exists to get a call. */}
+            <p className="mt-7 max-w-xl text-[19px] leading-snug text-day-ink-2 md:text-[22px]">
+              Debris removal, smoke and soot, full rebuild.{" "}
+              <span className="text-day-ink">Billed to your insurance.</span>
             </p>
 
-            <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
               <a
                 href={`tel:${site.phone}`}
-                className="inline-flex items-center justify-center gap-3 rounded-full bg-flare px-8 py-4 text-[15px] font-semibold text-white shadow-[0_0_0_1px_rgba(224,78,31,0.25),0_14px_34px_-12px_rgba(224,78,31,0.45)] transition hover:bg-flare-deep"
+                className="inline-flex items-center justify-center gap-3 rounded-full bg-flare px-9 py-5 text-[17px] font-semibold text-white shadow-[0_0_0_1px_rgba(207,63,20,0.25),0_16px_36px_-12px_rgba(207,63,20,0.5)] transition hover:bg-flare-deep sm:text-[18px]"
               >
-                <PhoneIcon className="h-4 w-4 stroke-current" />
+                <PhoneIcon className="h-5 w-5 stroke-current" />
                 Call {site.phoneDisplay}
               </a>
               <a
                 href={`mailto:${site.email}?subject=Spokane%20fire%20-%20my%20property`}
-                className="inline-flex items-center justify-center gap-3 rounded-full border border-day-ink/30 px-8 py-4 text-[15px] font-medium text-day-ink transition hover:border-day-ink hover:bg-day-ink hover:text-day"
+                className="inline-flex items-center justify-center gap-3 rounded-full border-2 border-day-ink px-9 py-5 text-[17px] font-semibold text-day-ink transition hover:bg-day-ink hover:text-day sm:text-[18px]"
               >
-                Send photos — answer today
+                Send photos
               </a>
             </div>
 
-            <p className="mt-5 text-[14px] text-day-ink-3">
-              Free assessment. No obligation. We answer the phone in person,
-              24/7.
+            <p className="mt-5 text-[15px] text-day-ink-3">
+              Free assessment. No obligation. Answered in person, 24/7.
             </p>
 
             <dl className="mt-14 grid grid-cols-2 gap-y-7 border-t border-day-line pt-9 sm:grid-cols-4 sm:gap-x-8">
@@ -382,25 +384,201 @@ export function SpokaneFireDeployment() {
         </div>
       </section>
 
+      {/* ── PROOF ────────────────────────────────────────────────────
+          The trust block above claims every job gets a live project page.
+          This shows one, so the claim isn't just a bullet. The data is a
+          labelled sample, not a real customer's file. */}
+      <section className="border-t border-day-line bg-day">
+        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-24">
+          <div className="grid gap-12 lg:grid-cols-12">
+            <div className="lg:col-span-5">
+              <p className="eyebrow text-flare-deep">The live project page</p>
+              <h2 className="mt-5 text-[30px] font-semibold leading-[1.1] tracking-[-0.02em] text-day-ink md:text-[38px]">
+                This is what you get a link to on day one.
+              </h2>
+              <p className="mt-6 max-w-md text-[16px] leading-relaxed text-day-ink-2">
+                It stays live through the rebuild and stays up after we&apos;re
+                gone. Send it to your adjuster, your family, your attorney —
+                whoever needs to see what was done and when.
+              </p>
+              <ul className="mt-7 space-y-2.5">
+                {[
+                  "Every photo, dated and in sequence",
+                  "Moisture and cleaning logs",
+                  "Every receipt and scope change",
+                  "Nothing removed once it's posted",
+                ].map((t) => (
+                  <li
+                    key={t}
+                    className="flex items-start gap-3 text-[15px] text-day-ink-2"
+                  >
+                    <span
+                      aria-hidden="true"
+                      className="mt-1.5 h-1.5 w-1.5 flex-none rounded-full bg-flare"
+                    />
+                    <span>{t}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="lg:col-span-7">
+              <div className="overflow-hidden border border-day-line bg-day shadow-[0_1px_2px_rgba(10,10,10,.04),0_24px_50px_-30px_rgba(10,10,10,.25)]">
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-1 border-b border-day-line bg-day-2 px-4 py-2.5">
+                  <span className="flex gap-1.5" aria-hidden="true">
+                    <i className="block h-2 w-2 rounded-full bg-day-line" />
+                    <i className="block h-2 w-2 rounded-full bg-day-line" />
+                    <i className="block h-2 w-2 rounded-full bg-day-line" />
+                  </span>
+                  <span className="text-[11px] text-day-ink-3">
+                    onarestore.com/work/your-project
+                  </span>
+                  <span className="ml-auto rounded-full bg-flare/10 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-flare-deep">
+                    Sample
+                  </span>
+                </div>
+
+                <div className="p-5 sm:p-7">
+                  <div className="flex flex-wrap items-start justify-between gap-3">
+                    <div>
+                      <p className="eyebrow text-day-ink-3">
+                        Fire &amp; smoke · rebuild
+                      </p>
+                      <h3 className="mt-2 text-[20px] font-semibold tracking-[-0.015em] text-day-ink sm:text-[23px]">
+                        N Assembly St — smoke &amp; soot, full clean
+                      </h3>
+                      <p className="mt-1.5 text-[13px] text-day-ink-3">
+                        Day 6 of 12 · Adjuster: Pemco
+                      </p>
+                    </div>
+                    <span className="inline-flex items-center gap-2 rounded-full border border-flare/35 bg-flare/[0.07] px-3 py-1.5 text-[12px] font-medium text-flare-deep">
+                      <span className="ona-pulse h-1.5 w-1.5 rounded-full bg-flare" />
+                      Updated today
+                    </span>
+                  </div>
+
+                  <div className="mt-6 border border-day-line bg-day-2 p-4">
+                    <div className="flex items-baseline justify-between text-[12px]">
+                      <span className="text-day-ink-3">Day 6 of est. 12</span>
+                      <span className="font-semibold text-day-ink">
+                        50% · on schedule
+                      </span>
+                    </div>
+                    <div className="mt-2.5 h-1.5 w-full overflow-hidden rounded-full bg-day-line">
+                      <div
+                        className="h-1.5 rounded-full bg-flare"
+                        style={{ width: "50%" }}
+                      />
+                    </div>
+                    <div className="mt-4 grid grid-cols-2 gap-2 text-[11px] sm:grid-cols-4">
+                      {[
+                        ["Board-up", "done"],
+                        ["Soot removal", "done"],
+                        ["HVAC & odor", "now"],
+                        ["Rebuild", "next"],
+                      ].map(([label, state]) => (
+                        <div key={label} className="flex items-center gap-1.5">
+                          <span
+                            aria-hidden="true"
+                            className={
+                              state === "done"
+                                ? "inline-flex h-3.5 w-3.5 flex-none items-center justify-center rounded-full bg-flare text-[8px] font-bold text-white"
+                                : state === "now"
+                                  ? "ona-pulse inline-block h-3.5 w-3.5 flex-none rounded-full border-2 border-flare bg-day"
+                                  : "inline-block h-3.5 w-3.5 flex-none rounded-full border border-day-line bg-day"
+                            }
+                          >
+                            {state === "done" ? "✓" : ""}
+                          </span>
+                          <span
+                            className={
+                              state === "now"
+                                ? "font-semibold text-day-ink"
+                                : "text-day-ink-3"
+                            }
+                          >
+                            {label}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <dl className="mt-5 divide-y divide-day-line-soft border-t border-day-line-soft">
+                    {[
+                      {
+                        d: "Day 6 · 9:20a",
+                        t: "Ducts cleaned",
+                        b: "HVAC decontaminated and sealed. Thermal fog scheduled once framing dries. 22 photos",
+                      },
+                      {
+                        d: "Day 4 · 2:05p",
+                        t: "Soot removal complete",
+                        b: "Ceilings, walls and cabinetry HEPA-vacuumed and wet-cleaned. Two doors flagged for replacement. 41 photos",
+                      },
+                      {
+                        d: "Day 2 · 11:15a",
+                        t: "Adjuster walkthrough — approved",
+                        b: "Scope agreed. Insulation and drywall to 24 inches in the kitchen. 18 photos",
+                      },
+                    ].map((r) => (
+                      <div
+                        key={r.d}
+                        className="grid gap-1 py-3.5 sm:grid-cols-[104px_1fr] sm:gap-4"
+                      >
+                        <dt className="text-[12px] text-day-ink-3">{r.d}</dt>
+                        <dd className="text-[14px] leading-relaxed text-day-ink-2">
+                          <span className="font-semibold text-day-ink">
+                            {r.t}.
+                          </span>{" "}
+                          {r.b}
+                        </dd>
+                      </div>
+                    ))}
+                  </dl>
+                </div>
+              </div>
+              <p className="mt-3 text-[13px] text-day-ink-3">
+                Sample page with sample data. Your own is created before we
+                start work.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ── PROCESS ─────────────────────────────────────────────── */}
-      <section className="bg-day">
+      <section className="border-t border-day-line bg-day-2">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-24">
           <p className="eyebrow text-day-ink-3">How it runs</p>
           <h2 className="mt-5 text-[30px] font-semibold leading-[1.1] tracking-[-0.02em] text-day-ink md:text-[38px]">
             Five steps, and you see all of them.
           </h2>
-          <ol className="mt-14 grid gap-px overflow-hidden border border-day-line bg-day-line sm:grid-cols-2 lg:grid-cols-5">
-            {PROCESS.map((p) => (
-              <li key={p.n} className="bg-day p-6">
-                <p className="text-[13px] font-semibold tracking-[0.14em] text-flare">
-                  {p.n}
-                </p>
-                <h3 className="mt-4 text-[17px] font-semibold leading-snug tracking-[-0.01em] text-day-ink">
-                  {p.h}
-                </h3>
-                <p className="mt-2.5 text-[14px] leading-relaxed text-day-ink-2">
-                  {p.p}
-                </p>
+          {/* Timeline rather than a numbered list: the rail makes the
+              sequence readable at a glance, which a stressed reader on a
+              phone will actually take in. The rail is drawn behind the
+              markers and hidden below lg, where the steps stack. */}
+          <ol className="relative mt-14 grid gap-10 lg:grid-cols-5 lg:gap-6">
+            <span
+              aria-hidden="true"
+              className="absolute left-[19px] top-2 hidden h-[calc(100%-1rem)] w-px bg-day-line sm:block lg:left-0 lg:top-[19px] lg:h-px lg:w-full"
+            />
+            {PROCESS.map((p, i) => (
+              <li key={p.n} className="relative flex gap-5 lg:flex-col lg:gap-0">
+                <span className="relative z-10 flex h-10 w-10 flex-none items-center justify-center rounded-full border border-day-line bg-day text-flare-deep">
+                  <StepIcon i={i} />
+                </span>
+                <div className="lg:mt-6">
+                  <p className="text-[12px] font-semibold tracking-[0.16em] text-flare-deep">
+                    {p.n}
+                  </p>
+                  <h3 className="mt-2 text-[17px] font-semibold leading-snug tracking-[-0.01em] text-day-ink">
+                    {p.h}
+                  </h3>
+                  <p className="mt-2 max-w-xs text-[14px] leading-relaxed text-day-ink-2">
+                    {p.p}
+                  </p>
+                </div>
               </li>
             ))}
           </ol>
@@ -548,6 +726,85 @@ export function SpokaneFireDeployment() {
           },
         ]}
       />
+
+      {/* ── STICKY MOBILE CALL BAR ───────────────────────────────────
+          Mobile only. Most of this traffic is a phone, often at night,
+          often mid-scroll — the call must never be more than a thumb away.
+          `pr-16` keeps the buttons clear of the floating Ask ONA widget,
+          which also sits bottom-right. The spacer below reserves the same
+          height so the bar never covers the last section. */}
+      <div className="h-20 sm:hidden" aria-hidden="true" />
+      <div className="fixed inset-x-0 bottom-0 z-30 border-t border-day-line bg-day/95 backdrop-blur-sm sm:hidden">
+        <div className="flex gap-2 px-4 py-3 pr-16">
+          <a
+            href={`tel:${site.phone}`}
+            className="inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-flare px-4 py-3.5 text-[15px] font-semibold text-white"
+          >
+            <PhoneIcon className="h-4 w-4 stroke-current" />
+            Call now
+          </a>
+          <a
+            href={`mailto:${site.email}?subject=Spokane%20fire%20-%20my%20property`}
+            className="inline-flex flex-1 items-center justify-center rounded-full border-2 border-day-ink px-4 py-3.5 text-[15px] font-semibold text-day-ink"
+          >
+            Send photos
+          </a>
+        </div>
+      </div>
     </div>
   );
+}
+
+// Small stroke icons for the process timeline, drawn to match the weight of
+// the site's existing ServiceIcons rather than pulled from an icon set.
+function StepIcon({ i }: { i: number }) {
+  const common = {
+    className: "h-[18px] w-[18px]",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: 1.6,
+    strokeLinecap: "round" as const,
+    strokeLinejoin: "round" as const,
+    "aria-hidden": true,
+  };
+  switch (i) {
+    case 0: // call / send photos
+      return (
+        <svg {...common}>
+          <path d="M4.5 5.5a1.5 1.5 0 0 1 1.5-1.5h2l1.5 4-2 1.5a12 12 0 0 0 5.5 5.5l1.5-2 4 1.5v2a1.5 1.5 0 0 1-1.5 1.5A14.5 14.5 0 0 1 4.5 5.5Z" />
+        </svg>
+      );
+    case 1: // walk the property
+      return (
+        <svg {...common}>
+          <path d="M3.5 10.5 12 4l8.5 6.5" />
+          <path d="M5.5 9.5V19h13V9.5" />
+          <path d="M10 19v-5h4v5" />
+        </svg>
+      );
+    case 2: // itemized scope
+      return (
+        <svg {...common}>
+          <path d="M6 3.5h8l4 4V20a.5.5 0 0 1-.5.5h-11A.5.5 0 0 1 6 20V4a.5.5 0 0 1 .5-.5Z" />
+          <path d="M14 3.5V8h4" />
+          <path d="M9 12.5h6M9 16h4" />
+        </svg>
+      );
+    case 3: // stabilize and clean
+      return (
+        <svg {...common}>
+          <path d="M9 3.5h6v4H9z" />
+          <path d="M10 7.5 8 12v7.5a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V12l-2-4.5" />
+          <path d="M8 14.5h8" />
+        </svg>
+      );
+    default: // rebuild
+      return (
+        <svg {...common}>
+          <path d="M13.5 4.5 19 10l-2 2-5.5-5.5z" />
+          <path d="M11 8.5 4.5 15v4.5H9L15.5 13" />
+        </svg>
+      );
+  }
 }

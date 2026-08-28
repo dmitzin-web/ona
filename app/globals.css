@@ -41,7 +41,12 @@
   --color-day-ink: #0a0a0a;
   --color-day-ink-2: #3d3d3b;
   --color-day-ink-3: #6b6b68;
-  --color-flare: #e04e1f;
+  /* #cf3f14, not the more obvious #e04e1f: white text on e04e1f measures
+     3.98:1, which fails WCAG AA (4.5:1) for the button label size we use.
+     cf3f14 measures 4.80:1 and is visually almost identical. flare-deep
+     (6.17:1 on white) is for small text — step numbers, small-caps
+     labels — where flare itself would fail. */
+  --color-flare: #cf3f14;
   --color-flare-deep: #b03714;
 
   --font-display: var(--font-satoshi), ui-sans-serif, system-ui, sans-serif;
