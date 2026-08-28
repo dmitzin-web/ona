@@ -63,16 +63,20 @@ export async function generateMetadata({
 
   // Bespoke Spokane wildfire deployment page.
   if (slug === "fire-damage" && area === "spokane-wa") {
+    // No response-time claim in the description: we're ~350 miles out, so
+    // "60-minute response" would be an unsubstantiated advertising claim.
+    // "Same-day answer" is what we can actually keep.
     return buildMetadata({
-      title: "Fire & Smoke Damage Restoration in Spokane, WA",
-      description: `Washington-licensed fire, smoke & soot restoration deployed to Spokane County. 24/7 emergency board-up, cleanup & insurance documentation. Call ${site.phoneDisplay}.`,
+      title: "Spokane Wildfire Fire & Smoke Restoration",
+      description:
+        "Washington-licensed fire, smoke and soot restoration in Spokane County after the wildfires. Debris removal, odor treatment and full rebuild, billed to your insurance — you pay your deductible only. Free assessment, same-day answer.",
       path: "/services/fire-damage/spokane-wa",
       keywords: [
         "fire damage restoration spokane",
-        "smoke damage spokane wa",
-        "wildfire restoration spokane county",
+        "smoke damage repair spokane wa",
+        "wildfire rebuild spokane county",
         "soot cleanup spokane",
-        "emergency board up spokane",
+        "fire damage contractor spokane",
       ],
     });
   }

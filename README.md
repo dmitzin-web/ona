@@ -19,7 +19,7 @@ the corresponding URL on vvon.ai (see `next.config.ts`).
 ## Run locally
 ```bash
 npm install
-npm run dev    # http://localhost:3000
+npm run dev    # http://localhost:3100
 npm run build  # production build
 npm start
 ```

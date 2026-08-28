@@ -90,21 +90,25 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl px-6 pt-20 pb-20 md:pt-28 md:pb-24 lg:px-10">
           <div className="grid gap-12 md:grid-cols-[1.05fr_1fr] md:items-center md:gap-16">
             <div>
-              <p className="eyebrow text-ivory/75">
-                Vancouver, WA · Restoration &amp; Remodeling
-              </p>
+              <div className="flex items-center gap-2">
+                <span className="ona-pulse h-2 w-2 rounded-full bg-gold" />
+                <p className="eyebrow text-ivory/75">
+                  24/7 emergency response · Vancouver, WA + Portland metro
+                </p>
+              </div>
               <h1 className="mt-8 text-[40px] font-semibold leading-[1.04] tracking-[-0.025em] text-ivory md:text-[64px]">
-                Restoration &amp; remodeling{" "}
+                Water. Fire. Mold.{" "}
                 <span className="text-ivory/75">
-                  without the chaos.
+                  One call, on-site in an hour.
                 </span>
               </h1>
 
               <p className="mt-8 max-w-xl text-[17px] leading-relaxed text-ivory/75 md:text-[18px]">
-                Every project comes with a live project page — photos,
-                daily updates, documents, and what&apos;s next. So you
-                always know where things stand. One team from emergency
-                cleanup to final paint.
+                IICRC-certified restoration across the Portland metro. We
+                stabilize the damage, document it for your insurer, and
+                rebuild what was lost — on a live project page you can
+                share with your family or adjuster. Also remodeling, from
+                the same crew.
               </p>
 
               <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -629,10 +633,11 @@ export default function HomePage() {
           </h2>
 
           <div className="mt-16 grid gap-12 md:grid-cols-3 md:gap-10">
-            {/* Display order is Remodeling → Mold → Restoration, set via
-                CSS `order` so the source order (and the divider borders
-                that depend on it) stay readable. */}
-            <div className="order-3 md:border-l md:border-ivory/10 md:pl-10">
+            {/* Display order (v4): Restoration → Mold → Remodeling. Restoration
+                leads because it drives the actual phone calls; remodeling is
+                the longer-consideration line. Source order stays the same,
+                only the CSS `order` values move. */}
+            <div className="order-1">
               <div className="flex items-center justify-between gap-3">
                 <div className="flex items-center gap-3">
                   <span className="ona-pulse h-2 w-2 rounded-full bg-gold" />
@@ -755,7 +760,7 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="order-1">
+            <div className="order-3 md:border-l md:border-ivory/10 md:pl-10">
               <div className="flex items-center justify-between gap-3">
                 <div className="flex items-center gap-3">
                   <span className="h-2 w-2 rounded-full bg-gold-deep" />

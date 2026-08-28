@@ -23,10 +23,13 @@ type NavItem =
   | { href: string; label: string; action?: never }
   | { action: "ask-ona"; label: string; href?: never };
 
+// Restoration leads: it's the line people search for mid-emergency and the
+// one that drives phone calls. Remodeling is a months-long consideration
+// purchase and reads fine further down the bar.
 const nav: NavItem[] = [
-  { href: "/services/remodeling", label: "Remodeling" },
-  { href: "/services/mold-removal", label: "Mold" },
   { href: "/services", label: "Restoration" },
+  { href: "/services/mold-removal", label: "Mold" },
+  { href: "/services/remodeling", label: "Remodeling" },
   { href: "/about", label: "How we work" },
   { href: "/blog", label: "Notes" },
   { href: "/contact", label: "Contact" },

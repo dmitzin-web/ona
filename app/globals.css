@@ -19,6 +19,19 @@
   --color-gold-soft: #d6bf91;
   --color-gold-deep: #8a6f3f;
 
+  /* ─── EMBER ────────────────────────────────────────────────────
+     Wildfire response pages only. Stays on the brand's charcoal
+     ground but adds what the flat matte palette lacks: a warm
+     light source and surfaces that catch it. The site's gold
+     (#b8985e) is a desaturated luxury metallic — it goes dull on a
+     dark ground. Ember is saturated enough to actually glow, which
+     is what makes a dark page read as alive rather than as a
+     basement. Reserved for the Spokane page; do not spread it into
+     the brand pages. */
+  --color-ember: #e08a3c;
+  --color-ember-soft: #f0ac6c;
+  --color-ember-deep: #a85c18;
+
   --font-display: var(--font-satoshi), ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-satoshi), ui-sans-serif, system-ui, sans-serif;
 }
@@ -101,4 +114,12 @@ a {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* "Now booking fall projects" sitting directly above a page about a fire
+   that burned 850 buildings reads badly. Hide the promo strip on wildfire
+   response pages only. Done with :has() so the banner stays a server
+   component and no route logic leaks into the layout. */
+body:has(.wildfire-page) .promo-strip {
+  display: none;
 }
