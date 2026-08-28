@@ -19,18 +19,30 @@
   --color-gold-soft: #d6bf91;
   --color-gold-deep: #8a6f3f;
 
-  /* ─── EMBER ────────────────────────────────────────────────────
-     Wildfire response pages only. Stays on the brand's charcoal
-     ground but adds what the flat matte palette lacks: a warm
-     light source and surfaces that catch it. The site's gold
-     (#b8985e) is a desaturated luxury metallic — it goes dull on a
-     dark ground. Ember is saturated enough to actually glow, which
-     is what makes a dark page read as alive rather than as a
-     basement. Reserved for the Spokane page; do not spread it into
-     the brand pages. */
-  --color-ember: #e08a3c;
-  --color-ember-soft: #f0ac6c;
-  --color-ember-deep: #a85c18;
+  /* ─── DAYLIGHT ─────────────────────────────────────────────────
+     Wildfire response pages only. White ground, near-black type,
+     one hot red-orange doing all the accent work.
+
+     Why this page leaves the brand's charcoal: a page someone opens
+     after losing a house should not feel like a basement, and dark
+     grounds cost reading speed exactly where it matters most —
+     small type, phone screen, stressed reader. The trade is that
+     it no longer matches the rest of the site; that's deliberate
+     and scoped to wildfire pages. Homepage, mold and remodeling
+     stay on charcoal + gold.
+
+     `flare` is the only accent. It is the one thing on the page
+     allowed to be loud, so keep it on CTAs, the live dot and small
+     caps labels — never as a decorative fill. */
+  --color-day: #ffffff;
+  --color-day-2: #f4f4f2;
+  --color-day-line: #e3e3e0;
+  --color-day-line-soft: #eeeeec;
+  --color-day-ink: #0a0a0a;
+  --color-day-ink-2: #3d3d3b;
+  --color-day-ink-3: #6b6b68;
+  --color-flare: #e04e1f;
+  --color-flare-deep: #b03714;
 
   --font-display: var(--font-satoshi), ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-satoshi), ui-sans-serif, system-ui, sans-serif;

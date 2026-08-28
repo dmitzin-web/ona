@@ -10,9 +10,13 @@ import { breadcrumbJsonLd, faqJsonLd } from "@/lib/jsonld";
 // keep the trust material framed as a weapon against the storm chasers
 // who showed up after the fires — not as a list of our own limitations.
 //
-// Design: brand charcoal, but with a warm light source and lit surface
-// edges (see the ember palette in globals.css). The flat matte charcoal
-// used elsewhere goes gloomy on a page about fire; ember gives it heat.
+// Design: white ground, near-black type, one hot red-orange (`flare`) on
+// the CTAs and nothing else — see the daylight palette in globals.css.
+// This page deliberately leaves the site's charcoal identity: someone who
+// has just lost a house should not land on a black page, and dark grounds
+// cost reading speed exactly where it hurts most (small type, phone,
+// stressed reader). The shared header and footer stay dark and read as
+// bands top and bottom. Scoped to wildfire pages only.
 //
 // ── DO NOT EDIT THESE AWAY. Each is a legal constraint, not a style
 //    preference, and none of them cost conversion: ──
@@ -153,22 +157,22 @@ const SPOKANE_FAQ = [
 
 export function SpokaneFireDeployment() {
   return (
-    <div className="wildfire-page">
+    <div className="wildfire-page bg-day">
       {/* ── HERO ─────────────────────────────────────────────────────
           Warm light from the top right, so a page about fire doesn't
           read as a dark basement. */}
-      <section className="relative overflow-hidden bg-charcoal">
+      <section className="relative overflow-hidden bg-day">
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0"
           style={{
             background:
-              "radial-gradient(58% 46% at 86% 4%, rgba(255,168,88,0.20), transparent 66%), radial-gradient(74% 62% at 98% -8%, rgba(190,92,36,0.17), transparent 72%)",
+              "radial-gradient(58% 46% at 86% 4%, rgba(224,78,31,0.09), transparent 66%), radial-gradient(74% 62% at 98% -8%, rgba(224,78,31,0.05), transparent 72%)",
           }}
         />
         <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
           <nav aria-label="Breadcrumb" className="pt-8">
-            <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 eyebrow text-ivory/50">
+            <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 eyebrow text-day-ink-3">
               {[
                 { name: "Home", href: "/" },
                 { name: "Services", href: "/services" },
@@ -182,13 +186,13 @@ export function SpokaneFireDeployment() {
                 return (
                   <li key={item.href} className="flex items-center gap-2">
                     {isLast ? (
-                      <span aria-current="page" className="text-ivory/80">
+                      <span aria-current="page" className="text-day-ink-2">
                         {item.name}
                       </span>
                     ) : (
                       <Link
                         href={item.href}
-                        className="transition hover:text-ivory"
+                        className="transition hover:text-day-ink"
                       >
                         {item.name}
                       </Link>
@@ -206,20 +210,20 @@ export function SpokaneFireDeployment() {
 
           <div className="pb-16 pt-14 lg:pb-24 lg:pt-16">
             <div className="flex items-center gap-2.5">
-              <span className="ona-pulse h-2 w-2 rounded-full bg-ember" />
-              <p className="eyebrow text-ember-soft">
+              <span className="ona-pulse h-2 w-2 rounded-full bg-flare" />
+              <p className="eyebrow text-flare-deep">
                 Crew on the ground · Spokane County
               </p>
             </div>
 
-            <h1 className="mt-7 max-w-4xl text-[38px] font-semibold leading-[1.03] tracking-[-0.028em] text-ivory sm:text-[54px] lg:text-[66px]">
+            <h1 className="mt-7 max-w-4xl text-[38px] font-semibold leading-[1.03] tracking-[-0.028em] text-day-ink sm:text-[54px] lg:text-[66px]">
               Your home is still yours.
-              <span className="block text-ivory/60">
+              <span className="block text-day-ink-3">
                 Let&apos;s get it back.
               </span>
             </h1>
 
-            <p className="mt-8 max-w-2xl text-[17px] leading-relaxed text-ivory/85 md:text-[19px]">
+            <p className="mt-8 max-w-2xl text-[17px] leading-relaxed text-day-ink-2 md:text-[19px]">
               The Spokane fires damaged or destroyed around 850 buildings, and
               left hundreds more standing but full of smoke. We brought a
               Washington-licensed fire and smoke crew to Spokane County to help
@@ -230,25 +234,25 @@ export function SpokaneFireDeployment() {
             <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
               <a
                 href={`tel:${site.phone}`}
-                className="inline-flex items-center justify-center gap-3 rounded-full bg-ember px-8 py-4 text-[15px] font-semibold text-white shadow-[0_0_0_1px_rgba(255,190,120,0.3),0_14px_38px_-10px_rgba(224,138,60,0.6)] transition hover:bg-ember-deep"
+                className="inline-flex items-center justify-center gap-3 rounded-full bg-flare px-8 py-4 text-[15px] font-semibold text-white shadow-[0_0_0_1px_rgba(224,78,31,0.25),0_14px_34px_-12px_rgba(224,78,31,0.45)] transition hover:bg-flare-deep"
               >
                 <PhoneIcon className="h-4 w-4 stroke-current" />
                 Call {site.phoneDisplay}
               </a>
               <a
                 href={`mailto:${site.email}?subject=Spokane%20fire%20-%20my%20property`}
-                className="inline-flex items-center justify-center gap-3 rounded-full border border-ivory/40 px-8 py-4 text-[15px] font-medium text-ivory transition hover:border-ivory hover:bg-ivory hover:text-charcoal"
+                className="inline-flex items-center justify-center gap-3 rounded-full border border-day-ink/30 px-8 py-4 text-[15px] font-medium text-day-ink transition hover:border-day-ink hover:bg-day-ink hover:text-day"
               >
                 Send photos — answer today
               </a>
             </div>
 
-            <p className="mt-5 text-[14px] text-ivory/60">
+            <p className="mt-5 text-[14px] text-day-ink-3">
               Free assessment. No obligation. We answer the phone in person,
               24/7.
             </p>
 
-            <dl className="mt-14 grid grid-cols-2 gap-y-7 border-t border-ivory/15 pt-9 sm:grid-cols-4 sm:gap-x-8">
+            <dl className="mt-14 grid grid-cols-2 gap-y-7 border-t border-day-line pt-9 sm:grid-cols-4 sm:gap-x-8">
               {[
                 { k: "WA registration", v: "ONARER*748K8" },
                 { k: "Certification", v: "IICRC fire & smoke" },
@@ -256,8 +260,8 @@ export function SpokaneFireDeployment() {
                 { k: "Your cost", v: "Deductible only" },
               ].map((s) => (
                 <div key={s.k}>
-                  <dt className="eyebrow text-ivory/50">{s.k}</dt>
-                  <dd className="mt-2.5 text-[17px] font-medium tracking-tight text-ivory">
+                  <dt className="eyebrow text-day-ink-3">{s.k}</dt>
+                  <dd className="mt-2.5 text-[17px] font-medium tracking-tight text-day-ink">
                     {s.v}
                   </dd>
                 </div>
@@ -268,30 +272,30 @@ export function SpokaneFireDeployment() {
       </section>
 
       {/* ── TRIAGE — three situations, each a route to the phone ──── */}
-      <section className="border-t border-ivory/10 bg-charcoal-soft">
+      <section className="border-t border-day-line bg-day-2">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-24">
-          <h2 className="max-w-3xl text-[30px] font-semibold leading-[1.1] tracking-[-0.02em] text-ivory md:text-[40px]">
+          <h2 className="max-w-3xl text-[30px] font-semibold leading-[1.1] tracking-[-0.02em] text-day-ink md:text-[40px]">
             Whichever one you&apos;re dealing with, we handle it.
           </h2>
 
-          <div className="mt-12 grid gap-px overflow-hidden border border-ivory/12 bg-ivory/12 lg:grid-cols-3">
+          <div className="mt-12 grid gap-px overflow-hidden border border-day-line bg-day-line lg:grid-cols-3">
             {SITUATIONS.map((s) => (
               <div
                 key={s.h}
-                className="relative bg-charcoal p-7 lg:p-8"
+                className="relative bg-day p-7 lg:p-8"
               >
                 <span
                   aria-hidden="true"
-                  className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-ember/35 to-transparent"
+                  className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-flare/40 to-transparent"
                 />
-                <p className="eyebrow text-ember-soft">{s.tag}</p>
-                <h3 className="mt-4 text-[22px] font-semibold tracking-[-0.015em] text-ivory">
+                <p className="eyebrow text-flare-deep">{s.tag}</p>
+                <h3 className="mt-4 text-[22px] font-semibold tracking-[-0.015em] text-day-ink">
                   {s.h}
                 </h3>
-                <p className="mt-3.5 text-[15.5px] leading-relaxed text-ivory/80">
+                <p className="mt-3.5 text-[15.5px] leading-relaxed text-day-ink-2">
                   {s.p}
                 </p>
-                <p className="mt-4 border-t border-ivory/12 pt-4 text-[14px] leading-relaxed text-ivory/60">
+                <p className="mt-4 border-t border-day-line pt-4 text-[14px] leading-relaxed text-day-ink-3">
                   {s.detail}
                 </p>
               </div>
@@ -301,12 +305,12 @@ export function SpokaneFireDeployment() {
           <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3">
             <a
               href={`tel:${site.phone}`}
-              className="inline-flex items-center gap-3 rounded-full bg-ember px-7 py-3.5 text-[14px] font-semibold text-white transition hover:bg-ember-deep"
+              className="inline-flex items-center gap-3 rounded-full bg-flare px-7 py-3.5 text-[14px] font-semibold text-white transition hover:bg-flare-deep"
             >
               <PhoneIcon className="h-4 w-4 stroke-current" />
               Call {site.phoneDisplay}
             </a>
-            <span className="text-[14px] text-ivory/60">
+            <span className="text-[14px] text-day-ink-3">
               Not sure which applies? Send photos and we&apos;ll tell you.
             </span>
           </div>
@@ -314,15 +318,15 @@ export function SpokaneFireDeployment() {
       </section>
 
       {/* ── WHAT WE HANDLE ───────────────────────────────────────── */}
-      <section className="bg-charcoal">
+      <section className="bg-day">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-24">
           <div className="grid gap-12 lg:grid-cols-12">
             <div className="lg:col-span-5">
-              <p className="eyebrow text-ivory/55">Scope</p>
-              <h2 className="mt-5 text-[30px] font-semibold leading-[1.1] tracking-[-0.02em] text-ivory md:text-[38px]">
+              <p className="eyebrow text-day-ink-3">Scope</p>
+              <h2 className="mt-5 text-[30px] font-semibold leading-[1.1] tracking-[-0.02em] text-day-ink md:text-[38px]">
                 One crew from debris to final paint.
               </h2>
-              <p className="mt-6 max-w-md text-[16px] leading-relaxed text-ivory/75">
+              <p className="mt-6 max-w-md text-[16px] leading-relaxed text-day-ink-2">
                 No handing you off between a mitigation company, a demo
                 company and a builder — with three scopes that don&apos;t
                 agree and a claim that stalls between them.
@@ -332,11 +336,11 @@ export function SpokaneFireDeployment() {
               {WE_HANDLE.map((w) => (
                 <li
                   key={w}
-                  className="flex items-start gap-3 border border-ivory/12 bg-charcoal-soft px-5 py-4 text-[15px] leading-snug text-ivory/90"
+                  className="flex items-start gap-3 border border-day-line bg-day-2 px-5 py-4 text-[15px] leading-snug text-day-ink-2"
                 >
                   <span
                     aria-hidden="true"
-                    className="mt-1.5 h-1.5 w-1.5 flex-none rounded-full bg-ember"
+                    className="mt-1.5 h-1.5 w-1.5 flex-none rounded-full bg-flare"
                   />
                   <span>{w}</span>
                 </li>
@@ -347,29 +351,29 @@ export function SpokaneFireDeployment() {
       </section>
 
       {/* ── WHY US — the trust block, aimed at the chasers ───────── */}
-      <section className="relative overflow-hidden border-t border-ivory/10 bg-charcoal-soft">
+      <section className="relative overflow-hidden border-t border-day-line bg-day-2">
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0"
           style={{
             background:
-              "radial-gradient(52% 42% at 8% 0%, rgba(255,168,88,0.13), transparent 68%)",
+              "radial-gradient(52% 42% at 8% 0%, rgba(224,78,31,0.07), transparent 68%)",
           }}
         />
         <div className="relative mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-24">
-          <p className="eyebrow text-ember-soft">Before you sign with anyone</p>
-          <h2 className="mt-5 max-w-3xl text-[30px] font-semibold leading-[1.1] tracking-[-0.02em] text-ivory md:text-[40px]">
+          <p className="eyebrow text-flare-deep">Before you sign with anyone</p>
+          <h2 className="mt-5 max-w-3xl text-[30px] font-semibold leading-[1.1] tracking-[-0.02em] text-day-ink md:text-[40px]">
             A lot of trucks showed up in Spokane after the fires. Here&apos;s
             how to tell us apart.
           </h2>
 
           <div className="mt-14 grid gap-x-12 gap-y-10 sm:grid-cols-2">
             {WHY_US.map((w) => (
-              <div key={w.h} className="border-l-2 border-ember/60 pl-5">
-                <h3 className="text-[18px] font-semibold leading-snug tracking-[-0.01em] text-ivory">
+              <div key={w.h} className="border-l-2 border-flare pl-5">
+                <h3 className="text-[18px] font-semibold leading-snug tracking-[-0.01em] text-day-ink">
                   {w.h}
                 </h3>
-                <p className="mt-2.5 text-[15px] leading-relaxed text-ivory/75">
+                <p className="mt-2.5 text-[15px] leading-relaxed text-day-ink-2">
                   {w.p}
                 </p>
               </div>
@@ -379,22 +383,22 @@ export function SpokaneFireDeployment() {
       </section>
 
       {/* ── PROCESS ─────────────────────────────────────────────── */}
-      <section className="bg-charcoal">
+      <section className="bg-day">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-24">
-          <p className="eyebrow text-ivory/55">How it runs</p>
-          <h2 className="mt-5 text-[30px] font-semibold leading-[1.1] tracking-[-0.02em] text-ivory md:text-[38px]">
+          <p className="eyebrow text-day-ink-3">How it runs</p>
+          <h2 className="mt-5 text-[30px] font-semibold leading-[1.1] tracking-[-0.02em] text-day-ink md:text-[38px]">
             Five steps, and you see all of them.
           </h2>
-          <ol className="mt-14 grid gap-px overflow-hidden border border-ivory/12 bg-ivory/12 sm:grid-cols-2 lg:grid-cols-5">
+          <ol className="mt-14 grid gap-px overflow-hidden border border-day-line bg-day-line sm:grid-cols-2 lg:grid-cols-5">
             {PROCESS.map((p) => (
-              <li key={p.n} className="bg-charcoal p-6">
-                <p className="text-[13px] font-semibold tracking-[0.14em] text-ember">
+              <li key={p.n} className="bg-day p-6">
+                <p className="text-[13px] font-semibold tracking-[0.14em] text-flare">
                   {p.n}
                 </p>
-                <h3 className="mt-4 text-[17px] font-semibold leading-snug tracking-[-0.01em] text-ivory">
+                <h3 className="mt-4 text-[17px] font-semibold leading-snug tracking-[-0.01em] text-day-ink">
                   {p.h}
                 </h3>
-                <p className="mt-2.5 text-[14px] leading-relaxed text-ivory/70">
+                <p className="mt-2.5 text-[14px] leading-relaxed text-day-ink-2">
                   {p.p}
                 </p>
               </li>
@@ -404,10 +408,10 @@ export function SpokaneFireDeployment() {
       </section>
 
       {/* ── AREAS ───────────────────────────────────────────────── */}
-      <section className="border-t border-ivory/10 bg-charcoal-soft">
+      <section className="border-t border-day-line bg-day-2">
         <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10">
-          <p className="eyebrow text-ivory/55">Responding across</p>
-          <p className="mt-5 max-w-4xl text-[19px] leading-relaxed text-ivory/85">
+          <p className="eyebrow text-day-ink-3">Responding across</p>
+          <p className="mt-5 max-w-4xl text-[19px] leading-relaxed text-day-ink-2">
             Spokane · Spokane Valley · Airway Heights · Medical Lake · Cheney ·
             Deer Park · Nine Mile Falls · Mead · and surrounding Spokane County
           </p>
@@ -415,18 +419,18 @@ export function SpokaneFireDeployment() {
       </section>
 
       {/* ── FAQ ─────────────────────────────────────────────────── */}
-      <section className="bg-charcoal">
+      <section className="bg-day">
         <div className="mx-auto max-w-4xl px-6 py-20 lg:px-10 lg:py-24">
-          <h2 className="text-[30px] font-semibold leading-[1.1] tracking-[-0.02em] text-ivory md:text-[38px]">
+          <h2 className="text-[30px] font-semibold leading-[1.1] tracking-[-0.02em] text-day-ink md:text-[38px]">
             Questions we&apos;re getting from Spokane.
           </h2>
-          <dl className="mt-12 divide-y divide-ivory/12 border-y border-ivory/12">
+          <dl className="mt-12 divide-y divide-day-line border-y border-day-line">
             {SPOKANE_FAQ.map((f) => (
               <div key={f.q} className="grid gap-3 py-7 lg:grid-cols-12 lg:gap-8">
-                <dt className="text-[17px] font-semibold leading-snug text-ivory lg:col-span-5">
+                <dt className="text-[17px] font-semibold leading-snug text-day-ink lg:col-span-5">
                   {f.q}
                 </dt>
-                <dd className="text-[15px] leading-relaxed text-ivory/75 lg:col-span-7">
+                <dd className="text-[15px] leading-relaxed text-day-ink-2 lg:col-span-7">
                   {f.a}
                 </dd>
               </div>
@@ -436,28 +440,28 @@ export function SpokaneFireDeployment() {
       </section>
 
       {/* ── CLOSING CTA ─────────────────────────────────────────── */}
-      <section className="relative overflow-hidden border-t border-ember/25 bg-charcoal-soft">
+      <section className="relative overflow-hidden border-t border-flare/30 bg-day-2">
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0"
           style={{
             background:
-              "radial-gradient(60% 70% at 50% 0%, rgba(224,138,60,0.16), transparent 70%)",
+              "radial-gradient(60% 70% at 50% 0%, rgba(224,78,31,0.08), transparent 70%)",
           }}
         />
         <div className="relative mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-24">
           <div className="grid gap-10 lg:grid-cols-12 lg:items-center">
             <div className="lg:col-span-7">
               <div className="flex items-center gap-2.5">
-                <span className="ona-pulse h-2 w-2 rounded-full bg-ember" />
-                <p className="eyebrow text-ember-soft">
+                <span className="ona-pulse h-2 w-2 rounded-full bg-flare" />
+                <p className="eyebrow text-flare-deep">
                   Answered in person · 24/7
                 </p>
               </div>
-              <h2 className="mt-6 text-[32px] font-semibold leading-[1.06] tracking-[-0.025em] text-ivory md:text-[46px]">
+              <h2 className="mt-6 text-[32px] font-semibold leading-[1.06] tracking-[-0.025em] text-day-ink md:text-[46px]">
                 Send us photos. We&apos;ll tell you what it takes today.
               </h2>
-              <p className="mt-5 max-w-xl text-[17px] leading-relaxed text-ivory/80">
+              <p className="mt-5 max-w-xl text-[17px] leading-relaxed text-day-ink-2">
                 Free assessment, itemized written scope, and seven days to
                 change your mind after you sign.
               </p>
@@ -465,14 +469,14 @@ export function SpokaneFireDeployment() {
             <div className="flex flex-col gap-3 lg:col-span-5 lg:items-end">
               <a
                 href={`tel:${site.phone}`}
-                className="inline-flex items-center justify-center gap-3 rounded-full bg-ember px-8 py-4 text-[15px] font-semibold text-white shadow-[0_0_0_1px_rgba(255,190,120,0.3),0_14px_38px_-10px_rgba(224,138,60,0.6)] transition hover:bg-ember-deep"
+                className="inline-flex items-center justify-center gap-3 rounded-full bg-flare px-8 py-4 text-[15px] font-semibold text-white shadow-[0_0_0_1px_rgba(224,78,31,0.25),0_14px_34px_-12px_rgba(224,78,31,0.45)] transition hover:bg-flare-deep"
               >
                 <PhoneIcon className="h-4 w-4 stroke-current" />
                 Call {site.phoneDisplay}
               </a>
               <a
                 href={`mailto:${site.email}?subject=Spokane%20fire%20-%20my%20property`}
-                className="inline-flex items-center justify-center gap-3 rounded-full border border-ivory/40 px-8 py-4 text-[15px] font-medium text-ivory transition hover:border-ivory hover:bg-ivory hover:text-charcoal"
+                className="inline-flex items-center justify-center gap-3 rounded-full border border-day-ink/30 px-8 py-4 text-[15px] font-medium text-day-ink transition hover:border-day-ink hover:bg-day-ink hover:text-day"
               >
                 Email photographs
               </a>
@@ -480,7 +484,7 @@ export function SpokaneFireDeployment() {
           </div>
 
           {/* RCW 18.27.100(3): registration number in advertising. */}
-          <p className="mt-14 border-t border-ivory/12 pt-7 text-[13px] leading-relaxed text-ivory/55">
+          <p className="mt-14 border-t border-day-line pt-7 text-[13px] leading-relaxed text-day-ink-3">
             {site.legalName} · Washington contractor registration
             ONARER*748K8 · IICRC-certified in fire &amp; smoke restoration ·
             based in {site.address.locality}, {site.address.region}, working
@@ -490,13 +494,13 @@ export function SpokaneFireDeployment() {
         </div>
       </section>
 
-      <section className="bg-charcoal">
+      <section className="bg-day">
         <div className="mx-auto max-w-7xl px-6 py-14 lg:px-10">
-          <ul className="grid gap-px overflow-hidden border border-ivory/12 bg-ivory/12 sm:grid-cols-2">
+          <ul className="grid gap-px overflow-hidden border border-day-line bg-day-line sm:grid-cols-2">
             <li>
               <Link
                 href="/services/fire-damage"
-                className="flex items-center justify-between bg-charcoal px-5 py-4 text-[14px] font-medium text-ivory transition hover:bg-charcoal-soft"
+                className="flex items-center justify-between bg-day px-5 py-4 text-[14px] font-medium text-day-ink transition hover:bg-day-2"
               >
                 <span>← Fire &amp; smoke damage restoration</span>
                 <ArrowIcon className="h-3 w-3 stroke-current opacity-50" />
@@ -505,7 +509,7 @@ export function SpokaneFireDeployment() {
             <li>
               <Link
                 href="/about"
-                className="flex items-center justify-between bg-charcoal px-5 py-4 text-[14px] font-medium text-ivory transition hover:bg-charcoal-soft"
+                className="flex items-center justify-between bg-day px-5 py-4 text-[14px] font-medium text-day-ink transition hover:bg-day-2"
               >
                 <span>How we work</span>
                 <ArrowIcon className="h-3 w-3 stroke-current opacity-50" />
