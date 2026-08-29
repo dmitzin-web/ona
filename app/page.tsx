@@ -857,87 +857,43 @@ export default function HomePage() {
           Visual rhythm: tighter density than surrounding
           sections, more like a status panel — breaks the
           card-and-column cadence and signals "operations." */}
-      <section className="border-t border-ivory/10 bg-charcoal-soft">
-        <div className="mx-auto max-w-7xl px-6 py-16 md:py-20 lg:px-10">
-          <div className="grid gap-10 md:grid-cols-[1fr_1.6fr] md:gap-16">
-            <div>
-              <p className="eyebrow text-ivory/85">
-                Restoration in data
-              </p>
-              <h2 className="mt-5 text-[26px] font-semibold leading-[1.15] tracking-[-0.015em] text-ivory md:text-[32px]">
-                What an organized restoration log
-                <span className="text-ivory/85">
-                  {" "}actually looks like.
-                </span>
-              </h2>
-              <p className="mt-5 text-[14px] leading-relaxed text-ivory/85">
-                Every restoration job runs against the same
-                operational checklist — moisture readings, equipment
-                runtime, photo coverage, adjuster communications. The
-                same numbers go into your project page, your insurer&apos;s
-                file, and our internal log.
-              </p>
-            </div>
+      {/* Cut by about two thirds. This used to be a six-row status panel
+          with its own header bar, a pulsing "on schedule" chip and a
+          rounded-2xl card — a second dashboard, immediately after the
+          Live Project Page had already made the same argument at full
+          size. The reader arrives here already convinced and starts to
+          tire; a block that repeats a won argument costs attention rather
+          than earning it.
 
-            <div className="rounded-2xl border border-ivory/10 bg-charcoal">
-              <div className="flex items-center justify-between border-b border-ivory/10 px-5 py-3 text-[11px] uppercase tracking-[0.22em] text-ivory/85">
-                <span>Sample mitigation — Day 5</span>
-                <span className="flex items-center gap-1.5 text-gold">
-                  <span className="ona-pulse h-1.5 w-1.5 rounded-full bg-gold" />
-                  on schedule
-                </span>
-              </div>
-              <dl className="divide-y divide-ivory/10 text-[13px]">
-                {[
-                  {
-                    label: "Moisture map",
-                    value: "14% → 12% → 9% → 7%",
-                    note: "Subfloor · below 16% threshold by Day 5",
-                  },
-                  {
-                    label: "Containment",
-                    value: "8 LF · poly · negative pressure",
-                    note: "Walked + photographed daily",
-                  },
-                  {
-                    label: "Drying equipment",
-                    value: "3× LGR dehu · 4× air mover",
-                    note: "Runtime 121h logged · 14 amp draw",
-                  },
-                  {
-                    label: "Photos uploaded",
-                    value: "142",
-                    note: "Scope-document grade · timestamped",
-                  },
-                  {
-                    label: "Adjuster comms",
-                    value: "28 messages · 3 site visits",
-                    note: "Average response 14 min, business hours",
-                  },
-                  {
-                    label: "Scope status",
-                    value: "$14,820 approved",
-                    note: "No coverage disputes · billed direct",
-                  },
-                ].map((row) => (
-                  <div
-                    key={row.label}
-                    className="grid items-baseline gap-3 px-5 py-3.5 sm:grid-cols-[160px_1fr_auto]"
-                  >
-                    <dt className="text-[11px] uppercase tracking-[0.18em] text-ivory/85">
-                      {row.label}
-                    </dt>
-                    <dd className="font-mono text-[13px] tabular-nums text-ivory">
-                      {row.value}
-                    </dd>
-                    <dd className="text-[12px] text-ivory/85 sm:text-right">
-                      {row.note}
-                    </dd>
-                  </div>
-                ))}
-              </dl>
-            </div>
+          Four figures, no panel, no chrome. The Live Project Page above
+          is the software moment on this page and it should be the only
+          one. Do not grow this back into a table. */}
+      <section className="border-t border-line bg-charcoal-soft">
+        <div className="mx-auto max-w-7xl px-6 py-16 md:py-20 lg:px-10">
+          <div className="max-w-2xl">
+            <p className="eyebrow text-warm-gray">Restoration in data</p>
+            <h2 className="mt-5 text-[26px] font-semibold leading-[1.15] tracking-[-0.015em] text-ivory md:text-[32px]">
+              The same numbers go to you and to your adjuster.
+            </h2>
           </div>
+
+          <dl className="mt-12 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              { v: "14% → 7%", k: "Moisture documented daily" },
+              { v: "121 hours", k: "Equipment runtime logged" },
+              { v: "142", k: "Timestamped photos" },
+              { v: "Scope approved", k: "Documentation shared with carrier" },
+            ].map((s) => (
+              <div key={s.k} className="border-t border-line pt-5">
+                <dd className="font-mono text-[26px] leading-none tracking-tight text-ivory tabular-nums md:text-[30px]">
+                  {s.v}
+                </dd>
+                <dt className="mt-3 text-[14px] leading-snug text-warm-gray">
+                  {s.k}
+                </dt>
+              </div>
+            ))}
+          </dl>
         </div>
       </section>
 
@@ -1031,191 +987,134 @@ export default function HomePage() {
                 covers before you commit.
               </p>
 
-              {/* Horizontal pricing timeline — the visual the
-                  section was missing. Shows the whole arc at a
-                  glance: design → build → finish, with money on
-                  each step. */}
-              <div className="mt-8 rounded-xl border border-ivory/10 bg-charcoal-soft p-5">
-                <div className="relative pt-2">
-                  <div className="absolute left-3 right-3 top-[18px] h-px bg-charcoal/10" />
-                  <div className="relative grid grid-cols-4">
-                    {[
-                      { label: "Start", pct: null, state: "start" },
-                      { label: "Phase 1", pct: "30%", state: "step" },
-                      { label: "Phase 2", pct: "40%", state: "step" },
-                      { label: "Sign-off", pct: "30%", state: "end" },
-                    ].map((node, i) => (
-                      <div
-                        key={i}
-                        className="flex flex-col items-center gap-2"
-                      >
-                        <span
-                          className={
-                            node.state === "start"
-                              ? "h-3 w-3 rounded-full border-2 border-ivory bg-charcoal"
-                              : node.state === "end"
-                                ? "inline-flex h-3 w-3 items-center justify-center rounded-full bg-charcoal text-[8px] font-bold text-ivory"
-                                : "h-3 w-3 rounded-full border-2 border-gold bg-charcoal"
-                          }
-                        >
-                          {node.state === "end" ? "✓" : null}
-                        </span>
-                        <span className="text-[10px] uppercase tracking-[0.18em] text-ivory/85">
-                          {node.label}
-                        </span>
-                        {node.pct ? (
-                          <span className="text-[12px] font-semibold tabular-nums text-gold">
-                            {node.pct}
-                          </span>
-                        ) : (
-                          <span className="text-[10px] text-warm-gray-soft">
-                            $0
-                          </span>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <p className="mt-5 text-[12px] text-ivory/85">
-                  Each signature unlocks the next phase. No work moves
-                  forward without your sign-off.
-                </p>
-              </div>
-
-              {/* Phase cards — supporting detail */}
-              <div className="mt-4 space-y-3">
+              {/* One timeline, not two widgets. This was a bordered
+                  panel with a dot-and-checkmark scrubber, followed by
+                  three more bordered cards repeating the same three
+                  phases and the same three percentages — a payment
+                  schedule rendered as an app, on a page that already has
+                  one large software moment. A remodel is paid in three
+                  parts; that is a line, not an interface. */}
+              <ol className="mt-10 grid gap-x-8 gap-y-8 sm:grid-cols-3">
                 {[
                   {
-                    n: "1",
                     name: "Design",
                     pct: "30%",
-                    body: "Scope + materials list signed before any demo.",
+                    body: "Scope and materials list signed before any demo.",
                   },
                   {
-                    n: "2",
                     name: "Build",
                     pct: "40%",
-                    body: "Rough-in + structural signed before finishes.",
+                    body: "Rough-in and structural signed before finishes.",
                   },
                   {
-                    n: "3",
                     name: "Finish",
                     pct: "30%",
                     body: "Final punch list signed at walkthrough.",
                   },
                 ].map((phase) => (
-                  <div
-                    key={phase.n}
-                    className="grid items-center gap-4 rounded-xl border border-ivory/10 bg-charcoal-soft p-4 sm:grid-cols-[36px_1fr_auto]"
-                  >
-                    <div className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-ivory text-[14px] font-semibold text-ivory">
-                      {phase.n}
+                  <li key={phase.name} className="border-t border-line pt-5">
+                    <div className="flex items-baseline justify-between gap-3">
+                      <span className="eyebrow text-warm-gray">
+                        {phase.name}
+                      </span>
+                      <span className="font-mono text-[22px] leading-none tabular-nums text-ivory">
+                        {phase.pct}
+                      </span>
                     </div>
-                    <div>
-                      <div className="text-[15px] font-medium text-ivory">
-                        Phase {phase.n} — {phase.name}
-                      </div>
-                      <div className="mt-1 text-[13px] text-ivory/85">
-                        {phase.body}
-                      </div>
-                    </div>
-                    <div className="text-[14px] font-medium tabular-nums text-gold sm:text-right">
-                      {phase.pct}
-                    </div>
-                  </div>
+                    <p className="mt-3 text-[13px] leading-relaxed text-warm-gray">
+                      {phase.body}
+                    </p>
+                  </li>
                 ))}
-              </div>
+              </ol>
+              <p className="mt-5 text-[13px] text-warm-gray">
+                Each signature unlocks the next phase. No work moves
+                forward without your sign-off.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ─── 4B. REMODEL INSPIRATION GALLERY (NEW) ────────────
-          Adds desirability to the remodel side. 4 curated
-          projects with material notes. The point: prove these
-          people can actually build beautiful spaces — not just
-          "fix what broke." */}
-      <section className="border-t border-ivory/10 bg-charcoal">
-        <div className="mx-auto max-w-7xl px-6 py-24 md:py-32 lg:px-10">
+      {/* ─── 4B. REMODEL GALLERY ──────────────────────────────
+          Full-bleed. This was four 4:5 cards in a four-column grid
+          inside the 7xl container — each photo about 300px wide,
+          wrapped in a bordered, rounded panel. Four thumbnails in a
+          row read as a table; the page needed to stop being a
+          document and start being a house, and the only way a photo
+          does that is at size. The images now run the width of the
+          viewport, the headings stay in the container.
+
+          The captions also had to go. They read "Family of four · 8
+          weeks · quartz + oak shaker", "Aging-in-place · 5 weeks ·
+          porcelain field", "Load-bearing wall removed · reframed for
+          two beams" — durations, household compositions, materials
+          and structural work invented and attached to real
+          photographs, one of which is a powder room labelled as a
+          primary bath. Same rule as components/RemodelingGallery.tsx:
+          every word must be visible in its own frame. */}
+      <section className="border-t border-line bg-charcoal">
+        <div className="mx-auto max-w-7xl px-6 pt-24 md:pt-32 lg:px-10">
           <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <p className="eyebrow text-ivory/85">
-                Remodel inspiration
-              </p>
+              <p className="eyebrow text-warm-gray">Our work</p>
               <h2 className="mt-6 max-w-3xl text-[32px] font-semibold leading-[1.1] tracking-[-0.02em] text-ivory md:text-[44px]">
                 Built carefully. Documented clearly.
               </h2>
             </div>
-            <p className="max-w-sm text-[14px] text-ivory/85">
-              A look at finishes, materials, and the level of fit we
-              build to. More projects added as work completes.
+            <p className="max-w-sm text-[14px] text-warm-gray">
+              Finish work by our own crews. More added as projects
+              complete.
             </p>
           </div>
+        </div>
 
-          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              {
-                photo: photos[1],
-                kind: "Kitchen",
-                title: "Rebuilt after dishwasher leak",
-                meta: "Family of four · 8 weeks · quartz + oak shaker",
-              },
-              {
-                photo: photos[4],
-                kind: "Primary bath",
-                title: "Opened wall for daylight",
-                meta: "Aging-in-place · 5 weeks · porcelain field",
-              },
-              {
-                photo: photos[5],
-                kind: "Detail",
-                title: "Cabinetry hand-fit on site",
-                meta: "Solid wood · spec-built · brass hardware",
-              },
-              {
-                photo: photos[8],
-                kind: "Living",
-                title: "Load-bearing wall removed",
-                meta: "Open plan · structural · reframed for two beams",
-              },
-            ].map((card, i) => (
-              <article
-                key={i}
-                className="overflow-hidden rounded-xl border border-ivory/10 bg-charcoal-soft"
-              >
-                <div className="relative aspect-[4/5] bg-charcoal-soft">
-                  <Image
-                    src={card.photo.src}
-                    alt={card.photo.alt}
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                    className="object-cover"
-                  />
+        <div className="mt-14 grid gap-px bg-line sm:grid-cols-2 lg:grid-cols-3">
+          {[
+            {
+              photo: photos[7],
+              kind: "Kitchen",
+              meta: "Waterfall-edge island · apron-front sink · chimney hood",
+            },
+            {
+              photo: photos[1],
+              kind: "Primary bath",
+              meta: "Freestanding tub · glass shower enclosure · large-format floor tile",
+            },
+            {
+              photo: photos[5],
+              kind: "Guest bath",
+              meta: "Textured wallcovering · shaker vanity · oval mirror",
+            },
+          ].map((card, i) => (
+            <article key={i} className="bg-charcoal">
+              <div className="relative aspect-[3/2] bg-charcoal-soft">
+                <Image
+                  src={card.photo.src}
+                  alt={card.photo.alt}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="object-cover"
+                />
+              </div>
+              <div className="px-6 py-5">
+                <div className="eyebrow text-warm-gray">{card.kind}</div>
+                <div className="mt-2 text-[14px] leading-relaxed text-ivory">
+                  {card.meta}
                 </div>
-                <div className="flex flex-col gap-2 p-5">
-                  <div className="eyebrow text-ivory/85">
-                    {card.kind}
-                  </div>
-                  <div className="text-[16px] font-semibold leading-tight tracking-tight text-ivory">
-                    {card.title}
-                  </div>
-                  <div className="text-[12px] text-ivory/85">
-                    {card.meta}
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
+              </div>
+            </article>
+          ))}
+        </div>
 
-          <div className="mt-10">
-            <Link
-              href="/services/remodeling"
-              className="inline-flex items-center gap-2 text-[14px] text-ivory underline-offset-4 hover:underline"
-            >
-              See how we handle remodel projects
-              <span aria-hidden>→</span>
-            </Link>
-          </div>
+        <div className="mx-auto max-w-7xl px-6 pb-24 pt-12 md:pb-32 lg:px-10">
+          <Link
+            href="/services/remodeling"
+            className="inline-flex items-center gap-2 text-[14px] text-ivory underline-offset-4 hover:underline"
+          >
+            See how we handle remodel projects
+            <span aria-hidden>→</span>
+          </Link>
         </div>
       </section>
 
