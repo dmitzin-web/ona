@@ -69,7 +69,11 @@ export async function generateMetadata({
     return buildMetadata({
       title: "Spokane Wildfire Fire & Smoke Restoration",
       description:
-        "Washington-licensed fire, smoke and soot restoration in Spokane County after the wildfires. Debris removal, odor treatment and full rebuild, billed to your insurance — you pay your deductible only. Free assessment, same-day answer.",
+        // "you pay your deductible only" was removed from the page body as
+        // an overclaim — we control what we charge, not what a carrier
+        // covers. It has to go from the description too, or the snippet in
+        // search results makes the promise the page no longer makes.
+        "Washington-licensed fire, smoke and soot restoration in Spokane County after the wildfires. Debris removal, odor treatment and full rebuild, billed directly to your insurance. Free assessment and written scope, same-day answer.",
       path: "/services/fire-damage/spokane-wa",
       keywords: [
         "fire damage restoration spokane",
