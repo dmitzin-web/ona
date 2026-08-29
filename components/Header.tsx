@@ -26,9 +26,7 @@ import { Logo } from "./Logo";
 //
 // Mobile: native <details>/<summary> drawer, no JS state.
 
-type NavItem =
-  | { href: string; label: string; mobileOnly?: boolean; action?: never }
-  | { action: "ask-ona"; label: string; mobileOnly?: never; href?: never };
+type NavItem = { href: string; label: string; mobileOnly?: boolean };
 
 // Restoration leads: it's the line people search for mid-emergency and the
 // one that drives phone calls. Remodeling is a months-long consideration
@@ -44,12 +42,14 @@ const nav: NavItem[] = [
   { href: "/about", label: "How we work" },
   { href: "/blog", label: "Notes" },
   { href: "/contact", label: "Contact", mobileOnly: true },
-  { action: "ask-ona", label: "Ask AI" },
 ];
+// "Ask AI" used to be the seventh item here. It is now only the floating
+// button in components/assistant/AskOna.tsx. Primary navigation is where
+// someone with an active loss decides what to do next, and a third option
+// beside Call and Send photos is a way out of that decision, not into it.
+// The `askona:open` event and everything downstream are unchanged.
 
-function openAskOna() {
-  window.dispatchEvent(new Event("askona:open"));
-}
+const PHOTO_SUBJECT = encodeURIComponent("Photos of damage");
 
 export function Header() {
   const pathname = usePathname() ?? "/";
@@ -78,6 +78,14 @@ export function Header() {
     return pathname === href || pathname.startsWith(`${href}/`);
   }
 
+  // The homepage sells both lines, and it gets the emergency treatment:
+  // the remodel prospect is browsing calmly and will meet "Start a
+  // project" on the remodeling pages; the water-at-2am visitor will not
+  // go looking.
+  const isRemodel =
+    pathname.startsWith("/services/remodeling") ||
+    pathname.startsWith("/start-project");
+
   return (
     // Solid, not `bg-charcoal/90 backdrop-blur`. Blurring white content
     // through a 90% white bar produces a dirty grey that is neither the
@@ -98,19 +106,6 @@ export function Header() {
           <ul className="flex items-center gap-8 text-[14px] text-ivory/85">
             {nav.map((item, i) => {
               if (item.mobileOnly) return null;
-              if ("action" in item) {
-                return (
-                  <li key="ask-ona">
-                    <button
-                      type="button"
-                      onClick={openAskOna}
-                      className="transition hover:text-ivory"
-                    >
-                      {item.label}
-                    </button>
-                  </li>
-                );
-              }
               const active = isActive(item.href);
               return (
                 <li key={item.href ?? `nav-${i}`}>
@@ -136,10 +131,10 @@ export function Header() {
               Below md it shows a pulse dot and "Call"; the full number
               appears once there's room for it.
 
-              gold-deep, not gold: white on `gold` measures 2.73:1, which
-              fails WCAG AA (4.5:1) at this size — it did before this button
-              was enlarged too. `gold-deep` measures 4.7:1 and still reads as
-              the brand accent. Darkening on hover only raises it. */}
+              Coral is the site's one "act now" fill and this is the only
+              place in the chrome that gets it. White on `coral` measures
+              4.75:1. (This comment used to describe `gold-deep`; the
+              button moved to coral with the teal palette.) */}
           <a
             href={`tel:${site.phone}`}
             aria-label={`Call ${site.phoneDisplay}`}
@@ -152,12 +147,30 @@ export function Header() {
             <span className="md:hidden">Call</span>
             <span className="hidden md:inline">{site.phoneDisplay}</span>
           </a>
-          <Link
-            href="/start-project"
-            className="hidden rounded-[2px] border border-ivory px-5 py-2.5 text-[13px] font-medium text-ivory transition hover:bg-brand hover:text-charcoal sm:inline-flex"
-          >
-            Start a project
-          </Link>
+          {/* Two customer states, two second actions. Someone whose
+              ceiling is coming down does not want to "start a project" —
+              that reads like filing a construction application. They want
+              to show us what happened, which on this site already means
+              mailing photos to dispatch (the pattern the Spokane page
+              uses). Remodeling is the opposite: a months-long considered
+              purchase where "Start a project" is exactly right.
+              Deliberately mailto and not the assistant — "Send photos"
+              has to reach a person, not a chat window. */}
+          {isRemodel ? (
+            <Link
+              href="/start-project"
+              className="hidden rounded-[2px] border border-ivory px-5 py-2.5 text-[13px] font-medium text-ivory transition hover:bg-brand hover:text-charcoal sm:inline-flex"
+            >
+              Start a project
+            </Link>
+          ) : (
+            <a
+              href={`mailto:${site.email}?subject=${PHOTO_SUBJECT}`}
+              className="hidden rounded-[2px] border border-ivory px-5 py-2.5 text-[13px] font-medium text-ivory transition hover:bg-brand hover:text-charcoal sm:inline-flex"
+            >
+              Send photos
+            </a>
+          )}
 
           {/* Mobile burger */}
           <details ref={mobileMenuRef} className="group relative lg:hidden">
@@ -204,28 +217,6 @@ export function Header() {
             >
               <ul className="mx-auto max-w-7xl px-6 py-2">
                 {nav.map((item, i) => {
-                  if ("action" in item) {
-                    return (
-                      <li
-                        key="ask-ona-mobile"
-                        className="border-b border-line last:border-b-0"
-                      >
-                        <button
-                          type="button"
-                          onClick={() => {
-                            closeMobileMenu();
-                            openAskOna();
-                          }}
-                          className="flex w-full items-center justify-between py-4 text-[15px] font-medium tracking-tight text-gold transition"
-                        >
-                          <span>{item.label}</span>
-                          <span aria-hidden="true" className="text-ivory/85">
-                            →
-                          </span>
-                        </button>
-                      </li>
-                    );
-                  }
                   const active = isActive(item.href);
                   return (
                     <li
@@ -256,13 +247,24 @@ export function Header() {
                   >
                     Call {site.phoneDisplay}
                   </a>
-                  <Link
-                    href="/start-project"
-                    onClick={closeMobileMenu}
-                    className="inline-flex w-full items-center justify-center rounded-[2px] border border-ivory px-4 py-3 text-[13px] font-medium text-ivory"
-                  >
-                    Start a project
-                  </Link>
+                  {/* Same split as the bar above. */}
+                  {isRemodel ? (
+                    <Link
+                      href="/start-project"
+                      onClick={closeMobileMenu}
+                      className="inline-flex w-full items-center justify-center rounded-[2px] border border-ivory px-4 py-3 text-[13px] font-medium text-ivory"
+                    >
+                      Start a project
+                    </Link>
+                  ) : (
+                    <a
+                      href={`mailto:${site.email}?subject=${PHOTO_SUBJECT}`}
+                      onClick={closeMobileMenu}
+                      className="inline-flex w-full items-center justify-center rounded-[2px] border border-ivory px-4 py-3 text-[13px] font-medium text-ivory"
+                    >
+                      Send photos
+                    </a>
+                  )}
                 </li>
               </ul>
             </nav>

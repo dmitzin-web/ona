@@ -277,12 +277,23 @@ export function AskOna() {
 
   return (
     <>
-      {/* Mobile-only floating button — desktop uses the header trigger. */}
+      {/* The only trigger now, at every width. It used to be mobile-only
+          because "Ask AI" sat in the desktop nav — but primary navigation
+          is where a homeowner with water coming through the ceiling
+          decides what to do, and an extra exit from that decision costs
+          more than the assistant earns. The assistant stays; it just
+          stops competing with Call.
+
+          Colours were a casualty of the September 2026 inversion:
+          `bg-charcoal/80` + `border-charcoal/40` used to be a dark disc
+          with a faint rim, and after the swap it was an 80%-white disc
+          with a white rim on a white page — invisible. Deep teal, which
+          is what a persistent floating control should have been anyway. */}
       <button
         type="button"
         aria-label="Open Ask ONA assistant"
         onClick={() => window.dispatchEvent(new Event("askona:open"))}
-        className="fixed bottom-4 right-4 z-30 inline-flex h-10 w-10 items-center justify-center rounded-full border border-charcoal/40 bg-charcoal/80 text-ivory shadow-lg backdrop-blur transition hover:bg-brand hover:text-charcoal lg:hidden"
+        className="fixed bottom-4 right-4 z-30 inline-flex h-11 w-11 items-center justify-center rounded-full bg-brand text-white shadow-lg transition hover:bg-brand-2"
         style={{ marginBottom: "env(safe-area-inset-bottom, 0px)" }}
       >
         <ChatIcon className="h-5 w-5" />
