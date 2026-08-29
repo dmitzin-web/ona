@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { JsonLd } from "@/components/JsonLd";
 import { ArrowIcon, PhoneIcon } from "@/components/icons/ServiceIcons";
@@ -75,24 +76,39 @@ const WE_HANDLE = [
   "Full reconstruction through final walkthrough",
 ];
 
+// The three commitments that fit on a card. These were paragraphs in the
+// trust list below and got skimmed past; as cards they are the first thing
+// read in the section and each one is a single sentence a homeowner can
+// repeat back to the next contractor who knocks. The depth stays in WHY_US.
+const GUARANTEES = [
+  {
+    icon: "shield" as const,
+    h: "No Assignment of Benefits",
+    p: "Your claim stays in your name. We never ask you to sign it over to us.",
+  },
+  {
+    icon: "doc" as const,
+    h: "Written scope, $0",
+    p: "Itemized line by line before anything starts. No large deposit up front.",
+  },
+  {
+    icon: "clock" as const,
+    h: "Seven days to cancel",
+    p: "In writing, in your contract. Washington requires it of no one. You get it anyway.",
+  },
+];
+
 // The trust block. Every line is a direct hit on what the out-of-state
 // chasers do, and all of it is verifiable.
 const WHY_US = [
   {
-    h: "You pay your deductible. Nothing more.",
-    p: "Anyone offering to cover or waive it is proposing insurance fraud — it means billing your carrier more than you actually pay. That's a felony in Washington. Several companies working Spokane right now are offering exactly that.",
-  },
-  {
-    h: "We never ask for Assignment of Benefits",
-    p: "An AOB signs your claim over to the contractor, who then deals with your insurer and collects without your approval. Washington's Insurance Commissioner tried to ban post-loss AOBs this year and the bill died in committee — so they're still legal here, and still being used. We don't ask for one.",
-  },
-  {
-    h: "Itemized written scope before anything starts",
-    p: "Complete bid, line by line, no large deposit up front. Washington's itemization law specifically exempts post-fire emergency work. We follow it anyway.",
-  },
-  {
-    h: "Seven days to cancel, in writing",
-    p: "California requires this on disaster repair contracts. Washington doesn't require it of anyone. You get it from us regardless.",
+    h: "If someone offers to waive your deductible, walk away",
+    // Was: "Several companies working Spokane right now are offering exactly
+    // that." Dropped — it's an unsourced assertion about identifiable
+    // competitors, and it hands them a disparagement claim for no gain. The
+    // statute and the state's own warning make the point without naming
+    // anyone, and RCW 48.30.230 does make it a felony above $1,500.
+    p: "Anyone offering to cover or waive it is proposing insurance fraud — it means billing your carrier for more than you actually pay, which is a felony in Washington above $1,500. Washington's Insurance Commissioner warns homeowners about the offer after every major fire, because it is one of the first things that gets offered.",
   },
   {
     h: "Washington-registered, and you can check in 30 seconds",
@@ -139,7 +155,7 @@ const SPOKANE_FAQ = [
   },
   {
     q: "My house is standing. Is smoke damage really covered?",
-    a: "Smoke and ash damage is covered under a standard homeowner policy, and no special dollar cap of the kind you see for mold should apply. It's also the loss type carriers dispute most, which is why we document it heavily before anyone touches a surface.",
+    a: "Smoke and ash damage is commonly covered under homeowners policies, subject to the terms, exclusions and circumstances of your particular loss — and unlike mold, it usually isn't subject to a special dollar cap. It's also the loss type carriers dispute most often, which is why we document it heavily before anyone touches a surface.",
   },
   {
     q: "Can I use you instead of the company my insurer suggested?",
@@ -215,10 +231,15 @@ export function SpokaneFireDeployment() {
             <div className="flex items-center gap-2.5">
               <span className="ona-pulse h-2 w-2 rounded-full bg-flare" />
               <p className="eyebrow text-flare-deep">
-                We&apos;re already in Spokane County
+                Fire &amp; smoke recovery · Spokane County
               </p>
             </div>
 
+            {/* The literal, searchable words live in the eyebrow above. The
+                headline itself is left alone deliberately: it speaks to a
+                person about their house rather than announcing a service
+                category, and that is the reason it outperforms every
+                "Spokane Fire Damage Experts" on the first page of results. */}
             <h1 className="mt-7 max-w-4xl text-[38px] font-semibold leading-[1.03] tracking-[-0.028em] text-day-ink sm:text-[54px] lg:text-[66px]">
               Your home is still yours.
               <span className="block text-day-ink-3">
@@ -226,12 +247,10 @@ export function SpokaneFireDeployment() {
               </span>
             </h1>
 
-            {/* One line, not a paragraph. Someone reading this is in a car
-                or in temporary housing on a phone — the detail lives further
-                down the page, the hero exists to get a call. */}
             <p className="mt-7 max-w-xl text-[19px] leading-snug text-day-ink-2 md:text-[22px]">
-              Debris removal, smoke and soot, full rebuild.{" "}
-              <span className="text-day-ink">Billed to your insurance.</span>
+              We&apos;re already in Spokane County. Debris removal, smoke and
+              soot, full reconstruction —{" "}
+              <span className="text-day-ink">billed to your insurance.</span>
             </p>
 
             <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -255,21 +274,34 @@ export function SpokaneFireDeployment() {
               or night.
             </p>
 
-            <dl className="mt-14 grid grid-cols-2 gap-y-7 border-t border-day-line pt-9 sm:grid-cols-4 sm:gap-x-8">
+            {/* Credentials as one compact line, not a four-column stat grid.
+                Above the fold the reader needs the headline, the offer and
+                the two buttons to breathe; the registration number is a
+                reassurance glance, not a data table, and it is repeated in
+                full in the footer line where RCW 18.27.100(3) needs it. */}
+            <ul className="mt-11 flex flex-wrap items-center gap-x-7 gap-y-3 border-t border-day-line pt-7 text-[14px] text-day-ink-2">
               {[
-                { k: "WA registration", v: "ONARER*748K8" },
-                { k: "Certification", v: "IICRC fire & smoke" },
-                { k: "Insurance", v: "Billed to your carrier" },
-                { k: "Your cost", v: "Deductible only" },
-              ].map((s) => (
-                <div key={s.k}>
-                  <dt className="eyebrow text-day-ink-3">{s.k}</dt>
-                  <dd className="mt-2.5 text-[17px] font-medium tracking-tight text-day-ink">
-                    {s.v}
-                  </dd>
-                </div>
+                "Answered 24/7",
+                "WA registered · ONARER*748K8",
+                "IICRC fire & smoke certified",
+              ].map((t) => (
+                <li key={t} className="flex items-center gap-2">
+                  <svg
+                    className="h-4 w-4 flex-none text-flare"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth={2.6}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="m5 12.5 4.5 4.5L19 7" />
+                  </svg>
+                  {t}
+                </li>
               ))}
-            </dl>
+            </ul>
           </div>
         </div>
       </section>
@@ -318,6 +350,63 @@ export function SpokaneFireDeployment() {
               you.
             </span>
           </div>
+        </div>
+      </section>
+
+      {/* ── WHAT IT COSTS ────────────────────────────────────────────
+          The money answer was one cell of a stat row in the hero and went
+          unread. It is the second question every homeowner has, so it gets
+          its own band right after the triage.
+
+          Wording is deliberately not "your cost: deductible only". We
+          control what we charge; we do not control what a carrier covers,
+          and a homeowner whose claim is partly denied would have been told
+          something untrue. "We bill your carrier, the deductible is yours"
+          is the same promise minus the part we can't keep. */}
+      <section className="border-t border-day-line bg-day">
+        <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10 lg:py-20">
+          <div className="grid overflow-hidden border-2 border-flare/25 bg-flare/[0.04] sm:grid-cols-3">
+            {[
+              {
+                k: "The visit and the written scope",
+                v: "$0",
+                p: "Assessment, documentation and an itemized scope before you commit to anything.",
+              },
+              {
+                k: "The work",
+                v: "Billed to your carrier",
+                p: "Written in the format your adjuster works in, sent directly to them.",
+              },
+              {
+                k: "What you pay",
+                v: "Your deductible",
+                p: "We never waive it and never pad a scope to cover it — that is insurance fraud, and it is what to walk away from.",
+              },
+            ].map((c, i) => (
+              <div
+                key={c.k}
+                className={
+                  i === 0
+                    ? "p-7 sm:p-8"
+                    : "border-t border-flare/20 p-7 sm:border-l sm:border-t-0 sm:p-8"
+                }
+              >
+                <p className="eyebrow text-flare-deep">{c.k}</p>
+                <p className="mt-3.5 text-[27px] font-semibold leading-tight tracking-[-0.02em] text-day-ink">
+                  {c.v}
+                </p>
+                <p className="mt-3 text-[14.5px] leading-relaxed text-day-ink-2">
+                  {c.p}
+                </p>
+              </div>
+            ))}
+          </div>
+          <p className="mt-5 max-w-3xl text-[13px] leading-relaxed text-day-ink-3">
+            What your policy covers is your insurer&apos;s decision, and any
+            contractor who tells you the outcome before reading your policy is
+            guessing. What we can tell you is what we will charge, in writing,
+            before we start.
+          </p>
         </div>
       </section>
 
@@ -432,6 +521,68 @@ export function SpokaneFireDeployment() {
         </div>
       </section>
 
+      {/* ── FINISH WORK ──────────────────────────────────────────────
+          The page had no photography at all, and a rebuild sold entirely in
+          prose asks a homeowner to imagine the result. These are our own
+          completed finish jobs — NOT Spokane fire work, and the caption says
+          so in the same size type as everything else. Do not relabel them:
+          passing remodel photos off as fire restoration is exactly the trick
+          the rest of this page warns people about.
+          Replace with real Spokane before/after as soon as jobs finish. */}
+      <section className="border-t border-day-line bg-day">
+        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-24">
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <div>
+              <p className="eyebrow text-day-ink-3">Where it ends up</p>
+              <h2 className="mt-5 max-w-2xl text-[30px] font-semibold leading-[1.1] tracking-[-0.02em] text-day-ink md:text-[38px]">
+                A rebuild isn&apos;t finished when it&apos;s clean.
+              </h2>
+            </div>
+            <p className="max-w-sm text-[15px] leading-relaxed text-day-ink-2">
+              The same crews that strip the soot put the house back together.
+              That&apos;s the reason we don&apos;t hand you off to a builder at
+              the halfway point.
+            </p>
+          </div>
+
+          <div className="mt-12 grid gap-4 sm:grid-cols-3">
+            {[
+              {
+                src: "/photos/projects/p7.avif",
+                alt: "Completed ONA kitchen — cabinetry, island and appliances installed",
+              },
+              {
+                src: "/photos/projects/p1.avif",
+                alt: "Completed ONA bathroom — double vanity, mirrors and fixtures installed",
+              },
+              {
+                src: "/photos/projects/p9.avif",
+                alt: "Completed ONA kitchen and living space, finished and furnished",
+              },
+            ].map((p) => (
+              <div
+                key={p.src}
+                className="relative aspect-[3/2] overflow-hidden border border-day-line bg-day-2"
+              >
+                <Image
+                  src={p.src}
+                  alt={p.alt}
+                  fill
+                  sizes="(max-width: 640px) 100vw, 33vw"
+                  className="object-cover"
+                />
+              </div>
+            ))}
+          </div>
+
+          <p className="mt-5 text-[14px] leading-relaxed text-day-ink-3">
+            Completed reconstruction and finish work by our own crews. These
+            are not Spokane fire jobs — those are in progress, and we&apos;ll
+            publish them here as they finish, with the before shots.
+          </p>
+        </div>
+      </section>
+
       {/* ── WHY US — the trust block, aimed at the chasers ───────── */}
       <section className="relative overflow-hidden border-t border-day-line bg-day-2">
         <div
@@ -449,7 +600,26 @@ export function SpokaneFireDeployment() {
             how to tell us apart.
           </h2>
 
-          <div className="mt-14 grid gap-x-12 gap-y-10 sm:grid-cols-2">
+          <div className="mt-12 grid gap-4 md:grid-cols-3">
+            {GUARANTEES.map((g) => (
+              <div
+                key={g.h}
+                className="border border-day-line bg-day p-6 shadow-[0_1px_2px_rgba(10,10,10,.04),0_18px_40px_-30px_rgba(10,10,10,.3)]"
+              >
+                <span className="flex h-12 w-12 items-center justify-center rounded-full bg-flare/[0.08] text-flare-deep">
+                  <GuaranteeIcon kind={g.icon} />
+                </span>
+                <h3 className="mt-5 text-[19px] font-semibold leading-snug tracking-[-0.015em] text-day-ink">
+                  {g.h}
+                </h3>
+                <p className="mt-2.5 text-[15px] leading-relaxed text-day-ink-2">
+                  {g.p}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-12 grid gap-x-10 gap-y-10 sm:grid-cols-3">
             {WHY_US.map((w) => (
               <div key={w.h} className="border-l-2 border-flare pl-5">
                 <h3 className="text-[18px] font-semibold leading-snug tracking-[-0.01em] text-day-ink">
@@ -636,23 +806,25 @@ export function SpokaneFireDeployment() {
           </h2>
           {/* Timeline rather than a numbered list: the rail makes the
               sequence readable at a glance, which a stressed reader on a
-              phone will actually take in. The rail is drawn behind the
-              markers and hidden below lg, where the steps stack. */}
+              phone will actually take in. The number is the marker itself,
+              at display size — the step icon rides alongside the heading as
+              a secondary cue. A 12px number above a 17px heading, which is
+              what this was, is not a timeline anyone reads at a glance. */}
           <ol className="relative mt-14 grid gap-10 lg:grid-cols-5 lg:gap-6">
             <span
               aria-hidden="true"
-              className="absolute left-[19px] top-2 hidden h-[calc(100%-1rem)] w-px bg-day-line sm:block lg:left-0 lg:top-[19px] lg:h-px lg:w-full"
+              className="absolute left-[31px] top-4 hidden h-[calc(100%-2rem)] w-px bg-day-line sm:block lg:left-0 lg:top-8 lg:h-px lg:w-full"
             />
             {PROCESS.map((p, i) => (
               <li key={p.n} className="relative flex gap-5 lg:flex-col lg:gap-0">
-                <span className="relative z-10 flex h-10 w-10 flex-none items-center justify-center rounded-full border border-day-line bg-day text-flare-deep">
-                  <StepIcon i={i} />
+                <span className="relative z-10 flex h-16 w-16 flex-none items-center justify-center rounded-full border-2 border-flare bg-day text-[22px] font-bold tracking-[-0.02em] text-flare-deep">
+                  {p.n}
                 </span>
-                <div className="lg:mt-6">
-                  <p className="text-[12px] font-semibold tracking-[0.16em] text-flare-deep">
-                    {p.n}
-                  </p>
-                  <h3 className="mt-2 text-[17px] font-semibold leading-snug tracking-[-0.01em] text-day-ink">
+                <div className="lg:mt-7">
+                  <h3 className="flex items-center gap-2 text-[17px] font-semibold leading-snug tracking-[-0.01em] text-day-ink">
+                    <span className="text-day-ink-3">
+                      <StepIcon i={i} />
+                    </span>
                     {p.h}
                   </h3>
                   <p className="mt-2 max-w-xs text-[14px] leading-relaxed text-day-ink-2">
@@ -832,6 +1004,44 @@ export function SpokaneFireDeployment() {
         </div>
       </div>
     </div>
+  );
+}
+
+// Icons for the three guarantee cards. Heavier stroke than StepIcon because
+// they sit in a 48px well and carry the section on their own.
+function GuaranteeIcon({ kind }: { kind: "shield" | "doc" | "clock" }) {
+  const common = {
+    className: "h-6 w-6",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: 1.7,
+    strokeLinecap: "round" as const,
+    strokeLinejoin: "round" as const,
+    "aria-hidden": true,
+  };
+  if (kind === "shield") {
+    return (
+      <svg {...common}>
+        <path d="M12 3.2 19 6v5.6c0 4.2-2.9 7.4-7 9.2-4.1-1.8-7-5-7-9.2V6l7-2.8Z" />
+        <path d="m9 12 2.2 2.2L15.4 10" />
+      </svg>
+    );
+  }
+  if (kind === "doc") {
+    return (
+      <svg {...common}>
+        <path d="M6.5 3.5h7l4.5 4.5V20a.5.5 0 0 1-.5.5H6.5A.5.5 0 0 1 6 20V4a.5.5 0 0 1 .5-.5Z" />
+        <path d="M13.5 3.5V8H18" />
+        <path d="M9 12.5h6M9 16h4" />
+      </svg>
+    );
+  }
+  return (
+    <svg {...common}>
+      <circle cx="12" cy="12.5" r="8" />
+      <path d="M12 8v4.5l3 1.8" />
+    </svg>
   );
 }
 

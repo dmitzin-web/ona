@@ -126,15 +126,25 @@ const nextConfig: NextConfig = {
           },
         ],
       },
-      {
-        source: "/_next/static/:path*",
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
-          },
-        ],
-      },
+      // Production only. In dev, `immutable` makes the browser hold on to
+      // chunks from a previous compile forever — after any rebuild the page
+      // then dies with "Cannot read properties of undefined (reading 'call')"
+      // and no amount of clearing .next fixes it, because the stale copy is
+      // in the browser, not on disk. Prod filenames are content-hashed, so
+      // the long TTL is safe there and pointless here.
+      ...(isProd
+        ? [
+            {
+              source: "/_next/static/:path*",
+              headers: [
+                {
+                  key: "Cache-Control",
+                  value: "public, max-age=31536000, immutable",
+                },
+              ],
+            },
+          ]
+        : []),
       {
         source: "/fonts/:path*",
         headers: [
