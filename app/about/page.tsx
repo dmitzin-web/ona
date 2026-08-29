@@ -10,7 +10,7 @@ import { breadcrumbJsonLd, faqJsonLd } from "@/lib/jsonld";
 
 export const metadata: Metadata = buildMetadata({
   title: `About ${site.name} — Vancouver, WA Restoration Specialists`,
-  description: `${site.name} is a restoration contractor based in Vancouver, WA, serving the Portland metro since ${site.founded}. Locally owned, licensed in WA and OR.`,
+  description: `${site.name} is a restoration contractor based in Vancouver, WA, serving the Portland metro since ${site.founded}. Locally owned. Washington contractor registration ONARER*748K8.`,
   path: "/about",
 });
 
@@ -37,7 +37,9 @@ const aboutFaqs = [
   },
   {
     q: "Are you licensed in both Washington and Oregon?",
-    a: "Yes. Licensed, bonded and insured for both restoration and reconstruction in WA and OR. Permitting jurisdictions across Clark, Multnomah, Washington and Clackamas counties know us by name.",
+    // Answered straight. The old answer said yes to both states while the
+    // footer on the same page said "OR CCB: pending" — see lib/site.ts.
+    a: "In Washington, yes: contractor registration ONARER*748K8, verifiable at secure.lni.wa.gov/verify. Our Oregon CCB registration is pending and we will publish the number here the day it issues. Our technicians hold IICRC certifications in water, structural drying, microbial remediation and fire and smoke.",
   },
 ];
 
@@ -84,10 +86,18 @@ export default function AboutPage() {
                   back.
                 </p>
                 <p>
-                  We&apos;re licensed, bonded and insured in both
-                  Washington and Oregon — which matters in this metro because
-                  half our calls are on one side of the Columbia and half are
-                  on the other.
+                  In Washington we hold contractor registration{" "}
+                  <a
+                    href="https://secure.lni.wa.gov/verify/"
+                    rel="noopener"
+                    target="_blank"
+                    className="underline underline-offset-2"
+                  >
+                    ONARER*748K8
+                  </a>
+                  , which you can check against the state&apos;s own records
+                  before you call us. Our Oregon CCB registration is pending;
+                  the number goes here the day it issues.
                 </p>
               </div>
             </div>

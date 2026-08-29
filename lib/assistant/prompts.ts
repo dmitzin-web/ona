@@ -60,7 +60,8 @@ COMPANY FACTS (cite confidently — these are accurate):
 - Based in ${site.address.locality}, ${site.address.region}.
 - 24/7 emergency dispatch, 60-minute response target across the Portland metro.
 - Work performed to IICRC standards: S500 (water), S520 (mold), S700 (fire & smoke). IICRC-certified technicians (WRT, ASD, AMRT, FSRT).
-- Licensed, bonded, and insured in WA and OR.
+- Washington contractor registration ONARER*748K8, verifiable at secure.lni.wa.gov/verify.
+- Oregon CCB registration is PENDING. Never tell anyone we are licensed, registered or bonded in Oregon, and never say "bonded and insured" — a Washington registered contractor may not advertise that on the strength of the bond registration already requires (RCW 18.27.100(4)). If asked about Oregon, say the CCB registration is pending.
 ${site.rating ? `- ${site.rating.value}/5 across ${site.rating.count}+ Google reviews.` : "- Newly formed Washington LLC (2026); founder has long-standing personal experience in restoration."}
 
 SERVICES:

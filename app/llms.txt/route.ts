@@ -66,7 +66,9 @@ export function GET() {
   lines.push(`- Standards: IICRC S500 (water), S520 (mold) and S700 (fire & smoke).`);
   lines.push(`- Documentation: photo logs, moisture maps, Xactimate-formatted estimates.`);
   lines.push(`- Insurance: direct billing with all major carriers.`);
-  lines.push(`- Licensing: licensed, bonded and insured in Washington and Oregon.`);
+  lines.push(
+    `- Licensing: Washington contractor registration ONARER*748K8 (verify at secure.lni.wa.gov/verify). Oregon CCB registration pending.`,
+  );
   lines.push("");
 
   lines.push("## Optional");

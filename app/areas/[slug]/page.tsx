@@ -61,7 +61,13 @@ export default async function AreaPage(
     },
     {
       q: `Are you licensed to work in ${area.regionName}?`,
-      a: `Yes. ONA Restoration is licensed, bonded and insured in both Washington and Oregon. We operate seamlessly across the state line throughout the Portland metro.`,
+      // The question is per-area, so the answer has to be too. The old
+      // answer said yes for both states while the footer on the same page
+      // said "OR CCB: pending" — see lib/site.ts for why that had to go.
+      a:
+        area.region === "OR"
+          ? `Our Oregon CCB registration is pending. We will publish the number here the day it issues. In Washington we hold contractor registration ONARER*748K8, verifiable at secure.lni.wa.gov/verify, and our technicians hold IICRC certifications in water, structural drying, microbial remediation and fire and smoke.`
+          : `Yes — Washington contractor registration ONARER*748K8, verifiable at secure.lni.wa.gov/verify. Our technicians hold IICRC certifications in water, structural drying, microbial remediation and fire and smoke.`,
     },
     {
       q: `Do you handle the insurance claim for ${area.name} customers?`,

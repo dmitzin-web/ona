@@ -59,7 +59,7 @@ const homeFaqs = [
   },
   {
     q: "Are you licensed?",
-    a: "ONA Restoration & Remodeling LLC is registered in Washington and licensed and insured to operate in WA and OR.",
+    a: "ONA Restoration & Remodeling LLC holds Washington contractor registration ONARER*748K8, verifiable at secure.lni.wa.gov/verify. Our Oregon CCB registration is pending. Our technicians are IICRC-certified in water damage restoration, applied structural drying, microbial remediation, and fire and smoke restoration.",
   },
 ];
 

@@ -87,7 +87,20 @@ export const site = {
     // WA L&I contractor registration — verifiable at
     // https://secure.lni.wa.gov/verify/. Issued 2026-05-28.
     "WA L&I Contractor Registration ONARER*748K8",
-    "Licensed, bonded & insured in WA and OR",
+    // REMOVED: "Licensed, bonded & insured in WA and OR".
+    // Two separate problems in one string.
+    //   1. Oregon. The footer states "OR CCB: pending" — which is true —
+    //      so every page that also claimed an Oregon licence contradicted
+    //      itself in two places on the same screen. Until the CCB number
+    //      issues, nothing on this site may say we are licensed in Oregon.
+    //   2. "Bonded & insured". RCW 18.27.100(4): a registered contractor
+    //      may not advertise as bonded or insured on the strength of the
+    //      bond and liability insurance that registration already
+    //      requires. The Spokane page has never used the phrase for this
+    //      reason; the rest of the site did, in nine places.
+    // What replaces it everywhere is the registration number itself,
+    // which RCW 18.27.100(3) requires in advertising anyway and which a
+    // homeowner can verify at secure.lni.wa.gov/verify.
     "IICRC Water Damage Restoration (WRT)",
     "IICRC Applied Structural Drying (ASD)",
     "IICRC Applied Microbial Remediation (AMRT)",

@@ -193,9 +193,13 @@ export function Footer() {
             </Link>
           </li>
         </ul>
-        <p className="eyebrow text-white/72">
-          Licensed · Bonded · Insured · WA & OR
-        </p>
+        {/* "Licensed · Bonded · Insured · WA & OR" was here, roughly 300px
+            below this same footer's own "OR CCB: pending". Removed, not
+            reworded: the credential list at the top of the footer already
+            states WA L&I, OR CCB and IICRC accurately and links the L&I
+            number to the state's verification page, so this line added no
+            information and contradicted it. See lib/site.ts for the two
+            statutes involved. */}
       </div>
     </footer>
   );

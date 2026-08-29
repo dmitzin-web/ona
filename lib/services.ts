@@ -276,7 +276,7 @@ export const services: Service[] = [
     shortName: "Remodeling",
     title: "Custom Remodeling & Reconstruction — Vancouver, WA & Portland Metro",
     description:
-      "Custom kitchen, bath, and whole-house remodeling in Vancouver, WA and Portland, OR — built to the same IICRC-grade documentation and craftsmanship as our restoration work. Licensed, bonded, insured.",
+      "Custom kitchen, bath, and whole-house remodeling in Vancouver, WA and the Portland metro — built to the same IICRC-grade documentation and craftsmanship as our restoration work. Washington contractor registration ONARER*748K8.",
     hero: "From kitchen and bath remodels to whole-house renovations and additions — built by a crew that already meets insurance-grade documentation standards every day.",
     intro:
       "After we put a property back together, many clients keep us on for the renovation they actually want. ONA Restoration's remodeling division handles full kitchen and bath renovations, whole-house remodels, structural additions, basement and ADU build-outs, and custom millwork — all delivered with the same crew, the same documentation discipline, and the same IICRC-grade workmanship as our restoration projects.",
@@ -351,7 +351,9 @@ export const services: Service[] = [
       },
       {
         q: "Are you licensed for new construction in both WA and OR?",
-        a: "Yes — licensed, bonded, and insured for both restoration and new construction in Washington and Oregon. Permitting jurisdictions across the Portland metro know us by name.",
+        // See lib/site.ts: nothing on this site may claim an Oregon
+        // licence while the CCB registration is pending.
+        a: "In Washington, yes — contractor registration ONARER*748K8, verifiable at secure.lni.wa.gov/verify, covering restoration and reconstruction alike. Our Oregon CCB registration is pending and we will publish the number the day it issues.",
       },
     ],
   },

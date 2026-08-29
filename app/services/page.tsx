@@ -47,8 +47,8 @@ export default function ServicesPage() {
           </h1>
           <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ivory/85">
             Single-source mitigation, reconstruction, and remodeling across the
-            Portland metro. Licensed in WA and OR, working to IICRC standards, available
-            24/7.
+            Portland metro. Washington contractor registration ONARER*748K8,
+            working to IICRC standards, available 24/7.
           </p>
 
           {/* Remodeling — featured row, separate visual treatment */}
