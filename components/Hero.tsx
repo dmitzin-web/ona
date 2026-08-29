@@ -62,7 +62,7 @@ export function Hero({ image }: { image?: HeroImage } = {}) {
           {/* Phone CTA is primary — restoration is a phone-first industry,
               calls at 3 a.m. convert via tel: tap, not a form. Free quote
               is the secondary path for non-emergency planning inquiries. */}
-          <PhoneLink className="inline-flex items-center gap-3 border border-ivory bg-charcoal px-7 py-4 text-sm font-medium uppercase tracking-[0.22em] text-ivory transition hover:bg-ivory hover:text-charcoal">
+          <PhoneLink className="inline-flex items-center gap-3 border border-ivory bg-charcoal px-7 py-4 text-sm font-medium uppercase tracking-[0.22em] text-ivory transition hover:bg-brand hover:text-charcoal">
             <PhoneIcon className="h-4 w-4 stroke-current" />
             Call Now
           </PhoneLink>

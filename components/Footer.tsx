@@ -6,11 +6,13 @@ import { EmailLink, PhoneLink } from "./contact/ContactLinks";
 
 export function Footer() {
   return (
-    <footer className="bg-charcoal text-ivory">
+    <footer className="bg-brand text-white">
       <div className="mx-auto grid max-w-7xl gap-12 px-6 py-20 md:grid-cols-12 lg:px-10">
         <div className="md:col-span-4">
-          <Logo variant="horizontal" tone="light" />
-          <div className="mt-8 max-w-sm space-y-3 text-sm leading-relaxed text-ivory/85">
+          {/* `dark` is the mark for inverted surfaces — the footer is now
+              the deep-teal band, so the graphite mark would vanish. */}
+          <Logo variant="horizontal" tone="dark" />
+          <div className="mt-8 max-w-sm space-y-3 text-sm leading-relaxed text-white/85">
             <p>
               Remodeling, mold, and restoration in Vancouver, WA and the
               Portland metro.
@@ -24,14 +26,14 @@ export function Footer() {
               emergency dispatch.
             </p>
           </div>
-          <div className="mt-8 space-y-1 text-sm text-ivory/90">
-            <PhoneLink className="block text-ivory transition hover:text-warm-gray-soft">
+          <div className="mt-8 space-y-1 text-sm text-white/90">
+            <PhoneLink className="block text-white transition hover:text-white/70">
               {site.phoneDisplay}
             </PhoneLink>
-            <EmailLink className="block transition hover:text-ivory">
+            <EmailLink className="block transition hover:text-white">
               {site.email}
             </EmailLink>
-            <p className="pt-3 text-ivory/72">
+            <p className="pt-3 text-white/72">
               {site.address.locality}, {site.address.region} · Serving the
               Portland metro
             </p>
@@ -40,39 +42,39 @@ export function Footer() {
               they are issued; do not invent or estimate.
               WA L&I: ONARER*748K8 (issued, verifiable at lni.wa.gov)
               IICRC: certified (WRT/ASD/AMRT/FSRT). OR CCB: still pending. */}
-          <dl className="mt-6 grid grid-cols-1 gap-1 text-xs text-ivory/70">
+          <dl className="mt-6 grid grid-cols-1 gap-1 text-xs text-white/70">
             <div className="flex flex-wrap gap-x-2">
-              <dt className="eyebrow text-ivory/66">WA L&amp;I</dt>
+              <dt className="eyebrow text-white/66">WA L&amp;I</dt>
               <dd className="font-mono">
                 <a
                   href="https://secure.lni.wa.gov/verify/"
                   rel="noopener"
                   target="_blank"
-                  className="text-ivory/90 underline-offset-2 transition hover:text-ivory hover:underline"
+                  className="text-white/90 underline-offset-2 transition hover:text-white hover:underline"
                 >
                   ONARER*748K8
                 </a>
               </dd>
             </div>
             <div className="flex flex-wrap gap-x-2">
-              <dt className="eyebrow text-ivory/66">OR CCB</dt>
+              <dt className="eyebrow text-white/66">OR CCB</dt>
               <dd className="font-mono">pending</dd>
             </div>
             <div className="flex flex-wrap gap-x-2">
-              <dt className="eyebrow text-ivory/66">IICRC</dt>
+              <dt className="eyebrow text-white/66">IICRC</dt>
               <dd className="font-mono">Certified</dd>
             </div>
           </dl>
         </div>
 
         <div className="md:col-span-3">
-          <p className="eyebrow text-ivory/68">Services</p>
+          <p className="eyebrow text-white/68">Services</p>
           <ul className="mt-5 space-y-3 text-sm">
             {services.map((s) => (
               <li key={s.slug}>
                 <Link
                   href={`/services/${s.slug}`}
-                  className="text-ivory/90 transition hover:text-ivory"
+                  className="text-white/90 transition hover:text-white"
                 >
                   {s.shortName}
                 </Link>
@@ -82,13 +84,13 @@ export function Footer() {
         </div>
 
         <div className="md:col-span-3">
-          <p className="eyebrow text-ivory/68">Service Area</p>
+          <p className="eyebrow text-white/68">Service Area</p>
           <ul className="mt-5 grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
             {site.serviceArea.map((a) => (
               <li key={a.slug}>
                 <Link
                   href={`/areas/${a.slug}`}
-                  className="text-ivory/90 transition hover:text-ivory"
+                  className="text-white/90 transition hover:text-white"
                 >
                   {a.name}
                 </Link>
@@ -98,12 +100,12 @@ export function Footer() {
         </div>
 
         <div className="md:col-span-2">
-          <p className="eyebrow text-ivory/68">Company</p>
+          <p className="eyebrow text-white/68">Company</p>
           <ul className="mt-5 space-y-3 text-sm">
             <li>
               <Link
                 href="/about"
-                className="text-ivory/90 transition hover:text-ivory"
+                className="text-white/90 transition hover:text-white"
               >
                 About
               </Link>
@@ -111,7 +113,7 @@ export function Footer() {
             <li>
               <Link
                 href="/contact"
-                className="text-ivory/90 transition hover:text-ivory"
+                className="text-white/90 transition hover:text-white"
               >
                 Contact
               </Link>
@@ -129,10 +131,10 @@ export function Footer() {
           dense link content from the default visual while preserving SEO. */}
       <details className="group mx-auto max-w-7xl px-6 lg:px-10">
         <summary className="flex cursor-pointer list-none items-center justify-between py-7 [&::-webkit-details-marker]:hidden">
-          <span className="eyebrow text-ivory/68">Service by city</span>
+          <span className="eyebrow text-white/68">Service by city</span>
           <span
             aria-hidden="true"
-            className="inline-flex h-6 w-6 items-center justify-center text-xl font-light leading-none text-ivory/72 transition-transform duration-200 group-open:rotate-45"
+            className="inline-flex h-6 w-6 items-center justify-center text-xl font-light leading-none text-white/72 transition-transform duration-200 group-open:rotate-45"
           >
             +
           </span>
@@ -146,7 +148,7 @@ export function Footer() {
               <div key={s.slug}>
                 <Link
                   href={`/services/${s.slug}`}
-                  className="block text-sm font-medium text-ivory transition hover:text-warm-gray-soft"
+                  className="block text-sm font-medium text-white transition hover:text-white/70"
                 >
                   {s.shortName}
                 </Link>
@@ -155,7 +157,7 @@ export function Footer() {
                     <li key={a.slug}>
                       <Link
                         href={`/services/${s.slug}/${a.slug}`}
-                        className="text-ivory/76 transition hover:text-ivory"
+                        className="text-white/76 transition hover:text-white"
                       >
                         {a.name}, {a.region}
                       </Link>
@@ -170,28 +172,28 @@ export function Footer() {
 
       <div className="hairline-dark" />
 
-      <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-4 px-6 py-7 text-xs text-ivory/68 lg:flex-row lg:items-center lg:px-10">
+      <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-4 px-6 py-7 text-xs text-white/68 lg:flex-row lg:items-center lg:px-10">
         <p>
           © {new Date().getFullYear()} {site.legalName} · All rights reserved
         </p>
         <ul className="flex flex-wrap items-center gap-x-6 gap-y-2">
           <li>
-            <Link href="/privacy" className="transition hover:text-ivory">
+            <Link href="/privacy" className="transition hover:text-white">
               Privacy
             </Link>
           </li>
           <li>
-            <Link href="/terms" className="transition hover:text-ivory">
+            <Link href="/terms" className="transition hover:text-white">
               Terms
             </Link>
           </li>
           <li>
-            <Link href="/quote" className="transition hover:text-ivory">
+            <Link href="/quote" className="transition hover:text-white">
               Get a free quote
             </Link>
           </li>
         </ul>
-        <p className="eyebrow text-ivory/72">
+        <p className="eyebrow text-white/72">
           Licensed · Bonded · Insured · WA & OR
         </p>
       </div>

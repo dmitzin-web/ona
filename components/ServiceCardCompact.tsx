@@ -11,7 +11,7 @@ export function ServiceCardCompact({ service }: { service: Service }) {
   return (
     <Link
       href={`/services/${service.slug}`}
-      className="group block bg-charcoal p-6 transition hover:bg-ivory hover:text-charcoal"
+      className="group block bg-charcoal p-6 transition hover:bg-brand hover:text-charcoal"
     >
       {Icon && (
         <Icon className="h-8 w-8 stroke-current text-ivory group-hover:text-charcoal" />

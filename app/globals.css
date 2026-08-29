@@ -24,73 +24,98 @@
      If you ever need the dark site back, swap these two blocks and
      nothing else. */
 
-  /* Ink. */
-  --color-ivory: #12100f;
-  --color-ivory-soft: #3b3936;
+  /* Ink — graphite, not black and not teal. Body copy stays neutral so
+     that teal reads as an accent rather than as a tint over everything.
+     12.9:1 on white. */
+  --color-ivory: #172124;
+  --color-ivory-soft: #35484a;
 
   /* Ground. `charcoal-soft` and `-mute` were ELEVATED dark surfaces —
      on a light ground elevation reads as slightly darker, not
      lighter, so they descend instead of ascending. */
   --color-charcoal: #ffffff;
-  --color-charcoal-soft: #f6f5f3;
-  --color-charcoal-mute: #eae8e3;
+  /* Mist was #f4f7f7 and it did not work: two percent of luminance below
+     white is invisible, so eleven alternating sections read as one
+     unbroken white sheet. These are deep enough to band the page and
+     still quiet enough not to become a second colour. */
+  --color-charcoal-soft: #e9f0ef; /* mist — secondary sections */
+  --color-charcoal-mute: #d8e5e3; /* deeper still — insets, wells */
 
   /* Mid-tone. `warm-gray` itself is legible either way and does not
      move; the soft/deep pair swaps, since "soft" meant "closer to the
      ground" and the ground has changed ends. */
-  --color-warm-gray: #6f6a60;
-  --color-warm-gray-soft: #5a554e;
-  --color-warm-gray-deep: #c9c4ba;
+  --color-warm-gray: #5b6c6d; /* secondary copy — 5.5:1 on white */
+  --color-warm-gray-soft: #46595a;
+  --color-warm-gray-deep: #c9d8d6; /* muted type ON deep teal */
 
   /* Hairlines swap: `line` sits on the ground, `line-light` sits on
      inverted (now dark) surfaces. */
-  --color-line: #e4e1db;
-  --color-line-light: #2a2a2a;
+  --color-line: #dce7e5;
+  --color-line-light: #1b4e4b; /* hairline ON deep teal */
 
-  /* Accent — restrained gold used for division accents (Remodeling
-     promo block, severity dots, key data accents).
-     Darkened two steps: the old #b8985e measured 2.4:1 as type on
-     white and 2.73:1 under white type, both failing WCAG AA. #856a3b
-     measures 5.09:1 on white and 4.69:1 on `charcoal-soft` — the
-     off-white surface is the binding case, and #8a6f3f only reached
-     4.35:1 there. Still reads as the same colour. The old value
-     survives as `gold-soft` for fills that carry dark type. */
-  --color-gold: #856a3b;
-  --color-gold-soft: #b8985e;
-  --color-gold-deep: #6b5530;
+  /* ── Brand ────────────────────────────────────────────────────
+     Deep teal carries authority and is used ONLY as a full-bleed
+     surface, at most once or twice per page. It is not a fill for
+     cards, icons or badges — the restraint is the whole point, and
+     a site that is teal everywhere is just a contractor site in a
+     different hue. Budget for a page: ~65% white, ~15% mist,
+     10-15% photography, ~7% deep teal, ~2% bright teal, ~1% coral. */
+  --color-brand: #073b3a;
+  --color-brand-2: #0a4a47;
 
-  /* ─── DAYLIGHT ─────────────────────────────────────────────────
-     Wildfire response pages only. White ground, near-black type,
-     one hot red-orange doing all the accent work.
+  /* Teal — UI, links, positive status, progress. `teal` is the
+     type-safe one (5.4:1 on white); `teal-bright` is for fills and
+     indicators sitting ON deep teal, never for small type on white. */
+  --color-teal: #00776d;
+  --color-teal-bright: #008f83;
 
-     Why this page leaves the brand's charcoal: a page someone opens
-     after losing a house should not feel like a basement, and dark
-     grounds cost reading speed exactly where it matters most —
-     small type, phone screen, stressed reader. The trade is that
-     it no longer matches the rest of the site; that's deliberate
-     and scoped to wildfire pages. Homepage, mold and remodeling
-     stay on charcoal + gold.
+  /* Coral — urgent action ONLY. Call buttons and the live/emergency
+     pulse. Never headings, dividers, icons, badges or decoration:
+     when coral appears the reader should read it as "act now".
+     White type on `coral` measures 4.75:1. */
+  --color-coral: #d23c29;
+  --color-coral-deep: #b33221; /* hover */
+  --color-coral-bright: #f0523d; /* live/emergency indicator only */
 
-     `flare` is the only accent. It is the one thing on the page
-     allowed to be loud, so keep it on CTAs, the live dot and small
-     caps labels — never as a decorative fill. */
+  /* Accent. Gold is gone. The name stays because it is used in 91 places and
+     renaming it would touch every file for no visual gain — read it
+     as "the accent". It is now teal: 5.4:1 on white, 5.1:1 on mist.
+     `gold-soft` is the brighter teal for fills and indicators, and
+     must not carry small type on white. Call-to-action fills are NOT
+     this token — they are `coral`, assigned explicitly per button. */
+  --color-gold: #00776d;
+  --color-gold-soft: #008f83;
+  --color-gold-deep: #00594f;
+
+  /* ─── DAYLIGHT (wildfire pages) ────────────────────────────────
+     These were a separate palette while the rest of the site was
+     still dark. The site is now light too, so they are ALIASES of
+     the main tokens rather than a second system — the wildfire pages
+     keep their own names, and get the brand's colours. Anything that
+     still differs here is a bug, not a decision. */
   --color-day: #ffffff;
-  --color-day-2: #f4f4f2;
-  --color-day-line: #e3e3e0;
-  --color-day-line-soft: #eeeeec;
-  --color-day-ink: #0a0a0a;
-  --color-day-ink-2: #3d3d3b;
-  --color-day-ink-3: #6b6b68;
-  /* #cf3f14, not the more obvious #e04e1f: white text on e04e1f measures
-     3.98:1, which fails WCAG AA (4.5:1) for the button label size we use.
-     cf3f14 measures 4.80:1 and is visually almost identical. flare-deep
-     (6.17:1 on white) is for small text — step numbers, small-caps
-     labels — where flare itself would fail. */
-  --color-flare: #cf3f14;
-  --color-flare-deep: #b03714;
+  --color-day-2: #f4f7f7;
+  --color-day-line: #dce7e5;
+  --color-day-line-soft: #eaf1f0;
+  --color-day-ink: #172124;
+  --color-day-ink-2: #35484a;
+  --color-day-ink-3: #5b6c6d;
+  /* The wildfire accent is the brand's coral. `flare-deep` is the
+     darker step for small type, where `flare` itself would fail. */
+  --color-flare: #d23c29;
+  --color-flare-deep: #b33221;
 
   --font-display: var(--font-satoshi), ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-satoshi), ui-sans-serif, system-ui, sans-serif;
+  /* Mono is seasoning, not a second body font: status, dates, project
+     numbers, credentials, small technical labels. It buys the
+     field-report register the brand wants. Deliberately a system stack
+     rather than IBM Plex Mono — the CSP is `font-src 'self' data:`, so a
+     webfont would have to be self-hosted, and one more binary for text
+     that is never larger than 12px is a bad trade. Every platform's
+     default here is already a good grotesque mono. */
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
 }
 
 html {
@@ -135,10 +160,17 @@ a {
   background: var(--color-charcoal-mute);
 }
 
+/* Every small-caps label on the site goes through this one class, which
+   makes it the single place to give the brand its technical register.
+   Mono here and nowhere else: labels, statuses, dates and credentials
+   read as field documentation, while everything at reading size stays
+   Satoshi. Tracking drops from .22em to .16em because mono is already
+   wider per glyph. */
 .eyebrow {
+  font-family: var(--font-mono);
   font-size: 11px;
   font-weight: 500;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
 }
 

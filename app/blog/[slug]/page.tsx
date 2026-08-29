@@ -220,7 +220,7 @@ export default async function BlogPostPage(
                 <li key={a.slug}>
                   <Link
                     href={`/services/${service.slug}/${a.slug}`}
-                    className="flex h-full flex-col justify-between gap-6 bg-charcoal p-6 transition hover:bg-ivory hover:text-charcoal"
+                    className="flex h-full flex-col justify-between gap-6 bg-charcoal p-6 transition hover:bg-brand hover:text-charcoal"
                   >
                     <div>
                       <p className="eyebrow opacity-60">
@@ -239,7 +239,7 @@ export default async function BlogPostPage(
               <li>
                 <Link
                   href={`/services/${service.slug}`}
-                  className="flex h-full flex-col justify-between gap-6 bg-charcoal p-6 text-ivory transition hover:bg-ivory-soft"
+                  className="flex h-full flex-col justify-between gap-6 bg-charcoal p-6 text-ivory transition hover:bg-brand-soft"
                 >
                   <div>
                     <p className="eyebrow text-ivory/72">All locations</p>
@@ -268,7 +268,7 @@ export default async function BlogPostPage(
                 <li key={o.slug}>
                   <Link
                     href={`/blog/${o.slug}`}
-                    className="block bg-charcoal p-6 transition hover:bg-ivory hover:text-charcoal"
+                    className="block bg-charcoal p-6 transition hover:bg-brand hover:text-charcoal"
                   >
                     <p className="eyebrow opacity-60">{o.category}</p>
                     <p className="mt-3 text-base font-medium tracking-tight">

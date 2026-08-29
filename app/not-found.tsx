@@ -16,7 +16,7 @@ export default function NotFound() {
           call us — we'll handle it from there.
         </p>
         <div className="mt-12 flex flex-wrap justify-center gap-4">
-          <PhoneLink className="inline-flex items-center gap-3 border border-ivory bg-ivory px-7 py-4 text-sm font-medium uppercase tracking-[0.22em] text-charcoal transition hover:bg-transparent hover:text-ivory">
+          <PhoneLink className="inline-flex items-center gap-3 border border-ivory bg-brand px-7 py-4 text-sm font-medium uppercase tracking-[0.22em] text-charcoal transition hover:bg-transparent hover:text-ivory">
             <PhoneIcon className="h-4 w-4 stroke-current" />
             {site.phoneDisplay}
           </PhoneLink>

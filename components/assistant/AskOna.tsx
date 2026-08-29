@@ -282,7 +282,7 @@ export function AskOna() {
         type="button"
         aria-label="Open Ask ONA assistant"
         onClick={() => window.dispatchEvent(new Event("askona:open"))}
-        className="fixed bottom-4 right-4 z-30 inline-flex h-10 w-10 items-center justify-center rounded-full border border-charcoal/40 bg-charcoal/80 text-ivory shadow-lg backdrop-blur transition hover:bg-ivory hover:text-charcoal lg:hidden"
+        className="fixed bottom-4 right-4 z-30 inline-flex h-10 w-10 items-center justify-center rounded-full border border-charcoal/40 bg-charcoal/80 text-ivory shadow-lg backdrop-blur transition hover:bg-brand hover:text-charcoal lg:hidden"
         style={{ marginBottom: "env(safe-area-inset-bottom, 0px)" }}
       >
         <ChatIcon className="h-5 w-5" />
@@ -305,7 +305,7 @@ export function AskOna() {
           />
 
           {/* Panel — bottom sheet on mobile, side drawer on lg+ */}
-          <div className="relative ml-auto flex h-full w-full flex-col bg-ivory shadow-2xl lg:w-[440px]">
+          <div className="relative ml-auto flex h-full w-full flex-col bg-brand shadow-2xl lg:w-[440px]">
             {/* Header */}
             <div className="flex flex-none items-center justify-between border-b border-line-light px-5 py-4">
               <div>
@@ -435,7 +435,7 @@ export function AskOna() {
                 }}
                 rows={1}
                 placeholder="Ask anything about ONA, services, or your claim…"
-                className="block min-h-10 max-h-32 w-full resize-none border border-charcoal/20 bg-ivory px-3 py-2 text-sm text-charcoal placeholder:text-charcoal/40 focus:border-ivory focus:outline-none"
+                className="block min-h-10 max-h-32 w-full resize-none border border-charcoal/20 bg-brand px-3 py-2 text-sm text-charcoal placeholder:text-charcoal/40 focus:border-ivory focus:outline-none"
               />
               <button
                 type="submit"
@@ -478,7 +478,7 @@ function EmptyState({
                 <button
                   type="button"
                   onClick={() => onPick(s)}
-                  className="block w-full border border-charcoal/15 bg-ivory px-4 py-3 text-left text-sm text-charcoal transition hover:border-charcoal hover:bg-ivory-soft"
+                  className="block w-full border border-charcoal/15 bg-brand px-4 py-3 text-left text-sm text-charcoal transition hover:border-charcoal hover:bg-brand-soft"
                 >
                   {s}
                 </button>
@@ -499,7 +499,7 @@ function MessageBubble({ msg }: { msg: ChatMessage }) {
         className={`max-w-[88%] ${
           isUser
             ? "border border-charcoal bg-charcoal text-ivory"
-            : "border border-charcoal/15 bg-ivory text-charcoal"
+            : "border border-charcoal/15 bg-brand text-charcoal"
         } px-4 py-3 text-sm leading-relaxed`}
       >
         {msg.images.length > 0 && (

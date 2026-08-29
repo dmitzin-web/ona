@@ -121,7 +121,7 @@ export function Header() {
           <a
             href={`tel:${site.phone}`}
             aria-label={`Call ${site.phoneDisplay}`}
-            className="inline-flex items-center gap-2 rounded-full bg-gold-deep px-4 py-2.5 text-[14px] font-semibold text-white transition hover:brightness-90 md:px-5"
+            className="inline-flex items-center gap-2 rounded-[2px] bg-coral px-4 py-2.5 text-[14px] font-semibold text-white transition hover:brightness-90 md:px-5"
           >
             <span
               aria-hidden="true"
@@ -132,7 +132,7 @@ export function Header() {
           </a>
           <Link
             href="/start-project"
-            className="hidden rounded-full border border-ivory px-5 py-2.5 text-[13px] font-medium text-ivory transition hover:bg-ivory hover:text-charcoal sm:inline-flex"
+            className="hidden rounded-[2px] border border-ivory px-5 py-2.5 text-[13px] font-medium text-ivory transition hover:bg-brand hover:text-charcoal sm:inline-flex"
           >
             Start a project
           </Link>
@@ -224,14 +224,14 @@ export function Header() {
                   <a
                     href={`tel:${site.phone}`}
                     onClick={closeMobileMenu}
-                    className="inline-flex w-full items-center justify-center rounded-full bg-gold-deep px-4 py-3 text-[14px] font-semibold text-white"
+                    className="inline-flex w-full items-center justify-center rounded-[2px] bg-coral px-4 py-3 text-[14px] font-semibold text-white"
                   >
                     Call {site.phoneDisplay}
                   </a>
                   <Link
                     href="/start-project"
                     onClick={closeMobileMenu}
-                    className="inline-flex w-full items-center justify-center rounded-full border border-ivory px-4 py-3 text-[13px] font-medium text-ivory"
+                    className="inline-flex w-full items-center justify-center rounded-[2px] border border-ivory px-4 py-3 text-[13px] font-medium text-ivory"
                   >
                     Start a project
                   </Link>

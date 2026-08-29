@@ -39,7 +39,7 @@ export default function AreasPage() {
               <li key={a.slug}>
                 <Link
                   href={`/areas/${a.slug}`}
-                  className="group flex items-center justify-between bg-charcoal p-7 transition hover:bg-ivory hover:text-charcoal"
+                  className="group flex items-center justify-between bg-charcoal p-7 transition hover:bg-brand hover:text-charcoal"
                 >
                   <div>
                     <p className="text-xl font-medium tracking-tight">

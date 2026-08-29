@@ -170,13 +170,13 @@ export default function StartProjectPage() {
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
             <a
               href={`tel:${site.phone}`}
-              className="inline-flex items-center justify-center rounded-full bg-gold px-7 py-3.5 text-[14px] font-medium text-white transition hover:bg-gold-deep"
+              className="inline-flex items-center justify-center rounded-[2px] bg-coral px-7 py-3.5 text-[14px] font-medium text-white transition hover:bg-coral-deep"
             >
               Call {site.phoneDisplay}
             </a>
             <Link
               href="/"
-              className="inline-flex items-center justify-center rounded-full border border-ivory px-7 py-3.5 text-[14px] font-medium text-ivory transition hover:bg-ivory hover:text-charcoal"
+              className="inline-flex items-center justify-center rounded-[2px] border border-ivory px-7 py-3.5 text-[14px] font-medium text-ivory transition hover:bg-brand hover:text-charcoal"
             >
               Back to home
             </Link>
@@ -252,7 +252,7 @@ export default function StartProjectPage() {
                 canAdvance && setStep((s) => (s + 1) as Step)
               }
               disabled={!canAdvance}
-              className="inline-flex items-center justify-center rounded-full border border-ivory/30 bg-charcoal px-6 py-3 text-[14px] font-medium text-ivory transition hover:border-ivory hover:bg-ivory hover:text-charcoal disabled:cursor-default disabled:border-ivory/15 disabled:bg-charcoal disabled:text-ivory disabled:opacity-30"
+              className="inline-flex items-center justify-center rounded-[2px] border border-ivory/30 bg-charcoal px-6 py-3 text-[14px] font-medium text-ivory transition hover:border-ivory hover:bg-brand hover:text-charcoal disabled:cursor-default disabled:border-ivory/15 disabled:bg-charcoal disabled:text-ivory disabled:opacity-30"
             >
               Continue
             </button>
@@ -261,7 +261,7 @@ export default function StartProjectPage() {
               type="button"
               onClick={submit}
               disabled={!canAdvance || submitting}
-              className="inline-flex items-center justify-center rounded-full bg-gold px-6 py-3 text-[14px] font-medium text-white transition hover:bg-gold-deep disabled:opacity-50"
+              className="inline-flex items-center justify-center rounded-[2px] bg-gold px-6 py-3 text-[14px] font-medium text-white transition hover:bg-gold-deep disabled:opacity-50"
             >
               {submitting ? "Sending…" : "Send it"}
             </button>

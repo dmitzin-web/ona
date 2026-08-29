@@ -267,7 +267,7 @@ export default async function ProjectPage({
         {/* Sample banner — removed for real projects */}
         {p.isSample ? (
           <div className="mt-6 flex items-start gap-3 rounded-xl border border-ivory/10 bg-charcoal-soft p-4 text-[13px]">
-            <span className="mt-0.5 rounded-full bg-gold/20 px-2.5 py-1 text-[11px] font-medium uppercase tracking-wider text-gold">
+            <span className="mt-0.5 rounded-[2px] bg-gold/20 px-2.5 py-1 text-[11px] font-medium uppercase tracking-wider text-gold">
               Sample
             </span>
             <p className="text-ivory/85">
@@ -367,13 +367,13 @@ export default async function ProjectPage({
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <a
               href={`tel:${site.phone}`}
-              className="inline-flex items-center justify-center rounded-full bg-gold px-6 py-3 text-[14px] font-medium text-white transition hover:bg-gold-deep"
+              className="inline-flex items-center justify-center rounded-[2px] bg-coral px-6 py-3 text-[14px] font-medium text-white transition hover:bg-coral-deep"
             >
               Call {site.phoneDisplay}
             </a>
             <Link
               href="/start-project"
-              className="inline-flex items-center justify-center rounded-full border border-ivory px-6 py-3 text-[14px] font-medium text-ivory transition hover:bg-ivory hover:text-charcoal"
+              className="inline-flex items-center justify-center rounded-[2px] border border-ivory px-6 py-3 text-[14px] font-medium text-ivory transition hover:bg-brand hover:text-charcoal"
             >
               Start a project
             </Link>

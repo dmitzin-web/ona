@@ -114,13 +114,13 @@ export default function HomePage() {
               <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
                 <a
                   href={`tel:${site.phone}`}
-                  className="inline-flex items-center justify-center rounded-full bg-gold px-7 py-3.5 text-[14px] font-medium text-white transition hover:bg-gold-deep"
+                  className="inline-flex items-center justify-center rounded-[2px] bg-coral px-7 py-3.5 text-[14px] font-medium text-white transition hover:bg-coral-deep"
                 >
                   Call {site.phoneDisplay}
                 </a>
                 <Link
                   href="/start-project"
-                  className="inline-flex items-center justify-center rounded-full border border-ivory px-7 py-3.5 text-[14px] font-medium text-ivory transition hover:bg-ivory hover:text-charcoal"
+                  className="inline-flex items-center justify-center rounded-[2px] border border-ivory px-7 py-3.5 text-[14px] font-medium text-ivory transition hover:bg-brand hover:text-charcoal"
                 >
                   Start a project
                 </Link>
@@ -155,9 +155,9 @@ export default function HomePage() {
                     Scope approved
                   </div>
                 </div>
-                <div className="mt-2 h-1 w-full overflow-hidden rounded-full bg-charcoal/15">
+                <div className="mt-2 h-1 w-full overflow-hidden rounded-[2px] bg-charcoal/15">
                   <div
-                    className="h-1 rounded-full bg-gold"
+                    className="h-1 rounded-[2px] bg-gold"
                     style={{ width: "50%" }}
                   />
                 </div>
@@ -200,7 +200,7 @@ export default function HomePage() {
               <div className="ml-3 rounded-md border border-ivory/10 bg-charcoal px-3 py-1 text-[12px] text-ivory/85">
                 onarestore.com/work/sample
               </div>
-              <div className="ml-auto rounded-full bg-gold/20 px-2.5 py-1 text-[11px] font-medium text-gold">
+              <div className="ml-auto rounded-[2px] bg-gold/20 px-2.5 py-1 text-[11px] font-medium text-gold">
                 SAMPLE
               </div>
             </div>
@@ -218,7 +218,7 @@ export default function HomePage() {
                     Opened July 29 · Day 7 of 14 · Adjuster: Liberty Mutual
                   </p>
                 </div>
-                <div className="inline-flex items-center gap-2 self-start rounded-full border border-gold/40 bg-gold/5 px-3 py-1.5 text-[12px] text-gold">
+                <div className="inline-flex items-center gap-2 self-start rounded-[2px] border border-gold/40 bg-gold/5 px-3 py-1.5 text-[12px] text-gold">
                   <span className="ona-pulse h-1.5 w-1.5 rounded-full bg-gold" />
                   3 new updates today
                 </div>
@@ -232,9 +232,9 @@ export default function HomePage() {
                     50% complete · on schedule
                   </span>
                 </div>
-                <div className="mt-3 h-2 w-full overflow-hidden rounded-full bg-charcoal/10">
+                <div className="mt-3 h-2 w-full overflow-hidden rounded-[2px] bg-charcoal/10">
                   <div
-                    className="h-2 rounded-full bg-gold"
+                    className="h-2 rounded-[2px] bg-gold"
                     style={{ width: "50%" }}
                   />
                 </div>
@@ -528,7 +528,7 @@ export default function HomePage() {
             <div className="mx-auto w-[260px] flex-none rounded-[36px] border border-ivory/10 bg-charcoal p-2 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.35)] sm:w-[280px]">
               <div className="overflow-hidden rounded-[28px] bg-charcoal">
                 <div className="flex h-6 items-center justify-center bg-charcoal">
-                  <span className="h-1 w-12 rounded-full bg-charcoal/15" />
+                  <span className="h-1 w-12 rounded-[2px] bg-charcoal/15" />
                 </div>
                 <div className="space-y-4 px-4 pb-5">
                   <div className="flex items-center justify-between text-[10px] text-ivory/85">
@@ -551,9 +551,9 @@ export default function HomePage() {
                       On schedule · Day 7 / 14
                     </span>
                   </div>
-                  <div className="h-1.5 w-full rounded-full bg-charcoal/10">
+                  <div className="h-1.5 w-full rounded-[2px] bg-charcoal/10">
                     <div
-                      className="h-1.5 rounded-full bg-gold"
+                      className="h-1.5 rounded-[2px] bg-gold"
                       style={{ width: "50%" }}
                     />
                   </div>
@@ -602,7 +602,7 @@ export default function HomePage() {
                     ))}
                   </div>
 
-                  <div className="w-full rounded-full bg-gold py-2 text-center text-[11px] font-medium text-white">
+                  <div className="w-full rounded-[2px] bg-gold py-2 text-center text-[11px] font-medium text-white">
                     Call ONA
                   </div>
                 </div>
@@ -1313,13 +1313,13 @@ export default function HomePage() {
               <div className="mt-8 grid gap-3 sm:grid-cols-2">
                 <a
                   href={`tel:${site.phone}`}
-                  className="inline-flex items-center justify-center rounded-full bg-gold px-6 py-3 text-[14px] font-medium text-white transition hover:bg-gold-deep"
+                  className="inline-flex items-center justify-center rounded-[2px] bg-coral px-6 py-3 text-[14px] font-medium text-white transition hover:bg-coral-deep"
                 >
                   {site.phoneDisplay}
                 </a>
                 <Link
                   href="/about"
-                  className="inline-flex items-center justify-center rounded-full border border-ivory px-6 py-3 text-[14px] font-medium text-ivory transition hover:bg-ivory hover:text-charcoal"
+                  className="inline-flex items-center justify-center rounded-[2px] border border-ivory px-6 py-3 text-[14px] font-medium text-ivory transition hover:bg-brand hover:text-charcoal"
                 >
                   More about how we work
                 </Link>
@@ -1393,7 +1393,7 @@ export default function HomePage() {
                         "wherever you see this chip, ONA is
                         running an organized project." */}
                     {card.signal ? (
-                      <div className="absolute bottom-3 left-3 inline-flex items-center gap-2 rounded-full border border-white/15 bg-charcoal/80 px-3 py-1.5 text-[11px] text-ivory backdrop-blur-md">
+                      <div className="absolute bottom-3 left-3 inline-flex items-center gap-2 rounded-[2px] border border-white/15 bg-charcoal/80 px-3 py-1.5 text-[11px] text-ivory backdrop-blur-md">
                         <span
                           className={
                             card.signal.live
@@ -1409,7 +1409,7 @@ export default function HomePage() {
                   </div>
                 ) : (
                   <div className="flex aspect-[16/10] items-center justify-center bg-charcoal-soft">
-                    <span className="rounded-full border border-dashed border-ivory/25 px-4 py-2 text-[11px] uppercase tracking-[0.22em] text-ivory/85">
+                    <span className="rounded-[2px] border border-dashed border-ivory/25 px-4 py-2 text-[11px] uppercase tracking-[0.22em] text-ivory/85">
                       Available
                     </span>
                   </div>
@@ -1454,13 +1454,13 @@ export default function HomePage() {
               <div className="mt-10 flex flex-col gap-3 sm:flex-row">
                 <a
                   href={`tel:${site.phone}`}
-                  className="inline-flex items-center justify-center rounded-full bg-gold px-7 py-3.5 text-[14px] font-medium text-white transition hover:bg-gold-deep"
+                  className="inline-flex items-center justify-center rounded-[2px] bg-coral px-7 py-3.5 text-[14px] font-medium text-white transition hover:bg-coral-deep"
                 >
                   Call {site.phoneDisplay}
                 </a>
                 <Link
                   href="/start-project"
-                  className="inline-flex items-center justify-center rounded-full border border-ivory px-7 py-3.5 text-[14px] font-medium text-ivory transition hover:bg-ivory hover:text-charcoal"
+                  className="inline-flex items-center justify-center rounded-[2px] border border-ivory px-7 py-3.5 text-[14px] font-medium text-ivory transition hover:bg-brand hover:text-charcoal"
                 >
                   Start a project
                 </Link>

@@ -197,7 +197,7 @@ export function ProjectScrubber({
                       isActive
                         ? "h-[14px] w-[14px] bg-gold ring-4 ring-gold/15"
                         : isPast
-                        ? "h-[10px] w-[10px] bg-ivory/65 group-hover:bg-ivory"
+                        ? "h-[10px] w-[10px] bg-ivory/65 group-hover:bg-brand"
                         : p.estimated
                         ? "h-[10px] w-[10px] border border-dashed border-ivory/30 bg-charcoal group-hover:border-ivory/60"
                         : "h-[10px] w-[10px] border border-ivory/35 bg-charcoal group-hover:border-ivory/70"

@@ -256,14 +256,14 @@ export function SpokaneFireDeployment() {
             <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
               <a
                 href={`tel:${site.phone}`}
-                className="inline-flex items-center justify-center gap-3 rounded-full bg-flare px-9 py-5 text-[17px] font-semibold text-white shadow-[0_0_0_1px_rgba(207,63,20,0.25),0_16px_36px_-12px_rgba(207,63,20,0.5)] transition hover:bg-flare-deep sm:text-[18px]"
+                className="inline-flex items-center justify-center gap-3 rounded-[2px] bg-flare px-9 py-5 text-[17px] font-semibold text-white shadow-[0_0_0_1px_rgba(207,63,20,0.25),0_16px_36px_-12px_rgba(207,63,20,0.5)] transition hover:bg-flare-deep sm:text-[18px]"
               >
                 <PhoneIcon className="h-5 w-5 stroke-current" />
                 Call {site.phoneDisplay}
               </a>
               <a
                 href={`mailto:${site.email}?subject=Spokane%20fire%20-%20my%20property`}
-                className="inline-flex items-center justify-center gap-3 rounded-full border-2 border-day-ink px-9 py-5 text-[17px] font-semibold text-day-ink transition hover:bg-day-ink hover:text-day sm:text-[18px]"
+                className="inline-flex items-center justify-center gap-3 rounded-[2px] border-2 border-day-ink px-9 py-5 text-[17px] font-semibold text-day-ink transition hover:bg-day-ink hover:text-day sm:text-[18px]"
               >
                 Send photos
               </a>
@@ -340,7 +340,7 @@ export function SpokaneFireDeployment() {
           <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3">
             <a
               href={`tel:${site.phone}`}
-              className="inline-flex items-center gap-3 rounded-full bg-flare px-8 py-[18px] text-[17px] font-semibold text-white shadow-[0_14px_32px_-12px_rgba(207,63,20,0.45)] transition hover:bg-flare-deep"
+              className="inline-flex items-center gap-3 rounded-[2px] bg-flare px-8 py-[18px] text-[17px] font-semibold text-white shadow-[0_14px_32px_-12px_rgba(207,63,20,0.45)] transition hover:bg-flare-deep"
             >
               <PhoneIcon className="h-4 w-4 stroke-current" />
               Call {site.phoneDisplay}
@@ -460,7 +460,7 @@ export function SpokaneFireDeployment() {
                   <p className="mt-2.5 max-w-sm text-[15px] leading-relaxed text-day-ink-2">
                     {s.p}
                   </p>
-                  <p className="mt-3 inline-flex items-center gap-2 rounded-full bg-flare/[0.08] px-3 py-1.5 text-[13px] font-semibold text-flare-deep">
+                  <p className="mt-3 inline-flex items-center gap-2 rounded-[2px] bg-flare/[0.08] px-3 py-1.5 text-[13px] font-semibold text-flare-deep">
                     <svg
                       className="h-3.5 w-3.5"
                       viewBox="0 0 24 24"
@@ -683,7 +683,7 @@ export function SpokaneFireDeployment() {
                   <span className="text-[11px] text-day-ink-3">
                     onarestore.com/work/your-project
                   </span>
-                  <span className="ml-auto rounded-full bg-flare/10 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-flare-deep">
+                  <span className="ml-auto rounded-[2px] bg-flare/10 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-flare-deep">
                     Sample
                   </span>
                 </div>
@@ -701,7 +701,7 @@ export function SpokaneFireDeployment() {
                         Day 6 of 12 · Adjuster: Pemco
                       </p>
                     </div>
-                    <span className="inline-flex items-center gap-2 rounded-full border border-flare/35 bg-flare/[0.07] px-3 py-1.5 text-[12px] font-medium text-flare-deep">
+                    <span className="inline-flex items-center gap-2 rounded-[2px] border border-flare/35 bg-flare/[0.07] px-3 py-1.5 text-[12px] font-medium text-flare-deep">
                       <span className="ona-pulse h-1.5 w-1.5 rounded-full bg-flare" />
                       Updated today
                     </span>
@@ -714,9 +714,9 @@ export function SpokaneFireDeployment() {
                         50% · on schedule
                       </span>
                     </div>
-                    <div className="mt-2.5 h-1.5 w-full overflow-hidden rounded-full bg-day-line">
+                    <div className="mt-2.5 h-1.5 w-full overflow-hidden rounded-[2px] bg-day-line">
                       <div
-                        className="h-1.5 rounded-full bg-flare"
+                        className="h-1.5 rounded-[2px] bg-flare"
                         style={{ width: "50%" }}
                       />
                     </div>
@@ -899,14 +899,14 @@ export function SpokaneFireDeployment() {
             <div className="flex flex-col gap-3 lg:col-span-5 lg:items-end">
               <a
                 href={`tel:${site.phone}`}
-                className="inline-flex items-center justify-center gap-3 rounded-full bg-flare px-9 py-5 text-[17px] font-semibold text-white shadow-[0_0_0_1px_rgba(207,63,20,0.25),0_16px_36px_-12px_rgba(207,63,20,0.5)] transition hover:bg-flare-deep sm:text-[18px]"
+                className="inline-flex items-center justify-center gap-3 rounded-[2px] bg-flare px-9 py-5 text-[17px] font-semibold text-white shadow-[0_0_0_1px_rgba(207,63,20,0.25),0_16px_36px_-12px_rgba(207,63,20,0.5)] transition hover:bg-flare-deep sm:text-[18px]"
               >
                 <PhoneIcon className="h-4 w-4 stroke-current" />
                 Call {site.phoneDisplay}
               </a>
               <a
                 href={`mailto:${site.email}?subject=Spokane%20fire%20-%20my%20property`}
-                className="inline-flex items-center justify-center gap-3 rounded-full border-2 border-day-ink px-9 py-5 text-[17px] font-semibold text-day-ink transition hover:bg-day-ink hover:text-day sm:text-[18px]"
+                className="inline-flex items-center justify-center gap-3 rounded-[2px] border-2 border-day-ink px-9 py-5 text-[17px] font-semibold text-day-ink transition hover:bg-day-ink hover:text-day sm:text-[18px]"
               >
                 Email photographs
               </a>
@@ -990,14 +990,14 @@ export function SpokaneFireDeployment() {
         <div className="flex gap-2 px-4 py-3 pr-16">
           <a
             href={`tel:${site.phone}`}
-            className="inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-flare px-4 py-3.5 text-[15px] font-semibold text-white"
+            className="inline-flex flex-1 items-center justify-center gap-2 rounded-[2px] bg-flare px-4 py-3.5 text-[15px] font-semibold text-white"
           >
             <PhoneIcon className="h-4 w-4 stroke-current" />
             Call now
           </a>
           <a
             href={`mailto:${site.email}?subject=Spokane%20fire%20-%20my%20property`}
-            className="inline-flex flex-1 items-center justify-center rounded-full border-2 border-day-ink px-4 py-3.5 text-[15px] font-semibold text-day-ink"
+            className="inline-flex flex-1 items-center justify-center rounded-[2px] border-2 border-day-ink px-4 py-3.5 text-[15px] font-semibold text-day-ink"
           >
             Send photos
           </a>
