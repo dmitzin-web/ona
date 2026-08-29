@@ -9,10 +9,11 @@ import { Logo } from "./Logo";
 // ─────────────────────────────────────────────────────────────
 // Header — Project File concept
 // ────────────────────────────────────────────────────────────
-// Minimal sticky bar on a light surface. Five nav items, no
+// Minimal sticky bar on the charcoal ground. Nav items, no
 // dropdowns. Two CTAs on the right:
-//   - Phone (accent green, primary)
-//   - Start a project (ink outline, secondary)
+//   - Phone (gold, primary, visible at every width; recoloured to
+//     `flare` on wildfire pages by a :has() rule in globals.css)
+//   - Start a project (ink outline, secondary, sm and up)
 // Ask ONA is kept as a quiet nav-stream button — it still
 // dispatches the same window event so the existing AskOna
 // drawer continues to work, but it doesn't shout.
@@ -107,11 +108,27 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
+          {/* The call button is visible at every width, including mobile,
+              where it previously collapsed into the burger and left a
+              restoration site with no reachable phone number on a phone.
+              Below md it shows a pulse dot and "Call"; the full number
+              appears once there's room for it.
+
+              gold-deep, not gold: white on `gold` measures 2.73:1, which
+              fails WCAG AA (4.5:1) at this size — it did before this button
+              was enlarged too. `gold-deep` measures 4.7:1 and still reads as
+              the brand accent. Darkening on hover only raises it. */}
           <a
             href={`tel:${site.phone}`}
-            className="hidden rounded-full bg-gold px-5 py-2.5 text-[13px] font-medium text-white transition hover:bg-gold-deep sm:inline-flex"
+            aria-label={`Call ${site.phoneDisplay}`}
+            className="inline-flex items-center gap-2 rounded-full bg-gold-deep px-4 py-2.5 text-[14px] font-semibold text-white transition hover:brightness-90 md:px-5"
           >
-            {site.phoneDisplay}
+            <span
+              aria-hidden="true"
+              className="ona-pulse h-1.5 w-1.5 flex-none rounded-full bg-white/90"
+            />
+            <span className="md:hidden">Call</span>
+            <span className="hidden md:inline">{site.phoneDisplay}</span>
           </a>
           <Link
             href="/start-project"
@@ -207,7 +224,7 @@ export function Header() {
                   <a
                     href={`tel:${site.phone}`}
                     onClick={closeMobileMenu}
-                    className="inline-flex w-full items-center justify-center rounded-full bg-gold px-4 py-3 text-[13px] font-medium text-white"
+                    className="inline-flex w-full items-center justify-center rounded-full bg-gold-deep px-4 py-3 text-[14px] font-semibold text-white"
                   >
                     Call {site.phoneDisplay}
                   </a>

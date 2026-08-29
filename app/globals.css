@@ -140,3 +140,15 @@ a {
 body:has(.wildfire-page) .promo-strip {
   display: none;
 }
+
+/* On wildfire pages the header's call button switches from the brand gold
+   to the page's own accent, so the sticky call action and the CTAs in the
+   page read as one thing rather than two competing warm colours. Same
+   :has() approach as above — the header stays a shared component and
+   knows nothing about routes. */
+body:has(.wildfire-page) header a[href^="tel:"] {
+  background: var(--color-flare);
+}
+body:has(.wildfire-page) header a[href^="tel:"]:hover {
+  background: var(--color-flare-deep);
+}
