@@ -64,23 +64,29 @@ export function Logo({
           {Mark}
         </span>
         <span className="flex flex-col leading-none" style={{ color: ink }}>
+          {/* Light and wide. A 500-weight wordmark competes with the nav
+              beside it; at 300 with .24em tracking the mark reads as a
+              signature rather than as another button, which is the whole
+              point of an understated wordmark. */}
           <span
             className="font-display"
             style={{
-              fontWeight: 500,
-              fontSize: stacked ? "1.5rem" : "1.25rem",
-              letterSpacing: "0.18em",
+              fontWeight: 300,
+              fontSize: stacked ? "1.6rem" : "1.35rem",
+              letterSpacing: "0.24em",
             }}
           >
             ONA
           </span>
+          {/* Mono, like every other small label on the site — this is a
+              credential line, not display type. */}
           <span
-            className="mt-1 font-display"
+            className="mt-1.5 font-mono"
             style={{
-              fontWeight: 300,
-              fontSize: "0.55rem",
-              letterSpacing: "0.42em",
-              opacity: 0.75,
+              fontWeight: 400,
+              fontSize: "0.53rem",
+              letterSpacing: "0.34em",
+              opacity: 0.72,
             }}
           >
             RESTORATION

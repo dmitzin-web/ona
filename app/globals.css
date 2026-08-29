@@ -118,6 +118,21 @@
     "Liberation Mono", monospace;
 }
 
+:root {
+  /* Height of the sticky chrome: the deep-teal status strip plus the
+     header bar. The mobile drawer is `position: fixed`, so it cannot
+     measure its own offset — it reads this. Verified in the browser at
+     390px and 1280px; if you change the strip's or the header's padding,
+     re-measure and update this. */
+  --chrome-h: 99px;
+}
+@media (min-width: 768px) {
+  :root {
+    /* The bar goes from py-3 to py-4 at md. */
+    --chrome-h: 107px;
+  }
+}
+
 html {
   /* `bg-charcoal` is also on <body> via Tailwind, but painting it on
      <html> too kills any FOUC flash of white in the area outside body
@@ -211,6 +226,16 @@ a {
    component and no route logic leaks into the layout. */
 body:has(.wildfire-page) .promo-strip {
   display: none;
+}
+/* With the strip gone the sticky chrome is the header alone, so the
+   mobile drawer's offset has to shrink with it. */
+body:has(.wildfire-page) {
+  --chrome-h: 66px;
+}
+@media (min-width: 768px) {
+  body:has(.wildfire-page) {
+    --chrome-h: 74px;
+  }
 }
 
 /* On wildfire pages the header's call button switches from the brand gold

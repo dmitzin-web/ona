@@ -90,13 +90,14 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl px-6 pt-20 pb-20 md:pt-28 md:pb-24 lg:px-10">
           <div className="grid gap-12 md:grid-cols-[1.05fr_1fr] md:items-center md:gap-16">
             <div>
-              <div className="flex items-center gap-2">
-                <span className="ona-pulse h-2 w-2 rounded-full bg-gold" />
-                <p className="eyebrow text-ivory/85">
-                  24/7 emergency response · Vancouver, WA + Portland metro
-                </p>
-              </div>
-              <h1 className="mt-8 text-[40px] font-semibold leading-[1.04] tracking-[-0.025em] text-ivory md:text-[64px]">
+              {/* The eyebrow that used to sit here read "24/7 emergency
+                  response · Vancouver, WA + Portland metro" — word for
+                  word what the sticky status strip now says about 60px
+                  above it, with a second pulsing dot beside it. Removed
+                  rather than reworded: the fact is still on screen, the
+                  H1 gets to start at the top of the hero, and the site
+                  is back to one animation. */}
+              <h1 className="text-[40px] font-semibold leading-[1.04] tracking-[-0.025em] text-ivory md:text-[64px]">
                 Water. Fire. Mold.{" "}
                 <span className="text-ivory/85">
                   One call, on-site in an hour.

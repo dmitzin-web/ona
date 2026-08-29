@@ -9,31 +9,41 @@ import { Logo } from "./Logo";
 // ─────────────────────────────────────────────────────────────
 // Header — Project File concept
 // ────────────────────────────────────────────────────────────
-// Minimal sticky bar on the charcoal ground. Nav items, no
-// dropdowns. Two CTAs on the right:
-//   - Phone (gold, primary, visible at every width; recoloured to
+// Minimal bar. Nav items, no dropdowns. Two CTAs on the right:
+//   - Phone (coral, primary, visible at every width; recoloured to
 //     `flare` on wildfire pages by a :has() rule in globals.css)
 //   - Start a project (ink outline, secondary, sm and up)
 // Ask ONA is kept as a quiet nav-stream button — it still
 // dispatches the same window event so the existing AskOna
 // drawer continues to work, but it doesn't shout.
 //
+// STICKY LIVES IN app/layout.tsx, NOT HERE. The header and the
+// deep-teal status strip above it are one sticky unit, so the
+// dark edge is present at every scroll position. A header that
+// stuck on its own was solid white sitting on white content with
+// a 10%-opacity hairline — invisible, which is exactly the
+// complaint that produced this change.
+//
 // Mobile: native <details>/<summary> drawer, no JS state.
 
 type NavItem =
-  | { href: string; label: string; action?: never }
-  | { action: "ask-ona"; label: string; href?: never };
+  | { href: string; label: string; mobileOnly?: boolean; action?: never }
+  | { action: "ask-ona"; label: string; mobileOnly?: never; href?: never };
 
 // Restoration leads: it's the line people search for mid-emergency and the
 // one that drives phone calls. Remodeling is a months-long consideration
 // purchase and reads fine further down the bar.
+// `mobileOnly` keeps an item out of the desktop bar without removing it
+// from the site's navigation. Fewer things in the bar makes the wordmark
+// read larger; Contact is one tap away in the drawer, in the footer, and
+// as the two buttons sitting immediately to the right of this list.
 const nav: NavItem[] = [
   { href: "/services", label: "Restoration" },
   { href: "/services/mold-removal", label: "Mold" },
   { href: "/services/remodeling", label: "Remodeling" },
   { href: "/about", label: "How we work" },
   { href: "/blog", label: "Notes" },
-  { href: "/contact", label: "Contact" },
+  { href: "/contact", label: "Contact", mobileOnly: true },
   { action: "ask-ona", label: "Ask AI" },
 ];
 
@@ -69,13 +79,25 @@ export function Header() {
   }
 
   return (
-    <header className="sticky top-0 z-40 border-b border-ivory/10 bg-charcoal/90 backdrop-blur">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-4 lg:px-10">
+    // Solid, not `bg-charcoal/90 backdrop-blur`. Blurring white content
+    // through a 90% white bar produces a dirty grey that is neither the
+    // page nor the chrome; opaque white under the teal strip is cleaner
+    // and makes the strip's edge do all the separating work.
+    // `border-line` is a real hairline (#dce7e5) — the old `ivory/10`
+    // measured about 1.5% against white and could not be seen at all.
+    // The shadow is the one on the site: a sticky bar is a genuine
+    // physical layer above the scrolling page, which is the only case
+    // the design brief allows a shadow for.
+    <header className="border-b border-line bg-charcoal shadow-[0_10px_30px_-26px_rgba(23,33,36,0.65)]">
+      {/* Tighter on phones. The strip and the bar are both pinned now, so
+          every pixel here is permanently subtracted from the viewport. */}
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-3 md:py-4 lg:px-10">
         <Logo variant="horizontal" tone="light" />
 
         <nav aria-label="Primary" className="hidden lg:block">
           <ul className="flex items-center gap-8 text-[14px] text-ivory/85">
             {nav.map((item, i) => {
+              if (item.mobileOnly) return null;
               if ("action" in item) {
                 return (
                   <li key="ask-ona">
@@ -142,7 +164,7 @@ export function Header() {
             <summary
               aria-label="Toggle menu"
               aria-controls="mobile-nav"
-              className="inline-flex h-10 w-10 cursor-pointer list-none items-center justify-center rounded-full border border-ivory/10 text-ivory transition hover:border-charcoal [&::-webkit-details-marker]:hidden"
+              className="inline-flex h-10 w-10 cursor-pointer list-none items-center justify-center rounded-full border border-line text-ivory transition hover:border-ivory/45 [&::-webkit-details-marker]:hidden"
             >
               <span className="sr-only">Menu</span>
               <span aria-hidden="true" className="relative block h-3 w-5">
@@ -168,11 +190,17 @@ export function Header() {
                      solid, so page text no longer bleeds through.
                   3. max-h-[calc(100vh-65px)] → min-h-[calc(100dvh-65px)]:
                      the drawer fills the screen below the header
-                     instead of sizing to its short content. */}
+                     instead of sizing to its short content.
+                  4. The 65px was the header's own height, from when the
+                     header was the sticky element. It now sits under the
+                     status strip inside a shared sticky wrapper, so the
+                     offset is strip + header — published as --chrome-h in
+                     globals.css, where the wildfire override that hides
+                     the strip also shrinks it back. */}
             <nav
               id="mobile-nav"
               aria-label="Mobile primary"
-              className="fixed inset-x-0 top-[65px] z-40 hidden min-h-[calc(100dvh-65px)] overflow-y-auto border-t border-ivory/10 bg-charcoal group-open:block"
+              className="fixed inset-x-0 top-[var(--chrome-h)] z-40 hidden min-h-[calc(100dvh-var(--chrome-h))] overflow-y-auto border-t border-line bg-charcoal group-open:block"
             >
               <ul className="mx-auto max-w-7xl px-6 py-2">
                 {nav.map((item, i) => {
@@ -180,7 +208,7 @@ export function Header() {
                     return (
                       <li
                         key="ask-ona-mobile"
-                        className="border-b border-ivory/10 last:border-b-0"
+                        className="border-b border-line last:border-b-0"
                       >
                         <button
                           type="button"
@@ -202,7 +230,7 @@ export function Header() {
                   return (
                     <li
                       key={item.href ?? `nav-mob-${i}`}
-                      className="border-b border-ivory/10 last:border-b-0"
+                      className="border-b border-line last:border-b-0"
                     >
                       <Link
                         href={item.href}
