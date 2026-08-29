@@ -1,27 +1,29 @@
-// Style-reference gallery for /services/remodeling.
+// Completed-work gallery for /services/remodeling.
 //
-// These are NOT photos of completed ONA Restoration & Remodeling LLC projects
-// — the company was formed 2026-05-13 and is building its project gallery.
-// Each card is explicitly labeled "Reference" to make this clear to visitors
-// and to crawler-side trust signals (Google reverse image search will identify
-// the images as not original; the labeling sidesteps any misrepresentation
-// flag).
+// This used to be eight Pexels stock photos, each honestly labeled
+// "Reference" with a footnote saying the imagery was generic. The
+// labeling was the right call at the time, but for a remodeling page a
+// portfolio is half the sale, and "here is the kind of thing we could
+// do" loses to any competitor showing an actual kitchen.
 //
-// When real projects complete, swap the entries in `references` one-by-one:
-// replace each `image` URL with a project photo path under /public/photos/,
-// flip `label` from "Reference" to "Completed", and the gallery becomes a
-// real-projects gallery without further code changes.
+// These nine are ONA's own finish work, from /public/photos/projects/ —
+// the same set the homepage grid and the Spokane page use.
 //
-// Photo source: Pexels CDN. Pexels license allows free commercial use
-// without attribution. URL pattern is stable:
-//   https://images.pexels.com/photos/{id}/pexels-photo-{id}.jpeg?w=1200
-// When real project photos arrive, replace each `image` URL with a path
-// under /public/photos/remodel/.
+// RULE FOR WHOEVER EDITS THIS NEXT: every word in `notes` must be
+// visible in its photo. Form and fixtures only — waterfall island,
+// apron-front sink, chimney hood, freestanding tub, floor-mounted
+// filler, large-format floor tile. NO materials, species, brands,
+// dimensions, timelines, budgets, cities or client names, because none
+// of that can be verified from an image and inventing it is exactly the
+// failure this gallery was rebuilt to fix. The photos are also not nine
+// separate projects — several are two views of one room — so nothing
+// here claims a project count.
 
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowIcon } from "./icons/ServiceIcons";
 
-type Reference = {
+type Project = {
   image: string;
   imageAlt: string;
   roomType: string;
@@ -29,145 +31,150 @@ type Reference = {
   notes: string;
 };
 
-// Helper: Pexels CDN URL. Stable photo IDs are listed below.
-const pexels = (id: number) =>
-  `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=1200`;
-
-const references: Reference[] = [
+const projects: Project[] = [
   {
-    image: pexels(7166645),
-    imageAlt: "Reference: modern kitchen — light cabinetry, quartz countertop, island seating",
+    image: "/photos/projects/p7.avif",
+    imageAlt:
+      "Kitchen with full-height shaker cabinetry, waterfall-edge island, three globe pendants and a chimney hood",
     roomType: "Kitchen",
-    title: "Full kitchen renovation",
+    title: "Full kitchen",
     notes:
-      "Quartz waterfall island · Walnut shaker cabinetry · Brass hardware · Induction cooktop · Under-cabinet lighting",
+      "Full-height shaker cabinetry · Waterfall-edge island · Built-in wall ovens · Chimney hood · Under-cabinet lighting",
   },
   {
-    image: pexels(6957081),
-    imageAlt: "Reference: modern bathroom — large-format tile, walk-in shower, contemporary vanity",
+    image: "/photos/projects/p8.avif",
+    imageAlt:
+      "Kitchen island with waterfall edge and apron-front sink, gas cooktop and chimney hood behind",
+    roomType: "Kitchen",
+    title: "Island and cooking wall",
+    notes:
+      "Waterfall-edge island · Apron-front sink · Gas cooktop · Chimney hood · Continuous plank flooring",
+  },
+  {
+    image: "/photos/projects/p9.avif",
+    imageAlt:
+      "View along a kitchen run through to the living room, with apron-front sink, gooseneck faucet and a fireplace wall beyond",
+    roomType: "Kitchen",
+    title: "Kitchen through to living",
+    notes:
+      "Panelled hood surround · Apron-front sink · Gooseneck faucet · Open sightline to the fireplace wall",
+  },
+  {
+    image: "/photos/projects/p1.avif",
+    imageAlt:
+      "Primary bath double vanity with two undermount basins, paired mirrors and two-globe sconces",
     roomType: "Primary bath",
-    title: "Curbless wet-room remodel",
+    title: "Double vanity",
     notes:
-      "Large-format porcelain tile · Curbless walk-in shower · Double vanity · Heated floor · Integrated steam",
+      "Shaker vanity run · Two undermount basins · Paired mirrors · Two-globe sconces · Drawer storage",
   },
   {
-    image: pexels(7174113),
-    imageAlt: "Reference: spacious open-concept living room — engineered floors, large windows, neutral palette",
-    roomType: "Whole-house",
-    title: "Open-concept conversion",
+    image: "/photos/projects/p2.avif",
+    imageAlt:
+      "Primary bath looking down the vanity run to a freestanding tub, with a glass shower enclosure to the right",
+    roomType: "Primary bath",
+    title: "Full bath layout",
     notes:
-      "Load-bearing wall removal · Engineered hardwood throughout · Recessed lighting · Custom built-ins",
+      "Freestanding tub · Glass shower enclosure · Large-format floor tile · Full-length vanity run",
   },
   {
-    image: pexels(6908565),
-    imageAlt: "Reference: kitchen with custom cabinetry and built-in storage details",
-    roomType: "Custom millwork",
-    title: "Built-in library + study",
+    image: "/photos/projects/p3.avif",
+    imageAlt:
+      "Freestanding soaking tub beneath a shuttered window with a floor-mounted tub filler",
+    roomType: "Primary bath",
+    title: "Freestanding tub",
     notes:
-      "Floor-to-ceiling shelving · Integrated lighting · Panel-ready fronts · Rolling ladder · Hidden cable management",
+      "Freestanding soaking tub · Floor-mounted filler · Window trim and blinds · Painted walls",
   },
   {
-    image: pexels(7045356),
-    imageAlt: "Reference: transitional kitchen — painted shaker, contrast hardware, stone counters",
-    roomType: "Kitchen",
-    title: "Transitional refresh",
+    image: "/photos/projects/p5.avif",
+    imageAlt:
+      "Powder room with dark painted walls, a white shaker vanity and a round mirror",
+    roomType: "Powder room",
+    title: "Powder room",
     notes:
-      "Painted shaker cabinetry · Matte black hardware · Honed soapstone counters · Apron-front sink · Open shelving",
+      "Dark painted walls · Shaker vanity · Round mirror · Large-format floor tile",
   },
   {
-    image: pexels(6899357),
-    imageAlt: "Reference: guest bath — patterned tile, wall-mount fixtures, statement mirror",
+    image: "/photos/projects/p6.avif",
+    imageAlt:
+      "Guest bath with textured wallcovering, white shaker vanity and an oval mirror, opening onto a plank-floored room",
     roomType: "Guest bath",
-    title: "Compact bath remodel",
+    title: "Guest bath",
     notes:
-      "Penny tile floor · Wainscot wall panels · Wall-mount fixtures · Statement mirror · Single-vanity layout",
+      "Textured wallcovering · Shaker vanity · Oval mirror · Doorway trim and hardware",
   },
   {
-    image: pexels(8135492),
-    imageAlt: "Reference: refined finished interior with chandeliers and natural light",
-    roomType: "Addition",
-    title: "Second-story addition",
+    image: "/photos/projects/p4.avif",
+    imageAlt:
+      "Laundry room with upper cabinetry, an open shelf, a utility sink and side-by-side machines",
+    roomType: "Laundry",
+    title: "Laundry room",
     notes:
-      "Gabled roofline match · Siding & trim continuity · Structural engineering · Full-width windows · Permit-led process",
-  },
-  {
-    image: pexels(7173661),
-    imageAlt: "Reference: compact kitchen with full appliance package and clean cabinetry",
-    roomType: "ADU / garage conversion",
-    title: "Detached ADU build-out",
-    notes:
-      "Studio + kitchenette + bath · Siding match to main house · Separate utilities · Permit-led process",
+      "Upper cabinetry · Open shelf · Utility sink and counter · Side-by-side machines",
   },
 ];
 
 export function RemodelingGallery() {
   return (
-    <section className="border-t border-ivory/10 bg-charcoal">
+    <section className="border-t border-line bg-charcoal">
       <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
-        {/* Section header with explicit disclaimer. This framing is the
-            entire point — it signals to visitors and to Google's crawlers
-            that the gallery shows style references, not claimed completed
-            work. Do not soften this wording when adding real project photos
-            below; instead, when a card switches from reference to real,
-            flip its individual label badge. */}
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div className="max-w-2xl">
-            <p className="eyebrow text-ivory/72">Style references</p>
-            <h2 className="text-ivory mt-6 text-4xl font-light leading-tight tracking-tight sm:text-5xl">
-              The kind of remodel we&apos;re set up to deliver.
+            <p className="eyebrow text-warm-gray">Our work</p>
+            <h2 className="mt-6 text-4xl font-light leading-tight tracking-tight text-ivory sm:text-5xl">
+              Finish work, photographed as we left it.
             </h2>
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-ivory/80">
-              Reference photos showing the style and finish quality our
-              remodeling division targets. Our project gallery launches with
-              our first completed remodel — these references will be replaced
-              one-by-one with real project photography as work completes.
+            {/* Says what these are and nothing more. No project count, no
+                square footage, no timelines — see the rule at the top. */}
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-warm-gray">
+              Kitchens, baths and finish carpentry completed by our own
+              crews. Several of these are two views of the same room rather
+              than separate projects.
             </p>
           </div>
           <Link
             href="/quote"
-            className="inline-flex items-center gap-2 eyebrow text-ivory transition hover:gap-3"
+            className="eyebrow inline-flex items-center gap-2 text-ivory transition hover:gap-3"
           >
             Start your project
             <ArrowIcon className="h-3 w-3 stroke-current" />
           </Link>
         </div>
 
-        <ul className="mt-14 grid gap-px overflow-hidden border border-ivory/10 bg-charcoal/10 sm:grid-cols-2 lg:grid-cols-4">
-          {references.map((r) => (
-            <li key={r.title} className="bg-charcoal">
+        {/* Three across, not four. The photos are the argument on this page,
+            so they get the width — and nine divides into three rows with no
+            orphan card. */}
+        <ul className="mt-14 grid gap-px overflow-hidden border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
+          {projects.map((p) => (
+            <li key={p.title + p.image} className="bg-charcoal">
               <article className="flex h-full flex-col">
                 <div className="relative aspect-[4/3] overflow-hidden">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={r.image}
-                    alt={r.imageAlt}
-                    loading="lazy"
-                    className="h-full w-full object-cover"
+                  {/* next/image now, not a bare <img>: these are local
+                      files, so we get AVIF/WebP sizing and no layout
+                      shift, and the page stops reaching out to an
+                      external image host entirely. */}
+                  <Image
+                    src={p.image}
+                    alt={p.imageAlt}
+                    fill
+                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    className="object-cover"
                   />
-                  <span className="absolute left-4 top-4 inline-flex items-center bg-charcoal/95 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.18em] text-ivory">
-                    Reference
-                  </span>
                 </div>
                 <div className="flex flex-1 flex-col p-6">
-                  <p className="eyebrow text-ivory/68">{r.roomType}</p>
+                  <p className="eyebrow text-warm-gray">{p.roomType}</p>
                   <h3 className="mt-3 text-lg font-medium tracking-tight text-ivory">
-                    {r.title}
+                    {p.title}
                   </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-ivory/76">
-                    {r.notes}
+                  <p className="mt-3 text-sm leading-relaxed text-warm-gray">
+                    {p.notes}
                   </p>
                 </div>
               </article>
             </li>
           ))}
         </ul>
-
-        <p className="mt-10 max-w-3xl text-xs leading-relaxed text-ivory/70">
-          Reference photography is generic stock imagery. Each card describes
-          the room type, finish targets, and scope our remodeling division
-          delivers — not a specific completed project. Real project photos
-          replace these as our first remodels finish.
-        </p>
       </div>
     </section>
   );
