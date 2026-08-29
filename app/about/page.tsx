@@ -60,13 +60,13 @@ export default function AboutPage() {
       />
       <section className="bg-charcoal">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
-          <p className="eyebrow text-ivory/60">About</p>
+          <p className="eyebrow text-ivory/72">About</p>
           <h1 className="text-ivory mt-6 max-w-3xl text-5xl font-light leading-[1.05] tracking-tight sm:text-6xl">
             We restore more than properties. We restore trust.
           </h1>
           <div className="mt-16 grid gap-12 lg:grid-cols-12">
             <div className="lg:col-span-7">
-              <div className="space-y-6 text-lg leading-relaxed text-ivory/80">
+              <div className="space-y-6 text-lg leading-relaxed text-ivory/90">
                 <p>
                   {site.name} is a locally owned restoration contractor based
                   in Vancouver, Washington, serving homeowners, property
@@ -93,8 +93,8 @@ export default function AboutPage() {
             </div>
             <aside className="lg:col-span-5">
               <div className="border border-ivory/10 p-8">
-                <p className="eyebrow text-ivory/60">Credentials</p>
-                <ul className="mt-6 space-y-3 text-base text-ivory/85">
+                <p className="eyebrow text-ivory/72">Credentials</p>
+                <ul className="mt-6 space-y-3 text-base text-ivory/95">
                   {site.certifications.map((c) => (
                     <li
                       key={c}
@@ -115,13 +115,13 @@ export default function AboutPage() {
       {SHOW_FOUNDER && (
       <section id="founder" className="border-t border-ivory/10 bg-charcoal scroll-mt-24">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
-          <p className="eyebrow text-ivory/60">Founder</p>
+          <p className="eyebrow text-ivory/72">Founder</p>
           <h2 className="text-ivory mt-6 max-w-3xl text-4xl font-light leading-tight tracking-tight sm:text-5xl">
             Founded and led by Dmitry Zinovyev.
           </h2>
           <div className="mt-12 grid gap-12 lg:grid-cols-12">
             <div className="lg:col-span-8">
-              <div className="space-y-6 text-base leading-relaxed text-ivory/80">
+              <div className="space-y-6 text-base leading-relaxed text-ivory/90">
                 <p>
                   Dmitry built ONA Restoration &amp; Remodeling after watching
                   the Pacific Northwest restoration market run the same playbook
@@ -154,8 +154,8 @@ export default function AboutPage() {
             </div>
             <aside className="lg:col-span-4">
               <div className="border border-ivory/10 p-8">
-                <p className="eyebrow text-ivory/60">Contact</p>
-                <p className="mt-5 text-sm leading-relaxed text-ivory/80">
+                <p className="eyebrow text-ivory/72">Contact</p>
+                <p className="mt-5 text-sm leading-relaxed text-ivory/90">
                   For project consultations, partnership, press, or anything
                   that should reach the founder directly:
                 </p>
@@ -181,17 +181,17 @@ export default function AboutPage() {
       {/* How we work */}
       <section className="border-t border-ivory/10 bg-charcoal-soft">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
-          <p className="eyebrow text-ivory/60">How we work</p>
+          <p className="eyebrow text-ivory/72">How we work</p>
           <h2 className="text-ivory mt-6 max-w-3xl text-4xl font-light leading-tight tracking-tight sm:text-5xl">
             Three things we do differently.
           </h2>
           <div className="mt-14 grid gap-px overflow-hidden border border-ivory/10 bg-charcoal/10 md:grid-cols-3">
             <div className="bg-charcoal p-10">
-              <p className="eyebrow text-ivory/60">01</p>
+              <p className="eyebrow text-ivory/72">01</p>
               <h3 className="text-ivory mt-4 text-xl font-medium tracking-tight">
                 Documentation by default
               </h3>
-              <p className="mt-4 text-sm leading-relaxed text-ivory/70">
+              <p className="mt-4 text-sm leading-relaxed text-ivory/80">
                 Thermal imaging, moisture readings, daily progress photos and
                 an Xactimate-formatted scope on every job — not just the ones
                 that look complicated. It&apos;s the same standard your
@@ -199,11 +199,11 @@ export default function AboutPage() {
               </p>
             </div>
             <div className="bg-charcoal p-10">
-              <p className="eyebrow text-ivory/60">02</p>
+              <p className="eyebrow text-ivory/72">02</p>
               <h3 className="text-ivory mt-4 text-xl font-medium tracking-tight">
                 One contractor, end to end
               </h3>
-              <p className="mt-4 text-sm leading-relaxed text-ivory/70">
+              <p className="mt-4 text-sm leading-relaxed text-ivory/80">
                 Mitigation, demolition, structural repair and the final
                 finish-carpentry rebuild are all the same crew. No handoffs
                 to subcontractors you&apos;ve never met. One contract, one
@@ -211,11 +211,11 @@ export default function AboutPage() {
               </p>
             </div>
             <div className="bg-charcoal p-10">
-              <p className="eyebrow text-ivory/60">03</p>
+              <p className="eyebrow text-ivory/72">03</p>
               <h3 className="text-ivory mt-4 text-xl font-medium tracking-tight">
                 Insurance-grade handover
               </h3>
-              <p className="mt-4 text-sm leading-relaxed text-ivory/70">
+              <p className="mt-4 text-sm leading-relaxed text-ivory/80">
                 We talk to your adjuster so you don&apos;t have to. Every
                 disputed line item is backed by photo and moisture
                 documentation captured the first day. We close more claims at
@@ -318,11 +318,11 @@ function Stat({
 }) {
   return (
     <div>
-      <dt className="eyebrow text-ivory/55">{label}</dt>
+      <dt className="eyebrow text-ivory/70">{label}</dt>
       <dd className="mt-4 text-3xl font-light tracking-tight text-ivory">
         {value}
       </dd>
-      <p className="mt-3 text-xs leading-relaxed text-ivory/55">{note}</p>
+      <p className="mt-3 text-xs leading-relaxed text-ivory/70">{note}</p>
     </div>
   );
 }

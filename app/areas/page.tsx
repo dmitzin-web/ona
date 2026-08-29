@@ -26,11 +26,11 @@ export default function AreasPage() {
       />
       <section className="bg-charcoal">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
-          <p className="eyebrow text-ivory/60">Where we work</p>
+          <p className="eyebrow text-ivory/72">Where we work</p>
           <h1 className="text-ivory mt-6 max-w-3xl text-5xl font-light leading-[1.05] tracking-tight sm:text-6xl">
             Vancouver, WA and the entire Portland metro.
           </h1>
-          <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ivory/75">
+          <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ivory/85">
             Headquartered in Vancouver, WA. Crews staged across the metro so we
             can hit a 60-minute response target — Salmon Creek to Lake Oswego.
           </p>
@@ -45,7 +45,7 @@ export default function AreasPage() {
                     <p className="text-xl font-medium tracking-tight">
                       {a.name}
                     </p>
-                    <p className="mt-1 text-sm text-ivory/55 group-hover:text-charcoal/60">
+                    <p className="mt-1 text-sm text-ivory/70 group-hover:text-charcoal/60">
                       {a.region}
                     </p>
                   </div>

@@ -259,7 +259,7 @@ export default async function ProjectPage({
       <div className="mx-auto max-w-5xl px-6 py-12 md:py-20 lg:px-10">
         <Link
           href="/"
-          className="text-[13px] text-ivory/75 underline-offset-4 hover:text-ivory hover:underline"
+          className="text-[13px] text-ivory/85 underline-offset-4 hover:text-ivory hover:underline"
         >
           ← ONA Restoration
         </Link>
@@ -270,7 +270,7 @@ export default async function ProjectPage({
             <span className="mt-0.5 rounded-full bg-gold/20 px-2.5 py-1 text-[11px] font-medium uppercase tracking-wider text-gold">
               Sample
             </span>
-            <p className="text-ivory/75">
+            <p className="text-ivory/85">
               This is a sample of what your project page looks like. The
               data is illustrative — no real customer is shown. Real
               client pages are private and shared only with the homeowner
@@ -281,13 +281,13 @@ export default async function ProjectPage({
 
         {/* Header */}
         <div className="mt-10">
-          <p className="eyebrow text-ivory/75">
+          <p className="eyebrow text-ivory/85">
             {p.kind} · {p.service}
           </p>
           <h1 className="mt-4 text-[36px] font-semibold leading-[1.05] tracking-[-0.02em] text-ivory md:text-[56px]">
             {p.title}
           </h1>
-          <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-[14px] text-ivory/75">
+          <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-[14px] text-ivory/85">
             <span className="flex items-center gap-2 text-ivory">
               <span className="ona-pulse h-2 w-2 rounded-full bg-gold" />
               {p.status}
@@ -316,11 +316,11 @@ export default async function ProjectPage({
         <div className="mt-20 grid gap-10 border-t border-ivory/10 pt-12 md:grid-cols-3 md:gap-12">
           {p.approvedScope ? (
             <div>
-              <div className="eyebrow text-ivory/50">Approved scope</div>
+              <div className="eyebrow text-ivory/68">Approved scope</div>
               <div className="mt-3 text-[32px] font-semibold tabular-nums leading-none text-ivory">
                 {p.approvedScope}
               </div>
-              <div className="mt-3 text-[13px] text-ivory/65">
+              <div className="mt-3 text-[13px] text-ivory/76">
                 Billed directly to insurer. Homeowner pays deductible
                 only.
               </div>
@@ -328,25 +328,25 @@ export default async function ProjectPage({
           ) : null}
 
           <div>
-            <div className="eyebrow text-ivory/50">Photo record</div>
+            <div className="eyebrow text-ivory/68">Photo record</div>
             <div className="mt-3 text-[32px] font-semibold tabular-nums leading-none text-ivory">
               {p.photosCount}
             </div>
-            <div className="mt-3 text-[13px] text-ivory/65">
+            <div className="mt-3 text-[13px] text-ivory/76">
               Uploaded daily. Every reading, every change of scope.
             </div>
           </div>
 
           <div>
-            <div className="eyebrow text-ivory/50">Documents on file</div>
+            <div className="eyebrow text-ivory/68">Documents on file</div>
             <ul className="mt-3 space-y-2 text-[13px]">
               {p.docs.map((d) => (
                 <li
                   key={d.label}
-                  className="flex items-start justify-between gap-3 border-t border-ivory/10 pt-2 text-ivory/75"
+                  className="flex items-start justify-between gap-3 border-t border-ivory/10 pt-2 text-ivory/85"
                 >
                   <span className="text-ivory">{d.label}</span>
-                  <span className="shrink-0 text-[10px] uppercase tracking-wider text-ivory/45">
+                  <span className="shrink-0 text-[10px] uppercase tracking-wider text-ivory/66">
                     {d.type}
                   </span>
                 </li>
@@ -360,7 +360,7 @@ export default async function ProjectPage({
           <h2 className="max-w-2xl text-[24px] font-semibold leading-tight tracking-tight text-ivory md:text-[32px]">
             Want a page like this for your project?
           </h2>
-          <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-ivory/75">
+          <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-ivory/85">
             Every ONA client gets one — restoration or remodel. Updated
             daily until sign-off.
           </p>

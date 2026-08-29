@@ -159,11 +159,11 @@ export default function StartProjectPage() {
     return (
       <div className="bg-charcoal text-ivory">
         <div className="mx-auto max-w-2xl px-6 py-24 md:py-32 lg:px-10">
-          <p className="eyebrow text-ivory/75">We got it</p>
+          <p className="eyebrow text-ivory/85">We got it</p>
           <h1 className="mt-6 text-[36px] font-semibold leading-[1.1] tracking-[-0.02em] text-ivory md:text-[52px]">
             Thanks, {form.name.split(" ")[0] || "there"}.
           </h1>
-          <p className="mt-6 text-[17px] leading-relaxed text-ivory/75">
+          <p className="mt-6 text-[17px] leading-relaxed text-ivory/85">
             Your details are with us. If your project is urgent, call
             now — we answer in person.
           </p>
@@ -189,7 +189,7 @@ export default function StartProjectPage() {
   return (
     <div className="bg-charcoal text-ivory">
       <div className="mx-auto max-w-2xl px-6 py-16 md:py-24 lg:px-10">
-        <div className="flex items-center justify-between text-[12px] uppercase tracking-[0.22em] text-ivory/75">
+        <div className="flex items-center justify-between text-[12px] uppercase tracking-[0.22em] text-ivory/85">
           <span>Step {step} of 4</span>
           <Link
             href="/"
@@ -241,7 +241,7 @@ export default function StartProjectPage() {
             type="button"
             onClick={() => setStep((s) => (s > 1 ? ((s - 1) as Step) : s))}
             disabled={step === 1}
-            className="text-[14px] text-ivory/75 transition hover:text-ivory disabled:opacity-30"
+            className="text-[14px] text-ivory/85 transition hover:text-ivory disabled:opacity-30"
           >
             ← Back
           </button>
@@ -285,12 +285,12 @@ function StepHeading({
 }) {
   return (
     <div>
-      <p className="eyebrow text-ivory/75">{label}</p>
+      <p className="eyebrow text-ivory/85">{label}</p>
       <h1 className="mt-4 text-[32px] font-semibold leading-[1.1] tracking-[-0.02em] text-ivory md:text-[40px]">
         {title}
       </h1>
       {hint ? (
-        <p className="mt-4 text-[15px] leading-relaxed text-ivory/75">
+        <p className="mt-4 text-[15px] leading-relaxed text-ivory/85">
           {hint}
         </p>
       ) : null}
@@ -332,7 +332,7 @@ function RadioCard<T extends string>({
           ].join(" ")}
         />
       </div>
-      <div className="mt-2 text-[13px] leading-relaxed text-ivory/75">
+      <div className="mt-2 text-[13px] leading-relaxed text-ivory/85">
         {hint}
       </div>
     </button>
@@ -521,7 +521,7 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="eyebrow text-ivory/75">
+      <span className="eyebrow text-ivory/85">
         {label} {required ? <span className="text-gold">·</span> : null}
       </span>
       <div className="mt-2">{children}</div>

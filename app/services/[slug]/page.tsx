@@ -84,12 +84,12 @@ export default async function ServicePage(
                 </p>
                 <h1 className="text-ivory mt-8 text-5xl font-light leading-[1.05] tracking-tight sm:text-6xl">
                   {service.name}{" "}
-                  <span className="block text-ivory/60 sm:text-5xl">
+                  <span className="block text-ivory/72 sm:text-5xl">
                     in {site.address.locality}, {site.address.region} &
                     Portland Metro.
                   </span>
                 </h1>
-                <p className="mt-10 max-w-2xl text-lg leading-relaxed text-ivory/75">
+                <p className="mt-10 max-w-2xl text-lg leading-relaxed text-ivory/85">
                   {service.hero}
                 </p>
                 <div className="mt-10 flex flex-wrap gap-4">
@@ -120,7 +120,7 @@ export default async function ServicePage(
       {/* Intro */}
       <section className="bg-charcoal">
         <div className="mx-auto max-w-4xl px-6 py-24 lg:px-10">
-          <p className="text-xl leading-relaxed text-ivory/85">
+          <p className="text-xl leading-relaxed text-ivory/95">
             {service.intro}
           </p>
         </div>
@@ -140,7 +140,7 @@ export default async function ServicePage(
                 </h2>
                 <div className="space-y-5 lg:col-span-8">
                   {b.paragraphs.map((p, i) => (
-                    <p key={i} className="text-lg leading-relaxed text-ivory/80">
+                    <p key={i} className="text-lg leading-relaxed text-ivory/90">
                       {p}
                     </p>
                   ))}
@@ -164,13 +164,13 @@ export default async function ServicePage(
                 key={p.step}
                 className="bg-charcoal p-8"
               >
-                <p className="eyebrow text-ivory/60">
+                <p className="eyebrow text-ivory/72">
                   {String(i + 1).padStart(2, "0")}
                 </p>
                 <h3 className="mt-5 text-lg font-medium tracking-tight text-ivory">
                   {p.step.replace(/^\d+\.\s*/, "")}
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-ivory/70">
+                <p className="mt-3 text-sm leading-relaxed text-ivory/80">
                   {p.text}
                 </p>
               </li>
@@ -184,11 +184,11 @@ export default async function ServicePage(
         <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
           <div className="grid gap-12 lg:grid-cols-12">
             <div className="lg:col-span-4">
-              <p className="eyebrow text-ivory/60">Warning signs</p>
+              <p className="eyebrow text-ivory/72">Warning signs</p>
               <h2 className="text-ivory mt-6 text-4xl font-light leading-tight tracking-tight sm:text-5xl">
                 When to call.
               </h2>
-              <p className="mt-6 text-base leading-relaxed text-ivory/70">
+              <p className="mt-6 text-base leading-relaxed text-ivory/80">
                 Early action saves money and prevents permanent damage. If any
                 of these apply, call us.
               </p>
@@ -197,7 +197,7 @@ export default async function ServicePage(
               {service.signs.map((s) => (
                 <li
                   key={s}
-                  className="border border-ivory/10 px-5 py-5 text-base text-ivory/85"
+                  className="border border-ivory/10 px-5 py-5 text-base text-ivory/95"
                 >
                   {s}
                 </li>
@@ -236,7 +236,7 @@ export default async function ServicePage(
                   We&apos;ve deployed a Washington-licensed mobile crew to
                   Spokane County.
                 </p>
-                <p className="mt-1 text-sm text-ivory/70">
+                <p className="mt-1 text-sm text-ivory/80">
                   Fire &amp; smoke restoration, board-up, and insurance
                   documentation — from first response through rebuild.
                 </p>
@@ -257,14 +257,14 @@ export default async function ServicePage(
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
           <div className="flex flex-wrap items-end justify-between gap-3">
             <div>
-              <p className="eyebrow text-ivory/60">
+              <p className="eyebrow text-ivory/72">
                 {service.shortName} by city
               </p>
               <h2 className="text-ivory mt-4 text-3xl font-light leading-tight tracking-tight sm:text-4xl">
                 Local landing pages.
               </h2>
             </div>
-            <p className="max-w-md text-sm text-ivory/55">
+            <p className="max-w-md text-sm text-ivory/70">
               Same crew, same documentation. Tap a city for response times,
               local loss patterns, and neighborhood coverage.
             </p>
@@ -291,7 +291,7 @@ export default async function ServicePage(
       <section className="bg-charcoal-soft">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
           <div className="flex items-end justify-between">
-            <p className="eyebrow text-ivory/60">Other services</p>
+            <p className="eyebrow text-ivory/72">Other services</p>
             <Link
               href="/services"
               className="inline-flex items-center gap-2 eyebrow text-ivory"

@@ -13,7 +13,13 @@ export function Logo({
   tone?: Tone;
   className?: string;
 }) {
-  const ink = tone === "light" ? "#F5F4F1" : "#141414";
+  // Tokens, not literals, so the mark inverts with the rest of the palette
+  // instead of staying frozen at the old charcoal-era hexes. Read by role:
+  // `light` is the logo that sits on the page ground, `dark` is the one on
+  // inverted surfaces. (See the token block in globals.css — `ivory` is ink
+  // and `charcoal` is ground since the September 2026 inversion.)
+  const ink =
+    tone === "light" ? "var(--color-ivory)" : "var(--color-charcoal)";
 
   const Mark = (
     <svg

@@ -57,25 +57,25 @@ export default function QuotePage() {
       <section className="bg-charcoal">
         <div className="mx-auto grid max-w-7xl gap-12 px-6 py-20 lg:grid-cols-12 lg:px-10">
           <aside className="lg:col-span-4">
-            <p className="eyebrow text-ivory/60">Quote request</p>
+            <p className="eyebrow text-ivory/72">Quote request</p>
             <h1 className="text-ivory mt-6 text-5xl font-light leading-[1.05] tracking-tight sm:text-6xl">
               Tell us what happened.
             </h1>
-            <p className="mt-8 text-base leading-relaxed text-ivory/75">
+            <p className="mt-8 text-base leading-relaxed text-ivory/85">
               Not an emergency? Use the form — we&apos;ll come back with a
               preliminary scope and next steps. For active losses please call
               instead.
             </p>
 
             <div className="mt-10 space-y-4 border-t border-ivory/15 pt-8">
-              <PhoneLink className="flex items-center gap-3 text-base font-medium text-ivory hover:text-ivory/70">
+              <PhoneLink className="flex items-center gap-3 text-base font-medium text-ivory hover:text-ivory/80">
                 <PhoneIcon className="h-5 w-5 stroke-current" />
                 {site.phoneDisplay} · 24/7 dispatch
               </PhoneLink>
-              <SmsLink className="flex items-center gap-3 text-base font-medium text-ivory hover:text-ivory/70">
+              <SmsLink className="flex items-center gap-3 text-base font-medium text-ivory hover:text-ivory/80">
                 <span aria-hidden="true">✆</span> Text dispatch
               </SmsLink>
-              <EmailLink className="flex items-center gap-3 text-base font-medium text-ivory hover:text-ivory/70">
+              <EmailLink className="flex items-center gap-3 text-base font-medium text-ivory hover:text-ivory/80">
                 <span aria-hidden="true">@</span> {site.email}
               </EmailLink>
             </div>
@@ -92,7 +92,7 @@ export default function QuotePage() {
       {/* What to include */}
       <section className="border-t border-ivory/10 bg-charcoal-soft">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
-          <p className="eyebrow text-ivory/60">What to include</p>
+          <p className="eyebrow text-ivory/72">What to include</p>
           <h2 className="text-ivory mt-6 max-w-3xl text-4xl font-light leading-tight tracking-tight sm:text-5xl">
             Five things that get you an accurate quote faster.
           </h2>
@@ -120,13 +120,13 @@ export default function QuotePage() {
               },
             ].map((item, i) => (
               <li key={item.title} className="bg-charcoal p-8">
-                <p className="eyebrow text-ivory/60">
+                <p className="eyebrow text-ivory/72">
                   {String(i + 1).padStart(2, "0")}
                 </p>
                 <h3 className="text-ivory mt-4 text-lg font-medium tracking-tight">
                   {item.title}
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-ivory/70">
+                <p className="mt-3 text-sm leading-relaxed text-ivory/80">
                   {item.text}
                 </p>
               </li>
@@ -138,7 +138,7 @@ export default function QuotePage() {
       {/* What happens next */}
       <section className="border-t border-ivory/10 bg-charcoal">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
-          <p className="eyebrow text-ivory/60">After you submit</p>
+          <p className="eyebrow text-ivory/72">After you submit</p>
           <h2 className="text-ivory mt-6 max-w-3xl text-4xl font-light leading-tight tracking-tight sm:text-5xl">
             What happens next.
           </h2>
@@ -166,11 +166,11 @@ export default function QuotePage() {
               },
             ].map((s) => (
               <li key={s.step} className="bg-charcoal p-8">
-                <p className="eyebrow text-ivory/60">Step {s.step}</p>
+                <p className="eyebrow text-ivory/72">Step {s.step}</p>
                 <h3 className="text-ivory mt-4 text-lg font-medium tracking-tight">
                   {s.title}
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-ivory/70">
+                <p className="mt-3 text-sm leading-relaxed text-ivory/80">
                   {s.text}
                 </p>
               </li>
@@ -188,31 +188,31 @@ export default function QuotePage() {
           </h2>
           <dl className="mt-12 grid gap-x-8 gap-y-10 md:grid-cols-3">
             <div>
-              <dt className="eyebrow text-ivory/55">Emergency phone</dt>
+              <dt className="eyebrow text-ivory/70">Emergency phone</dt>
               <dd className="mt-4 text-3xl font-light tracking-tight">
                 Immediate
               </dd>
-              <p className="mt-3 text-xs leading-relaxed text-ivory/55">
+              <p className="mt-3 text-xs leading-relaxed text-ivory/70">
                 Live technician answer 24/7. Crew dispatched in minutes,
                 on-site target 60 minutes anywhere in the Portland metro.
               </p>
             </div>
             <div>
-              <dt className="eyebrow text-ivory/55">Quote form, business hours</dt>
+              <dt className="eyebrow text-ivory/70">Quote form, business hours</dt>
               <dd className="mt-4 text-3xl font-light tracking-tight">
                 ≤ 1 hour
               </dd>
-              <p className="mt-3 text-xs leading-relaxed text-ivory/55">
+              <p className="mt-3 text-xs leading-relaxed text-ivory/70">
                 Mon-Sat, daytime. We acknowledge the request and either
                 respond with a preliminary scope or schedule the inspection.
               </p>
             </div>
             <div>
-              <dt className="eyebrow text-ivory/55">Quote form, after hours</dt>
+              <dt className="eyebrow text-ivory/70">Quote form, after hours</dt>
               <dd className="mt-4 text-3xl font-light tracking-tight">
                 Next morning
               </dd>
-              <p className="mt-3 text-xs leading-relaxed text-ivory/55">
+              <p className="mt-3 text-xs leading-relaxed text-ivory/70">
                 Evenings, Sundays. We work through the overnight queue at
                 the start of the next business day.
               </p>

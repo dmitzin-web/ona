@@ -42,14 +42,14 @@ export function ServiceCard({
       </h3>
       <p
         className={`mt-4 text-sm leading-relaxed ${
-          dark ? "text-ivory/70" : "text-ivory/70"
+          dark ? "text-ivory/80" : "text-ivory/80"
         }`}
       >
         {service.hero}
       </p>
       <span
         className={`mt-8 inline-flex items-center gap-2 eyebrow ${
-          dark ? "text-ivory/80" : "text-ivory/80"
+          dark ? "text-ivory/90" : "text-ivory/90"
         }`}
       >
         Learn more

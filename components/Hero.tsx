@@ -47,10 +47,10 @@ export function Hero({ image }: { image?: HeroImage } = {}) {
           <span className="block font-medium">Remodeling.</span>
         </h1>
 
-        <p className="mt-10 max-w-xl text-lg leading-relaxed text-ivory/80">
+        <p className="mt-10 max-w-xl text-lg leading-relaxed text-ivory/90">
           When something breaks, we bring it back — and make it better.
         </p>
-        <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm text-ivory/70">
+        <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm text-ivory/80">
           <li>24/7 emergency dispatch</li>
           <li aria-hidden="true">·</li>
           <li>Insurance billed direct</li>
@@ -89,7 +89,7 @@ export function Hero({ image }: { image?: HeroImage } = {}) {
 function Stat({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <dt className="eyebrow text-ivory/50">{label}</dt>
+      <dt className="eyebrow text-ivory/68">{label}</dt>
       <dd className="mt-3 text-2xl font-light tracking-tight text-ivory">
         {value}
       </dd>

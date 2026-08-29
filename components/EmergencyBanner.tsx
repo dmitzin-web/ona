@@ -14,7 +14,7 @@ import { site } from "@/lib/site";
 export function EmergencyBanner() {
   return (
     <div className="promo-strip border-b border-ivory/10 bg-charcoal-soft">
-      <div className="mx-auto flex max-w-7xl items-center justify-center gap-2.5 px-6 py-2 text-center text-[12px] text-ivory/75 lg:px-10">
+      <div className="mx-auto flex max-w-7xl items-center justify-center gap-2.5 px-6 py-2 text-center text-[12px] text-ivory/85 lg:px-10">
         <span className="ona-pulse inline-block h-2 w-2 flex-none rounded-full bg-gold" />
         <span>
           <span className="text-ivory">Available now</span>

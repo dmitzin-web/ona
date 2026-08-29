@@ -24,11 +24,11 @@ export default function ContactPage() {
       />
       <section className="bg-charcoal">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
-          <p className="eyebrow text-ivory/60">Contact</p>
+          <p className="eyebrow text-ivory/72">Contact</p>
           <h1 className="text-ivory mt-6 max-w-3xl text-5xl font-light leading-[1.05] tracking-tight sm:text-6xl">
             Get in touch with dispatch.
           </h1>
-          <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ivory/75">
+          <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ivory/85">
             Emergency? Pick up the phone — a real technician answers. Not
             urgent? Send a few photos by email and we'll come back with a
             preliminary scope.
@@ -41,17 +41,17 @@ export default function ContactPage() {
                 <PhoneIcon className="h-8 w-8 stroke-current" />
                 {site.phoneDisplay}
               </p>
-              <p className="mt-6 text-sm text-ivory/70">
+              <p className="mt-6 text-sm text-ivory/80">
                 Tap to call. Live answer, day or night.
               </p>
             </PhoneLink>
 
             <EmailLink className="group block bg-charcoal p-10 transition hover:bg-charcoal-soft">
-              <p className="eyebrow text-ivory/60">Email</p>
+              <p className="eyebrow text-ivory/72">Email</p>
               <p className="mt-6 text-2xl font-light tracking-tight text-ivory break-words">
                 {site.email}
               </p>
-              <p className="mt-6 text-sm text-ivory/70">
+              <p className="mt-6 text-sm text-ivory/80">
                 Attach photos and your address. We reply within the hour
                 during business hours, same morning otherwise.
               </p>
@@ -62,7 +62,7 @@ export default function ContactPage() {
             <h2 className="text-ivory text-3xl font-light tracking-tight sm:text-4xl">
               What happens after you call
             </h2>
-            <p className="mt-4 max-w-2xl text-base leading-relaxed text-ivory/70">
+            <p className="mt-4 max-w-2xl text-base leading-relaxed text-ivory/80">
               For emergencies we run a clean, fast playbook. Most callers are
               on-site with a crew inside the hour.
             </p>
@@ -90,11 +90,11 @@ export default function ContactPage() {
                 },
               ].map((s) => (
                 <li key={s.step} className="bg-charcoal p-8">
-                  <p className="eyebrow text-ivory/60">Step {s.step}</p>
+                  <p className="eyebrow text-ivory/72">Step {s.step}</p>
                   <h3 className="text-ivory mt-4 text-lg font-medium tracking-tight">
                     {s.title}
                   </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-ivory/70">
+                  <p className="mt-3 text-sm leading-relaxed text-ivory/80">
                     {s.text}
                   </p>
                 </li>
@@ -108,8 +108,8 @@ export default function ContactPage() {
             </h2>
             <div className="mt-10 grid gap-12 md:grid-cols-3">
               <div>
-                <h3 className="eyebrow text-ivory/60">Headquarters</h3>
-                <address className="mt-5 not-italic text-base leading-relaxed text-ivory/85">
+                <h3 className="eyebrow text-ivory/72">Headquarters</h3>
+                <address className="mt-5 not-italic text-base leading-relaxed text-ivory/95">
                   {site.name}
                   <br />
                   {site.address.locality}, {site.address.region}
@@ -118,27 +118,27 @@ export default function ContactPage() {
                 </address>
               </div>
               <div>
-                <h3 className="eyebrow text-ivory/60">Hours</h3>
-                <dl className="mt-5 space-y-3 text-base leading-relaxed text-ivory/85">
+                <h3 className="eyebrow text-ivory/72">Hours</h3>
+                <dl className="mt-5 space-y-3 text-base leading-relaxed text-ivory/95">
                   <div>
-                    <dt className="text-sm text-ivory/60">
+                    <dt className="text-sm text-ivory/72">
                       Emergency dispatch
                     </dt>
                     <dd className="font-medium">24 / 7 / 365</dd>
                   </div>
                   <div>
-                    <dt className="text-sm text-ivory/60">Office line</dt>
+                    <dt className="text-sm text-ivory/72">Office line</dt>
                     <dd>Mon–Sat, business hours</dd>
                   </div>
                   <div>
-                    <dt className="text-sm text-ivory/60">Quote email</dt>
+                    <dt className="text-sm text-ivory/72">Quote email</dt>
                     <dd>Reply within the hour during business hours</dd>
                   </div>
                 </dl>
               </div>
               <div>
-                <h3 className="eyebrow text-ivory/60">Service area</h3>
-                <p className="mt-5 text-base leading-relaxed text-ivory/85">
+                <h3 className="eyebrow text-ivory/72">Service area</h3>
+                <p className="mt-5 text-base leading-relaxed text-ivory/95">
                   Vancouver, WA and the entire Portland metro — Clark,
                   Multnomah, Washington and Clackamas counties.
                 </p>
@@ -165,7 +165,7 @@ export default function ContactPage() {
               href={`https://www.google.com/maps/search/?api=1&query=${site.geo.latitude},${site.geo.longitude}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-4 inline-flex items-center gap-2 text-[14px] text-ivory/80 underline-offset-4 transition hover:text-ivory hover:underline"
+              className="mt-4 inline-flex items-center gap-2 text-[14px] text-ivory/90 underline-offset-4 transition hover:text-ivory hover:underline"
             >
               View on Google Maps
               <span aria-hidden="true">→</span>

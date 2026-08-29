@@ -9,7 +9,7 @@ export function FAQ({
     <section className="bg-charcoal text-ivory">
       <div className="mx-auto grid max-w-7xl gap-12 px-6 py-24 lg:grid-cols-12 lg:px-10">
         <div className="lg:col-span-4">
-          <p className="eyebrow text-ivory/60">FAQ</p>
+          <p className="eyebrow text-ivory/72">FAQ</p>
           <h2 className="text-ivory mt-6 text-4xl font-light leading-tight tracking-tight sm:text-5xl">
             {title}
           </h2>
@@ -34,7 +34,7 @@ export function FAQ({
                   +
                 </span>
               </summary>
-              <p className="mt-4 max-w-3xl text-base leading-relaxed text-ivory/75">
+              <p className="mt-4 max-w-3xl text-base leading-relaxed text-ivory/85">
                 {item.a}
               </p>
             </details>

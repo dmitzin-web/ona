@@ -31,11 +31,11 @@ export default function BlogIndex() {
       />
       <section className="bg-charcoal">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
-          <p className="eyebrow text-ivory/60">Field notes</p>
+          <p className="eyebrow text-ivory/72">Field notes</p>
           <h1 className="text-ivory mt-6 max-w-3xl text-5xl font-light leading-[1.05] tracking-tight sm:text-6xl">
             Notes from the trucks.
           </h1>
-          <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ivory/75">
+          <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ivory/85">
             Practical guides, written by the people running the jobs. No fluff,
             no SEO-bait — just what we tell our own families.
           </p>
@@ -48,10 +48,10 @@ export default function BlogIndex() {
                   className="group grid gap-6 py-8 lg:grid-cols-12"
                 >
                   <div className="lg:col-span-3">
-                    <p className="eyebrow text-ivory/60">
+                    <p className="eyebrow text-ivory/72">
                       {p.category} · {p.readingMinutes} min read
                     </p>
-                    <p className="mt-3 text-sm text-ivory/60">
+                    <p className="mt-3 text-sm text-ivory/72">
                       {new Date(p.publishedAt).toLocaleDateString("en-US", {
                         month: "long",
                         day: "numeric",
@@ -63,7 +63,7 @@ export default function BlogIndex() {
                     <h2 className="text-2xl font-light leading-tight tracking-tight text-ivory sm:text-3xl">
                       {p.title}
                     </h2>
-                    <p className="mt-4 max-w-2xl text-base leading-relaxed text-ivory/75">
+                    <p className="mt-4 max-w-2xl text-base leading-relaxed text-ivory/85">
                       {p.excerpt}
                     </p>
                     <p className="mt-6 inline-flex items-center gap-2 eyebrow text-ivory transition group-hover:gap-3">

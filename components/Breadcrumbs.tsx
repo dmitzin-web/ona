@@ -12,7 +12,7 @@ export function Breadcrumbs({
     <nav
       aria-label="Breadcrumb"
       className={`mx-auto max-w-7xl px-6 pt-8 lg:px-10 ${
-        dark ? "text-ivory/60" : "text-ivory/60"
+        dark ? "text-ivory/72" : "text-ivory/72"
       }`}
     >
       <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 eyebrow">

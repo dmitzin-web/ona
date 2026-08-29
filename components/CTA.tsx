@@ -17,7 +17,7 @@ export function CTA({
           <h2 className="text-ivory mt-6 text-4xl font-light leading-tight tracking-tight sm:text-5xl">
             {title}
           </h2>
-          <p className="mt-6 max-w-xl text-base leading-relaxed text-ivory/70">
+          <p className="mt-6 max-w-xl text-base leading-relaxed text-ivory/80">
             {subtitle}
           </p>
         </div>

@@ -74,7 +74,7 @@ export function Header() {
         <Logo variant="horizontal" tone="light" />
 
         <nav aria-label="Primary" className="hidden lg:block">
-          <ul className="flex items-center gap-8 text-[14px] text-ivory/75">
+          <ul className="flex items-center gap-8 text-[14px] text-ivory/85">
             {nav.map((item, i) => {
               if ("action" in item) {
                 return (
@@ -191,7 +191,7 @@ export function Header() {
                           className="flex w-full items-center justify-between py-4 text-[15px] font-medium tracking-tight text-gold transition"
                         >
                           <span>{item.label}</span>
-                          <span aria-hidden="true" className="text-ivory/75">
+                          <span aria-hidden="true" className="text-ivory/85">
                             →
                           </span>
                         </button>
@@ -209,11 +209,11 @@ export function Header() {
                         onClick={closeMobileMenu}
                         aria-current={active ? "page" : undefined}
                         className={`flex items-center justify-between py-4 text-[15px] font-medium tracking-tight transition ${
-                          active ? "text-ivory" : "text-ivory/75"
+                          active ? "text-ivory" : "text-ivory/85"
                         }`}
                       >
                         <span>{item.label}</span>
-                        <span aria-hidden="true" className="text-ivory/75">
+                        <span aria-hidden="true" className="text-ivory/85">
                           →
                         </span>
                       </Link>

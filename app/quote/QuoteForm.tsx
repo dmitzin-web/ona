@@ -10,7 +10,7 @@ export function QuoteForm() {
   const [state, formAction, pending] = useActionState(submitQuote, initial);
 
   const inputClass =
-    "mt-2 block w-full border border-ivory/20 bg-charcoal px-4 py-3 text-base text-ivory placeholder:text-ivory/40 focus:border-ivory focus:outline-none";
+    "mt-2 block w-full border border-ivory/20 bg-charcoal px-4 py-3 text-base text-ivory placeholder:text-ivory/64 focus:border-ivory focus:outline-none";
   const labelClass = "block text-sm font-medium text-ivory";
   const errorClass = "mt-2 text-sm text-red-700";
 
@@ -41,7 +41,7 @@ export function QuoteForm() {
       <div className="grid gap-6 sm:grid-cols-2">
         <div>
           <label htmlFor="name" className={labelClass}>
-            Your name <span className="text-ivory/40">*</span>
+            Your name <span className="text-ivory/64">*</span>
           </label>
           <input
             id="name"
@@ -61,7 +61,7 @@ export function QuoteForm() {
         </div>
         <div>
           <label htmlFor="phone" className={labelClass}>
-            Phone <span className="text-ivory/40">* or email</span>
+            Phone <span className="text-ivory/64">* or email</span>
           </label>
           <input
             id="phone"
@@ -85,7 +85,7 @@ export function QuoteForm() {
       <div className="grid gap-6 sm:grid-cols-2">
         <div>
           <label htmlFor="email" className={labelClass}>
-            Email <span className="text-ivory/40">* or phone</span>
+            Email <span className="text-ivory/64">* or phone</span>
           </label>
           <input
             id="email"
@@ -120,7 +120,7 @@ export function QuoteForm() {
 
       <div>
         <label htmlFor="damageType" className={labelClass}>
-          Damage type <span className="text-ivory/40">*</span>
+          Damage type <span className="text-ivory/64">*</span>
         </label>
         <select
           id="damageType"
@@ -151,7 +151,7 @@ export function QuoteForm() {
 
       <div>
         <label htmlFor="description" className={labelClass}>
-          What happened? <span className="text-ivory/40">*</span>
+          What happened? <span className="text-ivory/64">*</span>
         </label>
         <textarea
           id="description"
@@ -184,9 +184,9 @@ export function QuoteForm() {
           type="file"
           accept="image/*"
           multiple
-          className="mt-2 block w-full text-sm text-ivory/80 file:mr-4 file:border file:border-ivory/30 file:bg-charcoal file:px-4 file:py-2 file:text-sm file:font-medium file:text-ivory hover:file:bg-charcoal-soft"
+          className="mt-2 block w-full text-sm text-ivory/90 file:mr-4 file:border file:border-ivory/30 file:bg-charcoal file:px-4 file:py-2 file:text-sm file:font-medium file:text-ivory hover:file:bg-charcoal-soft"
         />
-        <p className="mt-2 text-xs text-ivory/60">
+        <p className="mt-2 text-xs text-ivory/72">
           A clear photo of the affected area helps us scope the job before we
           arrive.
         </p>
@@ -204,7 +204,7 @@ export function QuoteForm() {
             state.errors?.consent ? "consent-error" : undefined
           }
         />
-        <label htmlFor="consent" className="text-sm leading-relaxed text-ivory/80">
+        <label htmlFor="consent" className="text-sm leading-relaxed text-ivory/90">
           I agree to be contacted about my restoration request and acknowledge
           the{" "}
           <a href="/privacy" className="underline hover:text-ivory">

@@ -57,9 +57,9 @@ export function MoldSections({ service }: { service: Service }) {
           <p className="eyebrow text-gold">Mold Remediation · IICRC S520</p>
           <h1 className="text-ivory mt-8 max-w-4xl text-5xl font-light leading-[1.04] tracking-tight sm:text-6xl">
             Mold done right{" "}
-            <span className="text-ivory/55">the first time.</span>
+            <span className="text-ivory/70">the first time.</span>
           </h1>
-          <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ivory/80">
+          <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ivory/90">
             {service.intro}
           </p>
 
@@ -78,7 +78,7 @@ export function MoldSections({ service }: { service: Service }) {
             {credibility.map((c) => (
               <li
                 key={c}
-                className="flex items-center gap-3 bg-charcoal px-5 py-5 text-sm text-ivory/85"
+                className="flex items-center gap-3 bg-charcoal px-5 py-5 text-sm text-ivory/95"
               >
                 <span className="h-1.5 w-1.5 flex-none rounded-full bg-gold" />
                 {c}
@@ -93,13 +93,13 @@ export function MoldSections({ service }: { service: Service }) {
         <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
           <div className="grid gap-12 lg:grid-cols-12">
             <div className="lg:col-span-5">
-              <p className="eyebrow text-ivory/60">Why most mold jobs fail</p>
+              <p className="eyebrow text-ivory/72">Why most mold jobs fail</p>
               <h2 className="text-ivory mt-6 text-4xl font-light leading-[1.1] tracking-tight sm:text-5xl">
                 Mold is a moisture problem wearing a cleaning problem&apos;s
                 disguise.
               </h2>
             </div>
-            <div className="space-y-6 text-lg leading-relaxed text-ivory/80 lg:col-span-7">
+            <div className="space-y-6 text-lg leading-relaxed text-ivory/90 lg:col-span-7">
               <p>
                 Most &quot;mold removal&quot; is cosmetic — someone wipes the
                 surface, sprays bleach, and leaves. The colony living inside the
@@ -135,7 +135,7 @@ export function MoldSections({ service }: { service: Service }) {
                 <h3 className="mt-4 text-lg font-medium tracking-tight text-ivory">
                   {p.step.replace(/^\d+\.\s*/, "")}
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-ivory/70">
+                <p className="mt-3 text-sm leading-relaxed text-ivory/80">
                   {p.text}
                 </p>
               </li>
@@ -147,7 +147,7 @@ export function MoldSections({ service }: { service: Service }) {
       {/* Why ONA — differentiators */}
       <section className="bg-charcoal-soft">
         <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
-          <p className="eyebrow text-ivory/60">Why ONA for mold</p>
+          <p className="eyebrow text-ivory/72">Why ONA for mold</p>
           <h2 className="text-ivory mt-6 max-w-3xl text-4xl font-light leading-tight tracking-tight sm:text-5xl">
             What separates a real remediation from a wipe-down.
           </h2>
@@ -157,7 +157,7 @@ export function MoldSections({ service }: { service: Service }) {
                 <h3 className="text-lg font-medium tracking-tight text-ivory">
                   {d.title}
                 </h3>
-                <p className="mt-4 text-sm leading-relaxed text-ivory/70">
+                <p className="mt-4 text-sm leading-relaxed text-ivory/80">
                   {d.body}
                 </p>
               </div>
@@ -175,7 +175,7 @@ export function MoldSections({ service }: { service: Service }) {
               If someone in the house has asthma, allergies, or a compromised
               immune system, mold isn&apos;t cosmetic — get it scoped.
             </p>
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ivory/75">
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ivory/85">
               We handle the insurance side: we document the cause, photograph
               every step, and bill the carrier directly where the loss is
               covered. You deal with one team and your deductible — not a fight
@@ -190,11 +190,11 @@ export function MoldSections({ service }: { service: Service }) {
         <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
           <div className="grid gap-12 lg:grid-cols-12">
             <div className="lg:col-span-4">
-              <p className="eyebrow text-ivory/60">Warning signs</p>
+              <p className="eyebrow text-ivory/72">Warning signs</p>
               <h2 className="text-ivory mt-6 text-4xl font-light leading-tight tracking-tight sm:text-5xl">
                 When to call.
               </h2>
-              <p className="mt-6 text-base leading-relaxed text-ivory/70">
+              <p className="mt-6 text-base leading-relaxed text-ivory/80">
                 Mold doubles fast in Pacific Northwest humidity. The earlier we
                 scope it, the smaller the job. If any of these apply, call.
               </p>
@@ -203,7 +203,7 @@ export function MoldSections({ service }: { service: Service }) {
               {service.signs.map((s) => (
                 <li
                   key={s}
-                  className="border border-ivory/10 px-5 py-5 text-base text-ivory/85"
+                  className="border border-ivory/10 px-5 py-5 text-base text-ivory/95"
                 >
                   {s}
                 </li>

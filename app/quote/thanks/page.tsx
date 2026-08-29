@@ -16,11 +16,11 @@ export default function QuoteThanksPage() {
   return (
     <section className="bg-charcoal">
       <div className="mx-auto max-w-3xl px-6 py-32 text-center lg:px-10">
-        <p className="eyebrow text-ivory/60">Quote request received</p>
+        <p className="eyebrow text-ivory/72">Quote request received</p>
         <h1 className="text-ivory mt-6 text-5xl font-light leading-[1.05] tracking-tight sm:text-6xl">
           Thanks. We've got it.
         </h1>
-        <p className="mt-8 text-lg leading-relaxed text-ivory/75">
+        <p className="mt-8 text-lg leading-relaxed text-ivory/85">
           A specialist will be in touch within the hour during business hours,
           same morning otherwise. If this is an active emergency, please call —
           email doesn't wake us up.

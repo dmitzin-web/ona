@@ -41,11 +41,11 @@ export default function ServicesPage() {
       />
       <section className="bg-charcoal">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
-          <p className="eyebrow text-ivory/60">Our services</p>
+          <p className="eyebrow text-ivory/72">Our services</p>
           <h1 className="text-ivory mt-6 max-w-3xl text-5xl font-light leading-[1.05] tracking-tight sm:text-6xl">
             Remodeling, mold, and restoration, executed with precision.
           </h1>
-          <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ivory/75">
+          <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ivory/85">
             Single-source mitigation, reconstruction, and remodeling across the
             Portland metro. Licensed in WA and OR, working to IICRC standards, available
             24/7.
@@ -56,7 +56,7 @@ export default function ServicesPage() {
             <div className="mt-16">
               <div className="flex flex-wrap items-end justify-between gap-3">
                 <p className="eyebrow text-gold">Remodeling</p>
-                <p className="text-sm text-ivory/55">
+                <p className="text-sm text-ivory/70">
                   Kitchens · Baths · Additions · Custom millwork
                 </p>
               </div>
@@ -72,7 +72,7 @@ export default function ServicesPage() {
                         Built by a restoration crew.
                       </span>
                     </h2>
-                    <p className="mt-5 max-w-2xl text-base leading-relaxed text-ivory/75">
+                    <p className="mt-5 max-w-2xl text-base leading-relaxed text-ivory/85">
                       {remodeling.hero}
                     </p>
                   </div>
@@ -92,7 +92,7 @@ export default function ServicesPage() {
             <div className="mt-16">
               <div className="flex flex-wrap items-end justify-between gap-3">
                 <p className="eyebrow text-gold">Mold</p>
-                <p className="text-sm text-ivory/55">
+                <p className="text-sm text-ivory/70">
                   Inspection · Testing · Containment · S520 remediation
                 </p>
               </div>
@@ -108,7 +108,7 @@ export default function ServicesPage() {
                         Done to the IICRC S520 standard.
                       </span>
                     </h2>
-                    <p className="mt-5 max-w-2xl text-base leading-relaxed text-ivory/75">
+                    <p className="mt-5 max-w-2xl text-base leading-relaxed text-ivory/85">
                       {mold.hero}
                     </p>
                   </div>
@@ -126,8 +126,8 @@ export default function ServicesPage() {
           {/* Restoration grid */}
           <div className="mt-16">
             <div className="flex flex-wrap items-end justify-between gap-3">
-              <p className="eyebrow text-ivory/60">Restoration</p>
-              <p className="text-sm text-ivory/55">
+              <p className="eyebrow text-ivory/72">Restoration</p>
+              <p className="text-sm text-ivory/70">
                 24/7 emergency response · 60-minute target
               </p>
             </div>
@@ -144,11 +144,11 @@ export default function ServicesPage() {
           <div className="mt-20 border-t border-ivory/15 pt-12">
             <div className="grid gap-10 lg:grid-cols-12">
               <div className="lg:col-span-5">
-                <p className="eyebrow text-ivory/60">Service area</p>
+                <p className="eyebrow text-ivory/72">Service area</p>
                 <h2 className="text-ivory mt-4 text-3xl font-light leading-tight tracking-tight sm:text-4xl">
                   Vancouver, WA and the entire Portland metro.
                 </h2>
-                <p className="mt-5 max-w-md text-base leading-relaxed text-ivory/75">
+                <p className="mt-5 max-w-md text-base leading-relaxed text-ivory/85">
                   Headquartered in Vancouver, WA. Crews staged across the metro
                   so we hit our 60-minute response target through Clark,
                   Multnomah, Washington, and Clackamas counties.
@@ -159,7 +159,7 @@ export default function ServicesPage() {
                   <li key={a.slug}>
                     <Link
                       href={`/areas/${a.slug}`}
-                      className="block bg-charcoal px-6 py-4 text-sm font-medium tracking-tight text-ivory/85 transition hover:bg-charcoal-soft hover:text-ivory"
+                      className="block bg-charcoal px-6 py-4 text-sm font-medium tracking-tight text-ivory/95 transition hover:bg-charcoal-soft hover:text-ivory"
                     >
                       {a.name}, {a.region}
                     </Link>

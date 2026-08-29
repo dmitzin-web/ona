@@ -87,9 +87,9 @@ export default async function AreaPage(
             </p>
             <h1 className="text-ivory mt-8 max-w-4xl text-5xl font-light leading-[1.05] tracking-tight sm:text-6xl">
               Restoration in {area.name},
-              <span className="block text-ivory/60">{area.region}.</span>
+              <span className="block text-ivory/72">{area.region}.</span>
             </h1>
-            <p className="mt-10 max-w-2xl text-lg leading-relaxed text-ivory/75">
+            <p className="mt-10 max-w-2xl text-lg leading-relaxed text-ivory/85">
               {area.driveMinutesFromHQ}-minute dispatch from our Vancouver, WA
               headquarters. Population {area.population}. experienced crews,
               direct insurance billing, 24/7.
@@ -116,12 +116,12 @@ export default async function AreaPage(
         <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
           <div className="grid gap-12 lg:grid-cols-12">
             <div className="lg:col-span-4">
-              <p className="eyebrow text-ivory/60">Local context</p>
+              <p className="eyebrow text-ivory/72">Local context</p>
               <h2 className="text-ivory mt-6 text-4xl font-light leading-tight tracking-tight sm:text-5xl">
                 Why restoration in {area.name} is different.
               </h2>
             </div>
-            <div className="space-y-6 text-lg leading-relaxed text-ivory/80 lg:col-span-8">
+            <div className="space-y-6 text-lg leading-relaxed text-ivory/90 lg:col-span-8">
               <p>{area.localNote}</p>
               <p>
                 <strong className="font-medium text-ivory">Weather:</strong>{" "}
@@ -131,7 +131,7 @@ export default async function AreaPage(
                 <p className="font-medium text-ivory">
                   Common restoration calls here:
                 </p>
-                <ul className="mt-3 space-y-2 text-base text-ivory/75">
+                <ul className="mt-3 space-y-2 text-base text-ivory/85">
                   {area.commonLosses.map((c) => (
                     <li
                       key={c}
@@ -152,11 +152,11 @@ export default async function AreaPage(
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
           <div className="grid gap-12 lg:grid-cols-12">
             <div className="lg:col-span-5">
-              <p className="eyebrow text-ivory/60">Coverage</p>
+              <p className="eyebrow text-ivory/72">Coverage</p>
               <h2 className="text-ivory mt-6 text-3xl font-light leading-tight tracking-tight sm:text-4xl">
                 Neighborhoods we work in.
               </h2>
-              <ul className="mt-8 space-y-2 text-base text-ivory/80">
+              <ul className="mt-8 space-y-2 text-base text-ivory/90">
                 {area.neighborhoods.map((n) => (
                   <li key={n} className="border-b border-ivory/10 pb-2">
                     {n}
@@ -165,7 +165,7 @@ export default async function AreaPage(
               </ul>
             </div>
             <div className="lg:col-span-7">
-              <p className="eyebrow text-ivory/60">ZIP codes</p>
+              <p className="eyebrow text-ivory/72">ZIP codes</p>
               <h2 className="text-ivory mt-6 text-3xl font-light leading-tight tracking-tight sm:text-4xl">
                 {area.zips.length} ZIPs · {area.county}.
               </h2>
@@ -173,7 +173,7 @@ export default async function AreaPage(
                 {area.zips.map((z) => (
                   <li
                     key={z}
-                    className="border border-ivory/10 bg-charcoal px-3 py-3 text-center text-sm font-medium text-ivory/85"
+                    className="border border-ivory/10 bg-charcoal px-3 py-3 text-center text-sm font-medium text-ivory/95"
                   >
                     {z}
                   </li>
@@ -190,7 +190,7 @@ export default async function AreaPage(
           on hover/click for users who want the full overview. */}
       <section className="bg-charcoal">
         <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
-          <p className="eyebrow text-ivory/60">Available in {area.name}</p>
+          <p className="eyebrow text-ivory/72">Available in {area.name}</p>
           <h2 className="text-ivory mt-6 text-4xl font-light leading-tight tracking-tight sm:text-5xl">
             Services we provide here.
           </h2>
@@ -201,7 +201,7 @@ export default async function AreaPage(
               </div>
             ))}
           </div>
-          <p className="mt-6 text-sm text-ivory/55">
+          <p className="mt-6 text-sm text-ivory/70">
             Each link opens the {area.name}-specific page for that service —
             response time, neighborhoods, and local loss patterns included.
           </p>

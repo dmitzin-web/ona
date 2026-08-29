@@ -112,11 +112,11 @@ export function RemodelingGallery() {
             flip its individual label badge. */}
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div className="max-w-2xl">
-            <p className="eyebrow text-ivory/60">Style references</p>
+            <p className="eyebrow text-ivory/72">Style references</p>
             <h2 className="text-ivory mt-6 text-4xl font-light leading-tight tracking-tight sm:text-5xl">
               The kind of remodel we&apos;re set up to deliver.
             </h2>
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-ivory/70">
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-ivory/80">
               Reference photos showing the style and finish quality our
               remodeling division targets. Our project gallery launches with
               our first completed remodel — these references will be replaced
@@ -149,11 +149,11 @@ export function RemodelingGallery() {
                   </span>
                 </div>
                 <div className="flex flex-1 flex-col p-6">
-                  <p className="eyebrow text-ivory/50">{r.roomType}</p>
+                  <p className="eyebrow text-ivory/68">{r.roomType}</p>
                   <h3 className="mt-3 text-lg font-medium tracking-tight text-ivory">
                     {r.title}
                   </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-ivory/65">
+                  <p className="mt-3 text-sm leading-relaxed text-ivory/76">
                     {r.notes}
                   </p>
                 </div>
@@ -162,7 +162,7 @@ export function RemodelingGallery() {
           ))}
         </ul>
 
-        <p className="mt-10 max-w-3xl text-xs leading-relaxed text-ivory/55">
+        <p className="mt-10 max-w-3xl text-xs leading-relaxed text-ivory/70">
           Reference photography is generic stock imagery. Each card describes
           the room type, finish targets, and scope our remodeling division
           delivers — not a specific completed project. Real project photos

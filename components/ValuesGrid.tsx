@@ -15,7 +15,7 @@ export function ValuesGrid({
     >
       <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
         <p
-          className={`eyebrow ${dark ? "text-warm-gray-soft" : "text-ivory/60"}`}
+          className={`eyebrow ${dark ? "text-warm-gray-soft" : "text-ivory/72"}`}
         >
           Brand values
         </p>
@@ -52,7 +52,7 @@ export function ValuesGrid({
                   </h3>
                   <p
                     className={`mt-3 text-sm leading-relaxed ${
-                      dark ? "text-ivory/65" : "text-ivory/65"
+                      dark ? "text-ivory/76" : "text-ivory/76"
                     }`}
                   >
                     {v.body}

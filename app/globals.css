@@ -1,23 +1,63 @@
 @import "tailwindcss";
 
 @theme {
-  /* Brand palette — ONA Restoration */
-  --color-ivory: #f5f4f1;
-  --color-ivory-soft: #ebe9e3;
-  --color-charcoal: #141414;
-  --color-charcoal-soft: #1d1d1d;
-  --color-charcoal-mute: #2a2a2a;
-  --color-warm-gray: #8a8478;
-  --color-warm-gray-soft: #c9c4ba;
-  --color-warm-gray-deep: #5a554e;
-  --color-line: #2a2a2a;
-  --color-line-light: #e5e2db;
+  /* Brand palette — ONA Restoration
+     ────────────────────────────────────────────────────────────────
+     INVERTED, SEPTEMBER 2026. The site ran on a charcoal ground for
+     its whole life; these token NAMES still describe the old look and
+     are deliberately left alone, because renaming them would mean
+     touching 1104 class occurrences across 30 files for zero visual
+     gain. Read them by ROLE, not by name:
+
+        ivory      = ink        (was: light type on a dark ground)
+        charcoal   = ground     (was: the dark ground itself)
+
+     The roles are symmetrical, so swapping the two values inverts the
+     entire site coherently — including every opacity modifier already
+     in the codebase. `text-ivory/75` was muted light type and is now
+     muted dark type; `border-ivory/10` was a barely-there light
+     hairline and is now a barely-there dark one; `bg-ivory
+     text-charcoal` was a light button on dark and is now a dark button
+     on light. Nothing about those intentions changed, only the ground
+     they sit on.
+
+     If you ever need the dark site back, swap these two blocks and
+     nothing else. */
+
+  /* Ink. */
+  --color-ivory: #12100f;
+  --color-ivory-soft: #3b3936;
+
+  /* Ground. `charcoal-soft` and `-mute` were ELEVATED dark surfaces —
+     on a light ground elevation reads as slightly darker, not
+     lighter, so they descend instead of ascending. */
+  --color-charcoal: #ffffff;
+  --color-charcoal-soft: #f6f5f3;
+  --color-charcoal-mute: #eae8e3;
+
+  /* Mid-tone. `warm-gray` itself is legible either way and does not
+     move; the soft/deep pair swaps, since "soft" meant "closer to the
+     ground" and the ground has changed ends. */
+  --color-warm-gray: #6f6a60;
+  --color-warm-gray-soft: #5a554e;
+  --color-warm-gray-deep: #c9c4ba;
+
+  /* Hairlines swap: `line` sits on the ground, `line-light` sits on
+     inverted (now dark) surfaces. */
+  --color-line: #e4e1db;
+  --color-line-light: #2a2a2a;
 
   /* Accent — restrained gold used for division accents (Remodeling
-     promo block, severity dots, key data accents). */
-  --color-gold: #b8985e;
-  --color-gold-soft: #d6bf91;
-  --color-gold-deep: #8a6f3f;
+     promo block, severity dots, key data accents).
+     Darkened two steps: the old #b8985e measured 2.4:1 as type on
+     white and 2.73:1 under white type, both failing WCAG AA. #856a3b
+     measures 5.09:1 on white and 4.69:1 on `charcoal-soft` — the
+     off-white surface is the binding case, and #8a6f3f only reached
+     4.35:1 there. Still reads as the same colour. The old value
+     survives as `gold-soft` for fills that carry dark type. */
+  --color-gold: #856a3b;
+  --color-gold-soft: #b8985e;
+  --color-gold-deep: #6b5530;
 
   /* ─── DAYLIGHT ─────────────────────────────────────────────────
      Wildfire response pages only. White ground, near-black type,

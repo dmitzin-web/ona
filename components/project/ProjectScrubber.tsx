@@ -143,8 +143,8 @@ export function ProjectScrubber({
     <section aria-label="Project timeline">
       <div className="flex items-end justify-between gap-6">
         <div>
-          <h2 className="eyebrow text-ivory/75">Project timeline</h2>
-          <p className="mt-2 text-[12px] text-ivory/50">
+          <h2 className="eyebrow text-ivory/85">Project timeline</h2>
+          <p className="mt-2 text-[12px] text-ivory/68">
             Scrub through each day · ← → keys also work
           </p>
         </div>
@@ -152,7 +152,7 @@ export function ProjectScrubber({
           type="button"
           onClick={goToday}
           disabled={activeIndex === todayIndex}
-          className="hidden text-[11px] uppercase tracking-wider text-ivory/55 transition hover:text-ivory disabled:cursor-default disabled:text-ivory/25 sm:block"
+          className="hidden text-[11px] uppercase tracking-wider text-ivory/70 transition hover:text-ivory disabled:cursor-default disabled:text-ivory/60 sm:block"
         >
           Jump to today →
         </button>
@@ -208,14 +208,14 @@ export function ProjectScrubber({
                   className={`whitespace-nowrap text-[11px] tabular-nums transition ${
                     isActive
                       ? "text-ivory"
-                      : "text-ivory/50 group-hover:text-ivory/80"
+                      : "text-ivory/68 group-hover:text-ivory/90"
                   }`}
                 >
                   {p.day}
                 </span>
                 <span
                   className={`hidden whitespace-nowrap text-[10px] tabular-nums transition sm:block ${
-                    isActive ? "text-ivory/65" : "text-ivory/35"
+                    isActive ? "text-ivory/76" : "text-ivory/62"
                   }`}
                 >
                   {p.date}
@@ -238,10 +238,10 @@ export function ProjectScrubber({
             <span
               className={`eyebrow ${
                 phase.estimated
-                  ? "text-ivory/40"
+                  ? "text-ivory/64"
                   : isLivePhase
                   ? "text-gold"
-                  : "text-ivory/60"
+                  : "text-ivory/72"
               }`}
             >
               {phase.estimated
@@ -256,7 +256,7 @@ export function ProjectScrubber({
                 className="ona-pulse inline-block h-1.5 w-1.5 rounded-full bg-gold"
               />
             ) : null}
-            <span className="text-[12px] text-ivory/45 tabular-nums">
+            <span className="text-[12px] text-ivory/66 tabular-nums">
               {phase.day} · {phase.date}
             </span>
           </div>
@@ -264,12 +264,12 @@ export function ProjectScrubber({
           <h3 className="mt-3 text-[26px] font-semibold leading-tight tracking-tight text-ivory md:text-[32px]">
             {phase.title}
           </h3>
-          <p className="mt-5 text-[15px] leading-relaxed text-ivory/75">
+          <p className="mt-5 text-[15px] leading-relaxed text-ivory/85">
             {phase.body}
           </p>
 
           {phase.changeNotes?.length ? (
-            <ul className="mt-7 space-y-3 text-[13px] text-ivory/75">
+            <ul className="mt-7 space-y-3 text-[13px] text-ivory/85">
               {phase.changeNotes.map((n) => (
                 <li key={n} className="flex gap-3">
                   <span
@@ -288,16 +288,16 @@ export function ProjectScrubber({
           {phase.moisture?.length ? (
             <div>
               <div className="flex items-baseline justify-between">
-                <div className="eyebrow text-ivory/50">
+                <div className="eyebrow text-ivory/68">
                   Moisture readings
                 </div>
-                <div className="text-[10px] uppercase tracking-wider text-ivory/35">
+                <div className="text-[10px] uppercase tracking-wider text-ivory/62">
                   Dry &lt; 16% MC
                 </div>
               </div>
               <table className="mt-3 w-full text-[13px]">
                 <thead>
-                  <tr className="border-b border-ivory/10 text-left text-[10px] uppercase tracking-wider text-ivory/40">
+                  <tr className="border-b border-ivory/10 text-left text-[10px] uppercase tracking-wider text-ivory/64">
                     <th className="pb-2 pr-3 font-normal">Location</th>
                     <th className="pb-2 px-3 text-right font-normal">
                       MC %
@@ -317,7 +317,7 @@ export function ProjectScrubber({
                         key={`${m.location}-${i}`}
                         className="border-b border-ivory/[0.06]"
                       >
-                        <td className="py-2.5 pr-3 text-ivory/85">
+                        <td className="py-2.5 pr-3 text-ivory/95">
                           {m.location}
                         </td>
                         <td
@@ -330,12 +330,12 @@ export function ProjectScrubber({
                         <td
                           className={`py-2.5 pl-3 text-right font-mono text-[12px] ${
                             delta === null
-                              ? "text-ivory/25"
+                              ? "text-ivory/60"
                               : delta < 0
-                              ? "text-ivory/65"
+                              ? "text-ivory/76"
                               : delta > 0
-                              ? "text-ivory/40"
-                              : "text-ivory/30"
+                              ? "text-ivory/64"
+                              : "text-ivory/60"
                           }`}
                         >
                           {delta === null
@@ -354,8 +354,8 @@ export function ProjectScrubber({
 
           {phase.equipment?.length ? (
             <div>
-              <div className="eyebrow text-ivory/50">On site</div>
-              <ul className="mt-3 space-y-1.5 text-[13px] text-ivory/80">
+              <div className="eyebrow text-ivory/68">On site</div>
+              <ul className="mt-3 space-y-1.5 text-[13px] text-ivory/90">
                 {phase.equipment.map((e) => (
                   <li key={e}>{e}</li>
                 ))}
@@ -367,7 +367,7 @@ export function ProjectScrubber({
             <div className="grid grid-cols-2 gap-6 border-t border-ivory/10 pt-6">
               {phase.photosAdded ? (
                 <div>
-                  <div className="eyebrow text-ivory/50">Photos today</div>
+                  <div className="eyebrow text-ivory/68">Photos today</div>
                   <div className="mt-2 text-[26px] font-semibold tabular-nums leading-none text-ivory">
                     +{phase.photosAdded}
                   </div>
@@ -375,8 +375,8 @@ export function ProjectScrubber({
               ) : null}
               {phase.docsAdded?.length ? (
                 <div>
-                  <div className="eyebrow text-ivory/50">Docs filed</div>
-                  <ul className="mt-2 space-y-1 text-[13px] text-ivory/85">
+                  <div className="eyebrow text-ivory/68">Docs filed</div>
+                  <ul className="mt-2 space-y-1 text-[13px] text-ivory/95">
                     {phase.docsAdded.map((d) => (
                       <li key={d}>{d}</li>
                     ))}
@@ -390,7 +390,7 @@ export function ProjectScrubber({
           !phase.moisture &&
           !phase.equipment &&
           !phase.docsAdded ? (
-            <div className="rounded-lg border border-dashed border-ivory/15 p-5 text-[13px] text-ivory/55">
+            <div className="rounded-lg border border-dashed border-ivory/15 p-5 text-[13px] text-ivory/70">
               Projected milestone — readings, photos and docs will
               populate here as the day is reached.
             </div>
@@ -404,18 +404,18 @@ export function ProjectScrubber({
           type="button"
           onClick={goPrev}
           disabled={activeIndex === 0}
-          className="text-[13px] text-ivory/65 transition hover:text-ivory disabled:cursor-default disabled:text-ivory/25"
+          className="text-[13px] text-ivory/76 transition hover:text-ivory disabled:cursor-default disabled:text-ivory/60"
         >
           ← Previous day
         </button>
-        <div className="text-[11px] uppercase tracking-wider text-ivory/45 tabular-nums">
+        <div className="text-[11px] uppercase tracking-wider text-ivory/66 tabular-nums">
           {activeIndex + 1} of {phases.length}
         </div>
         <button
           type="button"
           onClick={goNext}
           disabled={activeIndex === phases.length - 1}
-          className="text-[13px] text-ivory/65 transition hover:text-ivory disabled:cursor-default disabled:text-ivory/25"
+          className="text-[13px] text-ivory/76 transition hover:text-ivory disabled:cursor-default disabled:text-ivory/60"
         >
           Next day →
         </button>

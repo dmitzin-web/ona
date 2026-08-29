@@ -108,7 +108,7 @@ function renderSection(s: PostSection, i: number) {
       return (
         <p
           key={i}
-          className="mt-5 text-lg leading-relaxed text-ivory/85"
+          className="mt-5 text-lg leading-relaxed text-ivory/95"
         >
           {renderInline(s.text)}
         </p>
@@ -120,7 +120,7 @@ function renderSection(s: PostSection, i: number) {
           className="mt-5 space-y-2 border-l border-ivory/15 pl-5"
         >
           {s.items.map((item, j) => (
-            <li key={j} className="text-base leading-relaxed text-ivory/80">
+            <li key={j} className="text-base leading-relaxed text-ivory/90">
               {renderInline(item)}
             </li>
           ))}
@@ -130,7 +130,7 @@ function renderSection(s: PostSection, i: number) {
       return (
         <ol
           key={i}
-          className="mt-5 list-decimal space-y-2 pl-6 text-base leading-relaxed text-ivory/80 marker:text-ivory/40"
+          className="mt-5 list-decimal space-y-2 pl-6 text-base leading-relaxed text-ivory/90 marker:text-ivory/64"
         >
           {s.items.map((item, j) => (
             <li key={j} className="pl-1">
@@ -182,16 +182,16 @@ export default async function BlogPostPage(
 
       <article className="bg-charcoal">
         <header className="mx-auto max-w-3xl px-6 pb-16 pt-12 lg:px-10">
-          <p className="eyebrow text-ivory/60">
+          <p className="eyebrow text-ivory/72">
             {post.category} · {post.readingMinutes} min read
           </p>
           <h1 className="text-ivory mt-6 text-4xl font-light leading-[1.1] tracking-tight sm:text-5xl">
             {post.title}
           </h1>
-          <p className="mt-8 text-lg leading-relaxed text-ivory/75">
+          <p className="mt-8 text-lg leading-relaxed text-ivory/85">
             {post.excerpt}
           </p>
-          <p className="mt-10 text-sm text-ivory/60">
+          <p className="mt-10 text-sm text-ivory/72">
             {new Date(post.publishedAt).toLocaleDateString("en-US", {
               month: "long",
               day: "numeric",
@@ -211,7 +211,7 @@ export default async function BlogPostPage(
       {service && (
         <section className="border-t border-ivory/10 bg-charcoal">
           <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10">
-            <p className="eyebrow text-ivory/60">Get help near you</p>
+            <p className="eyebrow text-ivory/72">Get help near you</p>
             <h2 className="text-ivory mt-4 max-w-3xl text-3xl font-light leading-tight tracking-tight sm:text-4xl">
               {service.shortName} in your part of the Portland metro.
             </h2>
@@ -242,7 +242,7 @@ export default async function BlogPostPage(
                   className="flex h-full flex-col justify-between gap-6 bg-charcoal p-6 text-ivory transition hover:bg-ivory-soft"
                 >
                   <div>
-                    <p className="eyebrow text-ivory/60">All locations</p>
+                    <p className="eyebrow text-ivory/72">All locations</p>
                     <p className="mt-3 text-base font-medium tracking-tight">
                       Full {service.shortName.toLowerCase()} overview
                     </p>
@@ -262,7 +262,7 @@ export default async function BlogPostPage(
       {others.length > 0 && (
         <section className="bg-charcoal-soft">
           <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10">
-            <p className="eyebrow text-ivory/60">More from the field</p>
+            <p className="eyebrow text-ivory/72">More from the field</p>
             <ul className="mt-8 grid gap-px overflow-hidden border border-ivory/10 bg-charcoal/10 sm:grid-cols-3">
               {others.map((o) => (
                 <li key={o.slug}>
