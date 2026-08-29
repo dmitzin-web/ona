@@ -30,17 +30,16 @@ export function EmergencyBanner() {
         {/* nowrap: the strip is a fixed-height edge, and --chrome-h in
             globals.css depends on it. Wrapping to two lines at a narrow
             width would knock the mobile drawer's offset out. */}
-        <p className="eyebrow whitespace-nowrap text-white/85">
-          <span className="text-white">24/7 crew available</span>
-          {/* The booking line is a nice-to-have and the first thing
-              to go when the viewport is narrow — the availability
-              claim is what the strip exists for. */}
-          <span className="hidden sm:inline">
-            {" · Vancouver, WA + Portland metro"}
-          </span>
-          <span className="hidden lg:inline">
-            {" · Now booking fall projects"}
-          </span>
+        {/* One claim, nothing else. The strip used to also carry the
+            service area and the booking line; three facts in an 11px
+            mono row read as a ticker, and the strip's job is to be an
+            edge with a single signal on it, not a second nav. The
+            service area still appears in the hero copy and the footer.
+            "Now booking fall projects" lived only here and is now off
+            the site entirely — put it back in a page if it is wanted,
+            not in the chrome, where it goes stale by season. */}
+        <p className="eyebrow whitespace-nowrap text-white">
+          24/7 crew available
         </p>
       </div>
     </div>
