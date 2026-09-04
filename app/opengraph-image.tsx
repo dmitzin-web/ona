@@ -17,48 +17,59 @@ export default function OpengraphImage() {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: 88,
-          background: "#141414",
-          color: "#F5F4F1",
+          // Deep teal, not the retired #141414 charcoal. The share card
+          // was still on the old palette while every dark surface on
+          // the site is #073b3a.
+          background: "#073b3a",
+          color: "#ffffff",
           fontFamily: "Inter, system-ui, sans-serif",
         }}
       >
-        {/* Logo lock-up */}
-        <div style={{ display: "flex", alignItems: "center", gap: 22 }}>
-          <svg
-            width={56}
-            height={42}
-            viewBox="0 0 48 36"
-            fill="none"
-            stroke="#F5F4F1"
-            strokeWidth={1.4}
+        {/* Logo lock-up — the brand book's wordmark, where the chevron IS
+            the A. Previously this was a chevron parked to the left of the
+            word, which is not the mark. See components/Logo.tsx for the
+            geometry; the numbers here are that component's ratios at
+            56px: cap 40.0, stem 3.14, chevron width 40.0.
+
+            Satoshi is not loaded in this edge route, so the letters fall
+            back to a system sans. That is acceptable because the
+            recognisable part of this mark is the substituted A, not the
+            typeface — but if the OG images ever need to be exact, the
+            fix is a static Satoshi subset passed to ImageResponse's
+            `fonts`, not more tweaking here. */}
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "flex-end",
+              fontSize: 56,
+              fontWeight: 300,
+              letterSpacing: 6.7,
+              lineHeight: 0.715,
+            }}
           >
-            <path d="M4 32 L24 4 L44 32" />
-          </svg>
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            <div
-              style={{
-                // 8px of tracking on a 36px cap-height wordmark was .22em,
-                // which spelled the name out letter by letter. Title case
-                // needs the letters to touch — see components/Logo.tsx.
-                fontSize: 42,
-                fontWeight: 500,
-                letterSpacing: 1.5,
-                lineHeight: 1,
-              }}
-            >
-              Ona
-            </div>
-            <div
-              style={{
-                marginTop: 8,
-                fontSize: 13,
-                fontWeight: 300,
-                letterSpacing: 6,
-                opacity: 0.7,
-              }}
-            >
-              RESTORATION
-            </div>
+            <div style={{ display: "flex" }}>ON</div>
+            <svg width={40.04} height={40.04} viewBox="0 0 40.04 40.04" fill="none">
+              <path
+                d="M1.57 38.47 L20.02 1.88 L38.47 38.47"
+                stroke="#ffffff"
+                strokeWidth={3.1}
+                strokeLinecap="butt"
+                strokeLinejoin="miter"
+              />
+            </svg>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              marginTop: 11,
+              fontSize: 16,
+              fontWeight: 300,
+              letterSpacing: 6.9,
+              opacity: 0.72,
+            }}
+          >
+            RESTORATION
           </div>
         </div>
 
@@ -67,7 +78,7 @@ export default function OpengraphImage() {
           <div
             style={{
               fontSize: 18,
-              color: "#C9C4BA",
+              color: "#c9d8d6",
               fontWeight: 500,
               textTransform: "uppercase",
               letterSpacing: 4,
@@ -79,7 +90,12 @@ export default function OpengraphImage() {
             style={{
               display: "flex",
               flexDirection: "column",
-              fontSize: 92,
+              // 92 originally. The rebuilt lockup is taller than the old
+              // chevron-beside-word one, and with `space-between` the
+              // card had only ~8px between the logo's RESTORATION and
+              // the eyebrow below — two wide-tracked cap lines reading as
+              // one block. Dropping the headline gives both gaps ~36px.
+              fontSize: 74,
               fontWeight: 300,
               letterSpacing: -2,
               lineHeight: 1.0,
@@ -97,15 +113,15 @@ export default function OpengraphImage() {
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            borderTop: "1px solid #2A2A2A",
+            borderTop: "1px solid #1b4e4b",
             paddingTop: 28,
             fontSize: 22,
-            color: "#C9C4BA",
+            color: "#c9d8d6",
             letterSpacing: 1,
           }}
         >
           <div>{site.phoneDisplay}</div>
-          <div style={{ fontWeight: 500, color: "#F5F4F1" }}>onarestore.com</div>
+          <div style={{ fontWeight: 500, color: "#ffffff" }}>onarestore.com</div>
         </div>
       </div>
     ),

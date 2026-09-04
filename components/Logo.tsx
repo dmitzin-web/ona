@@ -1,8 +1,97 @@
 import Link from "next/link";
 import { site } from "@/lib/site";
 
+// ─────────────────────────────────────────────────────────────
+// ONA wordmark — built to the brand book.
+// ────────────────────────────────────────────────────────────
+// THE A IS THE CHEVRON. That is the whole idea of this mark: it is not
+// an icon sitting next to a word, it is the third letter of the word,
+// a crossbar-less peak in place of the A. Everything below exists to
+// make that one substitution invisible.
+//
+// Which is why the mark only works in capitals. Lowercase "Ona" has no
+// A to replace, so the chevron becomes a decoration parked beside a
+// word — which is exactly how the previous version looked, and why it
+// read as weak. The wordmark therefore stays ONA here even though
+// running copy, page titles and metadata say "Ona Restoration": the
+// logo is set in caps as a design decision, the name is written
+// normally in prose, and About carries the "OH-nuh" pronunciation cue.
+// See lib/site.ts.
+//
+// Geometry, all derived from the type size so the lockup scales as one
+// object and never needs a second set of magic numbers:
+//   cap height   0.715 × size   (Satoshi's cap height)
+//   stem width   0.052 × size   (Satoshi Light's stem at this size)
+//   chevron w    1.00  × cap    (the A is as wide as the O — checked
+//                                against the brand book artwork; .92
+//                                read visibly pinched next to it)
+//   apex inset   0.6   × stem   (keeps the point crisp at the top)
+//
+// The chevron's stroke is DELIBERATELY 8% heavier than the stem it is
+// matched to. A diagonal of the same nominal width reads thinner than a
+// vertical — type designers compensate the same way — and without it
+// the A looks lighter than the O and N beside it.
+//
+// RESTORATION is Satoshi Light, not the site's mono label stack. The
+// mono convention in globals.css governs UI labels; this is the logo,
+// and the book sets the descriptor in the same face as the wordmark.
+// Its tracking is tuned per variant so the line measures the wordmark.
+
 type Variant = "horizontal" | "stacked" | "mark";
 type Tone = "light" | "dark";
+
+// Type size of the wordmark per variant. `horizontal` is the header and
+// footer lockup; `stacked` is for larger canvases.
+const SIZE: Record<"horizontal" | "stacked", number> = {
+  horizontal: 31,
+  stacked: 48,
+};
+
+// Descriptor size and tracking per variant. The tracking is not a taste
+// value — it is solved so RESTORATION measures the wordmark. Measured in
+// the browser at these sizes: wordmark 102.7px, descriptor 102.4px.
+// If you change SIZE, re-measure both and re-solve.
+const SUB_SIZE: Record<"horizontal" | "stacked", number> = {
+  horizontal: 9,
+  stacked: 13,
+};
+const SUB_TRACK: Record<"horizontal" | "stacked", number> = {
+  horizontal: 0.455,
+  stacked: 0.43,
+};
+
+const CAP = 0.715;
+const STEM = 0.052;
+const CHEV_W = 1.0;
+const APEX = 0.6;
+const DIAGONAL_COMPENSATION = 1.08;
+
+function Chevron({ size, color }: { size: number; color: string }) {
+  const cap = size * CAP;
+  const stem = size * STEM * DIAGONAL_COMPENSATION;
+  const w = cap * CHEV_W;
+  return (
+    <svg
+      width={w}
+      height={cap}
+      viewBox={`0 0 ${w} ${cap}`}
+      fill="none"
+      stroke={color}
+      strokeWidth={stem}
+      strokeLinecap="butt"
+      strokeLinejoin="miter"
+      aria-hidden="true"
+      role="presentation"
+      style={{ display: "block" }}
+    >
+      <path
+        d={`M${stem / 2} ${cap - stem / 2} L${w / 2} ${stem * APEX} L${
+          w - stem / 2
+        } ${cap - stem / 2}`}
+      />
+    </svg>
+  );
+}
 
 export function Logo({
   variant = "horizontal",
@@ -13,100 +102,69 @@ export function Logo({
   tone?: Tone;
   className?: string;
 }) {
-  // Tokens, not literals, so the mark inverts with the rest of the palette
-  // instead of staying frozen at the old charcoal-era hexes. Read by role:
-  // `light` is the logo that sits on the page ground, `dark` is the one on
-  // inverted surfaces. (See the token block in globals.css — `ivory` is ink
-  // and `charcoal` is ground since the September 2026 inversion.)
+  // Tokens, not literals, so the mark inverts with the rest of the
+  // palette. Read by role: `light` sits on the page ground, `dark` on
+  // inverted surfaces. (`ivory` is ink and `charcoal` is ground since
+  // the September 2026 inversion — see globals.css.)
   const ink =
     tone === "light" ? "var(--color-ivory)" : "var(--color-charcoal)";
 
-  const Mark = (
-    <svg
-      width="100%"
-      height="100%"
-      viewBox="0 0 48 36"
-      fill="none"
-      stroke={ink}
-      strokeWidth={1.4}
-      strokeLinecap="square"
-      strokeLinejoin="miter"
-      aria-hidden="true"
-      role="presentation"
-    >
-      <path d="M4 32 L24 4 L44 32" />
-    </svg>
-  );
-
   if (variant === "mark") {
     return (
-      <div className={`inline-block ${className}`} aria-label={`${site.name} mark`}>
-        {Mark}
-      </div>
+      <span
+        className={`inline-block ${className}`}
+        aria-label={`${site.name} mark`}
+        style={{ color: ink }}
+      >
+        <Chevron size={48} color="currentColor" />
+      </span>
     );
   }
 
-  const stacked = variant === "stacked";
+  const size = SIZE[variant];
+  const track = 0.12;
 
   return (
     <Link
       href="/"
       aria-label={`${site.name} home`}
-      className={`inline-flex items-center gap-3 ${className}`}
+      className={`inline-flex ${className}`}
+      style={{ color: ink }}
     >
-      <span
-        className={stacked ? "flex flex-col items-center gap-2" : "flex items-center gap-3"}
-      >
+      {/* Centred column: the descriptor is optically the same width as
+          the wordmark, so centring is what makes the block read as one
+          stamp rather than two left-aligned lines. */}
+      <span className="inline-flex flex-col items-center">
         <span
-          className={`block ${stacked ? "h-8 w-10" : "h-6 w-8"}`}
-          aria-hidden="true"
+          className="font-display inline-flex items-end"
+          style={{
+            fontWeight: 300,
+            fontSize: `${size}px`,
+            letterSpacing: `${track}em`,
+            lineHeight: CAP,
+          }}
         >
-          {Mark}
+          {/* No margin before the chevron. CSS letter-spacing already
+              adds a gap AFTER the N, so an explicit margin here would
+              double the O→N interval and the substitution would show. */}
+          <span style={{ display: "block" }}>ON</span>
+          <Chevron size={size} color="currentColor" />
         </span>
-        <span className="flex flex-col leading-none" style={{ color: ink }}>
-          {/* "Ona", not "ONA", and the tracking had to come down with it.
-              All-caps at .24em was elegant but it read as an initialism —
-              an American seeing ONA says "oh-en-ay", which turns a
-              two-syllable name into a government agency. Title case makes
-              it a word.
-
-              Wide tracking undoes that, though: "O n a" spaced out is
-              spelled-out again, which is the thing we were fixing. .04em
-              is enough air for a light weight without breaking the word
-              apart. Weight stays 300 so the mark is still a signature
-              rather than another button beside the nav; the size goes up a
-              little because lowercase has less presence than caps at the
-              same point size. */}
-          <span
-            className="font-display"
-            style={{
-              fontWeight: 300,
-              fontSize: stacked ? "2.25rem" : "1.9rem",
-              letterSpacing: "0.04em",
-            }}
-          >
-            Ona
-          </span>
-          {/* Mono, like every other small label on the site — this is a
-              credential line, not display type.
-
-              Tracking pulled in from .34em and the size from .53rem. With
-              "ONA" in caps the two lines were close in width; "Ona" is
-              three lowercase letters and measured 49.7px against this
-              line's 87.8px, which made the lockup bottom-heavy — the
-              descriptor was shouting over the name. Now roughly 61px
-              against 72px, so the wordmark leads. */}
-          <span
-            className="mt-1.5 font-mono"
-            style={{
-              fontWeight: 400,
-              fontSize: "0.5rem",
-              letterSpacing: "0.2em",
-              opacity: 0.72,
-            }}
-          >
-            RESTORATION
-          </span>
+        <span
+          className="font-display"
+          style={{
+            fontWeight: 300,
+            fontSize: `${SUB_SIZE[variant]}px`,
+            letterSpacing: `${SUB_TRACK[variant]}em`,
+            // Trailing letter-space would otherwise push the line left
+            // of centre by half a tracking unit.
+            textIndent: `${SUB_TRACK[variant] * SUB_SIZE[variant]}px`,
+            marginTop: variant === "stacked" ? 12 : 6,
+            lineHeight: 1,
+            opacity: 0.9,
+          }}
+        >
+          RESTORATION
         </span>
       </span>
     </Link>

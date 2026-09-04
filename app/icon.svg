@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Site icon: the chevron on its own — the brand book's "icon / symbol"
+       lockup. This is the A from the wordmark, which is why it can stand
+       alone: at 16px no wordmark is legible, but the peak is.
+
+       Deep teal ground (#073b3a) rather than a transparent one, so the
+       icon holds its shape in a browser tab against either a light or a
+       dark chrome. Stroke is heavier than the wordmark's in proportion —
+       a 1px hairline disappears at favicon size.
+
+       There was no icon at all before this file: layout.tsx pointed at
+       /favicon.ico, which 404'd in production. Next's app/icon.svg file
+       convention serves this and emits the <link> itself, so the manual
+       `icons` entry in the metadata came out. -->
+  <rect width="32" height="32" fill="#073b3a"/>
+  <!-- Same proportion as the Λ in the wordmark: width = height, 15 × 15.
+       Drawn wider and flatter at first, which read as a shallow roof
+       rather than the letter. -->
+  <path d="M8.5 23 L16 8 L23.5 23"
+        fill="none" stroke="#ffffff" stroke-width="2.4"
+        stroke-linecap="butt" stroke-linejoin="miter"/>
+</svg>

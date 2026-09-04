@@ -124,14 +124,15 @@
      measure its own offset — it reads this. Verified in the browser at
      390px and 1280px; if you change the strip's or the header's padding,
      re-measure and update this. */
-  /* Re-measured after the wordmark went from "ONA" to "Ona": the larger
-     lowercase mark made the bar 3px taller at every width. */
-  --chrome-h: 102px;
+  /* Re-measured after the wordmark was rebuilt to the brand book (caps
+     with the chevron A). Values have moved twice now — measure, do not
+     estimate: header height + the 32.5px status strip. */
+  --chrome-h: 99px;
 }
 @media (min-width: 768px) {
   :root {
     /* The bar goes from py-3 to py-4 at md. */
-    --chrome-h: 110px;
+    --chrome-h: 107px;
   }
 }
 

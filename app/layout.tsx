@@ -48,9 +48,11 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
-  icons: {
-    icon: [{ url: "/favicon.ico" }],
-  },
+  // No `icons` entry. This pointed at /favicon.ico, which does not exist
+  // and returned 404 in production — the site has been shipping with no
+  // tab icon at all. app/icon.svg now supplies it through Next's file
+  // convention, which emits the <link> itself; declaring icons here as
+  // well would override that and reinstate the broken path.
 };
 
 export const viewport: Viewport = {

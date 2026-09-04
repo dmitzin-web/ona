@@ -32,7 +32,7 @@ export default async function BlogOpengraphImage({
             width: "100%",
             height: "100%",
             display: "flex",
-            background: "#141414",
+            background: "#073b3a",
           }}
         />
       ),
@@ -50,8 +50,10 @@ export default async function BlogOpengraphImage({
           flexDirection: "column",
           justifyContent: "space-between",
           padding: 80,
-          background: "#141414",
-          color: "#F5F4F1",
+          // Deep teal, matching app/opengraph-image.tsx. Both cards were
+          // still on the retired charcoal palette.
+          background: "#073b3a",
+          color: "#ffffff",
           fontFamily: "Inter, system-ui, sans-serif",
         }}
       >
@@ -63,53 +65,53 @@ export default async function BlogOpengraphImage({
             justifyContent: "space-between",
           }}
         >
-          <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
-            <svg
-              width={44}
-              height={33}
-              viewBox="0 0 48 36"
-              fill="none"
-              stroke="#F5F4F1"
-              strokeWidth={1.4}
+          {/* Same lockup as app/opengraph-image.tsx at 38px: the chevron
+              is the A, not an icon beside the word. Ratios come from
+              components/Logo.tsx — cap 27.17, stem 2.13, chevron width 27.17. */}
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "flex-end",
+                fontSize: 38,
+                fontWeight: 300,
+                letterSpacing: 4.6,
+                lineHeight: 0.715,
+              }}
             >
-              <path d="M4 32 L24 4 L44 32" />
-            </svg>
-            <div style={{ display: "flex", flexDirection: "column" }}>
-              <div
-                style={{
-                  // Tracking down from 6px (.23em) for the same reason as
-                  // components/Logo.tsx: spaced-out lowercase reads as an
-                  // initialism, which is what title case is here to stop.
-                  fontSize: 30,
-                  fontWeight: 500,
-                  letterSpacing: 1,
-                  lineHeight: 1,
-                }}
-              >
-                Ona
-              </div>
-              <div
-                style={{
-                  marginTop: 6,
-                  fontSize: 11,
-                  fontWeight: 300,
-                  letterSpacing: 5,
-                  opacity: 0.7,
-                }}
-              >
-                RESTORATION
-              </div>
+              <div style={{ display: "flex" }}>ON</div>
+              <svg width={27.17} height={27.17} viewBox="0 0 27.17 27.17" fill="none">
+                <path
+                  d="M1.07 26.10 L13.59 1.28 L26.10 26.10"
+                  stroke="#ffffff"
+                  strokeWidth={2.1}
+                  strokeLinecap="butt"
+                  strokeLinejoin="miter"
+                />
+              </svg>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                marginTop: 8,
+                fontSize: 11,
+                fontWeight: 300,
+                letterSpacing: 4.7,
+                opacity: 0.72,
+              }}
+            >
+              RESTORATION
             </div>
           </div>
           <div
             style={{
               display: "flex",
               fontSize: 16,
-              color: "#C9C4BA",
+              color: "#c9d8d6",
               fontWeight: 500,
               textTransform: "uppercase",
               letterSpacing: 4,
-              border: "1px solid #2A2A2A",
+              border: "1px solid #1b4e4b",
               padding: "10px 18px",
             }}
           >
@@ -137,15 +139,15 @@ export default async function BlogOpengraphImage({
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            borderTop: "1px solid #2A2A2A",
+            borderTop: "1px solid #1b4e4b",
             paddingTop: 28,
             fontSize: 20,
-            color: "#C9C4BA",
+            color: "#c9d8d6",
             letterSpacing: 1,
           }}
         >
           <div style={{ display: "flex" }}>{`By ${post.author.name}`}</div>
-          <div style={{ display: "flex", fontWeight: 500, color: "#F5F4F1" }}>
+          <div style={{ display: "flex", fontWeight: 500, color: "#ffffff" }}>
             {`${site.url.replace(/^https?:\/\//, "")}/blog`}
           </div>
         </div>
