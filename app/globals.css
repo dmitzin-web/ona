@@ -131,8 +131,12 @@
 }
 @media (min-width: 768px) {
   :root {
-    /* The bar goes from py-3 to py-4 at md. */
-    --chrome-h: 107px;
+    /* The bar goes from py-3 to py-4 at md, and above sm the secondary
+       button (Send photos / Start a project) is what sets the bar's
+       height — not the wordmark and not the nav, which is display:none
+       everywhere the drawer exists. Its type went 13px → 14px with the
+       nav, which is the 1.5px that put this at 109 rather than 107. */
+    --chrome-h: 109px;
   }
 }
 

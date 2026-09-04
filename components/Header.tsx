@@ -102,8 +102,19 @@ export function Header() {
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-3 md:py-4 lg:px-10">
         <Logo variant="horizontal" tone="light" />
 
+        {/* Desktop nav. Was 14px / weight 400 / text-ivory/85, which was
+            small three times over: 14px against a 31px wordmark, the
+            lightest weight Satoshi has at reading size, and an opacity
+            mask on top. The /85 is a leftover from the charcoal era —
+            light type on a dark ground genuinely needs toning down, ink
+            on white does not, it just goes grey. Measured 463px of unused
+            space in this bar, so nothing was forcing it small.
+
+            Active state moves from opacity to weight plus a rule. An
+            opacity difference between 85% and 100% is not a state a
+            reader can see; a underline is. */}
         <nav aria-label="Primary" className="hidden lg:block">
-          <ul className="flex items-center gap-8 text-[14px] text-ivory/85">
+          <ul className="flex items-center gap-8 text-[15px] font-[450] text-ivory">
             {nav.map((item, i) => {
               if (item.mobileOnly) return null;
               const active = isActive(item.href);
@@ -112,8 +123,10 @@ export function Header() {
                   <Link
                     href={item.href}
                     aria-current={active ? "page" : undefined}
-                    className={`transition ${
-                      active ? "text-ivory" : "hover:text-ivory"
+                    className={`underline-offset-[7px] transition hover:text-teal ${
+                      active
+                        ? "font-medium text-teal underline decoration-teal decoration-1"
+                        : ""
                     }`}
                   >
                     {item.label}
@@ -159,14 +172,14 @@ export function Header() {
           {isRemodel ? (
             <Link
               href="/start-project"
-              className="hidden rounded-[2px] border border-ivory px-5 py-2.5 text-[13px] font-medium text-ivory transition hover:bg-brand hover:text-charcoal sm:inline-flex"
+              className="hidden rounded-[2px] border border-ivory px-5 py-2.5 text-[14px] font-medium text-ivory transition hover:bg-brand hover:text-charcoal sm:inline-flex"
             >
               Start a project
             </Link>
           ) : (
             <a
               href={`mailto:${site.email}?subject=${PHOTO_SUBJECT}`}
-              className="hidden rounded-[2px] border border-ivory px-5 py-2.5 text-[13px] font-medium text-ivory transition hover:bg-brand hover:text-charcoal sm:inline-flex"
+              className="hidden rounded-[2px] border border-ivory px-5 py-2.5 text-[14px] font-medium text-ivory transition hover:bg-brand hover:text-charcoal sm:inline-flex"
             >
               Send photos
             </a>
