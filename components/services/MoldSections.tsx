@@ -4,7 +4,7 @@ import { EmailLink, PhoneLink } from "@/components/contact/ContactLinks";
 import { PhoneIcon } from "@/components/icons/ServiceIcons";
 
 // Dedicated, premium content for /services/mold-removal. Mold is one of
-// ONA's three business lines, so its page gets a stronger, specialist
+// Ona's three business lines, so its page gets a stronger, specialist
 // treatment than the shared service template. Every claim here is
 // operationally true — IICRC S520 methodology, sealed containment with
 // HEPA negative air, independent third-party clearance, insurance-grade
@@ -122,7 +122,7 @@ export function MoldSections({ service }: { service: Service }) {
       {/* The method — process timeline */}
       <section className="bg-charcoal text-ivory">
         <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
-          <p className="eyebrow text-gold">The ONA method</p>
+          <p className="eyebrow text-gold">The Ona method</p>
           <h2 className="text-ivory mt-6 max-w-3xl text-4xl font-light leading-tight tracking-tight sm:text-5xl">
             Six steps, to the S520 standard.
           </h2>
@@ -144,10 +144,10 @@ export function MoldSections({ service }: { service: Service }) {
         </div>
       </section>
 
-      {/* Why ONA — differentiators */}
+      {/* Why Ona — differentiators */}
       <section className="bg-charcoal-soft">
         <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
-          <p className="eyebrow text-ivory/72">Why ONA for mold</p>
+          <p className="eyebrow text-ivory/72">Why Ona for mold</p>
           <h2 className="text-ivory mt-6 max-w-3xl text-4xl font-light leading-tight tracking-tight sm:text-5xl">
             What separates a real remediation from a wipe-down.
           </h2>

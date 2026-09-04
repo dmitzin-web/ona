@@ -13,7 +13,7 @@ import { Logo } from "./Logo";
 //   - Phone (coral, primary, visible at every width; recoloured to
 //     `flare` on wildfire pages by a :has() rule in globals.css)
 //   - Start a project (ink outline, secondary, sm and up)
-// Ask ONA is kept as a quiet nav-stream button — it still
+// Ask Ona is kept as a quiet nav-stream button — it still
 // dispatches the same window event so the existing AskOna
 // drawer continues to work, but it doesn't shout.
 //

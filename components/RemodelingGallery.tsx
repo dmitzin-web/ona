@@ -6,7 +6,7 @@
 // portfolio is half the sale, and "here is the kind of thing we could
 // do" loses to any competitor showing an actual kitchen.
 //
-// These nine are ONA's own finish work, from /public/photos/projects/ —
+// These nine are Ona's own finish work, from /public/photos/projects/ —
 // the same set the homepage grid and the Spokane page use.
 //
 // RULE FOR WHOEVER EDITS THIS NEXT: every word in `notes` must be

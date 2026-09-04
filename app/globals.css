@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  /* Brand palette — ONA Restoration
+  /* Brand palette — Ona Restoration
      ────────────────────────────────────────────────────────────────
      INVERTED, SEPTEMBER 2026. The site ran on a charcoal ground for
      its whole life; these token NAMES still describe the old look and
@@ -124,12 +124,14 @@
      measure its own offset — it reads this. Verified in the browser at
      390px and 1280px; if you change the strip's or the header's padding,
      re-measure and update this. */
-  --chrome-h: 99px;
+  /* Re-measured after the wordmark went from "ONA" to "Ona": the larger
+     lowercase mark made the bar 3px taller at every width. */
+  --chrome-h: 102px;
 }
 @media (min-width: 768px) {
   :root {
     /* The bar goes from py-3 to py-4 at md. */
-    --chrome-h: 107px;
+    --chrome-h: 110px;
   }
 }
 

@@ -11,7 +11,7 @@ import { breadcrumbJsonLd } from "@/lib/jsonld";
 export const metadata: Metadata = buildMetadata({
   title: "Service Area — Portland Metro Restoration Coverage",
   description:
-    "ONA Restoration covers Vancouver, WA, Portland, OR and the entire Portland metro area. See the cities we serve with 24/7 emergency response.",
+    "Ona Restoration covers Vancouver, WA, Portland, OR and the entire Portland metro area. See the cities we serve with 24/7 emergency response.",
   path: "/areas",
 });
 

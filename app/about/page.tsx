@@ -16,8 +16,8 @@ export const metadata: Metadata = buildMetadata({
 
 const aboutFaqs = [
   {
-    q: "Is ONA Restoration a franchise?",
-    a: "No. ONA Restoration & Remodeling is a locally-owned, independent contractor based in Vancouver, WA. We are not affiliated with SERVPRO, PuroClean, ServiceMaster, or any other national restoration brand. Every job is run by our own crew, supervised by our founder.",
+    q: "Is Ona Restoration a franchise?",
+    a: "No. Ona Restoration & Remodeling is a locally-owned, independent contractor based in Vancouver, WA. We are not affiliated with SERVPRO, PuroClean, ServiceMaster, or any other national restoration brand. Every job is run by our own crew, supervised by our founder.",
   },
   {
     q: "What areas do you serve?",
@@ -69,11 +69,20 @@ export default function AboutPage() {
           <div className="mt-16 grid gap-12 lg:grid-cols-12">
             <div className="lg:col-span-7">
               <div className="space-y-6 text-lg leading-relaxed text-ivory/90">
+                {/* Pronunciation cue. Title-casing the wordmark stops most
+                    people reading it as an initialism, but someone meeting
+                    the name for the first time still needs to be told, and
+                    this is the page where they look. Mono because that is
+                    the site's register for technical labels. Two syllables,
+                    stress on the first — the same vowel that starts
+                    "owner", without the r. */}
                 <p>
-                  {site.name} is a locally owned restoration contractor based
-                  in Vancouver, Washington, serving homeowners, property
-                  managers and business owners across the Portland metro since{" "}
-                  {site.founded}.
+                  {site.name} — said{" "}
+                  <span className="font-mono text-ivory">OH-nuh</span>, one
+                  word rather than three letters — is a locally owned
+                  restoration contractor based in Vancouver, Washington,
+                  serving homeowners, property managers and business owners
+                  across the Portland metro since {site.founded}.
                 </p>
                 <p>
                   Restoration is one of the few trades you call when you&apos;re
@@ -133,7 +142,7 @@ export default function AboutPage() {
             <div className="lg:col-span-8">
               <div className="space-y-6 text-base leading-relaxed text-ivory/90">
                 <p>
-                  Dmitry built ONA Restoration &amp; Remodeling after watching
+                  Dmitry built Ona Restoration &amp; Remodeling after watching
                   the Pacific Northwest restoration market run the same playbook
                   over and over: turn up late, demo aggressively, bill heavily,
                   and disappear before the rebuild is finished. Homeowners
@@ -154,7 +163,7 @@ export default function AboutPage() {
                 </p>
                 <p>
                   Dmitry is the technical lead on the most complex projects
-                  ONA takes — large-loss water, multi-room fires, mold
+                  Ona takes — large-loss water, multi-room fires, mold
                   remediation jobs that involve third-party Indoor
                   Environmental Professional clearance, and custom
                   reconstruction. He is also the person who answers the phone

@@ -15,7 +15,7 @@ export const runtime = "edge";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-export const alt = "ONA Restoration blog post share image";
+export const alt = "Ona Restoration blog post share image";
 
 export default async function BlogOpengraphImage({
   params,
@@ -77,13 +77,16 @@ export default async function BlogOpengraphImage({
             <div style={{ display: "flex", flexDirection: "column" }}>
               <div
                 style={{
-                  fontSize: 26,
+                  // Tracking down from 6px (.23em) for the same reason as
+                  // components/Logo.tsx: spaced-out lowercase reads as an
+                  // initialism, which is what title case is here to stop.
+                  fontSize: 30,
                   fontWeight: 500,
-                  letterSpacing: 6,
+                  letterSpacing: 1,
                   lineHeight: 1,
                 }}
               >
-                ONA
+                Ona
               </div>
               <div
                 style={{

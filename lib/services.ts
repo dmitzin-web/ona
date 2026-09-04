@@ -22,7 +22,7 @@ export const services: Service[] = [
       "24/7 emergency water damage restoration in Vancouver, WA and Portland, OR. IICRC-standard water extraction, structural drying and reconstruction. We bill your insurance directly.",
     hero: "Burst pipe, flooded basement, or appliance leak? Our crews are on-site within 60 minutes across the Portland metro area.",
     intro:
-      "Standing water turns into structural damage and mold growth in as little as 24 hours. ONA Restoration is a water-damage restoration company working to IICRC standards, serving Vancouver, WA and the entire Portland metro. We extract water, dry the structure, and rebuild — and we coordinate the claim with your insurance carrier so you don't have to.",
+      "Standing water turns into structural damage and mold growth in as little as 24 hours. Ona Restoration is a water-damage restoration company working to IICRC standards, serving Vancouver, WA and the entire Portland metro. We extract water, dry the structure, and rebuild — and we coordinate the claim with your insurance carrier so you don't have to.",
     body: [
       {
         heading: "What we handle",
@@ -101,7 +101,7 @@ export const services: Service[] = [
       "Fire, smoke and soot damage restoration in Vancouver, WA and Portland, OR. Board-up, structural cleaning, odor removal and full reconstruction. 24/7 emergency response.",
     hero: "After the fire department leaves, the damage keeps spreading. We secure the property and stop secondary loss within hours.",
     intro:
-      "Fire damage is rarely just fire. Soot is acidic and continues to etch metal, glass, and finishes within hours. Water from suppression saturates the structure. Smoke odor migrates into HVAC and porous materials throughout the home. ONA Restoration works to the IICRC S700 fire & smoke damage standard and handles every stage from board-up through reconstruction.",
+      "Fire damage is rarely just fire. Soot is acidic and continues to etch metal, glass, and finishes within hours. Water from suppression saturates the structure. Smoke odor migrates into HVAC and porous materials throughout the home. Ona Restoration works to the IICRC S700 fire & smoke damage standard and handles every stage from board-up through reconstruction.",
     body: [
       {
         heading: "Immediate stabilization",
@@ -157,7 +157,7 @@ export const services: Service[] = [
       "IICRC-standard mold remediation in Vancouver, WA and Portland, OR. Third-party testing, containment, HEPA filtration, and full remediation per IICRC S520.",
     hero: "Pacific Northwest humidity makes mold inevitable when there's a moisture source. We find the source and remove the mold safely.",
     intro:
-      "Mold isn't a cleaning problem — it's a moisture problem. Bleaching surface growth without identifying and stopping the moisture source guarantees regrowth within weeks. ONA Restoration follows the IICRC S520 standard for assessment, containment, and remediation.",
+      "Mold isn't a cleaning problem — it's a moisture problem. Bleaching surface growth without identifying and stopping the moisture source guarantees regrowth within weeks. Ona Restoration follows the IICRC S520 standard for assessment, containment, and remediation.",
     body: [
       {
         heading: "Assessment first, demolition second",
@@ -229,7 +229,7 @@ export const services: Service[] = [
       "24/7 storm damage restoration in Vancouver, WA and Portland, OR. Emergency board-up, roof tarping, tree removal, water extraction and full reconstruction.",
     hero: "Wind, ice storm, fallen tree, or atmospheric river — we stabilize, dry, and rebuild on one claim.",
     intro:
-      "The Pacific Northwest gets ice storms, windstorms, atmospheric rivers, and the occasional fallen Douglas fir through a roof. ONA Restoration handles the entire arc: emergency board-up and tarping the same night, water mitigation, structural repair, and final reconstruction.",
+      "The Pacific Northwest gets ice storms, windstorms, atmospheric rivers, and the occasional fallen Douglas fir through a roof. Ona Restoration handles the entire arc: emergency board-up and tarping the same night, water mitigation, structural repair, and final reconstruction.",
     body: [
       {
         heading: "First 24 hours",
@@ -279,7 +279,7 @@ export const services: Service[] = [
       "Custom kitchen, bath, and whole-house remodeling in Vancouver, WA and the Portland metro — built to the same IICRC-grade documentation and craftsmanship as our restoration work. Washington contractor registration ONARER*748K8.",
     hero: "From kitchen and bath remodels to whole-house renovations and additions — built by a crew that already meets insurance-grade documentation standards every day.",
     intro:
-      "After we put a property back together, many clients keep us on for the renovation they actually want. ONA Restoration's remodeling division handles full kitchen and bath renovations, whole-house remodels, structural additions, basement and ADU build-outs, and custom millwork — all delivered with the same crew, the same documentation discipline, and the same IICRC-grade workmanship as our restoration projects.",
+      "After we put a property back together, many clients keep us on for the renovation they actually want. Ona Restoration's remodeling division handles full kitchen and bath renovations, whole-house remodels, structural additions, basement and ADU build-outs, and custom millwork — all delivered with the same crew, the same documentation discipline, and the same IICRC-grade workmanship as our restoration projects.",
     body: [
       {
         heading: "What we build",

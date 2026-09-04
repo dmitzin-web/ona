@@ -34,7 +34,7 @@ Drop these in when ready; ask the assistant to wire them up:
 
 - Descriptive alt text containing service + city + outcome word
   (e.g. `alt="Before and after water damage restoration in Vancouver WA
-  basement — ONA Restoration"`)
+  basement — Ona Restoration"`)
 - Explicit width/height attributes (no CLS)
 - WebP or AVIF format preferred; next/image converts on the fly
 - File size under 400 KB for hero, under 200 KB for inline content shots

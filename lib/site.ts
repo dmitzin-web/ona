@@ -12,7 +12,7 @@ const derivedServiceArea = areaProfiles.map(({ slug, name, region }) => ({
 export const site = {
   // `name` is the public DBA / trade name — what customers see, what's
   // on the GBP listing, what's on trucks and uniforms. Keep this short.
-  name: "ONA Restoration",
+  name: "Ona Restoration",
   // Legal entity name exactly as filed with WA Secretary of State.
   // UBI 606 225 235, formation date 2026-05-13. The LLC name differs
   // from the DBA — Google GBP and structured data need both:
@@ -21,7 +21,7 @@ export const site = {
   // and `alternateName` (rendered in lib/jsonld.ts) carries the full
   // legal display so Google's reviewer can match either string when
   // cross-checking WA SOS state filings.
-  legalName: "ONA Restoration & Remodeling LLC",
+  legalName: "Ona Restoration & Remodeling LLC",
   tagline: "Precision. Restoration. Built to Last.",
   shortDescription:
     "Restoration, reconstruction, and remodeling in Vancouver, WA and the Portland metro. Water, fire, mold and storm damage restoration plus kitchen, bath and whole-house remodeling. 24/7 emergency dispatch. Insurance billed direct. Fixed-scope agreement before any work.",

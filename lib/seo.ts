@@ -32,9 +32,9 @@ export function buildMetadata({
 
   return {
     // `absolute` opts out of the root layout's title template (which
-    // appends " | ONA Restoration"). buildMetadata already composes the
+    // appends " | Ona Restoration"). buildMetadata already composes the
     // final title above, so without `absolute` we get double-suffix:
-    //   "Restoration Services | ONA Restoration | ONA Restoration"
+    //   "Restoration Services | Ona Restoration | Ona Restoration"
     title: { absolute: fullTitle },
     description,
     alternates: { canonical: url },

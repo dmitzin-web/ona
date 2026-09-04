@@ -48,7 +48,7 @@ export default async function AreaPage(
 
   const localFaqs = [
     {
-      q: `How fast can ONA Restoration reach ${area.name}, ${area.region}?`,
+      q: `How fast can Ona Restoration reach ${area.name}, ${area.region}?`,
       a: `Our typical dispatch time to ${area.name} is ${area.driveMinutesFromHQ} minutes from our Vancouver, WA headquarters. During regional emergencies we dispatch by severity and prioritize the closest available crew first.`,
     },
     {

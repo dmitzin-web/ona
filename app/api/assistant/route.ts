@@ -5,7 +5,7 @@ import { checkRateLimit, clientIp } from "@/lib/rate-limit";
 
 // POST /api/assistant
 //
-// Streams a Claude response for the "Ask ONA" assistant. Body shape:
+// Streams a Claude response for the "Ask Ona" assistant. Body shape:
 //   { messages: [{ role: "user"|"assistant", content: string|ContentBlock[] }] }
 //
 // `content` blocks may include `text` and `image` (base64) for vision.
@@ -199,7 +199,7 @@ export async function POST(req: Request) {
   } catch (err) {
     console.error("[/api/assistant] init error", err);
     return new Response(
-      `Ask ONA is unavailable right now. Please call ${site.phoneDisplay} for live help.`,
+      `Ask Ona is unavailable right now. Please call ${site.phoneDisplay} for live help.`,
       {
         status: 500,
         headers: { "Content-Type": "text/plain; charset=utf-8" },
@@ -237,7 +237,7 @@ function buildMockStream(messages: ChatMessage[]): ReadableStream<Uint8Array> {
   } else if (/(mold|musty|mildew)/.test(userText)) {
     reply = `Visible mold growth on porous materials usually needs remediation by a trained crew working inside containment to the IICRC S520 standard. If you can already see or smell it, don't disturb it — call **${site.phoneDisplay}** and we'll scope an inspection.\n\n[Mold remediation →](${site.url}/services/mold-removal)`;
   } else {
-    reply = `I'm Ask ONA — the assistant for ${site.name}. I can help with restoration questions, remodeling, service-area coverage, and insurance basics. What's going on?\n\n_(Demo response — set ANTHROPIC_API_KEY to switch to the live model.)_`;
+    reply = `I'm Ask Ona — the assistant for ${site.name}. I can help with restoration questions, remodeling, service-area coverage, and insurance basics. What's going on?\n\n_(Demo response — set ANTHROPIC_API_KEY to switch to the live model.)_`;
   }
 
   const encoder = new TextEncoder();

@@ -136,7 +136,7 @@ export default function StartProjectPage() {
       setSubmitted(true);
     } catch {
       const subject = encodeURIComponent(
-        "Start a project — ONA Restoration",
+        "Start a project — Ona Restoration",
       );
       const body = encodeURIComponent(
         [

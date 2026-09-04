@@ -7,11 +7,11 @@ import ReactMarkdown from "react-markdown";
 import { suggestedPromptsForPath } from "./suggestedPrompts";
 import { askOnaGreeting } from "@/lib/assistant/prompts";
 
-// Ask ONA — the site-wide AI assistant.
+// Ask Ona — the site-wide AI assistant.
 //
 // Mounted once in app/layout.tsx. Listens for the global event
 // `askona:open` so any button anywhere on the page can open the drawer
-// without needing React context. The Header's "Ask ONA" nav button
+// without needing React context. The Header's "Ask Ona" nav button
 // dispatches that event. A small floating button below also opens it
 // (mobile, since the desktop nav is hidden there).
 //
@@ -291,13 +291,13 @@ export function AskOna() {
           is what a persistent floating control should have been anyway. */}
       <button
         type="button"
-        aria-label="Open Ask ONA assistant"
+        aria-label="Open Ask Ona assistant"
         onClick={() => window.dispatchEvent(new Event("askona:open"))}
         className="fixed bottom-4 right-4 z-30 inline-flex h-11 w-11 items-center justify-center rounded-full bg-brand text-white shadow-lg transition hover:bg-brand-2"
         style={{ marginBottom: "env(safe-area-inset-bottom, 0px)" }}
       >
         <ChatIcon className="h-5 w-5" />
-        <span className="sr-only">Ask ONA</span>
+        <span className="sr-only">Ask Ona</span>
       </button>
 
       {/* Drawer */}
@@ -306,7 +306,7 @@ export function AskOna() {
           className="fixed inset-0 z-50 flex"
           role="dialog"
           aria-modal="true"
-          aria-label="Ask ONA"
+          aria-label="Ask Ona"
         >
           {/* Backdrop */}
           <div
@@ -321,7 +321,7 @@ export function AskOna() {
             <div className="flex flex-none items-center justify-between border-b border-line-light px-5 py-4">
               <div>
                 <p className="text-base font-medium tracking-tight text-charcoal">
-                  Ask ONA
+                  Ask Ona
                 </p>
                 <p className="text-xs text-charcoal/55">
                   AI assistant · informational only
@@ -445,7 +445,7 @@ export function AskOna() {
                   }
                 }}
                 rows={1}
-                placeholder="Ask anything about ONA, services, or your claim…"
+                placeholder="Ask anything about Ona, services, or your claim…"
                 className="block min-h-10 max-h-32 w-full resize-none border border-charcoal/20 bg-brand px-3 py-2 text-sm text-charcoal placeholder:text-charcoal/40 focus:border-ivory focus:outline-none"
               />
               <button

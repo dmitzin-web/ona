@@ -53,7 +53,7 @@ export const privacySections: { heading: string; body: string[] }[] = [
       "Hosting (Vercel): serves the website and processes form submissions. Standard server logs (IP address, request time, user agent) are retained briefly for security and reliability.",
       "Analytics (Plausible): cookieless, privacy-first web analytics. It does not use cookies, does not collect personal identifiers, and does not track you across other websites.",
       "Maps (Google Maps): our Contact page embeds a Google map. When it loads, Google may receive your IP address and device information under Google's own privacy policy. The map only loads on that page.",
-      'AI assistant "Ask ONA" (Anthropic): if you use the optional chat assistant, the text you type — and any photo you choose to attach — is sent to Anthropic\'s Claude API to generate a reply. Anthropic processes it to return an answer and, per its commercial terms, does not use it to train its models. Do not paste sensitive personal, financial, or medical details into the chat; for those, call us instead.',
+      'AI assistant "Ask Ona" (Anthropic): if you use the optional chat assistant, the text you type — and any photo you choose to attach — is sent to Anthropic\'s Claude API to generate a reply. Anthropic processes it to return an answer and, per its commercial terms, does not use it to train its models. Do not paste sensitive personal, financial, or medical details into the chat; for those, call us instead.',
     ],
   },
   {

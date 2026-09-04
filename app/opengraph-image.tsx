@@ -37,13 +37,16 @@ export default function OpengraphImage() {
           <div style={{ display: "flex", flexDirection: "column" }}>
             <div
               style={{
-                fontSize: 36,
+                // 8px of tracking on a 36px cap-height wordmark was .22em,
+                // which spelled the name out letter by letter. Title case
+                // needs the letters to touch — see components/Logo.tsx.
+                fontSize: 42,
                 fontWeight: 500,
-                letterSpacing: 8,
+                letterSpacing: 1.5,
                 lineHeight: 1,
               }}
             >
-              ONA
+              Ona
             </div>
             <div
               style={{

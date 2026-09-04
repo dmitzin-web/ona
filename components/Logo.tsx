@@ -64,28 +64,44 @@ export function Logo({
           {Mark}
         </span>
         <span className="flex flex-col leading-none" style={{ color: ink }}>
-          {/* Light and wide. A 500-weight wordmark competes with the nav
-              beside it; at 300 with .24em tracking the mark reads as a
-              signature rather than as another button, which is the whole
-              point of an understated wordmark. */}
+          {/* "Ona", not "ONA", and the tracking had to come down with it.
+              All-caps at .24em was elegant but it read as an initialism —
+              an American seeing ONA says "oh-en-ay", which turns a
+              two-syllable name into a government agency. Title case makes
+              it a word.
+
+              Wide tracking undoes that, though: "O n a" spaced out is
+              spelled-out again, which is the thing we were fixing. .04em
+              is enough air for a light weight without breaking the word
+              apart. Weight stays 300 so the mark is still a signature
+              rather than another button beside the nav; the size goes up a
+              little because lowercase has less presence than caps at the
+              same point size. */}
           <span
             className="font-display"
             style={{
               fontWeight: 300,
-              fontSize: stacked ? "1.6rem" : "1.35rem",
-              letterSpacing: "0.24em",
+              fontSize: stacked ? "2.25rem" : "1.9rem",
+              letterSpacing: "0.04em",
             }}
           >
-            ONA
+            Ona
           </span>
           {/* Mono, like every other small label on the site — this is a
-              credential line, not display type. */}
+              credential line, not display type.
+
+              Tracking pulled in from .34em and the size from .53rem. With
+              "ONA" in caps the two lines were close in width; "Ona" is
+              three lowercase letters and measured 49.7px against this
+              line's 87.8px, which made the lockup bottom-heavy — the
+              descriptor was shouting over the name. Now roughly 61px
+              against 72px, so the wordmark leads. */}
           <span
             className="mt-1.5 font-mono"
             style={{
               fontWeight: 400,
-              fontSize: "0.53rem",
-              letterSpacing: "0.34em",
+              fontSize: "0.5rem",
+              letterSpacing: "0.2em",
               opacity: 0.72,
             }}
           >

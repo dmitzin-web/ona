@@ -8,7 +8,7 @@ import { buildMetadata } from "@/lib/seo";
 import { faqJsonLd } from "@/lib/jsonld";
 
 // ─────────────────────────────────────────────────────────────
-// ONA Restoration — Homepage (Project File concept, v3)
+// Ona Restoration — Homepage (Project File concept, v3)
 // ────────────────────────────────────────────────────────────
 // v3 adds REAL project photography across the page. Until this
 // iteration the site was a "concept startup for restoration" —
@@ -59,7 +59,7 @@ const homeFaqs = [
   },
   {
     q: "Are you licensed?",
-    a: "ONA Restoration & Remodeling LLC holds Washington contractor registration ONARER*748K8, verifiable at secure.lni.wa.gov/verify. Our Oregon CCB registration is pending. Our technicians are IICRC-certified in water damage restoration, applied structural drying, microbial remediation, and fire and smoke restoration.",
+    a: "Ona Restoration & Remodeling LLC holds Washington contractor registration ONARER*748K8, verifiable at secure.lni.wa.gov/verify. Our Oregon CCB registration is pending. Our technicians are IICRC-certified in water damage restoration, applied structural drying, microbial remediation, and fire and smoke restoration.",
   },
 ];
 
@@ -130,12 +130,12 @@ export default function HomePage() {
 
             {/* Anchor image + signature Project File overlay.
                 The overlay is what makes this image specifically
-                ONA — not "any interior shot." It tells the viewer
+                Ona — not "any interior shot." It tells the viewer
                 "this is your live project page on day 7." */}
             <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-ivory/10 shadow-[0_1px_0_rgba(0,0,0,0.02),0_30px_70px_-30px_rgba(0,0,0,0.25)]">
               <Image
                 src={photos[0].src}
-                alt="Recent ONA project — interior detail"
+                alt="Recent Ona project — interior detail"
                 fill
                 priority
                 sizes="(max-width: 768px) 100vw, 50vw"
@@ -285,7 +285,7 @@ export default function HomePage() {
                         title: "Initial moisture mapping",
                         body: "Identified 6.2 m² of saturated subfloor. Containment set, dehumidifiers placed.",
                         photos: 12,
-                        author: "ONA tech",
+                        author: "Ona tech",
                       },
                       {
                         day: "Day 3",
@@ -293,7 +293,7 @@ export default function HomePage() {
                         title: "Adjuster walkthrough — approved",
                         body: 'Scope agreed: lower cabinets, subfloor, drywall to 18". Insurer photos uploaded.',
                         photos: 38,
-                        author: "ONA tech + adjuster",
+                        author: "Ona tech + adjuster",
                       },
                       {
                         day: "Day 5",
@@ -301,7 +301,7 @@ export default function HomePage() {
                         title: "Drying complete",
                         body: "All readings below threshold. Demo scheduled for Day 6.",
                         photos: 18,
-                        author: "ONA tech",
+                        author: "Ona tech",
                       },
                       {
                         day: "Day 7",
@@ -309,7 +309,7 @@ export default function HomePage() {
                         title: "Rebuild started",
                         body: "Subfloor and drywall in. Cabinets arriving Day 9. On schedule — kitchen usable again by Day 14.",
                         photos: 24,
-                        author: "ONA tech",
+                        author: "Ona tech",
                         isNow: true,
                       },
                     ].map((entry) => (
@@ -483,7 +483,7 @@ export default function HomePage() {
                       <li className="flex gap-2">
                         <span className="mt-1 inline-block h-1 w-1 flex-none rounded-full bg-gold" />
                         <span>
-                          <span className="text-ivory">ONA tech</span>{" "}
+                          <span className="text-ivory">Ona tech</span>{" "}
                           uploaded 8 photos · 9:14a
                         </span>
                       </li>
@@ -533,7 +533,7 @@ export default function HomePage() {
                 </div>
                 <div className="space-y-4 px-4 pb-5">
                   <div className="flex items-center justify-between text-[10px] text-ivory/85">
-                    <span>ONA</span>
+                    <span>Ona</span>
                     <span>9:41</span>
                   </div>
 
@@ -604,7 +604,7 @@ export default function HomePage() {
                   </div>
 
                   <div className="w-full rounded-[2px] bg-gold py-2 text-center text-[11px] font-medium text-white">
-                    Call ONA
+                    Call Ona
                   </div>
                 </div>
               </div>
@@ -1290,7 +1290,7 @@ export default function HomePage() {
                     {/* Signature signal chip — same dark-pill
                         pattern as the hero overlay. Repetition
                         turns it into the brand's visual language:
-                        "wherever you see this chip, ONA is
+                        "wherever you see this chip, Ona is
                         running an organized project." */}
                     {card.signal ? (
                       <div className="absolute bottom-3 left-3 inline-flex items-center gap-2 rounded-[2px] border border-white/15 bg-charcoal/80 px-3 py-1.5 text-[11px] text-ivory backdrop-blur-md">

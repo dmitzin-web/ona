@@ -261,7 +261,7 @@ export default async function ProjectPage({
           href="/"
           className="text-[13px] text-ivory/85 underline-offset-4 hover:text-ivory hover:underline"
         >
-          ← ONA Restoration
+          ← Ona Restoration
         </Link>
 
         {/* Sample banner — removed for real projects */}
@@ -361,7 +361,7 @@ export default async function ProjectPage({
             Want a page like this for your project?
           </h2>
           <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-ivory/85">
-            Every ONA client gets one — restoration or remodel. Updated
+            Every Ona client gets one — restoration or remodel. Updated
             daily until sign-off.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">

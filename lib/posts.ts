@@ -38,7 +38,7 @@ export const posts: Post[] = [
     category: "Remodeling",
     readingMinutes: 8,
     publishedAt: "2026-05-11",
-    author: { name: "ONA Restoration", title: "Restoration & remodeling — Vancouver, WA" },
+    author: { name: "Ona Restoration", title: "Restoration & remodeling — Vancouver, WA" },
     sections: [
       {
         kind: "p",
@@ -169,7 +169,7 @@ export const posts: Post[] = [
     category: "Water",
     readingMinutes: 5,
     publishedAt: "2026-05-13",
-    author: { name: "ONA Restoration", title: "Restoration & remodeling — Vancouver, WA" },
+    author: { name: "Ona Restoration", title: "Restoration & remodeling — Vancouver, WA" },
     sections: [
       {
         kind: "p",
@@ -314,7 +314,7 @@ export const posts: Post[] = [
     category: "Storm",
     readingMinutes: 7,
     publishedAt: "2026-05-12",
-    author: { name: "ONA Restoration", title: "Restoration & remodeling — Vancouver, WA" },
+    author: { name: "Ona Restoration", title: "Restoration & remodeling — Vancouver, WA" },
     sections: [
       {
         kind: "p",
@@ -436,7 +436,7 @@ export const posts: Post[] = [
     category: "Fire",
     readingMinutes: 7,
     publishedAt: "2026-05-11",
-    author: { name: "ONA Restoration", title: "Restoration & remodeling — Vancouver, WA" },
+    author: { name: "Ona Restoration", title: "Restoration & remodeling — Vancouver, WA" },
     sections: [
       {
         kind: "p",
@@ -531,7 +531,7 @@ export const posts: Post[] = [
     category: "Insurance",
     readingMinutes: 8,
     publishedAt: "2026-05-10",
-    author: { name: "ONA Restoration", title: "Restoration & remodeling — Vancouver, WA" },
+    author: { name: "Ona Restoration", title: "Restoration & remodeling — Vancouver, WA" },
     sections: [
       {
         kind: "p",
@@ -601,7 +601,7 @@ export const posts: Post[] = [
           "Don't accept the carrier's first estimate as final. Ask the restoration contractor to review it and identify gaps. Submit a written response to anything that looks short.",
         ],
       },
-      { kind: "h2", text: "Where ONA fits in" },
+      { kind: "h2", text: "Where Ona fits in" },
       {
         kind: "p",
         text: "We run fire & smoke work to the IICRC FSRT (Fire & Smoke Restoration Technician) standard and handle every stage from emergency board-up through final reconstruction. We document everything to insurance-adjuster standard from the first hour, and we coordinate with your carrier directly so you don't navigate the claim alone. If you're in Vancouver, WA or the Portland metro and you've had a fire — call us. We answer 24/7 and the first 24 hours are the most important.",
@@ -641,7 +641,7 @@ export const posts: Post[] = [
     category: "Insurance",
     readingMinutes: 7,
     publishedAt: "2026-05-09",
-    author: { name: "ONA Restoration", title: "Restoration & remodeling — Vancouver, WA" },
+    author: { name: "Ona Restoration", title: "Restoration & remodeling — Vancouver, WA" },
     sections: [
       {
         kind: "p",
@@ -754,7 +754,7 @@ export const posts: Post[] = [
     category: "Storm",
     readingMinutes: 8,
     publishedAt: "2026-05-16",
-    author: { name: "ONA Restoration", title: "Restoration & remodeling — Vancouver, WA" },
+    author: { name: "Ona Restoration", title: "Restoration & remodeling — Vancouver, WA" },
     sections: [
       {
         kind: "p",
@@ -898,7 +898,7 @@ export const posts: Post[] = [
     category: "Water",
     readingMinutes: 9,
     publishedAt: "2026-05-15",
-    author: { name: "ONA Restoration", title: "Restoration & remodeling — Vancouver, WA" },
+    author: { name: "Ona Restoration", title: "Restoration & remodeling — Vancouver, WA" },
     sections: [
       {
         kind: "p",
@@ -983,7 +983,7 @@ export const posts: Post[] = [
         kind: "p",
         text: "A contractor who can answer these five questions clearly is running to S500. One who deflects or substitutes \"we know what we're doing\" probably isn't.",
       },
-      { kind: "h2", text: "Where ONA fits in" },
+      { kind: "h2", text: "Where Ona fits in" },
       {
         kind: "p",
         text: "Our crews carry IICRC WRT, ASD, and AMRT certifications, and we run every water-damage job to S500 from the first hour. The documentation that S500 requires happens to be the same documentation your insurance adjuster wants and the same documentation that overturns denied claims on appeal — so it's not extra work, it's the work. If you'd like a second opinion on a job in progress that you suspect isn't being run to standard, we do free document reviews for losses we don't end up working on.",
@@ -1023,7 +1023,7 @@ export const posts: Post[] = [
     category: "Insurance",
     readingMinutes: 8,
     publishedAt: "2026-05-14",
-    author: { name: "ONA Restoration", title: "Restoration & remodeling — Vancouver, WA" },
+    author: { name: "Ona Restoration", title: "Restoration & remodeling — Vancouver, WA" },
     sections: [
       {
         kind: "p",
@@ -1124,7 +1124,7 @@ export const posts: Post[] = [
     category: "Mold",
     readingMinutes: 7,
     publishedAt: "2026-05-19",
-    author: { name: "ONA Restoration", title: "Restoration & remodeling — Vancouver, WA" },
+    author: { name: "Ona Restoration", title: "Restoration & remodeling — Vancouver, WA" },
     sections: [
       {
         kind: "p",
@@ -1295,7 +1295,7 @@ export const posts: Post[] = [
     category: "Mold",
     readingMinutes: 8,
     publishedAt: "2026-05-18",
-    author: { name: "ONA Restoration", title: "Restoration & remodeling — Vancouver, WA" },
+    author: { name: "Ona Restoration", title: "Restoration & remodeling — Vancouver, WA" },
     sections: [
       {
         kind: "p",
@@ -1415,7 +1415,7 @@ export const posts: Post[] = [
     category: "Water",
     readingMinutes: 9,
     publishedAt: "2026-05-17",
-    author: { name: "ONA Restoration", title: "Restoration & remodeling — Vancouver, WA" },
+    author: { name: "Ona Restoration", title: "Restoration & remodeling — Vancouver, WA" },
     sections: [
       {
         kind: "p",
@@ -1541,7 +1541,7 @@ export const posts: Post[] = [
     category: "Insurance",
     readingMinutes: 9,
     publishedAt: "2026-05-20",
-    author: { name: "ONA Restoration", title: "Restoration & remodeling — Vancouver, WA" },
+    author: { name: "Ona Restoration", title: "Restoration & remodeling — Vancouver, WA" },
     sections: [
       {
         kind: "p",
@@ -1636,7 +1636,7 @@ export const posts: Post[] = [
         kind: "p",
         text: "Public adjusters must be licensed in the state where they practice. In Washington, verify the license at insurance.wa.gov. In Oregon, verify at dfr.oregon.gov/licensing. Unlicensed claim help is illegal in both states.",
       },
-      { kind: "h2", text: "Where ONA fits in" },
+      { kind: "h2", text: "Where Ona fits in" },
       {
         kind: "p",
         text: "We don't take a cut of your settlement. We do produce the IICRC-grade documentation that carriers respond to — Xactimate scopes matched to the carrier's pricing, moisture documentation, cause-and-origin opinions, and direct adjuster communication — as part of every restoration project we run. That documentation is what overturns most denials we see in the Vancouver, WA and Portland metro market. If you're staring at a denial letter and you'd like a second-opinion inspection, call the number at the top of the page or send us photos by email. The inspection is free for losses we end up working on.",
@@ -1707,7 +1707,7 @@ export const posts: Post[] = [
     category: "Water",
     readingMinutes: 6,
     publishedAt: "2026-05-15",
-    author: { name: "ONA Restoration", title: "Restoration team — Vancouver, WA" },
+    author: { name: "Ona Restoration", title: "Restoration team — Vancouver, WA" },
     sections: [
       {
         kind: "p",

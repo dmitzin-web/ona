@@ -9,7 +9,7 @@ import { breadcrumbJsonLd } from "@/lib/jsonld";
 
 export const metadata: Metadata = buildMetadata({
   title: `Contact ${site.name} — 24/7 Restoration Dispatch`,
-  description: `Call ${site.phoneDisplay} or email ${site.email}. ONA Restoration dispatches 24/7 across Vancouver, WA and the Portland metro.`,
+  description: `Call ${site.phoneDisplay} or email ${site.email}. Ona Restoration dispatches 24/7 across Vancouver, WA and the Portland metro.`,
   path: "/contact",
 });
 
@@ -152,7 +152,7 @@ export default function ContactPage() {
                 centers a city-level view on the Vancouver, WA coords. */}
             <div className="mt-12 overflow-hidden border border-ivory/10">
               <iframe
-                title="ONA Restoration service area — Vancouver, WA"
+                title="Ona Restoration service area — Vancouver, WA"
                 src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d44000!2d-122.6615!3d45.6387!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
                 width="100%"
                 height="380"

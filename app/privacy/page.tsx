@@ -6,7 +6,7 @@ import { draftBanner, legalUpdated, privacySections } from "@/lib/legal";
 export const metadata: Metadata = buildMetadata({
   title: "Privacy Policy",
   description:
-    "How ONA Restoration collects, uses, and protects the information you share with us.",
+    "How Ona Restoration collects, uses, and protects the information you share with us.",
   path: "/privacy",
 });
 

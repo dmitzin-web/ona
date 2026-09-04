@@ -6,7 +6,7 @@ import { draftBanner, legalUpdated, termsSections } from "@/lib/legal";
 export const metadata: Metadata = buildMetadata({
   title: "Terms of Service",
   description:
-    "The terms that govern use of the ONA Restoration website and our restoration services.",
+    "The terms that govern use of the Ona Restoration website and our restoration services.",
   path: "/terms",
 });
 

@@ -549,15 +549,15 @@ export function SpokaneFireDeployment() {
             {[
               {
                 src: "/photos/projects/p7.avif",
-                alt: "Completed ONA kitchen — cabinetry, island and appliances installed",
+                alt: "Completed Ona kitchen — cabinetry, island and appliances installed",
               },
               {
                 src: "/photos/projects/p1.avif",
-                alt: "Completed ONA bathroom — double vanity, mirrors and fixtures installed",
+                alt: "Completed Ona bathroom — double vanity, mirrors and fixtures installed",
               },
               {
                 src: "/photos/projects/p9.avif",
-                alt: "Completed ONA kitchen and living space, finished and furnished",
+                alt: "Completed Ona kitchen and living space, finished and furnished",
               },
             ].map((p) => (
               <div
@@ -982,7 +982,7 @@ export function SpokaneFireDeployment() {
       {/* ── STICKY MOBILE CALL BAR ───────────────────────────────────
           Mobile only. Most of this traffic is a phone, often at night,
           often mid-scroll — the call must never be more than a thumb away.
-          `pr-16` keeps the buttons clear of the floating Ask ONA widget,
+          `pr-16` keeps the buttons clear of the floating Ask Ona widget,
           which also sits bottom-right. The spacer below reserves the same
           height so the bar never covers the last section. */}
       <div className="h-20 sm:hidden" aria-hidden="true" />
