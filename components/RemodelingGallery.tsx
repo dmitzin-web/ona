@@ -6,10 +6,12 @@
 // portfolio is half the sale, and "here is the kind of thing we could
 // do" loses to any competitor showing an actual kitchen.
 //
-// These nine are Ona's own finish work, from /public/photos/projects/ —
-// the same set the homepage grid and the Spokane page use.
+// Ona's own finish work. The entries are content files in content/work/,
+// edited through the admin at /keystatic — see lib/work.ts. The images
+// live in /public/photos/projects/, the same set the homepage and the
+// Spokane page use.
 //
-// RULE FOR WHOEVER EDITS THIS NEXT: every word in `notes` must be
+// RULE FOR WHOEVER EDITS THE CONTENT: every word in `notes` must be
 // visible in its photo. Form and fixtures only — waterfall island,
 // apron-front sink, chimney hood, freestanding tub, floor-mounted
 // filler, large-format floor tile. NO materials, species, brands,
@@ -22,98 +24,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowIcon } from "./icons/ServiceIcons";
+import { workItems } from "@/lib/work";
 
-type Project = {
-  image: string;
-  imageAlt: string;
-  roomType: string;
-  title: string;
-  notes: string;
-};
-
-const projects: Project[] = [
-  {
-    image: "/photos/projects/p7.avif",
-    imageAlt:
-      "Kitchen with full-height shaker cabinetry, waterfall-edge island, three globe pendants and a chimney hood",
-    roomType: "Kitchen",
-    title: "Full kitchen",
-    notes:
-      "Full-height shaker cabinetry · Waterfall-edge island · Built-in wall ovens · Chimney hood · Under-cabinet lighting",
-  },
-  {
-    image: "/photos/projects/p8.avif",
-    imageAlt:
-      "Kitchen island with waterfall edge and apron-front sink, gas cooktop and chimney hood behind",
-    roomType: "Kitchen",
-    title: "Island and cooking wall",
-    notes:
-      "Waterfall-edge island · Apron-front sink · Gas cooktop · Chimney hood · Continuous plank flooring",
-  },
-  {
-    image: "/photos/projects/p9.avif",
-    imageAlt:
-      "View along a kitchen run through to the living room, with apron-front sink, gooseneck faucet and a fireplace wall beyond",
-    roomType: "Kitchen",
-    title: "Kitchen through to living",
-    notes:
-      "Panelled hood surround · Apron-front sink · Gooseneck faucet · Open sightline to the fireplace wall",
-  },
-  {
-    image: "/photos/projects/p1.avif",
-    imageAlt:
-      "Primary bath double vanity with two undermount basins, paired mirrors and two-globe sconces",
-    roomType: "Primary bath",
-    title: "Double vanity",
-    notes:
-      "Shaker vanity run · Two undermount basins · Paired mirrors · Two-globe sconces · Drawer storage",
-  },
-  {
-    image: "/photos/projects/p2.avif",
-    imageAlt:
-      "Primary bath looking down the vanity run to a freestanding tub, with a glass shower enclosure to the right",
-    roomType: "Primary bath",
-    title: "Full bath layout",
-    notes:
-      "Freestanding tub · Glass shower enclosure · Large-format floor tile · Full-length vanity run",
-  },
-  {
-    image: "/photos/projects/p3.avif",
-    imageAlt:
-      "Freestanding soaking tub beneath a shuttered window with a floor-mounted tub filler",
-    roomType: "Primary bath",
-    title: "Freestanding tub",
-    notes:
-      "Freestanding soaking tub · Floor-mounted filler · Window trim and blinds · Painted walls",
-  },
-  {
-    image: "/photos/projects/p5.avif",
-    imageAlt:
-      "Powder room with dark painted walls, a white shaker vanity and a round mirror",
-    roomType: "Powder room",
-    title: "Powder room",
-    notes:
-      "Dark painted walls · Shaker vanity · Round mirror · Large-format floor tile",
-  },
-  {
-    image: "/photos/projects/p6.avif",
-    imageAlt:
-      "Guest bath with textured wallcovering, white shaker vanity and an oval mirror, opening onto a plank-floored room",
-    roomType: "Guest bath",
-    title: "Guest bath",
-    notes:
-      "Textured wallcovering · Shaker vanity · Oval mirror · Doorway trim and hardware",
-  },
-  {
-    image: "/photos/projects/p4.avif",
-    imageAlt:
-      "Laundry room with upper cabinetry, an open shelf, a utility sink and side-by-side machines",
-    roomType: "Laundry",
-    title: "Laundry room",
-    notes:
-      "Upper cabinetry · Open shelf · Utility sink and counter · Side-by-side machines",
-  },
-];
 
 export function RemodelingGallery() {
   return (
@@ -148,8 +60,8 @@ export function RemodelingGallery() {
           reads as a spec sheet, and the reader is here to look at rooms.
           Three across, so nine make three full rows with no orphan. */}
       <ul className="mt-14 grid gap-px bg-line sm:grid-cols-2 lg:grid-cols-3">
-        {projects.map((p) => (
-          <li key={p.title + p.image} className="bg-charcoal">
+        {workItems.map((p) => (
+          <li key={p.slug} className="bg-charcoal">
             <article className="flex h-full flex-col">
               <div className="relative aspect-[3/2] overflow-hidden">
                 {/* next/image, not a bare <img>: these are local files,

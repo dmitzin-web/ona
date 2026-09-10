@@ -1,0 +1,155 @@
+{
+  "title": "Why Portland Basements Flood: Clay Soil and the Drainage Problem No One Talks About",
+  "description": "Portland basements flood at a higher rate than almost any other US metro — and the cause isn't atmospheric rivers, it's what's under the foundation. A water restoration contractor explains the clay-soil mechanism and what actually fixes it.",
+  "excerpt": "If you bought a house in Portland and it has a basement, there's a chance the basement is wet right now and you don't know it. The reason isn't your roof or your gutters. It's the dirt your house is sitting on — and the drainage assumptions that worked in 1925 don't work for the rainfall this region gets in 2026.",
+  "category": "Water",
+  "readingMinutes": 9,
+  "publishedAt": "2026-05-17",
+  "author": {
+    "name": "Ona Restoration",
+    "title": "Restoration & remodeling — Vancouver, WA"
+  },
+  "sections": [
+    {
+      "discriminant": "p",
+      "value": "Every January, we run a wave of basement water-intrusion calls from the same neighborhoods: Laurelhurst, Irvington, Mt. Tabor, Sellwood, Eastmoreland, the old streets of Sellwood-Moreland, and a long list of similar mid-century east-side blocks. Different houses, different owners, different finish levels — same flooded basement, same wet daylight wall, same musty smell. The cause is structural to the region, and it has almost nothing to do with the weather event the homeowner blames."
+    },
+    {
+      "discriminant": "h2",
+      "value": "The geology under your foundation"
+    },
+    {
+      "discriminant": "p",
+      "value": "Most of the Portland metro east of the Willamette sits on Missoula Flood deposits and Boring Lava soil profiles capped by silt and clay. The top three to ten feet of soil under most Portland homes is fine-grained, slow-draining, and rich in clay. When the rains start in October, this layer absorbs water at a rate of about a quarter-inch per hour. When sustained rain delivers two inches per hour during an atmospheric river event, the absorption rate falls far short of the delivery rate and the soil saturates. Once saturated, the soil acts like a sponge that has reached capacity — water no longer percolates downward, it perches at the soil-foundation interface and starts looking for a path of least resistance."
+    },
+    {
+      "discriminant": "p",
+      "value": "That path is your foundation wall, your foundation slab, and any below-grade penetration in either. This is hydrostatic pressure. It is the dominant water-intrusion mechanism in Portland basements, and it is fundamentally different from a roof leak or a plumbing failure because the water is coming from the dirt, not from above."
+    },
+    {
+      "discriminant": "h2",
+      "value": "Why pre-1970 foundations are particularly vulnerable"
+    },
+    {
+      "discriminant": "p",
+      "value": "Foundation waterproofing wasn't a meaningful construction standard in the Portland metro until the 1970s. Homes built before then typically have:"
+    },
+    {
+      "discriminant": "list",
+      "value": [
+        "Unwaterproofed exterior foundation walls — bare concrete or block in direct soil contact.",
+        "No exterior drainage plane (no dimple mat, no rigid drainage board).",
+        "No perimeter drain (no perforated pipe in gravel at the footing).",
+        "Foundation walls poured in single-pour increments with cold joints between sections where water seeps preferentially.",
+        "Below-grade penetrations (sewer, water, gas) sealed with packing and mortar rather than modern hydraulic-cement sealant."
+      ]
+    },
+    {
+      "discriminant": "p",
+      "value": "Add a daylight basement (a finished living space below grade on the downhill side, common in east Portland mid-century homes) and you have a structure that is functionally a swimming pool with a leaky liner. The water doesn't need a dramatic event to enter — it just needs the soil outside to saturate."
+    },
+    {
+      "discriminant": "h2",
+      "value": "Three flooding patterns we see, and what each one means"
+    },
+    {
+      "discriminant": "h3",
+      "value": "Pattern A: water along the base of one wall, after a heavy rain"
+    },
+    {
+      "discriminant": "p",
+      "value": "Most common. Indicates surface water from improperly-pitched grading, a downspout discharging too close to the foundation, or a window-well drain that has failed. The intrusion is local — confined to one section of wall — and it appears within hours of the rain event. Fix is exterior: regrading, downspout extensions, window-well repair, surface drainage redirection. Cost $1,500-$6,000 depending on scope."
+    },
+    {
+      "discriminant": "h3",
+      "value": "Pattern B: damp wall and floor, sustained, in winter"
+    },
+    {
+      "discriminant": "p",
+      "value": "Hydrostatic seepage. Saturated soil pressing against unsealed concrete. Appears as chronic dampness rather than acute flooding; the basement feels humid, the carpet edge along the wall feels cool, and growth begins on the lowest courses of drywall. Fix is interior or exterior depending on access — interior involves an interior perimeter drain at the slab edge, a sump pump, and a vapor barrier; exterior involves excavation, waterproofing membrane, exterior drainage plane, and a perimeter drain. Cost $8,000-$30,000 depending on scope and access."
+    },
+    {
+      "discriminant": "h3",
+      "value": "Pattern C: sudden water through a wall crack or floor crack"
+    },
+    {
+      "discriminant": "p",
+      "value": "Foundation movement. The crack is structural — settlement, frost heave, or hydrostatic-pressure-induced cracking — and it has opened a direct path for groundwater. This is the kind of event that produces an emergency call because the volume can be substantial. Mitigation first (extraction, drying, antimicrobial), structural repair second (crack injection, possible underpinning), waterproofing third (the work in Pattern B). Don't skip the structural step — patching the crack without addressing what caused it guarantees recurrence."
+    },
+    {
+      "discriminant": "h2",
+      "value": "What does not work (no matter what the basement guy says)"
+    },
+    {
+      "discriminant": "p",
+      "value": "There is a category of products and services that gets marketed aggressively in the Portland metro for basement waterproofing. Most of them don't address the underlying cause and are easy to identify by what they claim:"
+    },
+    {
+      "discriminant": "list",
+      "value": [
+        "Interior crystalline sealers — they reduce vapor permeability but do not stop liquid water under pressure. Useful as part of a system, useless on their own.",
+        "Drylok-style interior paint — actively counter-productive on a foundation with sustained hydrostatic pressure. Traps water in the wall, accelerates spalling, makes future remediation harder.",
+        "Spray-on exterior elastomeric coatings without a drainage plane — they fail at the seam between the wall and the footing, which is where 80% of water entry happens.",
+        "French drain installations on the wrong side of the slab — interior drains are useful when paired with a sump, but installed without a sump or installed at the wrong elevation, they just relocate the wet spot."
+      ]
+    },
+    {
+      "discriminant": "h2",
+      "value": "What actually works"
+    },
+    {
+      "discriminant": "p",
+      "value": "There is no single answer, because the right fix depends on the specific failure mode. But for Pattern B (the most common Portland scenario), an effective waterproofing system has four components in this order:"
+    },
+    {
+      "discriminant": "ordered",
+      "value": [
+        "Identify and correct exterior grading and downspout discharge first. Many basements that appear to need waterproofing actually need landscaping. This step alone resolves about 40% of intrusion problems and costs a fraction of a full waterproofing system.",
+        "Install a perimeter drain — perforated pipe in clean gravel at the footing, sloped to daylight or to a sump.",
+        "Add a sump pump with battery backup if the perimeter drain cannot daylight. The battery backup is non-negotiable in this region; power loss during an atmospheric river is the most common cause of total-loss basement flooding we mitigate.",
+        "Waterproof the interior or exterior face of the foundation with a membrane that is rated for hydrostatic pressure, paired with a drainage plane that gives any incident water a path to the perimeter drain."
+      ]
+    },
+    {
+      "discriminant": "p",
+      "value": "If you have an active wet basement, the order of operations is: extract and dry first (this is our department), then identify the failure pattern with a proper inspection, then commission the waterproofing scope appropriate to the pattern, then reconstruct the finished space. Skipping or reordering these steps is the most common reason waterproofing projects fail."
+    },
+    {
+      "discriminant": "h2",
+      "value": "What we do when you call"
+    },
+    {
+      "discriminant": "p",
+      "value": "We handle the first half: mitigation, drying, mold prevention, structural assessment, and the reconstruction of the finished basement once waterproofing is complete. For the waterproofing scope itself we coordinate with specialty contractors who do nothing else — we've worked with most of them in the Portland metro and can recommend the right one for the failure mode you have. The point is to address the cause once, not to keep mitigating the same loss every winter."
+    },
+    {
+      "discriminant": "p",
+      "value": "If you're reading this in October before the rains start and you've had basement intrusion in past winters, an off-season inspection is the cheapest way to get ahead of it. If you're reading this in February with water on the floor, the number is at the top of the page — we're 24/7."
+    }
+  ],
+  "faqs": [
+    {
+      "q": "Will my homeowners insurance cover a flooded basement?",
+      "a": "Generally no, when the cause is groundwater seepage or hydrostatic pressure — these are classified as flood under most policies and require separate NFIP coverage. Yes, when the cause is a sudden interior failure (burst pipe, water heater rupture, washing machine hose). The diagnosis matters: documenting whether the water came from inside or outside the structure determines coverage. We document the cause as part of every basement water mitigation we run."
+    },
+    {
+      "q": "How much does it cost to waterproof a Portland basement?",
+      "a": "Range is wide because the failure mode varies. Exterior grading and drainage corrections run $1,500-$6,000. Interior perimeter drain plus sump pump runs $6,000-$15,000. Full exterior excavation plus waterproofing membrane plus drainage plane plus perimeter drain runs $15,000-$45,000 depending on access, depth, and finish replacement. The right scope is determined by the diagnosis, not by the contractor's package pricing."
+    },
+    {
+      "q": "Is a sump pump enough on its own?",
+      "a": "Only if there's a drainage system feeding it. A sump pump by itself in an unmodified basement is a Band-Aid — it lowers the water table in the sump well but doesn't capture water entering through the walls. Paired with an interior or exterior perimeter drain that channels water to the sump, it becomes part of a functional system. Battery backup is essential in this region because the worst intrusion events coincide with windstorm power outages."
+    },
+    {
+      "q": "Why does my basement smell musty even when it's dry?",
+      "a": "Two reasons most often. First: the basement has cycled wet-and-dry for years and there's established mold growth in wall cavities or behind finished surfaces, releasing volatile compounds even when the air feels dry. Second: indoor relative humidity is chronically above 60% because the concrete is acting as a vapor source and the basement air exchange rate is low. The fix is a hygrometer, an inspection, and likely both growth remediation and dehumidification."
+    },
+    {
+      "q": "My basement only floods during big storms. Do I really need to do anything?",
+      "a": "Yes — even episodic flooding is producing slow structural damage. Every wetting event soaks framing and subfloors that take weeks to fully dry; over decades that produces sill plate rot, joist degradation, and progressive concrete spalling. The cost curve goes up steeply once structural materials start failing. Episodic flooding is a leading indicator, not a manageable condition."
+    }
+  ],
+  "howTo": {
+    "discriminant": false
+  }
+}

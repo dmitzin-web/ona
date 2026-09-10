@@ -54,6 +54,31 @@ const ContentSecurityPolicy = [
   `report-uri ${cspReportEndpoint}`,
 ].join("; ");
 
+// The content admin (/keystatic) gets its own policy. It is a client app
+// that talks to GitHub from the browser — the editor's commits go straight
+// to api.github.com — and shows GitHub avatars, neither of which the public
+// site's `connect-src`/`img-src` allow, and neither of which the public site
+// should allow. Everything else is identical to the site policy. Applied to
+// /keystatic only; a later header rule for the same key overrides the
+// earlier `/:path*` one.
+//
+// The admin UI also loads its own typeface (Inter) from Google Fonts; with
+// the site policy that was blocked on every admin page load and reported
+// to /api/csp-report each time. Allowed here, admin only.
+const AdminContentSecurityPolicy = ContentSecurityPolicy.replace(
+  "img-src 'self' data: blob:",
+  "img-src 'self' data: blob: https://avatars.githubusercontent.com https://raw.githubusercontent.com",
+)
+  .replace(
+    "connect-src 'self' https://plausible.io",
+    "connect-src 'self' https://plausible.io https://api.github.com",
+  )
+  .replace(
+    "style-src 'self' 'unsafe-inline'",
+    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+  )
+  .replace("font-src 'self' data:", "font-src 'self' data: https://fonts.gstatic.com");
+
 const baseHeaders = [
   { key: "X-Content-Type-Options", value: "nosniff" },
   { key: "X-DNS-Prefetch-Control", value: "on" },
@@ -113,6 +138,19 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       { source: "/:path*", headers: securityHeaders },
+      // Content admin: its own CSP (see AdminContentSecurityPolicy) and a
+      // hard noindex. Must come AFTER the `/:path*` rule so its CSP wins.
+      ...["/keystatic", "/keystatic/:path*", "/api/keystatic/:path*"].map(
+        (source) => ({
+          source,
+          headers: [
+            ...(isProd
+              ? [{ key: "Content-Security-Policy", value: AdminContentSecurityPolicy }]
+              : []),
+            { key: "X-Robots-Tag", value: "noindex, nofollow, noarchive" },
+          ],
+        }),
+      ),
       {
         // Project File pages are private client/claim records. Belt-and-
         // suspenders with the per-page `robots: noindex` metadata: a hard

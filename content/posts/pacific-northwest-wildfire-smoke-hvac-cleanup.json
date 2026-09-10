@@ -1,0 +1,127 @@
+{
+  "title": "Pacific Northwest Wildfire Smoke: HVAC and Air Quality After the Smoke Clears",
+  "description": "Cleaning up after smoke event days is more than wiping windows. A restoration contractor explains what wildfire smoke actually does to HVAC systems, ductwork and contents in Pacific Northwest homes — and the cleaning protocols that matter.",
+  "excerpt": "Most homeowners breathe a sigh of relief when the smoke clears outside. But indoor air can stay smoke-saturated for weeks, and the residue that settled on contents and inside HVAC ductwork keeps releasing odor and particulate long after the air outside is clean.",
+  "category": "Fire",
+  "readingMinutes": 7,
+  "publishedAt": "2026-05-11",
+  "author": {
+    "name": "Ona Restoration",
+    "title": "Restoration & remodeling — Vancouver, WA"
+  },
+  "sections": [
+    {
+      "discriminant": "p",
+      "value": "Pacific Northwest wildfire smoke events are now a yearly fixture. The Bootleg, Chetco, Riverside, and Eagle Creek fires each produced multi-week smoke episodes that pushed PM2.5 readings above 300 across the Portland metro. Even when the smoke clears outside, three things continue affecting indoor air quality for weeks: smoke that infiltrated through the building envelope and settled on contents, smoke that entered the HVAC system and lined the ductwork, and porous materials throughout the home that absorbed odor compounds."
+    },
+    {
+      "discriminant": "h2",
+      "value": "What wildfire smoke actually deposits"
+    },
+    {
+      "discriminant": "p",
+      "value": "Wildfire smoke contains particulate (PM2.5 and PM10), volatile organic compounds (VOCs), carbon monoxide, and a long list of products of incomplete combustion. The visible particulate is the easy part — it settles, you wipe it. The harder part is the VOCs and combustion byproducts that adsorb into porous materials and continue off-gassing for weeks. That's what produces the persistent campfire smell long after the smoke clears."
+    },
+    {
+      "discriminant": "h2",
+      "value": "Indoor surfaces, ranked by what cleaning matters"
+    },
+    {
+      "discriminant": "h3",
+      "value": "1. HVAC system (highest priority)"
+    },
+    {
+      "discriminant": "p",
+      "value": "Your HVAC pulls 1,000+ cubic feet of air per minute through the ductwork. During smoke events, particulate and VOCs accumulate on every interior surface of the duct system, on the air handler coils, and on the air handler blower. Once the smoke clears, the system continues recirculating the captured contamination through the house every time it runs. Cleaning the HVAC is the single most important step."
+    },
+    {
+      "discriminant": "p",
+      "value": "What proper HVAC remediation looks like: replace all filters with new high-MERV (13+) filters. Have a NADCA-certified duct cleaner clean the full duct system (truck-mounted vacuum, agitation, sanitization). Have an HVAC tech clean the air handler coils, blower wheel, and condensate pan. Run the system with HEPA air scrubbers in the house for 2-7 days to capture remaining airborne particulate."
+    },
+    {
+      "discriminant": "h3",
+      "value": "2. Soft furnishings and textiles (high priority)"
+    },
+    {
+      "discriminant": "p",
+      "value": "Upholstery, draperies, area rugs, mattresses, and clothing absorb smoke odor and continue releasing it for weeks. Surface cleaning doesn't fully remove it; deep extraction (hot water with appropriate detergents and agitation) is the cleaning standard. Heavy contamination requires off-site cleaning at a textile facility. Some items — especially mattresses with significant exposure — may need replacement."
+    },
+    {
+      "discriminant": "h3",
+      "value": "3. Porous building materials (medium priority)"
+    },
+    {
+      "discriminant": "p",
+      "value": "Drywall, exposed framing in attics and crawlspaces, and acoustic ceiling tiles absorb smoke compounds. Mild exposure usually responds to cleaning with smoke-restoration chemicals; heavy exposure may require sealing with an odor-blocking primer (KILZ Original or equivalent) before repainting. Acoustic ceiling tiles in commercial spaces frequently need replacement."
+    },
+    {
+      "discriminant": "h3",
+      "value": "4. Hard surfaces (lower priority, but visible)"
+    },
+    {
+      "discriminant": "p",
+      "value": "Windows, mirrors, glass tables, painted walls, and finished cabinetry get a visible film of smoke residue. These respond well to standard cleaning (mild detergent, microfiber, gentle agitation). Avoid abrasive cleaners that can drive contamination into the surface."
+    },
+    {
+      "discriminant": "h3",
+      "value": "5. Contents in storage (variable)"
+    },
+    {
+      "discriminant": "p",
+      "value": "Books, paper records, electronics, and stored fabrics in basements or attics where ventilation is limited may have heavy odor that's worse than the main living spaces. Inspect closets and storage rooms specifically — the lack of air movement concentrated the smoke compounds."
+    },
+    {
+      "discriminant": "h2",
+      "value": "DIY vs professional smoke restoration"
+    },
+    {
+      "discriminant": "p",
+      "value": "For light exposure (one or two smoke days, sealed-up house, HVAC ran minimally), DIY cleaning is reasonable: replace HVAC filters, run an air purifier, wash soft goods, wipe hard surfaces. For heavy exposure (multi-week smoke event, windows open part of the time, HVAC running normally, persistent odor weeks later), professional restoration is the right call."
+    },
+    {
+      "discriminant": "p",
+      "value": "What professionals add: ozone or hydroxyl generation for serious odor situations (these address VOCs that surface cleaning can't reach), specialized HVAC duct cleaning equipment, off-site textile cleaning relationships, and insurance-billable scope documentation. Insurance carriers in the Pacific Northwest generally cover wildfire smoke contamination losses under standard HO-3 policies when documented as a sudden event from a covered peril."
+    },
+    {
+      "discriminant": "h2",
+      "value": "Health considerations"
+    },
+    {
+      "discriminant": "p",
+      "value": "Anyone in the household with asthma, COPD, allergies, cardiovascular conditions, or who is pregnant should not return to a heavily-smoke-contaminated home until remediation is complete. Indoor PM2.5 from wildfire smoke residue can stay elevated for days to weeks after the outdoor air clears. If you smell campfire when you walk in, the contamination is still active."
+    },
+    {
+      "discriminant": "h2",
+      "value": "When to call us"
+    },
+    {
+      "discriminant": "p",
+      "value": "If the smoke odor lasted more than a day in the house, you're seeing visible residue on windows or windowsills, your HVAC was running during the event, or anyone in the household is symptomatic — book an inspection. We do free initial assessments across the Portland metro and produce a written scope with insurance-billable documentation. The earlier the cleaning starts after the smoke clears, the less residue has time to set and the lower the total cost."
+    }
+  ],
+  "faqs": [
+    {
+      "q": "Will insurance cover wildfire smoke cleanup?",
+      "a": "Most homeowners policies in Washington and Oregon cover smoke contamination from a wildfire as a covered peril, especially when the smoke caused documentable damage (residue on contents, HVAC contamination, persistent odor). The claim is typically opened as 'smoke damage' under HO-3 policy section. Document the smoke event (dates, AQI readings, photos of residue) and file as soon as the smoke clears."
+    },
+    {
+      "q": "How long does it take for smoke odor to leave a house?",
+      "a": "For minor exposure with thorough cleaning, 1-2 weeks. For heavy exposure without professional remediation, smoke odor can persist for months. Time alone doesn't fully resolve smoke contamination because the compounds bind into porous materials; physical removal or chemical treatment is required."
+    },
+    {
+      "q": "Are home air purifiers enough during a smoke event?",
+      "a": "A true HEPA air purifier with adequate room coverage (look for CADR ratings) significantly reduces airborne particulate during the event. They don't address VOCs (carbon-activated filters help with that), and they don't clean residue that has already settled on surfaces. They're a useful part of the strategy, not the whole strategy."
+    },
+    {
+      "q": "Should I change my HVAC filter every day during a smoke event?",
+      "a": "Filters clog faster during smoke events. Check (don't necessarily replace) every 3-7 days. A loaded filter increases system strain; an under-loaded filter passes more smoke through. Use the highest-MERV filter your system is rated for (typically MERV 11-13 for residential systems). Higher-MERV filters in undersized systems can cause coil freezing."
+    },
+    {
+      "q": "Is professional duct cleaning really worth it after smoke?",
+      "a": "For heavy smoke exposure, yes — the ductwork is otherwise a permanent reservoir of contamination that recirculates every time the system runs. For light exposure with diligent filter changes, often not. The decision turns on whether you can still smell smoke when the system runs. If yes, clean the ducts. If no and the filters are fresh, you're probably fine."
+    }
+  ],
+  "howTo": {
+    "discriminant": false
+  }
+}

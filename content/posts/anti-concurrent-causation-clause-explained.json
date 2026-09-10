@@ -1,0 +1,148 @@
+{
+  "title": "Anti-Concurrent Causation Clause Explained for Pacific NW Homeowners",
+  "description": "The single most aggressive clause in modern homeowners insurance — what 'anti-concurrent causation' actually means, when carriers use it to deny otherwise-covered losses, and the case law in Washington and Oregon that limits its use.",
+  "excerpt": "An anti-concurrent causation (ACC) clause says that if a loss involves both a covered cause and an excluded cause, the entire loss may be denied. It's how some carriers deny burst-pipe water damage by tying it to a flood event. Knowing how the clause works — and where the case law limits it — is the difference between a paid claim and a denied one.",
+  "category": "Insurance",
+  "readingMinutes": 7,
+  "publishedAt": "2026-05-09",
+  "author": {
+    "name": "Ona Restoration",
+    "title": "Restoration & remodeling — Vancouver, WA"
+  },
+  "sections": [
+    {
+      "discriminant": "p",
+      "value": "About fifteen years ago, after a wave of unfavorable storm-damage judgments, the homeowners insurance industry adopted a clause that has since changed how complex losses are adjudicated. Anti-concurrent causation (ACC) language says, in plain English: if any excluded cause contributed to a loss — even partially, even simultaneously, even if a covered cause was the dominant trigger — the entire loss may be denied. The clause is buried in the policy exclusions section and most homeowners never know it exists until they have a claim that triggers it."
+    },
+    {
+      "discriminant": "callout",
+      "value": "Important: ACC clause interpretation varies meaningfully between states. Washington and Oregon both have case law that limits how aggressively carriers can apply ACC. This post is a general explainer, not legal advice — for a denied claim that hinges on ACC, consult an insurance attorney licensed in your state."
+    },
+    {
+      "discriminant": "h2",
+      "value": "What ACC language actually says"
+    },
+    {
+      "discriminant": "p",
+      "value": "Typical ACC language in a modern HO-3 policy reads something like: \"We do not insure for loss caused directly or indirectly by any of the following. Such loss is excluded regardless of any other cause or event contributing concurrently or in any sequence to the loss.\" That last phrase — \"contributing concurrently or in any sequence\" — is the bite. Without it, a homeowner could argue that the covered cause (burst pipe) was the dominant cause and the loss should be paid. With it, the carrier can argue that any contribution from an excluded cause (flooding, earth movement, neglect) denies the entire loss."
+    },
+    {
+      "discriminant": "h2",
+      "value": "Three scenarios where ACC commonly applies"
+    },
+    {
+      "discriminant": "h3",
+      "value": "1. Storm-driven losses with flooding"
+    },
+    {
+      "discriminant": "p",
+      "value": "An atmospheric river drops six inches of rain. Wind drives water through a roof intersection (a covered peril under HO-3). The same storm produces ground-water flooding that enters the basement (excluded under HO-3 without NFIP coverage). The carrier may invoke ACC to deny the entire loss including the roof intrusion, arguing that flood contributed concurrently. This is the most common ACC denial scenario in the Pacific Northwest."
+    },
+    {
+      "discriminant": "h3",
+      "value": "2. Burst-pipe + slow-leak hybrid"
+    },
+    {
+      "discriminant": "p",
+      "value": "A pipe bursts (covered) in a wall that had been slow-leaking for months (excluded as long-term seepage). The carrier may deny the burst-pipe loss by tying it to the pre-existing seepage. Adjuster's argument: the wall was already compromised, and the burst is merely the symptom of the long-term failure. Defendable, but the carrier's first move is often denial under ACC."
+    },
+    {
+      "discriminant": "h3",
+      "value": "3. Sewer backup + storm"
+    },
+    {
+      "discriminant": "p",
+      "value": "Heavy rainfall overwhelms the municipal sewer system; the backup enters your basement. The storm itself isn't directly causing your loss (the sewer is), but the storm caused the sewer overload. Without a sewer backup endorsement, sewer water is excluded. If you have the endorsement, the carrier may try to invoke ACC to argue the storm-driven flooding contributed. Tighter case law in WA and OR has limited this particular maneuver."
+    },
+    {
+      "discriminant": "h2",
+      "value": "How Washington and Oregon limit ACC"
+    },
+    {
+      "discriminant": "p",
+      "value": "Both Washington and Oregon are 'efficient proximate cause' states by case law and statute interpretation, which is a meaningful constraint on ACC."
+    },
+    {
+      "discriminant": "h3",
+      "value": "Washington: Vision One, Sherry, Bordeaux"
+    },
+    {
+      "discriminant": "p",
+      "value": "Washington case law (Vision One v. Philadelphia Indemnity Insurance, 2012, and earlier Sherry and Bordeaux decisions) established that when a covered peril is the efficient proximate cause of a loss, the loss is covered even if an excluded peril is part of the causal chain. ACC clauses cannot override the efficient proximate cause doctrine in Washington. This means: if the burst pipe was the dominant cause and the seepage was incidental, the loss should be covered despite ACC language."
+    },
+    {
+      "discriminant": "h3",
+      "value": "Oregon: similar doctrine"
+    },
+    {
+      "discriminant": "p",
+      "value": "Oregon case law similarly recognizes the efficient proximate cause doctrine, though with somewhat narrower application than Washington. Oregon courts have been receptive to ACC defenses in genuinely-concurrent scenarios (two simultaneous independent causes) but more skeptical in sequential-cause scenarios where one cause clearly preceded and triggered the other."
+    },
+    {
+      "discriminant": "h2",
+      "value": "What to do if your claim is denied under ACC"
+    },
+    {
+      "discriminant": "ordered",
+      "value": [
+        "Request the denial in writing and ask the adjuster to specifically cite which excluded peril triggered the ACC clause. Force precision.",
+        "Document the efficient proximate cause clearly. The contractor's cause-and-origin analysis should explicitly identify which covered peril was the dominant cause and demonstrate why the excluded contribution was incidental.",
+        "Cite Vision One (Washington) or comparable Oregon case law in your written appeal if your contractor's documentation supports a covered efficient proximate cause.",
+        "If the appeal fails, escalate to the Washington OIC or Oregon DCBS. Both regulators are familiar with ACC litigation and will often pressure carriers toward settlement.",
+        "On large losses, consult an insurance coverage attorney. ACC denials are one of the most-litigated clause categories and an attorney with relevant case experience can often produce settlement leverage."
+      ]
+    },
+    {
+      "discriminant": "h2",
+      "value": "Preventing ACC issues at the policy level"
+    },
+    {
+      "discriminant": "p",
+      "value": "Two adjustments to a typical Pacific Northwest homeowners policy substantially reduce ACC exposure:"
+    },
+    {
+      "discriminant": "list",
+      "value": [
+        "Add a sewer backup endorsement (usually $50-$150/year). Removes sewer water from the excluded list, eliminating one common ACC scenario.",
+        "Add NFIP flood insurance (typically $300-$700/year). Removes ground-water flooding from the excluded list, eliminating the most common Pacific Northwest ACC scenario."
+      ]
+    },
+    {
+      "discriminant": "p",
+      "value": "Both endorsements pay for themselves the first time you have a complex storm loss. We strongly recommend Pacific Northwest homeowners with any below-grade finished space carry both — the cost is small relative to the exposure."
+    },
+    {
+      "discriminant": "h2",
+      "value": "Where we fit in"
+    },
+    {
+      "discriminant": "p",
+      "value": "If your loss involves complex causation (storm + interior damage, water + mold, fire + suppression water), the restoration contractor's documentation determines whether your carrier can credibly invoke ACC. We produce written cause-and-origin opinions, thermal imaging documentation, and Xactimate-formatted scopes that make the efficient proximate cause unmistakable. If you're staring at an ACC-based denial right now, call us for a documentation review — we do these free for losses we work on, and the right documentation overturns most ACC denials in this region."
+    }
+  ],
+  "faqs": [
+    {
+      "q": "Does every homeowners policy have an ACC clause?",
+      "a": "Most modern HO-3 policies issued by major US carriers since approximately 2010 contain ACC language in the exclusions section. The wording varies. Older policies (pre-2005) often lack the clause. If you have an older policy or a non-ISO-form policy (some regional carriers use proprietary forms), check the specific language before assuming."
+    },
+    {
+      "q": "Is ACC enforceable in Washington state?",
+      "a": "Yes, but with significant limits. The Washington Supreme Court has held that ACC clauses cannot override the efficient proximate cause doctrine — when a covered peril is the dominant cause of a loss, the loss is covered regardless of contributions from excluded perils. This is more limiting than the carrier-friendly interpretations in some other states."
+    },
+    {
+      "q": "What's the difference between concurrent and sequential causation?",
+      "a": "Concurrent: two causes operating simultaneously and independently (a fire and an earthquake happening at the same time, both contributing to the loss). Sequential: one cause triggers another (a storm causes a power outage which causes a sump pump failure which causes a flood). Sequential-cause scenarios are more often resolved in favor of the homeowner under efficient proximate cause; concurrent scenarios are more often resolved in favor of the carrier under ACC."
+    },
+    {
+      "q": "Should I hire an attorney for an ACC denial?",
+      "a": "For small claims (under $25K), usually no — the attorney's fee will eat the recovery. For mid-size claims with credible efficient proximate cause arguments, often yes — the attorney's pressure plus regulator complaint frequently produces settlement at 60-90% of disputed amount. For large losses, definitely yes — ACC litigation is well-developed and an experienced coverage attorney has substantial leverage."
+    },
+    {
+      "q": "Can I challenge ACC in Oregon as effectively as in Washington?",
+      "a": "Generally yes for clearly-sequential-cause losses, though Oregon case law is somewhat narrower than Washington's. An experienced Oregon insurance attorney can evaluate the specific facts and case law applicable to your loss. The Oregon DCBS Division of Financial Regulation also handles consumer complaints and can apply settlement pressure."
+    }
+  ],
+  "howTo": {
+    "discriminant": false
+  }
+}

@@ -39,12 +39,13 @@ export default function robots(): MetadataRoute.Robots {
         // /work/* are private Project File pages (client + claim data) —
         // keep them, the API, Next internals and the thank-you page out
         // of every index. AI crawlers below inherit /work/ exclusion too.
-        disallow: ["/api/", "/_next/", "/quote/thanks", "/work/"],
+        // /keystatic is the content admin: a login screen, not content.
+        disallow: ["/api/", "/_next/", "/quote/thanks", "/work/", "/keystatic"],
       },
       ...aiCrawlers.map((bot) => ({
         userAgent: bot,
         allow: "/",
-        disallow: ["/work/", "/api/"],
+        disallow: ["/work/", "/api/", "/keystatic"],
       })),
     ],
     sitemap: `${site.url}/sitemap.xml`,

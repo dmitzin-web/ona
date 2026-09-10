@@ -29,6 +29,8 @@ All business data lives in **`lib/site.ts`** — phone, email, service area, cer
 
 Service copy lives in **`lib/services.ts`** — one entry per service, drives the service pages + index + programmatic city × service pages.
 
+Blog posts and the remodeling gallery are content files in **`content/`**, edited through the admin at **`/keystatic`** (Keystatic, GitHub-backed). Setup, and the rules that keep legal copy out of it, are in **`CLAUDE.md`**.
+
 Local-area profiles (weather pattern, common losses, neighborhoods, drive-time-from-HQ) live in **`lib/areas.ts`** and feed the city pages plus the programmatic city × service landing pages.
 
 ## What's here

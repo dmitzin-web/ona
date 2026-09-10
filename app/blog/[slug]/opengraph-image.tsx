@@ -1,17 +1,26 @@
 import { ImageResponse } from "next/og";
-import { findPost } from "@/lib/posts";
+import { findPost, posts } from "@/lib/posts";
 import { site } from "@/lib/site";
 
-// Dynamic OG image per blog post. Next.js wires this as og:image on each
-// /blog/[slug] route, replacing the global fallback in app/opengraph-image.tsx.
-// Generated on edge on first social-share request and CDN-cached thereafter
-// (no generateStaticParams — edge runtime can't combine with it, and the
-// first-hit cost is acceptable for crawler-traffic patterns).
+// Per-post OG image. Next.js wires this as og:image on each /blog/[slug]
+// route, replacing the global fallback in app/opengraph-image.tsx.
+//
+// Node runtime, prebuilt for every post. This used to be edge, rendered on
+// the first share request. It cannot be edge any more: posts are content
+// files read from disk (lib/posts.ts, edited through /keystatic), and the
+// edge runtime has no filesystem — `findPost` would fail on the first
+// share. Generating them all at build time also means no request ever
+// reads the content directory, so there is nothing for Vercel's output
+// file tracing to miss.
 //
 // Image lifts iMessage/Slack/Twitter share preview from generic homepage card
 // to a per-post card with the title and category — meaningful CTR boost.
 
-export const runtime = "edge";
+export const runtime = "nodejs";
+
+export function generateStaticParams() {
+  return posts.map((p) => ({ slug: p.slug }));
+}
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 

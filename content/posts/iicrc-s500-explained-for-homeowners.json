@@ -1,0 +1,169 @@
+{
+  "title": "IICRC S500 Explained for Vancouver, WA Homeowners",
+  "description": "The industry standard that governs every legitimate water-damage restoration project in the US — what S500 actually requires, why it determines your insurance claim outcome, and how to verify your contractor follows it.",
+  "excerpt": "Most homeowners have never heard of IICRC S500, and most contractors don't volunteer it. But it's the standard your insurance adjuster judges the work against, and the difference between a job done to S500 and a job done to whatever the contractor felt like is usually thousands of dollars on your final claim.",
+  "category": "Water",
+  "readingMinutes": 9,
+  "publishedAt": "2026-05-15",
+  "author": {
+    "name": "Ona Restoration",
+    "title": "Restoration & remodeling — Vancouver, WA"
+  },
+  "sections": [
+    {
+      "discriminant": "p",
+      "value": "If you have water damage and an insurance claim, the work done in your house is being measured against IICRC S500 whether you know it or not. The Institute of Inspection, Cleaning and Restoration Certification's Standard and Reference Guide for Professional Water Damage Restoration is the document every adjuster, every claims supervisor, and every halfway-competent restoration contractor in North America works from. Knowing what it requires gives you the same vocabulary they have — and it lets you spot a job that won't survive review."
+    },
+    {
+      "discriminant": "h2",
+      "value": "What S500 is, and isn't"
+    },
+    {
+      "discriminant": "p",
+      "value": "S500 is a consensus standard published and updated by the IICRC, an industry-wide certification body. It defines the categories of water loss, the classes of damage, the methods of mitigation, the documentation required, and the criteria for completion. It is not a law — there is no S500 inspector who will fine your contractor for skipping a step. But every major insurance carrier references S500 in their claim handling, every IICRC-certified contractor commits to it, and most disputes between adjusters and contractors get resolved by reference to it."
+    },
+    {
+      "discriminant": "p",
+      "value": "When we say we run jobs to S500, that means specific things — categorization, monitoring cadence, drying targets, documentation. Here's the homeowner version."
+    },
+    {
+      "discriminant": "h2",
+      "value": "Categories: how dirty is the water"
+    },
+    {
+      "discriminant": "h3",
+      "value": "Category 1 — clean water"
+    },
+    {
+      "discriminant": "p",
+      "value": "Water from a sanitary source — a supply line, a melted ice maker, rainwater that hasn't contacted surfaces. Category 1 losses can be mitigated and dried without replacing porous materials in most cases, provided drying starts within 24-48 hours before the water deteriorates to Category 2."
+    },
+    {
+      "discriminant": "h3",
+      "value": "Category 2 — gray water"
+    },
+    {
+      "discriminant": "p",
+      "value": "Water with significant contamination — dishwasher overflow, washing machine discharge, toilet overflow with urine but no feces, hydrostatic seepage through unsealed foundation. Porous materials that absorbed Category 2 water (drywall, insulation, carpet pad) generally must be removed. Wood framing can usually be cleaned, dried, and treated with antimicrobial."
+    },
+    {
+      "discriminant": "h3",
+      "value": "Category 3 — black water"
+    },
+    {
+      "discriminant": "p",
+      "value": "Water with grossly unsanitary contamination — sewage backup, flood water from outside the structure, toilet overflow with feces, standing water that has been sitting long enough to grow bacterial colonies. All porous materials in contact with Category 3 water must be removed and disposed of as contaminated waste. Containment, PPE, and EPA-registered antimicrobial protocols apply. The cost and timeline of a Category 3 job are dramatically higher than Categories 1 or 2."
+    },
+    {
+      "discriminant": "p",
+      "value": "Water can degrade between categories with time. Category 1 becomes Category 2 within 24-48 hours; Category 2 becomes Category 3 within 72 hours. This is the single most important reason restoration response time matters: every hour of delay potentially upgrades the category and the cost."
+    },
+    {
+      "discriminant": "h2",
+      "value": "Classes: how much got wet"
+    },
+    {
+      "discriminant": "p",
+      "value": "Where Category measures contamination, Class measures scope. Class 1 is small — a part of one room, mostly minimal absorption. Class 4 is a whole-house event with deep saturation of low-permeance materials (hardwood, plaster, masonry). The class determines drying equipment quantity and duration; a Class 4 job needs aggressive equipment (multiple commercial dehumidifiers, dozens of air movers, possibly desiccant systems) and may take two to four weeks to dry to standard. The wrong equipment count on a Class 3 or 4 job is the single most common reason \"finished\" restorations come back with mold growth weeks later."
+    },
+    {
+      "discriminant": "h2",
+      "value": "What S500 requires during a job"
+    },
+    {
+      "discriminant": "h3",
+      "value": "Initial inspection and moisture mapping"
+    },
+    {
+      "discriminant": "p",
+      "value": "A documented inspection within hours of arrival, including thermal imaging, penetrating moisture meters, and a written assessment of the category and class. This isn't optional — without it, the rest of the work has no baseline."
+    },
+    {
+      "discriminant": "h3",
+      "value": "Documented daily monitoring"
+    },
+    {
+      "discriminant": "p",
+      "value": "Daily moisture readings on every affected material, recorded on a moisture log that an adjuster can audit. Equipment adjustments tracked. Photos of progress on each visit. If your contractor isn't showing you moisture readings, they're not running to S500."
+    },
+    {
+      "discriminant": "h3",
+      "value": "Drying to standard, not to deadline"
+    },
+    {
+      "discriminant": "p",
+      "value": "Materials are considered dry when their moisture content matches an unaffected reference sample of the same material in the same building. Not \"feels dry,\" not \"looks dry,\" not \"the seven-day timeline is up.\" If the reference reads 11% and the affected wall reads 14%, drying continues. This is the single biggest variable in restoration quality."
+    },
+    {
+      "discriminant": "h3",
+      "value": "Antimicrobial application matched to category"
+    },
+    {
+      "discriminant": "p",
+      "value": "EPA-registered antimicrobials approved for each category of water. Application rate, contact time, and personal protective equipment all defined. Generic spray-bottle treatment doesn't qualify."
+    },
+    {
+      "discriminant": "h3",
+      "value": "Documented completion"
+    },
+    {
+      "discriminant": "p",
+      "value": "Final moisture readings on every affected material, dated and signed. A completion certificate. This is the document your insurance carrier needs to close the claim cleanly and the document you need if a related issue surfaces months later."
+    },
+    {
+      "discriminant": "h2",
+      "value": "How to verify your contractor actually follows S500"
+    },
+    {
+      "discriminant": "p",
+      "value": "Five questions to ask any restoration contractor in the first phone call:"
+    },
+    {
+      "discriminant": "ordered",
+      "value": [
+        "Are your technicians IICRC WRT or ASD certified? (Water Damage Restoration Technician, Applied Structural Drying.) The certificate names should be specific.",
+        "Will you provide a written moisture map with the initial inspection? (Yes is the only correct answer.)",
+        "How often will you take and record moisture readings? (Daily is the standard during active drying.)",
+        "What dry standard will you target? (\"Reference sample matching\" is the right answer. \"Until the meter reads under 15%\" is acceptable. \"Until it feels dry\" is not.)",
+        "Will I receive a completion certificate with the final moisture readings? (Yes is required.)"
+      ]
+    },
+    {
+      "discriminant": "p",
+      "value": "A contractor who can answer these five questions clearly is running to S500. One who deflects or substitutes \"we know what we're doing\" probably isn't."
+    },
+    {
+      "discriminant": "h2",
+      "value": "Where Ona fits in"
+    },
+    {
+      "discriminant": "p",
+      "value": "Our crews carry IICRC WRT, ASD, and AMRT certifications, and we run every water-damage job to S500 from the first hour. The documentation that S500 requires happens to be the same documentation your insurance adjuster wants and the same documentation that overturns denied claims on appeal — so it's not extra work, it's the work. If you'd like a second opinion on a job in progress that you suspect isn't being run to standard, we do free document reviews for losses we don't end up working on."
+    }
+  ],
+  "faqs": [
+    {
+      "q": "Is IICRC S500 a law or a regulation?",
+      "a": "No. S500 is a consensus industry standard, not a government regulation. There is no licensing body that requires it. But every major insurance carrier uses it as the reference standard for water-damage claims, and most disputes resolve by reference to it. Following S500 is what professional restoration looks like in 2026; not following it is what gets a contractor flagged on appeal."
+    },
+    {
+      "q": "How long does IICRC certification take, and what does WRT vs ASD mean?",
+      "a": "WRT (Water Damage Restoration Technician) is a 19-hour foundational certification. ASD (Applied Structural Drying) is a follow-on 28-hour advanced certification focused on drying science. AMRT (Applied Microbial Remediation Technician) covers mold remediation under S520. A senior restoration technician typically holds all three."
+    },
+    {
+      "q": "Do all restoration contractors follow S500?",
+      "a": "No. IICRC certification is voluntary, and many smaller or franchise contractors hold the credential but don't run jobs to the standard day-to-day. The difference shows up in the documentation — a job run to S500 produces a moisture map, daily logs, and a completion certificate. A job run to convenience produces an invoice and a hope-for-the-best."
+    },
+    {
+      "q": "What is Category 3 water and why does it cost so much more?",
+      "a": "Category 3 (black water) is grossly unsanitary — sewage, outside flood water, or water that has degraded over time. S500 requires removal of all porous materials in contact with Category 3 water (drywall, insulation, carpet pad, sometimes subfloor), full containment with HEPA filtration, certified-technician protocols, and EPA-registered antimicrobial. A Category 1 job dries in place; a Category 3 job demolishes and reconstructs. The cost difference is typically 3-5x for the same square footage."
+    },
+    {
+      "q": "Can I refuse demolition that my contractor recommends?",
+      "a": "Yes — you control the work in your own house. But if the contractor is recommending demolition because S500 requires it for the category and class assessed, refusing usually means the carrier won't honor a future claim related to growth or odor in the materials that should have been removed. The right path is to ask for the S500-referenced reasoning in writing, then make an informed decision. Competent contractors will provide it."
+    }
+  ],
+  "howTo": {
+    "discriminant": false
+  }
+}

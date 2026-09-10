@@ -275,6 +275,10 @@ export function AskOna() {
     setError(null);
   }
 
+  // No floating assistant over the content admin. After every hook — this
+  // component has a dozen — so hook order never changes between renders.
+  if (pathname.startsWith("/keystatic")) return null;
+
   return (
     <>
       {/* The only trigger now, at every width. It used to be mobile-only
