@@ -30,6 +30,10 @@ function groupSections() {
   return groups.filter((g) => g.sections.length);
 }
 
+// Cards show what a section is; the placeholder lists and rules in the rest
+// of the description are for the editor page.
+const firstSentence = (s: string) => s.split(/(?<=[.!?])\s/)[0];
+
 const slugOf = (p: string) => p.slice(p.lastIndexOf("/") + 1, -".json".length);
 
 export default async function AdminHome({
@@ -83,7 +87,7 @@ export default async function AdminHome({
                 <li key={s.id}>
                   <Link href={`/admin/s/${s.id}`} className="block h-full rounded-[2px] border border-line bg-charcoal p-4 transition hover:border-ivory/40">
                     <p className="text-[15px] font-medium text-ivory">{s.label}</p>
-                    <p className="mt-1 text-[13px] leading-snug text-warm-gray">{s.description}</p>
+                    <p className="mt-1 text-[13px] leading-snug text-warm-gray">{firstSentence(s.description)}</p>
                   </Link>
                 </li>
               ))}
