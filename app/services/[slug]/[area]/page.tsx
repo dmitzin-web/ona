@@ -7,8 +7,8 @@ import { FAQ } from "@/components/FAQ";
 import { JsonLd } from "@/components/JsonLd";
 import { ArrowIcon, serviceIcons } from "@/components/icons/ServiceIcons";
 import { SpokaneFireDeployment } from "@/components/services/SpokaneFireDeployment";
-import { services, findService } from "@/lib/services";
-import { areaProfiles } from "@/lib/areas";
+import { services, findService, type Service } from "@/lib/services";
+import { areaProfiles, type AreaProfile } from "@/lib/areas";
 import { site } from "@/lib/site";
 import { buildMetadata } from "@/lib/seo";
 import {
@@ -16,6 +16,8 @@ import {
   faqJsonLd,
   serviceProcessHowToJsonLd,
 } from "@/lib/jsonld";
+import pageContent from "@/content/pages/service-area-page.json";
+import { fillVarsDeep } from "@/lib/placeholders";
 
 // Programmatic service × city pages.
 //
@@ -36,6 +38,23 @@ import {
 // via generateStaticParams. Zero runtime cost.
 
 type RouteParams = { slug: string; area: string };
+
+// The words around the service and city data live in
+// content/pages/service-area-page.json (/admin → City × service page
+// template); {service}, {area} … are filled per page below. Search keywords
+// and the place names in the structured data stay here: keywords are no
+// longer written into the page (lib/seo.ts) and the place names are
+// identifiers, not copy.
+const copy = (service: Service, profile: AreaProfile) =>
+  fillVarsDeep(pageContent, {
+    service: service.name,
+    serviceShort: service.shortName,
+    serviceShortLower: service.shortName.toLowerCase(),
+    area: profile.name,
+    areaState: profile.region,
+    county: profile.county,
+    drive: String(profile.driveMinutesFromHQ),
+  });
 
 // Extra one-off deployment routes that don't belong in areaProfiles (which
 // drives nav, footer, and city clusters). Currently: Spokane wildfire
@@ -66,14 +85,16 @@ export async function generateMetadata({
     // No response-time claim in the description: we're ~350 miles out, so
     // "60-minute response" would be an unsubstantiated advertising claim.
     // "Same-day answer" is what we can actually keep.
+    // "you pay your deductible only" was removed from the page body as an
+    // overclaim — we control what we charge, not what a carrier covers. It
+    // has to stay out of the description too, or the snippet in search
+    // results makes the promise the page no longer makes.
+    // The text is in content/pages/service-area-page.json → spokaneSeo; the
+    // admin repeats these rules beside the field.
+    const spokane = fillVarsDeep(pageContent.spokaneSeo, {});
     return buildMetadata({
-      title: "Spokane Wildfire Fire & Smoke Restoration",
-      description:
-        // "you pay your deductible only" was removed from the page body as
-        // an overclaim — we control what we charge, not what a carrier
-        // covers. It has to go from the description too, or the snippet in
-        // search results makes the promise the page no longer makes.
-        "Washington-licensed fire, smoke and soot restoration in Spokane County after the wildfires. Debris removal, odor treatment and full rebuild, billed directly to your insurance. Free assessment and written scope, same-day answer.",
+      title: spokane.title,
+      description: spokane.description,
       path: "/services/fire-damage/spokane-wa",
       keywords: [
         "fire damage restoration spokane",
@@ -90,10 +111,10 @@ export async function generateMetadata({
   if (!service || !profile) {
     return { title: "Not found" };
   }
-  const cityName = `${profile.name}, ${profile.region}`;
+  const t = copy(service, profile);
   return buildMetadata({
-    title: `${service.name} in ${cityName}`,
-    description: `${service.name} in ${cityName} — working to IICRC standards, ${profile.driveMinutesFromHQ === 0 ? "based locally" : `${profile.driveMinutesFromHQ}-min dispatch from our Vancouver HQ`}, insurance-grade documentation. Call ${site.phoneDisplay} for 24/7 emergency response.`,
+    title: t.seo.title,
+    description: profile.driveMinutesFromHQ === 0 ? t.seo.descriptionHome : t.seo.description,
     path: `/services/${service.slug}/${profile.slug}`,
     keywords: [
       `${service.shortName.toLowerCase()} ${profile.name.toLowerCase()}`,
@@ -121,7 +142,8 @@ export default async function ServiceCityPage({
   const profile = areaProfiles.find((a) => a.slug === area);
   if (!service || !profile) notFound();
 
-  const cityName = `${profile.name}, ${profile.region}`;
+  const t = copy(service, profile);
+  const home = profile.driveMinutesFromHQ === 0;
   const Icon = serviceIcons[service.slug as keyof typeof serviceIcons];
 
   // Surface 2 sibling cities (same service, different city) + 2 sibling
@@ -135,10 +157,7 @@ export default async function ServiceCityPage({
     .filter((s) => s.slug !== service.slug)
     .slice(0, 3);
 
-  const responseLine =
-    profile.driveMinutesFromHQ === 0
-      ? `As our home base, ${profile.name} gets our fastest dispatch — typically under 20 minutes anywhere in ${profile.county}.`
-      : `${profile.name} is roughly ${profile.driveMinutesFromHQ} minutes from our Vancouver HQ; we hit a 60-minute on-site target city-wide.`;
+  const responseLine = home ? t.hero.responseHome : t.hero.response;
 
   // Localise the service intro by mentioning the city in a natural
   // sentence. We don't string-replace the service.intro because that
@@ -148,10 +167,10 @@ export default async function ServiceCityPage({
     <>
       <Breadcrumbs
         items={[
-          { name: "Home", href: "/" },
-          { name: "Services", href: "/services" },
+          { name: t.breadcrumbs.home, href: "/" },
+          { name: t.breadcrumbs.services, href: "/services" },
           { name: service.shortName, href: `/services/${service.slug}` },
-          { name: cityName, href: `/services/${service.slug}/${profile.slug}` },
+          { name: t.breadcrumbs.city, href: `/services/${service.slug}/${profile.slug}` },
         ]}
       />
 
@@ -163,10 +182,12 @@ export default async function ServiceCityPage({
         />
         <div className="relative mx-auto max-w-7xl px-6 pb-20 pt-16 lg:px-10 lg:pb-24 lg:pt-20">
           <p className="eyebrow text-warm-gray-soft">
-            {service.shortName} · {cityName}
+            {t.hero.eyebrow}
           </p>
           <h1 className="text-ivory mt-8 max-w-3xl text-4xl font-light leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
-            {service.name} in <span className="font-medium">{cityName}</span>.
+            {t.hero.titleLead}{" "}
+            <span className="font-medium">{t.hero.titleCity}</span>
+            {t.hero.titleEnd}
           </h1>
           <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ivory/85">
             {service.hero}
@@ -176,10 +197,10 @@ export default async function ServiceCityPage({
           </p>
 
           <div className="mt-12 grid grid-cols-2 gap-y-6 border-t border-ivory/15 pt-8 sm:grid-cols-4 sm:gap-x-8">
-            <Stat label="Response target" value="60 min" />
-            <Stat label="From HQ" value={profile.driveMinutesFromHQ === 0 ? "Local" : `~${profile.driveMinutesFromHQ} min`} />
-            <Stat label="County" value={profile.county} />
-            <Stat label="Service" value={service.shortName} />
+            <Stat label={t.stats.responseLabel} value={t.stats.responseValue} />
+            <Stat label={t.stats.fromHqLabel} value={home ? t.stats.fromHqValueHome : t.stats.fromHqValue} />
+            <Stat label={t.stats.countyLabel} value={profile.county} />
+            <Stat label={t.stats.serviceLabel} value={service.shortName} />
           </div>
         </div>
       </section>
@@ -190,9 +211,9 @@ export default async function ServiceCityPage({
           <div className="grid gap-12 lg:grid-cols-12">
             <div className="lg:col-span-4">
               {Icon && <Icon className="h-12 w-12 stroke-current text-ivory" />}
-              <p className="eyebrow mt-6 text-ivory/72">About the service</p>
+              <p className="eyebrow mt-6 text-ivory/72">{t.about.eyebrow}</p>
               <h2 className="text-ivory mt-4 text-3xl font-light leading-tight tracking-tight sm:text-4xl">
-                {service.shortName} in {profile.name}.
+                {t.about.title}
               </h2>
             </div>
             <div className="lg:col-span-8">
@@ -209,9 +230,9 @@ export default async function ServiceCityPage({
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
           <div className="grid gap-12 lg:grid-cols-12">
             <div className="lg:col-span-5">
-              <p className="eyebrow text-ivory/72">{profile.name} context</p>
+              <p className="eyebrow text-ivory/72">{t.local.eyebrow}</p>
               <h2 className="text-ivory mt-4 text-3xl font-light leading-tight tracking-tight sm:text-4xl">
-                What we see in {profile.name}.
+                {t.local.title}
               </h2>
               <p className="mt-6 max-w-md text-base leading-relaxed text-ivory/85">
                 {profile.localNote}
@@ -219,14 +240,14 @@ export default async function ServiceCityPage({
             </div>
             <div className="lg:col-span-7">
               <h3 className="eyebrow text-ivory/70">
-                Local weather &amp; loss pattern
+                {t.local.weatherTitle}
               </h3>
               <p className="mt-3 text-base leading-relaxed text-ivory/90">
                 {profile.weatherPattern}
               </p>
 
               <h3 className="mt-8 eyebrow text-ivory/70">
-                Common losses in {profile.county}
+                {t.local.lossesTitle}
               </h3>
               <ul className="mt-3 space-y-3 text-base text-ivory/90">
                 {profile.commonLosses.map((loss) => (
@@ -243,7 +264,7 @@ export default async function ServiceCityPage({
               {profile.neighborhoods.length > 0 && (
                 <>
                   <h3 className="mt-8 eyebrow text-ivory/70">
-                    Neighborhoods we cover
+                    {t.local.neighborhoodsTitle}
                   </h3>
                   <p className="mt-3 text-base leading-relaxed text-ivory/85">
                     {profile.neighborhoods.join(" · ")}
@@ -258,9 +279,9 @@ export default async function ServiceCityPage({
       {/* Process */}
       <section className="bg-charcoal-soft">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
-          <p className="eyebrow text-ivory/72">Process</p>
+          <p className="eyebrow text-ivory/72">{t.process.eyebrow}</p>
           <h2 className="text-ivory mt-4 text-3xl font-light leading-tight tracking-tight sm:text-4xl">
-            How a {service.shortName.toLowerCase()} job runs in {profile.name}.
+            {t.process.title}
           </h2>
           <ol className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {service.process.map((p, i) => (
@@ -284,16 +305,13 @@ export default async function ServiceCityPage({
       </section>
 
       {/* FAQ — borrowed from service, but headlined locally */}
-      <FAQ
-        items={service.faqs}
-        title={`${service.shortName} FAQ — ${profile.name}`}
-      />
+      <FAQ items={service.faqs} title={t.faq.title} />
 
       {/* Cross-linking — same service in other cities */}
       <section className="bg-charcoal">
         <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10">
           <p className="eyebrow text-ivory/72">
-            {service.shortName} in other Portland-metro cities
+            {t.otherCities.eyebrow}
           </p>
           <ul className="mt-6 grid gap-px overflow-hidden border border-ivory/10 bg-charcoal/10 sm:grid-cols-3">
             {otherCitiesForService.map((a) => (
@@ -303,7 +321,11 @@ export default async function ServiceCityPage({
                   className="flex items-center justify-between bg-charcoal px-5 py-4 text-sm font-medium text-ivory transition hover:bg-charcoal-soft"
                 >
                   <span>
-                    {service.shortName} · {a.name}, {a.region}
+                    {fillVarsDeep(pageContent.otherCities.link, {
+                      serviceShort: service.shortName,
+                      area: a.name,
+                      areaState: a.region,
+                    })}
                   </span>
                   <ArrowIcon className="h-3 w-3 stroke-current opacity-50" />
                 </Link>
@@ -317,7 +339,7 @@ export default async function ServiceCityPage({
       <section className="bg-charcoal">
         <div className="mx-auto max-w-7xl px-6 pb-20 lg:px-10">
           <p className="eyebrow text-ivory/72">
-            Other services in {profile.name}, {profile.region}
+            {t.otherServices.eyebrow}
           </p>
           <ul className="mt-6 grid gap-px overflow-hidden border border-ivory/10 bg-charcoal/10 sm:grid-cols-3">
             {otherServicesForCity.map((s) => (
@@ -327,7 +349,10 @@ export default async function ServiceCityPage({
                   className="flex items-center justify-between bg-charcoal px-5 py-4 text-sm font-medium text-ivory transition hover:bg-charcoal-soft"
                 >
                   <span>
-                    {s.shortName} · {profile.name}
+                    {fillVarsDeep(pageContent.otherServices.link, {
+                      serviceShort: s.shortName,
+                      area: profile.name,
+                    })}
                   </span>
                   <ArrowIcon className="h-3 w-3 stroke-current opacity-50" />
                 </Link>
@@ -340,31 +365,28 @@ export default async function ServiceCityPage({
               href={`/services/${service.slug}`}
               className="eyebrow text-ivory transition hover:text-ivory/80"
             >
-              ← All {service.shortName.toLowerCase()} info
+              {t.otherServices.backService}
             </Link>
             <Link
               href={`/areas/${profile.slug}`}
               className="eyebrow text-ivory transition hover:text-ivory/80"
             >
-              ← All services in {profile.name}
+              {t.otherServices.backArea}
             </Link>
           </div>
         </div>
       </section>
 
-      <CTA
-        title={`Need ${service.shortName.toLowerCase()} in ${profile.name} now?`}
-        subtitle={`24/7 dispatch with a 60-minute response target across ${profile.county}. Insurance-grade documentation from first call to final invoice.`}
-      />
+      <CTA title={t.cta.title} subtitle={t.cta.subtitle} />
 
       <JsonLd
         data={[
           breadcrumbJsonLd([
-            { name: "Home", url: "/" },
-            { name: "Services", url: "/services" },
+            { name: t.breadcrumbs.home, url: "/" },
+            { name: t.breadcrumbs.services, url: "/services" },
             { name: service.shortName, url: `/services/${service.slug}` },
             {
-              name: cityName,
+              name: t.breadcrumbs.city,
               url: `/services/${service.slug}/${profile.slug}`,
             },
           ]),
@@ -375,7 +397,7 @@ export default async function ServiceCityPage({
             "@type": "Service",
             "@id": `${site.url}/services/${service.slug}/${profile.slug}#service`,
             serviceType: service.name,
-            name: `${service.name} in ${cityName}`,
+            name: t.seo.structuredName,
             description: service.description,
             provider: { "@id": `${site.url}/#business` },
             areaServed: {

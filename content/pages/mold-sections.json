@@ -1,0 +1,67 @@
+{
+  "hero": {
+    "eyebrow": "Mold Remediation · IICRC S520",
+    "titleLead": "Mold done right",
+    "titleRest": "the first time.",
+    "ctaCall": "Call {phone}",
+    "ctaEmail": "Email a photo",
+    "credibility": [
+      "IICRC S520 method",
+      "Containment + HEPA negative air",
+      "Independent clearance testing",
+      "Insurance billed direct"
+    ]
+  },
+  "why": {
+    "eyebrow": "Why most mold jobs fail",
+    "title": "Mold is a moisture problem wearing a cleaning problem's disguise.",
+    "paragraphs": [
+      "Most \"mold removal\" is cosmetic — someone wipes the surface, sprays bleach, and leaves. The colony living inside the drywall and framing survives. The water that grew it is still there. Within weeks it's back, usually worse, and now harder to put on an insurance claim.",
+      "We work the problem in the right order: find and stop the moisture, contain the area so spores don't spread, remove what can't be saved, treat what can, and verify the air is clear before anything goes back. That's the difference between mold that's gone and mold that's hiding."
+    ]
+  },
+  "method": {
+    "eyebrow": "The Ona method",
+    "title": "Six steps, to the S520 standard."
+  },
+  "whyOna": {
+    "eyebrow": "Why Ona for mold",
+    "title": "What separates a real remediation from a wipe-down.",
+    "items": [
+      {
+        "title": "We chase the moisture first",
+        "body": "We don't touch the growth until we've found what's feeding it — roof leak, supply line, foundation seepage, condensation. Fix the water, and the mold has nowhere to come back to. Skip that step and it returns in weeks."
+      },
+      {
+        "title": "Sealed containment, negative air",
+        "body": "Poly barriers and negative-pressure HEPA scrubbers keep spores inside the work zone. The rest of your home stays clean while we cut, bag, and haul — not coated in what we just disturbed."
+      },
+      {
+        "title": "We don't grade our own homework",
+        "body": "On larger losses we bring in an independent Indoor Environmental Professional to test before and after. The clearance that says it's safe comes from a third party, not from us."
+      },
+      {
+        "title": "Built to the S520 standard",
+        "body": "Assessment, containment, removal, and verification all follow the published IICRC S520 standard for mold remediation — the same reference your adjuster works from."
+      },
+      {
+        "title": "Documentation an adjuster can audit",
+        "body": "Moisture maps, daily photos, and an Xactimate-formatted scope on every job. We bill the carrier directly where the loss is covered, so you're not fronting the cost."
+      },
+      {
+        "title": "One crew through the rebuild",
+        "body": "The team that removes the contaminated drywall puts it back. One contract, one point of contact, one clean finish — no handoff to a stranger halfway through."
+      }
+    ]
+  },
+  "health": {
+    "eyebrow": "Health & insurance",
+    "lead": "If someone in the house has asthma, allergies, or a compromised immune system, mold isn't cosmetic — get it scoped.",
+    "body": "We handle the insurance side: we document the cause, photograph every step, and bill the carrier directly where the loss is covered. You deal with one team and your deductible — not a fight over what happened."
+  },
+  "signs": {
+    "eyebrow": "Warning signs",
+    "title": "When to call.",
+    "body": "Mold doubles fast in Pacific Northwest humidity. The earlier we scope it, the smaller the job. If any of these apply, call."
+  }
+}
