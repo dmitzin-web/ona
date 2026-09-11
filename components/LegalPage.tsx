@@ -1,6 +1,7 @@
 import { Breadcrumbs } from "./Breadcrumbs";
 import { JsonLd } from "./JsonLd";
 import { breadcrumbJsonLd } from "@/lib/jsonld";
+import { chrome } from "@/lib/chrome";
 
 type Section = { heading: string; body: string[] };
 
@@ -37,12 +38,12 @@ export function LegalPage({
             {title}
           </h1>
           <p className="mt-6 text-sm text-ivory/72">
-            Last updated: {updated}
+            {chrome.legalPage.updatedLabel} {updated}
           </p>
 
           {banner && (
             <div className="mt-8 border-l-2 border-gold/60 bg-charcoal-soft/60 px-5 py-4">
-              <p className="eyebrow text-gold">Draft</p>
+              <p className="eyebrow text-gold">{chrome.legalPage.draftLabel}</p>
               <p className="mt-2 text-sm leading-relaxed text-ivory/90">
                 {banner}
               </p>

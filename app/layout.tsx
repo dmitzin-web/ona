@@ -6,15 +6,21 @@ import { Analytics } from "@/components/Analytics";
 import { AskOna } from "@/components/assistant/AskOna";
 import { EmergencyBanner } from "@/components/EmergencyBanner";
 import { site } from "@/lib/site";
+import { chrome } from "@/lib/chrome";
 import { localBusinessJsonLd, websiteJsonLd } from "@/lib/jsonld";
 import { satoshi } from "./fonts";
 import "./globals.css";
 
+// Default title, title pattern, category and the skip link are in
+// content/chrome.json (/admin → Header, footer & shared blocks → Every page).
+// The description is Company details → Short description.
+const t = chrome.everyPage;
+
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} — ${site.tagline}`,
-    template: `%s | ${site.name}`,
+    default: t.defaultTitle,
+    template: t.titleTemplate,
   },
   description: site.shortDescription,
   applicationName: site.name,
@@ -22,19 +28,19 @@ export const metadata: Metadata = {
   creator: site.legalName,
   publisher: site.legalName,
   formatDetection: { telephone: true, email: true, address: true },
-  category: "Home Services",
+  category: t.category,
   alternates: { canonical: site.url },
   openGraph: {
     type: "website",
     locale: site.locale,
     url: site.url,
     siteName: site.name,
-    title: `${site.name} — ${site.tagline}`,
+    title: t.defaultTitle,
     description: site.shortDescription,
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.name} — ${site.tagline}`,
+    title: t.defaultTitle,
     description: site.shortDescription,
   },
   robots: {
@@ -76,7 +82,7 @@ export default function RootLayout({
           href="#main"
           className="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-50 focus:bg-brand focus:px-3 focus:py-2 focus:text-charcoal"
         >
-          Skip to content
+          {t.skipLink}
         </a>
         {/* One sticky unit, not two independent ones. The deep-teal status
             strip is what gives the header an edge; if only the header

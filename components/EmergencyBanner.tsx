@@ -19,6 +19,11 @@
 //
 // The pulse is the only animation on the site. If you feel like
 // adding another, push back — the brand promise is calm.
+//
+// The text is in content/chrome.json (/admin → Header, footer & shared
+// blocks → Dark strip at the very top).
+
+import { chrome } from "@/lib/chrome";
 
 export function EmergencyBanner() {
   return (
@@ -39,7 +44,7 @@ export function EmergencyBanner() {
             the site entirely — put it back in a page if it is wanted,
             not in the chrome, where it goes stale by season. */}
         <p className="eyebrow whitespace-nowrap text-white">
-          24/7 crew available
+          {chrome.statusStrip.text}
         </p>
       </div>
     </div>

@@ -1,6 +1,10 @@
+import { chrome } from "@/lib/chrome";
+
+// The label and the fallback heading are in content/chrome.json (/admin →
+// Header, footer & shared blocks → FAQ block); the questions come from each page.
 export function FAQ({
   items,
-  title = "Frequently asked questions",
+  title = chrome.faq.defaultTitle,
 }: {
   items: { q: string; a: string }[];
   title?: string;
@@ -9,7 +13,7 @@ export function FAQ({
     <section className="bg-charcoal text-ivory">
       <div className="mx-auto grid max-w-7xl gap-12 px-6 py-24 lg:grid-cols-12 lg:px-10">
         <div className="lg:col-span-4">
-          <p className="eyebrow text-ivory/72">FAQ</p>
+          <p className="eyebrow text-ivory/72">{chrome.faq.eyebrow}</p>
           <h2 className="text-ivory mt-6 text-4xl font-light leading-tight tracking-tight sm:text-5xl">
             {title}
           </h2>

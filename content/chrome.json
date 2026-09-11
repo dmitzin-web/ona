@@ -1,0 +1,177 @@
+{
+  "everyPage": {
+    "defaultTitle": "{name} — {tagline}",
+    "titleTemplate": "%s | {name}",
+    "category": "Home Services",
+    "skipLink": "Skip to content"
+  },
+  "statusStrip": {
+    "text": "24/7 crew available"
+  },
+  "header": {
+    "nav": {
+      "restoration": "Restoration",
+      "mold": "Mold",
+      "remodeling": "Remodeling",
+      "about": "How we work",
+      "blog": "Notes",
+      "contact": "Contact"
+    },
+    "callShort": "Call",
+    "callAriaLabel": "Call {phone}",
+    "sendPhotos": "Send photos",
+    "sendPhotosSubject": "Photos of damage",
+    "startProject": "Start a project",
+    "menuCall": "Call {phone}",
+    "menuButton": "Toggle menu",
+    "menuButtonText": "Menu",
+    "navAriaLabel": "Primary",
+    "mobileNavAriaLabel": "Mobile primary"
+  },
+  "breadcrumbs": {
+    "home": "Home",
+    "ariaLabel": "Breadcrumb"
+  },
+  "serviceCard": {
+    "linkText": "Learn more"
+  },
+  "values": {
+    "eyebrow": "Brand values",
+    "title": "What guides every job."
+  },
+  "remodelingGallery": {
+    "eyebrow": "Our work",
+    "title": "Finish work, photographed as we left it.",
+    "intro": "Kitchens, baths and finish carpentry completed by our own crews. Several of these are two views of the same room rather than separate projects.",
+    "linkText": "Start your project"
+  },
+  "faq": {
+    "eyebrow": "FAQ",
+    "defaultTitle": "Frequently asked questions"
+  },
+  "cta": {
+    "eyebrow": "Get in touch",
+    "title": "Details matter.",
+    "subtitle": "We restore more than properties. We restore trust. Talk to a restoration specialist now — live, day or night."
+  },
+  "legalPage": {
+    "updatedLabel": "Last updated:",
+    "draftLabel": "Draft"
+  },
+  "footer": {
+    "about": [
+      "Remodeling, mold, and restoration in Vancouver, WA and the Portland metro.",
+      "Water · Fire · Mold · Storm · Reconstruction · Kitchen & Bath remodels.",
+      "Insurance billed direct · Fixed-scope agreements · 24/7 emergency dispatch."
+    ],
+    "location": "{city}, {state} · Serving the Portland metro",
+    "credentials": {
+      "waLabel": "WA L&I",
+      "waNumber": "ONARER*748K8",
+      "orLabel": "OR CCB",
+      "orStatus": "pending",
+      "iicrcLabel": "IICRC",
+      "iicrcStatus": "Certified"
+    },
+    "servicesTitle": "Services",
+    "areaTitle": "Service Area",
+    "companyTitle": "Company",
+    "aboutLink": "About",
+    "contactLink": "Contact",
+    "byCityTitle": "Service by city",
+    "copyright": "© {year} {legalName} · All rights reserved",
+    "privacyLink": "Privacy",
+    "termsLink": "Terms",
+    "quoteLink": "Get a free quote"
+  },
+  "assistant": {
+    "openButton": "Open Ask Ona assistant",
+    "openButtonText": "Ask Ona",
+    "title": "Ask Ona",
+    "subtitle": "AI assistant · informational only",
+    "newChat": "New chat",
+    "close": "Close",
+    "greeting": "Hi — I'm Ask Ona. I can help with restoration questions, remodeling, service-area coverage, and insurance basics. What can I help with?",
+    "suggestionsTitle": "Try asking",
+    "suggestions": {
+      "home": [
+        "Do you serve my area?",
+        "How fast can a crew get to me?",
+        "Do you handle kitchen remodels?"
+      ],
+      "water": [
+        "How long does structural drying take?",
+        "Will insurance cover a slow leak?",
+        "What is the difference between mitigation and reconstruction?"
+      ],
+      "fire": [
+        "What should I do in the first hour after a fire?",
+        "Will smoke damage my electronics?",
+        "Can you handle the insurance claim with my carrier?"
+      ],
+      "mold": [
+        "Is the mold in my home dangerous?",
+        "Do I need air-quality testing first?",
+        "How long does mold remediation take?"
+      ],
+      "storm": [
+        "Can you do emergency board-up tonight?",
+        "What does the insurance process look like for storm damage?",
+        "Do you handle tree-impact damage?"
+      ],
+      "services": [
+        "Which service do I need?",
+        "Are you available 24/7?",
+        "Are you IICRC-certified?"
+      ],
+      "areas": [
+        "How fast can you reach this area?",
+        "Do you have crews based here?",
+        "What's the response target?"
+      ],
+      "remodeling": [
+        "How long does a kitchen remodel take?",
+        "Do you handle permits and architectural drawings?",
+        "Can I upgrade finishes during an insurance claim?"
+      ],
+      "quote": [
+        "What information do you need from me?",
+        "How quickly will you respond?",
+        "Can I send photos with the quote?"
+      ],
+      "blog": [
+        "Summarize this article for me.",
+        "Do you have other articles like this?",
+        "I need help with this — what should I do?"
+      ],
+      "other": [
+        "Do you serve my area?",
+        "I have a water leak — what should I do first?",
+        "Do you handle remodeling too?"
+      ]
+    },
+    "placeholder": "Ask anything about Ona, services, or your claim…",
+    "attach": "Attach an image",
+    "send": "Send",
+    "removeImage": "Remove image",
+    "attachmentAlt": "attachment",
+    "attachedAlt": "attached",
+    "thinking": "Thinking",
+    "requestFailed": "Request failed ({status})"
+  },
+  "shareImage": {
+    "alt": "{name} — {tagline}",
+    "eyebrow": "Property restoration · Vancouver, WA & Portland Metro",
+    "headline": [
+      "Precision.",
+      "Restoration.",
+      "Built to Last."
+    ],
+    "website": "onarestore.com"
+  },
+  "blogShareImage": {
+    "alt": "{name} blog post share image",
+    "readingTime": "{minutes} min read",
+    "byline": "By {author}"
+  }
+}

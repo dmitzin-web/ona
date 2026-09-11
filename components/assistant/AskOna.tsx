@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import { suggestedPromptsForPath } from "./suggestedPrompts";
-import { askOnaGreeting } from "@/lib/assistant/prompts";
+import { chrome, fill } from "@/lib/chrome";
 
 // Ask Ona — the site-wide AI assistant.
 //
@@ -22,6 +22,12 @@ import { askOnaGreeting } from "@/lib/assistant/prompts";
 //   - Desktop: opens as a side drawer pinned to the right, ~440px.
 //   - Mobile (< 1024px): opens as a full-screen sheet from the bottom.
 //   - Esc closes. Backdrop click closes. Focus returns to the trigger.
+//
+// Every word in the window (greeting, suggestions, labels, the error) is in
+// content/chrome.json (/admin → Header, footer & shared blocks → Ask Ona).
+// What the assistant knows and how it answers is the system prompt in
+// lib/assistant/prompts.ts, which is not editable from the admin.
+const t = chrome.assistant;
 
 type ImageMediaType = "image/jpeg" | "image/png" | "image/gif" | "image/webp";
 type TextBlock = { type: "text"; text: string };
@@ -239,7 +245,7 @@ export function AskOna() {
         }),
       });
       if (!res.ok || !res.body) {
-        throw new Error(`Request failed (${res.status})`);
+        throw new Error(fill(t.requestFailed, { status: res.status }));
       }
       const reader = res.body.getReader();
       const decoder = new TextDecoder();
@@ -295,13 +301,13 @@ export function AskOna() {
           is what a persistent floating control should have been anyway. */}
       <button
         type="button"
-        aria-label="Open Ask Ona assistant"
+        aria-label={t.openButton}
         onClick={() => window.dispatchEvent(new Event("askona:open"))}
         className="fixed bottom-4 right-4 z-30 inline-flex h-11 w-11 items-center justify-center rounded-full bg-brand text-white shadow-lg transition hover:bg-brand-2"
         style={{ marginBottom: "env(safe-area-inset-bottom, 0px)" }}
       >
         <ChatIcon className="h-5 w-5" />
-        <span className="sr-only">Ask Ona</span>
+        <span className="sr-only">{t.openButtonText}</span>
       </button>
 
       {/* Drawer */}
@@ -310,7 +316,7 @@ export function AskOna() {
           className="fixed inset-0 z-50 flex"
           role="dialog"
           aria-modal="true"
-          aria-label="Ask Ona"
+          aria-label={t.title}
         >
           {/* Backdrop */}
           <div
@@ -325,11 +331,9 @@ export function AskOna() {
             <div className="flex flex-none items-center justify-between border-b border-line-light px-5 py-4">
               <div>
                 <p className="text-base font-medium tracking-tight text-charcoal">
-                  Ask Ona
+                  {t.title}
                 </p>
-                <p className="text-xs text-charcoal/55">
-                  AI assistant · informational only
-                </p>
+                <p className="text-xs text-charcoal/55">{t.subtitle}</p>
               </div>
               <div className="flex items-center gap-2">
                 {messages.length > 0 && (
@@ -338,14 +342,14 @@ export function AskOna() {
                     onClick={reset}
                     className="eyebrow text-charcoal/55 transition hover:text-charcoal"
                   >
-                    New chat
+                    {t.newChat}
                   </button>
                 )}
                 <button
                   type="button"
                   onClick={() => setOpen(false)}
                   className="inline-flex h-8 w-8 items-center justify-center border border-charcoal/20 text-charcoal transition hover:border-charcoal"
-                  aria-label="Close"
+                  aria-label={t.close}
                 >
                   <CloseIcon className="h-4 w-4" />
                 </button>
@@ -359,7 +363,7 @@ export function AskOna() {
             >
               {messages.length === 0 ? (
                 <EmptyState
-                  greeting={askOnaGreeting}
+                  greeting={t.greeting}
                   suggestions={suggested}
                   onPick={(p) => void send(p)}
                 />
@@ -391,7 +395,7 @@ export function AskOna() {
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={a.dataUrl}
-                        alt="attachment"
+                        alt={t.attachmentAlt}
                         className="h-14 w-14 object-cover"
                       />
                       <button
@@ -401,7 +405,7 @@ export function AskOna() {
                             prev.filter((_, idx) => idx !== i),
                           )
                         }
-                        aria-label="Remove image"
+                        aria-label={t.removeImage}
                         className="absolute -right-1.5 -top-1.5 inline-flex h-5 w-5 items-center justify-center bg-charcoal text-ivory"
                       >
                         <CloseIcon className="h-3 w-3" />
@@ -424,7 +428,7 @@ export function AskOna() {
                 type="button"
                 onClick={() => fileInputRef.current?.click()}
                 disabled={attachments.length >= MAX_IMAGES}
-                aria-label="Attach an image"
+                aria-label={t.attach}
                 className="inline-flex h-10 w-10 flex-none items-center justify-center border border-charcoal/20 text-charcoal transition hover:border-charcoal disabled:opacity-40"
               >
                 <PaperclipIcon className="h-4 w-4" />
@@ -449,13 +453,13 @@ export function AskOna() {
                   }
                 }}
                 rows={1}
-                placeholder="Ask anything about Ona, services, or your claim…"
+                placeholder={t.placeholder}
                 className="block min-h-10 max-h-32 w-full resize-none border border-charcoal/20 bg-brand px-3 py-2 text-sm text-charcoal placeholder:text-charcoal/40 focus:border-ivory focus:outline-none"
               />
               <button
                 type="submit"
                 disabled={sending || (!draft.trim() && attachments.length === 0)}
-                aria-label="Send"
+                aria-label={t.send}
                 className="inline-flex h-10 w-10 flex-none items-center justify-center border border-charcoal bg-charcoal text-ivory transition hover:bg-transparent hover:text-charcoal disabled:cursor-not-allowed disabled:opacity-40"
               >
                 <ArrowUpIcon className="h-4 w-4" />
@@ -486,7 +490,7 @@ function EmptyState({
       <p className="text-sm leading-relaxed text-charcoal/80">{greeting}</p>
       {suggestions.length > 0 && (
         <div className="mt-6">
-          <p className="eyebrow text-charcoal/55">Try asking</p>
+          <p className="eyebrow text-charcoal/55">{t.suggestionsTitle}</p>
           <ul className="mt-3 space-y-2">
             {suggestions.map((s) => (
               <li key={s}>
@@ -524,7 +528,7 @@ function MessageBubble({ msg }: { msg: ChatMessage }) {
               <li key={i}>
                 <img
                   src={a.dataUrl}
-                  alt="attached"
+                  alt={t.attachedAlt}
                   className="h-16 w-16 object-cover"
                 />
               </li>
@@ -550,7 +554,7 @@ function AssistantMarkdown({
 }) {
   if (!text && streaming) {
     return (
-      <div className="flex items-center gap-1.5 py-1" aria-label="Thinking">
+      <div className="flex items-center gap-1.5 py-1" aria-label={t.thinking}>
         <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-charcoal/40" />
         <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-charcoal/40 [animation-delay:120ms]" />
         <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-charcoal/40 [animation-delay:240ms]" />

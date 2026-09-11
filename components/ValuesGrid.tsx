@@ -1,5 +1,8 @@
 import { site } from "@/lib/site";
 import { valueIcons } from "./icons/ServiceIcons";
+import { chrome } from "@/lib/chrome";
+
+// Label and heading: content/chrome.json. The values: Company details.
 
 export function ValuesGrid({
   tone = "dark",
@@ -17,10 +20,10 @@ export function ValuesGrid({
         <p
           className={`eyebrow ${dark ? "text-warm-gray-soft" : "text-ivory/72"}`}
         >
-          Brand values
+          {chrome.values.eyebrow}
         </p>
         <h2 className="text-ivory mt-6 max-w-2xl text-4xl font-light leading-tight tracking-tight sm:text-5xl">
-          What guides every job.
+          {chrome.values.title}
         </h2>
 
         <ul
