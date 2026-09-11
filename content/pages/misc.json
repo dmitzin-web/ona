@@ -1,0 +1,18 @@
+{
+  "thanks": {
+    "seo": {
+      "title": "Request received",
+      "description": "Thanks — we'll be in touch shortly."
+    },
+    "eyebrow": "Quote request received",
+    "title": "Thanks. We've got it.",
+    "body": "A specialist will be in touch within the hour during business hours, same morning otherwise. If this is an active emergency, please call — email doesn't wake us up.",
+    "backHome": "Back home"
+  },
+  "notFound": {
+    "eyebrow": "404",
+    "title": "Page not found.",
+    "body": "The page you're looking for doesn't exist. If this is an emergency, call us — we'll handle it from there.",
+    "backHome": "Back home"
+  }
+}

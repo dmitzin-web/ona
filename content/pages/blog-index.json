@@ -1,0 +1,17 @@
+{
+  "seo": {
+    "title": "Restoration Guides & Notes",
+    "description": "Field-tested guides from a restoration team in Vancouver, WA and Portland, OR. Water, fire, mold, storm, and insurance.",
+    "breadcrumb": "Blog",
+    "blogName": "{name} field notes"
+  },
+  "hero": {
+    "eyebrow": "Field notes",
+    "title": "Notes from the trucks.",
+    "body": "Practical guides, written by the people running the jobs. No fluff, no SEO-bait — just what we tell our own families."
+  },
+  "list": {
+    "minRead": "min read",
+    "readMore": "Read article"
+  }
+}

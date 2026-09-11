@@ -1,0 +1,91 @@
+{
+  "seo": {
+    "title": "About {name} — Vancouver, WA Restoration Specialists",
+    "description": "{name} is a restoration contractor based in Vancouver, WA, serving the Portland metro since {founded}. Locally owned. Washington contractor registration ONARER*748K8.",
+    "breadcrumb": "About"
+  },
+  "hero": {
+    "eyebrow": "About",
+    "title": "We restore more than properties. We restore trust.",
+    "intro": {
+      "beforePronunciation": "{name} — said",
+      "pronunciation": "OH-nuh",
+      "afterPronunciation": ", one word rather than three letters — is a locally owned restoration contractor based in Vancouver, Washington, serving homeowners, property managers and business owners across the Portland metro since {founded}."
+    },
+    "body": "Restoration is one of the few trades you call when you're already having the worst day of the month. Our job is to make the next hour easier, the next week predictable, and the final walkthrough drama-free. We do that by running every job to the IICRC S500 / S520 / S700 standards, documenting everything to the level your insurance adjuster expects, and keeping you in the loop with one point of contact from emergency call to keys back.",
+    "registration": {
+      "beforeNumber": "In Washington we hold contractor registration",
+      "number": "ONARER*748K8",
+      "afterNumber": ", which you can check against the state's own records before you call us. Our Oregon CCB registration is pending; the number goes here the day it issues."
+    },
+    "credentialsLabel": "Credentials"
+  },
+  "howWeWork": {
+    "eyebrow": "How we work",
+    "title": "Three things we do differently.",
+    "items": [
+      {
+        "title": "Documentation by default",
+        "body": "Thermal imaging, moisture readings, daily progress photos and an Xactimate-formatted scope on every job — not just the ones that look complicated. It's the same standard your adjuster uses, applied from the first call."
+      },
+      {
+        "title": "One contractor, end to end",
+        "body": "Mitigation, demolition, structural repair and the final finish-carpentry rebuild are all the same crew. No handoffs to subcontractors you've never met. One contract, one point of contact, one final walkthrough."
+      },
+      {
+        "title": "Insurance-grade handover",
+        "body": "We talk to your adjuster so you don't have to. Every disputed line item is backed by photo and moisture documentation captured the first day. We close more claims at full scope than the industry average because we make the adjuster's job easier, not harder."
+      }
+    ]
+  },
+  "setup": {
+    "eyebrow": "How we're set up",
+    "title": "Locally owned. Standards-driven. Built for the Pacific Northwest.",
+    "stats": [
+      {
+        "label": "Service area",
+        "value": "10 cities",
+        "note": "Vancouver, WA + Portland metro — Clark, Multnomah, Washington & Clackamas counties"
+      },
+      {
+        "label": "Standards",
+        "value": "IICRC S500 / S520 / S700",
+        "note": "Every job run to IICRC water, mold & fire/smoke standards. IICRC-certified technicians — WRT, ASD, AMRT, FSRT."
+      },
+      {
+        "label": "Dispatch",
+        "value": "24 / 7 / 365",
+        "note": "Live technician answer — no call-center routing"
+      }
+    ]
+  },
+  "faq": {
+    "title": "Questions we hear",
+    "faqs": [
+      {
+        "q": "Is Ona Restoration a franchise?",
+        "a": "No. Ona Restoration & Remodeling is a locally-owned, independent contractor based in Vancouver, WA. We are not affiliated with SERVPRO, PuroClean, ServiceMaster, or any other national restoration brand. Every job is run by our own crew, supervised by our founder."
+      },
+      {
+        "q": "What areas do you serve?",
+        "a": "Vancouver, WA and the entire Portland metro — Clark, Multnomah, Washington and Clackamas counties. Our standard response target is 60 minutes anywhere in this footprint. For locations on the edges (Hillsboro, Lake Oswego, Gresham) we pre-stage trucks during weather emergencies."
+      },
+      {
+        "q": "Are you certified to work with my insurance company?",
+        "a": "Yes. We document losses in Xactimate format, which is the same estimating system every major carrier uses (State Farm, Allstate, USAA, Farmers, Liberty Mutual, etc.). We can bill the insurer directly so you don't front the cost of mitigation."
+      },
+      {
+        "q": "What is IICRC and why does it matter?",
+        "a": "The Institute of Inspection, Cleaning and Restoration Certification (IICRC) is the standards body for the restoration industry. Their S500 (water), S520 (mold) and S700 (fire & smoke) standards define what proper mitigation actually looks like. We run every job to those standards — not to whatever the homeowner happens to know. Our technicians hold IICRC certifications (WRT, ASD, AMRT, FSRT), and every job follows the published S500/S520/S700 methodology."
+      },
+      {
+        "q": "Do you handle both emergency mitigation and the final rebuild?",
+        "a": "Yes — we run as a single-source contractor. The same team that extracts the water and dries the structure handles drywall, flooring, paint, cabinetry and finish carpentry. One contract, one schedule, one point of contact. This is unusual in the industry; most restoration outfits hand the rebuild off to a separate general contractor."
+      },
+      {
+        "q": "Are you licensed in both Washington and Oregon?",
+        "a": "In Washington, yes: contractor registration ONARER*748K8, verifiable at secure.lni.wa.gov/verify. Our Oregon CCB registration is pending and we will publish the number here the day it issues. Our technicians hold IICRC certifications in water, structural drying, microbial remediation and fire and smoke."
+      }
+    ]
+  }
+}

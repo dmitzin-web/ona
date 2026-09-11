@@ -1,6 +1,12 @@
 import type { Schema } from "./schema";
 import { faqList, PLACEHOLDERS } from "./fields";
 import { HOME } from "./pages/home";
+import { ABOUT } from "./pages/about";
+import { CONTACT } from "./pages/contact";
+import { SERVICES_INDEX } from "./pages/services-index";
+import { AREAS_INDEX } from "./pages/areas-index";
+import { BLOG_INDEX } from "./pages/blog-index";
+import { MISC } from "./pages/misc";
 
 // Every schema-driven section of the admin: what file it lives in, how it
 // is shaped, and what the editor is told about it. Blog posts and the
@@ -29,6 +35,12 @@ export type SectionDef = {
 
 export const SECTIONS: SectionDef[] = [
   HOME,
+  ABOUT,
+  CONTACT,
+  SERVICES_INDEX,
+  AREAS_INDEX,
+  BLOG_INDEX,
+  MISC,
   {
     id: "site",
     label: "Company details",

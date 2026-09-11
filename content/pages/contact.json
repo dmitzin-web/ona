@@ -1,0 +1,71 @@
+{
+  "seo": {
+    "title": "Contact {name} — 24/7 Restoration Dispatch",
+    "description": "Call {phone} or email {email}. Ona Restoration dispatches 24/7 across Vancouver, WA and the Portland metro.",
+    "breadcrumb": "Contact"
+  },
+  "hero": {
+    "eyebrow": "Contact",
+    "title": "Get in touch with dispatch.",
+    "body": "Emergency? Pick up the phone — a real technician answers. Not urgent? Send a few photos by email and we'll come back with a preliminary scope."
+  },
+  "phoneCard": {
+    "eyebrow": "24/7 emergency",
+    "note": "Tap to call. Live answer, day or night."
+  },
+  "emailCard": {
+    "eyebrow": "Email",
+    "note": "Attach photos and your address. We reply within the hour during business hours, same morning otherwise."
+  },
+  "afterCall": {
+    "title": "What happens after you call",
+    "body": "For emergencies we run a clean, fast playbook. Most callers are on-site with a crew inside the hour.",
+    "stepLabel": "Step",
+    "steps": [
+      {
+        "title": "Live answer",
+        "text": "A real technician picks up — day or night. We confirm your address and the loss in under two minutes."
+      },
+      {
+        "title": "Dispatch",
+        "text": "Closest available crew is on the road within minutes. We text you the technician's name and ETA."
+      },
+      {
+        "title": "On-site",
+        "text": "Target 60 minutes anywhere in the Portland metro. We stop the damage spreading before anything else."
+      },
+      {
+        "title": "Documentation",
+        "text": "Photos, moisture readings and Xactimate-formatted scope go to your insurance adjuster the same day."
+      }
+    ]
+  },
+  "hq": {
+    "title": "Headquarters & hours",
+    "addressLabel": "Headquarters",
+    "hoursLabel": "Hours",
+    "hours": [
+      {
+        "label": "Emergency dispatch",
+        "value": "24 / 7 / 365"
+      },
+      {
+        "label": "Office line",
+        "value": "Mon–Sat, business hours"
+      },
+      {
+        "label": "Quote email",
+        "value": "Reply within the hour during business hours"
+      }
+    ],
+    "areaLabel": "Service area",
+    "areaText": "Vancouver, WA and the entire Portland metro — Clark, Multnomah, Washington and Clackamas counties.",
+    "mapTitle": "Ona Restoration service area — Vancouver, WA",
+    "mapLink": "View on Google Maps"
+  },
+  "links": {
+    "callLabel": "Call {name} 24/7 at {phone}",
+    "emailLabel": "Email {name} at {email}",
+    "smsLabel": "Text {name} at {phone}"
+  }
+}
