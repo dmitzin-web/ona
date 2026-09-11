@@ -52,6 +52,10 @@ export function SectionEditor({
     return () => window.removeEventListener("beforeunload", onLeave);
   }, [dirty, pending]);
 
+  // Long pages (the homepage is ~20 screens) get a row of links to each
+  // block; fieldsets carry id="f-<key>".
+  const jump = schema.filter((f) => f.kind === "object" || f.kind === "list" || f.kind === "optional");
+
   function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const fd = new FormData(e.currentTarget);
@@ -77,6 +81,16 @@ export function SectionEditor({
         </ul>
         <p className="mt-1.5 text-warm-gray">The admin checks for the first two and will stop and ask before publishing.</p>
       </aside>
+
+      {jump.length > 3 && (
+        <nav aria-label="Jump to" className="flex flex-wrap gap-1.5">
+          {jump.map((f) => (
+            <a key={f.key} href={`#f-${f.key}`} className="rounded-[2px] border border-line bg-charcoal px-2.5 py-1 text-[13px] text-ivory transition hover:border-teal hover:text-teal">
+              {f.label}
+            </a>
+          ))}
+        </nav>
+      )}
 
       <form onSubmit={submit} className="space-y-6">
         <input type="hidden" name="section" value={sectionId} />

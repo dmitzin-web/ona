@@ -9,6 +9,27 @@ import { SECTIONS } from "@/lib/admin/sections";
 // (GitHub in production), so a save shows up here immediately — the public
 // site follows about a minute later, when Vercel finishes the deploy.
 
+// How the dashboard groups SECTIONS. Anything not named here still shows,
+// under "Other", so a newly registered section can never go missing.
+const GROUPS: { title: string; hint?: string; ids: string[] }[] = [
+  { title: "Pages", ids: ["home", "about", "contact", "services-index", "areas-index", "blog-index", "start-project", "quote", "spokane-fire", "mold-sections", "misc"] },
+  {
+    title: "Page templates",
+    hint: "The fixed text around each service, city, gallery project and blog post. One change here updates every page built from it.",
+    ids: ["service-page", "area-page", "service-area-page", "work-page", "post-page"],
+  },
+  { title: "On every page", ids: ["chrome"] },
+  { title: "Company & listings", ids: ["site", "services", "areas", "reviews", "legal"] },
+];
+
+function groupSections() {
+  const named = new Set(GROUPS.flatMap((g) => g.ids));
+  const byId = new Map(SECTIONS.map((s) => [s.id, s]));
+  const groups = GROUPS.map((g) => ({ ...g, sections: g.ids.flatMap((id) => byId.get(id) ?? []) }));
+  groups.push({ title: "Other", ids: [], sections: SECTIONS.filter((s) => !named.has(s.id)) });
+  return groups.filter((g) => g.sections.length);
+}
+
 const slugOf = (p: string) => p.slice(p.lastIndexOf("/") + 1, -".json".length);
 
 export default async function AdminHome({
@@ -51,20 +72,25 @@ export default async function AdminHome({
           and working-looking New buttons would both mislead. */}
       {!loadError && (
       <>
-      <section>
+      <div className="space-y-8">
         <h1 className="text-[22px] font-semibold text-ivory">Site content</h1>
-        <p className="text-[13px] text-warm-gray">Company details, service and city pages, legal pages.</p>
-        <ul className="mt-4 grid gap-3 sm:grid-cols-2">
-          {SECTIONS.map((s) => (
-            <li key={s.id}>
-              <Link href={`/admin/s/${s.id}`} className="block h-full rounded-[2px] border border-line bg-charcoal p-4 transition hover:border-ivory/40">
-                <p className="text-[15px] font-medium text-ivory">{s.label}</p>
-                <p className="mt-1 text-[13px] leading-snug text-warm-gray">{s.description}</p>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </section>
+        {groupSections().map((g) => (
+          <section key={g.title}>
+            <h2 className="eyebrow text-warm-gray">{g.title}</h2>
+            {g.hint && <p className="mt-1 text-[13px] text-warm-gray">{g.hint}</p>}
+            <ul className="mt-3 grid gap-3 sm:grid-cols-2">
+              {g.sections.map((s) => (
+                <li key={s.id}>
+                  <Link href={`/admin/s/${s.id}`} className="block h-full rounded-[2px] border border-line bg-charcoal p-4 transition hover:border-ivory/40">
+                    <p className="text-[15px] font-medium text-ivory">{s.label}</p>
+                    <p className="mt-1 text-[13px] leading-snug text-warm-gray">{s.description}</p>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))}
+      </div>
 
       <section>
         <div className="flex items-end justify-between gap-4">

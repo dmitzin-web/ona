@@ -136,7 +136,7 @@ function FieldView({
     }
     case "object":
       return (
-        <fieldset className="rounded-[2px] border border-line p-4">
+        <fieldset id={id} className="scroll-mt-24 rounded-[2px] border border-line p-4">
           <legend className="px-1 text-[14px] font-medium text-ivory">{f.label}</legend>
           {f.hint && <p className="mb-3 text-[13px] text-warm-gray">{f.hint}</p>}
           <SchemaForm fields={f.fields} value={(value as Obj) ?? {}} onChange={onChange} idPrefix={id} />
@@ -145,7 +145,7 @@ function FieldView({
     case "optional": {
       const on = value !== null && value !== undefined;
       return (
-        <fieldset className="rounded-[2px] border border-line p-4">
+        <fieldset id={id} className="scroll-mt-24 rounded-[2px] border border-line p-4">
           <legend className="px-1 text-[14px] font-medium text-ivory">{f.label}</legend>
           {f.hint && <p className="mb-3 text-[13px] text-warm-gray">{f.hint}</p>}
           <label className="flex items-center gap-2 text-[14px] text-ivory">
@@ -164,7 +164,7 @@ function FieldView({
       const arr = Array.isArray(value) ? (value as Obj[]) : [];
       const setAt = (i: number, v: Obj) => onChange(arr.map((x, k) => (k === i ? v : x)));
       return (
-        <fieldset className="rounded-[2px] border border-line p-4">
+        <fieldset id={id} className="scroll-mt-24 rounded-[2px] border border-line p-4">
           <legend className="px-1 text-[14px] font-medium text-ivory">{f.label}</legend>
           {f.hint && <p className="mb-3 text-[13px] text-warm-gray">{f.hint}</p>}
           <div className="space-y-3">
