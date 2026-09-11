@@ -29,3 +29,19 @@ export function fillPlaceholdersDeep<T>(v: T): T {
     return Object.fromEntries(Object.entries(v).map(([k, x]) => [k, fillPlaceholdersDeep(x)])) as T;
   return v;
 }
+
+// Page templates (a service page, a city page, a city × service page) use
+// their own placeholders on top of the company ones — {service}, {area} …
+// Only the keys passed are replaced; any other {word} is left as written.
+export function fillVarsDeep<T>(v: T, vars: Record<string, string>): T {
+  const one = (s: string) => s.replace(/\{(\w+)\}/g, (m, k: string) => (k in vars ? vars[k] : m));
+  const walk = (x: unknown): unknown =>
+    typeof x === "string"
+      ? one(x)
+      : Array.isArray(x)
+        ? x.map(walk)
+        : x && typeof x === "object"
+          ? Object.fromEntries(Object.entries(x).map(([k, y]) => [k, walk(y)]))
+          : x;
+  return walk(fillPlaceholdersDeep(v)) as T;
+}
