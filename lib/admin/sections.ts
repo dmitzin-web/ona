@@ -13,6 +13,10 @@ import { MOLD_SECTIONS } from "./pages/mold-sections";
 import { AREA_PAGE } from "./pages/area-page";
 import { SERVICE_AREA_PAGE } from "./pages/service-area-page";
 import { CHROME } from "./pages/chrome";
+import { POST_PAGE } from "./pages/post-page";
+import { QUOTE } from "./pages/quote";
+import { START_PROJECT } from "./pages/start-project";
+import { WORK_PAGE } from "./pages/work-page";
 
 // Every schema-driven section of the admin: what file it lives in, how it
 // is shaped, and what the editor is told about it. Blog posts and the
@@ -53,6 +57,10 @@ export const SECTIONS: SectionDef[] = [
   AREA_PAGE,
   SERVICE_AREA_PAGE,
   CHROME,
+  START_PROJECT,
+  QUOTE,
+  WORK_PAGE,
+  POST_PAGE,
   {
     id: "site",
     label: "Company details",

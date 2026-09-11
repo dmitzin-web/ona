@@ -1,0 +1,30 @@
+{
+  "seo": {
+    "sampleTitle": "Sample project — {title}",
+    "description": "{kind} project in {area}. {service}, day {day} of {days}.",
+    "notFoundTitle": "Project not found"
+  },
+  "backLink": "← {name}",
+  "sampleBanner": {
+    "badge": "Sample",
+    "text": "This is a sample of what your project page looks like. The data is illustrative — no real customer is shown. Real client pages are private and shared only with the homeowner and adjuster."
+  },
+  "header": {
+    "opened": "Opened {date}",
+    "progress": "Day {day} of est. {days}",
+    "adjuster": "Adjuster: {adjuster}"
+  },
+  "totals": {
+    "scopeLabel": "Approved scope",
+    "scopeNote": "Billed directly to insurer. Homeowner pays deductible only.",
+    "photosLabel": "Photo record",
+    "photosNote": "Uploaded daily. Every reading, every change of scope.",
+    "docsLabel": "Documents on file"
+  },
+  "closing": {
+    "title": "Want a page like this for your project?",
+    "body": "Every Ona client gets one — restoration or remodel. Updated daily until sign-off.",
+    "ctaCall": "Call {phone}",
+    "ctaSecondary": "Start a project"
+  }
+}

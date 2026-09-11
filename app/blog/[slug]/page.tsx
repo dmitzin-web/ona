@@ -12,6 +12,16 @@ import { areaProfiles } from "@/lib/areas";
 import { site } from "@/lib/site";
 import { buildMetadata } from "@/lib/seo";
 import { breadcrumbJsonLd, faqJsonLd } from "@/lib/jsonld";
+import postPageContent from "@/content/pages/post-page.json";
+import { fillPlaceholdersDeep, fillVarsDeep } from "@/lib/placeholders";
+
+// The fixed wording around every post (breadcrumb, the lines around the
+// title, "Get help near you", "More from the field") lives in
+// content/pages/post-page.json and is edited through the admin (/admin →
+// Blog post page template). The posts themselves are content/posts. Which
+// service and cities a post links to (the two maps below) is routing, not
+// copy, and stays here.
+const t = fillPlaceholdersDeep(postPageContent);
 
 // Map post category → primary service slug. Used to surface the right
 // programmatic service×city pages in the "Get help near you" block at the
@@ -174,8 +184,8 @@ export default async function BlogPostPage(
     <>
       <Breadcrumbs
         items={[
-          { name: "Home", href: "/" },
-          { name: "Blog", href: "/blog" },
+          { name: t.breadcrumb.home, href: "/" },
+          { name: t.breadcrumb.blog, href: "/blog" },
           { name: post.title, href: `/blog/${post.slug}` },
         ]}
       />
@@ -183,7 +193,10 @@ export default async function BlogPostPage(
       <article className="bg-charcoal">
         <header className="mx-auto max-w-3xl px-6 pb-16 pt-12 lg:px-10">
           <p className="eyebrow text-ivory/72">
-            {post.category} · {post.readingMinutes} min read
+            {fillVarsDeep(t.header.meta, {
+              category: post.category,
+              minutes: String(post.readingMinutes),
+            })}
           </p>
           <h1 className="text-ivory mt-6 text-4xl font-light leading-[1.1] tracking-tight sm:text-5xl">
             {post.title}
@@ -192,12 +205,14 @@ export default async function BlogPostPage(
             {post.excerpt}
           </p>
           <p className="mt-10 text-sm text-ivory/72">
-            {new Date(post.publishedAt).toLocaleDateString("en-US", {
-              month: "long",
-              day: "numeric",
-              year: "numeric",
-            })}{" "}
-            · By {post.author.name}
+            {fillVarsDeep(t.header.byline, {
+              date: new Date(post.publishedAt).toLocaleDateString("en-US", {
+                month: "long",
+                day: "numeric",
+                year: "numeric",
+              }),
+              author: post.author.name,
+            })}
           </p>
         </header>
 
@@ -211,9 +226,9 @@ export default async function BlogPostPage(
       {service && (
         <section className="border-t border-ivory/10 bg-charcoal">
           <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10">
-            <p className="eyebrow text-ivory/72">Get help near you</p>
+            <p className="eyebrow text-ivory/72">{t.help.eyebrow}</p>
             <h2 className="text-ivory mt-4 max-w-3xl text-3xl font-light leading-tight tracking-tight sm:text-4xl">
-              {service.shortName} in your part of the Portland metro.
+              {fillVarsDeep(t.help.title, { service: service.shortName })}
             </h2>
             <ul className="mt-10 grid gap-px overflow-hidden border border-ivory/10 bg-charcoal/10 sm:grid-cols-2 lg:grid-cols-4">
               {cityLinks.map((a) => (
@@ -227,11 +242,14 @@ export default async function BlogPostPage(
                         {a.name}, {a.region}
                       </p>
                       <p className="mt-3 text-base font-medium tracking-tight">
-                        {service.shortName} in {a.name}
+                        {fillVarsDeep(t.help.cityTitle, {
+                          service: service.shortName,
+                          area: a.name,
+                        })}
                       </p>
                     </div>
                     <p className="inline-flex items-center gap-2 eyebrow">
-                      Service area <ArrowIcon className="h-3 w-3 stroke-current" />
+                      {t.help.cityLink} <ArrowIcon className="h-3 w-3 stroke-current" />
                     </p>
                   </Link>
                 </li>
@@ -242,13 +260,15 @@ export default async function BlogPostPage(
                   className="flex h-full flex-col justify-between gap-6 bg-charcoal p-6 text-ivory transition hover:bg-brand-soft"
                 >
                   <div>
-                    <p className="eyebrow text-ivory/72">All locations</p>
+                    <p className="eyebrow text-ivory/72">{t.help.allEyebrow}</p>
                     <p className="mt-3 text-base font-medium tracking-tight">
-                      Full {service.shortName.toLowerCase()} overview
+                      {fillVarsDeep(t.help.allTitle, {
+                        serviceLower: service.shortName.toLowerCase(),
+                      })}
                     </p>
                   </div>
                   <p className="inline-flex items-center gap-2 eyebrow">
-                    Read more <ArrowIcon className="h-3 w-3 stroke-current" />
+                    {t.help.allLink} <ArrowIcon className="h-3 w-3 stroke-current" />
                   </p>
                 </Link>
               </li>
@@ -257,12 +277,12 @@ export default async function BlogPostPage(
         </section>
       )}
 
-      {post.faqs && <FAQ items={post.faqs} title="Questions we hear" />}
+      {post.faqs && <FAQ items={post.faqs} title={t.faqTitle} />}
 
       {others.length > 0 && (
         <section className="bg-charcoal-soft">
           <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10">
-            <p className="eyebrow text-ivory/72">More from the field</p>
+            <p className="eyebrow text-ivory/72">{t.more.eyebrow}</p>
             <ul className="mt-8 grid gap-px overflow-hidden border border-ivory/10 bg-charcoal/10 sm:grid-cols-3">
               {others.map((o) => (
                 <li key={o.slug}>
@@ -275,7 +295,7 @@ export default async function BlogPostPage(
                       {o.title}
                     </p>
                     <p className="mt-4 inline-flex items-center gap-2 eyebrow">
-                      Read <ArrowIcon className="h-3 w-3 stroke-current" />
+                      {t.more.link} <ArrowIcon className="h-3 w-3 stroke-current" />
                     </p>
                   </Link>
                 </li>
@@ -290,8 +310,8 @@ export default async function BlogPostPage(
       <JsonLd
         data={[
           breadcrumbJsonLd([
-            { name: "Home", url: "/" },
-            { name: "Blog", url: "/blog" },
+            { name: t.breadcrumb.home, url: "/" },
+            { name: t.breadcrumb.blog, url: "/blog" },
             { name: post.title, url: `/blog/${post.slug}` },
           ]),
           {

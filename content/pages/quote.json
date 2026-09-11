@@ -1,0 +1,166 @@
+{
+  "seo": {
+    "title": "Request a Restoration Quote",
+    "description": "Send us a description and photos of the damage. We respond within the hour during business hours, same morning otherwise. No obligation. Or call {phone} 24/7 for emergencies."
+  },
+  "breadcrumb": {
+    "home": "Home",
+    "current": "Get a free quote",
+    "currentForGoogle": "Quote"
+  },
+  "intro": {
+    "eyebrow": "Quote request",
+    "title": "Tell us what happened.",
+    "body": "Not an emergency? Use the form — we'll come back with a preliminary scope and next steps. For active losses please call instead.",
+    "phoneLine": "{phone} · 24/7 dispatch",
+    "smsLine": "Text dispatch"
+  },
+  "form": {
+    "name": {
+      "label": "Your name",
+      "mark": "*"
+    },
+    "phone": {
+      "label": "Phone",
+      "mark": "* or email",
+      "placeholder": "(360) 555-0000"
+    },
+    "email": {
+      "label": "Email",
+      "mark": "* or phone"
+    },
+    "address": {
+      "label": "Property address",
+      "placeholder": "Street, City, State, ZIP"
+    },
+    "damageType": {
+      "label": "Damage type",
+      "mark": "*",
+      "placeholder": "Select…",
+      "options": {
+        "water": "Water damage",
+        "fire": "Fire / smoke damage",
+        "mold": "Mold / mildew",
+        "storm": "Storm / wind / tree damage",
+        "other": "Other"
+      }
+    },
+    "description": {
+      "label": "What happened?",
+      "mark": "*",
+      "placeholder": "When did it happen? What rooms or systems are affected? Have you spoken with your insurance yet?"
+    },
+    "photos": {
+      "label": "Photos (optional, up to 8)",
+      "help": "A clear photo of the affected area helps us scope the job before we arrive."
+    },
+    "consent": {
+      "beforeLink": "I agree to be contacted about my restoration request and acknowledge the",
+      "linkText": "privacy policy",
+      "afterLink": "."
+    },
+    "submit": "Submit request",
+    "sending": "Sending…",
+    "errors": {
+      "name": "Please enter your name.",
+      "phoneOrEmail": "Please provide a phone number or email.",
+      "email": "That doesn't look like a valid email address.",
+      "damageType": "Please select a damage type.",
+      "description": "Please tell us what happened (at least a sentence or two).",
+      "consent": "Please acknowledge our privacy policy."
+    }
+  },
+  "include": {
+    "eyebrow": "What to include",
+    "title": "Five things that get you an accurate quote faster.",
+    "items": [
+      {
+        "title": "Property address",
+        "text": "Including the unit, gate code, or any access notes if it's not a single-family home."
+      },
+      {
+        "title": "What happened",
+        "text": "Two sentences. Pipe burst, fire, mold discovered behind drywall, storm damage — whatever it is."
+      },
+      {
+        "title": "When it happened",
+        "text": "Approximate date or time. Helps us assess whether it's still a mitigation window or a remediation scope."
+      },
+      {
+        "title": "Photos",
+        "text": "Wide shots of each affected room, close-ups of the source, standing water with a ruler in frame."
+      },
+      {
+        "title": "Insurance status",
+        "text": "Filed a claim yet? Adjuster assigned? We work with every major carrier directly."
+      }
+    ]
+  },
+  "next": {
+    "eyebrow": "After you submit",
+    "title": "What happens next.",
+    "stepLabel": "Step {n}",
+    "steps": [
+      {
+        "title": "Review",
+        "text": "We read every quote request the same business day. Active losses get reviewed within the hour during business hours."
+      },
+      {
+        "title": "Preliminary scope",
+        "text": "We come back with a written response — what we think you're looking at, the rough range, and what we need to firm it up."
+      },
+      {
+        "title": "On-site inspection (if needed)",
+        "text": "For larger losses or remodels, we schedule a free on-site visit to scope properly. Typically within 48 hours."
+      },
+      {
+        "title": "Fixed-scope agreement",
+        "text": "Written agreement with a fixed scope and price before work begins. Insurance billing handled directly if applicable."
+      }
+    ]
+  },
+  "responseTimes": {
+    "eyebrow": "Response times",
+    "title": "When you'll hear back.",
+    "items": [
+      {
+        "label": "Emergency phone",
+        "value": "Immediate",
+        "note": "Live technician answer 24/7. Crew dispatched in minutes, on-site target 60 minutes anywhere in the Portland metro."
+      },
+      {
+        "label": "Quote form, business hours",
+        "value": "≤ 1 hour",
+        "note": "Mon-Sat, daytime. We acknowledge the request and either respond with a preliminary scope or schedule the inspection."
+      },
+      {
+        "label": "Quote form, after hours",
+        "value": "Next morning",
+        "note": "Evenings, Sundays. We work through the overnight queue at the start of the next business day."
+      }
+    ]
+  },
+  "faqTitle": "Quote questions",
+  "faqs": [
+    {
+      "q": "How fast will I hear back after I submit this form?",
+      "a": "During business hours (Mon-Sat) we respond within one hour. After hours, we respond the next morning. If your loss is active or you're worried about ongoing damage, call {phone} instead — dispatch is 24/7."
+    },
+    {
+      "q": "Is the quote free, and am I committing to anything by requesting one?",
+      "a": "Yes — preliminary quotes are free and there is no obligation to proceed. We'll review your description and photos and come back with a written scope range. If we need an on-site inspection to firm up the number, that's typically free for losses we end up working on."
+    },
+    {
+      "q": "Do you bill insurance directly?",
+      "a": "Yes. We document the loss in Xactimate format (the same system every major carrier uses) and bill the insurer directly so you don't front the cost. We coordinate with your adjuster from first notice of loss through final invoice."
+    },
+    {
+      "q": "Can I send photos with this form, or should I email them separately?",
+      "a": "Email is easiest for photos — send them to {email} with your address in the subject line. We can also accept photos via text to the dispatch number. Wide shots of every affected room, close-ups of the source, and any standing water with a ruler in frame are the most useful."
+    },
+    {
+      "q": "Do you handle remodeling projects without a prior loss?",
+      "a": "Yes — kitchen, bath, whole-house, and addition projects come to us directly, not only as a follow-on to restoration work. The same documentation discipline and craftsmanship apply either way."
+    }
+  ]
+}

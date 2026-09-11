@@ -1,0 +1,24 @@
+{
+  "breadcrumb": {
+    "home": "Home",
+    "blog": "Blog"
+  },
+  "header": {
+    "meta": "{category} · {minutes} min read",
+    "byline": "{date} · By {author}"
+  },
+  "help": {
+    "eyebrow": "Get help near you",
+    "title": "{service} in your part of the Portland metro.",
+    "cityTitle": "{service} in {area}",
+    "cityLink": "Service area",
+    "allEyebrow": "All locations",
+    "allTitle": "Full {serviceLower} overview",
+    "allLink": "Read more"
+  },
+  "faqTitle": "Questions we hear",
+  "more": {
+    "eyebrow": "More from the field",
+    "link": "Read"
+  }
+}

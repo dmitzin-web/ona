@@ -4,9 +4,16 @@ import { useActionState } from "react";
 import { submitQuote, type QuoteFormState } from "./actions";
 import { plausibleEvent } from "@/lib/analytics";
 
+// The form's words come from content/pages/quote.json (admin → Quote
+// request page), passed in by the page with placeholders already filled.
+// The damage-type codes (water, fire …) are what the server checks
+// (actions.ts) and stay here; only their labels are editable. The hidden
+// anti-spam field is not copy and stays as it is.
+type Copy = (typeof import("@/content/pages/quote.json"))["form"];
+
 const initial: QuoteFormState = {};
 
-export function QuoteForm() {
+export function QuoteForm({ t }: { t: Copy }) {
   const [state, formAction, pending] = useActionState(submitQuote, initial);
 
   const inputClass =
@@ -41,7 +48,7 @@ export function QuoteForm() {
       <div className="grid gap-6 sm:grid-cols-2">
         <div>
           <label htmlFor="name" className={labelClass}>
-            Your name <span className="text-ivory/64">*</span>
+            {t.name.label} <span className="text-ivory/64">{t.name.mark}</span>
           </label>
           <input
             id="name"
@@ -61,7 +68,7 @@ export function QuoteForm() {
         </div>
         <div>
           <label htmlFor="phone" className={labelClass}>
-            Phone <span className="text-ivory/64">* or email</span>
+            {t.phone.label} <span className="text-ivory/64">{t.phone.mark}</span>
           </label>
           <input
             id="phone"
@@ -69,7 +76,7 @@ export function QuoteForm() {
             type="tel"
             inputMode="tel"
             autoComplete="tel"
-            placeholder="(360) 555-0000"
+            placeholder={t.phone.placeholder}
             className={inputClass}
             aria-invalid={!!state.errors?.phone}
             aria-describedby={state.errors?.phone ? "phone-error" : undefined}
@@ -85,7 +92,7 @@ export function QuoteForm() {
       <div className="grid gap-6 sm:grid-cols-2">
         <div>
           <label htmlFor="email" className={labelClass}>
-            Email <span className="text-ivory/64">* or phone</span>
+            {t.email.label} <span className="text-ivory/64">{t.email.mark}</span>
           </label>
           <input
             id="email"
@@ -105,14 +112,14 @@ export function QuoteForm() {
         </div>
         <div>
           <label htmlFor="address" className={labelClass}>
-            Property address
+            {t.address.label}
           </label>
           <input
             id="address"
             name="address"
             type="text"
             autoComplete="street-address"
-            placeholder="Street, City, State, ZIP"
+            placeholder={t.address.placeholder}
             className={inputClass}
           />
         </div>
@@ -120,7 +127,7 @@ export function QuoteForm() {
 
       <div>
         <label htmlFor="damageType" className={labelClass}>
-          Damage type <span className="text-ivory/64">*</span>
+          {t.damageType.label} <span className="text-ivory/64">{t.damageType.mark}</span>
         </label>
         <select
           id="damageType"
@@ -134,13 +141,13 @@ export function QuoteForm() {
           }
         >
           <option value="" disabled>
-            Select…
+            {t.damageType.placeholder}
           </option>
-          <option value="water">Water damage</option>
-          <option value="fire">Fire / smoke damage</option>
-          <option value="mold">Mold / mildew</option>
-          <option value="storm">Storm / wind / tree damage</option>
-          <option value="other">Other</option>
+          <option value="water">{t.damageType.options.water}</option>
+          <option value="fire">{t.damageType.options.fire}</option>
+          <option value="mold">{t.damageType.options.mold}</option>
+          <option value="storm">{t.damageType.options.storm}</option>
+          <option value="other">{t.damageType.options.other}</option>
         </select>
         {state.errors?.damageType && (
           <p id="damageType-error" className={errorClass}>
@@ -151,7 +158,7 @@ export function QuoteForm() {
 
       <div>
         <label htmlFor="description" className={labelClass}>
-          What happened? <span className="text-ivory/64">*</span>
+          {t.description.label} <span className="text-ivory/64">{t.description.mark}</span>
         </label>
         <textarea
           id="description"
@@ -160,7 +167,7 @@ export function QuoteForm() {
           required
           minLength={10}
           maxLength={4000}
-          placeholder="When did it happen? What rooms or systems are affected? Have you spoken with your insurance yet?"
+          placeholder={t.description.placeholder}
           className={`${inputClass} resize-y`}
           aria-invalid={!!state.errors?.description}
           aria-describedby={
@@ -176,7 +183,7 @@ export function QuoteForm() {
 
       <div>
         <label htmlFor="photos" className={labelClass}>
-          Photos (optional, up to 8)
+          {t.photos.label}
         </label>
         <input
           id="photos"
@@ -187,8 +194,7 @@ export function QuoteForm() {
           className="mt-2 block w-full text-sm text-ivory/90 file:mr-4 file:border file:border-ivory/30 file:bg-charcoal file:px-4 file:py-2 file:text-sm file:font-medium file:text-ivory hover:file:bg-charcoal-soft"
         />
         <p className="mt-2 text-xs text-ivory/72">
-          A clear photo of the affected area helps us scope the job before we
-          arrive.
+          {t.photos.help}
         </p>
       </div>
 
@@ -205,12 +211,11 @@ export function QuoteForm() {
           }
         />
         <label htmlFor="consent" className="text-sm leading-relaxed text-ivory/90">
-          I agree to be contacted about my restoration request and acknowledge
-          the{" "}
+          {t.consent.beforeLink}{" "}
           <a href="/privacy" className="underline hover:text-ivory">
-            privacy policy
+            {t.consent.linkText}
           </a>
-          .
+          {t.consent.afterLink}
         </label>
       </div>
       {state.errors?.consent && (
@@ -224,7 +229,7 @@ export function QuoteForm() {
         disabled={pending}
         className={`${plausibleEvent.quoteSubmit} inline-flex w-full items-center justify-center gap-3 border border-ivory bg-charcoal px-7 py-4 text-sm font-medium uppercase tracking-[0.22em] text-ivory transition hover:bg-transparent hover:text-ivory disabled:opacity-60 sm:w-auto`}
       >
-        {pending ? "Sending…" : "Submit request"}
+        {pending ? t.sending : t.submit}
       </button>
     </form>
   );

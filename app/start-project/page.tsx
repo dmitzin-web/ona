@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { site } from "@/lib/site";
+import startProjectContent from "@/content/pages/start-project.json";
+import { fillPlaceholdersDeep, fillVarsDeep } from "@/lib/placeholders";
 
 // ─────────────────────────────────────────────────────────────
 // Start a Project — 4-step intake
@@ -22,6 +24,14 @@ import { site } from "@/lib/site";
 //   - On non-2xx, open mailto: so the lead never dies
 //   - Show a calm confirmation screen with the phone as the
 //     immediate next step
+//
+// Every word the visitor sees lives in content/pages/start-project.json,
+// edited through the admin (/admin → Start a project page). What stays
+// here is how the form works: the answer codes each choice sends (the
+// labels are editable, the codes are not), the number of steps, and the
+// fallback e-mail below — the format of the lead the office receives.
+const t = fillPlaceholdersDeep(startProjectContent);
+const STEPS = 4;
 
 type Step = 1 | 2 | 3 | 4;
 
@@ -46,26 +56,10 @@ const kindOptions: {
   label: string;
   hint: string;
 }[] = [
-  {
-    value: "restoration-urgent",
-    label: "Something just happened",
-    hint: "Water, fire, smoke, mold — happening now or in the last 24 hours.",
-  },
-  {
-    value: "restoration-not-urgent",
-    label: "Damage I want fixed",
-    hint: "Past damage, insurance claim already open or pending.",
-  },
-  {
-    value: "remodel",
-    label: "Planning a remodel",
-    hint: "Kitchen, bathroom, or combined. Not urgent.",
-  },
-  {
-    value: "not-sure",
-    label: "Not sure yet",
-    hint: "I want to talk to a person before deciding what category this is.",
-  },
+  { value: "restoration-urgent", ...t.kind.options.urgent },
+  { value: "restoration-not-urgent", ...t.kind.options.notUrgent },
+  { value: "remodel", ...t.kind.options.remodel },
+  { value: "not-sure", ...t.kind.options.notSure },
 ];
 
 const timingOptions: {
@@ -73,26 +67,10 @@ const timingOptions: {
   label: string;
   hint: string;
 }[] = [
-  {
-    value: "asap",
-    label: "As soon as possible",
-    hint: "I'd like work to start this week if possible.",
-  },
-  {
-    value: "30-days",
-    label: "Within 30 days",
-    hint: "No emergency, but I want momentum.",
-  },
-  {
-    value: "90-days",
-    label: "Within 90 days",
-    hint: "Planning a project for this season.",
-  },
-  {
-    value: "planning",
-    label: "Just planning",
-    hint: "I'm gathering information for later.",
-  },
+  { value: "asap", ...t.when.options.asap },
+  { value: "30-days", ...t.when.options.days30 },
+  { value: "90-days", ...t.when.options.days90 },
+  { value: "planning", ...t.when.options.planning },
 ];
 
 export default function StartProjectPage() {
@@ -159,26 +137,27 @@ export default function StartProjectPage() {
     return (
       <div className="bg-charcoal text-ivory">
         <div className="mx-auto max-w-2xl px-6 py-24 md:py-32 lg:px-10">
-          <p className="eyebrow text-ivory/85">We got it</p>
+          <p className="eyebrow text-ivory/85">{t.done.eyebrow}</p>
           <h1 className="mt-6 text-[36px] font-semibold leading-[1.1] tracking-[-0.02em] text-ivory md:text-[52px]">
-            Thanks, {form.name.split(" ")[0] || "there"}.
+            {fillVarsDeep(t.done.title, {
+              firstName: form.name.split(" ")[0] || t.done.nameFallback,
+            })}
           </h1>
           <p className="mt-6 text-[17px] leading-relaxed text-ivory/85">
-            Your details are with us. If your project is urgent, call
-            now — we answer in person.
+            {t.done.body}
           </p>
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
             <a
               href={`tel:${site.phone}`}
               className="inline-flex items-center justify-center rounded-[2px] bg-coral px-7 py-3.5 text-[14px] font-medium text-white transition hover:bg-coral-deep"
             >
-              Call {site.phoneDisplay}
+              {t.done.ctaCall}
             </a>
             <Link
               href="/"
               className="inline-flex items-center justify-center rounded-[2px] border border-ivory px-7 py-3.5 text-[14px] font-medium text-ivory transition hover:bg-brand hover:text-charcoal"
             >
-              Back to home
+              {t.done.ctaHome}
             </Link>
           </div>
         </div>
@@ -190,12 +169,17 @@ export default function StartProjectPage() {
     <div className="bg-charcoal text-ivory">
       <div className="mx-auto max-w-2xl px-6 py-16 md:py-24 lg:px-10">
         <div className="flex items-center justify-between text-[12px] uppercase tracking-[0.22em] text-ivory/85">
-          <span>Step {step} of 4</span>
+          <span>
+            {fillVarsDeep(t.progress.stepOf, {
+              step: String(step),
+              steps: String(STEPS),
+            })}
+          </span>
           <Link
             href="/"
             className="underline-offset-4 hover:text-ivory hover:underline"
           >
-            Cancel
+            {t.progress.cancel}
           </Link>
         </div>
 
@@ -203,7 +187,7 @@ export default function StartProjectPage() {
         <div className="mt-4 h-px w-full bg-charcoal/10">
           <div
             className="h-px bg-gold transition-all"
-            style={{ width: `${(step / 4) * 100}%` }}
+            style={{ width: `${(step / STEPS) * 100}%` }}
           />
         </div>
 
@@ -243,9 +227,9 @@ export default function StartProjectPage() {
             disabled={step === 1}
             className="text-[14px] text-ivory/85 transition hover:text-ivory disabled:opacity-30"
           >
-            ← Back
+            {t.buttons.back}
           </button>
-          {step < 4 ? (
+          {step < STEPS ? (
             <button
               type="button"
               onClick={() =>
@@ -254,7 +238,7 @@ export default function StartProjectPage() {
               disabled={!canAdvance}
               className="inline-flex items-center justify-center rounded-[2px] border border-ivory/30 bg-charcoal px-6 py-3 text-[14px] font-medium text-ivory transition hover:border-ivory hover:bg-brand hover:text-charcoal disabled:cursor-default disabled:border-ivory/15 disabled:bg-charcoal disabled:text-ivory disabled:opacity-30"
             >
-              Continue
+              {t.buttons.next}
             </button>
           ) : (
             <button
@@ -263,7 +247,7 @@ export default function StartProjectPage() {
               disabled={!canAdvance || submitting}
               className="inline-flex items-center justify-center rounded-[2px] bg-gold px-6 py-3 text-[14px] font-medium text-white transition hover:bg-gold-deep disabled:opacity-50"
             >
-              {submitting ? "Sending…" : "Send it"}
+              {submitting ? t.buttons.sending : t.buttons.submit}
             </button>
           )}
         </div>
@@ -349,9 +333,9 @@ function Step1Kind({
   return (
     <>
       <StepHeading
-        label="What's going on"
-        title="What kind of project?"
-        hint="Pick the closest match. We'll figure out the details together."
+        label={t.kind.label}
+        title={t.kind.title}
+        hint={t.kind.hint}
       />
       <div className="mt-10 grid gap-3">
         {kindOptions.map((o) => (
@@ -383,27 +367,27 @@ function Step2Where({
   return (
     <>
       <StepHeading
-        label="Where"
-        title="Where's the property?"
-        hint="Zip is all we need. Neighborhood helps us route faster."
+        label={t.where.label}
+        title={t.where.title}
+        hint={t.where.hint}
       />
       <div className="mt-10 space-y-5">
-        <Field label="Zip code" required>
+        <Field label={t.where.zip.label} required>
           <input
             type="text"
             inputMode="numeric"
             value={zip}
             onChange={(e) => onZip(e.target.value)}
-            placeholder="e.g. 98661"
+            placeholder={t.where.zip.placeholder}
             className="w-full border-b border-ivory/10 bg-transparent py-2 text-[18px] text-ivory outline-none transition focus:border-ivory"
           />
         </Field>
-        <Field label="Neighborhood (optional)">
+        <Field label={t.where.neighborhood.label}>
           <input
             type="text"
             value={neighborhood}
             onChange={(e) => onNeighborhood(e.target.value)}
-            placeholder="e.g. Hazel Dell, Camas, Salmon Creek…"
+            placeholder={t.where.neighborhood.placeholder}
             className="w-full border-b border-ivory/10 bg-transparent py-2 text-[18px] text-ivory outline-none transition focus:border-ivory"
           />
         </Field>
@@ -422,9 +406,9 @@ function Step3When({
   return (
     <>
       <StepHeading
-        label="When"
-        title="When would you like to start?"
-        hint="Pick the closest. We'll talk about real dates on the call."
+        label={t.when.label}
+        title={t.when.title}
+        hint={t.when.hint}
       />
       <div className="mt-10 grid gap-3">
         {timingOptions.map((o) => (
@@ -464,44 +448,44 @@ function Step4Contact({
   return (
     <>
       <StepHeading
-        label="Contact"
-        title="How can we reach you?"
-        hint="We'll call within the hour during business hours. Phone is the fastest way."
+        label={t.contact.label}
+        title={t.contact.title}
+        hint={t.contact.hint}
       />
       <div className="mt-10 space-y-6">
-        <Field label="Your name" required>
+        <Field label={t.contact.name.label} required>
           <input
             type="text"
             value={name}
             onChange={(e) => onName(e.target.value)}
-            placeholder="First and last"
+            placeholder={t.contact.name.placeholder}
             className="w-full border-b border-ivory/10 bg-transparent py-2 text-[18px] text-ivory outline-none transition focus:border-ivory"
           />
         </Field>
-        <Field label="Phone" required>
+        <Field label={t.contact.phone.label} required>
           <input
             type="tel"
             value={phone}
             onChange={(e) => onPhone(e.target.value)}
-            placeholder="(360) 555-1212"
+            placeholder={t.contact.phone.placeholder}
             className="w-full border-b border-ivory/10 bg-transparent py-2 text-[18px] text-ivory outline-none transition focus:border-ivory"
           />
         </Field>
-        <Field label="Email (optional)">
+        <Field label={t.contact.email.label}>
           <input
             type="email"
             value={email}
             onChange={(e) => onEmail(e.target.value)}
-            placeholder="you@example.com"
+            placeholder={t.contact.email.placeholder}
             className="w-full border-b border-ivory/10 bg-transparent py-2 text-[18px] text-ivory outline-none transition focus:border-ivory"
           />
         </Field>
-        <Field label="Anything we should know? (optional)">
+        <Field label={t.contact.note.label}>
           <textarea
             value={note}
             onChange={(e) => onNote(e.target.value)}
             rows={3}
-            placeholder="A sentence is plenty."
+            placeholder={t.contact.note.placeholder}
             className="w-full resize-none border-b border-ivory/10 bg-transparent py-2 text-[16px] leading-relaxed text-ivory outline-none transition focus:border-ivory"
           />
         </Field>

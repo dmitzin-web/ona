@@ -1,0 +1,100 @@
+{
+  "progress": {
+    "stepOf": "Step {step} of {steps}",
+    "cancel": "Cancel"
+  },
+  "kind": {
+    "label": "What's going on",
+    "title": "What kind of project?",
+    "hint": "Pick the closest match. We'll figure out the details together.",
+    "options": {
+      "urgent": {
+        "label": "Something just happened",
+        "hint": "Water, fire, smoke, mold — happening now or in the last 24 hours."
+      },
+      "notUrgent": {
+        "label": "Damage I want fixed",
+        "hint": "Past damage, insurance claim already open or pending."
+      },
+      "remodel": {
+        "label": "Planning a remodel",
+        "hint": "Kitchen, bathroom, or combined. Not urgent."
+      },
+      "notSure": {
+        "label": "Not sure yet",
+        "hint": "I want to talk to a person before deciding what category this is."
+      }
+    }
+  },
+  "where": {
+    "label": "Where",
+    "title": "Where's the property?",
+    "hint": "Zip is all we need. Neighborhood helps us route faster.",
+    "zip": {
+      "label": "Zip code",
+      "placeholder": "e.g. 98661"
+    },
+    "neighborhood": {
+      "label": "Neighborhood (optional)",
+      "placeholder": "e.g. Hazel Dell, Camas, Salmon Creek…"
+    }
+  },
+  "when": {
+    "label": "When",
+    "title": "When would you like to start?",
+    "hint": "Pick the closest. We'll talk about real dates on the call.",
+    "options": {
+      "asap": {
+        "label": "As soon as possible",
+        "hint": "I'd like work to start this week if possible."
+      },
+      "days30": {
+        "label": "Within 30 days",
+        "hint": "No emergency, but I want momentum."
+      },
+      "days90": {
+        "label": "Within 90 days",
+        "hint": "Planning a project for this season."
+      },
+      "planning": {
+        "label": "Just planning",
+        "hint": "I'm gathering information for later."
+      }
+    }
+  },
+  "contact": {
+    "label": "Contact",
+    "title": "How can we reach you?",
+    "hint": "We'll call within the hour during business hours. Phone is the fastest way.",
+    "name": {
+      "label": "Your name",
+      "placeholder": "First and last"
+    },
+    "phone": {
+      "label": "Phone",
+      "placeholder": "(360) 555-1212"
+    },
+    "email": {
+      "label": "Email (optional)",
+      "placeholder": "you@example.com"
+    },
+    "note": {
+      "label": "Anything we should know? (optional)",
+      "placeholder": "A sentence is plenty."
+    }
+  },
+  "buttons": {
+    "back": "← Back",
+    "next": "Continue",
+    "submit": "Send it",
+    "sending": "Sending…"
+  },
+  "done": {
+    "eyebrow": "We got it",
+    "title": "Thanks, {firstName}.",
+    "nameFallback": "there",
+    "body": "Your details are with us. If your project is urgent, call now — we answer in person.",
+    "ctaCall": "Call {phone}",
+    "ctaHome": "Back to home"
+  }
+}

@@ -1,6 +1,13 @@
 "use server";
 
 import { redirect } from "next/navigation";
+import quoteContent from "@/content/pages/quote.json";
+import { fillPlaceholdersDeep } from "@/lib/placeholders";
+
+// The error messages are copy, edited with the rest of the quote page
+// (admin → Quote request page → The form → Error messages). The rules that
+// trigger them, and the damage-type codes, stay here.
+const msg = fillPlaceholdersDeep(quoteContent.form.errors);
 
 export type QuoteFormState = {
   errors?: Record<string, string>;
@@ -45,17 +52,15 @@ export async function submitQuote(
   const allowedDamageTypes = ["water", "fire", "mold", "storm", "other"];
 
   const errors: Record<string, string> = {};
-  if (!name) errors.name = "Please enter your name.";
-  if (!phone && !email)
-    errors.phone = "Please provide a phone number or email.";
+  if (!name) errors.name = msg.name;
+  if (!phone && !email) errors.phone = msg.phoneOrEmail;
   if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
-    errors.email = "That doesn't look like a valid email address.";
+    errors.email = msg.email;
   if (!damageType || !allowedDamageTypes.includes(damageType))
-    errors.damageType = "Please select a damage type.";
+    errors.damageType = msg.damageType;
   if (!description || description.length < 10)
-    errors.description =
-      "Please tell us what happened (at least a sentence or two).";
-  if (!consent) errors.consent = "Please acknowledge our privacy policy.";
+    errors.description = msg.description;
+  if (!consent) errors.consent = msg.consent;
 
   if (Object.keys(errors).length > 0) {
     return { errors };

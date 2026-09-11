@@ -12,68 +12,49 @@ import { QuoteForm } from "./QuoteForm";
 import { site } from "@/lib/site";
 import { buildMetadata } from "@/lib/seo";
 import { breadcrumbJsonLd, faqJsonLd } from "@/lib/jsonld";
+import quoteContent from "@/content/pages/quote.json";
+import { fillPlaceholdersDeep, fillVarsDeep } from "@/lib/placeholders";
+
+// Every piece of copy on this page — the form's labels and error messages
+// included — lives in content/pages/quote.json and is edited through the
+// admin (/admin → Quote request page). {phone} and {email} are filled from
+// Company details. The form gets its words as props, so the page's other
+// copy never ships to the browser.
+const t = fillPlaceholdersDeep(quoteContent);
 
 export const metadata: Metadata = buildMetadata({
-  title: "Request a Restoration Quote",
-  description:
-    "Send us a description and photos of the damage. We respond within the hour during business hours, same morning otherwise. No obligation. Or call (360) 553-2138 24/7 for emergencies.",
+  title: t.seo.title,
+  description: t.seo.description,
   path: "/quote",
 });
-
-const quoteFaqs = [
-  {
-    q: "How fast will I hear back after I submit this form?",
-    a: "During business hours (Mon-Sat) we respond within one hour. After hours, we respond the next morning. If your loss is active or you're worried about ongoing damage, call (360) 553-2138 instead — dispatch is 24/7.",
-  },
-  {
-    q: "Is the quote free, and am I committing to anything by requesting one?",
-    a: "Yes — preliminary quotes are free and there is no obligation to proceed. We'll review your description and photos and come back with a written scope range. If we need an on-site inspection to firm up the number, that's typically free for losses we end up working on.",
-  },
-  {
-    q: "Do you bill insurance directly?",
-    a: "Yes. We document the loss in Xactimate format (the same system every major carrier uses) and bill the insurer directly so you don't front the cost. We coordinate with your adjuster from first notice of loss through final invoice.",
-  },
-  {
-    q: "Can I send photos with this form, or should I email them separately?",
-    a: "Email is easiest for photos — send them to " +
-      site.email +
-      " with your address in the subject line. We can also accept photos via text to the dispatch number. Wide shots of every affected room, close-ups of the source, and any standing water with a ruler in frame are the most useful.",
-  },
-  {
-    q: "Do you handle remodeling projects without a prior loss?",
-    a: "Yes — kitchen, bath, whole-house, and addition projects come to us directly, not only as a follow-on to restoration work. The same documentation discipline and craftsmanship apply either way.",
-  },
-];
 
 export default function QuotePage() {
   return (
     <>
       <Breadcrumbs
         items={[
-          { name: "Home", href: "/" },
-          { name: "Get a free quote", href: "/quote" },
+          { name: t.breadcrumb.home, href: "/" },
+          { name: t.breadcrumb.current, href: "/quote" },
         ]}
       />
       <section className="bg-charcoal">
         <div className="mx-auto grid max-w-7xl gap-12 px-6 py-20 lg:grid-cols-12 lg:px-10">
           <aside className="lg:col-span-4">
-            <p className="eyebrow text-ivory/72">Quote request</p>
+            <p className="eyebrow text-ivory/72">{t.intro.eyebrow}</p>
             <h1 className="text-ivory mt-6 text-5xl font-light leading-[1.05] tracking-tight sm:text-6xl">
-              Tell us what happened.
+              {t.intro.title}
             </h1>
             <p className="mt-8 text-base leading-relaxed text-ivory/85">
-              Not an emergency? Use the form — we&apos;ll come back with a
-              preliminary scope and next steps. For active losses please call
-              instead.
+              {t.intro.body}
             </p>
 
             <div className="mt-10 space-y-4 border-t border-ivory/15 pt-8">
               <PhoneLink className="flex items-center gap-3 text-base font-medium text-ivory hover:text-ivory/80">
                 <PhoneIcon className="h-5 w-5 stroke-current" />
-                {site.phoneDisplay} · 24/7 dispatch
+                {t.intro.phoneLine}
               </PhoneLink>
               <SmsLink className="flex items-center gap-3 text-base font-medium text-ivory hover:text-ivory/80">
-                <span aria-hidden="true">✆</span> Text dispatch
+                <span aria-hidden="true">✆</span> {t.intro.smsLine}
               </SmsLink>
               <EmailLink className="flex items-center gap-3 text-base font-medium text-ivory hover:text-ivory/80">
                 <span aria-hidden="true">@</span> {site.email}
@@ -83,7 +64,7 @@ export default function QuotePage() {
 
           <div className="lg:col-span-8">
             <div className="border border-ivory/15 bg-charcoal p-8 lg:p-10">
-              <QuoteForm />
+              <QuoteForm t={t.form} />
             </div>
           </div>
         </div>
@@ -92,34 +73,13 @@ export default function QuotePage() {
       {/* What to include */}
       <section className="border-t border-ivory/10 bg-charcoal-soft">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
-          <p className="eyebrow text-ivory/72">What to include</p>
+          <p className="eyebrow text-ivory/72">{t.include.eyebrow}</p>
           <h2 className="text-ivory mt-6 max-w-3xl text-4xl font-light leading-tight tracking-tight sm:text-5xl">
-            Five things that get you an accurate quote faster.
+            {t.include.title}
           </h2>
           <ol className="mt-12 grid gap-px overflow-hidden border border-ivory/10 bg-charcoal/10 md:grid-cols-2 lg:grid-cols-5">
-            {[
-              {
-                title: "Property address",
-                text: "Including the unit, gate code, or any access notes if it's not a single-family home.",
-              },
-              {
-                title: "What happened",
-                text: "Two sentences. Pipe burst, fire, mold discovered behind drywall, storm damage — whatever it is.",
-              },
-              {
-                title: "When it happened",
-                text: "Approximate date or time. Helps us assess whether it's still a mitigation window or a remediation scope.",
-              },
-              {
-                title: "Photos",
-                text: "Wide shots of each affected room, close-ups of the source, standing water with a ruler in frame.",
-              },
-              {
-                title: "Insurance status",
-                text: "Filed a claim yet? Adjuster assigned? We work with every major carrier directly.",
-              },
-            ].map((item, i) => (
-              <li key={item.title} className="bg-charcoal p-8">
+            {t.include.items.map((item, i) => (
+              <li key={i} className="bg-charcoal p-8">
                 <p className="eyebrow text-ivory/72">
                   {String(i + 1).padStart(2, "0")}
                 </p>
@@ -138,35 +98,16 @@ export default function QuotePage() {
       {/* What happens next */}
       <section className="border-t border-ivory/10 bg-charcoal">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
-          <p className="eyebrow text-ivory/72">After you submit</p>
+          <p className="eyebrow text-ivory/72">{t.next.eyebrow}</p>
           <h2 className="text-ivory mt-6 max-w-3xl text-4xl font-light leading-tight tracking-tight sm:text-5xl">
-            What happens next.
+            {t.next.title}
           </h2>
           <ol className="mt-12 grid gap-px overflow-hidden border border-ivory/10 bg-charcoal/10 md:grid-cols-4">
-            {[
-              {
-                step: "1",
-                title: "Review",
-                text: "We read every quote request the same business day. Active losses get reviewed within the hour during business hours.",
-              },
-              {
-                step: "2",
-                title: "Preliminary scope",
-                text: "We come back with a written response — what we think you're looking at, the rough range, and what we need to firm it up.",
-              },
-              {
-                step: "3",
-                title: "On-site inspection (if needed)",
-                text: "For larger losses or remodels, we schedule a free on-site visit to scope properly. Typically within 48 hours.",
-              },
-              {
-                step: "4",
-                title: "Fixed-scope agreement",
-                text: "Written agreement with a fixed scope and price before work begins. Insurance billing handled directly if applicable.",
-              },
-            ].map((s) => (
-              <li key={s.step} className="bg-charcoal p-8">
-                <p className="eyebrow text-ivory/72">Step {s.step}</p>
+            {t.next.steps.map((s, i) => (
+              <li key={i} className="bg-charcoal p-8">
+                <p className="eyebrow text-ivory/72">
+                  {fillVarsDeep(t.next.stepLabel, { n: String(i + 1) })}
+                </p>
                 <h3 className="text-ivory mt-4 text-lg font-medium tracking-tight">
                   {s.title}
                 </h3>
@@ -182,52 +123,33 @@ export default function QuotePage() {
       {/* Response times */}
       <section className="border-t border-ivory/10 bg-charcoal text-ivory">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
-          <p className="eyebrow text-warm-gray-soft">Response times</p>
+          <p className="eyebrow text-warm-gray-soft">{t.responseTimes.eyebrow}</p>
           <h2 className="text-ivory mt-6 max-w-3xl text-4xl font-light leading-tight tracking-tight sm:text-5xl">
-            When you&apos;ll hear back.
+            {t.responseTimes.title}
           </h2>
           <dl className="mt-12 grid gap-x-8 gap-y-10 md:grid-cols-3">
-            <div>
-              <dt className="eyebrow text-ivory/70">Emergency phone</dt>
-              <dd className="mt-4 text-3xl font-light tracking-tight">
-                Immediate
-              </dd>
-              <p className="mt-3 text-xs leading-relaxed text-ivory/70">
-                Live technician answer 24/7. Crew dispatched in minutes,
-                on-site target 60 minutes anywhere in the Portland metro.
-              </p>
-            </div>
-            <div>
-              <dt className="eyebrow text-ivory/70">Quote form, business hours</dt>
-              <dd className="mt-4 text-3xl font-light tracking-tight">
-                ≤ 1 hour
-              </dd>
-              <p className="mt-3 text-xs leading-relaxed text-ivory/70">
-                Mon-Sat, daytime. We acknowledge the request and either
-                respond with a preliminary scope or schedule the inspection.
-              </p>
-            </div>
-            <div>
-              <dt className="eyebrow text-ivory/70">Quote form, after hours</dt>
-              <dd className="mt-4 text-3xl font-light tracking-tight">
-                Next morning
-              </dd>
-              <p className="mt-3 text-xs leading-relaxed text-ivory/70">
-                Evenings, Sundays. We work through the overnight queue at
-                the start of the next business day.
-              </p>
-            </div>
+            {t.responseTimes.items.map((r, i) => (
+              <div key={i}>
+                <dt className="eyebrow text-ivory/70">{r.label}</dt>
+                <dd className="mt-4 text-3xl font-light tracking-tight">
+                  {r.value}
+                </dd>
+                <p className="mt-3 text-xs leading-relaxed text-ivory/70">
+                  {r.note}
+                </p>
+              </div>
+            ))}
           </dl>
         </div>
       </section>
 
-      <FAQ items={quoteFaqs} title="Quote questions" />
+      <FAQ items={t.faqs} title={t.faqTitle} />
 
       <JsonLd
         data={[
           breadcrumbJsonLd([
-            { name: "Home", url: "/" },
-            { name: "Quote", url: "/quote" },
+            { name: t.breadcrumb.home, url: "/" },
+            { name: t.breadcrumb.currentForGoogle, url: "/quote" },
           ]),
           {
             "@context": "https://schema.org",
@@ -235,7 +157,7 @@ export default function QuotePage() {
             url: `${site.url}/quote`,
             mainEntity: { "@id": `${site.url}/#business` },
           },
-          faqJsonLd(quoteFaqs),
+          faqJsonLd(t.faqs),
         ]}
       />
     </>
