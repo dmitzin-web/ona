@@ -8,11 +8,18 @@ import { posts } from "@/lib/posts";
 import { buildMetadata } from "@/lib/seo";
 import { breadcrumbJsonLd } from "@/lib/jsonld";
 import { site } from "@/lib/site";
+import blogIndexContent from "@/content/pages/blog-index.json";
+import { fillPlaceholdersDeep } from "@/lib/placeholders";
+
+// The page's own copy lives in content/pages/blog-index.json and is edited
+// through the admin (/admin → Blog list page). Each article's title,
+// category, reading time and excerpt come from the post; the date format is
+// code.
+const t = fillPlaceholdersDeep(blogIndexContent);
 
 export const metadata: Metadata = buildMetadata({
-  title: "Restoration Guides & Notes",
-  description:
-    "Field-tested guides from a restoration team in Vancouver, WA and Portland, OR. Water, fire, mold, storm, and insurance.",
+  title: t.seo.title,
+  description: t.seo.description,
   path: "/blog",
 });
 
@@ -26,18 +33,17 @@ export default function BlogIndex() {
       <Breadcrumbs
         items={[
           { name: "Home", href: "/" },
-          { name: "Blog", href: "/blog" },
+          { name: t.seo.breadcrumb, href: "/blog" },
         ]}
       />
       <section className="bg-charcoal">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
-          <p className="eyebrow text-ivory/72">Field notes</p>
+          <p className="eyebrow text-ivory/72">{t.hero.eyebrow}</p>
           <h1 className="text-ivory mt-6 max-w-3xl text-5xl font-light leading-[1.05] tracking-tight sm:text-6xl">
-            Notes from the trucks.
+            {t.hero.title}
           </h1>
           <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ivory/85">
-            Practical guides, written by the people running the jobs. No fluff,
-            no SEO-bait — just what we tell our own families.
+            {t.hero.body}
           </p>
 
           <ul className="mt-16 divide-y divide-ivory/15 border-y border-ivory/15">
@@ -49,7 +55,7 @@ export default function BlogIndex() {
                 >
                   <div className="lg:col-span-3">
                     <p className="eyebrow text-ivory/72">
-                      {p.category} · {p.readingMinutes} min read
+                      {p.category} · {p.readingMinutes} {t.list.minRead}
                     </p>
                     <p className="mt-3 text-sm text-ivory/72">
                       {new Date(p.publishedAt).toLocaleDateString("en-US", {
@@ -67,7 +73,7 @@ export default function BlogIndex() {
                       {p.excerpt}
                     </p>
                     <p className="mt-6 inline-flex items-center gap-2 eyebrow text-ivory transition group-hover:gap-3">
-                      Read article
+                      {t.list.readMore}
                       <ArrowIcon className="h-3 w-3 stroke-current" />
                     </p>
                   </div>
@@ -82,14 +88,14 @@ export default function BlogIndex() {
         data={[
           breadcrumbJsonLd([
             { name: "Home", url: "/" },
-            { name: "Blog", url: "/blog" },
+            { name: t.seo.breadcrumb, url: "/blog" },
           ]),
           {
             "@context": "https://schema.org",
             "@type": "Blog",
             "@id": `${site.url}/blog#blog`,
             url: `${site.url}/blog`,
-            name: `${site.name} field notes`,
+            name: t.seo.blogName,
             publisher: { "@id": `${site.url}/#business` },
             blogPost: sorted.map((p) => ({
               "@type": "BlogPosting",

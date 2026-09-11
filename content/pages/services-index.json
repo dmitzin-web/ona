@@ -1,0 +1,33 @@
+{
+  "seo": {
+    "title": "Remodeling, Mold & Restoration Services — Vancouver, WA & Portland, OR",
+    "description": "Full restoration and remodeling services in Vancouver, WA and Portland, OR: water damage, fire & smoke, mold remediation, storm damage, and custom remodeling. 24/7 emergency response, work performed to IICRC standards.",
+    "breadcrumb": "Services"
+  },
+  "hero": {
+    "eyebrow": "Our services",
+    "title": "Remodeling, mold, and restoration, executed with precision.",
+    "body": "Single-source mitigation, reconstruction, and remodeling across the Portland metro. Washington contractor registration ONARER*748K8, working to IICRC standards, available 24/7."
+  },
+  "remodeling": {
+    "eyebrow": "Remodeling",
+    "tagline": "Kitchens · Baths · Additions · Custom millwork",
+    "accent": "Built by a restoration crew.",
+    "linkText": "Explore remodeling"
+  },
+  "mold": {
+    "eyebrow": "Mold",
+    "tagline": "Inspection · Testing · Containment · S520 remediation",
+    "accent": "Done to the IICRC S520 standard.",
+    "linkText": "Explore mold remediation"
+  },
+  "restoration": {
+    "eyebrow": "Restoration",
+    "tagline": "24/7 emergency response · 60-minute target"
+  },
+  "serviceArea": {
+    "eyebrow": "Service area",
+    "title": "Vancouver, WA and the entire Portland metro.",
+    "body": "Headquartered in Vancouver, WA. Crews staged across the metro so we hit our 60-minute response target through Clark, Multnomah, Washington, and Clackamas counties."
+  }
+}

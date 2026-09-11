@@ -7,48 +7,38 @@ import { JsonLd } from "@/components/JsonLd";
 import { site } from "@/lib/site";
 import { buildMetadata } from "@/lib/seo";
 import { breadcrumbJsonLd, faqJsonLd } from "@/lib/jsonld";
+import aboutContent from "@/content/pages/about.json";
+import { fillVarsDeep } from "@/lib/placeholders";
+
+// Every piece of copy on this page lives in content/pages/about.json and is
+// edited through the admin (/admin → About page). {name} … are filled from
+// Company details, {founded} with the year founded. The credentials list is
+// Company details → Credentials; the values grid is Company details →
+// Company values. The hidden founder section below is not on the site and
+// stays in code until SHOW_FOUNDER is switched back on.
+const t = fillVarsDeep(aboutContent, { founded: site.founded });
 
 export const metadata: Metadata = buildMetadata({
-  title: `About ${site.name} — Vancouver, WA Restoration Specialists`,
-  description: `${site.name} is a restoration contractor based in Vancouver, WA, serving the Portland metro since ${site.founded}. Locally owned. Washington contractor registration ONARER*748K8.`,
+  title: t.seo.title,
+  description: t.seo.description,
   path: "/about",
 });
 
-const aboutFaqs = [
-  {
-    q: "Is Ona Restoration a franchise?",
-    a: "No. Ona Restoration & Remodeling is a locally-owned, independent contractor based in Vancouver, WA. We are not affiliated with SERVPRO, PuroClean, ServiceMaster, or any other national restoration brand. Every job is run by our own crew, supervised by our founder.",
-  },
-  {
-    q: "What areas do you serve?",
-    a: "Vancouver, WA and the entire Portland metro — Clark, Multnomah, Washington and Clackamas counties. Our standard response target is 60 minutes anywhere in this footprint. For locations on the edges (Hillsboro, Lake Oswego, Gresham) we pre-stage trucks during weather emergencies.",
-  },
-  {
-    q: "Are you certified to work with my insurance company?",
-    a: "Yes. We document losses in Xactimate format, which is the same estimating system every major carrier uses (State Farm, Allstate, USAA, Farmers, Liberty Mutual, etc.). We can bill the insurer directly so you don't front the cost of mitigation.",
-  },
-  {
-    q: "What is IICRC and why does it matter?",
-    a: "The Institute of Inspection, Cleaning and Restoration Certification (IICRC) is the standards body for the restoration industry. Their S500 (water), S520 (mold) and S700 (fire & smoke) standards define what proper mitigation actually looks like. We run every job to those standards — not to whatever the homeowner happens to know. Our technicians hold IICRC certifications (WRT, ASD, AMRT, FSRT), and every job follows the published S500/S520/S700 methodology.",
-  },
-  {
-    q: "Do you handle both emergency mitigation and the final rebuild?",
-    a: "Yes — we run as a single-source contractor. The same team that extracts the water and dries the structure handles drywall, flooring, paint, cabinetry and finish carpentry. One contract, one schedule, one point of contact. This is unusual in the industry; most restoration outfits hand the rebuild off to a separate general contractor.",
-  },
-  {
-    q: "Are you licensed in both Washington and Oregon?",
-    // Answered straight. The old answer said yes to both states while the
-    // footer on the same page said "OR CCB: pending" — see lib/site.ts.
-    a: "In Washington, yes: contractor registration ONARER*748K8, verifiable at secure.lni.wa.gov/verify. Our Oregon CCB registration is pending and we will publish the number here the day it issues. Our technicians hold IICRC certifications in water, structural drying, microbial remediation and fire and smoke.",
-  },
-];
+// The licensing answer is answered straight: Washington yes, Oregon pending.
+// An earlier answer said yes to both states while the footer on the same
+// page said "OR CCB: pending" — see lib/site.ts.
+const aboutFaqs = t.faq.faqs;
 
 // Temporarily hiding the founder's name/section site-wide ("скрой пока").
 // Flip back to true to restore the visible Founder section AND its Person
 // JSON-LD below in one move. Coupled hides that live in other files when
 // this is false: the LocalBusiness `founder` in lib/jsonld.ts, the
-// "Founded by …" line in this file's metadata, and the blog bylines in
-// lib/posts.ts — restore those alongside this flag.
+// "Founded by …" line in this page's search description (now
+// content/pages/about.json → seo.description), and the blog bylines in
+// lib/posts.ts — restore those alongside this flag. The founder copy below is
+// deliberately not in the admin while it is hidden: text an editor can change
+// but nobody can see would only confuse. Move it to about.json when it
+// comes back.
 const SHOW_FOUNDER = false;
 
 export default function AboutPage() {
@@ -57,14 +47,14 @@ export default function AboutPage() {
       <Breadcrumbs
         items={[
           { name: "Home", href: "/" },
-          { name: "About", href: "/about" },
+          { name: t.seo.breadcrumb, href: "/about" },
         ]}
       />
       <section className="bg-charcoal">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
-          <p className="eyebrow text-ivory/72">About</p>
+          <p className="eyebrow text-ivory/72">{t.hero.eyebrow}</p>
           <h1 className="text-ivory mt-6 max-w-3xl text-5xl font-light leading-[1.05] tracking-tight sm:text-6xl">
-            We restore more than properties. We restore trust.
+            {t.hero.title}
           </h1>
           <div className="mt-16 grid gap-12 lg:grid-cols-12">
             <div className="lg:col-span-7">
@@ -77,42 +67,35 @@ export default function AboutPage() {
                     stress on the first — the same vowel that starts
                     "owner", without the r. */}
                 <p>
-                  {site.name} — said{" "}
-                  <span className="font-mono text-ivory">OH-nuh</span>, one
-                  word rather than three letters — is a locally owned
-                  restoration contractor based in Vancouver, Washington,
-                  serving homeowners, property managers and business owners
-                  across the Portland metro since {site.founded}.
+                  {t.hero.intro.beforePronunciation}{" "}
+                  <span className="font-mono text-ivory">
+                    {t.hero.intro.pronunciation}
+                  </span>
+                  {t.hero.intro.afterPronunciation}
                 </p>
+                <p>{t.hero.body}</p>
+                {/* The WA registration number is required in advertising
+                    (RCW 18.27.100(3)) and links to the state's own lookup.
+                    Oregon stays "pending" until the CCB number issues. */}
                 <p>
-                  Restoration is one of the few trades you call when you&apos;re
-                  already having the worst day of the month. Our job is to make
-                  the next hour easier, the next week predictable, and the
-                  final walkthrough drama-free. We do that by running every job
-                  to the IICRC S500 / S520 / S700 standards, documenting everything to
-                  the level your insurance adjuster expects, and keeping you in
-                  the loop with one point of contact from emergency call to keys
-                  back.
-                </p>
-                <p>
-                  In Washington we hold contractor registration{" "}
+                  {t.hero.registration.beforeNumber}{" "}
                   <a
                     href="https://secure.lni.wa.gov/verify/"
                     rel="noopener"
                     target="_blank"
                     className="underline underline-offset-2"
                   >
-                    ONARER*748K8
+                    {t.hero.registration.number}
                   </a>
-                  , which you can check against the state&apos;s own records
-                  before you call us. Our Oregon CCB registration is pending;
-                  the number goes here the day it issues.
+                  {t.hero.registration.afterNumber}
                 </p>
               </div>
             </div>
             <aside className="lg:col-span-5">
               <div className="border border-ivory/10 p-8">
-                <p className="eyebrow text-ivory/72">Credentials</p>
+                <p className="eyebrow text-ivory/72">
+                  {t.hero.credentialsLabel}
+                </p>
                 <ul className="mt-6 space-y-3 text-base text-ivory/95">
                   {site.certifications.map((c) => (
                     <li
@@ -200,48 +183,24 @@ export default function AboutPage() {
       {/* How we work */}
       <section className="border-t border-ivory/10 bg-charcoal-soft">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
-          <p className="eyebrow text-ivory/72">How we work</p>
+          <p className="eyebrow text-ivory/72">{t.howWeWork.eyebrow}</p>
           <h2 className="text-ivory mt-6 max-w-3xl text-4xl font-light leading-tight tracking-tight sm:text-5xl">
-            Three things we do differently.
+            {t.howWeWork.title}
           </h2>
           <div className="mt-14 grid gap-px overflow-hidden border border-ivory/10 bg-charcoal/10 md:grid-cols-3">
-            <div className="bg-charcoal p-10">
-              <p className="eyebrow text-ivory/72">01</p>
-              <h3 className="text-ivory mt-4 text-xl font-medium tracking-tight">
-                Documentation by default
-              </h3>
-              <p className="mt-4 text-sm leading-relaxed text-ivory/80">
-                Thermal imaging, moisture readings, daily progress photos and
-                an Xactimate-formatted scope on every job — not just the ones
-                that look complicated. It&apos;s the same standard your
-                adjuster uses, applied from the first call.
-              </p>
-            </div>
-            <div className="bg-charcoal p-10">
-              <p className="eyebrow text-ivory/72">02</p>
-              <h3 className="text-ivory mt-4 text-xl font-medium tracking-tight">
-                One contractor, end to end
-              </h3>
-              <p className="mt-4 text-sm leading-relaxed text-ivory/80">
-                Mitigation, demolition, structural repair and the final
-                finish-carpentry rebuild are all the same crew. No handoffs
-                to subcontractors you&apos;ve never met. One contract, one
-                point of contact, one final walkthrough.
-              </p>
-            </div>
-            <div className="bg-charcoal p-10">
-              <p className="eyebrow text-ivory/72">03</p>
-              <h3 className="text-ivory mt-4 text-xl font-medium tracking-tight">
-                Insurance-grade handover
-              </h3>
-              <p className="mt-4 text-sm leading-relaxed text-ivory/80">
-                We talk to your adjuster so you don&apos;t have to. Every
-                disputed line item is backed by photo and moisture
-                documentation captured the first day. We close more claims at
-                full scope than the industry average because we make the
-                adjuster&apos;s job easier, not harder.
-              </p>
-            </div>
+            {t.howWeWork.items.map((item, i) => (
+              <div key={i} className="bg-charcoal p-10">
+                <p className="eyebrow text-ivory/72">
+                  {String(i + 1).padStart(2, "0")}
+                </p>
+                <h3 className="text-ivory mt-4 text-xl font-medium tracking-tight">
+                  {item.title}
+                </h3>
+                <p className="mt-4 text-sm leading-relaxed text-ivory/80">
+                  {item.body}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -252,33 +211,21 @@ export default function AboutPage() {
           against verification. Add a fourth stat here once GBP is live. */}
       <section className="border-t border-ivory/10 bg-charcoal text-ivory">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
-          <p className="eyebrow text-warm-gray-soft">How we&apos;re set up</p>
+          <p className="eyebrow text-warm-gray-soft">{t.setup.eyebrow}</p>
           <h2 className="text-ivory mt-6 max-w-3xl text-4xl font-light leading-tight tracking-tight sm:text-5xl">
-            Locally owned. Standards-driven. Built for the Pacific Northwest.
+            {t.setup.title}
           </h2>
           <dl className="mt-14 grid gap-x-8 gap-y-10 sm:grid-cols-3">
-            <Stat
-              label="Service area"
-              value="10 cities"
-              note="Vancouver, WA + Portland metro — Clark, Multnomah, Washington & Clackamas counties"
-            />
-            <Stat
-              label="Standards"
-              value="IICRC S500 / S520 / S700"
-              note="Every job run to IICRC water, mold & fire/smoke standards. IICRC-certified technicians — WRT, ASD, AMRT, FSRT."
-            />
-            <Stat
-              label="Dispatch"
-              value="24 / 7 / 365"
-              note="Live technician answer — no call-center routing"
-            />
+            {t.setup.stats.map((st, i) => (
+              <Stat key={i} label={st.label} value={st.value} note={st.note} />
+            ))}
           </dl>
         </div>
       </section>
 
       <ValuesGrid tone="light" />
 
-      <FAQ items={aboutFaqs} title="Questions we hear" />
+      <FAQ items={aboutFaqs} title={t.faq.title} />
 
       <CTA />
 
@@ -286,7 +233,7 @@ export default function AboutPage() {
         data={[
           breadcrumbJsonLd([
             { name: "Home", url: "/" },
-            { name: "About", url: "/about" },
+            { name: t.seo.breadcrumb, url: "/about" },
           ]),
           {
             "@context": "https://schema.org",

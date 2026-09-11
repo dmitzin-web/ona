@@ -7,11 +7,17 @@ import { ArrowIcon } from "@/components/icons/ServiceIcons";
 import { site } from "@/lib/site";
 import { buildMetadata } from "@/lib/seo";
 import { breadcrumbJsonLd } from "@/lib/jsonld";
+import areasIndexContent from "@/content/pages/areas-index.json";
+import { fillPlaceholdersDeep } from "@/lib/placeholders";
+
+// The page's own copy lives in content/pages/areas-index.json and is edited
+// through the admin (/admin → Service areas page). The city list is Cities
+// (content/areas.json).
+const t = fillPlaceholdersDeep(areasIndexContent);
 
 export const metadata: Metadata = buildMetadata({
-  title: "Service Area — Portland Metro Restoration Coverage",
-  description:
-    "Ona Restoration covers Vancouver, WA, Portland, OR and the entire Portland metro area. See the cities we serve with 24/7 emergency response.",
+  title: t.seo.title,
+  description: t.seo.description,
   path: "/areas",
 });
 
@@ -21,18 +27,17 @@ export default function AreasPage() {
       <Breadcrumbs
         items={[
           { name: "Home", href: "/" },
-          { name: "Service Area", href: "/areas" },
+          { name: t.seo.breadcrumb, href: "/areas" },
         ]}
       />
       <section className="bg-charcoal">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
-          <p className="eyebrow text-ivory/72">Where we work</p>
+          <p className="eyebrow text-ivory/72">{t.hero.eyebrow}</p>
           <h1 className="text-ivory mt-6 max-w-3xl text-5xl font-light leading-[1.05] tracking-tight sm:text-6xl">
-            Vancouver, WA and the entire Portland metro.
+            {t.hero.title}
           </h1>
           <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ivory/85">
-            Headquartered in Vancouver, WA. Crews staged across the metro so we
-            can hit a 60-minute response target — Salmon Creek to Lake Oswego.
+            {t.hero.body}
           </p>
           <ul className="mt-16 grid gap-px overflow-hidden border border-ivory/10 bg-charcoal/10 sm:grid-cols-2 lg:grid-cols-3">
             {site.serviceArea.map((a) => (
@@ -60,7 +65,7 @@ export default function AreasPage() {
       <JsonLd
         data={breadcrumbJsonLd([
           { name: "Home", url: "/" },
-          { name: "Service Area", url: "/areas" },
+          { name: t.seo.breadcrumb, url: "/areas" },
         ])}
       />
     </>

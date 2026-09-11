@@ -13,11 +13,18 @@ import {
 import { site } from "@/lib/site";
 import { buildMetadata } from "@/lib/seo";
 import { breadcrumbJsonLd } from "@/lib/jsonld";
+import servicesIndexContent from "@/content/pages/services-index.json";
+import { fillPlaceholdersDeep } from "@/lib/placeholders";
+
+// The page's own copy lives in content/pages/services-index.json and is
+// edited through the admin (/admin → Services overview page). Service names,
+// headline paragraphs and the restoration cards come from Services
+// (content/services.json); the city list from Cities.
+const t = fillPlaceholdersDeep(servicesIndexContent);
 
 export const metadata: Metadata = buildMetadata({
-  title: "Remodeling, Mold & Restoration Services — Vancouver, WA & Portland, OR",
-  description:
-    "Full restoration and remodeling services in Vancouver, WA and Portland, OR: water damage, fire & smoke, mold remediation, storm damage, and custom remodeling. 24/7 emergency response, work performed to IICRC standards.",
+  title: t.seo.title,
+  description: t.seo.description,
   path: "/services",
 });
 
@@ -36,28 +43,26 @@ export default function ServicesPage() {
       <Breadcrumbs
         items={[
           { name: "Home", href: "/" },
-          { name: "Services", href: "/services" },
+          { name: t.seo.breadcrumb, href: "/services" },
         ]}
       />
       <section className="bg-charcoal">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
-          <p className="eyebrow text-ivory/72">Our services</p>
+          <p className="eyebrow text-ivory/72">{t.hero.eyebrow}</p>
           <h1 className="text-ivory mt-6 max-w-3xl text-5xl font-light leading-[1.05] tracking-tight sm:text-6xl">
-            Remodeling, mold, and restoration, executed with precision.
+            {t.hero.title}
           </h1>
           <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ivory/85">
-            Single-source mitigation, reconstruction, and remodeling across the
-            Portland metro. Washington contractor registration ONARER*748K8,
-            working to IICRC standards, available 24/7.
+            {t.hero.body}
           </p>
 
           {/* Remodeling — featured row, separate visual treatment */}
           {remodeling && (
             <div className="mt-16">
               <div className="flex flex-wrap items-end justify-between gap-3">
-                <p className="eyebrow text-gold">Remodeling</p>
+                <p className="eyebrow text-gold">{t.remodeling.eyebrow}</p>
                 <p className="text-sm text-ivory/70">
-                  Kitchens · Baths · Additions · Custom millwork
+                  {t.remodeling.tagline}
                 </p>
               </div>
               <Link
@@ -69,7 +74,7 @@ export default function ServicesPage() {
                     <h2 className="text-ivory text-3xl font-light leading-tight tracking-tight sm:text-4xl">
                       {remodeling.shortName}.{" "}
                       <span className="font-medium text-gold">
-                        Built by a restoration crew.
+                        {t.remodeling.accent}
                       </span>
                     </h2>
                     <p className="mt-5 max-w-2xl text-base leading-relaxed text-ivory/85">
@@ -78,7 +83,7 @@ export default function ServicesPage() {
                   </div>
                   <div className="flex items-end lg:col-span-4 lg:justify-end">
                     <span className="inline-flex items-center gap-3 eyebrow text-ivory transition group-hover:gap-4">
-                      Explore remodeling
+                      {t.remodeling.linkText}
                       <ArrowIcon className="h-3 w-3 stroke-current" />
                     </span>
                   </div>
@@ -91,9 +96,9 @@ export default function ServicesPage() {
           {mold && (
             <div className="mt-16">
               <div className="flex flex-wrap items-end justify-between gap-3">
-                <p className="eyebrow text-gold">Mold</p>
+                <p className="eyebrow text-gold">{t.mold.eyebrow}</p>
                 <p className="text-sm text-ivory/70">
-                  Inspection · Testing · Containment · S520 remediation
+                  {t.mold.tagline}
                 </p>
               </div>
               <Link
@@ -105,7 +110,7 @@ export default function ServicesPage() {
                     <h2 className="text-ivory text-3xl font-light leading-tight tracking-tight sm:text-4xl">
                       {mold.shortName}.{" "}
                       <span className="font-medium text-gold">
-                        Done to the IICRC S520 standard.
+                        {t.mold.accent}
                       </span>
                     </h2>
                     <p className="mt-5 max-w-2xl text-base leading-relaxed text-ivory/85">
@@ -114,7 +119,7 @@ export default function ServicesPage() {
                   </div>
                   <div className="flex items-end lg:col-span-4 lg:justify-end">
                     <span className="inline-flex items-center gap-3 eyebrow text-ivory transition group-hover:gap-4">
-                      Explore mold remediation
+                      {t.mold.linkText}
                       <ArrowIcon className="h-3 w-3 stroke-current" />
                     </span>
                   </div>
@@ -126,9 +131,9 @@ export default function ServicesPage() {
           {/* Restoration grid */}
           <div className="mt-16">
             <div className="flex flex-wrap items-end justify-between gap-3">
-              <p className="eyebrow text-ivory/72">Restoration</p>
+              <p className="eyebrow text-ivory/72">{t.restoration.eyebrow}</p>
               <p className="text-sm text-ivory/70">
-                24/7 emergency response · 60-minute target
+                {t.restoration.tagline}
               </p>
             </div>
             <div className="mt-6 grid gap-px overflow-hidden border border-ivory/10 bg-charcoal/10 sm:grid-cols-2 lg:grid-cols-3">
@@ -144,14 +149,12 @@ export default function ServicesPage() {
           <div className="mt-20 border-t border-ivory/15 pt-12">
             <div className="grid gap-10 lg:grid-cols-12">
               <div className="lg:col-span-5">
-                <p className="eyebrow text-ivory/72">Service area</p>
+                <p className="eyebrow text-ivory/72">{t.serviceArea.eyebrow}</p>
                 <h2 className="text-ivory mt-4 text-3xl font-light leading-tight tracking-tight sm:text-4xl">
-                  Vancouver, WA and the entire Portland metro.
+                  {t.serviceArea.title}
                 </h2>
                 <p className="mt-5 max-w-md text-base leading-relaxed text-ivory/85">
-                  Headquartered in Vancouver, WA. Crews staged across the metro
-                  so we hit our 60-minute response target through Clark,
-                  Multnomah, Washington, and Clackamas counties.
+                  {t.serviceArea.body}
                 </p>
               </div>
               <ul className="grid gap-px overflow-hidden border border-ivory/10 bg-charcoal/10 lg:col-span-7 sm:grid-cols-2">
@@ -174,7 +177,7 @@ export default function ServicesPage() {
       <JsonLd
         data={breadcrumbJsonLd([
           { name: "Home", url: "/" },
-          { name: "Services", url: "/services" },
+          { name: t.seo.breadcrumb, url: "/services" },
         ])}
       />
     </>
