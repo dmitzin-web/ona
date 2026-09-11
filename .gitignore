@@ -51,3 +51,6 @@ next-env.d.ts
 
 # sibling/parallel projects (kept locally, not part of this repo)
 apps/
+
+# agent worktrees
+.claude/worktrees/
