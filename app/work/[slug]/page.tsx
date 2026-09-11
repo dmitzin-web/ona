@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { site } from "@/lib/site";
 import { ProjectScrubber, type Phase } from "@/components/project/ProjectScrubber";
+import workPageContent from "@/content/pages/work-page.json";
+import { fillPlaceholdersDeep, fillVarsDeep } from "@/lib/placeholders";
 
 // ─────────────────────────────────────────────────────────────
 // Project File — public page template
@@ -20,6 +22,13 @@ import { ProjectScrubber, type Phase } from "@/components/project/ProjectScrubbe
 //
 // `sample` is noindex'd so we don't accidentally rank a
 // fictional address.
+//
+// The fixed wording around a project (labels, the sample notice, the
+// closing call to action, the tab title) lives in
+// content/pages/work-page.json and is edited through the admin (/admin →
+// Client project page template). The projects below are data, not copy —
+// the sample is an illustration of the product — and stay here.
+const t = fillPlaceholdersDeep(workPageContent);
 
 type Doc = {
   label: string;
@@ -222,12 +231,19 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const p = projects[slug];
-  if (!p) return { title: "Project not found" };
+  if (!p) return { title: t.seo.notFoundTitle };
 
-  const prefix = p.isSample ? "Sample project — " : "";
+  const seo = fillVarsDeep(t.seo, {
+    title: p.title,
+    kind: p.kind,
+    area: p.area,
+    service: p.service,
+    day: String(p.currentDay),
+    days: String(p.estDays),
+  });
   return {
-    title: `${prefix}${p.title}`,
-    description: `${p.kind} project in ${p.area}. ${p.service}, day ${p.currentDay} of ${p.estDays}.`,
+    title: p.isSample ? seo.sampleTitle : p.title,
+    description: seo.description,
     // Project File pages are PRIVATE by policy — they carry a homeowner's
     // neighborhood, adjuster, approved claim amount and document labels.
     // ALL of them are noindex/nofollow, real and sample alike: the sample
@@ -253,6 +269,12 @@ export default async function ProjectPage({
   const { slug } = await params;
   const p = projects[slug];
   if (!p) notFound();
+  const h = fillVarsDeep(t.header, {
+    date: p.openedOn,
+    day: String(p.currentDay),
+    days: String(p.estDays),
+    adjuster: p.adjuster ?? "",
+  });
 
   return (
     <div className="bg-charcoal text-ivory">
@@ -261,21 +283,16 @@ export default async function ProjectPage({
           href="/"
           className="text-[13px] text-ivory/85 underline-offset-4 hover:text-ivory hover:underline"
         >
-          ← Ona Restoration
+          {t.backLink}
         </Link>
 
         {/* Sample banner — removed for real projects */}
         {p.isSample ? (
           <div className="mt-6 flex items-start gap-3 rounded-xl border border-ivory/10 bg-charcoal-soft p-4 text-[13px]">
             <span className="mt-0.5 rounded-[2px] bg-gold/20 px-2.5 py-1 text-[11px] font-medium uppercase tracking-wider text-gold">
-              Sample
+              {t.sampleBanner.badge}
             </span>
-            <p className="text-ivory/85">
-              This is a sample of what your project page looks like. The
-              data is illustrative — no real customer is shown. Real
-              client pages are private and shared only with the homeowner
-              and adjuster.
-            </p>
+            <p className="text-ivory/85">{t.sampleBanner.text}</p>
           </div>
         ) : null}
 
@@ -292,11 +309,9 @@ export default async function ProjectPage({
               <span className="ona-pulse h-2 w-2 rounded-full bg-gold" />
               {p.status}
             </span>
-            <span>Opened {p.openedOn}</span>
-            <span>
-              Day {p.currentDay} of est. {p.estDays}
-            </span>
-            {p.adjuster ? <span>Adjuster: {p.adjuster}</span> : null}
+            <span>{h.opened}</span>
+            <span>{h.progress}</span>
+            {p.adjuster ? <span>{h.adjuster}</span> : null}
           </div>
         </div>
 
@@ -316,29 +331,28 @@ export default async function ProjectPage({
         <div className="mt-20 grid gap-10 border-t border-ivory/10 pt-12 md:grid-cols-3 md:gap-12">
           {p.approvedScope ? (
             <div>
-              <div className="eyebrow text-ivory/68">Approved scope</div>
+              <div className="eyebrow text-ivory/68">{t.totals.scopeLabel}</div>
               <div className="mt-3 text-[32px] font-semibold tabular-nums leading-none text-ivory">
                 {p.approvedScope}
               </div>
               <div className="mt-3 text-[13px] text-ivory/76">
-                Billed directly to insurer. Homeowner pays deductible
-                only.
+                {t.totals.scopeNote}
               </div>
             </div>
           ) : null}
 
           <div>
-            <div className="eyebrow text-ivory/68">Photo record</div>
+            <div className="eyebrow text-ivory/68">{t.totals.photosLabel}</div>
             <div className="mt-3 text-[32px] font-semibold tabular-nums leading-none text-ivory">
               {p.photosCount}
             </div>
             <div className="mt-3 text-[13px] text-ivory/76">
-              Uploaded daily. Every reading, every change of scope.
+              {t.totals.photosNote}
             </div>
           </div>
 
           <div>
-            <div className="eyebrow text-ivory/68">Documents on file</div>
+            <div className="eyebrow text-ivory/68">{t.totals.docsLabel}</div>
             <ul className="mt-3 space-y-2 text-[13px]">
               {p.docs.map((d) => (
                 <li
@@ -358,24 +372,23 @@ export default async function ProjectPage({
         {/* Closing CTA */}
         <div className="mt-20 rounded-2xl border border-ivory/10 bg-charcoal-soft p-8 md:p-12">
           <h2 className="max-w-2xl text-[24px] font-semibold leading-tight tracking-tight text-ivory md:text-[32px]">
-            Want a page like this for your project?
+            {t.closing.title}
           </h2>
           <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-ivory/85">
-            Every Ona client gets one — restoration or remodel. Updated
-            daily until sign-off.
+            {t.closing.body}
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <a
               href={`tel:${site.phone}`}
               className="inline-flex items-center justify-center rounded-[2px] bg-coral px-6 py-3 text-[14px] font-medium text-white transition hover:bg-coral-deep"
             >
-              Call {site.phoneDisplay}
+              {t.closing.ctaCall}
             </a>
             <Link
               href="/start-project"
               className="inline-flex items-center justify-center rounded-[2px] border border-ivory px-6 py-3 text-[14px] font-medium text-ivory transition hover:bg-brand hover:text-charcoal"
             >
-              Start a project
+              {t.closing.ctaSecondary}
             </Link>
           </div>
         </div>
