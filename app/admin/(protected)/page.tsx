@@ -15,7 +15,7 @@ const GROUPS: { title: string; hint?: string; ids: string[] }[] = [
   { title: "Pages", ids: ["home", "about", "contact", "services-index", "areas-index", "blog-index", "start-project", "quote", "spokane-fire", "mold-sections", "misc"] },
   {
     title: "Page templates",
-    hint: "The fixed text around each service, city, gallery project and blog post. One change here updates every page built from it.",
+    hint: "The fixed text around each service page, city page, client project page and blog post. One change here updates every page built from it.",
     ids: ["service-page", "area-page", "service-area-page", "work-page", "post-page"],
   },
   { title: "On every page", ids: ["chrome"] },
