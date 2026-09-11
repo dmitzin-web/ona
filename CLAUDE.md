@@ -50,8 +50,21 @@ break without knowing them.
   skips Google sign-in in development only — it is compiled out of
   production builds. `ADMIN_STORAGE=github` + `ADMIN_CONTENT_BRANCH=<test
   branch>` exercises the GitHub path without touching `main`.
-- **Deliberately not in the admin:** `lib/site.ts`, `lib/services.ts`,
-  `lib/areas.ts`, and anything else carrying a legal claim (see below).
+- **Site content sections** (company details, services, cities, privacy &
+  terms, reviews) are described once in `lib/admin/sections.ts`; the form
+  (`SchemaForm`) and the server validation (`validateBySchema`) both come
+  from that description. Each lives in one JSON file under `content/`,
+  imported statically by `lib/site.ts`, `lib/services.ts`, `lib/areas.ts`,
+  `lib/legal.ts`, `lib/reviews.ts` — whose exports did not change. Static
+  imports because `lib/site.ts` is used by client components. Adding a
+  field = add it to the schema and the JSON, then read it in the lib module.
+- **Legal guard** (`lib/admin/legal-guard.ts`) runs on every admin save and
+  stops text that breaks the legal rules below until the editor explicitly
+  acknowledges it; acknowledged saves say so in the commit message. It
+  must report zero findings on existing copy — keep it that way when
+  changing rules or copy.
+- Privacy/terms text uses `{phone}`, `{email}`, `{legalName}` …
+  placeholders filled from company details (`lib/placeholders.ts`).
 
 ### Admin environment (Vercel → Settings → Environment Variables)
 | Variable | What |

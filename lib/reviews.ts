@@ -1,3 +1,5 @@
+import reviewsContent from "../content/reviews.json";
+
 // Customer reviews surfaced as schema.org/Review objects in LocalBusiness JSON-LD.
 //
 // EMPTY UNTIL REAL REVIEWS EXIST. Do NOT populate this with fabricated /
@@ -24,4 +26,21 @@ export type Review = {
   service?: string;
 };
 
-export const reviews: Review[] = [];
+// Entered through the admin (/admin → Reviews) into content/reviews.json.
+// The admin writes "" for an empty optional field; the type says absent.
+type ReviewFile = {
+  author: string;
+  rating: number;
+  datePublished: string;
+  reviewBody: string;
+  location: string;
+  service: string;
+};
+export const reviews: Review[] = (reviewsContent.reviews as ReviewFile[]).map((x) => ({
+  author: x.author,
+  rating: x.rating as Review["rating"],
+  datePublished: x.datePublished,
+  reviewBody: x.reviewBody,
+  ...(x.location ? { location: x.location } : {}),
+  ...(x.service ? { service: x.service } : {}),
+}));

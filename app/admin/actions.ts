@@ -11,6 +11,9 @@ import {
   validatePost,
   validateWorkFields,
 } from "@/lib/admin/validate";
+import { legalFindings, type Finding } from "@/lib/admin/legal-guard";
+import { serializeContent, validateBySchema } from "@/lib/admin/schema";
+import { findSection } from "@/lib/admin/sections";
 import {
   parseWork,
   POSTS_DIR,
@@ -27,12 +30,28 @@ import {
 // page. So every one starts with requireAdmin(), before it reads a single
 // field — the admin layout's check protects pages, not these.
 
-export type ActionState = { errors: string[] } | null;
+// `legal` carries legal-guard findings (lib/admin/legal-guard.ts). A save
+// with findings is not written until the editor resubmits with the
+// explicit acknowledgement (`ackLegal=1`), and an acknowledged save records
+// the findings in its commit message.
+export type ActionState = { errors: string[]; legal?: Finding[] } | null;
 
 // The repository is public: commit messages carry the editor's display
 // name for the audit trail, never their email address.
-const message = (summary: string, who: string) =>
-  `${summary}\n\nEdited by ${who} via onarestore.com/admin`;
+const message = (summary: string, who: string, acknowledged: Finding[] = []) =>
+  `${summary}\n\n` +
+  (acknowledged.length
+    ? `Published despite legal-guard warnings:\n${acknowledged.map((f) => `- "${f.excerpt}" — ${f.rule}`).join("\n")}\n\n`
+    : "") +
+  `Edited by ${who} via onarestore.com/admin`;
+
+// null = go ahead (no findings, or acknowledged); otherwise the state to
+// return so the editor sees the findings and can acknowledge them.
+function legalGate(value: unknown, fd: FormData): { stop: ActionState; findings: Finding[] } {
+  const findings = legalFindings(value);
+  if (findings.length && str(fd, "ackLegal") !== "1") return { stop: { errors: [], legal: findings }, findings };
+  return { stop: null, findings };
+}
 
 function errorText(err: unknown): string {
   if (err instanceof ConflictError || err instanceof StoreError) return err.message;
@@ -69,11 +88,13 @@ export async function savePost(_prev: ActionState, fd: FormData): Promise<Action
   const v = validatePost(raw, mode === "edit" ? str(fd, "slug") : undefined);
   if (!v.ok) return { errors: v.errors };
   const post = v.value;
+  const gate = legalGate(post, fd);
+  if (gate.stop) return gate.stop;
 
   const file = `${POSTS_DIR}/${post.slug}.json`;
   try {
     await (await getStore()).commit({
-      message: message(`${mode === "create" ? "Add" : "Update"} blog post: ${post.title}`, user.name),
+      message: message(`${mode === "create" ? "Add" : "Update"} blog post: ${post.title}`, user.name, gate.findings),
       put: [{ path: file, content: serializePost(post) }],
       remove: [],
       expect: { [file]: mode === "edit" ? str(fd, "sha") : null },
@@ -115,6 +136,8 @@ export async function saveWork(_prev: ActionState, fd: FormData): Promise<Action
   const v = validateWorkFields(fd);
   if (!v.ok) return { errors: v.errors };
   const fields = v.value;
+  const gate = legalGate(fields, fd);
+  if (gate.stop) return gate.stop;
 
   const slug = mode === "edit" ? str(fd, "slug") : slugify(fields.title);
   if (!SLUG_RE.test(slug)) return { errors: ["The title needs at least one letter or number."] };
@@ -163,7 +186,7 @@ export async function saveWork(_prev: ActionState, fd: FormData): Promise<Action
   put.push({ path: jsonPath, content: serializeWork({ slug, ...fields, image }) });
   try {
     await store.commit({
-      message: message(`${mode === "create" ? "Add" : "Update"} gallery photo: ${fields.title}`, user.name),
+      message: message(`${mode === "create" ? "Add" : "Update"} gallery photo: ${fields.title}`, user.name, gate.findings),
       put,
       remove,
       expect: { [jsonPath]: mode === "edit" ? str(fd, "sha") : null },
@@ -195,4 +218,56 @@ export async function deleteWork(fd: FormData) {
     redirect(`/admin/work/${slug}?error=${encodeURIComponent(errorText(err))}`);
   }
   redirect(`/admin?deleted=${encodeURIComponent(str(fd, "title") || slug)}`);
+}
+
+// ── Schema-driven sections (lib/admin/sections.ts) ───────────────────────
+
+export async function saveSection(_prev: ActionState, fd: FormData): Promise<ActionState> {
+  const user = await requireAdmin();
+  const section = findSection(str(fd, "section"));
+  if (!section) return { errors: ["Unknown section — reload the page."] };
+
+  let raw: unknown;
+  try {
+    raw = JSON.parse(str(fd, "payload"));
+  } catch {
+    return { errors: ["The form could not be read. Reload the page and try again."] };
+  }
+  const v = validateBySchema(section.schema, raw);
+  if (!v.ok) return { errors: v.errors };
+  const gate = legalGate(v.value, fd);
+  if (gate.stop) return gate.stop;
+
+  const expected = str(fd, "sha");
+  let content: string;
+  let summary: string;
+  try {
+    const store = await getStore();
+    if (section.kind === "single") {
+      content = serializeContent(v.value);
+      summary = `Update ${section.label}`;
+    } else {
+      // A collection is one file; the slug is taken from the page, never
+      // from the payload, and is not editable — it is the item's URL.
+      const slug = str(fd, "item");
+      const cur = await store.read(section.file);
+      if (!cur) return { errors: ["This section's file is missing — tell the developer."] };
+      const items = JSON.parse(cur.text) as Record<string, unknown>[];
+      const i = items.findIndex((x) => x.slug === slug);
+      if (i < 0) return { errors: ["This item no longer exists — it may have been removed."] };
+      items[i] = { slug, ...v.value };
+      content = serializeContent(items);
+      summary = `Update ${section.label}: ${String(items[i][section.titleKey])}`;
+    }
+    await store.commit({
+      message: message(summary, user.name, gate.findings),
+      put: [{ path: section.file, content }],
+      remove: [],
+      expect: { [section.file]: expected },
+    });
+  } catch (err) {
+    return { errors: [errorText(err)] };
+  }
+  const back = section.kind === "single" ? `/admin/s/${section.id}` : `/admin/s/${section.id}`;
+  redirect(`${back}?saved=1`);
 }

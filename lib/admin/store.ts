@@ -38,7 +38,7 @@ function githubStore(): ContentStore {
   const token = process.env.GITHUB_CONTENT_TOKEN;
   if (!token) {
     throw new StoreError(
-      "The admin cannot publish yet: GITHUB_CONTENT_TOKEN is not set in Vercel. See CLAUDE.md.",
+      "Publishing is not connected yet, so content cannot be shown or saved. In Vercel → Settings → Environment Variables, add GITHUB_CONTENT_TOKEN for Production, then redeploy.",
     );
   }
   // A branch other than main is for testing the admin without deploying.

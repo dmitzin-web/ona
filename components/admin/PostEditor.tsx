@@ -10,7 +10,7 @@ import {
   type Post,
   type SectionKind,
 } from "@/lib/content-format";
-import { btnDanger, btnIcon, btnPrimary, btnSecondary, Errors, Field, inputCls, Rules, Section } from "./ui";
+import { LegalWarning, btnDanger, btnIcon, btnPrimary, btnSecondary, Errors, Field, inputCls, Rules, Section } from "./ui";
 
 // The blog post form. Everything is controlled state and the payload is
 // built from it, so nothing typed is ever lost to a form reset. Submission
@@ -58,6 +58,7 @@ export function PostEditor({
   // refreshed `sha` prop paired with stale form state would let this form
   // overwrite someone else's newer save instead of being refused.
   const [baseSha] = useState(sha);
+  const [ackLegal, setAckLegal] = useState(false);
 
   // Deterministic ids for the initial render, so server and client agree.
   const next = useRef(1000);
@@ -168,6 +169,7 @@ export function PostEditor({
         <input type="hidden" name="mode" value={mode} />
         {mode === "edit" && <input type="hidden" name="slug" value={initial?.slug} />}
         {baseSha && <input type="hidden" name="sha" value={baseSha} />}
+        <input type="hidden" name="ackLegal" value={ackLegal ? "1" : ""} />
         <input type="hidden" name="payload" value={payload} />
 
         <Section title="Basics">
@@ -335,6 +337,7 @@ export function PostEditor({
 
         <div className="sticky bottom-0 -mx-6 space-y-3 border-t border-line bg-charcoal/95 px-6 py-4 backdrop-blur">
           <Errors errors={state?.errors} />
+          <LegalWarning findings={state?.legal} ack={ackLegal} onAck={setAckLegal} />
           <div className="flex items-center justify-between gap-4">
             <p className="text-[13px] text-warm-gray">
               {dirty ? "Unpublished changes." : "No changes yet."} Publishing updates the live site in about a minute.

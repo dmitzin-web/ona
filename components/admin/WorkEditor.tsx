@@ -4,7 +4,7 @@ import Link from "next/link";
 import { startTransition, useActionState, useEffect, useState } from "react";
 import { deleteWork, saveWork } from "@/app/admin/actions";
 import { slugify, type WorkItem } from "@/lib/content-format";
-import { btnDanger, btnPrimary, Errors, Field, inputCls, Rules, Section } from "./ui";
+import { LegalWarning, btnDanger, btnPrimary, Errors, Field, inputCls, Rules, Section } from "./ui";
 
 // One photo in the remodeling gallery. Submitted with startTransition, not
 // <form action>: React 19 resets a form after an action, and the file input
@@ -32,6 +32,7 @@ export function WorkEditor({
   // refreshed `sha` prop paired with stale form state would let this form
   // overwrite someone else's newer save instead of being refused.
   const [baseSha] = useState(sha);
+  const [ackLegal, setAckLegal] = useState(false);
   const [title, setTitle] = useState(initial?.title ?? "");
   const [roomType, setRoomType] = useState(initial?.roomType ?? "");
   const [imageAlt, setImageAlt] = useState(initial?.imageAlt ?? "");
@@ -68,6 +69,7 @@ export function WorkEditor({
         <input type="hidden" name="mode" value={mode} />
         {mode === "edit" && <input type="hidden" name="slug" value={initial?.slug} />}
         {baseSha && <input type="hidden" name="sha" value={baseSha} />}
+        <input type="hidden" name="ackLegal" value={ackLegal ? "1" : ""} />
 
         <Section title="Photo">
           <div className="grid gap-5 sm:grid-cols-[240px_1fr]">
@@ -144,6 +146,7 @@ export function WorkEditor({
 
         <div className="sticky bottom-0 -mx-6 space-y-3 border-t border-line bg-charcoal/95 px-6 py-4 backdrop-blur">
           <Errors errors={state?.errors} />
+          <LegalWarning findings={state?.legal} ack={ackLegal} onAck={setAckLegal} />
           <div className="flex items-center justify-between gap-4">
             <p className="text-[13px] text-warm-gray">Publishing updates the live site in about a minute.</p>
             <button type="submit" className={btnPrimary} disabled={pending}>

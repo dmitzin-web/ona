@@ -1,4 +1,17 @@
 import { areaProfiles } from "./areas";
+import content from "../content/site.json";
+
+// Company details. The editable part lives in content/site.json and is
+// changed through the admin (/admin → Company details); this module adds the
+// few values that are code, not content, and keeps the exported shape every
+// consumer already uses.
+//
+// A static JSON import, not a filesystem read: this module is imported by
+// client components (the header), and a static import is bundled into
+// both sides. The notes that used to sit next to each field — why the phone
+// is role-based, why `founded` must match state records, why there is no
+// rating yet, why "bonded & insured" is gone — are now the field hints in
+// lib/admin/sections.ts, where the person editing them will read them.
 
 // Single source of truth for the city list lives in lib/areas.ts (areaProfiles).
 // `site.serviceArea` is a slim, read-only derivation kept here so existing
@@ -10,143 +23,35 @@ const derivedServiceArea = areaProfiles.map(({ slug, name, region }) => ({
 }));
 
 export const site = {
-  // `name` is the public DBA / trade name — what customers see, what's
-  // on the GBP listing, what's on trucks and uniforms. Keep this short.
-  name: "Ona Restoration",
-  // Legal entity name exactly as filed with WA Secretary of State.
-  // UBI 606 225 235, formation date 2026-05-13. The LLC name differs
-  // from the DBA — Google GBP and structured data need both:
-  //   - schema.org `name` field uses the DBA
-  //   - schema.org `legalName` field uses the LLC name
-  // and `alternateName` (rendered in lib/jsonld.ts) carries the full
-  // legal display so Google's reviewer can match either string when
-  // cross-checking WA SOS state filings.
-  legalName: "Ona Restoration & Remodeling LLC",
-  tagline: "Precision. Restoration. Built to Last.",
-  shortDescription:
-    "Restoration, reconstruction, and remodeling in Vancouver, WA and the Portland metro. Water, fire, mold and storm damage restoration plus kitchen, bath and whole-house remodeling. 24/7 emergency dispatch. Insurance billed direct. Fixed-scope agreement before any work.",
-  // Canonical host. Production redirects apex (onarestore.com) → www
-  // (308 permanent). Keep this aligned with www so JSON-LD @id, canonical
-  // tags, OG urls, sitemap entries and assistant URLs all match the served
-  // URL — otherwise Google sees two URLs for every page.
+  name: content.name,
+  legalName: content.legalName,
+  tagline: content.tagline,
+  shortDescription: content.shortDescription,
+  // Canonical host — code, not content. Production redirects apex
+  // (onarestore.com) → www; JSON-LD @id, canonical tags, OG urls, sitemap
+  // and the sign-in callback all depend on this exact value.
   url: "https://www.onarestore.com",
   locale: "en_US",
-  phone: "+13605532138",
-  phoneDisplay: "(360) 553-2138",
-  // Use a role-based dispatch mailbox, not a personal address. Personal
-  // emails on a public site invite spam and look unprofessional. The
-  // dispatch@ mailbox should forward to whoever is on call (currently
-  // the founder).
-  email: "dispatch@onarestore.com",
-  // Legal entity formation date (WA SOS — 2026-05-13). The founder's
-  // personal restoration experience pre-dates this; surface that in the
-  // /about copy if/when the founder confirms specifics. Do NOT inflate
-  // this field — it is cross-checked against state records during GBP
-  // verification.
-  founded: "2026",
-  priceRange: "$$$",
-  address: {
-    locality: "Vancouver",
-    region: "WA",
-    regionName: "Washington",
-    country: "US",
-    countryName: "United States",
-  },
-  geo: {
-    latitude: 45.6387,
-    longitude: -122.6615,
-  },
-  hoursSpec: [
-    {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-        "Sunday",
-      ],
-      opens: "00:00",
-      closes: "23:59",
-    },
-  ],
+  phone: content.phone,
+  phoneDisplay: content.phoneDisplay,
+  email: content.email,
+  founded: content.founded,
+  priceRange: content.priceRange,
+  address: content.address,
+  geo: content.geo,
+  hoursSpec: content.hours.map((h) => ({
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: h.days,
+    opens: h.opens,
+    closes: h.closes,
+  })),
   serviceArea: derivedServiceArea,
-  // Rating: intentionally absent until the GBP profile is verified and
-  // accumulates real Google reviews. Emitting an AggregateRating without
-  // backing reviews is a synthetic-signal flag for Google's review
-  // detection and works against GBP verification. When real reviews
-  // exist, re-add { value, count } here and the JSON-LD will fill in.
-  rating: null as { value: number; count: number } | null,
-  // `certifications` lists credentials we hold today. The four IICRC
-  // technician certs (WRT/ASD/AMRT/FSRT) are now issued and listed here;
-  // they flow into the JSON-LD hasCredential and the site copy via
-  // `iicrcCertified` below.
-  certifications: [
-    // WA L&I contractor registration — verifiable at
-    // https://secure.lni.wa.gov/verify/. Issued 2026-05-28.
-    "WA L&I Contractor Registration ONARER*748K8",
-    // REMOVED: "Licensed, bonded & insured in WA and OR".
-    // Two separate problems in one string.
-    //   1. Oregon. The footer states "OR CCB: pending" — which is true —
-    //      so every page that also claimed an Oregon licence contradicted
-    //      itself in two places on the same screen. Until the CCB number
-    //      issues, nothing on this site may say we are licensed in Oregon.
-    //   2. "Bonded & insured". RCW 18.27.100(4): a registered contractor
-    //      may not advertise as bonded or insured on the strength of the
-    //      bond and liability insurance that registration already
-    //      requires. The Spokane page has never used the phrase for this
-    //      reason; the rest of the site did, in nine places.
-    // What replaces it everywhere is the registration number itself,
-    // which RCW 18.27.100(3) requires in advertising anyway and which a
-    // homeowner can verify at secure.lni.wa.gov/verify.
-    "IICRC Water Damage Restoration (WRT)",
-    "IICRC Applied Structural Drying (ASD)",
-    "IICRC Applied Microbial Remediation (AMRT)",
-    "IICRC Fire & Smoke Restoration (FSRT)",
-  ],
-  // True once the IICRC certificates are issued. Drives whether copy
-  // asserts the certs as held vs. "in progress".
-  iicrcCertified: true,
-  // IICRC technician certs (now held — see `certifications` above).
-  iicrcPending: [] as string[],
-  values: [
-    {
-      key: "precision",
-      title: "Precision",
-      body: "We execute with accuracy and expertise.",
-    },
-    {
-      key: "integrity",
-      title: "Integrity",
-      body: "Honest communication is our foundation.",
-    },
-    {
-      key: "craftsmanship",
-      title: "Craftsmanship",
-      body: "Quality workmanship. No compromises.",
-    },
-    {
-      key: "accountability",
-      title: "Accountability",
-      body: "We take ownership of every detail.",
-    },
-    {
-      key: "respect",
-      title: "Respect",
-      body: "For our clients, our teams, and the process.",
-    },
-  ] as const,
-  // Social/profile URLs surfaced as schema.org/sameAs in LocalBusiness JSON-LD.
-  // Only list profiles that actually exist and resolve to active pages.
-  // Dead/404 sameAs entries are picked up by crawlers and used as
-  // negative trust signals — keep this list narrow until profiles are
-  // claimed and verified one-by-one.
-  social: {
-    facebook: "https://www.facebook.com/onarestoration",
-    instagram: "https://www.instagram.com/onarestoration",
-  },
-} as const;
+  rating: content.rating as { value: number; count: number } | null,
+  certifications: content.certifications,
+  iicrcCertified: content.iicrcCertified,
+  iicrcPending: content.iicrcPending as string[],
+  values: content.values,
+  social: content.social,
+};
 
 export type SiteConfig = typeof site;

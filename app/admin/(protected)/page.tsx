@@ -3,6 +3,7 @@ import { requireAdmin } from "@/lib/admin/session";
 import { getStore, StoreError } from "@/lib/admin/store";
 import { parsePost, parseWork, POSTS_DIR, WORK_DIR, type Post, type WorkItem } from "@/lib/content-format";
 import { btnPrimary } from "@/components/admin/ui";
+import { SECTIONS } from "@/lib/admin/sections";
 
 // The admin home: everything that can be edited, read live from the store
 // (GitHub in production), so a save shows up here immediately — the public
@@ -46,10 +47,29 @@ export default async function AdminHome({
         </p>
       )}
 
+      {/* With no connection there is nothing true to list: "0 published"
+          and working-looking New buttons would both mislead. */}
+      {!loadError && (
+      <>
+      <section>
+        <h1 className="text-[22px] font-semibold text-ivory">Site content</h1>
+        <p className="text-[13px] text-warm-gray">Company details, service and city pages, legal pages.</p>
+        <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+          {SECTIONS.map((s) => (
+            <li key={s.id}>
+              <Link href={`/admin/s/${s.id}`} className="block h-full rounded-[2px] border border-line bg-charcoal p-4 transition hover:border-ivory/40">
+                <p className="text-[15px] font-medium text-ivory">{s.label}</p>
+                <p className="mt-1 text-[13px] leading-snug text-warm-gray">{s.description}</p>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </section>
+
       <section>
         <div className="flex items-end justify-between gap-4">
           <div>
-            <h1 className="text-[22px] font-semibold text-ivory">Blog posts</h1>
+            <h2 className="text-[22px] font-semibold text-ivory">Blog posts</h2>
             <p className="text-[13px] text-warm-gray">{posts.length} published · newest first</p>
           </div>
           <Link href="/admin/posts/new" className={btnPrimary}>
@@ -99,6 +119,8 @@ export default async function AdminHome({
           ))}
         </ul>
       </section>
+      </>
+      )}
     </div>
   );
 }
