@@ -28,10 +28,6 @@ export const SERVICE_AREA_PAGE: SectionDef = {
       { kind: "textarea", key: "descriptionHome", label: "Description — home base city", required: true, rows: 3, hint: "Used instead for the city we are based in (drive time 0 in Cities)." },
       { kind: "text", key: "structuredName", label: "Service name sent to Google (not shown)", required: true },
     ] },
-    { kind: "object", key: "spokaneSeo", label: "Spokane wildfire page — search result", hint: "Only for /services/fire-damage/spokane-wa. Spokane is ~350 miles away: no response-time claim, only the same-day answer we can keep. Never promise the customer pays only their deductible — we control what we charge, not what a carrier covers. Never write “bonded and insured”.", fields: [
-      { kind: "text", key: "title", label: "Title (browser tab & Google)", required: true },
-      { kind: "textarea", key: "description", label: "Description", required: true, rows: 4 },
-    ] },
     { kind: "object", key: "breadcrumbs", label: "Breadcrumbs", hint: "The trail of links at the top of the page. Google reads it too. The third link is the service's short name.", fields: [
       { kind: "text", key: "home", label: "First link (the homepage)", required: true },
       { kind: "text", key: "services", label: "Second link (all services)", required: true },

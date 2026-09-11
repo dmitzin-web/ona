@@ -6,7 +6,7 @@ import { CTA } from "@/components/CTA";
 import { FAQ } from "@/components/FAQ";
 import { JsonLd } from "@/components/JsonLd";
 import { ArrowIcon, serviceIcons } from "@/components/icons/ServiceIcons";
-import { SpokaneFireDeployment } from "@/components/services/SpokaneFireDeployment";
+import { SpokaneFireDeployment, spokaneFireMetadata } from "@/components/services/SpokaneFireDeployment";
 import { services, findService, type Service } from "@/lib/services";
 import { areaProfiles, type AreaProfile } from "@/lib/areas";
 import { site } from "@/lib/site";
@@ -89,21 +89,9 @@ export async function generateMetadata({
     // overclaim — we control what we charge, not what a carrier covers. It
     // has to stay out of the description too, or the snippet in search
     // results makes the promise the page no longer makes.
-    // The text is in content/pages/service-area-page.json → spokaneSeo; the
-    // admin repeats these rules beside the field.
-    const spokane = fillVarsDeep(pageContent.spokaneSeo, {});
-    return buildMetadata({
-      title: spokane.title,
-      description: spokane.description,
-      path: "/services/fire-damage/spokane-wa",
-      keywords: [
-        "fire damage restoration spokane",
-        "smoke damage repair spokane wa",
-        "wildfire rebuild spokane county",
-        "soot cleanup spokane",
-        "fire damage contractor spokane",
-      ],
-    });
+    // The text is in content/pages/spokane-fire.json → seo (admin: Spokane
+    // fire deployment page), which repeats these rules beside the field.
+    return spokaneFireMetadata();
   }
 
   const service = findService(slug);

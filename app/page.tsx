@@ -57,7 +57,6 @@ export const metadata: Metadata = buildMetadata({
   title: t.seo.title,
   description: t.seo.description,
   path: "/",
-  keywords: t.seo.keywords,
 });
 
 export default function HomePage() {

@@ -39,7 +39,6 @@ export const SPOKANE_FIRE: SectionDef = {
     { kind: "object", key: "seo", label: "Search result", hint: `What Google shows for this page. ${NO_RESPONSE_TIME} Don't promise “deductible only” either — we control what we charge, not what the insurer covers.`, fields: [
       { kind: "text", key: "title", label: "Title (browser tab & Google)", required: true },
       { kind: "textarea", key: "description", label: "Description", required: true, rows: 3, hint: NO_RESPONSE_TIME },
-      { kind: "strings", key: "keywords", label: "Keywords (one per line)" },
     ] },
     { kind: "object", key: "breadcrumb", label: "Breadcrumb (the path above the headline)", hint: "Also sent to Google. The links themselves are fixed.", fields: [
       { kind: "text", key: "home", label: "Home", required: true },

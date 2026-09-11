@@ -5,10 +5,6 @@
     "descriptionHome": "{service} in {area}, {areaState} — working to IICRC standards, based locally, insurance-grade documentation. Call {phone} for 24/7 emergency response.",
     "structuredName": "{service} in {area}, {areaState}"
   },
-  "spokaneSeo": {
-    "title": "Spokane Wildfire Fire & Smoke Restoration",
-    "description": "Washington-licensed fire, smoke and soot restoration in Spokane County after the wildfires. Debris removal, odor treatment and full rebuild, billed directly to your insurance. Free assessment and written scope, same-day answer."
-  },
   "breadcrumbs": {
     "home": "Home",
     "services": "Services",

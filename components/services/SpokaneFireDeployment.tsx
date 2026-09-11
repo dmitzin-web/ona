@@ -65,7 +65,6 @@ export const spokaneFireMetadata = () =>
     title: t.seo.title,
     description: t.seo.description,
     path: "/services/fire-damage/spokane-wa",
-    keywords: t.seo.keywords,
   });
 
 const MAILTO = `mailto:${site.email}?subject=${encodeURIComponent(t.hero.emailSubject)}`;

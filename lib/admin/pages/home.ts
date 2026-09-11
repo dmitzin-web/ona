@@ -14,7 +14,6 @@ export const HOME: SectionDef = {
     { kind: "object", key: "seo", label: "Search result", fields: [
       { kind: "text", key: "title", label: "Title (browser tab & Google)", required: true },
       { kind: "textarea", key: "description", label: "Description", required: true, rows: 3 },
-      { kind: "strings", key: "keywords", label: "Keywords (one per line)" },
     ] },
     { kind: "object", key: "hero", label: "Top of the page", fields: [
       { kind: "text", key: "titleLead", label: "Headline — first part", required: true },
