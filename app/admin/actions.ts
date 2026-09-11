@@ -3,7 +3,7 @@
 import { redirect } from "next/navigation";
 import { signIn, signOut } from "@/auth";
 import { requireAdmin } from "@/lib/admin/session";
-import { ConflictError, getStore, StoreError, type Commit } from "@/lib/admin/store";
+import { ConflictError, getStore, StoreError, type Commit, type ContentStore } from "@/lib/admin/store";
 import {
   IMAGE_TYPES,
   MAX_IMAGE_BYTES,
@@ -72,7 +72,7 @@ export async function savePost(_prev: ActionState, fd: FormData): Promise<Action
 
   const file = `${POSTS_DIR}/${post.slug}.json`;
   try {
-    await getStore().commit({
+    await (await getStore()).commit({
       message: message(`${mode === "create" ? "Add" : "Update"} blog post: ${post.title}`, user.name),
       put: [{ path: file, content: serializePost(post) }],
       remove: [],
@@ -90,7 +90,7 @@ export async function deletePost(fd: FormData) {
   if (!SLUG_RE.test(slug)) redirect("/admin");
   const file = `${POSTS_DIR}/${slug}.json`;
   try {
-    await getStore().commit({
+    await (await getStore()).commit({
       message: message(`Delete blog post: ${str(fd, "title") || slug}`, user.name),
       put: [],
       remove: [file],
@@ -120,7 +120,12 @@ export async function saveWork(_prev: ActionState, fd: FormData): Promise<Action
   if (!SLUG_RE.test(slug)) return { errors: ["The title needs at least one letter or number."] };
   const jsonPath = `${WORK_DIR}/${slug}.json`;
 
-  const store = getStore();
+  let store: ContentStore;
+  try {
+    store = await getStore();
+  } catch (err) {
+    return { errors: [errorText(err)] };
+  }
   let current: WorkItem | null = null;
   if (mode === "edit") {
     try {
@@ -174,8 +179,8 @@ export async function deleteWork(fd: FormData) {
   const slug = str(fd, "slug");
   if (!SLUG_RE.test(slug)) redirect("/admin");
   const jsonPath = `${WORK_DIR}/${slug}.json`;
-  const store = getStore();
   try {
+    const store = await getStore();
     const cur = await store.read(jsonPath);
     if (cur) {
       const item = parseWork(slug, cur.text);

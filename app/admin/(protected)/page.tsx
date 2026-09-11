@@ -22,7 +22,7 @@ export default async function AdminHome({
   let work: WorkItem[] = [];
   let loadError: string | null = null;
   try {
-    const store = getStore();
+    const store = await getStore();
     const [p, w] = await Promise.all([store.list(POSTS_DIR), store.list(WORK_DIR)]);
     posts = p
       .map((f) => parsePost(slugOf(f.path), f.text))

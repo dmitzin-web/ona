@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import { parseWork, WORK_DIR, type WorkItem } from "./content-format";
+import { parseWork, type WorkItem } from "./content-format";
 
 // The remodeling gallery ("Our work") on /services/remodeling.
 //
@@ -15,7 +15,9 @@ import { parseWork, WORK_DIR, type WorkItem } from "./content-format";
 
 export type { WorkItem } from "./content-format";
 
-const DIR = path.join(process.cwd(), WORK_DIR);
+// A string literal for the file tracer — see the note in lib/posts.ts.
+// Must match WORK_DIR.
+const DIR = path.join(process.cwd(), "content/work");
 
 export const workItems: WorkItem[] = fs
   .readdirSync(DIR)

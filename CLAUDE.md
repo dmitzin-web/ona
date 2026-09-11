@@ -36,6 +36,16 @@ break without knowing them.
   refused if it changed since — never remove that check. Read GitHub by
   commit SHA, never by branch name: its API caches branch-keyed responses
   for 60 s (see `lib/admin/store.ts`).
+- **File tracing — this has already failed a deploy.** Any `fs` call whose
+  path is `process.cwd()` + something the tracer can't read statically
+  (a variable, an imported constant) makes it pack the WHOLE project —
+  `.git`, `node_modules` — into every function that imports it. The admin
+  function hit 383 MB against Vercel's 250 MB limit. Rules: `fs` paths are
+  `process.cwd()` + a string literal (`lib/posts.ts`, `lib/work.ts`); the
+  local store lives in `lib/admin/store-local.ts` and is only ever reached
+  through the dev-only dynamic import in `getStore()` — never import it
+  statically. After touching any of this, build and check that no
+  `.next/server/**/*.nft.json` lists `.git/HEAD`.
 - **Local:** `npm run dev` edits the files on disk. `ADMIN_DEV_BYPASS=1`
   skips Google sign-in in development only — it is compiled out of
   production builds. `ADMIN_STORAGE=github` + `ADMIN_CONTENT_BRANCH=<test

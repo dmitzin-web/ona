@@ -14,7 +14,7 @@ export default async function EditPost({
   await requireAdmin();
   const { slug } = await params;
   if (!SLUG_RE.test(slug)) notFound();
-  const file = await getStore().read(`${POSTS_DIR}/${slug}.json`);
+  const file = await (await getStore()).read(`${POSTS_DIR}/${slug}.json`);
   if (!file) notFound();
   const { error } = await searchParams;
   return <PostEditor mode="edit" initial={parsePost(slug, file.text)} sha={file.sha} deleteError={error} />;

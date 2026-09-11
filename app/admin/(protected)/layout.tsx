@@ -12,7 +12,7 @@ export default async function ProtectedLayout({ children }: { children: React.Re
   const devBypass = user.email === "dev@localhost";
   let storeKind: string;
   try {
-    storeKind = getStore().kind;
+    storeKind = (await getStore()).kind;
   } catch {
     storeKind = "unconfigured";
   }

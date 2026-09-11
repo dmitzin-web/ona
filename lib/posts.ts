@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import { parsePost, POSTS_DIR, type Post } from "./content-format";
+import { parsePost, type Post } from "./content-format";
 
 // Blog post catalog.
 //
@@ -16,7 +16,11 @@ import { parsePost, POSTS_DIR, type Post } from "./content-format";
 
 export type { Post, PostSection } from "./content-format";
 
-const DIR = path.join(process.cwd(), POSTS_DIR);
+// A string literal, not POSTS_DIR from content-format: the file tracer can
+// follow `process.cwd()` + a literal to exactly this folder, but not an
+// imported constant — with that, it traced the whole project into every
+// function that renders a post. Must match POSTS_DIR.
+const DIR = path.join(process.cwd(), "content/posts");
 
 function loadPosts(): Post[] {
   return fs

@@ -1,7 +1,12 @@
 import "server-only";
-import { createHash } from "node:crypto";
-import fs from "node:fs/promises";
-import path from "node:path";
+import {
+  assertSafePath,
+  checkCommit,
+  ConflictError,
+  conflictMessage,
+  StoreError,
+  type ContentStore,
+} from "./store-core";
 
 // Where the admin reads and writes content.
 //
@@ -23,86 +28,6 @@ import path from "node:path";
 // it was when the form opened; the commit refuses if the file has changed
 // since. `expect: null` means "must not exist yet" — which is what stops a
 // new post from silently overwriting an existing one with the same address.
-
-export type StoredFile = { path: string; sha: string; text: string };
-
-export type Commit = {
-  message: string;
-  put: { path: string; content: string | Buffer }[];
-  remove: string[];
-  expect: Record<string, string | null>;
-};
-
-export class ConflictError extends Error {}
-export class StoreError extends Error {}
-
-export interface ContentStore {
-  kind: "local" | "github";
-  list(dir: string): Promise<StoredFile[]>;
-  read(file: string): Promise<StoredFile | null>;
-  commit(c: Commit): Promise<void>;
-}
-
-// Git's own blob hash, so the local store's conflict check means exactly
-// what GitHub's does.
-function blobSha(buf: Buffer): string {
-  return createHash("sha1")
-    .update(Buffer.concat([Buffer.from(`blob ${buf.length}\0`), buf]))
-    .digest("hex");
-}
-
-// Paths come from validated slugs, but the store is the last line: nothing
-// may resolve outside content/ and public/photos/.
-const ALLOWED_ROOTS = ["content/", "public/photos/"];
-function assertSafePath(p: string) {
-  const norm = path.posix.normalize(p);
-  if (norm !== p || norm.startsWith("/") || norm.includes("..") || !ALLOWED_ROOTS.some((r) => norm.startsWith(r))) {
-    throw new StoreError(`Refusing path outside the content folders: ${p}`);
-  }
-}
-
-function checkCommit(c: Commit) {
-  [...c.put.map((x) => x.path), ...c.remove, ...Object.keys(c.expect)].forEach(assertSafePath);
-}
-
-// ── Local ────────────────────────────────────────────────────────────────
-
-const localStore: ContentStore = {
-  kind: "local",
-  async list(dir) {
-    assertSafePath(`${dir}/`);
-    const abs = path.join(process.cwd(), dir);
-    const names = (await fs.readdir(abs)).filter((n) => n.endsWith(".json"));
-    return Promise.all(
-      names.map(async (n) => {
-        const buf = await fs.readFile(path.join(abs, n));
-        return { path: `${dir}/${n}`, sha: blobSha(buf), text: buf.toString("utf8") };
-      }),
-    );
-  },
-  async read(file) {
-    assertSafePath(file);
-    try {
-      const buf = await fs.readFile(path.join(process.cwd(), file));
-      return { path: file, sha: blobSha(buf), text: buf.toString("utf8") };
-    } catch {
-      return null;
-    }
-  },
-  async commit(c) {
-    checkCommit(c);
-    for (const [p, want] of Object.entries(c.expect)) {
-      const cur = await this.read(p);
-      if ((cur?.sha ?? null) !== want) throw new ConflictError(conflictMessage(want));
-    }
-    for (const f of c.put) {
-      const abs = path.join(process.cwd(), f.path);
-      await fs.mkdir(path.dirname(abs), { recursive: true });
-      await fs.writeFile(abs, f.content);
-    }
-    for (const p of c.remove) await fs.rm(path.join(process.cwd(), p), { force: true });
-  },
-};
 
 // ── GitHub ───────────────────────────────────────────────────────────────
 
@@ -240,14 +165,16 @@ function githubStore(): ContentStore {
   return store;
 }
 
-function conflictMessage(expected: string | null): string {
-  return expected === null
-    ? "Something with this address already exists. Pick a different title or address."
-    : "This was changed by someone else after you opened it. Reload the page to get the latest version, then make your edit again.";
-}
+export { ConflictError, StoreError } from "./store-core";
+export type { Commit, ContentStore, StoredFile } from "./store-core";
 
-export function getStore(): ContentStore {
-  const kind =
-    process.env.NODE_ENV === "production" ? "github" : (process.env.ADMIN_STORAGE ?? "local");
-  return kind === "github" ? githubStore() : localStore;
+export async function getStore(): Promise<ContentStore> {
+  // `process.env.NODE_ENV` is inlined at build time, so in a production
+  // build this condition is the constant `false` and the bundler drops the
+  // import entirely — the local store and its untraceable paths never reach
+  // a deployed function. Production is always GitHub.
+  if (process.env.NODE_ENV !== "production" && process.env.ADMIN_STORAGE !== "github") {
+    return (await import("./store-local")).localStore;
+  }
+  return githubStore();
 }

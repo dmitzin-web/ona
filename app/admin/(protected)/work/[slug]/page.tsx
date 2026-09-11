@@ -14,7 +14,7 @@ export default async function EditWork({
   await requireAdmin();
   const { slug } = await params;
   if (!SLUG_RE.test(slug)) notFound();
-  const store = getStore();
+  const store = await getStore();
   const [file, all] = await Promise.all([store.read(`${WORK_DIR}/${slug}.json`), store.list(WORK_DIR)]);
   if (!file) notFound();
   const rooms = [...new Set(all.map((f) => parseWork("x", f.text).roomType))].sort();
