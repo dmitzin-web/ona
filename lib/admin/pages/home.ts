@@ -30,6 +30,10 @@ export const HOME: SectionDef = {
       { kind: "text", key: "eyebrow", label: "Label", required: true },
       { kind: "text", key: "title", label: "Heading", required: true },
       { kind: "textarea", key: "body", label: "Paragraph", required: true, rows: 3 },
+      { kind: "text", key: "phoneEyebrow", label: "Phone preview — label", required: true, hint: "Shown on computers and tablets only." },
+      { kind: "text", key: "phoneTitle", label: "Phone preview — heading", required: true },
+      { kind: "textarea", key: "phoneBody", label: "Phone preview — paragraph", required: true, rows: 3 },
+      { kind: "text", key: "linkText", label: "Link to the sample project page", required: true },
     ] },
     { kind: "object", key: "whatWeDo", label: "“What we do” — three lines of work", fields: [
       { kind: "text", key: "eyebrow", label: "Label", required: true },

@@ -3,6 +3,7 @@
 import type { Field } from "@/lib/admin/schema";
 import { emptyValue } from "@/lib/admin/schema";
 import { btnIcon, btnSecondary, Field as FieldShell, inputCls } from "./ui";
+import { useLang } from "./visual/i18n";
 
 // Renders any section described in lib/admin/sections.ts. Fully
 // controlled: the caller owns the value and gets a new one on every change.
@@ -52,18 +53,23 @@ function FieldView({
   onChange: (v: unknown) => void;
   id: string;
 }) {
+  // Labels and hints in the editor's language (English when there is no
+  // translation, or outside the visual editor); the site copy stays English.
+  const { field: tr, lang } = useLang();
+  f = { ...f, label: tr(f.label), hint: f.hint && tr(f.hint) } as Field;
+  const ru = lang === "ru";
   switch (f.kind) {
     case "text":
       return (
         <FieldShell label={f.label} hint={f.hint} htmlFor={id} required={f.required}>
-          <input id={id} className={`${inputCls} ${f.mono ? "font-mono" : ""}`} value={String(value ?? "")} maxLength={f.max} onChange={(e) => onChange(e.target.value)} />
+          <input id={id} lang="en" spellCheck className={`${inputCls} ${f.mono ? "font-mono" : ""}`} value={String(value ?? "")} maxLength={f.max} onChange={(e) => onChange(e.target.value)} />
         </FieldShell>
       );
     case "textarea": {
       const s = String(value ?? "");
       return (
         <FieldShell label={f.label} hint={f.hint} htmlFor={id} required={f.required} counter={f.max ? `${s.length} / ${f.max}` : undefined}>
-          <textarea id={id} rows={Math.max(f.rows ?? 3, Math.ceil(s.length / 95) + 1)} className={inputCls} value={s} maxLength={f.max} onChange={(e) => onChange(e.target.value)} />
+          <textarea id={id} lang="en" spellCheck rows={Math.max(f.rows ?? 3, Math.ceil(s.length / 95) + 1)} className={inputCls} value={s} maxLength={f.max} onChange={(e) => onChange(e.target.value)} />
         </FieldShell>
       );
     }
@@ -130,7 +136,7 @@ function FieldView({
       const text = arr.join("\n");
       return (
         <FieldShell label={f.label} hint={f.hint} htmlFor={id} required={f.required}>
-          <textarea id={id} rows={Math.max(3, arr.length + 1)} className={inputCls} value={text} onChange={(e) => onChange(e.target.value.split("\n"))} />
+          <textarea id={id} lang="en" spellCheck rows={Math.max(3, arr.length + 1)} className={inputCls} value={text} onChange={(e) => onChange(e.target.value.split("\n"))} />
         </FieldShell>
       );
     }
@@ -150,7 +156,7 @@ function FieldView({
           {f.hint && <p className="mb-3 text-[13px] text-warm-gray">{f.hint}</p>}
           <label className="flex items-center gap-2 text-[14px] text-ivory">
             <input type="checkbox" checked={on} onChange={(e) => onChange(e.target.checked ? emptyValue(f.fields) : null)} />
-            {f.toggleLabel}
+            {tr(f.toggleLabel)}
           </label>
           {on && (
             <div className="mt-4">
@@ -172,17 +178,17 @@ function FieldView({
               <div key={i} className="rounded-[2px] border border-line bg-charcoal-soft/50 p-3">
                 <div className="mb-3 flex items-center justify-between gap-2">
                   <span className="eyebrow text-warm-gray">
-                    {f.itemTitle ?? "Item"} {i + 1}
+                    {tr(f.itemTitle ?? "Item")} {i + 1}
                   </span>
                   <div className="flex gap-1">
-                    <button type="button" className={btnIcon} aria-label="Move up" disabled={i === 0} onClick={() => onChange(move(arr, i, -1))}>↑</button>
-                    <button type="button" className={btnIcon} aria-label="Move down" disabled={i === arr.length - 1} onClick={() => onChange(move(arr, i, 1))}>↓</button>
+                    <button type="button" className={btnIcon} aria-label={ru ? "Выше" : "Move up"} disabled={i === 0} onClick={() => onChange(move(arr, i, -1))}>↑</button>
+                    <button type="button" className={btnIcon} aria-label={ru ? "Ниже" : "Move down"} disabled={i === arr.length - 1} onClick={() => onChange(move(arr, i, 1))}>↓</button>
                     <button
                       type="button"
                       className={btnIcon}
-                      aria-label="Remove"
+                      aria-label={ru ? "Удалить" : "Remove"}
                       onClick={() => {
-                        if (confirm(`Remove ${(f.itemTitle ?? "item").toLowerCase()} ${i + 1}?`)) onChange(arr.filter((_, k) => k !== i));
+                        if (confirm(ru ? `Удалить: ${tr(f.itemTitle ?? "Item")} ${i + 1}?` : `Remove ${(f.itemTitle ?? "item").toLowerCase()} ${i + 1}?`)) onChange(arr.filter((_, k) => k !== i));
                       }}
                     >
                       ✕
@@ -194,7 +200,7 @@ function FieldView({
             ))}
           </div>
           <button type="button" className={`${btnSecondary} mt-3`} onClick={() => onChange([...arr, emptyValue(f.fields)])}>
-            + Add {(f.itemTitle ?? "item").toLowerCase()}
+            {ru ? `+ Добавить: ${tr(f.itemTitle ?? "Item").toLowerCase()}` : `+ Add ${(f.itemTitle ?? "item").toLowerCase()}`}
           </button>
         </fieldset>
       );

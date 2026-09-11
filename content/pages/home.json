@@ -17,7 +17,11 @@
   "projectFile": {
     "eyebrow": "What it looks like to be our customer",
     "title": "On day one, you get a link to your project page.",
-    "body": "Every photo we take. Every receipt. Every adjuster note. Every change to the scope. Updated daily until you sign off. Share it with your insurance company, your family, your attorney — whoever needs to see it."
+    "body": "Every photo we take. Every receipt. Every adjuster note. Every change to the scope. Updated daily until you sign off. Share it with your insurance company, your family, your attorney — whoever needs to see it.",
+    "phoneEyebrow": "On your phone too",
+    "phoneTitle": "Daily updates in your pocket.",
+    "phoneBody": "Photos uploaded the day they're taken. Adjuster approvals as they come in. A small text when something needs your attention. No app to install — it's just a link.",
+    "linkText": "Open the full sample project page"
   },
   "whatWeDo": {
     "eyebrow": "What we do",

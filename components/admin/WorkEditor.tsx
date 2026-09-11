@@ -55,7 +55,7 @@ export function WorkEditor({
   return (
     <div className="space-y-6">
       <div>
-        <Link href="/admin" className="text-[13px] text-teal hover:underline">
+        <Link href="/admin/content" className="text-[13px] text-teal hover:underline">
           ← All content
         </Link>
         <h1 className="mt-1 text-[26px] font-semibold tracking-tight text-ivory">

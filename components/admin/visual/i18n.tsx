@@ -1,0 +1,262 @@
+"use client";
+
+import { createContext, useContext, useEffect, useState } from "react";
+
+// The admin's own words in English and Russian. The site's copy is English
+// and stays English; this is only the interface around it. The choice is a
+// per-browser preference (localStorage), defaulting to the browser's
+// language.
+
+export type Lang = "en" | "ru";
+
+const EN = {
+  editor: "Editor",
+  page: "Page",
+  pages: "Pages",
+  findPage: "Find a page…",
+  search: "Find text",
+  searchHint: "Type any words from the site…",
+  searchEmpty: "Nothing found. Try fewer words.",
+  undo: "Undo",
+  redo: "Redo",
+  history: "History",
+  changes: "Changes",
+  publish: "Publish",
+  publishing: "Publishing…",
+  noChanges: "No changes",
+  edit: "Edit",
+  browse: "Browse",
+  editHelp: "Edit: click any text to change it",
+  browseHelp: "Browse: links and menus work as on the site",
+  desktop: "Computer",
+  tablet: "Tablet",
+  phone: "Phone",
+  allContent: "All content (forms)",
+  blog: "Blog posts",
+  gallery: "Remodeling gallery",
+  signOut: "Sign out",
+  close: "Close",
+  cancel: "Cancel",
+  back: "Back",
+  clickToEdit: "Click any text on the page to change it.",
+  onThisPage: "On this page",
+  onEveryPage: "On every page",
+  notVisible: "Not shown on the page",
+  notVisibleHint: "Text that is on this page but not visible right now (Google, screen readers, closed menus, messages).",
+  searchResult: "Google search result",
+  titleLabel: "Title",
+  descriptionLabel: "Description",
+  tooLong: "Too long — Google will cut it",
+  shared: "Shared text — changes everywhere it appears on the site.",
+  template: "Template — used on many pages. Words in {curly braces} are filled in per page:",
+  fromCompany: "from Company details",
+  structural: "Adding, removing or moving items shows in the preview after publishing.",
+  isLink: "This text is a link to",
+  goToPage: "Open that page",
+  article: "This article",
+  editArticle: "Edit in the blog editor",
+  galleryPhotos: "Gallery photos",
+  manageGallery: "Manage gallery photos",
+  newPost: "Write a new post",
+  quickTasks: "Quick tasks",
+  taskPhone: "Change phone, email or hours",
+  taskFaq: "Edit questions & answers",
+  taskPost: "Write a blog post",
+  taskPhoto: "Add a gallery photo",
+  legalTitle: "Check this wording",
+  legalAck: "I have checked it and want to publish anyway",
+  errorsTitle: "Fix before publishing",
+  reviewTitle: "Review and publish",
+  reviewIntro: "These changes go live together, in about a minute.",
+  undoChange: "Undo",
+  discardAll: "Discard all changes",
+  discardConfirm: "Discard all unpublished changes?",
+  before: "Before",
+  after: "After",
+  empty: "(empty)",
+  listChanged: "List changed",
+  photoChanged: "Photo changed",
+  saved: "Saved",
+  building: "Building the site…",
+  live: "Live on the site",
+  deployFailed: "The site could not be rebuilt. The previous version stays live — tell the developer.",
+  localSaved: "Saved to the files on this computer (development).",
+  reloadPreview: "Reload preview",
+  view: "View",
+  conflictTitle: "Someone else published at the same time",
+  conflictMerged: "Your changes were combined with theirs. Check the preview and publish again.",
+  conflictKept: "These were changed by them, so their version was kept:",
+  restoreTitle: "Unpublished changes from your last visit",
+  restore: "Restore",
+  discard: "Discard",
+  notConnected: "Publishing is not connected yet. You can edit and preview; your changes are kept in this browser until publishing works.",
+  historyTitle: "Published changes",
+  historyEmpty: "No changes yet.",
+  showChanges: "Show what changed",
+  undoPublished: "Undo this change",
+  undoConfirm: "Undo this change on the live site? Anything published after it stays.",
+  undone: "Undone",
+  skipped: "left alone because they were edited again since",
+  developer: "Developer",
+  by: "by",
+  loading: "Loading…",
+  onboard1: "Click any text on the page and type. Changes are highlighted in yellow.",
+  onboard2: "Nothing goes live until you press Publish. Your work is kept in this browser.",
+  onboard3: "Made a mistake? Undo, or History → Undo this change — even after publishing.",
+  gotIt: "Got it",
+  openForm: "Open the full form",
+  fieldsOf: "Everything in this block",
+  justNow: "just now",
+  minAgo: "min ago",
+  hAgo: "h ago",
+  unmatched: "This page's own text could not be found in the content. Use Find text or All content.",
+  pageLoading: "Loading page…",
+  edits: "edits",
+};
+
+type Dict = typeof EN;
+
+const RU: Dict = {
+  editor: "Редактор",
+  page: "Страница",
+  pages: "Страницы",
+  findPage: "Найти страницу…",
+  search: "Найти текст",
+  searchHint: "Введите любые слова с сайта…",
+  searchEmpty: "Ничего не найдено. Попробуйте меньше слов.",
+  undo: "Отменить",
+  redo: "Вернуть",
+  history: "История",
+  changes: "Изменения",
+  publish: "Опубликовать",
+  publishing: "Публикую…",
+  noChanges: "Нет изменений",
+  edit: "Правка",
+  browse: "Просмотр",
+  editHelp: "Правка: нажмите на любой текст, чтобы изменить его",
+  browseHelp: "Просмотр: ссылки и меню работают как на сайте",
+  desktop: "Компьютер",
+  tablet: "Планшет",
+  phone: "Телефон",
+  allContent: "Весь контент (формы)",
+  blog: "Статьи блога",
+  gallery: "Галерея ремонтов",
+  signOut: "Выйти",
+  close: "Закрыть",
+  cancel: "Отмена",
+  back: "Назад",
+  clickToEdit: "Нажмите на любой текст на странице, чтобы изменить его.",
+  onThisPage: "На этой странице",
+  onEveryPage: "На всех страницах",
+  notVisible: "Не видно на странице",
+  notVisibleHint: "Текст этой страницы, которого сейчас не видно: для Google, для незрячих, в закрытых меню, сообщения.",
+  searchResult: "Как страница выглядит в Google",
+  titleLabel: "Заголовок",
+  descriptionLabel: "Описание",
+  tooLong: "Слишком длинно — Google обрежет",
+  shared: "Общий текст — изменится везде, где он есть на сайте.",
+  template: "Шаблон — используется на многих страницах. Слова в {фигурных скобках} подставляются для каждой страницы:",
+  fromCompany: "из «Данных компании»",
+  structural: "Добавление, удаление и перестановка пунктов появятся в предпросмотре после публикации.",
+  isLink: "Этот текст — ссылка на",
+  goToPage: "Открыть эту страницу",
+  article: "Эта статья",
+  editArticle: "Редактировать в редакторе блога",
+  galleryPhotos: "Фото галереи",
+  manageGallery: "Управлять фото галереи",
+  newPost: "Написать новую статью",
+  quickTasks: "Быстрые действия",
+  taskPhone: "Сменить телефон, почту или часы работы",
+  taskFaq: "Вопросы и ответы",
+  taskPost: "Написать статью в блог",
+  taskPhoto: "Добавить фото в галерею",
+  legalTitle: "Проверьте формулировку",
+  legalAck: "Я проверил(а) и всё равно хочу опубликовать",
+  errorsTitle: "Исправьте перед публикацией",
+  reviewTitle: "Проверка и публикация",
+  reviewIntro: "Эти изменения появятся на сайте вместе, примерно через минуту.",
+  undoChange: "Отменить",
+  discardAll: "Отменить все изменения",
+  discardConfirm: "Отменить все неопубликованные изменения?",
+  before: "Было",
+  after: "Стало",
+  empty: "(пусто)",
+  listChanged: "Список изменён",
+  photoChanged: "Фото изменено",
+  saved: "Сохранено",
+  building: "Сайт пересобирается…",
+  live: "Уже на сайте",
+  deployFailed: "Сайт не удалось пересобрать. На сайте осталась прежняя версия — сообщите разработчику.",
+  localSaved: "Сохранено в файлы на этом компьютере (режим разработки).",
+  reloadPreview: "Обновить предпросмотр",
+  view: "Открыть",
+  conflictTitle: "Кто-то опубликовал изменения одновременно с вами",
+  conflictMerged: "Ваши изменения объединены с их изменениями. Проверьте предпросмотр и опубликуйте ещё раз.",
+  conflictKept: "Это они тоже меняли, поэтому оставлена их версия:",
+  restoreTitle: "Неопубликованные изменения с прошлого раза",
+  restore: "Восстановить",
+  discard: "Удалить",
+  notConnected: "Публикация ещё не подключена. Править и смотреть можно; изменения сохраняются в этом браузере, пока публикация не заработает.",
+  historyTitle: "Опубликованные изменения",
+  historyEmpty: "Изменений пока нет.",
+  showChanges: "Что изменилось",
+  undoPublished: "Отменить это изменение",
+  undoConfirm: "Отменить это изменение на сайте? Всё, что опубликовано после него, останется.",
+  undone: "Отменено",
+  skipped: "не тронуты, потому что их потом меняли ещё раз",
+  developer: "Разработчик",
+  by: "—",
+  loading: "Загрузка…",
+  onboard1: "Нажмите на любой текст на странице и печатайте. Изменения подсвечиваются жёлтым.",
+  onboard2: "На сайт ничего не попадёт, пока вы не нажмёте «Опубликовать». Работа сохраняется в этом браузере.",
+  onboard3: "Ошиблись? «Отменить» или «История → Отменить это изменение» — даже после публикации.",
+  gotIt: "Понятно",
+  openForm: "Открыть полную форму",
+  fieldsOf: "Всё в этом блоке",
+  justNow: "только что",
+  minAgo: "мин назад",
+  hAgo: "ч назад",
+  unmatched: "Текст этой страницы не найден в контенте. Воспользуйтесь поиском или «Весь контент».",
+  pageLoading: "Загружаю страницу…",
+  edits: "правок",
+};
+
+const DICTS: Record<Lang, Dict> = { en: EN, ru: RU };
+
+export type T = Dict;
+
+type Ctx = { lang: Lang; setLang: (l: Lang) => void; t: Dict; field: (s: string) => string; trail: (s: string) => string };
+
+const LangContext = createContext<Ctx>({ lang: "en", setLang: () => {}, t: EN, field: (s) => s, trail: (s) => s });
+
+export function LangProvider({
+  children,
+  fieldsRu,
+}: {
+  children: React.ReactNode;
+  fieldsRu?: Record<string, string>;
+}) {
+  const [lang, setLangState] = useState<Lang>("en");
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem("ona-admin-lang");
+      if (saved === "ru" || saved === "en") setLangState(saved);
+      else if (navigator.language.toLowerCase().startsWith("ru")) setLangState("ru");
+    } catch {}
+  }, []);
+  const setLang = (l: Lang) => {
+    setLangState(l);
+    try {
+      localStorage.setItem("ona-admin-lang", l);
+    } catch {}
+  };
+  const field = (s: string) => (lang === "ru" && fieldsRu?.[s]) || s;
+  // Breadcrumb steps look like "Question 3": translate the name, keep the number.
+  const trail = (s: string) => {
+    const m = /^(.+) (\d+)$/.exec(s);
+    return m ? `${field(m[1])} ${m[2]}` : field(s);
+  };
+  return <LangContext.Provider value={{ lang, setLang, t: DICTS[lang], field, trail }}>{children}</LangContext.Provider>;
+}
+
+export const useLang = () => useContext(LangContext);

@@ -6,6 +6,7 @@ import {
   conflictMessage,
   StoreError,
   type ContentStore,
+  type DeployState,
 } from "./store-core";
 
 // Where the admin reads and writes content.
@@ -74,6 +75,19 @@ function githubStore(): ContentStore {
   }
 
   type Entry = { name: string; path: string; sha: string; type: string };
+  type TreeEntry = { path: string; sha: string; type: string };
+  const blobText = async (sha: string) => {
+    const blob = await gh<FileBody>(`/git/blobs/${sha}`);
+    return Buffer.from(blob!.content, "base64").toString("utf8");
+  };
+  const textAt = async (p: string, ref: string) => {
+    const body = await gh<FileBody>(`/contents/${encodeURI(p)}?ref=${ref}`, { allow404: true });
+    return body ? Buffer.from(body.content, "base64").toString("utf8") : null;
+  };
+  // Admin commits are all made by the token's account; the editor's name is
+  // in the message ("Edited by … via onarestore.com/admin").
+  const editorOf = (message: string, fallback: string) =>
+    /Edited by (.+?) via onarestore\.com\/admin/.exec(message)?.[1] ?? fallback;
   type FileBody = { sha: string; content: string; encoding: string };
 
   const shaAt = async (p: string, ref: string) =>
@@ -105,6 +119,19 @@ function githubStore(): ContentStore {
         files.map(async (e) => {
           const blob = await gh<FileBody>(`/git/blobs/${e.sha}`);
           return { path: e.path, sha: e.sha, text: Buffer.from(blob!.content, "base64").toString("utf8") };
+        }),
+      );
+    },
+    async readMany(files) {
+      files.forEach(assertSafePath);
+      const head = await headSha();
+      // One tree listing for every blob SHA at this commit, then the blobs.
+      const tree = await gh<{ tree: TreeEntry[] }>(`/git/trees/${head}?recursive=1`);
+      const shaOf = new Map(tree!.tree.filter((e) => e.type === "blob").map((e) => [e.path, e.sha]));
+      return Promise.all(
+        files.map(async (f) => {
+          const sha = shaOf.get(f);
+          return sha ? { path: f, sha, text: await blobText(sha) } : null;
         }),
       );
     },
@@ -153,13 +180,49 @@ function githubStore(): ContentStore {
             method: "PATCH",
             body: JSON.stringify({ sha: commit!.sha, force: false }),
           });
-          return;
+          return commit!.sha;
         } catch (e) {
           const status = (e as { status?: number }).status;
           if (status === 422 && attempt === 0) continue;
           throw e;
         }
       }
+      throw new StoreError("Could not publish: the site kept changing underneath. Try again.");
+    },
+    async history(limit) {
+      const head = await headSha();
+      type C = { sha: string; commit: { message: string; author: { name: string; date: string } } };
+      const list = (await gh<C[]>(`/commits?sha=${head}&path=content&per_page=${limit}`)) ?? [];
+      return list.map((c) => ({
+        sha: c.sha,
+        message: c.commit.message,
+        date: c.commit.author.date,
+        author: editorOf(c.commit.message, c.commit.author.name),
+      }));
+    },
+    async commitFiles(sha) {
+      if (!/^[0-9a-f]{40}$/.test(sha)) throw new StoreError("Unknown change.");
+      type D = { parents: { sha: string }[]; files: { filename: string; status: string; previous_filename?: string }[] };
+      const d = (await gh<D>(`/commits/${sha}`))!;
+      const parent = d.parents[0]?.sha;
+      const files = d.files.filter((f) => f.filename.startsWith("content/") && f.filename.endsWith(".json"));
+      return Promise.all(
+        files.map(async (f) => ({
+          path: f.filename,
+          before: parent && f.status !== "added" ? await textAt(f.previous_filename ?? f.filename, parent) : null,
+          after: f.status === "removed" ? null : await textAt(f.filename, sha),
+        })),
+      );
+    },
+    async deployStatus(sha): Promise<DeployState> {
+      if (!/^[0-9a-f]{40}$/.test(sha)) return { state: "unknown" };
+      type S = { statuses: { context: string; state: string; target_url?: string }[] };
+      const s = await gh<S>(`/commits/${sha}/status`, { allow404: true });
+      const v = s?.statuses.find((x) => x.context.toLowerCase().startsWith("vercel"));
+      if (!v) return { state: "pending" };
+      if (v.state === "success") return { state: "success", url: v.target_url };
+      if (v.state === "failure" || v.state === "error") return { state: "failure", url: v.target_url };
+      return { state: "pending", url: v.target_url };
     },
   };
   return store;

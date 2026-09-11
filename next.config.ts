@@ -19,7 +19,9 @@ const ContentSecurityPolicy = [
   "default-src 'self'",
   "base-uri 'self'",
   "form-action 'self'",
-  "frame-ancestors 'none'",
+  // 'self', not 'none': the visual editor (/admin) shows the site's own
+  // pages in a frame. Other origins still cannot frame the site.
+  "frame-ancestors 'self'",
   "object-src 'none'",
   // The /contact page embeds a Google Maps iframe via the official
   // /maps/embed endpoint (keyless, frames cleanly — unlike the plain
@@ -86,7 +88,7 @@ const productionOnlyHeaders = [
   { key: "Content-Security-Policy", value: ContentSecurityPolicy },
   // Declares the `csp-endpoint` reporting group referenced by `report-to`.
   { key: "Reporting-Endpoints", value: `csp-endpoint="${cspReportEndpoint}"` },
-  { key: "X-Frame-Options", value: "DENY" },
+  { key: "X-Frame-Options", value: "SAMEORIGIN" },
   { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
   { key: "Cross-Origin-Resource-Policy", value: "same-origin" },
   { key: "Cross-Origin-Embedder-Policy", value: "unsafe-none" },

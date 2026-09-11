@@ -96,7 +96,7 @@ export default async function AdminHome({
         ))}
       </div>
 
-      <section>
+      <section id="posts" className="scroll-mt-6">
         <div className="flex items-end justify-between gap-4">
           <div>
             <h2 className="text-[22px] font-semibold text-ivory">Blog posts</h2>
@@ -120,7 +120,7 @@ export default async function AdminHome({
         </ul>
       </section>
 
-      <section>
+      <section id="gallery" className="scroll-mt-6">
         <div className="flex items-end justify-between gap-4">
           <div>
             <h2 className="text-[22px] font-semibold text-ivory">Remodeling gallery</h2>

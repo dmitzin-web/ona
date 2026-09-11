@@ -9,6 +9,17 @@ const { SECTIONS } = await import(root + "/lib/admin/sections.ts");
 const { validateBySchema, serializeContent } = await import(root + "/lib/admin/schema.ts");
 const { legalFindings } = await import(root + "/lib/admin/legal-guard.ts");
 let fail = 0;
+
+// The visual editor matches page text against the content this deployment
+// was built with (lib/admin/deployed.ts). A section missing there would be
+// invisible in the editor.
+const deployed = fs.readFileSync(root + "/lib/admin/deployed.ts", "utf8");
+for (const s of SECTIONS) {
+  if (!deployed.includes(`"${s.file}"`)) {
+    fail++;
+    console.log(`FAIL  ${s.id.padEnd(16)} ${s.file}\n   missing from lib/admin/deployed.ts (add the import and the entry)`);
+  }
+}
 for (const s of SECTIONS) {
   const text = fs.readFileSync(root + "/" + s.file, "utf8");
   const data = JSON.parse(text);

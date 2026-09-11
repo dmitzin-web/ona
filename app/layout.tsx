@@ -4,6 +4,7 @@ import { Footer } from "@/components/Footer";
 import { JsonLd } from "@/components/JsonLd";
 import { Analytics } from "@/components/Analytics";
 import { AskOna } from "@/components/assistant/AskOna";
+import { EditThisPage } from "@/components/admin/EditThisPage";
 import { EmergencyBanner } from "@/components/EmergencyBanner";
 import { site } from "@/lib/site";
 import { chrome } from "@/lib/chrome";
@@ -99,6 +100,7 @@ export default function RootLayout({
         <main id="main">{children}</main>
         <Footer />
         <AskOna />
+        <EditThisPage />
         <Analytics />
         <JsonLd data={[localBusinessJsonLd(), websiteJsonLd()]} />
       </body>

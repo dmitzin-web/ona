@@ -12,6 +12,7 @@ import {
   validateWorkFields,
 } from "@/lib/admin/validate";
 import { legalFindings, type Finding } from "@/lib/admin/legal-guard";
+import { commitMessage } from "@/lib/admin/commit-message";
 import { serializeContent, validateBySchema } from "@/lib/admin/schema";
 import { findSection } from "@/lib/admin/sections";
 import {
@@ -36,14 +37,7 @@ import {
 // the findings in its commit message.
 export type ActionState = { errors: string[]; legal?: Finding[] } | null;
 
-// The repository is public: commit messages carry the editor's display
-// name for the audit trail, never their email address.
-const message = (summary: string, who: string, acknowledged: Finding[] = []) =>
-  `${summary}\n\n` +
-  (acknowledged.length
-    ? `Published despite legal-guard warnings:\n${acknowledged.map((f) => `- "${f.excerpt}" — ${f.rule}`).join("\n")}\n\n`
-    : "") +
-  `Edited by ${who} via onarestore.com/admin`;
+const message = commitMessage;
 
 // null = go ahead (no findings, or acknowledged); otherwise the state to
 // return so the editor sees the findings and can acknowledge them.
@@ -102,13 +96,13 @@ export async function savePost(_prev: ActionState, fd: FormData): Promise<Action
   } catch (err) {
     return { errors: [errorText(err)] };
   }
-  redirect(`/admin?saved=${encodeURIComponent(post.title)}`);
+  redirect(`/admin/content?saved=${encodeURIComponent(post.title)}`);
 }
 
 export async function deletePost(fd: FormData) {
   const user = await requireAdmin();
   const slug = str(fd, "slug");
-  if (!SLUG_RE.test(slug)) redirect("/admin");
+  if (!SLUG_RE.test(slug)) redirect("/admin/content");
   const file = `${POSTS_DIR}/${slug}.json`;
   try {
     await (await getStore()).commit({
@@ -120,7 +114,7 @@ export async function deletePost(fd: FormData) {
   } catch (err) {
     redirect(`/admin/posts/${slug}?error=${encodeURIComponent(errorText(err))}`);
   }
-  redirect(`/admin?deleted=${encodeURIComponent(str(fd, "title") || slug)}`);
+  redirect(`/admin/content?deleted=${encodeURIComponent(str(fd, "title") || slug)}`);
 }
 
 // ── Remodeling gallery ───────────────────────────────────────────────────
@@ -194,13 +188,13 @@ export async function saveWork(_prev: ActionState, fd: FormData): Promise<Action
   } catch (err) {
     return { errors: [errorText(err)] };
   }
-  redirect(`/admin?saved=${encodeURIComponent(fields.title)}`);
+  redirect(`/admin/content?saved=${encodeURIComponent(fields.title)}`);
 }
 
 export async function deleteWork(fd: FormData) {
   const user = await requireAdmin();
   const slug = str(fd, "slug");
-  if (!SLUG_RE.test(slug)) redirect("/admin");
+  if (!SLUG_RE.test(slug)) redirect("/admin/content");
   const jsonPath = `${WORK_DIR}/${slug}.json`;
   try {
     const store = await getStore();
@@ -217,7 +211,7 @@ export async function deleteWork(fd: FormData) {
   } catch (err) {
     redirect(`/admin/work/${slug}?error=${encodeURIComponent(errorText(err))}`);
   }
-  redirect(`/admin?deleted=${encodeURIComponent(str(fd, "title") || slug)}`);
+  redirect(`/admin/content?deleted=${encodeURIComponent(str(fd, "title") || slug)}`);
 }
 
 // ── Schema-driven sections (lib/admin/sections.ts) ───────────────────────

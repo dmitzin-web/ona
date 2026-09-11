@@ -17,11 +17,27 @@ export type Commit = {
 export class ConflictError extends Error {}
 export class StoreError extends Error {}
 
+// One published change, as the history panel shows it.
+export type HistoryEntry = { sha: string; message: string; date: string; author: string };
+
+// Where a commit is in the Vercel deploy: "local" means there is no deploy
+// (development writes the files on disk).
+export type DeployState = { state: "pending" | "success" | "failure" | "unknown" | "local"; url?: string };
+
 export interface ContentStore {
   kind: "local" | "github";
   list(dir: string): Promise<StoredFile[]>;
   read(file: string): Promise<StoredFile | null>;
-  commit(c: Commit): Promise<void>;
+  // Several files at the SAME commit, so they are consistent with each other.
+  readMany(files: string[]): Promise<(StoredFile | null)[]>;
+  // Returns the new commit's SHA.
+  commit(c: Commit): Promise<string>;
+  // Commits that touched content/, newest first.
+  history(limit: number): Promise<HistoryEntry[]>;
+  // Content files a commit changed, with their text before and after
+  // (null = did not exist).
+  commitFiles(sha: string): Promise<{ path: string; before: string | null; after: string | null }[]>;
+  deployStatus(sha: string): Promise<DeployState>;
 }
 
 // Git's own blob hash, so the local store's conflict check means exactly

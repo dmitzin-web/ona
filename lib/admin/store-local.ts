@@ -1,6 +1,8 @@
 import "server-only";
+import { execFile } from "node:child_process";
 import fs from "node:fs/promises";
 import path from "node:path";
+import { promisify } from "node:util";
 import {
   assertSafePath,
   blobSha,
@@ -43,6 +45,9 @@ export const localStore: ContentStore = {
       return null;
     }
   },
+  async readMany(files) {
+    return Promise.all(files.map((f) => this.read(f)));
+  },
   async commit(c) {
     checkCommit(c);
     for (const [p, want] of Object.entries(c.expect)) {
@@ -55,5 +60,33 @@ export const localStore: ContentStore = {
       await fs.writeFile(abs, f.content);
     }
     for (const p of c.remove) await fs.rm(path.join(process.cwd(), p), { force: true });
+    // No real commit: the working copy is the store. History below shows the
+    // repository's commits, which is enough to exercise the history UI.
+    return `local-${Date.now()}`;
+  },
+  async history(limit) {
+    const out = await git(["log", `-n${limit}`, "--format=%H%x1f%an%x1f%aI%x1f%B%x1e", "--", "content"]);
+    return out
+      .split("\x1e")
+      .map((r) => r.trim())
+      .filter(Boolean)
+      .map((r) => {
+        const [sha, name, date, message] = r.split("\x1f");
+        return { sha, date, message, author: /Edited by (.+?) via/.exec(message)?.[1] ?? name };
+      });
+  },
+  async commitFiles(sha) {
+    if (!/^[0-9a-f]{40}$/.test(sha)) return [];
+    const names = (await git(["show", "--name-only", "--format=", sha])).split("\n").filter((n) => n.startsWith("content/") && n.endsWith(".json"));
+    const at = (ref: string, p: string) => git(["show", `${ref}:${p}`]).catch(() => null);
+    return Promise.all(names.map(async (p) => ({ path: p, before: await at(`${sha}^`, p), after: await at(sha, p) })));
+  },
+  async deployStatus() {
+    return { state: "local" };
   },
 };
+
+const run = promisify(execFile);
+async function git(args: string[]): Promise<string> {
+  return (await run("git", args, { cwd: process.cwd(), maxBuffer: 32 * 1024 * 1024 })).stdout;
+}

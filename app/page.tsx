@@ -487,16 +487,13 @@ export default function HomePage() {
           <div className="mt-12 hidden items-center gap-10 md:grid md:grid-cols-[1fr_auto] md:gap-16">
             <div className="max-w-lg">
               <p className="eyebrow text-ivory/85">
-                On your phone too
+                {t.projectFile.phoneEyebrow}
               </p>
               <h3 className="mt-4 text-[24px] font-semibold leading-tight tracking-tight text-ivory md:text-[30px]">
-                Daily updates in your pocket.
+                {t.projectFile.phoneTitle}
               </h3>
               <p className="mt-4 text-[15px] leading-relaxed text-ivory/85">
-                Photos uploaded the day they&apos;re taken. Adjuster
-                approvals as they come in. A small text when something
-                needs your attention. No app to install — it&apos;s just
-                a link.
+                {t.projectFile.phoneBody}
               </p>
             </div>
 
@@ -590,7 +587,7 @@ export default function HomePage() {
               href="/work/sample"
               className="inline-flex items-center gap-2 text-[14px] text-ivory underline-offset-4 hover:underline"
             >
-              Open the full sample project page
+              {t.projectFile.linkText}
               <span aria-hidden>→</span>
             </Link>
           </div>
