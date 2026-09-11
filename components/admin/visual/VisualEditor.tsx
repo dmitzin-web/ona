@@ -257,7 +257,9 @@ function Editor(props: EditorProps) {
 
   const reveal = useCallback((leaf: { sectionId: string; path: Path }) => {
     const b = bindingsForLeaf(bindingsRef.current, leaf.sectionId, leaf.path).find((x) => x.kind !== "title" && x.kind !== "description");
-    b?.el.scrollIntoView({ block: "center", behavior: "smooth" });
+    // "auto", not "smooth": the site sets scroll-behavior: smooth, and a long
+    // smooth scroll inside the frame can be interrupted half-way.
+    b?.el.scrollIntoView({ block: "center", behavior: "auto" });
     return !!b;
   }, []);
 
@@ -383,7 +385,11 @@ function Editor(props: EditorProps) {
       d.head.appendChild(style);
       d.body.appendChild(tag);
       d.documentElement.toggleAttribute("data-ona-edit-on", modeRef.current === "edit");
-      if (modeRef.current === "edit") d.querySelectorAll("details").forEach((x) => ((x as HTMLDetailsElement).open = true));
+      // Open the page's collapsed content (FAQ answers, the footer's city
+      // list) so its text can be clicked — but never the header's menu
+      // drawer, which would cover the page.
+      if (modeRef.current === "edit")
+        d.querySelectorAll("main details, footer details").forEach((x) => ((x as HTMLDetailsElement).open = true));
     };
 
     const current = w.location.pathname + w.location.search;

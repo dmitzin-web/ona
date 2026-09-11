@@ -16,6 +16,32 @@ break without knowing them.
   port rather than clearing `.next` again.
 
 ## Content admin (/admin)
+- **/admin is the visual editor**; the schema-driven forms live at
+  `/admin/content` and are the fallback. The editor loads the real site in
+  an iframe and ties each piece of text on the page back to the field it
+  came from by MATCHING the rendered text against the content this
+  deployment was built with (`lib/admin/deployed.ts`), so the site's own
+  code knows nothing about the editor and the built HTML is untouched —
+  no markers, no stega characters. Template strings ({area}, {service})
+  are matched as regex patterns and keep their placeholders when edited.
+  See `components/admin/visual/binder.ts`; the editor's own docs are the
+  comments there and in `VisualEditor.tsx`.
+- Rules that keep the matching working: **every piece of copy must render
+  from a content field as its own JSX expression** (React gives each one
+  its own text node). Don't concatenate a field with literal text in one
+  expression (`{`${t.a}.`}`), don't `.toUpperCase()` in JS (use CSS), and
+  keep JSON free of HTML. Anything the page computes (numbers, dates) is
+  not editable and should not pretend to be.
+- The frame needs `frame-ancestors 'self'` and `X-Frame-Options:
+  SAMEORIGIN` (next.config.ts). Both are same-origin only.
+- Publishing is one commit for all changed files, then the editor follows
+  the Vercel commit status until the new version is live. `store.commit()`
+  returns the commit SHA for that; `store.history/commitFiles/deployStatus`
+  back the history panel and its "undo this change" (a path-level revert
+  applied on top of whatever was published after it — `lib/admin/json-path.ts`).
+- Admin UI language: English or Russian (`components/admin/visual/i18n.tsx`);
+  field labels are translated by English source string in
+  `lib/admin/i18n/fields-ru.ts`. Add a label → add its translation.
 - Blog posts → `content/posts/<slug>.json`; remodeling gallery →
   `content/work/<slug>.json` + `public/photos/projects/<slug>/image.*`.
   `lib/posts.ts` and `lib/work.ts` read them at build time. The file format

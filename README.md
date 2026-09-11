@@ -29,7 +29,7 @@ All business data lives in **`lib/site.ts`** — phone, email, service area, cer
 
 Service copy lives in **`lib/services.ts`** — one entry per service, drives the service pages + index + programmatic city × service pages.
 
-Blog posts and the remodeling gallery are content files in **`content/`**, edited through the admin at **`/admin`** (Google sign-in, allowlisted addresses, saves commit to GitHub). Setup, and the rules that keep legal copy out of it, are in **`CLAUDE.md`**.
+Every word on the site is a content file in **`content/`**, edited at **`/admin`**: a visual editor that shows the live site and lets you click any text on the page and type. Blog posts and the gallery have their own editors; the schema-driven forms for everything are at `/admin/content`. Sign-in is Google, restricted to an allowlist; publishing commits to GitHub and deploys. Setup, the matching rules the editor depends on, and the legal constraints are in **`CLAUDE.md`**.
 
 Local-area profiles (weather pattern, common losses, neighborhoods, drive-time-from-HQ) live in **`lib/areas.ts`** and feed the city pages plus the programmatic city × service landing pages.
 
