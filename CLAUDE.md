@@ -51,7 +51,7 @@ break without knowing them.
   production builds. `ADMIN_STORAGE=github` + `ADMIN_CONTENT_BRANCH=<test
   branch>` exercises the GitHub path without touching `main`.
 - **Site content sections** (company details, services, cities, privacy &
-  terms, reviews) are described once in `lib/admin/sections.ts`; the form
+  terms, reviews, and all page copy — see below) are described once in `lib/admin/sections.ts`; the form
   (`SchemaForm`) and the server validation (`validateBySchema`) both come
   from that description. Each lives in one JSON file under `content/`,
   imported statically by `lib/site.ts`, `lib/services.ts`, `lib/areas.ts`,
@@ -65,6 +65,25 @@ break without knowing them.
   changing rules or copy.
 - Privacy/terms text uses `{phone}`, `{email}`, `{legalName}` …
   placeholders filled from company details (`lib/placeholders.ts`).
+- **All page copy is in the admin.** Every page, page template, the header,
+  footer and shared blocks read their text from `content/pages/*.json` /
+  `content/chrome.json`; each has a schema in `lib/admin/pages/<id>.ts`
+  registered in `SECTIONS`. Pages: `const t = fillPlaceholdersDeep(json)`;
+  templates (service, city, city × service, gallery project, post) use
+  `fillVarsDeep(json, { service, area, … })` — the placeholders each one
+  accepts are listed in its section description. **Changing copy = edit the
+  JSON (or use the admin), never re-hardcode it in JSX**, or the admin
+  silently stops controlling that text. New copy = add a field to the
+  schema and the JSON. No HTML/markdown in JSON: a sentence with a link is
+  split into before/link/after fields.
+- What deliberately stays in code: the sample data inside demo mockups
+  (project page demo, phone feed), route structure and hrefs of navigation,
+  icons, and anything computed from data.
+- After any change to content files or schemas: `npm run check:content`.
+  Each file must equal what the admin would write back (`serializeContent`
+  of `validateBySchema`), or the next admin save produces a noisy diff; it
+  also lists legal-guard findings (an editor may have published one after
+  acknowledging the warning — review those).
 
 ### Admin environment (Vercel → Settings → Environment Variables)
 | Variable | What |
