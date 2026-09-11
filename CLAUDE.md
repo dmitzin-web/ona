@@ -51,9 +51,9 @@ break without knowing them.
   production builds. `ADMIN_STORAGE=github` + `ADMIN_CONTENT_BRANCH=<test
   branch>` exercises the GitHub path without touching `main`.
 - **Site content sections** (company details, services, cities, privacy &
-  terms, reviews, and all page copy — see below) are described once in `lib/admin/sections.ts`; the form
-  (`SchemaForm`) and the server validation (`validateBySchema`) both come
-  from that description. Each lives in one JSON file under `content/`,
+  terms, reviews, and all page copy — see below) are described once in
+  `lib/admin/sections.ts`; the form (`SchemaForm`) and the server
+  validation (`validateBySchema`) both come from that description. Each lives in one JSON file under `content/`,
   imported statically by `lib/site.ts`, `lib/services.ts`, `lib/areas.ts`,
   `lib/legal.ts`, `lib/reviews.ts` — whose exports did not change. Static
   imports because `lib/site.ts` is used by client components. Adding a
