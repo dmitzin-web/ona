@@ -52,7 +52,6 @@ export const CHROME: SectionDef = {
       { kind: "text", key: "mobileNavAriaLabel", label: `Name of the phone menu ${SR}`, required: true },
     ] },
     { kind: "object", key: "breadcrumbs", label: "Trail of links at the top of inner pages", fields: [
-      { kind: "text", key: "home", label: "First link (the homepage)", required: true },
       { kind: "text", key: "ariaLabel", label: `Name of the trail ${SR}`, required: true },
     ] },
     { kind: "object", key: "serviceCard", label: "Service cards", hint: "The service name and line on each card come from Services.", fields: [
@@ -120,7 +119,7 @@ export const CHROME: SectionDef = {
         { kind: "strings", key: "storm", label: "Storm damage pages (one per line)" },
         { kind: "strings", key: "services", label: "Other service pages, including Remodeling (one per line)" },
         { kind: "strings", key: "areas", label: "City pages (one per line)" },
-        { kind: "strings", key: "remodeling", label: "Remodeling pages (one per line)", hint: "Not shown at the moment: the Remodeling pages match “Other service pages” first." },
+        { kind: "strings", key: "remodeling", label: "Remodeling pages (one per line)" },
         { kind: "strings", key: "quote", label: "Quote page (one per line)" },
         { kind: "strings", key: "blog", label: "Blog posts (one per line)" },
         { kind: "strings", key: "other", label: "Every other page (one per line)" },

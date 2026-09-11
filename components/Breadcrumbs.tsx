@@ -1,8 +1,7 @@
 import Link from "next/link";
 import { chrome } from "@/lib/chrome";
 
-// The trail comes from each page. Its screen-reader name, and the word for
-// the first crumb (`chrome.breadcrumbs.home`, for pages to use), are in
+// The trail comes from each page. Its screen-reader name is in
 // content/chrome.json.
 
 export function Breadcrumbs({
