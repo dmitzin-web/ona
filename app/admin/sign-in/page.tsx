@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { currentAdmin, isAuthConfigured } from "@/lib/admin/session";
+import { currentAdmin, isAuthConfigured, missingAdminConfig } from "@/lib/admin/session";
 import { signInWithGoogle, signOutOfAdmin } from "../actions";
 
 const MESSAGES: Record<string, string> = {
@@ -32,9 +32,24 @@ export default async function SignInPage({
         <p className="mt-2 text-[14px] text-warm-gray">Blog posts and the remodeling gallery.</p>
 
         {message && (
-          <p role="alert" className="mt-6 rounded-[2px] border border-coral/40 bg-coral/5 p-3 text-left text-[13px] text-ivory">
-            {message}
-          </p>
+          <div role="alert" className="mt-6 rounded-[2px] border border-coral/40 bg-coral/5 p-3 text-left text-[13px] text-ivory">
+            <p>{message}</p>
+            {/* During setup: exactly which Vercel variables are still
+                missing (names only). Disappears once sign-in is configured. */}
+            {!configured && (
+              <>
+                <p className="mt-2 font-medium">Missing in Vercel (Production):</p>
+                <ul className="mt-1 space-y-0.5 font-mono text-[12px]">
+                  {missingAdminConfig().map((n) => (
+                    <li key={n}>{n}</li>
+                  ))}
+                </ul>
+                <p className="mt-2 text-warm-gray">
+                  After adding them, redeploy — Vercel applies new variables only to a new deployment.
+                </p>
+              </>
+            )}
+          </div>
         )}
 
         {who.state === "refused" ? (

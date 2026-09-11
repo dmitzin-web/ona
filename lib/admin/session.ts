@@ -13,6 +13,20 @@ function devBypass(): boolean {
   );
 }
 
+// Names (never values) of the admin settings not yet present, for the
+// sign-in page to show while the admin is being set up. The names are
+// already public in this repository; this only says which ones Vercel is
+// missing, so a typo'd or wrongly-scoped variable is obvious at a glance.
+export function missingAdminConfig(): string[] {
+  const missing: string[] = [];
+  for (const name of ["AUTH_SECRET", "AUTH_GOOGLE_ID", "AUTH_GOOGLE_SECRET"] as const) {
+    if (!process.env[name]) missing.push(name);
+  }
+  if (adminEmails().size === 0) missing.push("ADMIN_EMAILS");
+  if (!process.env.GITHUB_CONTENT_TOKEN) missing.push("GITHUB_CONTENT_TOKEN");
+  return missing;
+}
+
 export function isAuthConfigured(): boolean {
   return Boolean(
     process.env.AUTH_SECRET &&
