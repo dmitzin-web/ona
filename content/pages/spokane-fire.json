@@ -1,0 +1,268 @@
+{
+  "seo": {
+    "title": "Spokane Wildfire Fire & Smoke Restoration",
+    "description": "Washington-licensed fire, smoke and soot restoration in Spokane County after the wildfires. Debris removal, odor treatment and full rebuild, billed directly to your insurance. Free assessment and written scope, same-day answer.",
+    "keywords": [
+      "fire damage restoration spokane",
+      "smoke damage repair spokane wa",
+      "wildfire rebuild spokane county",
+      "soot cleanup spokane",
+      "fire damage contractor spokane"
+    ]
+  },
+  "breadcrumb": {
+    "home": "Home",
+    "services": "Services",
+    "service": "Fire & Smoke",
+    "page": "Spokane, WA"
+  },
+  "hero": {
+    "eyebrow": "Fire & smoke recovery · Spokane County",
+    "titleLead": "Your home is still yours.",
+    "titleRest": "Let's get it back.",
+    "bodyLead": "We're already in Spokane County. Debris removal, smoke and soot, full reconstruction —",
+    "bodyEmphasis": "billed to your insurance.",
+    "ctaCall": "Call {phone}",
+    "ctaPhotos": "Send photos",
+    "emailSubject": "Spokane fire - my property",
+    "note": "We'll come look at it for free. A real person answers, day or night.",
+    "credentials": [
+      "Answered 24/7",
+      "WA registered · ONARER*748K8",
+      "IICRC fire & smoke certified"
+    ]
+  },
+  "triage": {
+    "title": "Whichever one you're dealing with, we handle it.",
+    "situations": [
+      {
+        "tag": "Total or partial loss",
+        "title": "Your home burned",
+        "body": "We handle the whole rebuild — debris out, structure back up, finishes in. One crew, one scope, billed to your carrier.",
+        "detail": "There are three required steps before rebuilding can start. We handle all three — see below."
+      },
+      {
+        "tag": "Standing, but full of smoke",
+        "title": "Your home didn't burn",
+        "body": "Soot from burning houses is not wood smoke. It settles into drywall, insulation, ductwork and contents across a wide radius, and it is the loss carriers most often argue about.",
+        "detail": "Don't run your HVAC until it's been checked — it pushes soot back through the house. Document everything before you clean, because cleaning destroys the evidence your claim needs."
+      },
+      {
+        "tag": "No access yet",
+        "title": "You can't get in yet",
+        "body": "Call anyway. We'll log your property, put you in the queue, and be ready to walk the scope the day re-entry opens.",
+        "detail": "No charge and no commitment for the assessment. If we think a Spokane crew can get to you faster, we'll tell you that too."
+      }
+    ],
+    "ctaCall": "Call {phone}",
+    "aside": "Not sure which one you're in? Send photos, we'll tell you."
+  },
+  "cost": {
+    "cells": [
+      {
+        "label": "The visit and the written scope",
+        "value": "$0",
+        "body": "Assessment, documentation and an itemized scope before you commit to anything."
+      },
+      {
+        "label": "The work",
+        "value": "Billed to your carrier",
+        "body": "Written in the format your adjuster works in, sent directly to them."
+      },
+      {
+        "label": "What you pay",
+        "value": "Your deductible",
+        "body": "We never waive it and never pad a scope to cover it — that is insurance fraud, and it is what to walk away from."
+      }
+    ],
+    "note": "What your policy covers is your insurer's decision, and any contractor who tells you the outcome before reading your policy is guessing. What we can tell you is what we will charge, in writing, before we start."
+  },
+  "gates": {
+    "eyebrow": "If your property burned",
+    "title": "Three things have to happen before rebuilding. We do all three.",
+    "steps": [
+      {
+        "title": "Asbestos survey",
+        "body": "A certified inspector tests the debris. Required by Spokane Clean Air before anything is moved.",
+        "who": "We arrange the inspector"
+      },
+      {
+        "title": "Notice of Intent filed",
+        "body": "Goes to Spokane Clean Air whatever the survey says. Fees are waived right now for fire-affected properties.",
+        "who": "We file it"
+      },
+      {
+        "title": "Debris out, permit in",
+        "body": "The city and county both want the notice before they issue a building permit. Same-footprint rebuilds are running five to seven days.",
+        "who": "We pull the permit"
+      }
+    ],
+    "note": "Skipping any of it stops your permit. If someone offers to start hauling debris before the survey, that alone tells you what you need to know about them."
+  },
+  "scope": {
+    "eyebrow": "Scope",
+    "title": "One crew from debris to final paint.",
+    "body": "No handing you off between a mitigation company, a demo company and a builder — with three scopes that don't agree and a claim that stalls between them.",
+    "items": [
+      "Debris removal and demolition, permit-ready",
+      "Emergency board-up and roof tarping",
+      "Smoke, soot and structural cleaning",
+      "HVAC and duct decontamination",
+      "Odor removal — after the soot is physically out, not instead of it",
+      "Contents inventory, cleaning and loss documentation",
+      "Insulation, drywall and framing replacement",
+      "Full reconstruction through final walkthrough"
+    ]
+  },
+  "finish": {
+    "eyebrow": "Where it ends up",
+    "title": "A rebuild isn't finished when it's clean.",
+    "body": "The same crews that strip the soot put the house back together. That's the reason we don't hand you off to a builder at the halfway point.",
+    "photos": [
+      {
+        "photo": "p7",
+        "alt": "Completed Ona kitchen — cabinetry, island and appliances installed"
+      },
+      {
+        "photo": "p1",
+        "alt": "Completed Ona bathroom — double vanity, mirrors and fixtures installed"
+      },
+      {
+        "photo": "p9",
+        "alt": "Completed Ona kitchen and living space, finished and furnished"
+      }
+    ],
+    "caption": "Completed reconstruction and finish work by our own crews. These are not Spokane fire jobs — those are in progress, and we'll publish them here as they finish, with the before shots."
+  },
+  "whyUs": {
+    "eyebrow": "Before you sign with anyone",
+    "title": "A lot of trucks showed up in Spokane after the fires. Here's how to tell us apart.",
+    "guarantees": {
+      "first": {
+        "title": "No Assignment of Benefits",
+        "body": "Your claim stays in your name. We never ask you to sign it over to us."
+      },
+      "second": {
+        "title": "Written scope, $0",
+        "body": "Itemized line by line before anything starts. No large deposit up front."
+      },
+      "third": {
+        "title": "Seven days to cancel",
+        "body": "In writing, in your contract. Washington requires it of no one. You get it anyway."
+      }
+    },
+    "points": [
+      {
+        "title": "If someone offers to waive your deductible, walk away",
+        "body": "Anyone offering to cover or waive it is proposing insurance fraud — it means billing your carrier for more than you actually pay, which is a felony in Washington above $1,500. Washington's Insurance Commissioner warns homeowners about the offer after every major fire, because it is one of the first things that gets offered."
+      },
+      {
+        "title": "Washington-registered, and you can check in 30 seconds",
+        "body": "ONARER*748K8 at lni.wa.gov. Do the same for every company that knocks on your door — L&I warns specifically about contractors who show up unsolicited after a fire. We don't door-knock and we don't leave cards at damaged properties."
+      },
+      {
+        "title": "Every job gets a live project page",
+        "body": "Photos, daily updates, moisture and cleaning logs, receipts, every scope change — on a link you can send straight to your adjuster. Nothing gets quietly revised, because there's nowhere to hide it."
+      }
+    ]
+  },
+  "proof": {
+    "eyebrow": "The live project page",
+    "title": "This is what you get a link to on day one.",
+    "body": "It stays live through the rebuild and stays up after we're gone. Send it to your adjuster, your family, your attorney — whoever needs to see what was done and when.",
+    "bullets": [
+      "Every photo, dated and in sequence",
+      "Moisture and cleaning logs",
+      "Every receipt and scope change",
+      "Nothing removed once it's posted"
+    ],
+    "caption": "Sample page with sample data. Your own is created before we start work."
+  },
+  "process": {
+    "eyebrow": "What happens next",
+    "title": "Five steps, and you see all of them.",
+    "steps": [
+      {
+        "title": "Call or send photos",
+        "body": "We answer in person. Photos by text or email get you a real answer the same day."
+      },
+      {
+        "title": "We walk the property",
+        "body": "Free assessment. Full photo and Matterport documentation of every affected surface and item."
+      },
+      {
+        "title": "Itemized scope to your carrier",
+        "body": "Written in the format adjusters work in, with the readings and images that support every line."
+      },
+      {
+        "title": "Stabilize and clean",
+        "body": "Debris out, soot off, HVAC decontaminated, odor treated after the residue is physically gone."
+      },
+      {
+        "title": "Rebuild",
+        "body": "Framing, insulation, drywall, finishes. You approve each phase and watch it on your project page."
+      }
+    ]
+  },
+  "areas": {
+    "eyebrow": "We're working across",
+    "places": [
+      "Spokane",
+      "Spokane Valley",
+      "Airway Heights",
+      "Medical Lake",
+      "Cheney",
+      "Deer Park",
+      "Nine Mile Falls",
+      "Mead",
+      "and surrounding Spokane County"
+    ]
+  },
+  "faq": {
+    "title": "Questions we're getting from Spokane.",
+    "faqs": [
+      {
+        "q": "Do you bill my insurance directly?",
+        "a": "Yes. We document the loss, write the scope in the format your adjuster works in, and bill your carrier. You pay your deductible and nothing beyond it. Coverage decisions stay with your insurer — we don't negotiate your settlement, because that requires a public adjuster licence we don't hold."
+      },
+      {
+        "q": "My house is standing. Is smoke damage really covered?",
+        "a": "Smoke and ash damage is commonly covered under homeowners policies, subject to the terms, exclusions and circumstances of your particular loss — and unlike mold, it usually isn't subject to a special dollar cap. It's also the loss type carriers dispute most often, which is why we document it heavily before anyone touches a surface."
+      },
+      {
+        "q": "Can I use you instead of the company my insurer suggested?",
+        "a": "Yes. You have the right to choose your own contractor for any work on your property. Your insurer may recommend someone from a preferred programme, but you're not obliged to use them."
+      },
+      {
+        "q": "Will the smoke smell actually come out?",
+        "a": "In most cases, yes — but it depends on the soot type and how deep it drove into porous material. We'll tell you what can be cleaned and what has to be replaced before you commit to anything. Be careful with anyone who guarantees odor removal without seeing the structure, or who only fogs."
+      },
+      {
+        "q": "You're based in Vancouver. Why should I hire you?",
+        "a": "Because Spokane needed more crews than Spokane had. We brought a Washington-licensed fire and smoke team east after the fires. We're registered statewide ({legalName}, ONARER*748K8), we're IICRC-certified in fire and smoke restoration, and every commitment on this page is in your contract in writing — including a named local subcontractor for warranty response so you're not waiting on a truck from the coast."
+      }
+    ]
+  },
+  "closing": {
+    "eyebrow": "Answered in person · 24/7",
+    "title": "Send us photos. We'll tell you what it takes today.",
+    "body": "Free assessment, itemized written scope, and seven days to change your mind after you sign.",
+    "ctaCall": "Call {phone}",
+    "ctaEmail": "Email photographs",
+    "legalLine": "{legalName} · Washington contractor registration ONARER*748K8 · IICRC-certified in fire & smoke restoration · based in {city}, {state}, working statewide. Verify any contractor at lni.wa.gov before you sign. Coverage and payment decisions are made by your insurer."
+  },
+  "links": {
+    "fireService": "← Fire & smoke damage restoration",
+    "about": "How we work"
+  },
+  "mobileBar": {
+    "call": "Call now",
+    "photos": "Send photos"
+  },
+  "structuredData": {
+    "serviceType": "Fire & Smoke Damage Restoration",
+    "name": "Wildfire Fire & Smoke Damage Restoration — Spokane County, WA",
+    "description": "Washington-licensed fire, smoke and soot restoration and full reconstruction in Spokane County after the August 2026 wildfires. Debris removal, smoke and odor remediation, insurance-billed rebuild.",
+    "areaServed": "Spokane County, WA"
+  }
+}

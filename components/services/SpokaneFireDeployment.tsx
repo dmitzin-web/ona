@@ -4,6 +4,9 @@ import { JsonLd } from "@/components/JsonLd";
 import { ArrowIcon, PhoneIcon } from "@/components/icons/ServiceIcons";
 import { site } from "@/lib/site";
 import { breadcrumbJsonLd, faqJsonLd } from "@/lib/jsonld";
+import { fillPlaceholdersDeep } from "@/lib/placeholders";
+import { buildMetadata } from "@/lib/seo";
+import spokaneContent from "@/content/pages/spokane-fire.json";
 
 // ─── Spokane wildfire response — landing page ─────────────────────────
 // This is a SALES page. It exists to make a homeowner in Spokane County
@@ -41,134 +44,58 @@ import { breadcrumbJsonLd, faqJsonLd } from "@/lib/jsonld";
 // Aug 1 2026 and were contained Aug 19 2026. Copy is written for the
 // rebuild-and-smoke-cleanup phase, not for emergency board-up.
 
-const SITUATIONS = [
-  {
-    tag: "Total or partial loss",
-    h: "Your home burned",
-    p: "We handle the whole rebuild — debris out, structure back up, finishes in. One crew, one scope, billed to your carrier.",
-    detail:
-      "There are three required steps before rebuilding can start. We handle all three — see below.",
-  },
-  {
-    tag: "Standing, but full of smoke",
-    h: "Your home didn't burn",
-    p: "Soot from burning houses is not wood smoke. It settles into drywall, insulation, ductwork and contents across a wide radius, and it is the loss carriers most often argue about.",
-    detail:
-      "Don't run your HVAC until it's been checked — it pushes soot back through the house. Document everything before you clean, because cleaning destroys the evidence your claim needs.",
-  },
-  {
-    tag: "No access yet",
-    h: "You can't get in yet",
-    p: "Call anyway. We'll log your property, put you in the queue, and be ready to walk the scope the day re-entry opens.",
-    detail:
-      "No charge and no commitment for the assessment. If we think a Spokane crew can get to you faster, we'll tell you that too.",
-  },
-];
+// Every piece of copy on this page lives in content/pages/spokane-fire.json
+// and is edited through the admin (/admin → Spokane fire deployment page).
+// The constraints above are repeated there, in plain English, in the
+// section description and in the hints of the fields they apply to — keep
+// the two in step (lib/admin/pages/spokane-fire.ts). {phone}, {legalName},
+// {city}, {state} are filled from Company details.
+//
+// Left in code on purpose: the sample "live project page" in the PROOF
+// block (a labelled illustration, not copy — like the homepage demo), the
+// icons (by position), the step numbers (counted), link targets and styling.
+const t = fillPlaceholdersDeep(spokaneContent);
 
-const WE_HANDLE = [
-  "Debris removal and demolition, permit-ready",
-  "Emergency board-up and roof tarping",
-  "Smoke, soot and structural cleaning",
-  "HVAC and duct decontamination",
-  "Odor removal — after the soot is physically out, not instead of it",
-  "Contents inventory, cleaning and loss documentation",
-  "Insulation, drywall and framing replacement",
-  "Full reconstruction through final walkthrough",
-];
+// Metadata for this page, for the route's generateMetadata
+// (app/services/[slug]/[area]/page.tsx). No response-time claim in the
+// description (we're ~350 miles out; "same-day answer" is what we can keep)
+// and no "you pay your deductible only" — see the header.
+export const spokaneFireMetadata = () =>
+  buildMetadata({
+    title: t.seo.title,
+    description: t.seo.description,
+    path: "/services/fire-damage/spokane-wa",
+    keywords: t.seo.keywords,
+  });
+
+const MAILTO = `mailto:${site.email}?subject=${encodeURIComponent(t.hero.emailSubject)}`;
+const photoSrc = (name: string) => `/photos/projects/${name}.avif`;
 
 // The three commitments that fit on a card. These were paragraphs in the
 // trust list below and got skimmed past; as cards they are the first thing
 // read in the section and each one is a single sentence a homeowner can
-// repeat back to the next contractor who knocks. The depth stays in WHY_US.
+// repeat back to the next contractor who knocks. The depth stays in the
+// trust points (t.whyUs.points). Icons go by position.
 const GUARANTEES = [
-  {
-    icon: "shield" as const,
-    h: "No Assignment of Benefits",
-    p: "Your claim stays in your name. We never ask you to sign it over to us.",
-  },
-  {
-    icon: "doc" as const,
-    h: "Written scope, $0",
-    p: "Itemized line by line before anything starts. No large deposit up front.",
-  },
-  {
-    icon: "clock" as const,
-    h: "Seven days to cancel",
-    p: "In writing, in your contract. Washington requires it of no one. You get it anyway.",
-  },
+  { icon: "shield" as const, ...t.whyUs.guarantees.first },
+  { icon: "doc" as const, ...t.whyUs.guarantees.second },
+  { icon: "clock" as const, ...t.whyUs.guarantees.third },
 ];
 
-// The trust block. Every line is a direct hit on what the out-of-state
-// chasers do, and all of it is verifiable.
-const WHY_US = [
-  {
-    h: "If someone offers to waive your deductible, walk away",
-    // Was: "Several companies working Spokane right now are offering exactly
-    // that." Dropped — it's an unsourced assertion about identifiable
-    // competitors, and it hands them a disparagement claim for no gain. The
-    // statute and the state's own warning make the point without naming
-    // anyone, and RCW 48.30.230 does make it a felony above $1,500.
-    p: "Anyone offering to cover or waive it is proposing insurance fraud — it means billing your carrier for more than you actually pay, which is a felony in Washington above $1,500. Washington's Insurance Commissioner warns homeowners about the offer after every major fire, because it is one of the first things that gets offered.",
-  },
-  {
-    h: "Washington-registered, and you can check in 30 seconds",
-    p: "ONARER*748K8 at lni.wa.gov. Do the same for every company that knocks on your door — L&I warns specifically about contractors who show up unsolicited after a fire. We don't door-knock and we don't leave cards at damaged properties.",
-  },
-  {
-    h: "Every job gets a live project page",
-    p: "Photos, daily updates, moisture and cleaning logs, receipts, every scope change — on a link you can send straight to your adjuster. Nothing gets quietly revised, because there's nowhere to hide it.",
-  },
-];
+// The trust block (t.whyUs.points). Every line is a direct hit on what the
+// out-of-state chasers do, and all of it is verifiable.
+//
+// Deductible point — was: "Several companies working Spokane right now are
+// offering exactly that." Dropped — it's an unsourced assertion about
+// identifiable competitors, and it hands them a disparagement claim for no
+// gain. The statute and the state's own warning make the point without
+// naming anyone, and RCW 48.30.230 does make it a felony above $1,500.
 
-const PROCESS = [
-  {
-    n: "01",
-    h: "Call or send photos",
-    p: "We answer in person. Photos by text or email get you a real answer the same day.",
-  },
-  {
-    n: "02",
-    h: "We walk the property",
-    p: "Free assessment. Full photo and Matterport documentation of every affected surface and item.",
-  },
-  {
-    n: "03",
-    h: "Itemized scope to your carrier",
-    p: "Written in the format adjusters work in, with the readings and images that support every line.",
-  },
-  {
-    n: "04",
-    h: "Stabilize and clean",
-    p: "Debris out, soot off, HVAC decontaminated, odor treated after the residue is physically gone.",
-  },
-  {
-    n: "05",
-    h: "Rebuild",
-    p: "Framing, insulation, drywall, finishes. You approve each phase and watch it on your project page.",
-  },
-];
-
-const SPOKANE_FAQ = [
-  {
-    q: "Do you bill my insurance directly?",
-    a: "Yes. We document the loss, write the scope in the format your adjuster works in, and bill your carrier. You pay your deductible and nothing beyond it. Coverage decisions stay with your insurer — we don't negotiate your settlement, because that requires a public adjuster licence we don't hold.",
-  },
-  {
-    q: "My house is standing. Is smoke damage really covered?",
-    a: "Smoke and ash damage is commonly covered under homeowners policies, subject to the terms, exclusions and circumstances of your particular loss — and unlike mold, it usually isn't subject to a special dollar cap. It's also the loss type carriers dispute most often, which is why we document it heavily before anyone touches a surface.",
-  },
-  {
-    q: "Can I use you instead of the company my insurer suggested?",
-    a: "Yes. You have the right to choose your own contractor for any work on your property. Your insurer may recommend someone from a preferred programme, but you're not obliged to use them.",
-  },
-  {
-    q: "Will the smoke smell actually come out?",
-    a: "In most cases, yes — but it depends on the soot type and how deep it drove into porous material. We'll tell you what can be cleaned and what has to be replaced before you commit to anything. Be careful with anyone who guarantees odor removal without seeing the structure, or who only fogs.",
-  },
-  {
-    q: "You're based in Vancouver. Why should I hire you?",
-    a: `Because Spokane needed more crews than Spokane had. We brought a Washington-licensed fire and smoke team east after the fires. We're registered statewide (${site.legalName}, ONARER*748K8), we're IICRC-certified in fire and smoke restoration, and every commitment on this page is in your contract in writing — including a named local subcontractor for warranty response so you're not waiting on a truck from the coast.`,
-  },
+const BREADCRUMB = [
+  { name: t.breadcrumb.home, href: "/" },
+  { name: t.breadcrumb.services, href: "/services" },
+  { name: t.breadcrumb.service, href: "/services/fire-damage" },
+  { name: t.breadcrumb.page, href: "/services/fire-damage/spokane-wa" },
 ];
 
 export function SpokaneFireDeployment() {
@@ -192,15 +119,7 @@ export function SpokaneFireDeployment() {
         <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
           <nav aria-label="Breadcrumb" className="pt-8">
             <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 eyebrow text-day-ink-3">
-              {[
-                { name: "Home", href: "/" },
-                { name: "Services", href: "/services" },
-                { name: "Fire & Smoke", href: "/services/fire-damage" },
-                {
-                  name: "Spokane, WA",
-                  href: "/services/fire-damage/spokane-wa",
-                },
-              ].map((item, i, arr) => {
+              {BREADCRUMB.map((item, i, arr) => {
                 const isLast = i === arr.length - 1;
                 return (
                   <li key={item.href} className="flex items-center gap-2">
@@ -230,9 +149,7 @@ export function SpokaneFireDeployment() {
           <div className="pb-16 pt-14 lg:pb-24 lg:pt-16">
             <div className="flex items-center gap-2.5">
               <span className="ona-pulse h-2 w-2 rounded-full bg-flare" />
-              <p className="eyebrow text-flare-deep">
-                Fire &amp; smoke recovery · Spokane County
-              </p>
+              <p className="eyebrow text-flare-deep">{t.hero.eyebrow}</p>
             </div>
 
             {/* The literal, searchable words live in the eyebrow above. The
@@ -241,16 +158,13 @@ export function SpokaneFireDeployment() {
                 category, and that is the reason it outperforms every
                 "Spokane Fire Damage Experts" on the first page of results. */}
             <h1 className="mt-7 max-w-4xl text-[38px] font-semibold leading-[1.03] tracking-[-0.028em] text-day-ink sm:text-[54px] lg:text-[66px]">
-              Your home is still yours.
-              <span className="block text-day-ink-3">
-                Let&apos;s get it back.
-              </span>
+              {t.hero.titleLead}
+              <span className="block text-day-ink-3">{t.hero.titleRest}</span>
             </h1>
 
             <p className="mt-7 max-w-xl text-[19px] leading-snug text-day-ink-2 md:text-[22px]">
-              We&apos;re already in Spokane County. Debris removal, smoke and
-              soot, full reconstruction —{" "}
-              <span className="text-day-ink">billed to your insurance.</span>
+              {t.hero.bodyLead}{" "}
+              <span className="text-day-ink">{t.hero.bodyEmphasis}</span>
             </p>
 
             <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -259,19 +173,18 @@ export function SpokaneFireDeployment() {
                 className="inline-flex items-center justify-center gap-3 rounded-[2px] bg-flare px-9 py-5 text-[17px] font-semibold text-white shadow-[0_0_0_1px_rgba(207,63,20,0.25),0_16px_36px_-12px_rgba(207,63,20,0.5)] transition hover:bg-flare-deep sm:text-[18px]"
               >
                 <PhoneIcon className="h-5 w-5 stroke-current" />
-                Call {site.phoneDisplay}
+                {t.hero.ctaCall}
               </a>
               <a
-                href={`mailto:${site.email}?subject=Spokane%20fire%20-%20my%20property`}
+                href={MAILTO}
                 className="inline-flex items-center justify-center gap-3 rounded-[2px] border-2 border-day-ink px-9 py-5 text-[17px] font-semibold text-day-ink transition hover:bg-day-ink hover:text-day sm:text-[18px]"
               >
-                Send photos
+                {t.hero.ctaPhotos}
               </a>
             </div>
 
             <p className="mt-5 text-[15px] text-day-ink-3">
-              We&apos;ll come look at it for free. A real person answers, day
-              or night.
+              {t.hero.note}
             </p>
 
             {/* Credentials as one compact line, not a four-column stat grid.
@@ -280,12 +193,8 @@ export function SpokaneFireDeployment() {
                 reassurance glance, not a data table, and it is repeated in
                 full in the footer line where RCW 18.27.100(3) needs it. */}
             <ul className="mt-11 flex flex-wrap items-center gap-x-7 gap-y-3 border-t border-day-line pt-7 text-[14px] text-day-ink-2">
-              {[
-                "Answered 24/7",
-                "WA registered · ONARER*748K8",
-                "IICRC fire & smoke certified",
-              ].map((t) => (
-                <li key={t} className="flex items-center gap-2">
+              {t.hero.credentials.map((c) => (
+                <li key={c} className="flex items-center gap-2">
                   <svg
                     className="h-4 w-4 flex-none text-flare"
                     viewBox="0 0 24 24"
@@ -298,7 +207,7 @@ export function SpokaneFireDeployment() {
                   >
                     <path d="m5 12.5 4.5 4.5L19 7" />
                   </svg>
-                  {t}
+                  {c}
                 </li>
               ))}
             </ul>
@@ -310,13 +219,13 @@ export function SpokaneFireDeployment() {
       <section className="border-t border-day-line bg-day-2">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-24">
           <h2 className="max-w-3xl text-[30px] font-semibold leading-[1.1] tracking-[-0.02em] text-day-ink md:text-[40px]">
-            Whichever one you&apos;re dealing with, we handle it.
+            {t.triage.title}
           </h2>
 
           <div className="mt-12 grid gap-px overflow-hidden border border-day-line bg-day-line lg:grid-cols-3">
-            {SITUATIONS.map((s) => (
+            {t.triage.situations.map((s) => (
               <div
-                key={s.h}
+                key={s.title}
                 className="relative bg-day p-7 lg:p-8"
               >
                 <span
@@ -325,10 +234,10 @@ export function SpokaneFireDeployment() {
                 />
                 <p className="eyebrow text-flare-deep">{s.tag}</p>
                 <h3 className="mt-4 text-[22px] font-semibold tracking-[-0.015em] text-day-ink">
-                  {s.h}
+                  {s.title}
                 </h3>
                 <p className="mt-3.5 text-[15.5px] leading-relaxed text-day-ink-2">
-                  {s.p}
+                  {s.body}
                 </p>
                 <p className="mt-4 border-t border-day-line pt-4 text-[14px] leading-relaxed text-day-ink-3">
                   {s.detail}
@@ -343,12 +252,9 @@ export function SpokaneFireDeployment() {
               className="inline-flex items-center gap-3 rounded-[2px] bg-flare px-8 py-[18px] text-[17px] font-semibold text-white shadow-[0_14px_32px_-12px_rgba(207,63,20,0.45)] transition hover:bg-flare-deep"
             >
               <PhoneIcon className="h-4 w-4 stroke-current" />
-              Call {site.phoneDisplay}
+              {t.triage.ctaCall}
             </a>
-            <span className="text-[14px] text-day-ink-3">
-              Not sure which one you&apos;re in? Send photos, we&apos;ll tell
-              you.
-            </span>
+            <span className="text-[14px] text-day-ink-3">{t.triage.aside}</span>
           </div>
         </div>
       </section>
@@ -366,46 +272,27 @@ export function SpokaneFireDeployment() {
       <section className="border-t border-day-line bg-day">
         <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10 lg:py-20">
           <div className="grid overflow-hidden border-2 border-flare/25 bg-flare/[0.04] sm:grid-cols-3">
-            {[
-              {
-                k: "The visit and the written scope",
-                v: "$0",
-                p: "Assessment, documentation and an itemized scope before you commit to anything.",
-              },
-              {
-                k: "The work",
-                v: "Billed to your carrier",
-                p: "Written in the format your adjuster works in, sent directly to them.",
-              },
-              {
-                k: "What you pay",
-                v: "Your deductible",
-                p: "We never waive it and never pad a scope to cover it — that is insurance fraud, and it is what to walk away from.",
-              },
-            ].map((c, i) => (
+            {t.cost.cells.map((c, i) => (
               <div
-                key={c.k}
+                key={c.label}
                 className={
                   i === 0
                     ? "p-7 sm:p-8"
                     : "border-t border-flare/20 p-7 sm:border-l sm:border-t-0 sm:p-8"
                 }
               >
-                <p className="eyebrow text-flare-deep">{c.k}</p>
+                <p className="eyebrow text-flare-deep">{c.label}</p>
                 <p className="mt-3.5 text-[27px] font-semibold leading-tight tracking-[-0.02em] text-day-ink">
-                  {c.v}
+                  {c.value}
                 </p>
                 <p className="mt-3 text-[14.5px] leading-relaxed text-day-ink-2">
-                  {c.p}
+                  {c.body}
                 </p>
               </div>
             ))}
           </div>
           <p className="mt-5 max-w-3xl text-[13px] leading-relaxed text-day-ink-3">
-            What your policy covers is your insurer&apos;s decision, and any
-            contractor who tells you the outcome before reading your policy is
-            guessing. What we can tell you is what we will charge, in writing,
-            before we start.
+            {t.cost.note}
           </p>
         </div>
       </section>
@@ -419,9 +306,9 @@ export function SpokaneFireDeployment() {
           available — most competitors don't mention it at all. */}
       <section className="border-t border-day-line bg-day">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-24">
-          <p className="eyebrow text-flare-deep">If your property burned</p>
+          <p className="eyebrow text-flare-deep">{t.gates.eyebrow}</p>
           <h2 className="mt-5 max-w-3xl text-[30px] font-semibold leading-[1.1] tracking-[-0.02em] text-day-ink md:text-[38px]">
-            Three things have to happen before rebuilding. We do all three.
+            {t.gates.title}
           </h2>
 
           <ol className="relative mt-14 grid gap-10 md:grid-cols-3 md:gap-8">
@@ -429,36 +316,17 @@ export function SpokaneFireDeployment() {
               aria-hidden="true"
               className="absolute left-7 top-3 hidden h-[calc(100%-1.5rem)] w-px bg-day-line sm:block md:left-0 md:top-7 md:h-px md:w-full"
             />
-            {[
-              {
-                n: "1",
-                t: "Asbestos survey",
-                p: "A certified inspector tests the debris. Required by Spokane Clean Air before anything is moved.",
-                who: "We arrange the inspector",
-              },
-              {
-                n: "2",
-                t: "Notice of Intent filed",
-                p: "Goes to Spokane Clean Air whatever the survey says. Fees are waived right now for fire-affected properties.",
-                who: "We file it",
-              },
-              {
-                n: "3",
-                t: "Debris out, permit in",
-                p: "The city and county both want the notice before they issue a building permit. Same-footprint rebuilds are running five to seven days.",
-                who: "We pull the permit",
-              },
-            ].map((s) => (
-              <li key={s.n} className="relative flex gap-5 md:flex-col md:gap-0">
+            {t.gates.steps.map((s, i) => (
+              <li key={s.title} className="relative flex gap-5 md:flex-col md:gap-0">
                 <span className="relative z-10 flex h-14 w-14 flex-none items-center justify-center rounded-full border-2 border-flare bg-day text-[20px] font-bold text-flare-deep">
-                  {s.n}
+                  {i + 1}
                 </span>
                 <div className="md:mt-7">
                   <h3 className="text-[20px] font-semibold tracking-[-0.015em] text-day-ink">
-                    {s.t}
+                    {s.title}
                   </h3>
                   <p className="mt-2.5 max-w-sm text-[15px] leading-relaxed text-day-ink-2">
-                    {s.p}
+                    {s.body}
                   </p>
                   <p className="mt-3 inline-flex items-center gap-2 rounded-[2px] bg-flare/[0.08] px-3 py-1.5 text-[13px] font-semibold text-flare-deep">
                     <svg
@@ -481,9 +349,7 @@ export function SpokaneFireDeployment() {
           </ol>
 
           <p className="mt-12 max-w-2xl text-[16px] leading-relaxed text-day-ink-2">
-            Skipping any of it stops your permit. If someone offers to start
-            hauling debris before the survey, that alone tells you what you
-            need to know about them.
+            {t.gates.note}
           </p>
         </div>
       </section>
@@ -493,18 +359,16 @@ export function SpokaneFireDeployment() {
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-24">
           <div className="grid gap-12 lg:grid-cols-12">
             <div className="lg:col-span-5">
-              <p className="eyebrow text-day-ink-3">Scope</p>
+              <p className="eyebrow text-day-ink-3">{t.scope.eyebrow}</p>
               <h2 className="mt-5 text-[30px] font-semibold leading-[1.1] tracking-[-0.02em] text-day-ink md:text-[38px]">
-                One crew from debris to final paint.
+                {t.scope.title}
               </h2>
               <p className="mt-6 max-w-md text-[16px] leading-relaxed text-day-ink-2">
-                No handing you off between a mitigation company, a demo
-                company and a builder — with three scopes that don&apos;t
-                agree and a claim that stalls between them.
+                {t.scope.body}
               </p>
             </div>
             <ul className="grid gap-3 sm:grid-cols-2 lg:col-span-7">
-              {WE_HANDLE.map((w) => (
+              {t.scope.items.map((w) => (
                 <li
                   key={w}
                   className="flex items-start gap-3 border border-day-line bg-day-2 px-5 py-4 text-[15px] leading-snug text-day-ink-2"
@@ -533,39 +397,24 @@ export function SpokaneFireDeployment() {
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-24">
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div>
-              <p className="eyebrow text-day-ink-3">Where it ends up</p>
+              <p className="eyebrow text-day-ink-3">{t.finish.eyebrow}</p>
               <h2 className="mt-5 max-w-2xl text-[30px] font-semibold leading-[1.1] tracking-[-0.02em] text-day-ink md:text-[38px]">
-                A rebuild isn&apos;t finished when it&apos;s clean.
+                {t.finish.title}
               </h2>
             </div>
             <p className="max-w-sm text-[15px] leading-relaxed text-day-ink-2">
-              The same crews that strip the soot put the house back together.
-              That&apos;s the reason we don&apos;t hand you off to a builder at
-              the halfway point.
+              {t.finish.body}
             </p>
           </div>
 
           <div className="mt-12 grid gap-4 sm:grid-cols-3">
-            {[
-              {
-                src: "/photos/projects/p7.avif",
-                alt: "Completed Ona kitchen — cabinetry, island and appliances installed",
-              },
-              {
-                src: "/photos/projects/p1.avif",
-                alt: "Completed Ona bathroom — double vanity, mirrors and fixtures installed",
-              },
-              {
-                src: "/photos/projects/p9.avif",
-                alt: "Completed Ona kitchen and living space, finished and furnished",
-              },
-            ].map((p) => (
+            {t.finish.photos.map((p) => (
               <div
-                key={p.src}
+                key={p.photo}
                 className="relative aspect-[3/2] overflow-hidden border border-day-line bg-day-2"
               >
                 <Image
-                  src={p.src}
+                  src={photoSrc(p.photo)}
                   alt={p.alt}
                   fill
                   sizes="(max-width: 640px) 100vw, 33vw"
@@ -576,9 +425,7 @@ export function SpokaneFireDeployment() {
           </div>
 
           <p className="mt-5 text-[14px] leading-relaxed text-day-ink-3">
-            Completed reconstruction and finish work by our own crews. These
-            are not Spokane fire jobs — those are in progress, and we&apos;ll
-            publish them here as they finish, with the before shots.
+            {t.finish.caption}
           </p>
         </div>
       </section>
@@ -594,39 +441,38 @@ export function SpokaneFireDeployment() {
           }}
         />
         <div className="relative mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-24">
-          <p className="eyebrow text-flare-deep">Before you sign with anyone</p>
+          <p className="eyebrow text-flare-deep">{t.whyUs.eyebrow}</p>
           <h2 className="mt-5 max-w-3xl text-[30px] font-semibold leading-[1.1] tracking-[-0.02em] text-day-ink md:text-[40px]">
-            A lot of trucks showed up in Spokane after the fires. Here&apos;s
-            how to tell us apart.
+            {t.whyUs.title}
           </h2>
 
           <div className="mt-12 grid gap-4 md:grid-cols-3">
             {GUARANTEES.map((g) => (
               <div
-                key={g.h}
+                key={g.title}
                 className="border border-day-line bg-day p-6 shadow-[0_1px_2px_rgba(10,10,10,.04),0_18px_40px_-30px_rgba(10,10,10,.3)]"
               >
                 <span className="flex h-12 w-12 items-center justify-center rounded-full bg-flare/[0.08] text-flare-deep">
                   <GuaranteeIcon kind={g.icon} />
                 </span>
                 <h3 className="mt-5 text-[19px] font-semibold leading-snug tracking-[-0.015em] text-day-ink">
-                  {g.h}
+                  {g.title}
                 </h3>
                 <p className="mt-2.5 text-[15px] leading-relaxed text-day-ink-2">
-                  {g.p}
+                  {g.body}
                 </p>
               </div>
             ))}
           </div>
 
           <div className="mt-12 grid gap-x-10 gap-y-10 sm:grid-cols-3">
-            {WHY_US.map((w) => (
-              <div key={w.h} className="border-l-2 border-flare pl-5">
+            {t.whyUs.points.map((w) => (
+              <div key={w.title} className="border-l-2 border-flare pl-5">
                 <h3 className="text-[18px] font-semibold leading-snug tracking-[-0.01em] text-day-ink">
-                  {w.h}
+                  {w.title}
                 </h3>
                 <p className="mt-2.5 text-[15px] leading-relaxed text-day-ink-2">
-                  {w.p}
+                  {w.body}
                 </p>
               </div>
             ))}
@@ -637,36 +483,32 @@ export function SpokaneFireDeployment() {
       {/* ── PROOF ────────────────────────────────────────────────────
           The trust block above claims every job gets a live project page.
           This shows one, so the claim isn't just a bullet. The data is a
-          labelled sample, not a real customer's file. */}
+          labelled sample, not a real customer's file — an illustration
+          rather than copy, so the mockup (and its "Sample" badge, which must
+          not be removable) stays here; only the text beside it is in the
+          admin. */}
       <section className="border-t border-day-line bg-day">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-24">
           <div className="grid gap-12 lg:grid-cols-12">
             <div className="lg:col-span-5">
-              <p className="eyebrow text-flare-deep">The live project page</p>
+              <p className="eyebrow text-flare-deep">{t.proof.eyebrow}</p>
               <h2 className="mt-5 text-[30px] font-semibold leading-[1.1] tracking-[-0.02em] text-day-ink md:text-[38px]">
-                This is what you get a link to on day one.
+                {t.proof.title}
               </h2>
               <p className="mt-6 max-w-md text-[16px] leading-relaxed text-day-ink-2">
-                It stays live through the rebuild and stays up after we&apos;re
-                gone. Send it to your adjuster, your family, your attorney —
-                whoever needs to see what was done and when.
+                {t.proof.body}
               </p>
               <ul className="mt-7 space-y-2.5">
-                {[
-                  "Every photo, dated and in sequence",
-                  "Moisture and cleaning logs",
-                  "Every receipt and scope change",
-                  "Nothing removed once it's posted",
-                ].map((t) => (
+                {t.proof.bullets.map((b) => (
                   <li
-                    key={t}
+                    key={b}
                     className="flex items-start gap-3 text-[15px] text-day-ink-2"
                   >
                     <span
                       aria-hidden="true"
                       className="mt-1.5 h-1.5 w-1.5 flex-none rounded-full bg-flare"
                     />
-                    <span>{t}</span>
+                    <span>{b}</span>
                   </li>
                 ))}
               </ul>
@@ -789,8 +631,7 @@ export function SpokaneFireDeployment() {
                 </div>
               </div>
               <p className="mt-3 text-[13px] text-day-ink-3">
-                Sample page with sample data. Your own is created before we
-                start work.
+                {t.proof.caption}
               </p>
             </div>
           </div>
@@ -800,9 +641,9 @@ export function SpokaneFireDeployment() {
       {/* ── PROCESS ─────────────────────────────────────────────── */}
       <section className="border-t border-day-line bg-day-2">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-24">
-          <p className="eyebrow text-day-ink-3">What happens next</p>
+          <p className="eyebrow text-day-ink-3">{t.process.eyebrow}</p>
           <h2 className="mt-5 text-[30px] font-semibold leading-[1.1] tracking-[-0.02em] text-day-ink md:text-[38px]">
-            Five steps, and you see all of them.
+            {t.process.title}
           </h2>
           {/* Timeline rather than a numbered list: the rail makes the
               sequence readable at a glance, which a stressed reader on a
@@ -815,20 +656,20 @@ export function SpokaneFireDeployment() {
               aria-hidden="true"
               className="absolute left-[31px] top-4 hidden h-[calc(100%-2rem)] w-px bg-day-line sm:block lg:left-0 lg:top-8 lg:h-px lg:w-full"
             />
-            {PROCESS.map((p, i) => (
-              <li key={p.n} className="relative flex gap-5 lg:flex-col lg:gap-0">
+            {t.process.steps.map((p, i) => (
+              <li key={p.title} className="relative flex gap-5 lg:flex-col lg:gap-0">
                 <span className="relative z-10 flex h-16 w-16 flex-none items-center justify-center rounded-full border-2 border-flare bg-day text-[22px] font-bold tracking-[-0.02em] text-flare-deep">
-                  {p.n}
+                  {String(i + 1).padStart(2, "0")}
                 </span>
                 <div className="lg:mt-7">
                   <h3 className="flex items-center gap-2 text-[17px] font-semibold leading-snug tracking-[-0.01em] text-day-ink">
                     <span className="text-day-ink-3">
                       <StepIcon i={i} />
                     </span>
-                    {p.h}
+                    {p.title}
                   </h3>
                   <p className="mt-2 max-w-xs text-[14px] leading-relaxed text-day-ink-2">
-                    {p.p}
+                    {p.body}
                   </p>
                 </div>
               </li>
@@ -840,10 +681,9 @@ export function SpokaneFireDeployment() {
       {/* ── AREAS ───────────────────────────────────────────────── */}
       <section className="border-t border-day-line bg-day-2">
         <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10">
-          <p className="eyebrow text-day-ink-3">We&apos;re working across</p>
+          <p className="eyebrow text-day-ink-3">{t.areas.eyebrow}</p>
           <p className="mt-5 max-w-4xl text-[19px] leading-relaxed text-day-ink-2">
-            Spokane · Spokane Valley · Airway Heights · Medical Lake · Cheney ·
-            Deer Park · Nine Mile Falls · Mead · and surrounding Spokane County
+            {t.areas.places.join(" · ")}
           </p>
         </div>
       </section>
@@ -852,10 +692,10 @@ export function SpokaneFireDeployment() {
       <section className="bg-day">
         <div className="mx-auto max-w-4xl px-6 py-20 lg:px-10 lg:py-24">
           <h2 className="text-[30px] font-semibold leading-[1.1] tracking-[-0.02em] text-day-ink md:text-[38px]">
-            Questions we&apos;re getting from Spokane.
+            {t.faq.title}
           </h2>
           <dl className="mt-12 divide-y divide-day-line border-y border-day-line">
-            {SPOKANE_FAQ.map((f) => (
+            {t.faq.faqs.map((f) => (
               <div key={f.q} className="grid gap-3 py-7 lg:grid-cols-12 lg:gap-8">
                 <dt className="text-[17px] font-semibold leading-snug text-day-ink lg:col-span-5">
                   {f.q}
@@ -884,16 +724,13 @@ export function SpokaneFireDeployment() {
             <div className="lg:col-span-7">
               <div className="flex items-center gap-2.5">
                 <span className="ona-pulse h-2 w-2 rounded-full bg-flare" />
-                <p className="eyebrow text-flare-deep">
-                  Answered in person · 24/7
-                </p>
+                <p className="eyebrow text-flare-deep">{t.closing.eyebrow}</p>
               </div>
               <h2 className="mt-6 text-[32px] font-semibold leading-[1.06] tracking-[-0.025em] text-day-ink md:text-[46px]">
-                Send us photos. We&apos;ll tell you what it takes today.
+                {t.closing.title}
               </h2>
               <p className="mt-5 max-w-xl text-[17px] leading-relaxed text-day-ink-2">
-                Free assessment, itemized written scope, and seven days to
-                change your mind after you sign.
+                {t.closing.body}
               </p>
             </div>
             <div className="flex flex-col gap-3 lg:col-span-5 lg:items-end">
@@ -902,24 +739,20 @@ export function SpokaneFireDeployment() {
                 className="inline-flex items-center justify-center gap-3 rounded-[2px] bg-flare px-9 py-5 text-[17px] font-semibold text-white shadow-[0_0_0_1px_rgba(207,63,20,0.25),0_16px_36px_-12px_rgba(207,63,20,0.5)] transition hover:bg-flare-deep sm:text-[18px]"
               >
                 <PhoneIcon className="h-4 w-4 stroke-current" />
-                Call {site.phoneDisplay}
+                {t.closing.ctaCall}
               </a>
               <a
-                href={`mailto:${site.email}?subject=Spokane%20fire%20-%20my%20property`}
+                href={MAILTO}
                 className="inline-flex items-center justify-center gap-3 rounded-[2px] border-2 border-day-ink px-9 py-5 text-[17px] font-semibold text-day-ink transition hover:bg-day-ink hover:text-day sm:text-[18px]"
               >
-                Email photographs
+                {t.closing.ctaEmail}
               </a>
             </div>
           </div>
 
           {/* RCW 18.27.100(3): registration number in advertising. */}
           <p className="mt-14 border-t border-day-line pt-7 text-[13px] leading-relaxed text-day-ink-3">
-            {site.legalName} · Washington contractor registration
-            ONARER*748K8 · IICRC-certified in fire &amp; smoke restoration ·
-            based in {site.address.locality}, {site.address.region}, working
-            statewide. Verify any contractor at lni.wa.gov before you sign.
-            Coverage and payment decisions are made by your insurer.
+            {t.closing.legalLine}
           </p>
         </div>
       </section>
@@ -932,7 +765,7 @@ export function SpokaneFireDeployment() {
                 href="/services/fire-damage"
                 className="flex items-center justify-between bg-day px-5 py-4 text-[14px] font-medium text-day-ink transition hover:bg-day-2"
               >
-                <span>← Fire &amp; smoke damage restoration</span>
+                <span>{t.links.fireService}</span>
                 <ArrowIcon className="h-3 w-3 stroke-current opacity-50" />
               </Link>
             </li>
@@ -941,7 +774,7 @@ export function SpokaneFireDeployment() {
                 href="/about"
                 className="flex items-center justify-between bg-day px-5 py-4 text-[14px] font-medium text-day-ink transition hover:bg-day-2"
               >
-                <span>How we work</span>
+                <span>{t.links.about}</span>
                 <ArrowIcon className="h-3 w-3 stroke-current opacity-50" />
               </Link>
             </li>
@@ -951,28 +784,19 @@ export function SpokaneFireDeployment() {
 
       <JsonLd
         data={[
-          breadcrumbJsonLd([
-            { name: "Home", url: "/" },
-            { name: "Services", url: "/services" },
-            { name: "Fire & Smoke", url: "/services/fire-damage" },
-            {
-              name: "Spokane, WA",
-              url: "/services/fire-damage/spokane-wa",
-            },
-          ]),
-          faqJsonLd(SPOKANE_FAQ),
+          breadcrumbJsonLd(BREADCRUMB.map((b) => ({ name: b.name, url: b.href }))),
+          faqJsonLd(t.faq.faqs),
           {
             "@context": "https://schema.org",
             "@type": "Service",
             "@id": `${site.url}/services/fire-damage/spokane-wa#service`,
-            serviceType: "Fire & Smoke Damage Restoration",
-            name: "Wildfire Fire & Smoke Damage Restoration — Spokane County, WA",
-            description:
-              "Washington-licensed fire, smoke and soot restoration and full reconstruction in Spokane County after the August 2026 wildfires. Debris removal, smoke and odor remediation, insurance-billed rebuild.",
+            serviceType: t.structuredData.serviceType,
+            name: t.structuredData.name,
+            description: t.structuredData.description,
             provider: { "@id": `${site.url}/#business` },
             areaServed: {
               "@type": "AdministrativeArea",
-              name: "Spokane County, WA",
+              name: t.structuredData.areaServed,
             },
             url: `${site.url}/services/fire-damage/spokane-wa`,
           },
@@ -993,13 +817,13 @@ export function SpokaneFireDeployment() {
             className="inline-flex flex-1 items-center justify-center gap-2 rounded-[2px] bg-flare px-4 py-3.5 text-[15px] font-semibold text-white"
           >
             <PhoneIcon className="h-4 w-4 stroke-current" />
-            Call now
+            {t.mobileBar.call}
           </a>
           <a
-            href={`mailto:${site.email}?subject=Spokane%20fire%20-%20my%20property`}
+            href={MAILTO}
             className="inline-flex flex-1 items-center justify-center rounded-[2px] border-2 border-day-ink px-4 py-3.5 text-[15px] font-semibold text-day-ink"
           >
-            Send photos
+            {t.mobileBar.photos}
           </a>
         </div>
       </div>
