@@ -1,4 +1,9 @@
 import Link from "next/link";
+import { chrome } from "@/lib/chrome";
+
+// The trail comes from each page. Its screen-reader name, and the word for
+// the first crumb (`chrome.breadcrumbs.home`, for pages to use), are in
+// content/chrome.json.
 
 export function Breadcrumbs({
   items,
@@ -10,7 +15,7 @@ export function Breadcrumbs({
   const dark = tone === "dark";
   return (
     <nav
-      aria-label="Breadcrumb"
+      aria-label={chrome.breadcrumbs.ariaLabel}
       className={`mx-auto max-w-7xl px-6 pt-8 lg:px-10 ${
         dark ? "text-ivory/72" : "text-ivory/72"
       }`}

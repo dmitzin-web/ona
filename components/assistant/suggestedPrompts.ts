@@ -1,3 +1,5 @@
+import { chrome } from "@/lib/chrome";
+
 // Per-page suggested prompts shown above the input when the chat is
 // empty. Keep each prompt under ~60 chars — they render as compact
 // pill buttons inside a narrow drawer.
@@ -7,93 +9,29 @@
 // the goal is to nudge visitors into the most common follow-up
 // questions on each page, not to cover every URL.
 
-const DEFAULT_PROMPTS: readonly string[] = [
-  "Do you serve my area?",
-  "I have a water leak — what should I do first?",
-  "Do you handle remodeling too?",
-];
+// The questions themselves are in content/chrome.json (/admin → Header,
+// footer & shared blocks → Ask Ona → Suggested questions); which page gets
+// which group is decided here. Order matters: first match wins.
+//
+// NOTE: "/services/remodeling" sits after the generic "/services" prefix,
+// so it never matches and remodeling pages get the `services` group. Kept
+// as it was (the admin hint on that field says so); move the remodeling
+// entry above "/services" to show its questions.
+const q = chrome.assistant.suggestions;
+
+const DEFAULT_PROMPTS: readonly string[] = q.other;
 
 const PROMPTS_BY_PREFIX: { match: (path: string) => boolean; prompts: string[] }[] = [
-  {
-    match: (p) => p === "/" || p === "",
-    prompts: [
-      "Do you serve my area?",
-      "How fast can a crew get to me?",
-      "Do you handle kitchen remodels?",
-    ],
-  },
-  {
-    match: (p) => p.startsWith("/services/water-damage"),
-    prompts: [
-      "How long does structural drying take?",
-      "Will insurance cover a slow leak?",
-      "What is the difference between mitigation and reconstruction?",
-    ],
-  },
-  {
-    match: (p) => p.startsWith("/services/fire-damage"),
-    prompts: [
-      "What should I do in the first hour after a fire?",
-      "Will smoke damage my electronics?",
-      "Can you handle the insurance claim with my carrier?",
-    ],
-  },
-  {
-    match: (p) => p.startsWith("/services/mold-removal"),
-    prompts: [
-      "Is the mold in my home dangerous?",
-      "Do I need air-quality testing first?",
-      "How long does mold remediation take?",
-    ],
-  },
-  {
-    match: (p) => p.startsWith("/services/storm-damage"),
-    prompts: [
-      "Can you do emergency board-up tonight?",
-      "What does the insurance process look like for storm damage?",
-      "Do you handle tree-impact damage?",
-    ],
-  },
-  {
-    match: (p) => p.startsWith("/services"),
-    prompts: [
-      "Which service do I need?",
-      "Are you available 24/7?",
-      "Are you IICRC-certified?",
-    ],
-  },
-  {
-    match: (p) => p.startsWith("/areas"),
-    prompts: [
-      "How fast can you reach this area?",
-      "Do you have crews based here?",
-      "What's the response target?",
-    ],
-  },
-  {
-    match: (p) => p.startsWith("/services/remodeling"),
-    prompts: [
-      "How long does a kitchen remodel take?",
-      "Do you handle permits and architectural drawings?",
-      "Can I upgrade finishes during an insurance claim?",
-    ],
-  },
-  {
-    match: (p) => p.startsWith("/quote"),
-    prompts: [
-      "What information do you need from me?",
-      "How quickly will you respond?",
-      "Can I send photos with the quote?",
-    ],
-  },
-  {
-    match: (p) => p.startsWith("/blog"),
-    prompts: [
-      "Summarize this article for me.",
-      "Do you have other articles like this?",
-      "I need help with this — what should I do?",
-    ],
-  },
+  { match: (p) => p === "/" || p === "", prompts: q.home },
+  { match: (p) => p.startsWith("/services/water-damage"), prompts: q.water },
+  { match: (p) => p.startsWith("/services/fire-damage"), prompts: q.fire },
+  { match: (p) => p.startsWith("/services/mold-removal"), prompts: q.mold },
+  { match: (p) => p.startsWith("/services/storm-damage"), prompts: q.storm },
+  { match: (p) => p.startsWith("/services"), prompts: q.services },
+  { match: (p) => p.startsWith("/areas"), prompts: q.areas },
+  { match: (p) => p.startsWith("/services/remodeling"), prompts: q.remodeling },
+  { match: (p) => p.startsWith("/quote"), prompts: q.quote },
+  { match: (p) => p.startsWith("/blog"), prompts: q.blog },
 ];
 
 export function suggestedPromptsForPath(pathname: string): readonly string[] {

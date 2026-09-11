@@ -1,6 +1,7 @@
 import { ImageResponse } from "next/og";
 import { findPost, posts } from "@/lib/posts";
 import { site } from "@/lib/site";
+import { chrome, fill } from "@/lib/chrome";
 
 // Per-post OG image. Next.js wires this as og:image on each /blog/[slug]
 // route, replacing the global fallback in app/opengraph-image.tsx.
@@ -24,7 +25,11 @@ export function generateStaticParams() {
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-export const alt = "Ona Restoration blog post share image";
+// Fixed words on the card: content/chrome.json (/admin → Header, footer &
+// shared blocks → Link-preview picture for blog posts).
+const t = chrome.blogShareImage;
+
+export const alt = t.alt;
 
 export default async function BlogOpengraphImage({
   params,
@@ -124,7 +129,7 @@ export default async function BlogOpengraphImage({
               padding: "10px 18px",
             }}
           >
-            {`${post.category} · ${post.readingMinutes} min read`}
+            {`${post.category} · ${fill(t.readingTime, { minutes: post.readingMinutes })}`}
           </div>
         </div>
 
@@ -155,7 +160,9 @@ export default async function BlogOpengraphImage({
             letterSpacing: 1,
           }}
         >
-          <div style={{ display: "flex" }}>{`By ${post.author.name}`}</div>
+          <div style={{ display: "flex" }}>
+            {fill(t.byline, { author: post.author.name })}
+          </div>
           <div style={{ display: "flex", fontWeight: 500, color: "#ffffff" }}>
             {`${site.url.replace(/^https?:\/\//, "")}/blog`}
           </div>

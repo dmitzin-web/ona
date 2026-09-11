@@ -25,7 +25,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowIcon } from "./icons/ServiceIcons";
 import { workItems } from "@/lib/work";
+import { chrome } from "@/lib/chrome";
 
+// The heading block is in content/chrome.json (/admin → Header, footer &
+// shared blocks → Photo gallery on the Remodeling page); the same rule
+// applies there and is repeated in the field hint.
+const t = chrome.remodelingGallery;
 
 export function RemodelingGallery() {
   return (
@@ -33,23 +38,21 @@ export function RemodelingGallery() {
       <div className="mx-auto max-w-7xl px-6 pt-24 lg:px-10">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div className="max-w-2xl">
-            <p className="eyebrow text-warm-gray">Our work</p>
+            <p className="eyebrow text-warm-gray">{t.eyebrow}</p>
             <h2 className="mt-6 text-4xl font-light leading-tight tracking-tight text-ivory sm:text-5xl">
-              Finish work, photographed as we left it.
+              {t.title}
             </h2>
             {/* Says what these are and nothing more. No project count, no
                 square footage, no timelines — see the rule at the top. */}
             <p className="mt-5 max-w-xl text-base leading-relaxed text-warm-gray">
-              Kitchens, baths and finish carpentry completed by our own
-              crews. Several of these are two views of the same room rather
-              than separate projects.
+              {t.intro}
             </p>
           </div>
           <Link
             href="/quote"
             className="eyebrow inline-flex items-center gap-2 text-ivory transition hover:gap-3"
           >
-            Start your project
+            {t.linkText}
             <ArrowIcon className="h-3 w-3 stroke-current" />
           </Link>
         </div>

@@ -12,6 +12,7 @@ import { SERVICE_PAGE } from "./pages/service-page";
 import { MOLD_SECTIONS } from "./pages/mold-sections";
 import { AREA_PAGE } from "./pages/area-page";
 import { SERVICE_AREA_PAGE } from "./pages/service-area-page";
+import { CHROME } from "./pages/chrome";
 
 // Every schema-driven section of the admin: what file it lives in, how it
 // is shaped, and what the editor is told about it. Blog posts and the
@@ -51,6 +52,7 @@ export const SECTIONS: SectionDef[] = [
   MOLD_SECTIONS,
   AREA_PAGE,
   SERVICE_AREA_PAGE,
+  CHROME,
   {
     id: "site",
     label: "Company details",

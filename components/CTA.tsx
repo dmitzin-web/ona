@@ -1,10 +1,13 @@
 import { site } from "@/lib/site";
+import { chrome } from "@/lib/chrome";
 import { EmailLink, PhoneLink } from "./contact/ContactLinks";
 import { PhoneIcon } from "./icons/ServiceIcons";
 
+// Default heading and paragraph: content/chrome.json (/admin → Header, footer
+// & shared blocks → Closing block). A page that passes its own keeps it.
 export function CTA({
-  title = "Details matter.",
-  subtitle = "We restore more than properties. We restore trust. Talk to a restoration specialist now — live, day or night.",
+  title = chrome.cta.title,
+  subtitle = chrome.cta.subtitle,
 }: {
   title?: string;
   subtitle?: string;
@@ -22,7 +25,7 @@ export function CTA({
     <section className="relative bg-brand text-white">
       <div className="mx-auto grid max-w-7xl gap-12 px-6 py-24 lg:grid-cols-12 lg:px-10">
         <div className="lg:col-span-7">
-          <p className="eyebrow text-warm-gray-deep">Get in touch</p>
+          <p className="eyebrow text-warm-gray-deep">{chrome.cta.eyebrow}</p>
           <h2 className="mt-6 text-4xl font-light leading-tight tracking-tight text-white sm:text-5xl">
             {title}
           </h2>

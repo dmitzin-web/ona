@@ -83,5 +83,5 @@ OUTPUT:
 
 export const askOnaSystemPrompt = buildSystemPrompt();
 
-// Greeting shown in the empty chat state.
-export const askOnaGreeting = `Hi — I'm Ask Ona. I can help with restoration questions, remodeling, service-area coverage, and insurance basics. What can I help with?`;
+// The greeting shown in the empty chat window is editable copy now:
+// content/chrome.json → assistant.greeting (see components/assistant/AskOna.tsx).

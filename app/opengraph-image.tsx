@@ -1,8 +1,14 @@
 import { ImageResponse } from "next/og";
 import { site } from "@/lib/site";
+import { chrome } from "@/lib/chrome";
+
+// The words on the card are in content/chrome.json (/admin → Header, footer
+// & shared blocks → Link-preview picture). The ONA lock-up is the logo and
+// stays here; the phone number is Company details.
+const t = chrome.shareImage;
 
 export const runtime = "edge";
-export const alt = `${site.name} — ${site.tagline}`;
+export const alt = t.alt;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -84,7 +90,7 @@ export default function OpengraphImage() {
               letterSpacing: 4,
             }}
           >
-            Property restoration · Vancouver, WA & Portland Metro
+            {t.eyebrow}
           </div>
           <div
             style={{
@@ -101,9 +107,14 @@ export default function OpengraphImage() {
               lineHeight: 1.0,
             }}
           >
-            <span>Precision.</span>
-            <span>Restoration.</span>
-            <span style={{ fontWeight: 500 }}>Built to Last.</span>
+            {t.headline.map((line, i) => (
+              <span
+                key={i}
+                style={i === t.headline.length - 1 ? { fontWeight: 500 } : undefined}
+              >
+                {line}
+              </span>
+            ))}
           </div>
         </div>
 
@@ -121,7 +132,7 @@ export default function OpengraphImage() {
           }}
         >
           <div>{site.phoneDisplay}</div>
-          <div style={{ fontWeight: 500, color: "#ffffff" }}>onarestore.com</div>
+          <div style={{ fontWeight: 500, color: "#ffffff" }}>{t.website}</div>
         </div>
       </div>
     ),

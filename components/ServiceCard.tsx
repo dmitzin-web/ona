@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Service } from "@/lib/services";
 import { serviceIcons, ArrowIcon } from "./icons/ServiceIcons";
+import { chrome } from "@/lib/chrome";
 
 export function ServiceCard({
   service,
@@ -52,7 +53,7 @@ export function ServiceCard({
           dark ? "text-ivory/90" : "text-ivory/90"
         }`}
       >
-        Learn more
+        {chrome.serviceCard.linkText}
         <ArrowIcon className="h-3 w-3 stroke-current transition-transform group-hover:translate-x-1" />
       </span>
     </Link>

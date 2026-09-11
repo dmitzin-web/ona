@@ -1,8 +1,14 @@
 import Link from "next/link";
 import { site } from "@/lib/site";
 import { services } from "@/lib/services";
+import { chrome, fill } from "@/lib/chrome";
 import { Logo } from "./Logo";
 import { EmailLink, PhoneLink } from "./contact/ContactLinks";
+
+// Words: content/chrome.json (/admin → Header, footer & shared blocks →
+// Footer). Service and city names come from Services and Cities; phone,
+// email and legal name from Company details; link targets stay here.
+const t = chrome.footer;
 
 export function Footer() {
   return (
@@ -13,18 +19,9 @@ export function Footer() {
               the deep-teal band, so the graphite mark would vanish. */}
           <Logo variant="horizontal" tone="dark" />
           <div className="mt-8 max-w-sm space-y-3 text-sm leading-relaxed text-white/85">
-            <p>
-              Remodeling, mold, and restoration in Vancouver, WA and the
-              Portland metro.
-            </p>
-            <p>
-              Water · Fire · Mold · Storm · Reconstruction · Kitchen &amp;
-              Bath remodels.
-            </p>
-            <p>
-              Insurance billed direct · Fixed-scope agreements · 24/7
-              emergency dispatch.
-            </p>
+            {t.about.map((line, i) => (
+              <p key={i}>{line}</p>
+            ))}
           </div>
           <div className="mt-8 space-y-1 text-sm text-white/90">
             <PhoneLink className="block text-white transition hover:text-white/70">
@@ -33,18 +30,18 @@ export function Footer() {
             <EmailLink className="block transition hover:text-white">
               {site.email}
             </EmailLink>
-            <p className="pt-3 text-white/72">
-              {site.address.locality}, {site.address.region} · Serving the
-              Portland metro
-            </p>
+            <p className="pt-3 text-white/72">{t.location}</p>
           </div>
           {/* License slots — replace `pending` strings with actual IDs as
               they are issued; do not invent or estimate.
               WA L&I: ONARER*748K8 (issued, verifiable at lni.wa.gov)
-              IICRC: certified (WRT/ASD/AMRT/FSRT). OR CCB: still pending. */}
+              IICRC: certified (WRT/ASD/AMRT/FSRT). OR CCB: still pending.
+              The words are in content/chrome.json → footer.credentials, and
+              the same rules are the hint on that field in the admin. The
+              verification link stays here, on the WA row. */}
           <dl className="mt-6 grid grid-cols-1 gap-1 text-xs text-white/70">
             <div className="flex flex-wrap gap-x-2">
-              <dt className="eyebrow text-white/66">WA L&amp;I</dt>
+              <dt className="eyebrow text-white/66">{t.credentials.waLabel}</dt>
               <dd className="font-mono">
                 <a
                   href="https://secure.lni.wa.gov/verify/"
@@ -52,23 +49,23 @@ export function Footer() {
                   target="_blank"
                   className="text-white/90 underline-offset-2 transition hover:text-white hover:underline"
                 >
-                  ONARER*748K8
+                  {t.credentials.waNumber}
                 </a>
               </dd>
             </div>
             <div className="flex flex-wrap gap-x-2">
-              <dt className="eyebrow text-white/66">OR CCB</dt>
-              <dd className="font-mono">pending</dd>
+              <dt className="eyebrow text-white/66">{t.credentials.orLabel}</dt>
+              <dd className="font-mono">{t.credentials.orStatus}</dd>
             </div>
             <div className="flex flex-wrap gap-x-2">
-              <dt className="eyebrow text-white/66">IICRC</dt>
-              <dd className="font-mono">Certified</dd>
+              <dt className="eyebrow text-white/66">{t.credentials.iicrcLabel}</dt>
+              <dd className="font-mono">{t.credentials.iicrcStatus}</dd>
             </div>
           </dl>
         </div>
 
         <div className="md:col-span-3">
-          <p className="eyebrow text-white/68">Services</p>
+          <p className="eyebrow text-white/68">{t.servicesTitle}</p>
           <ul className="mt-5 space-y-3 text-sm">
             {services.map((s) => (
               <li key={s.slug}>
@@ -84,7 +81,7 @@ export function Footer() {
         </div>
 
         <div className="md:col-span-3">
-          <p className="eyebrow text-white/68">Service Area</p>
+          <p className="eyebrow text-white/68">{t.areaTitle}</p>
           <ul className="mt-5 grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
             {site.serviceArea.map((a) => (
               <li key={a.slug}>
@@ -100,14 +97,14 @@ export function Footer() {
         </div>
 
         <div className="md:col-span-2">
-          <p className="eyebrow text-white/68">Company</p>
+          <p className="eyebrow text-white/68">{t.companyTitle}</p>
           <ul className="mt-5 space-y-3 text-sm">
             <li>
               <Link
                 href="/about"
                 className="text-white/90 transition hover:text-white"
               >
-                About
+                {t.aboutLink}
               </Link>
             </li>
             <li>
@@ -115,7 +112,7 @@ export function Footer() {
                 href="/contact"
                 className="text-white/90 transition hover:text-white"
               >
-                Contact
+                {t.contactLink}
               </Link>
             </li>
           </ul>
@@ -131,7 +128,7 @@ export function Footer() {
           dense link content from the default visual while preserving SEO. */}
       <details className="group mx-auto max-w-7xl px-6 lg:px-10">
         <summary className="flex cursor-pointer list-none items-center justify-between py-7 [&::-webkit-details-marker]:hidden">
-          <span className="eyebrow text-white/68">Service by city</span>
+          <span className="eyebrow text-white/68">{t.byCityTitle}</span>
           <span
             aria-hidden="true"
             className="inline-flex h-6 w-6 items-center justify-center text-xl font-light leading-none text-white/72 transition-transform duration-200 group-open:rotate-45"
@@ -140,7 +137,7 @@ export function Footer() {
           </span>
         </summary>
         <nav
-          aria-label="Service by city"
+          aria-label={t.byCityTitle}
           className="pb-12 pt-2"
         >
           <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-5">
@@ -173,23 +170,21 @@ export function Footer() {
       <div className="hairline-dark" />
 
       <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-4 px-6 py-7 text-xs text-white/68 lg:flex-row lg:items-center lg:px-10">
-        <p>
-          © {new Date().getFullYear()} {site.legalName} · All rights reserved
-        </p>
+        <p>{fill(t.copyright, { year: new Date().getFullYear() })}</p>
         <ul className="flex flex-wrap items-center gap-x-6 gap-y-2">
           <li>
             <Link href="/privacy" className="transition hover:text-white">
-              Privacy
+              {t.privacyLink}
             </Link>
           </li>
           <li>
             <Link href="/terms" className="transition hover:text-white">
-              Terms
+              {t.termsLink}
             </Link>
           </li>
           <li>
             <Link href="/quote" className="transition hover:text-white">
-              Get a free quote
+              {t.quoteLink}
             </Link>
           </li>
         </ul>

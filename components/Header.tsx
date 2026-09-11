@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useRef } from "react";
 import { site } from "@/lib/site";
+import { chrome } from "@/lib/chrome";
 import { Logo } from "./Logo";
 
 // ─────────────────────────────────────────────────────────────
@@ -28,6 +29,10 @@ import { Logo } from "./Logo";
 
 type NavItem = { href: string; label: string; mobileOnly?: boolean };
 
+// The words live in content/chrome.json (/admin → Header, footer & shared
+// blocks → Menu bar); where each item goes is route structure and stays here.
+const t = chrome.header;
+
 // Restoration leads: it's the line people search for mid-emergency and the
 // one that drives phone calls. Remodeling is a months-long consideration
 // purchase and reads fine further down the bar.
@@ -36,12 +41,12 @@ type NavItem = { href: string; label: string; mobileOnly?: boolean };
 // read larger; Contact is one tap away in the drawer, in the footer, and
 // as the two buttons sitting immediately to the right of this list.
 const nav: NavItem[] = [
-  { href: "/services", label: "Restoration" },
-  { href: "/services/mold-removal", label: "Mold" },
-  { href: "/services/remodeling", label: "Remodeling" },
-  { href: "/about", label: "How we work" },
-  { href: "/blog", label: "Notes" },
-  { href: "/contact", label: "Contact", mobileOnly: true },
+  { href: "/services", label: t.nav.restoration },
+  { href: "/services/mold-removal", label: t.nav.mold },
+  { href: "/services/remodeling", label: t.nav.remodeling },
+  { href: "/about", label: t.nav.about },
+  { href: "/blog", label: t.nav.blog },
+  { href: "/contact", label: t.nav.contact, mobileOnly: true },
 ];
 // "Ask AI" used to be the seventh item here. It is now only the floating
 // button in components/assistant/AskOna.tsx. Primary navigation is where
@@ -49,7 +54,7 @@ const nav: NavItem[] = [
 // beside Call and Send photos is a way out of that decision, not into it.
 // The `askona:open` event and everything downstream are unchanged.
 
-const PHOTO_SUBJECT = encodeURIComponent("Photos of damage");
+const PHOTO_SUBJECT = encodeURIComponent(t.sendPhotosSubject);
 
 export function Header() {
   const pathname = usePathname() ?? "/";
@@ -118,7 +123,7 @@ export function Header() {
             Active state moves from opacity to weight plus a rule. An
             opacity difference between 85% and 100% is not a state a
             reader can see; a underline is. */}
-        <nav aria-label="Primary" className="hidden lg:block">
+        <nav aria-label={t.navAriaLabel} className="hidden lg:block">
           <ul className="flex items-center gap-8 text-[15px] font-[450] text-ivory">
             {nav.map((item, i) => {
               if (item.mobileOnly) return null;
@@ -155,14 +160,14 @@ export function Header() {
               button moved to coral with the teal palette.) */}
           <a
             href={`tel:${site.phone}`}
-            aria-label={`Call ${site.phoneDisplay}`}
+            aria-label={t.callAriaLabel}
             className="inline-flex items-center gap-2 rounded-[2px] bg-coral px-4 py-2.5 text-[14px] font-semibold text-white transition hover:brightness-90 md:px-5"
           >
             <span
               aria-hidden="true"
               className="ona-pulse h-1.5 w-1.5 flex-none rounded-full bg-white/90"
             />
-            <span className="md:hidden">Call</span>
+            <span className="md:hidden">{t.callShort}</span>
             <span className="hidden md:inline">{site.phoneDisplay}</span>
           </a>
           {/* Two customer states, two second actions. Someone whose
@@ -179,25 +184,25 @@ export function Header() {
               href="/start-project"
               className="hidden rounded-[2px] border border-ivory px-5 py-2.5 text-[14px] font-medium text-ivory transition hover:bg-brand hover:text-charcoal sm:inline-flex"
             >
-              Start a project
+              {t.startProject}
             </Link>
           ) : (
             <a
               href={`mailto:${site.email}?subject=${PHOTO_SUBJECT}`}
               className="hidden rounded-[2px] border border-ivory px-5 py-2.5 text-[14px] font-medium text-ivory transition hover:bg-brand hover:text-charcoal sm:inline-flex"
             >
-              Send photos
+              {t.sendPhotos}
             </a>
           )}
 
           {/* Mobile burger */}
           <details ref={mobileMenuRef} className="group relative lg:hidden">
             <summary
-              aria-label="Toggle menu"
+              aria-label={t.menuButton}
               aria-controls="mobile-nav"
               className="inline-flex h-10 w-10 cursor-pointer list-none items-center justify-center rounded-full border border-line text-ivory transition hover:border-ivory/45 [&::-webkit-details-marker]:hidden"
             >
-              <span className="sr-only">Menu</span>
+              <span className="sr-only">{t.menuButtonText}</span>
               <span aria-hidden="true" className="relative block h-3 w-5">
                 <span className="absolute left-0 top-0 block h-px w-5 bg-current transition-transform duration-200 group-open:translate-y-[6px] group-open:rotate-45" />
                 <span className="absolute left-0 top-[6px] block h-px w-5 bg-current transition-opacity duration-200 group-open:opacity-0" />
@@ -230,7 +235,7 @@ export function Header() {
                      the strip also shrinks it back. */}
             <nav
               id="mobile-nav"
-              aria-label="Mobile primary"
+              aria-label={t.mobileNavAriaLabel}
               className="fixed inset-x-0 top-[var(--chrome-h)] z-40 hidden min-h-[calc(100dvh-var(--chrome-h))] overflow-y-auto border-t border-line bg-charcoal group-open:block"
             >
               <ul className="mx-auto max-w-7xl px-6 py-2">
@@ -263,7 +268,7 @@ export function Header() {
                     onClick={closeMobileMenu}
                     className="inline-flex w-full items-center justify-center rounded-[2px] bg-coral px-4 py-3 text-[14px] font-semibold text-white"
                   >
-                    Call {site.phoneDisplay}
+                    {t.menuCall}
                   </a>
                   {/* Same split as the bar above. */}
                   {isRemodel ? (
@@ -272,7 +277,7 @@ export function Header() {
                       onClick={closeMobileMenu}
                       className="inline-flex w-full items-center justify-center rounded-[2px] border border-ivory px-4 py-3 text-[13px] font-medium text-ivory"
                     >
-                      Start a project
+                      {t.startProject}
                     </Link>
                   ) : (
                     <a
@@ -280,7 +285,7 @@ export function Header() {
                       onClick={closeMobileMenu}
                       className="inline-flex w-full items-center justify-center rounded-[2px] border border-ivory px-4 py-3 text-[13px] font-medium text-ivory"
                     >
-                      Send photos
+                      {t.sendPhotos}
                     </a>
                   )}
                 </li>
