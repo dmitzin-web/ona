@@ -6,6 +6,8 @@ import { restorationServices } from "@/lib/services";
 import { site } from "@/lib/site";
 import { buildMetadata } from "@/lib/seo";
 import { faqJsonLd } from "@/lib/jsonld";
+import homeContent from "@/content/pages/home.json";
+import { fillPlaceholdersDeep } from "@/lib/placeholders";
 
 // ─────────────────────────────────────────────────────────────
 // Ona Restoration — Homepage (Project File concept, v3)
@@ -44,38 +46,18 @@ const photos = [
   { src: "/photos/projects/p9.avif", alt: "Project — finished space" },
 ];
 
-const homeFaqs = [
-  {
-    q: "How fast can you respond in Portland or Vancouver, WA?",
-    a: "We answer the phone in person. Most of Clark County is within 25 minutes of our base in Vancouver, WA. For overnight emergencies, we triage on the call and dispatch as soon as we're walking out the door.",
-  },
-  {
-    q: "Do you work directly with insurance carriers?",
-    a: "Yes. For restoration work we document the loss (photos, moisture readings, Xactimate-formatted scope) and bill the carrier directly. You pay your deductible — that's it.",
-  },
-  {
-    q: "What services do you offer?",
-    a: "Three lines of work. Remodeling: kitchen, bathroom, and combined kitchen + bath. Mold: inspection, testing, containment and IICRC S520 remediation. Restoration: water, fire and smoke, storm and reconstruction. One small team handles all three.",
-  },
-  {
-    q: "Are you licensed?",
-    a: "Ona Restoration & Remodeling LLC holds Washington contractor registration ONARER*748K8, verifiable at secure.lni.wa.gov/verify. Our Oregon CCB registration is pending. Our technicians are IICRC-certified in water damage restoration, applied structural drying, microbial remediation, and fire and smoke restoration.",
-  },
-];
+// Every piece of copy on this page lives in content/pages/home.json and is
+// edited through the admin (/admin → Homepage). {phone}, {name} … are filled
+// from Company details. The sample project inside the "live project page"
+// demo below is an illustration of the product, not copy, and stays here.
+const t = fillPlaceholdersDeep(homeContent);
+const photo = (name: string) => photos[Number(name.slice(1)) - 1];
 
 export const metadata: Metadata = buildMetadata({
-  title: `${site.name} — Restoration & Remodeling in Vancouver, WA`,
-  description:
-    "Remodeling, mold remediation, and restoration in Vancouver, WA — without the chaos. Every project comes with a live page: photos, daily updates, and what's next. One team from emergency cleanup to final paint.",
+  title: t.seo.title,
+  description: t.seo.description,
   path: "/",
-  keywords: [
-    "restoration Vancouver WA",
-    "remodeling Vancouver WA",
-    "water damage restoration Portland metro",
-    "kitchen remodel Vancouver WA",
-    "bathroom remodel Vancouver WA",
-    "Clark County restoration",
-  ],
+  keywords: t.seo.keywords,
 });
 
 export default function HomePage() {
@@ -98,18 +80,14 @@ export default function HomePage() {
                   H1 gets to start at the top of the hero, and the site
                   is back to one animation. */}
               <h1 className="text-[40px] font-semibold leading-[1.04] tracking-[-0.025em] text-ivory md:text-[64px]">
-                Water. Fire. Mold.{" "}
+                {t.hero.titleLead}{" "}
                 <span className="text-ivory/85">
-                  One call, on-site in an hour.
+                  {t.hero.titleRest}
                 </span>
               </h1>
 
               <p className="mt-8 max-w-xl text-[17px] leading-relaxed text-ivory/85 md:text-[18px]">
-                IICRC-certified restoration across the Portland metro. We
-                stabilize the damage, document it for your insurer, and
-                rebuild what was lost — on a live project page you can
-                share with your family or adjuster. Also remodeling, from
-                the same crew.
+                {t.hero.body}
               </p>
 
               <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -117,13 +95,13 @@ export default function HomePage() {
                   href={`tel:${site.phone}`}
                   className="inline-flex items-center justify-center rounded-[2px] bg-coral px-7 py-3.5 text-[14px] font-medium text-white transition hover:bg-coral-deep"
                 >
-                  Call {site.phoneDisplay}
+                  {t.hero.ctaCall}
                 </a>
                 <Link
                   href="/start-project"
                   className="inline-flex items-center justify-center rounded-[2px] border border-ivory px-7 py-3.5 text-[14px] font-medium text-ivory transition hover:bg-brand hover:text-charcoal"
                 >
-                  Start a project
+                  {t.hero.ctaSecondary}
                 </Link>
               </div>
             </div>
@@ -135,7 +113,7 @@ export default function HomePage() {
             <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-ivory/10 shadow-[0_1px_0_rgba(0,0,0,0.02),0_30px_70px_-30px_rgba(0,0,0,0.25)]">
               <Image
                 src={photos[0].src}
-                alt="Recent Ona project — interior detail"
+                alt={t.hero.imageAlt}
                 fill
                 priority
                 sizes="(max-width: 768px) 100vw, 50vw"
@@ -145,15 +123,15 @@ export default function HomePage() {
                 <div className="flex items-center gap-2">
                   <span className="ona-pulse h-1.5 w-1.5 rounded-full bg-gold" />
                   <span className="text-[10px] uppercase tracking-[0.22em] text-ivory/80">
-                    Your project · live page
+                    {t.hero.overlayEyebrow}
                   </span>
                 </div>
                 <div className="mt-2 flex items-baseline justify-between gap-3">
                   <div className="text-[14px] font-medium">
-                    On schedule · Day 7 of 14
+                    {t.hero.overlayStatus}
                   </div>
                   <div className="text-[12px] text-ivory/80">
-                    Scope approved
+                    {t.hero.overlayNote}
                   </div>
                 </div>
                 <div className="mt-2 h-1 w-full overflow-hidden rounded-[2px] bg-charcoal/15">
@@ -176,16 +154,13 @@ export default function HomePage() {
       <section className="border-t border-ivory/10 bg-charcoal-soft">
         <div className="mx-auto max-w-7xl px-6 py-24 md:py-32 lg:px-10">
           <p className="eyebrow text-ivory/85">
-            What it looks like to be our customer
+            {t.projectFile.eyebrow}
           </p>
           <h2 className="mt-6 max-w-3xl text-[32px] font-semibold leading-[1.1] tracking-[-0.02em] text-ivory md:text-[44px]">
-            On day one, you get a link to your project page.
+            {t.projectFile.title}
           </h2>
           <p className="mt-6 max-w-2xl text-[17px] leading-relaxed text-ivory/85 md:text-[18px]">
-            Every photo we take. Every receipt. Every adjuster note.
-            Every change to the scope. Updated daily until you sign off.
-            Share it with your insurance company, your family, your
-            attorney — whoever needs to see it.
+            {t.projectFile.body}
           </p>
 
           {/* Desktop mockup — stronger shadow + hover affordance
@@ -628,9 +603,9 @@ export default function HomePage() {
           craftsmanship. */}
       <section className="border-t border-ivory/10 bg-charcoal">
         <div className="mx-auto max-w-7xl px-6 py-24 md:py-32 lg:px-10">
-          <p className="eyebrow text-ivory/85">What we do</p>
+          <p className="eyebrow text-ivory/85">{t.whatWeDo.eyebrow}</p>
           <h2 className="mt-6 max-w-3xl text-[32px] font-semibold leading-[1.1] tracking-[-0.02em] text-ivory md:text-[44px]">
-            Three lines of work. One small crew behind all of them.
+            {t.whatWeDo.title}
           </h2>
 
           <div className="mt-16 grid gap-12 md:grid-cols-3 md:gap-10">
@@ -642,16 +617,14 @@ export default function HomePage() {
               <div className="flex items-center justify-between gap-3">
                 <div className="flex items-center gap-3">
                   <span className="ona-pulse h-2 w-2 rounded-full bg-gold" />
-                  <p className="eyebrow text-ivory/85">Restoration</p>
+                  <p className="eyebrow text-ivory/85">{t.whatWeDo.restoration.label}</p>
                 </div>
                 <span className="text-[10px] uppercase tracking-[0.18em] text-gold">
-                  24/7 · Available now
+                  {t.whatWeDo.restoration.badge}
                 </span>
               </div>
               <p className="mt-4 text-[18px] leading-relaxed text-ivory">
-                Something happened — water, fire, smoke, storm. We
-                stabilize the damage, document the scope for your
-                insurer, and rebuild what was lost.
+                {t.whatWeDo.restoration.body}
               </p>
 
               <ul className="mt-8 grid gap-3 text-[15px] text-ivory/85">
@@ -669,28 +642,14 @@ export default function HomePage() {
               </ul>
 
               <div className="mt-10 rounded-xl border border-ivory/10 bg-charcoal-soft p-5">
-                <p className="eyebrow text-ivory/85">When you call</p>
+                <p className="eyebrow text-ivory/85">{t.whatWeDo.restoration.stepsTitle}</p>
                 <ol className="mt-3 space-y-2 text-[13px] text-ivory/85">
-                  <li className="flex gap-3">
-                    <span className="font-medium text-ivory">1.</span>
-                    <span>Answered in person — triage on the call.</span>
-                  </li>
-                  <li className="flex gap-3">
-                    <span className="font-medium text-ivory">2.</span>
-                    <span>On-site within 25 min for most of Clark Co.</span>
-                  </li>
-                  <li className="flex gap-3">
-                    <span className="font-medium text-ivory">3.</span>
-                    <span>Walk-through, moisture readings, photos.</span>
-                  </li>
-                  <li className="flex gap-3">
-                    <span className="font-medium text-ivory">4.</span>
-                    <span>Documented scope sent to your insurer same day.</span>
-                  </li>
-                  <li className="flex gap-3">
-                    <span className="font-medium text-ivory">5.</span>
-                    <span>Mitigation starts the moment you sign off.</span>
-                  </li>
+                  {t.whatWeDo.restoration.steps.map((step, i) => (
+                    <li key={step} className="flex gap-3">
+                      <span className="font-medium text-ivory">{i + 1}.</span>
+                      <span>{step}</span>
+                    </li>
+                  ))}
                 </ol>
               </div>
             </div>
@@ -701,25 +660,18 @@ export default function HomePage() {
               <div className="flex items-center justify-between gap-3">
                 <div className="flex items-center gap-3">
                   <span className="h-2 w-2 rounded-full bg-gold" />
-                  <p className="eyebrow text-ivory/85">Mold</p>
+                  <p className="eyebrow text-ivory/85">{t.whatWeDo.mold.label}</p>
                 </div>
                 <span className="text-[10px] uppercase tracking-[0.18em] text-ivory/85">
-                  By appointment
+                  {t.whatWeDo.mold.badge}
                 </span>
               </div>
               <p className="mt-4 text-[18px] leading-relaxed text-ivory">
-                You can see it, smell it, or a test flagged it. We find
-                the moisture driving it, contain the area, and remediate
-                to the IICRC S520 standard — then verify before we close.
+                {t.whatWeDo.mold.body}
               </p>
 
               <ul className="mt-8 grid gap-3 text-[15px] text-ivory/85">
-                {[
-                  "Inspection & testing",
-                  "Containment & HEPA",
-                  "Remediation (IICRC S520)",
-                  "Clearance verification",
-                ].map((label) => (
+                {t.whatWeDo.mold.links.map((label) => (
                   <li key={label} className="border-t border-ivory/10 pt-3">
                     <Link
                       href="/services/mold-removal"
@@ -734,29 +686,15 @@ export default function HomePage() {
 
               <div className="mt-10 rounded-xl border border-ivory/10 bg-charcoal-soft p-5">
                 <p className="eyebrow text-ivory/85">
-                  How we remediate · per IICRC S520
+                  {t.whatWeDo.mold.stepsTitle}
                 </p>
                 <ol className="mt-3 space-y-2 text-[13px] text-ivory/85">
-                  <li className="flex gap-3">
-                    <span className="font-medium text-ivory">1.</span>
-                    <span>Inspect and find the moisture source.</span>
-                  </li>
-                  <li className="flex gap-3">
-                    <span className="font-medium text-ivory">2.</span>
-                    <span>Seal containment, set HEPA negative air.</span>
-                  </li>
-                  <li className="flex gap-3">
-                    <span className="font-medium text-ivory">3.</span>
-                    <span>Remove affected materials, treat what stays.</span>
-                  </li>
-                  <li className="flex gap-3">
-                    <span className="font-medium text-ivory">4.</span>
-                    <span>Fix the water source so it doesn&apos;t return.</span>
-                  </li>
-                  <li className="flex gap-3">
-                    <span className="font-medium text-ivory">5.</span>
-                    <span>Clearance verification before any rebuild.</span>
-                  </li>
+                  {t.whatWeDo.mold.steps.map((step, i) => (
+                    <li key={step} className="flex gap-3">
+                      <span className="font-medium text-ivory">{i + 1}.</span>
+                      <span>{step}</span>
+                    </li>
+                  ))}
                 </ol>
               </div>
             </div>
@@ -765,80 +703,39 @@ export default function HomePage() {
               <div className="flex items-center justify-between gap-3">
                 <div className="flex items-center gap-3">
                   <span className="h-2 w-2 rounded-full bg-gold-deep" />
-                  <p className="eyebrow text-ivory/85">Remodeling</p>
+                  <p className="eyebrow text-ivory/85">{t.whatWeDo.remodel.label}</p>
                 </div>
                 <span className="text-[10px] uppercase tracking-[0.18em] text-ivory/85">
-                  Booking · Fall
+                  {t.whatWeDo.remodel.badge}
                 </span>
               </div>
               <p className="mt-4 text-[18px] leading-relaxed text-ivory">
-                You&apos;ve been planning a change — a kitchen, a bath, a
-                layout that finally works. We design the scope with you,
-                set an honest timeline, and build it.
+                {t.whatWeDo.remodel.body}
               </p>
 
               <ul className="mt-8 grid gap-3 text-[15px] text-ivory/85">
-                <li className="border-t border-ivory/10 pt-3">
-                  <Link
-                    href="/services/remodeling"
-                    className="flex items-center justify-between transition hover:text-ivory"
-                  >
-                    <span>Kitchen remodel</span>
-                    <span className="text-warm-gray-soft">→</span>
-                  </Link>
-                </li>
-                <li className="border-t border-ivory/10 pt-3">
-                  <Link
-                    href="/services/remodeling"
-                    className="flex items-center justify-between transition hover:text-ivory"
-                  >
-                    <span>Bathroom remodel</span>
-                    <span className="text-warm-gray-soft">→</span>
-                  </Link>
-                </li>
-                <li className="border-t border-ivory/10 pt-3">
-                  <Link
-                    href="/services/remodeling"
-                    className="flex items-center justify-between transition hover:text-ivory"
-                  >
-                    <span>Combined kitchen + bath</span>
-                    <span className="text-warm-gray-soft">→</span>
-                  </Link>
-                </li>
-                <li className="border-t border-ivory/10 pt-3">
-                  <Link
-                    href="/services"
-                    className="flex items-center justify-between transition hover:text-ivory"
-                  >
-                    <span>Insurance-claim rebuilds</span>
-                    <span className="text-warm-gray-soft">→</span>
-                  </Link>
-                </li>
+                {t.whatWeDo.remodel.links.map((l) => (
+                  <li key={l.label} className="border-t border-ivory/10 pt-3">
+                    <Link
+                      href={l.href}
+                      className="flex items-center justify-between transition hover:text-ivory"
+                    >
+                      <span>{l.label}</span>
+                      <span className="text-warm-gray-soft">→</span>
+                    </Link>
+                  </li>
+                ))}
               </ul>
 
               <div className="mt-10 rounded-xl border border-ivory/10 bg-charcoal-soft p-5">
-                <p className="eyebrow text-ivory/85">How we build</p>
+                <p className="eyebrow text-ivory/85">{t.whatWeDo.remodel.stepsTitle}</p>
                 <ol className="mt-3 space-y-2 text-[13px] text-ivory/85">
-                  <li className="flex gap-3">
-                    <span className="font-medium text-ivory">1.</span>
-                    <span>Design &amp; scope — measured, materials chosen with you.</span>
-                  </li>
-                  <li className="flex gap-3">
-                    <span className="font-medium text-ivory">2.</span>
-                    <span>Fixed-price agreement — line-itemed, no surprises.</span>
-                  </li>
-                  <li className="flex gap-3">
-                    <span className="font-medium text-ivory">3.</span>
-                    <span>Demo &amp; rough-in — framing, plumbing, electrical.</span>
-                  </li>
-                  <li className="flex gap-3">
-                    <span className="font-medium text-ivory">4.</span>
-                    <span>Finishes — cabinetry, tile, counters, paint.</span>
-                  </li>
-                  <li className="flex gap-3">
-                    <span className="font-medium text-ivory">5.</span>
-                    <span>Walkthrough — punch list, reveal, photos on your page.</span>
-                  </li>
+                  {t.whatWeDo.remodel.steps.map((step, i) => (
+                    <li key={step} className="flex gap-3">
+                      <span className="font-medium text-ivory">{i + 1}.</span>
+                      <span>{step}</span>
+                    </li>
+                  ))}
                 </ol>
               </div>
             </div>
@@ -871,25 +768,20 @@ export default function HomePage() {
       <section className="border-t border-line bg-charcoal-soft">
         <div className="mx-auto max-w-7xl px-6 py-16 md:py-20 lg:px-10">
           <div className="max-w-2xl">
-            <p className="eyebrow text-warm-gray">Restoration in data</p>
+            <p className="eyebrow text-warm-gray">{t.data.eyebrow}</p>
             <h2 className="mt-5 text-[26px] font-semibold leading-[1.15] tracking-[-0.015em] text-ivory md:text-[32px]">
-              The same numbers go to you and to your adjuster.
+              {t.data.title}
             </h2>
           </div>
 
           <dl className="mt-12 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              { v: "14% → 7%", k: "Moisture documented daily" },
-              { v: "121 hours", k: "Equipment runtime logged" },
-              { v: "142", k: "Timestamped photos" },
-              { v: "Scope approved", k: "Documentation shared with carrier" },
-            ].map((s) => (
-              <div key={s.k} className="border-t border-line pt-5">
+            {t.data.stats.map((s) => (
+              <div key={s.label} className="border-t border-line pt-5">
                 <dd className="font-mono text-[26px] leading-none tracking-tight text-ivory tabular-nums md:text-[30px]">
-                  {s.v}
+                  {s.value}
                 </dd>
                 <dt className="mt-3 text-[14px] leading-snug text-warm-gray">
-                  {s.k}
+                  {s.label}
                 </dt>
               </div>
             ))}
@@ -902,24 +794,7 @@ export default function HomePage() {
       <section className="border-t border-ivory/10 bg-charcoal-soft">
         <div className="mx-auto max-w-7xl px-6 py-10 lg:px-10">
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              {
-                title: "Phone answered in person",
-                hint: "Day or night. No call centers.",
-              },
-              {
-                title: "Most of Clark County in 25 min",
-                hint: "Vancouver and the Portland metro.",
-              },
-              {
-                title: "Insurance billed direct",
-                hint: "You pay your deductible. That's it.",
-              },
-              {
-                title: "One team — damage to rebuild",
-                hint: "No handoffs to subcontractors.",
-              },
-            ].map((item) => (
+            {t.reassurance.map((item) => (
               <div key={item.title} className="flex items-start gap-3">
                 <span
                   aria-hidden
@@ -945,24 +820,19 @@ export default function HomePage() {
           Restoration: assertion list. Remodel: phase cards. */}
       <section className="border-t border-ivory/10 bg-charcoal">
         <div className="mx-auto max-w-7xl px-6 py-24 md:py-32 lg:px-10">
-          <p className="eyebrow text-ivory/85">How we charge</p>
+          <p className="eyebrow text-ivory/85">{t.pricing.eyebrow}</p>
           <h2 className="mt-6 max-w-3xl text-[32px] font-semibold leading-[1.1] tracking-[-0.02em] text-ivory md:text-[44px]">
-            No surprise change orders. Ever.
+            {t.pricing.title}
           </h2>
 
           <div className="mt-14 grid gap-12 md:grid-cols-2 md:gap-16">
             <div>
-              <p className="eyebrow text-ivory/85">Restoration</p>
+              <p className="eyebrow text-ivory/85">{t.pricing.restoration.label}</p>
               <p className="mt-4 text-[17px] leading-relaxed text-ivory">
-                Billed directly to your insurer at standard Xactimate
-                rates. You pay your deductible — that&apos;s it.
+                {t.pricing.restoration.body}
               </p>
               <ul className="mt-6 space-y-3 text-[14px] text-ivory/85">
-                {[
-                  "No upfront deposit",
-                  "No fees for the documentation work",
-                  "If your claim is denied, we tell you before we start work",
-                ].map((line) => (
+                {t.pricing.restoration.bullets.map((line) => (
                   <li
                     key={line}
                     className="flex items-start gap-3 border-t border-ivory/10 pt-3"
@@ -980,11 +850,9 @@ export default function HomePage() {
             </div>
 
             <div className="md:border-l md:border-ivory/10 md:pl-16">
-              <p className="eyebrow text-ivory/85">Remodel</p>
+              <p className="eyebrow text-ivory/85">{t.pricing.remodel.label}</p>
               <p className="mt-4 text-[17px] leading-relaxed text-ivory">
-                Fixed price in three phases. You sign each phase
-                separately, so you always know what the next payment
-                covers before you commit.
+                {t.pricing.remodel.body}
               </p>
 
               {/* One timeline, not two widgets. This was a bordered
@@ -995,23 +863,7 @@ export default function HomePage() {
                   one large software moment. A remodel is paid in three
                   parts; that is a line, not an interface. */}
               <ol className="mt-10 grid gap-x-8 gap-y-8 sm:grid-cols-3">
-                {[
-                  {
-                    name: "Design",
-                    pct: "30%",
-                    body: "Scope and materials list signed before any demo.",
-                  },
-                  {
-                    name: "Build",
-                    pct: "40%",
-                    body: "Rough-in and structural signed before finishes.",
-                  },
-                  {
-                    name: "Finish",
-                    pct: "30%",
-                    body: "Final punch list signed at walkthrough.",
-                  },
-                ].map((phase) => (
+                {t.pricing.remodel.phases.map((phase) => (
                   <li key={phase.name} className="border-t border-line pt-5">
                     <div className="flex items-baseline justify-between gap-3">
                       <span className="eyebrow text-warm-gray">
@@ -1028,8 +880,7 @@ export default function HomePage() {
                 ))}
               </ol>
               <p className="mt-5 text-[13px] text-warm-gray">
-                Each signature unlocks the next phase. No work moves
-                forward without your sign-off.
+                {t.pricing.remodel.note}
               </p>
             </div>
           </div>
@@ -1057,36 +908,19 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl px-6 pt-24 md:pt-32 lg:px-10">
           <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <p className="eyebrow text-warm-gray">Our work</p>
+              <p className="eyebrow text-warm-gray">{t.gallery.eyebrow}</p>
               <h2 className="mt-6 max-w-3xl text-[32px] font-semibold leading-[1.1] tracking-[-0.02em] text-ivory md:text-[44px]">
-                Built carefully. Documented clearly.
+                {t.gallery.title}
               </h2>
             </div>
             <p className="max-w-sm text-[14px] text-warm-gray">
-              Finish work by our own crews. More added as projects
-              complete.
+              {t.gallery.intro}
             </p>
           </div>
         </div>
 
         <div className="mt-14 grid gap-px bg-line sm:grid-cols-2 lg:grid-cols-3">
-          {[
-            {
-              photo: photos[7],
-              kind: "Kitchen",
-              meta: "Waterfall-edge island · apron-front sink · chimney hood",
-            },
-            {
-              photo: photos[1],
-              kind: "Primary bath",
-              meta: "Freestanding tub · glass shower enclosure · large-format floor tile",
-            },
-            {
-              photo: photos[5],
-              kind: "Guest bath",
-              meta: "Textured wallcovering · shaker vanity · oval mirror",
-            },
-          ].map((card, i) => (
+          {t.gallery.cards.map((c, i) => ({ ...c, photo: photo(c.photo) })).map((card, i) => (
             <article key={i} className="bg-charcoal">
               <div className="relative aspect-[3/2] bg-charcoal-soft">
                 <Image
@@ -1112,7 +946,7 @@ export default function HomePage() {
             href="/services/remodeling"
             className="inline-flex items-center gap-2 text-[14px] text-ivory underline-offset-4 hover:underline"
           >
-            See how we handle remodel projects
+            {t.gallery.linkText}
             <span aria-hidden>→</span>
           </Link>
         </div>
@@ -1126,8 +960,8 @@ export default function HomePage() {
       <section className="border-t border-ivory/10 bg-charcoal">
         <div className="relative aspect-[21/9] w-full overflow-hidden sm:aspect-[21/8]">
           <Image
-            src={photos[6].src}
-            alt="Recent finished space"
+            src={photo(t.band.photo).src}
+            alt={t.band.imageAlt}
             fill
             sizes="100vw"
             className="object-cover"
@@ -1143,53 +977,27 @@ export default function HomePage() {
           <div className="grid gap-12 md:grid-cols-[1fr_1.4fr] md:gap-20">
             <div>
               <p className="eyebrow text-ivory/85">
-                Who you&apos;re working with
+                {t.team.eyebrow}
               </p>
               <h2 className="mt-6 text-[32px] font-semibold leading-[1.1] tracking-[-0.02em] text-ivory md:text-[40px]">
-                A small operation, on purpose.
+                {t.team.title}
               </h2>
               <p className="mt-6 text-[15px] leading-relaxed text-ivory/85">
-                Owner-operated. No project managers passing your job
-                between subcontractors. No call centers.
+                {t.team.lead}
               </p>
             </div>
 
             <div className="text-[17px] leading-relaxed text-ivory">
               <p>
-                When you call the number on this page, you reach the same
-                person who will walk through your home, write the scope,
-                and stand on the job site every day. Smaller crews mean
-                tighter communication and more consistent work from
-                start to finish.
+                {t.team.body}
               </p>
 
               <div className="mt-8 rounded-xl border border-ivory/10 bg-charcoal p-5">
                 <p className="eyebrow text-ivory/85">
-                  What happens when you call
+                  {t.team.stepsTitle}
                 </p>
                 <ol className="mt-4 grid gap-3 sm:grid-cols-2">
-                  {[
-                    {
-                      n: "1",
-                      title: "Phone answered in person",
-                      body: "Day or night. Triaged on the call.",
-                    },
-                    {
-                      n: "2",
-                      title: "Walk-through scheduled",
-                      body: "24 hours, sooner for emergencies.",
-                    },
-                    {
-                      n: "3",
-                      title: "Documented scope sent",
-                      body: "To your insurer or as a fixed quote.",
-                    },
-                    {
-                      n: "4",
-                      title: "Work starts agreed date",
-                      body: "Project page goes live the same day.",
-                    },
-                  ].map((step) => (
+                  {t.team.steps.map((step, i) => ({ ...step, n: String(i + 1) })).map((step) => (
                     <li key={step.n} className="flex gap-3 text-[13px]">
                       <span className="inline-flex h-6 w-6 flex-none items-center justify-center rounded-full bg-charcoal text-[11px] font-semibold text-ivory">
                         {step.n}
@@ -1206,8 +1014,7 @@ export default function HomePage() {
               </div>
 
               <p className="mt-8 text-[14px] text-ivory/85">
-                Project File access is included on every job —
-                restoration or remodel.
+                {t.team.note}
               </p>
 
               <div className="mt-8 grid gap-3 sm:grid-cols-2">
@@ -1221,7 +1028,7 @@ export default function HomePage() {
                   href="/about"
                   className="inline-flex items-center justify-center rounded-[2px] border border-ivory px-6 py-3 text-[14px] font-medium text-ivory transition hover:bg-brand hover:text-charcoal"
                 >
-                  More about how we work
+                  {t.team.ctaSecondary}
                 </Link>
               </div>
             </div>
@@ -1237,43 +1044,29 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl px-6 py-24 md:py-32 lg:px-10">
           <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <p className="eyebrow text-ivory/85">Real work</p>
+              <p className="eyebrow text-ivory/85">{t.realWork.eyebrow}</p>
               <h2 className="mt-6 max-w-2xl text-[32px] font-semibold leading-[1.1] tracking-[-0.02em] text-ivory md:text-[40px]">
-                First projects in progress. Photos posted as work completes.
+                {t.realWork.title}
               </h2>
             </div>
             <Link
               href="/blog"
               className="text-[14px] text-ivory underline-offset-4 hover:underline"
             >
-              Read the field notes →
+              {t.realWork.linkText}
             </Link>
           </div>
 
           <div className="mt-14 grid gap-6 md:grid-cols-3">
-            {[
-              {
-                kind: "In progress",
-                title: "NE Hazel Dell — kitchen leak rebuild",
-                meta: "Water mitigation · Day 7 of 14",
-                photo: photos[2],
-                signal: { live: true, label: "Day 7 of 14 · on schedule" },
-              },
-              {
-                kind: "Booking",
-                title: "Salmon Creek — bathroom refresh",
-                meta: "Remodel · Starts August 25",
-                photo: photos[7],
-                signal: { live: false, label: "Scope signed · Starts August 25" },
-              },
-              {
-                kind: "Open slot",
-                title: "Your project here",
-                meta: "Booking restoration + remodel for fall",
-                photo: null,
-                signal: null,
-              },
-            ].map((card, i) => (
+            {t.realWork.cards
+              .map((c) => ({
+                kind: c.kind,
+                title: c.title,
+                meta: c.meta,
+                photo: c.photo === "none" ? null : photo(c.photo),
+                signal: c.signalLabel ? { live: c.signalLive, label: c.signalLabel } : null,
+              }))
+              .map((card, i) => (
               <div
                 key={i}
                 className="overflow-hidden rounded-xl border border-ivory/10 bg-charcoal-soft"
@@ -1310,7 +1103,7 @@ export default function HomePage() {
                 ) : (
                   <div className="flex aspect-[16/10] items-center justify-center bg-charcoal-soft">
                     <span className="rounded-[2px] border border-dashed border-ivory/25 px-4 py-2 text-[11px] uppercase tracking-[0.22em] text-ivory/85">
-                      Available
+                      {t.realWork.emptyLabel}
                     </span>
                   </div>
                 )}
@@ -1342,13 +1135,12 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl px-6 py-24 md:py-32 lg:px-10">
           <div className="grid gap-12 md:grid-cols-[1.2fr_1fr] md:items-end md:gap-20">
             <div>
-              <p className="eyebrow text-ivory/85">Talk to us</p>
+              <p className="eyebrow text-ivory/85">{t.closing.eyebrow}</p>
               <h2 className="mt-6 max-w-2xl text-[36px] font-semibold leading-[1.05] tracking-[-0.02em] text-ivory md:text-[56px]">
-                Tell us what happened.
+                {t.closing.title}
               </h2>
               <p className="mt-6 max-w-xl text-[16px] leading-relaxed text-ivory/85">
-                One call, one form, one number on the other end. We&apos;ll
-                tell you the same day whether we can help.
+                {t.closing.body}
               </p>
 
               <div className="mt-10 flex flex-col gap-3 sm:flex-row">
@@ -1356,60 +1148,34 @@ export default function HomePage() {
                   href={`tel:${site.phone}`}
                   className="inline-flex items-center justify-center rounded-[2px] bg-coral px-7 py-3.5 text-[14px] font-medium text-white transition hover:bg-coral-deep"
                 >
-                  Call {site.phoneDisplay}
+                  {t.closing.ctaCall}
                 </a>
                 <Link
                   href="/start-project"
                   className="inline-flex items-center justify-center rounded-[2px] border border-ivory px-7 py-3.5 text-[14px] font-medium text-ivory transition hover:bg-brand hover:text-charcoal"
                 >
-                  Start a project
+                  {t.closing.ctaSecondary}
                 </Link>
               </div>
             </div>
 
             <dl className="grid grid-cols-2 gap-6 border-t border-ivory/10 pt-8 text-[13px] md:border-l md:border-t-0 md:pl-10 md:pt-0">
-              <div>
-                <dt className="text-[10px] uppercase tracking-[0.22em] text-ivory/70">
-                  Phone
-                </dt>
-                <dd className="mt-2 text-ivory">{site.phoneDisplay}</dd>
-                <dd className="mt-1 text-ivory/70">Answered in person</dd>
-              </div>
-              <div>
-                <dt className="text-[10px] uppercase tracking-[0.22em] text-ivory/70">
-                  Response
-                </dt>
-                <dd className="mt-2 text-ivory">25 min</dd>
-                <dd className="mt-1 text-ivory/70">Across Clark County</dd>
-              </div>
-              <div>
-                <dt className="text-[10px] uppercase tracking-[0.22em] text-ivory/70">
-                  Remodel
-                </dt>
-                <dd className="mt-2 text-ivory">Mon–Fri · 8a–5p</dd>
-                <dd className="mt-1 text-ivory/70">Booking · Fall</dd>
-              </div>
-              <div>
-                <dt className="text-[10px] uppercase tracking-[0.22em] text-ivory/70">
-                  Mold
-                </dt>
-                <dd className="mt-2 text-ivory">By appointment</dd>
-                <dd className="mt-1 text-ivory/70">IICRC S520 · insurance billed</dd>
-              </div>
-              <div>
-                <dt className="text-[10px] uppercase tracking-[0.22em] text-ivory/70">
-                  Restoration
-                </dt>
-                <dd className="mt-2 text-ivory">24 hours · every day</dd>
-                <dd className="mt-1 text-ivory/70">Insurance billed direct</dd>
-              </div>
+              {t.closing.facts.map((f) => (
+                <div key={f.label}>
+                  <dt className="text-[10px] uppercase tracking-[0.22em] text-ivory/70">
+                    {f.label}
+                  </dt>
+                  <dd className="mt-2 text-ivory">{f.value}</dd>
+                  <dd className="mt-1 text-ivory/70">{f.note}</dd>
+                </div>
+              ))}
             </dl>
           </div>
         </div>
       </section>
 
       {/* FAQ JSON-LD — invisible, kept for SEO continuity */}
-      <JsonLd data={faqJsonLd(homeFaqs)} />
+      <JsonLd data={faqJsonLd(t.faqs)} />
     </>
   );
 }

@@ -15,7 +15,8 @@ export type Field =
   | (Base & { kind: "textarea"; max?: number; rows?: number })
   | (Base & { kind: "number"; min?: number; max?: number; integer?: boolean })
   | (Base & { kind: "checkbox" })
-  | (Base & { kind: "select"; options: readonly string[] })
+  // With `thumbs` (option → image URL) it renders as a row of pictures.
+  | (Base & { kind: "select"; options: readonly string[]; thumbs?: Record<string, string> })
   // A list of plain strings, edited one per line.
   | (Base & { kind: "strings"; max?: number })
   // A repeatable group of fields — FAQs, process steps, body sections.

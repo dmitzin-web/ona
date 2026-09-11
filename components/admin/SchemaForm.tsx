@@ -84,6 +84,36 @@ function FieldView({
         </label>
       );
     case "select":
+      if (f.thumbs) {
+        const thumbs = f.thumbs;
+        return (
+          <FieldShell label={f.label} hint={f.hint}>
+            <div role="radiogroup" aria-label={f.label} className="flex flex-wrap gap-2">
+              {f.options.map((o) => {
+                const on = value === o;
+                return (
+                  <button
+                    key={o}
+                    type="button"
+                    role="radio"
+                    aria-checked={on}
+                    aria-label={thumbs[o] ? `Photo ${o}` : "No photo"}
+                    onClick={() => onChange(o)}
+                    className={`relative h-16 w-24 overflow-hidden rounded-[2px] border-2 bg-charcoal-soft text-[12px] text-warm-gray ${on ? "border-teal" : "border-transparent opacity-70 hover:opacity-100"}`}
+                  >
+                    {thumbs[o] ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={thumbs[o]} alt="" className="h-full w-full object-cover" />
+                    ) : (
+                      "No photo"
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+          </FieldShell>
+        );
+      }
       return (
         <FieldShell label={f.label} hint={f.hint} htmlFor={id}>
           <select id={id} className={`${inputCls} max-w-[260px]`} value={String(value ?? "")} onChange={(e) => onChange(e.target.value)}>

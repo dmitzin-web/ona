@@ -1,0 +1,310 @@
+{
+  "seo": {
+    "title": "{name} — Restoration & Remodeling in Vancouver, WA",
+    "description": "Remodeling, mold remediation, and restoration in Vancouver, WA — without the chaos. Every project comes with a live page: photos, daily updates, and what's next. One team from emergency cleanup to final paint.",
+    "keywords": [
+      "restoration Vancouver WA",
+      "remodeling Vancouver WA",
+      "water damage restoration Portland metro",
+      "kitchen remodel Vancouver WA",
+      "bathroom remodel Vancouver WA",
+      "Clark County restoration"
+    ]
+  },
+  "hero": {
+    "titleLead": "Water. Fire. Mold.",
+    "titleRest": "One call, on-site in an hour.",
+    "body": "IICRC-certified restoration across the Portland metro. We stabilize the damage, document it for your insurer, and rebuild what was lost — on a live project page you can share with your family or adjuster. Also remodeling, from the same crew.",
+    "ctaCall": "Call {phone}",
+    "ctaSecondary": "Start a project",
+    "imageAlt": "Recent Ona project — interior detail",
+    "overlayEyebrow": "Your project · live page",
+    "overlayStatus": "On schedule · Day 7 of 14",
+    "overlayNote": "Scope approved"
+  },
+  "projectFile": {
+    "eyebrow": "What it looks like to be our customer",
+    "title": "On day one, you get a link to your project page.",
+    "body": "Every photo we take. Every receipt. Every adjuster note. Every change to the scope. Updated daily until you sign off. Share it with your insurance company, your family, your attorney — whoever needs to see it."
+  },
+  "whatWeDo": {
+    "eyebrow": "What we do",
+    "title": "Three lines of work. One small crew behind all of them.",
+    "restoration": {
+      "label": "Restoration",
+      "badge": "24/7 · Available now",
+      "body": "Something happened — water, fire, smoke, storm. We stabilize the damage, document the scope for your insurer, and rebuild what was lost.",
+      "stepsTitle": "When you call",
+      "steps": [
+        "Answered in person — triage on the call.",
+        "On-site within 25 min for most of Clark Co.",
+        "Walk-through, moisture readings, photos.",
+        "Documented scope sent to your insurer same day.",
+        "Mitigation starts the moment you sign off."
+      ]
+    },
+    "mold": {
+      "label": "Mold",
+      "badge": "By appointment",
+      "body": "You can see it, smell it, or a test flagged it. We find the moisture driving it, contain the area, and remediate to the IICRC S520 standard — then verify before we close.",
+      "links": [
+        "Inspection & testing",
+        "Containment & HEPA",
+        "Remediation (IICRC S520)",
+        "Clearance verification"
+      ],
+      "stepsTitle": "How we remediate · per IICRC S520",
+      "steps": [
+        "Inspect and find the moisture source.",
+        "Seal containment, set HEPA negative air.",
+        "Remove affected materials, treat what stays.",
+        "Fix the water source so it doesn't return.",
+        "Clearance verification before any rebuild."
+      ]
+    },
+    "remodel": {
+      "label": "Remodeling",
+      "badge": "Booking · Fall",
+      "body": "You've been planning a change — a kitchen, a bath, a layout that finally works. We design the scope with you, set an honest timeline, and build it.",
+      "links": [
+        {
+          "label": "Kitchen remodel",
+          "href": "/services/remodeling"
+        },
+        {
+          "label": "Bathroom remodel",
+          "href": "/services/remodeling"
+        },
+        {
+          "label": "Combined kitchen + bath",
+          "href": "/services/remodeling"
+        },
+        {
+          "label": "Insurance-claim rebuilds",
+          "href": "/services"
+        }
+      ],
+      "stepsTitle": "How we build",
+      "steps": [
+        "Design & scope — measured, materials chosen with you.",
+        "Fixed-price agreement — line-itemed, no surprises.",
+        "Demo & rough-in — framing, plumbing, electrical.",
+        "Finishes — cabinetry, tile, counters, paint.",
+        "Walkthrough — punch list, reveal, photos on your page."
+      ]
+    }
+  },
+  "data": {
+    "eyebrow": "Restoration in data",
+    "title": "The same numbers go to you and to your adjuster.",
+    "stats": [
+      {
+        "value": "14% → 7%",
+        "label": "Moisture documented daily"
+      },
+      {
+        "value": "121 hours",
+        "label": "Equipment runtime logged"
+      },
+      {
+        "value": "142",
+        "label": "Timestamped photos"
+      },
+      {
+        "value": "Scope approved",
+        "label": "Documentation shared with carrier"
+      }
+    ]
+  },
+  "reassurance": [
+    {
+      "title": "Phone answered in person",
+      "hint": "Day or night. No call centers."
+    },
+    {
+      "title": "Most of Clark County in 25 min",
+      "hint": "Vancouver and the Portland metro."
+    },
+    {
+      "title": "Insurance billed direct",
+      "hint": "You pay your deductible. That's it."
+    },
+    {
+      "title": "One team — damage to rebuild",
+      "hint": "No handoffs to subcontractors."
+    }
+  ],
+  "pricing": {
+    "eyebrow": "How we charge",
+    "title": "No surprise change orders. Ever.",
+    "restoration": {
+      "label": "Restoration",
+      "body": "Billed directly to your insurer at standard Xactimate rates. You pay your deductible — that's it.",
+      "bullets": [
+        "No upfront deposit",
+        "No fees for the documentation work",
+        "If your claim is denied, we tell you before we start work"
+      ]
+    },
+    "remodel": {
+      "label": "Remodel",
+      "body": "Fixed price in three phases. You sign each phase separately, so you always know what the next payment covers before you commit.",
+      "phases": [
+        {
+          "name": "Design",
+          "pct": "30%",
+          "body": "Scope and materials list signed before any demo."
+        },
+        {
+          "name": "Build",
+          "pct": "40%",
+          "body": "Rough-in and structural signed before finishes."
+        },
+        {
+          "name": "Finish",
+          "pct": "30%",
+          "body": "Final punch list signed at walkthrough."
+        }
+      ],
+      "note": "Each signature unlocks the next phase. No work moves forward without your sign-off."
+    }
+  },
+  "gallery": {
+    "eyebrow": "Our work",
+    "title": "Built carefully. Documented clearly.",
+    "intro": "Finish work by our own crews. More added as projects complete.",
+    "cards": [
+      {
+        "photo": "p8",
+        "kind": "Kitchen",
+        "meta": "Waterfall-edge island · apron-front sink · chimney hood"
+      },
+      {
+        "photo": "p2",
+        "kind": "Primary bath",
+        "meta": "Freestanding tub · glass shower enclosure · large-format floor tile"
+      },
+      {
+        "photo": "p6",
+        "kind": "Guest bath",
+        "meta": "Textured wallcovering · shaker vanity · oval mirror"
+      }
+    ],
+    "linkText": "See how we handle remodel projects"
+  },
+  "band": {
+    "photo": "p7",
+    "imageAlt": "Recent finished space"
+  },
+  "team": {
+    "eyebrow": "Who you're working with",
+    "title": "A small operation, on purpose.",
+    "lead": "Owner-operated. No project managers passing your job between subcontractors. No call centers.",
+    "body": "When you call the number on this page, you reach the same person who will walk through your home, write the scope, and stand on the job site every day. Smaller crews mean tighter communication and more consistent work from start to finish.",
+    "stepsTitle": "What happens when you call",
+    "steps": [
+      {
+        "title": "Phone answered in person",
+        "body": "Day or night. Triaged on the call."
+      },
+      {
+        "title": "Walk-through scheduled",
+        "body": "24 hours, sooner for emergencies."
+      },
+      {
+        "title": "Documented scope sent",
+        "body": "To your insurer or as a fixed quote."
+      },
+      {
+        "title": "Work starts agreed date",
+        "body": "Project page goes live the same day."
+      }
+    ],
+    "note": "Project File access is included on every job — restoration or remodel.",
+    "ctaSecondary": "More about how we work"
+  },
+  "realWork": {
+    "eyebrow": "Real work",
+    "title": "First projects in progress. Photos posted as work completes.",
+    "linkText": "Read the field notes →",
+    "cards": [
+      {
+        "photo": "p3",
+        "kind": "In progress",
+        "title": "NE Hazel Dell — kitchen leak rebuild",
+        "meta": "Water mitigation · Day 7 of 14",
+        "signalLabel": "Day 7 of 14 · on schedule",
+        "signalLive": true
+      },
+      {
+        "photo": "p8",
+        "kind": "Booking",
+        "title": "Salmon Creek — bathroom refresh",
+        "meta": "Remodel · Starts August 25",
+        "signalLabel": "Scope signed · Starts August 25",
+        "signalLive": false
+      },
+      {
+        "photo": "none",
+        "kind": "Open slot",
+        "title": "Your project here",
+        "meta": "Booking restoration + remodel for fall",
+        "signalLabel": "",
+        "signalLive": false
+      }
+    ],
+    "emptyLabel": "Available"
+  },
+  "closing": {
+    "eyebrow": "Talk to us",
+    "title": "Tell us what happened.",
+    "body": "One call, one form, one number on the other end. We'll tell you the same day whether we can help.",
+    "ctaCall": "Call {phone}",
+    "ctaSecondary": "Start a project",
+    "facts": [
+      {
+        "label": "Phone",
+        "value": "{phone}",
+        "note": "Answered in person"
+      },
+      {
+        "label": "Response",
+        "value": "25 min",
+        "note": "Across Clark County"
+      },
+      {
+        "label": "Remodel",
+        "value": "Mon–Fri · 8a–5p",
+        "note": "Booking · Fall"
+      },
+      {
+        "label": "Mold",
+        "value": "By appointment",
+        "note": "IICRC S520 · insurance billed"
+      },
+      {
+        "label": "Restoration",
+        "value": "24 hours · every day",
+        "note": "Insurance billed direct"
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "How fast can you respond in Portland or Vancouver, WA?",
+      "a": "We answer the phone in person. Most of Clark County is within 25 minutes of our base in Vancouver, WA. For overnight emergencies, we triage on the call and dispatch as soon as we're walking out the door."
+    },
+    {
+      "q": "Do you work directly with insurance carriers?",
+      "a": "Yes. For restoration work we document the loss (photos, moisture readings, Xactimate-formatted scope) and bill the carrier directly. You pay your deductible — that's it."
+    },
+    {
+      "q": "What services do you offer?",
+      "a": "Three lines of work. Remodeling: kitchen, bathroom, and combined kitchen + bath. Mold: inspection, testing, containment and IICRC S520 remediation. Restoration: water, fire and smoke, storm and reconstruction. One small team handles all three."
+    },
+    {
+      "q": "Are you licensed?",
+      "a": "Ona Restoration & Remodeling LLC holds Washington contractor registration ONARER*748K8, verifiable at secure.lni.wa.gov/verify. Our Oregon CCB registration is pending. Our technicians are IICRC-certified in water damage restoration, applied structural drying, microbial remediation, and fire and smoke restoration."
+    }
+  ]
+}
