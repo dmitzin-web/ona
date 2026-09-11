@@ -13,9 +13,8 @@ import { EmailLink, PhoneLink } from "@/components/contact/ContactLinks";
 import { RemodelingGallery } from "@/components/RemodelingGallery";
 import { MoldSections } from "@/components/services/MoldSections";
 import { ServiceCardCompact } from "@/components/ServiceCardCompact";
-import { findService, services } from "@/lib/services";
+import { findService, services, type Service } from "@/lib/services";
 import { areaProfiles } from "@/lib/areas";
-import { site } from "@/lib/site";
 import { buildMetadata } from "@/lib/seo";
 import {
   breadcrumbJsonLd,
@@ -24,6 +23,20 @@ import {
   serviceProcessHowToJsonLd,
 } from "@/lib/jsonld";
 import Link from "next/link";
+import pageContent from "@/content/pages/service-page.json";
+import { fillVarsDeep } from "@/lib/placeholders";
+
+// The words around each service's own copy live in
+// content/pages/service-page.json (/admin → Service page template);
+// {service}, {serviceShort} … are filled per service below, {area} per city
+// link. The service's copy itself is content/services.json. Search keywords
+// stay here: lib/seo.ts no longer writes them into the page.
+const copy = (service: Service) =>
+  fillVarsDeep(pageContent, {
+    service: service.name,
+    serviceShort: service.shortName,
+    serviceShortLower: service.shortName.toLowerCase(),
+  });
 
 export function generateStaticParams() {
   return services.map((s) => ({ slug: s.slug }));
@@ -55,6 +68,7 @@ export default async function ServicePage(
   const service = findService(slug);
   if (!service) notFound();
 
+  const t = copy(service);
   const Icon = serviceIcons[service.slug as keyof typeof serviceIcons];
   // Mold is a co-equal business line and gets a dedicated, premium content
   // block in place of the generic hero/intro/body/process/signs. All the
@@ -68,8 +82,8 @@ export default async function ServicePage(
         <Breadcrumbs
           tone="dark"
           items={[
-            { name: "Home", href: "/" },
-            { name: "Services", href: "/services" },
+            { name: t.breadcrumbs.home, href: "/" },
+            { name: t.breadcrumbs.services, href: "/services" },
             { name: service.shortName, href: `/services/${service.slug}` },
           ]}
         />
@@ -80,13 +94,12 @@ export default async function ServicePage(
             <div className="grid gap-12 lg:grid-cols-12">
               <div className="lg:col-span-9">
                 <p className="eyebrow text-warm-gray-soft">
-                  {service.shortName}
+                  {t.hero.eyebrow}
                 </p>
                 <h1 className="text-ivory mt-8 text-5xl font-light leading-[1.05] tracking-tight sm:text-6xl">
-                  {service.name}{" "}
+                  {t.hero.title}{" "}
                   <span className="block text-ivory/72 sm:text-5xl">
-                    in {site.address.locality}, {site.address.region} &
-                    Portland Metro.
+                    {t.hero.titleSub}
                   </span>
                 </h1>
                 <p className="mt-10 max-w-2xl text-lg leading-relaxed text-ivory/85">
@@ -95,10 +108,10 @@ export default async function ServicePage(
                 <div className="mt-10 flex flex-wrap gap-4">
                   <PhoneLink className="inline-flex items-center gap-3 border border-ivory bg-charcoal px-7 py-4 text-sm font-medium uppercase tracking-[0.22em] text-ivory transition hover:bg-brand hover:text-charcoal">
                     <PhoneIcon className="h-4 w-4 stroke-current" />
-                    Call {site.phoneDisplay}
+                    {t.hero.ctaCall}
                   </PhoneLink>
                   <EmailLink className="inline-flex items-center gap-3 border border-ivory/30 px-7 py-4 text-sm font-medium uppercase tracking-[0.22em] text-ivory transition hover:border-ivory">
-                    Email a photo
+                    {t.hero.ctaEmail}
                   </EmailLink>
                 </div>
               </div>
@@ -154,9 +167,9 @@ export default async function ServicePage(
       {/* Process */}
       <section className="bg-charcoal text-ivory">
         <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
-          <p className="eyebrow text-warm-gray-soft">Process</p>
+          <p className="eyebrow text-warm-gray-soft">{t.process.eyebrow}</p>
           <h2 className="text-ivory mt-6 max-w-3xl text-4xl font-light leading-tight tracking-tight sm:text-5xl">
-            How the job runs.
+            {t.process.title}
           </h2>
           <ol className="mt-16 grid gap-px overflow-hidden border border-ivory/15 bg-charcoal-mute sm:grid-cols-2 lg:grid-cols-3">
             {service.process.map((p, i) => (
@@ -184,13 +197,12 @@ export default async function ServicePage(
         <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
           <div className="grid gap-12 lg:grid-cols-12">
             <div className="lg:col-span-4">
-              <p className="eyebrow text-ivory/72">Warning signs</p>
+              <p className="eyebrow text-ivory/72">{t.signs.eyebrow}</p>
               <h2 className="text-ivory mt-6 text-4xl font-light leading-tight tracking-tight sm:text-5xl">
-                When to call.
+                {t.signs.title}
               </h2>
               <p className="mt-6 text-base leading-relaxed text-ivory/80">
-                Early action saves money and prevents permanent damage. If any
-                of these apply, call us.
+                {t.signs.body}
               </p>
             </div>
             <ul className="grid gap-4 sm:grid-cols-2 lg:col-span-8">
@@ -216,7 +228,7 @@ export default async function ServicePage(
           RemodelingGallery component for real photos. */}
       {service.slug === "remodeling" && <RemodelingGallery />}
 
-      <FAQ items={service.faqs} title={`${service.shortName} — FAQ`} />
+      <FAQ items={service.faqs} title={t.faq.title} />
 
       {/* Spokane wildfire deployment callout — only on /services/fire-damage.
           Framed as a deployment, not a local branch. Keeps Spokane crawlable
@@ -230,19 +242,17 @@ export default async function ServicePage(
             >
               <div>
                 <p className="eyebrow text-gold">
-                  Spokane wildfire response
+                  {t.spokane.eyebrow}
                 </p>
                 <p className="mt-2 text-lg text-ivory">
-                  We&apos;ve deployed a Washington-licensed mobile crew to
-                  Spokane County.
+                  {t.spokane.title}
                 </p>
                 <p className="mt-1 text-sm text-ivory/80">
-                  Fire &amp; smoke restoration, board-up, and insurance
-                  documentation — from first response through rebuild.
+                  {t.spokane.body}
                 </p>
               </div>
               <span className="inline-flex flex-none items-center gap-3 self-start text-sm font-medium uppercase tracking-[0.22em] text-ivory transition group-hover:text-gold sm:self-auto">
-                Spokane response
+                {t.spokane.linkText}
                 <ArrowIcon className="h-3 w-3 stroke-current" />
               </span>
             </Link>
@@ -258,15 +268,14 @@ export default async function ServicePage(
           <div className="flex flex-wrap items-end justify-between gap-3">
             <div>
               <p className="eyebrow text-ivory/72">
-                {service.shortName} by city
+                {t.cities.eyebrow}
               </p>
               <h2 className="text-ivory mt-4 text-3xl font-light leading-tight tracking-tight sm:text-4xl">
-                Local landing pages.
+                {t.cities.title}
               </h2>
             </div>
             <p className="max-w-md text-sm text-ivory/70">
-              Same crew, same documentation. Tap a city for response times,
-              local loss patterns, and neighborhood coverage.
+              {t.cities.body}
             </p>
           </div>
           <ul className="mt-10 grid gap-px overflow-hidden border border-ivory/10 bg-charcoal/10 sm:grid-cols-2 lg:grid-cols-3">
@@ -277,7 +286,7 @@ export default async function ServicePage(
                   className="flex items-center justify-between bg-charcoal px-5 py-4 text-sm font-medium text-ivory transition hover:bg-charcoal-soft"
                 >
                   <span>
-                    {service.shortName} · {a.name}, {a.region}
+                    {fillVarsDeep(t.cities.link, { area: a.name, areaState: a.region })}
                   </span>
                   <ArrowIcon className="h-3 w-3 stroke-current opacity-50" />
                 </Link>
@@ -291,12 +300,12 @@ export default async function ServicePage(
       <section className="bg-charcoal-soft">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
           <div className="flex items-end justify-between">
-            <p className="eyebrow text-ivory/72">Other services</p>
+            <p className="eyebrow text-ivory/72">{t.related.eyebrow}</p>
             <Link
               href="/services"
               className="inline-flex items-center gap-2 eyebrow text-ivory"
             >
-              All <ArrowIcon className="h-3 w-3 stroke-current" />
+              {t.related.allLink} <ArrowIcon className="h-3 w-3 stroke-current" />
             </Link>
           </div>
           <div className="mt-10 grid gap-px overflow-hidden border border-ivory/10 bg-charcoal/10 sm:grid-cols-3">
@@ -311,16 +320,13 @@ export default async function ServicePage(
         </div>
       </section>
 
-      <CTA
-        title={`Need ${service.shortName.toLowerCase()} now?`}
-        subtitle="Live dispatch, 24/7. Specialist on the truck within minutes."
-      />
+      <CTA title={t.cta.title} subtitle={t.cta.subtitle} />
 
       <JsonLd
         data={[
           breadcrumbJsonLd([
-            { name: "Home", url: "/" },
-            { name: "Services", url: "/services" },
+            { name: t.breadcrumbs.home, url: "/" },
+            { name: t.breadcrumbs.services, url: "/services" },
             { name: service.shortName, url: `/services/${service.slug}` },
           ]),
           serviceJsonLd(service.slug)!,

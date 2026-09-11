@@ -1,0 +1,45 @@
+{
+  "breadcrumbs": {
+    "home": "Home",
+    "services": "Services"
+  },
+  "hero": {
+    "eyebrow": "{serviceShort}",
+    "title": "{service}",
+    "titleSub": "in {city}, {state} & Portland Metro.",
+    "ctaCall": "Call {phone}",
+    "ctaEmail": "Email a photo"
+  },
+  "process": {
+    "eyebrow": "Process",
+    "title": "How the job runs."
+  },
+  "signs": {
+    "eyebrow": "Warning signs",
+    "title": "When to call.",
+    "body": "Early action saves money and prevents permanent damage. If any of these apply, call us."
+  },
+  "faq": {
+    "title": "{serviceShort} — FAQ"
+  },
+  "spokane": {
+    "eyebrow": "Spokane wildfire response",
+    "title": "We've deployed a Washington-licensed mobile crew to Spokane County.",
+    "body": "Fire & smoke restoration, board-up, and insurance documentation — from first response through rebuild.",
+    "linkText": "Spokane response"
+  },
+  "cities": {
+    "eyebrow": "{serviceShort} by city",
+    "title": "Local landing pages.",
+    "body": "Same crew, same documentation. Tap a city for response times, local loss patterns, and neighborhood coverage.",
+    "link": "{serviceShort} · {area}, {areaState}"
+  },
+  "related": {
+    "eyebrow": "Other services",
+    "allLink": "All"
+  },
+  "cta": {
+    "title": "Need {serviceShortLower} now?",
+    "subtitle": "Live dispatch, 24/7. Specialist on the truck within minutes."
+  }
+}

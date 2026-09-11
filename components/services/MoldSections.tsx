@@ -1,4 +1,5 @@
-import { site } from "@/lib/site";
+import moldContent from "@/content/pages/mold-sections.json";
+import { fillPlaceholdersDeep } from "@/lib/placeholders";
 import type { Service } from "@/lib/services";
 import { EmailLink, PhoneLink } from "@/components/contact/ContactLinks";
 import { PhoneIcon } from "@/components/icons/ServiceIcons";
@@ -14,39 +15,11 @@ import { PhoneIcon } from "@/components/icons/ServiceIcons";
 // in place of the generic hero/intro/body/process/signs when the slug is
 // "mold-removal".
 
-const credibility = [
-  "IICRC S520 method",
-  "Containment + HEPA negative air",
-  "Independent clearance testing",
-  "Insurance billed direct",
-];
-
-const differentiators = [
-  {
-    title: "We chase the moisture first",
-    body: "We don't touch the growth until we've found what's feeding it — roof leak, supply line, foundation seepage, condensation. Fix the water, and the mold has nowhere to come back to. Skip that step and it returns in weeks.",
-  },
-  {
-    title: "Sealed containment, negative air",
-    body: "Poly barriers and negative-pressure HEPA scrubbers keep spores inside the work zone. The rest of your home stays clean while we cut, bag, and haul — not coated in what we just disturbed.",
-  },
-  {
-    title: "We don't grade our own homework",
-    body: "On larger losses we bring in an independent Indoor Environmental Professional to test before and after. The clearance that says it's safe comes from a third party, not from us.",
-  },
-  {
-    title: "Built to the S520 standard",
-    body: "Assessment, containment, removal, and verification all follow the published IICRC S520 standard for mold remediation — the same reference your adjuster works from.",
-  },
-  {
-    title: "Documentation an adjuster can audit",
-    body: "Moisture maps, daily photos, and an Xactimate-formatted scope on every job. We bill the carrier directly where the loss is covered, so you're not fronting the cost.",
-  },
-  {
-    title: "One crew through the rebuild",
-    body: "The team that removes the contaminated drywall puts it back. One contract, one point of contact, one clean finish — no handoff to a stranger halfway through.",
-  },
-];
+// Every word here lives in content/pages/mold-sections.json (/admin → Mold
+// page — extra sections); {phone} is filled from Company details. The
+// introduction, steps and signs are Mold Remediation's own, in
+// content/services.json.
+const t = fillPlaceholdersDeep(moldContent);
 
 export function MoldSections({ service }: { service: Service }) {
   return (
@@ -54,10 +27,10 @@ export function MoldSections({ service }: { service: Service }) {
       {/* Hero */}
       <section className="bg-charcoal text-ivory">
         <div className="mx-auto max-w-7xl px-6 pb-20 pt-10 lg:px-10 lg:pb-24 lg:pt-14">
-          <p className="eyebrow text-gold">Mold Remediation · IICRC S520</p>
+          <p className="eyebrow text-gold">{t.hero.eyebrow}</p>
           <h1 className="text-ivory mt-8 max-w-4xl text-5xl font-light leading-[1.04] tracking-tight sm:text-6xl">
-            Mold done right{" "}
-            <span className="text-ivory/70">the first time.</span>
+            {t.hero.titleLead}{" "}
+            <span className="text-ivory/70">{t.hero.titleRest}</span>
           </h1>
           <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ivory/90">
             {service.intro}
@@ -66,16 +39,16 @@ export function MoldSections({ service }: { service: Service }) {
           <div className="mt-10 flex flex-wrap gap-4">
             <PhoneLink className="inline-flex items-center gap-3 bg-gold px-7 py-4 text-sm font-medium uppercase tracking-[0.18em] text-white transition hover:bg-gold-deep">
               <PhoneIcon className="h-4 w-4 stroke-current" />
-              Call {site.phoneDisplay}
+              {t.hero.ctaCall}
             </PhoneLink>
             <EmailLink className="inline-flex items-center gap-3 border border-ivory/30 px-7 py-4 text-sm font-medium uppercase tracking-[0.18em] text-ivory transition hover:border-ivory">
-              Email a photo
+              {t.hero.ctaEmail}
             </EmailLink>
           </div>
 
           {/* Credibility strip */}
           <ul className="mt-12 grid gap-px overflow-hidden border border-ivory/10 bg-charcoal-mute sm:grid-cols-2 lg:grid-cols-4">
-            {credibility.map((c) => (
+            {t.hero.credibility.map((c) => (
               <li
                 key={c}
                 className="flex items-center gap-3 bg-charcoal px-5 py-5 text-sm text-ivory/95"
@@ -93,27 +66,15 @@ export function MoldSections({ service }: { service: Service }) {
         <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
           <div className="grid gap-12 lg:grid-cols-12">
             <div className="lg:col-span-5">
-              <p className="eyebrow text-ivory/72">Why most mold jobs fail</p>
+              <p className="eyebrow text-ivory/72">{t.why.eyebrow}</p>
               <h2 className="text-ivory mt-6 text-4xl font-light leading-[1.1] tracking-tight sm:text-5xl">
-                Mold is a moisture problem wearing a cleaning problem&apos;s
-                disguise.
+                {t.why.title}
               </h2>
             </div>
             <div className="space-y-6 text-lg leading-relaxed text-ivory/90 lg:col-span-7">
-              <p>
-                Most &quot;mold removal&quot; is cosmetic — someone wipes the
-                surface, sprays bleach, and leaves. The colony living inside the
-                drywall and framing survives. The water that grew it is still
-                there. Within weeks it&apos;s back, usually worse, and now harder
-                to put on an insurance claim.
-              </p>
-              <p>
-                We work the problem in the right order: find and stop the
-                moisture, contain the area so spores don&apos;t spread, remove
-                what can&apos;t be saved, treat what can, and verify the air is
-                clear before anything goes back. That&apos;s the difference
-                between mold that&apos;s gone and mold that&apos;s hiding.
-              </p>
+              {t.why.paragraphs.map((p) => (
+                <p key={p}>{p}</p>
+              ))}
             </div>
           </div>
         </div>
@@ -122,9 +83,9 @@ export function MoldSections({ service }: { service: Service }) {
       {/* The method — process timeline */}
       <section className="bg-charcoal text-ivory">
         <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
-          <p className="eyebrow text-gold">The Ona method</p>
+          <p className="eyebrow text-gold">{t.method.eyebrow}</p>
           <h2 className="text-ivory mt-6 max-w-3xl text-4xl font-light leading-tight tracking-tight sm:text-5xl">
-            Six steps, to the S520 standard.
+            {t.method.title}
           </h2>
           <ol className="mt-16 grid gap-px overflow-hidden border border-ivory/15 bg-charcoal-mute sm:grid-cols-2 lg:grid-cols-3">
             {service.process.map((p, i) => (
@@ -147,12 +108,12 @@ export function MoldSections({ service }: { service: Service }) {
       {/* Why Ona — differentiators */}
       <section className="bg-charcoal-soft">
         <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
-          <p className="eyebrow text-ivory/72">Why Ona for mold</p>
+          <p className="eyebrow text-ivory/72">{t.whyOna.eyebrow}</p>
           <h2 className="text-ivory mt-6 max-w-3xl text-4xl font-light leading-tight tracking-tight sm:text-5xl">
-            What separates a real remediation from a wipe-down.
+            {t.whyOna.title}
           </h2>
           <div className="mt-14 grid gap-px overflow-hidden border border-ivory/10 bg-charcoal/10 md:grid-cols-2 lg:grid-cols-3">
-            {differentiators.map((d) => (
+            {t.whyOna.items.map((d) => (
               <div key={d.title} className="bg-charcoal p-8">
                 <h3 className="text-lg font-medium tracking-tight text-ivory">
                   {d.title}
@@ -170,16 +131,12 @@ export function MoldSections({ service }: { service: Service }) {
       <section className="bg-charcoal">
         <div className="mx-auto max-w-5xl px-6 py-24 lg:px-10">
           <div className="border-l-2 border-gold pl-8">
-            <p className="eyebrow text-gold">Health &amp; insurance</p>
+            <p className="eyebrow text-gold">{t.health.eyebrow}</p>
             <p className="mt-6 text-2xl font-light leading-snug tracking-tight text-ivory sm:text-3xl">
-              If someone in the house has asthma, allergies, or a compromised
-              immune system, mold isn&apos;t cosmetic — get it scoped.
+              {t.health.lead}
             </p>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ivory/85">
-              We handle the insurance side: we document the cause, photograph
-              every step, and bill the carrier directly where the loss is
-              covered. You deal with one team and your deductible — not a fight
-              over what happened.
+              {t.health.body}
             </p>
           </div>
         </div>
@@ -190,13 +147,12 @@ export function MoldSections({ service }: { service: Service }) {
         <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
           <div className="grid gap-12 lg:grid-cols-12">
             <div className="lg:col-span-4">
-              <p className="eyebrow text-ivory/72">Warning signs</p>
+              <p className="eyebrow text-ivory/72">{t.signs.eyebrow}</p>
               <h2 className="text-ivory mt-6 text-4xl font-light leading-tight tracking-tight sm:text-5xl">
-                When to call.
+                {t.signs.title}
               </h2>
               <p className="mt-6 text-base leading-relaxed text-ivory/80">
-                Mold doubles fast in Pacific Northwest humidity. The earlier we
-                scope it, the smaller the job. If any of these apply, call.
+                {t.signs.body}
               </p>
             </div>
             <ul className="grid gap-4 sm:grid-cols-2 lg:col-span-8">

@@ -1,0 +1,66 @@
+{
+  "seo": {
+    "title": "{service} in {area}, {areaState}",
+    "description": "{service} in {area}, {areaState} — working to IICRC standards, {drive}-min dispatch from our Vancouver HQ, insurance-grade documentation. Call {phone} for 24/7 emergency response.",
+    "descriptionHome": "{service} in {area}, {areaState} — working to IICRC standards, based locally, insurance-grade documentation. Call {phone} for 24/7 emergency response.",
+    "structuredName": "{service} in {area}, {areaState}"
+  },
+  "spokaneSeo": {
+    "title": "Spokane Wildfire Fire & Smoke Restoration",
+    "description": "Washington-licensed fire, smoke and soot restoration in Spokane County after the wildfires. Debris removal, odor treatment and full rebuild, billed directly to your insurance. Free assessment and written scope, same-day answer."
+  },
+  "breadcrumbs": {
+    "home": "Home",
+    "services": "Services",
+    "city": "{area}, {areaState}"
+  },
+  "hero": {
+    "eyebrow": "{serviceShort} · {area}, {areaState}",
+    "titleLead": "{service} in",
+    "titleCity": "{area}, {areaState}",
+    "titleEnd": ".",
+    "response": "{area} is roughly {drive} minutes from our Vancouver HQ; we hit a 60-minute on-site target city-wide.",
+    "responseHome": "As our home base, {area} gets our fastest dispatch — typically under 20 minutes anywhere in {county}."
+  },
+  "stats": {
+    "responseLabel": "Response target",
+    "responseValue": "60 min",
+    "fromHqLabel": "From HQ",
+    "fromHqValue": "~{drive} min",
+    "fromHqValueHome": "Local",
+    "countyLabel": "County",
+    "serviceLabel": "Service"
+  },
+  "about": {
+    "eyebrow": "About the service",
+    "title": "{serviceShort} in {area}."
+  },
+  "local": {
+    "eyebrow": "{area} context",
+    "title": "What we see in {area}.",
+    "weatherTitle": "Local weather & loss pattern",
+    "lossesTitle": "Common losses in {county}",
+    "neighborhoodsTitle": "Neighborhoods we cover"
+  },
+  "process": {
+    "eyebrow": "Process",
+    "title": "How a {serviceShortLower} job runs in {area}."
+  },
+  "faq": {
+    "title": "{serviceShort} FAQ — {area}"
+  },
+  "otherCities": {
+    "eyebrow": "{serviceShort} in other Portland-metro cities",
+    "link": "{serviceShort} · {area}, {areaState}"
+  },
+  "otherServices": {
+    "eyebrow": "Other services in {area}, {areaState}",
+    "link": "{serviceShort} · {area}",
+    "backService": "← All {serviceShortLower} info",
+    "backArea": "← All services in {area}"
+  },
+  "cta": {
+    "title": "Need {serviceShortLower} in {area} now?",
+    "subtitle": "24/7 dispatch with a 60-minute response target across {county}. Insurance-grade documentation from first call to final invoice."
+  }
+}

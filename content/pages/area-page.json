@@ -1,0 +1,71 @@
+{
+  "seo": {
+    "title": "Restoration in {area}, {areaState} — Water, Fire & Mold",
+    "description": "24/7 restoration in {area}, {areaStateName} ({county}). {drive}-minute dispatch from our Vancouver, WA HQ. direct insurance billing.",
+    "structuredName": "Restoration services in {area}, {areaState}"
+  },
+  "breadcrumbs": {
+    "home": "Home",
+    "areas": "Service Area",
+    "city": "{area}, {areaState}"
+  },
+  "hero": {
+    "eyebrow": "{county} · {areaStateName}",
+    "titleLead": "Restoration in {area},",
+    "titleRest": "{areaState}.",
+    "body": "{drive}-minute dispatch from our Vancouver, WA headquarters. Population {population}. experienced crews, direct insurance billing, 24/7.",
+    "ctaCall": "Call {phone}",
+    "ctaServices": "All services"
+  },
+  "local": {
+    "eyebrow": "Local context",
+    "title": "Why restoration in {area} is different.",
+    "weatherLabel": "Weather:",
+    "lossesTitle": "Common restoration calls here:"
+  },
+  "coverage": {
+    "eyebrow": "Coverage",
+    "title": "Neighborhoods we work in.",
+    "zipsEyebrow": "ZIP codes",
+    "zipsTitle": "{zipCount} ZIPs · {county}."
+  },
+  "services": {
+    "eyebrow": "Available in {area}",
+    "title": "Services we provide here.",
+    "note": "Each link opens the {area}-specific page for that service — response time, neighborhoods, and local loss patterns included."
+  },
+  "faq": {
+    "title": "FAQ — {area}, {areaState}",
+    "items": [
+      {
+        "q": "How fast can Ona Restoration reach {area}, {areaState}?",
+        "a": "Our typical dispatch time to {area} is {drive} minutes from our Vancouver, WA headquarters. During regional emergencies we dispatch by severity and prioritize the closest available crew first.",
+        "aOregon": ""
+      },
+      {
+        "q": "What are the most common restoration calls in {area}?",
+        "a": "{topLosses}. {weather}",
+        "aOregon": ""
+      },
+      {
+        "q": "Which ZIP codes do you cover in {area}?",
+        "a": "We cover all of {area} and the surrounding {county}, including ZIP codes {zips}.",
+        "aOregon": ""
+      },
+      {
+        "q": "Are you licensed to work in {areaStateName}?",
+        "a": "Yes — Washington contractor registration ONARER*748K8, verifiable at secure.lni.wa.gov/verify. Our technicians hold IICRC certifications in water, structural drying, microbial remediation and fire and smoke.",
+        "aOregon": "Our Oregon CCB registration is pending. We will publish the number here the day it issues. In Washington we hold contractor registration ONARER*748K8, verifiable at secure.lni.wa.gov/verify, and our technicians hold IICRC certifications in water, structural drying, microbial remediation and fire and smoke."
+      },
+      {
+        "q": "Do you handle the insurance claim for {area} customers?",
+        "a": "Yes. We document the loss to IICRC and Xactimate standards and coordinate directly with your adjuster from first notice of loss through final payment.",
+        "aOregon": ""
+      }
+    ]
+  },
+  "cta": {
+    "title": "Emergency in {area}?",
+    "subtitle": "Live dispatch, 24/7. Typical on-site time from Vancouver, WA: {drive} minutes."
+  }
+}

@@ -8,6 +8,10 @@ import { AREAS_INDEX } from "./pages/areas-index";
 import { BLOG_INDEX } from "./pages/blog-index";
 import { MISC } from "./pages/misc";
 import { SPOKANE_FIRE } from "./pages/spokane-fire";
+import { SERVICE_PAGE } from "./pages/service-page";
+import { MOLD_SECTIONS } from "./pages/mold-sections";
+import { AREA_PAGE } from "./pages/area-page";
+import { SERVICE_AREA_PAGE } from "./pages/service-area-page";
 
 // Every schema-driven section of the admin: what file it lives in, how it
 // is shaped, and what the editor is told about it. Blog posts and the
@@ -43,6 +47,10 @@ export const SECTIONS: SectionDef[] = [
   BLOG_INDEX,
   MISC,
   SPOKANE_FIRE,
+  SERVICE_PAGE,
+  MOLD_SECTIONS,
+  AREA_PAGE,
+  SERVICE_AREA_PAGE,
   {
     id: "site",
     label: "Company details",
