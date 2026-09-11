@@ -7,7 +7,7 @@
 // do" loses to any competitor showing an actual kitchen.
 //
 // Ona's own finish work. The entries are content files in content/work/,
-// edited through the admin at /keystatic — see lib/work.ts. The images
+// edited through the admin at /admin — see lib/work.ts. The images
 // live in /public/photos/projects/, the same set the homepage and the
 // Spokane page use.
 //

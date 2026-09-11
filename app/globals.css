@@ -246,11 +246,11 @@ body:has(.wildfire-page) header a[href^="tel:"]:hover {
   background: var(--color-flare-deep);
 }
 
-/* Content admin (/keystatic). It renders inside the root layout, so the
+/* Content admin (/admin). It renders inside the root layout, so the
    server-rendered parts of the site chrome — the sticky status strip and
    the footer — are hidden here; Header and AskOna return null themselves.
-   `.ona-keystatic` is the wrapper in app/keystatic/layout.tsx. */
-body:has(.ona-keystatic) .promo-strip,
-body:has(.ona-keystatic) > footer {
+   `.ona-admin` is the wrapper in app/admin/layout.tsx. */
+body:has(.ona-admin) .promo-strip,
+body:has(.ona-admin) > footer {
   display: none;
 }

@@ -277,7 +277,7 @@ export function AskOna() {
 
   // No floating assistant over the content admin. After every hook — this
   // component has a dozen — so hook order never changes between renders.
-  if (pathname.startsWith("/keystatic")) return null;
+  if (pathname.startsWith("/admin")) return null;
 
   return (
     <>

@@ -7,7 +7,7 @@ import { site } from "@/lib/site";
 //
 // Node runtime, prebuilt for every post. This used to be edge, rendered on
 // the first share request. It cannot be edge any more: posts are content
-// files read from disk (lib/posts.ts, edited through /keystatic), and the
+// files read from disk (lib/posts.ts, edited through /admin), and the
 // edge runtime has no filesystem — `findPost` would fail on the first
 // share. Generating them all at build time also means no request ever
 // reads the content directory, so there is nothing for Vercel's output

@@ -54,30 +54,18 @@ const ContentSecurityPolicy = [
   `report-uri ${cspReportEndpoint}`,
 ].join("; ");
 
-// The content admin (/keystatic) gets its own policy. It is a client app
-// that talks to GitHub from the browser — the editor's commits go straight
-// to api.github.com — and shows GitHub avatars, neither of which the public
-// site's `connect-src`/`img-src` allow, and neither of which the public site
-// should allow. Everything else is identical to the site policy. Applied to
-// /keystatic only; a later header rule for the same key overrides the
-// earlier `/:path*` one.
-//
-// The admin UI also loads its own typeface (Inter) from Google Fonts; with
-// the site policy that was blocked on every admin page load and reported
-// to /api/csp-report each time. Allowed here, admin only.
+// The content admin (/admin) differs from the site policy in one place.
+// "Sign in with Google" is a form whose response is a redirect to
+// accounts.google.com, and Chrome applies form-action to redirects that
+// follow a form submission — under the site's `form-action 'self'` the
+// button would silently do nothing. Everything else stays exactly as strict
+// as the public site: the admin reads and writes through its own server
+// (GitHub is called server-side), so it needs no extra connect-src or
+// img-src at all.
 const AdminContentSecurityPolicy = ContentSecurityPolicy.replace(
-  "img-src 'self' data: blob:",
-  "img-src 'self' data: blob: https://avatars.githubusercontent.com https://raw.githubusercontent.com",
-)
-  .replace(
-    "connect-src 'self' https://plausible.io",
-    "connect-src 'self' https://plausible.io https://api.github.com",
-  )
-  .replace(
-    "style-src 'self' 'unsafe-inline'",
-    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-  )
-  .replace("font-src 'self' data:", "font-src 'self' data: https://fonts.gstatic.com");
+  "form-action 'self'",
+  "form-action 'self' https://accounts.google.com",
+);
 
 const baseHeaders = [
   { key: "X-Content-Type-Options", value: "nosniff" },
@@ -110,6 +98,12 @@ const securityHeaders = isProd
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  experimental: {
+    // Gallery photos are uploaded through a server action (app/admin/
+    // actions.ts). The default 1 MB limit would refuse any real photo; the
+    // action itself caps uploads at 10 MB.
+    serverActions: { bodySizeLimit: "12mb" },
+  },
   poweredByHeader: false,
   compress: true,
   images: {
@@ -138,9 +132,10 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       { source: "/:path*", headers: securityHeaders },
-      // Content admin: its own CSP (see AdminContentSecurityPolicy) and a
-      // hard noindex. Must come AFTER the `/:path*` rule so its CSP wins.
-      ...["/keystatic", "/keystatic/:path*", "/api/keystatic/:path*"].map(
+      // Content admin and its sign-in endpoints: their own CSP (see
+      // AdminContentSecurityPolicy) and a hard noindex. Must come AFTER the
+      // `/:path*` rule so its CSP wins.
+      ...["/admin", "/admin/:path*", "/api/auth/:path*"].map(
         (source) => ({
           source,
           headers: [

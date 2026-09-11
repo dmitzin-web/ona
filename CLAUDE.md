@@ -15,35 +15,44 @@ break without knowing them.
   'call')`, the browser is holding stale chunks for that port. Use a fresh
   port rather than clearing `.next` again.
 
-## Content admin (/keystatic)
+## Content admin (/admin)
 - Blog posts → `content/posts/<slug>.json`; remodeling gallery →
   `content/work/<slug>.json` + `public/photos/projects/<slug>/image.*`.
-  `lib/posts.ts` and `lib/work.ts` read them at build time. The `Post` type
-  and the `posts` / `findPost` exports are the contract — pages depend on
-  them, not on the files.
-- Editing those files by hand is fine; keep Keystatic's format (2-space
-  JSON, raw UTF-8, empty dates omitted rather than null) so the next admin
-  save doesn't produce a noisy diff.
-- Dev uses local storage (no login). Production uses GitHub mode: editors
-  sign in with GitHub and need write access to the repo; each save is a
-  commit to `main`, which deploys.
-- The API route (`app/api/keystatic/…`) is guarded: without its credentials
-  it returns 503 instead of throwing. Keystatic throws at import time when
-  GitHub credentials are missing, which used to fail the whole build.
-  Keep the guard.
+  `lib/posts.ts` and `lib/work.ts` read them at build time. The file format
+  lives in `lib/content-format.ts` and nowhere else — the build and the
+  admin both use it. Keep it byte-stable (2-space JSON, raw UTF-8, empty
+  dates omitted) so admin saves produce minimal diffs.
+- **Sign-in:** Google only (Auth.js, `auth.ts`), and only the addresses in
+  `ADMIN_EMAILS`. Fails closed: empty list = nobody. The allowlist is
+  re-checked on every request, so removing an address locks that person
+  out on their next click.
+- **Every server action calls `requireAdmin()` first.** Actions are plain
+  POST endpoints; the layout's check does not protect them. Keep it that
+  way for any new action.
+- **Writes:** in production the server commits to `main` through the
+  GitHub API with one token (`GITHUB_CONTENT_TOKEN`); editors never need
+  GitHub. Each save is one atomic commit (JSON + image together), which
+  deploys. Saves carry the file's SHA from when the form opened and are
+  refused if it changed since — never remove that check. Read GitHub by
+  commit SHA, never by branch name: its API caches branch-keyed responses
+  for 60 s (see `lib/admin/store.ts`).
+- **Local:** `npm run dev` edits the files on disk. `ADMIN_DEV_BYPASS=1`
+  skips Google sign-in in development only — it is compiled out of
+  production builds. `ADMIN_STORAGE=github` + `ADMIN_CONTENT_BRANCH=<test
+  branch>` exercises the GitHub path without touching `main`.
 - **Deliberately not in the admin:** `lib/site.ts`, `lib/services.ts`,
   `lib/areas.ts`, and anything else carrying a legal claim (see below).
 
-### Connecting the admin to GitHub (one time)
-1. `KEYSTATIC_STORAGE=github npm run dev`, open localhost:3100/keystatic,
-   follow "Create GitHub App" (owner account: `dmitzin-web`, repo `ona`).
-2. The wizard writes four variables to `.env` (gitignored):
-   `KEYSTATIC_GITHUB_CLIENT_ID`, `KEYSTATIC_GITHUB_CLIENT_SECRET`,
-   `KEYSTATIC_SECRET`, `NEXT_PUBLIC_KEYSTATIC_GITHUB_APP_SLUG`.
-3. Add all four in Vercel → Project → Settings → Environment Variables
-   (Production), then redeploy. Add each editor as a repo collaborator.
-4. Editors who shouldn't need GitHub accounts: switch production storage to
-   Keystatic Cloud in `keystatic.config.ts` (free up to 3 users).
+### Admin environment (Vercel → Settings → Environment Variables)
+| Variable | What |
+|---|---|
+| `AUTH_SECRET` | random; `openssl rand -base64 33` |
+| `AUTH_GOOGLE_ID`, `AUTH_GOOGLE_SECRET` | Google Cloud OAuth client (Web). Redirect URI: `https://www.onarestore.com/api/auth/callback/google` |
+| `ADMIN_EMAILS` | comma-separated Google addresses allowed in. Never in code — the repo is public |
+| `GITHUB_CONTENT_TOKEN` | fine-grained PAT, repository `dmitzin-web/ona` only, **Contents: Read and write** |
+
+Adding or removing an editor = editing `ADMIN_EMAILS` and redeploying.
+Without these the admin says it is not set up; the site still builds.
 
 ## Legal — do not edit these away
 Washington contractor rules and FTC substantiation. Each has bitten before.
@@ -81,4 +90,5 @@ Washington contractor rules and FTC substantiation. Each has bitten before.
   the mobile drawer. If anything in the header changes size, measure it in
   the browser at 375px and 900px and update it. Never estimate it.
 - CSP is strict (`next.config.ts`). New third-party hosts need adding there;
-  the admin has its own, looser policy scoped to `/keystatic`.
+  `/admin` differs only in `form-action`, which must allow
+  accounts.google.com for the sign-in redirect.

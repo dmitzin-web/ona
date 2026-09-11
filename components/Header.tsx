@@ -86,10 +86,10 @@ export function Header() {
     pathname.startsWith("/services/remodeling") ||
     pathname.startsWith("/start-project");
 
-  // The content admin at /keystatic is a full-screen app of its own; the
-  // site's header would sit on top of it. Returned here, after every hook,
-  // so the hook order is identical on every render.
-  if (pathname.startsWith("/keystatic")) return null;
+  // The content admin at /admin has its own header; the site's would sit
+  // on top of it. Returned here, after every hook, so the hook order is
+  // identical on every render.
+  if (pathname.startsWith("/admin")) return null;
 
   return (
     // Solid, not `bg-charcoal/90 backdrop-blur`. Blurring white content
