@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useRef, useState } from "react";
+import { createContext, useContext, useEffect, useRef, useState } from "react";
 import { uploadPhoto } from "@/app/admin/editor-actions";
 import { useLang } from "./visual/i18n";
 import { btnSecondary } from "./ui";
@@ -18,6 +18,12 @@ const MAX_EDGE = 2400;
 const previews = new Map<string, string>(); // path → local blob URL, until deployed
 
 export const photoPreviewUrl = (path: string) => previews.get(path);
+
+// The right-click menu asks the field that is open in the panel to do one
+// of its two things, without the editor having to know how it works.
+export const PHOTO_ACTION_EVENT = "ona:photo-action";
+export const askPhotoField = (id: string, action: "upload" | "library") =>
+  window.dispatchEvent(new CustomEvent(PHOTO_ACTION_EVENT, { detail: { id, action } }));
 
 type Library = { photos: string[]; add: (path: string) => void };
 const LibraryContext = createContext<Library>({ photos: [], add: () => {} });
@@ -66,6 +72,17 @@ export function ImageField({
   const [error, setError] = useState<string | null>(null);
   const input = useRef<HTMLInputElement>(null);
   const src = (p: string) => photoPreviewUrl(p) ?? p;
+
+  useEffect(() => {
+    const h = (e: Event) => {
+      const d = (e as CustomEvent<{ id: string; action: "upload" | "library" }>).detail;
+      if (d.id !== id) return;
+      if (d.action === "upload") input.current?.click();
+      else setOpen(true);
+    };
+    window.addEventListener(PHOTO_ACTION_EVENT, h);
+    return () => window.removeEventListener(PHOTO_ACTION_EVENT, h);
+  }, [id]);
 
   async function pickFile(file: File) {
     setError(null);

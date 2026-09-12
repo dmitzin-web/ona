@@ -1,4 +1,5 @@
 import type { Field } from "@/lib/admin/schema";
+import { emptyValue } from "@/lib/admin/schema";
 import type { SectionDef } from "@/lib/admin/sections";
 import type { Path } from "@/lib/admin/json-path";
 
@@ -146,4 +147,27 @@ export function matcherFor(filled: string): Matcher | null {
   const vars: string[] = [];
   const src = parts.map((x, i) => (i % 2 ? (vars.push(x), "(.+?)") : escapeRe(x))).join("");
   return { kind: "pattern", re: new RegExp(`^${src}$`), vars };
+}
+
+// A blank item shaped like the ones already in a list.
+export const emptyLike = (fields: Field[]) => emptyValue(fields);
+
+// The repeatable list a field belongs to, if any: which array, which item,
+// and the schema of one item — what "move this up", "delete this one" and
+// "add another like it" need.
+export function listAncestor(
+  section: SectionDef,
+  path: Path,
+): { arrayPath: Path; index: number; field: Field & { kind: "list" }; itemTitle: string } | null {
+  for (let i = path.length - 1; i >= 0; i--) {
+    if (typeof path[i] !== "number") continue;
+    const arrayPath = path.slice(0, i);
+    // A collection's own item index is the section's items, not a list.
+    if (section.kind === "collection" && i === 0) return null;
+    const f = fieldsAlong(section, arrayPath).at(-1);
+    if (f?.kind === "list") {
+      return { arrayPath, index: path[i] as number, field: f, itemTitle: f.itemTitle ?? "Item" };
+    }
+  }
+  return null;
 }

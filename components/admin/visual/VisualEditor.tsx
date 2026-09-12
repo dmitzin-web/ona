@@ -15,17 +15,18 @@ import {
   type Binding,
   type Index,
 } from "./binder";
-import { companyValues, type Leaf } from "./model";
+import { companyValues, emptyLike, fieldsAlong, listAncestor, type Leaf } from "./model";
 import { LangProvider, useLang } from "./i18n";
 import { Panel } from "./Panel";
 import { HistoryDialog, PagePicker, ReviewDialog, SearchDialog } from "./Dialogs";
 import { DeployTracker } from "./Deploy";
 import { AskBar } from "./AskBar";
+import { ContextMenu, type MenuItem } from "./ContextMenu";
 import { askEditor } from "@/app/admin/ai-actions";
 import { ADMIN_FLAG } from "../EditThisPage";
 import { themeCss, type Theme } from "@/lib/theme";
-import { photoPreviewUrl, PhotoLibrary } from "../ImageField";
-import type { Base, Draft, EditorProps, Selection } from "./types";
+import { askPhotoField, photoPreviewUrl, PhotoLibrary } from "../ImageField";
+import { SHARED as SHARED_NOTE, type Base, type Draft, type EditorProps, type Selection } from "./types";
 
 // The visual editor: the real site in a frame, every piece of copy on it
 // clickable and editable in place, a panel with the rest of the block
@@ -54,7 +55,7 @@ export function VisualEditor(props: EditorProps) {
 
 function Editor(props: EditorProps) {
   const { sections, deployed, siteUrl } = props;
-  const { t, lang, setLang, field: tr } = useLang();
+  const { t, lang, setLang, field: tr, trail: trTrail } = useLang();
   const byId = useMemo(() => new Map(sections.map((s) => [s.id, s])), [sections]);
 
   // ── Content state ────────────────────────────────────────────────────
@@ -204,6 +205,7 @@ function Editor(props: EditorProps) {
   selectionRef.current = selection;
   const pendingReveal = useRef<Leaf | null>(null);
   const [panelOpen, setPanelOpen] = useState(false);
+  const [menu, setMenu] = useState<{ x: number; y: number; b: Binding } | null>(null);
   const [dialog, setDialog] = useState<"search" | "review" | "history" | "pages" | null>(null);
   const dialogRef = useRef(dialog);
   dialogRef.current = dialog;
@@ -505,6 +507,9 @@ function Editor(props: EditorProps) {
       const bs = bindingsRef.current;
       return (
         bs.find((b) => b.node && b.node === node) ??
+        // On a photo the photo itself is what was pointed at, not its
+        // description, which shares the same element.
+        (el.tagName === "IMG" ? bs.find((b) => b.el === el && b.kind === "photo") : undefined) ??
         bs.find((b) => b.el === el && b.kind === "text") ??
         bs.find((b) => b.el === el) ??
         null
@@ -549,6 +554,37 @@ function Editor(props: EditorProps) {
       },
       true,
     );
+    // Right-click, or a long press on a phone: everything that can be
+    // done to whatever is under the pointer.
+    const openMenu = (b: Binding, clientX: number, clientY: number) => {
+      const box = frameRef.current!.getBoundingClientRect();
+      select({ sectionId: b.leaf.sectionId, path: b.leaf.path });
+      setMenu({ x: box.left + clientX, y: box.top + clientY, b });
+    };
+    d.addEventListener(
+      "contextmenu",
+      (e) => {
+        if (modeRef.current !== "edit") return;
+        const b = bindingAt(e);
+        if (!b) return;
+        e.preventDefault();
+        openMenu(b, e.clientX, e.clientY);
+      },
+      true,
+    );
+    let press: ReturnType<typeof setTimeout> | undefined;
+    d.addEventListener(
+      "touchstart",
+      (e) => {
+        if (modeRef.current !== "edit") return;
+        const touch = e.touches[0];
+        const b = bindingAt({ target: e.target, clientX: touch.clientX, clientY: touch.clientY } as unknown as MouseEvent);
+        if (!b) return;
+        press = setTimeout(() => openMenu(b, touch.clientX, touch.clientY), 500);
+      },
+      true,
+    );
+    for (const ev of ["touchend", "touchmove", "touchcancel"]) d.addEventListener(ev, () => clearTimeout(press), true);
     d.addEventListener("scroll", () => (tag.style.display = "none"), true);
     d.addEventListener("keydown", (e) => keysRef.current(e), true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -673,6 +709,86 @@ function Editor(props: EditorProps) {
     draftRef.current = next;
     setDraftState(next);
   }, [sections, base]);
+
+  // Everything that can be done to one thing on the page, in plain words.
+  function menuItems(b: Binding): MenuItem[] {
+    const { sectionId, path } = b.leaf;
+    const section = byId.get(sectionId);
+    const items: MenuItem[] = [];
+    if (!section) return items;
+    const value = draftRef.current[sectionId];
+    const field = fieldsAlong(section, path).at(-1);
+    const idOf = (p: Path) => `f-${(section.kind === "collection" ? p.slice(1) : p).join("-")}`;
+    void tr;
+
+    if (b.kind === "photo") {
+      items.push({ label: t.menuReplacePhoto, run: () => askPhotoField(idOf(path), "upload") });
+      items.push({ label: t.menuFromLibrary, run: () => askPhotoField(idOf(path), "library") });
+      const alt = [...path.slice(0, -1), "imageAlt"];
+      if (typeof getAt(value, alt) === "string") {
+        items.push({
+          label: t.menuPhotoAlt,
+          hint: t.menuPhotoAltHint,
+          run: () => {
+            select({ sectionId, path: alt });
+            setTimeout(() => document.getElementById(idOf(alt))?.focus(), 300);
+          },
+        });
+      }
+    } else if (b.kind === "text" && canInline(b)) {
+      items.push({ label: t.menuEditText, run: () => startInline(b, ...centreOf(b)) });
+    } else {
+      items.push({
+        label: t.menuEditText,
+        run: () => {
+          select({ sectionId, path });
+          setTimeout(() => document.getElementById(idOf(path))?.focus(), 300);
+        },
+      });
+    }
+
+    const list = listAncestor(section, path);
+    if (list) {
+      const arr = (getAt(value, list.arrayPath) as unknown[]) ?? [];
+      const i = list.index;
+      const setArr = (next: unknown[]) => {
+        setDraft({ ...draftRef.current, [sectionId]: setAt(draftRef.current[sectionId], list.arrayPath, next) }, `list:${Date.now()}`);
+        setSelection(null);
+      };
+      const swap = (j: number) => {
+        const next = [...arr];
+        [next[i], next[j]] = [next[j], next[i]];
+        setArr(next);
+      };
+      if (i > 0) items.push({ label: t.menuMoveUp, run: () => swap(i - 1) });
+      if (i < arr.length - 1) items.push({ label: t.menuMoveDown, run: () => swap(i + 1) });
+      items.push({
+        label: t.menuAddLike,
+        hint: t.menuAfterPublish,
+        run: () => setArr([...arr.slice(0, i + 1), emptyLike(list.field.fields), ...arr.slice(i + 1)]),
+      });
+      items.push({
+        label: t.menuDelete,
+        hint: t.menuAfterPublish,
+        danger: true,
+        run: () => confirm(t.menuDeleteConfirm) && setArr(arr.filter((_, k) => k !== i)),
+      });
+    }
+
+    const href = b.el.closest?.("a[href]")?.getAttribute("href");
+    const here = frameRef.current?.contentWindow?.location.pathname;
+    if (href?.startsWith("/") && href !== here) items.push({ label: t.menuOpenLink, hint: href, run: () => navigate(href) });
+
+    items.push({ label: t.menuWholeBlock, run: () => (select({ sectionId, path }), setPanelOpen(true)) });
+    if (SHARED_NOTE.has(sectionId)) items[items.length - 1].hint = t.shared;
+    items.push({ label: t.taskColors, run: () => select({ sectionId: "theme", path: ["ground"] }) });
+    return items;
+  }
+
+  const centreOf = (b: Binding): [number, number] => {
+    const r = b.el.getBoundingClientRect();
+    return [r.left + Math.min(30, r.width / 2), r.top + r.height / 2];
+  };
 
   const selectedSection = selection ? byId.get(selection.sectionId) ?? null : null;
   const pageLabel = tr(props.pages.find((p) => p.path === path)?.label ?? path);
@@ -855,6 +971,16 @@ function Editor(props: EditorProps) {
           return r;
         }}
       />
+
+      {menu && (
+        <ContextMenu
+          x={menu.x}
+          y={menu.y}
+          title={menu.b.leaf.trail.slice(-2).map(trTrail).join(" › ")}
+          items={menuItems(menu.b)}
+          onClose={() => setMenu(null)}
+        />
+      )}
 
       {deploy && (
         <DeployTracker

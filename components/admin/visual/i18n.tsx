@@ -136,6 +136,19 @@ const EN = {
   backToEditing: "Back to editing",
   showOnPhone: "Show as on a phone",
   showOnComputer: "Show as on a computer",
+  menuEditText: "Change the words",
+  menuReplacePhoto: "Replace the photo…",
+  menuFromLibrary: "Pick a photo already on the site",
+  menuPhotoAlt: "Describe the photo",
+  menuPhotoAltHint: "Read aloud to blind visitors",
+  menuMoveUp: "Move up",
+  menuMoveDown: "Move down",
+  menuAddLike: "Add another one here",
+  menuDelete: "Delete this one",
+  menuDeleteConfirm: "Delete this one?",
+  menuAfterPublish: "shows on the page after you put it on the site",
+  menuOpenLink: "Open the page this links to",
+  menuWholeBlock: "Everything in this block",
 };
 
 type Dict = typeof EN;
@@ -267,6 +280,19 @@ const RU: Dict = {
   backToEditing: "Вернуться к правке",
   showOnPhone: "Показать как на телефоне",
   showOnComputer: "Показать как на компьютере",
+  menuEditText: "Изменить текст",
+  menuReplacePhoto: "Заменить фото…",
+  menuFromLibrary: "Выбрать фото, которое уже есть на сайте",
+  menuPhotoAlt: "Описать фото",
+  menuPhotoAltHint: "Читается вслух незрячим посетителям",
+  menuMoveUp: "Поднять выше",
+  menuMoveDown: "Опустить ниже",
+  menuAddLike: "Добавить такой же сюда",
+  menuDelete: "Удалить этот",
+  menuDeleteConfirm: "Удалить этот пункт?",
+  menuAfterPublish: "появится на странице после сохранения на сайт",
+  menuOpenLink: "Открыть страницу, куда ведёт ссылка",
+  menuWholeBlock: "Все поля этого блока",
 };
 
 const DICTS: Record<Lang, Dict> = { en: EN, ru: RU };

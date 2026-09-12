@@ -61,6 +61,13 @@ break without knowing them.
   works) and still go through validation and the legal guard on publish.
   Needs `ANTHROPIC_API_KEY`; without it the bar says so and changes
   nothing.
+- **Right-click (or long-press) anything on the page** for everything that
+  can be done to it: change the words, replace the photo, describe it, move
+  the item up or down, add another one like it, delete it, open the block,
+  open the page a link points to. Built in `menuItems()` in
+  `VisualEditor.tsx` from the field's kind and its list ancestor
+  (`listAncestor` in `model.ts`) — add a field kind there when you add one
+  to the schema.
 - Admin UI language: English or Russian (`components/admin/visual/i18n.tsx`);
   field labels are translated by English source string in
   `lib/admin/i18n/fields-ru.ts`. Add a label → add its translation.
