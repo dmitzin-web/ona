@@ -214,6 +214,14 @@ function githubStore(): ContentStore {
         })),
       );
     },
+    async listMedia(dir) {
+      assertSafePath(`${dir}/`);
+      const tree = await gh<{ tree: TreeEntry[] }>(`/git/trees/${await headSha()}?recursive=1`);
+      return (tree?.tree ?? [])
+        .filter((e) => e.type === "blob" && e.path.startsWith(`${dir}/`) && /\.(avif|webp|jpe?g|png)$/i.test(e.path))
+        .map((e) => e.path)
+        .sort();
+    },
     async deployStatus(sha): Promise<DeployState> {
       if (!/^[0-9a-f]{40}$/.test(sha)) return { state: "unknown" };
       type S = { statuses: { context: string; state: string; target_url?: string }[] };

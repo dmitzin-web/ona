@@ -9,6 +9,7 @@
     "body": "IICRC-certified restoration across the Portland metro. We stabilize the damage, document it for your insurer, and rebuild what was lost — on a live project page you can share with your family or adjuster. Also remodeling, from the same crew.",
     "ctaCall": "Call {phone}",
     "ctaSecondary": "Start a project",
+    "photo": "/photos/projects/p1.avif",
     "imageAlt": "Recent Ona project — interior detail",
     "overlayEyebrow": "Your project · live page",
     "overlayStatus": "On schedule · Day 7 of 14",
@@ -171,17 +172,20 @@
     "intro": "Finish work by our own crews. More added as projects complete.",
     "cards": [
       {
-        "photo": "p8",
+        "photo": "/photos/projects/p8.avif",
+        "imageAlt": "Project — bath",
         "kind": "Kitchen",
         "meta": "Waterfall-edge island · apron-front sink · chimney hood"
       },
       {
-        "photo": "p2",
+        "photo": "/photos/projects/p2.avif",
+        "imageAlt": "Project — kitchen detail",
         "kind": "Primary bath",
         "meta": "Freestanding tub · glass shower enclosure · large-format floor tile"
       },
       {
-        "photo": "p6",
+        "photo": "/photos/projects/p6.avif",
+        "imageAlt": "Project — material detail",
         "kind": "Guest bath",
         "meta": "Textured wallcovering · shaker vanity · oval mirror"
       }
@@ -189,7 +193,7 @@
     "linkText": "See how we handle remodel projects"
   },
   "band": {
-    "photo": "p7",
+    "photo": "/photos/projects/p7.avif",
     "imageAlt": "Recent finished space"
   },
   "team": {
@@ -225,7 +229,8 @@
     "linkText": "Read the field notes →",
     "cards": [
       {
-        "photo": "p3",
+        "photo": "/photos/projects/p3.avif",
+        "imageAlt": "Project — interior",
         "kind": "In progress",
         "title": "NE Hazel Dell — kitchen leak rebuild",
         "meta": "Water mitigation · Day 7 of 14",
@@ -233,7 +238,8 @@
         "signalLive": true
       },
       {
-        "photo": "p8",
+        "photo": "/photos/projects/p8.avif",
+        "imageAlt": "Project — bath",
         "kind": "Booking",
         "title": "Salmon Creek — bathroom refresh",
         "meta": "Remodel · Starts August 25",
@@ -241,7 +247,8 @@
         "signalLive": false
       },
       {
-        "photo": "none",
+        "photo": "",
+        "imageAlt": "",
         "kind": "Open slot",
         "title": "Your project here",
         "meta": "Booking restoration + remodel for fall",

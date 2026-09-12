@@ -5,6 +5,7 @@ import type { Field } from "@/lib/admin/schema";
 import type { SectionDef } from "@/lib/admin/sections";
 import { diff, getAt, isPrefix, pathKey, type Path } from "@/lib/admin/json-path";
 import { legalFindings, RULES_RU } from "@/lib/admin/legal-guard";
+import { themeWarnings, type Theme } from "@/lib/theme";
 import { SchemaForm } from "../SchemaForm";
 import { bindingsForLeaf, type Binding } from "./binder";
 import { fieldsAlong, trailOf, type Company } from "./model";
@@ -127,6 +128,14 @@ function SelectedBlock(
     ? `/admin/s/${section.id}/${String((value as Record<string, unknown>[])[selection.path[0] as number]?.slug ?? "")}`
     : `/admin/s/${section.id}`;
 
+  // A field inside a block shows that block; a plain field at the top of a
+  // section (a colour, the phone number) shows the whole section, because
+  // one lonely input with no neighbours is disorienting.
+  const grouped = block.field.kind === "object" || block.field.kind === "list" || block.field.kind === "optional";
+  const formFields = grouped ? [block.field] : section.schema;
+  const formPrefix: Path = grouped ? block.prefix : section.kind === "collection" ? [selection.path[0]] : [];
+  const formValue = grouped ? { [block.field.key]: blockValue } : (getAt(value, formPrefix) as Record<string, unknown>);
+
   return (
     <div className="space-y-4 p-4">
       <div>
@@ -169,13 +178,27 @@ function SelectedBlock(
         </div>
       )}
       {structural && <Note>{t.structural}</Note>}
+      {section.id === "theme" && themeWarnings(draft.theme as Theme).length > 0 && (
+        <div role="alert" className="rounded-[2px] border border-coral/50 bg-coral/5 p-3 text-[13px]">
+          <p className="font-semibold text-coral-deep">{t.contrastTitle}</p>
+          {themeWarnings(draft.theme as Theme).map((w) => (
+            <p key={w.key} className="mt-1">
+              {w.message}
+            </p>
+          ))}
+        </div>
+      )}
 
       <div>
-        <p className="mb-2 text-[12px] font-medium uppercase tracking-wide text-warm-gray">{t.fieldsOf}</p>
+        <p className="mb-2 text-[12px] font-medium uppercase tracking-wide text-warm-gray">{grouped ? t.fieldsOf : tr(section.label)}</p>
         <SchemaForm
-          fields={[block.field]}
-          value={{ [block.field.key]: blockValue }}
-          onChange={(v) => props.onChangeBlock(section.id, block.prefix, v[block.field.key])}
+          fields={formFields}
+          value={formValue}
+          onChange={(v) =>
+            grouped
+              ? props.onChangeBlock(section.id, formPrefix, v[block.field.key])
+              : props.onChangeBlock(section.id, formPrefix, v)
+          }
         />
       </div>
 
@@ -339,6 +362,11 @@ function Overview(props: Parameters<typeof Panel>[0]) {
           <li>
             <button type="button" className="w-full rounded-[2px] px-2 py-1 text-left hover:bg-charcoal-soft" onClick={() => props.onSelect({ sectionId: "site", path: ["phoneDisplay"] })}>
               {t.taskPhone}
+            </button>
+          </li>
+          <li>
+            <button type="button" className="w-full rounded-[2px] px-2 py-1 text-left hover:bg-charcoal-soft" onClick={() => props.onSelect({ sectionId: "theme", path: ["ground"] })}>
+              {t.taskColors}
             </button>
           </li>
           <li>

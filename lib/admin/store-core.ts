@@ -38,6 +38,8 @@ export interface ContentStore {
   // (null = did not exist).
   commitFiles(sha: string): Promise<{ path: string; before: string | null; after: string | null }[]>;
   deployStatus(sha: string): Promise<DeployState>;
+  // Image files under a folder (the admin's photo library).
+  listMedia(dir: string): Promise<string[]>;
 }
 
 // Git's own blob hash, so the local store's conflict check means exactly

@@ -20,7 +20,11 @@ import { LangProvider, useLang } from "./i18n";
 import { Panel } from "./Panel";
 import { HistoryDialog, PagePicker, ReviewDialog, SearchDialog } from "./Dialogs";
 import { DeployTracker } from "./Deploy";
+import { AskBar } from "./AskBar";
+import { askEditor } from "@/app/admin/ai-actions";
 import { ADMIN_FLAG } from "../EditThisPage";
+import { themeCss, type Theme } from "@/lib/theme";
+import { photoPreviewUrl, PhotoLibrary } from "../ImageField";
 import type { Base, Draft, EditorProps, Selection } from "./types";
 
 // The visual editor: the real site in a frame, every piece of copy on it
@@ -41,7 +45,9 @@ type Stored = { savedAt: number; sections: Record<string, { sha: string | null; 
 export function VisualEditor(props: EditorProps) {
   return (
     <LangProvider fieldsRu={props.fieldsRu}>
-      <Editor {...props} />
+      <PhotoLibrary photos={props.photos}>
+        <Editor {...props} />
+      </PhotoLibrary>
     </LangProvider>
   );
 }
@@ -216,7 +222,15 @@ function Editor(props: EditorProps) {
   const paint = useCallback(() => {
     const d = doc();
     if (!d) return;
-    renderDraft(d, bindingsRef.current, rawOf, companyValues((draftRef.current.site ?? {}) as Record<string, unknown>, siteUrl), index.siteName, editing.current?.el ?? null);
+    renderDraft(
+      d,
+      bindingsRef.current,
+      rawOf,
+      companyValues((draftRef.current.site ?? {}) as Record<string, unknown>, siteUrl),
+      index.siteName,
+      editing.current?.el ?? null,
+      photoPreviewUrl,
+    );
     observer.current?.takeRecords();
   }, [rawOf, siteUrl, index.siteName]);
 
@@ -251,6 +265,37 @@ function Editor(props: EditorProps) {
   useEffect(() => {
     paint();
   }, [draft, paint]);
+
+  // Colours and corner rounding: rewrite the page's own theme stylesheet,
+  // so a colour change is visible everywhere on the page at once.
+  useEffect(() => {
+    const d = doc();
+    const t = draft.theme as Theme | undefined;
+    if (!d || !t) return;
+    let el = d.getElementById("ona-theme");
+    if (!el) {
+      // The page ships without the tag while every colour is the default.
+      el = d.createElement("style");
+      el.id = "ona-theme";
+      el.setAttribute("data-ona-ui", "");
+      d.head.appendChild(el);
+    }
+    const css = themeCss(t);
+    if (el.textContent !== css) {
+      // Chromium keeps the OLD colour on elements that have a CSS
+      // transition when a custom property changes, until something else
+      // invalidates them. Turning transitions off for a frame makes the
+      // whole page pick the new colour up at once.
+      const freeze = d.createElement("style");
+      freeze.setAttribute("data-ona-ui", "");
+      freeze.textContent = "*{transition:none !important}";
+      d.head.appendChild(freeze);
+      el.textContent = css;
+      d.body.getBoundingClientRect();
+      requestAnimationFrame(() => freeze.remove());
+    }
+    observer.current?.takeRecords();
+  }, [draft.theme, bindVersion]);
   useEffect(() => {
     markSelection();
   }, [selection, markSelection, bindVersion]);
@@ -804,6 +849,23 @@ function Editor(props: EditorProps) {
           onGoToLeaf={goToLeaf}
         />
       </div>
+
+      <AskBar
+        onAsk={async (request) => {
+          const ids = [...new Set(bindingsRef.current.map((b) => b.leaf.sectionId))].slice(0, 6);
+          if (!ids.includes("theme")) ids.push("theme");
+          const values = Object.fromEntries(ids.map((id) => [id, draftRef.current[id]]));
+          const r = await askEditor(request, { sectionIds: ids, page: path, values, lang }).catch(() => null);
+          if (!r) return { error: t.deployFailed };
+          if (!r.ok) return { error: r.message };
+          if (r.edits.length) {
+            let next = { ...draftRef.current };
+            for (const e of r.edits) next = { ...next, [e.sectionId]: setAt(next[e.sectionId], e.path, e.value) };
+            setDraft(next, `ai:${Date.now()}`);
+          }
+          return r;
+        }}
+      />
 
       {deploy && (
         <DeployTracker

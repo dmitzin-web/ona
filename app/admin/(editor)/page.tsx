@@ -3,6 +3,7 @@ import { getStore, StoreError } from "@/lib/admin/store";
 import { SECTIONS } from "@/lib/admin/sections";
 import { DEPLOYED } from "@/lib/admin/deployed";
 import { PREVIEW_PATHS } from "@/lib/admin/preview-paths";
+import { photoLibrary } from "@/lib/admin/photos";
 import { FIELDS_RU } from "@/lib/admin/i18n/fields-ru";
 import { site } from "@/lib/site";
 import { services } from "@/lib/services";
@@ -71,6 +72,7 @@ export default async function EditorPage({ searchParams }: { searchParams: Promi
       pages={pages()}
       previewPaths={PREVIEW_PATHS}
       posts={posts.map((p) => ({ slug: p.slug, title: p.title }))}
+      photos={await photoLibrary()}
       user={user.name}
       devBypass={user.email === "dev@localhost"}
       siteUrl={site.url}

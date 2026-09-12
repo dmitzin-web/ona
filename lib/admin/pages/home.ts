@@ -1,4 +1,4 @@
-import { PHOTO, PLACEHOLDERS, steps, THUMBS } from "../fields";
+import { PLACEHOLDERS, steps } from "../fields";
 import type { SectionDef } from "../sections";
 
 // Homepage: every piece of marketing copy. The sample project inside the
@@ -21,6 +21,7 @@ export const HOME: SectionDef = {
       { kind: "textarea", key: "body", label: "Paragraph", required: true, rows: 4 },
       { kind: "text", key: "ctaCall", label: "Call button", required: true },
       { kind: "text", key: "ctaSecondary", label: "Second button", required: true },
+      { kind: "image", key: "photo", label: "Photo", aspect: "4 / 5" },
       { kind: "text", key: "imageAlt", label: "Photo description", required: true },
       { kind: "text", key: "overlayEyebrow", label: "Card on the photo — label", required: true },
       { kind: "text", key: "overlayStatus", label: "Card on the photo — status", required: true },
@@ -101,14 +102,15 @@ export const HOME: SectionDef = {
       { kind: "text", key: "title", label: "Heading", required: true },
       { kind: "textarea", key: "intro", label: "Line beside the heading", required: true, rows: 2 },
       { kind: "list", key: "cards", label: "Photos", itemTitle: "Photo", hint: "Captions: only what is visible in the photo.", fields: [
-        { kind: "select", key: "photo", label: "Photo", options: PHOTO, thumbs: THUMBS },
+        { kind: "image", key: "photo", label: "Photo", aspect: "3 / 2" },
+        { kind: "text", key: "imageAlt", label: "Photo description", required: true, hint: "Read aloud to blind visitors and shown if the photo fails to load." },
         { kind: "text", key: "kind", label: "Room", required: true },
         { kind: "text", key: "meta", label: "Caption", required: true },
       ] },
       { kind: "text", key: "linkText", label: "Link under the photos", required: true },
     ] },
     { kind: "object", key: "band", label: "Wide photo", fields: [
-      { kind: "select", key: "photo", label: "Photo", options: PHOTO, thumbs: THUMBS },
+      { kind: "image", key: "photo", label: "Photo", aspect: "21 / 9" },
       { kind: "text", key: "imageAlt", label: "Photo description", required: true },
     ] },
     { kind: "object", key: "team", label: "“Who you're working with”", fields: [
@@ -129,7 +131,8 @@ export const HOME: SectionDef = {
       { kind: "text", key: "title", label: "Heading", required: true },
       { kind: "text", key: "linkText", label: "Link", required: true },
       { kind: "list", key: "cards", label: "Cards", itemTitle: "Card", fields: [
-        { kind: "select", key: "photo", label: "Photo", options: ["none", ...PHOTO], thumbs: THUMBS },
+        { kind: "image", key: "photo", label: "Photo", allowNone: true, aspect: "16 / 10", hint: "Leave empty for a card with no photo." },
+        { kind: "text", key: "imageAlt", label: "Photo description", hint: "Read aloud to blind visitors." },
         { kind: "text", key: "kind", label: "Status", required: true },
         { kind: "text", key: "title", label: "Title", required: true },
         { kind: "text", key: "meta", label: "Line", required: true },

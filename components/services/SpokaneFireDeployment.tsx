@@ -68,7 +68,6 @@ export const spokaneFireMetadata = () =>
   });
 
 const MAILTO = `mailto:${site.email}?subject=${encodeURIComponent(t.hero.emailSubject)}`;
-const photoSrc = (name: string) => `/photos/projects/${name}.avif`;
 
 // The three commitments that fit on a card. These were paragraphs in the
 // trust list below and got skimmed past; as cards they are the first thing
@@ -413,7 +412,7 @@ export function SpokaneFireDeployment() {
                 className="relative aspect-[3/2] overflow-hidden border border-day-line bg-day-2"
               >
                 <Image
-                  src={photoSrc(p.photo)}
+                  src={p.photo}
                   alt={p.alt}
                   fill
                   sizes="(max-width: 640px) 100vw, 33vw"

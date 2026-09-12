@@ -52,8 +52,8 @@ export function leaves(section: SectionDef, value: unknown): Leaf[] {
         case "textarea":
           out.push({ sectionId: section.id, path: p, field: f, trail: t });
           break;
-        case "select":
-          if (f.thumbs) out.push({ sectionId: section.id, path: p, field: f, trail: t, photo: true });
+        case "image":
+          out.push({ sectionId: section.id, path: p, field: f, trail: t, photo: true });
           break;
         case "strings":
           (Array.isArray(x) ? x : []).forEach((_, i) =>

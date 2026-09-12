@@ -3,6 +3,7 @@
 import { requireAdmin } from "@/lib/admin/session";
 import { ConflictError, getStore, StoreError } from "@/lib/admin/store";
 import { blobSha } from "@/lib/admin/store-core";
+import { IMAGE_TYPES, MAX_IMAGE_BYTES, sniffImage } from "@/lib/admin/validate";
 import { commitMessage } from "@/lib/admin/commit-message";
 import { legalFindings, type Finding } from "@/lib/admin/legal-guard";
 import { serializeContent, validateBySchema } from "@/lib/admin/schema";
@@ -210,5 +211,60 @@ export async function deployStatus(sha: string) {
     return await (await getStore()).deployStatus(sha);
   } catch {
     return { state: "unknown" as const };
+  }
+}
+
+// ── Photos ───────────────────────────────────────────────────────────────
+
+// A photo the editor picked on their computer or phone. The browser has
+// already resized it and re-encoded it (which also strips the camera's
+// metadata — including the GPS coordinates of a client's house); this
+// checks the bytes, names the file and commits it. It is on the site with
+// the next deploy; until then the editor previews the local copy.
+export async function uploadPhoto(fd: FormData): Promise<{ ok: true; path: string } | { ok: false; message: string }> {
+  const user = await requireAdmin();
+  const file = fd.get("file");
+  if (!(file instanceof File)) return { ok: false, message: "No photo was sent." };
+  if (file.size > MAX_IMAGE_BYTES) return { ok: false, message: "That photo is too large (10 MB max)." };
+  const buf = Buffer.from(await file.arrayBuffer());
+  const type = sniffImage(buf);
+  if (!type) return { ok: false, message: "That file is not a photo we can use (JPEG, PNG, WebP or AVIF)." };
+
+  const base =
+    (String(fd.get("name") ?? "photo")
+      .toLowerCase()
+      .replace(/\.[a-z0-9]+$/, "")
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-|-$/g, "")
+      .slice(0, 40) || "photo");
+  const stamp = blobSha(buf).slice(0, 8);
+  const path = `public/photos/library/${base}-${stamp}.${IMAGE_TYPES[type]}`;
+
+  try {
+    const store = await getStore();
+    const existing = await store.read(path);
+    if (!existing) {
+      await store.commit({
+        message: commitMessage(`Add photo ${base}`, user.name),
+        put: [{ path, content: buf }],
+        remove: [],
+        expect: { [path]: null },
+      });
+    }
+    return { ok: true, path: path.replace(/^public/, "") };
+  } catch (err) {
+    if (err instanceof StoreError) return { ok: false, message: err.message };
+    console.error("[admin] photo upload failed", err);
+    return { ok: false, message: "Could not add the photo. Try again in a minute." };
+  }
+}
+
+// Every photo already on the site, newest folders first — the picker's library.
+export async function listPhotos(): Promise<string[]> {
+  await requireAdmin();
+  try {
+    return (await (await getStore()).listMedia("public/photos")).map((p) => p.replace(/^public/, ""));
+  } catch {
+    return [];
   }
 }

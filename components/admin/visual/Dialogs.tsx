@@ -16,6 +16,7 @@ import {
 } from "@/app/admin/editor-actions";
 import { fieldsAlong, fillWith, leaves, trailOf, type Company, type Leaf } from "./model";
 import { useLang } from "./i18n";
+import { photoPreviewUrl } from "../ImageField";
 import type { Base, Draft, PageRef } from "./types";
 
 function Modal({ title, onClose, children, wide }: { title: string; onClose: () => void; children: React.ReactNode; wide?: boolean }) {
@@ -228,12 +229,11 @@ function ChangeRow({
   onUndo?: () => void;
 }) {
   const { t, field: tr, trail: trTrail } = useLang();
-  const photo = fieldsAlong(section, change.path).at(-1);
-  const isPhoto = photo?.kind === "select" && !!photo.thumbs;
+  const isPhoto = fieldsAlong(section, change.path).at(-1)?.kind === "image";
   const thumb = (v: unknown) =>
-    isPhoto && typeof v === "string" && photo?.kind === "select" && photo.thumbs?.[v] ? (
+    isPhoto && typeof v === "string" && v ? (
       // eslint-disable-next-line @next/next/no-img-element
-      <img src={photo.thumbs[v]} alt="" className="h-12 w-20 rounded-[2px] object-cover" />
+      <img src={photoPreviewUrl(v) ?? v} alt="" className="h-12 w-20 rounded-[2px] object-cover" />
     ) : (
       show(v, t)
     );

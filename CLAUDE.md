@@ -39,6 +39,28 @@ break without knowing them.
   returns the commit SHA for that; `store.history/commitFiles/deployStatus`
   back the history panel and its "undo this change" (a path-level revert
   applied on top of whatever was published after it — `lib/admin/json-path.ts`).
+- **Photos** are fields of kind `image`: the value is a path under
+  `/photos`. The picker lists every image in `public/photos` (via
+  `store.listMedia`) and can add one: the browser resizes it to 2400px and
+  re-encodes it to WebP — which also drops the camera's EXIF, GPS
+  included — then `uploadPhoto` commits it to `public/photos/library/`.
+  An uploaded photo is only on the site after the next deploy, so the
+  editor previews the local copy until then.
+- **Appearance** (`content/theme.json`, `lib/theme.ts`): the eight colour
+  roles and the corner radius. globals.css defines each themed token as
+  `var(--ona-<role>, <designed value>)`, so a role left alone emits NO
+  override (pages stay byte-identical) and a changed one also carries its
+  tints, because Tailwind compiles `bg-teal/10` to a color-mix over the
+  variable rather than a baked literal. Never replace those `var(--ona-…)`
+  fallbacks with plain hex values. Chromium keeps the old colour on
+  elements with a CSS transition when a variable changes, so the editor
+  disables transitions for one frame after writing the theme.
+- **"Say what to change"** (`app/admin/ai-actions.ts`): the editor's
+  sentence plus the fields of the page they are on go to Claude, which
+  returns field edits; they land in the draft (preview updates, undo
+  works) and still go through validation and the legal guard on publish.
+  Needs `ANTHROPIC_API_KEY`; without it the bar says so and changes
+  nothing.
 - Admin UI language: English or Russian (`components/admin/visual/i18n.tsx`);
   field labels are translated by English source string in
   `lib/admin/i18n/fields-ru.ts`. Add a label → add its translation.

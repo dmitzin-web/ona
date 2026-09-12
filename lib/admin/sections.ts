@@ -1,6 +1,7 @@
 import type { Schema } from "./schema";
 import { faqList, PLACEHOLDERS } from "./fields";
 import { HOME } from "./pages/home";
+import { THEME } from "./pages/theme";
 import { ABOUT } from "./pages/about";
 import { CONTACT } from "./pages/contact";
 import { SERVICES_INDEX } from "./pages/services-index";
@@ -45,6 +46,7 @@ export type SectionDef = {
 
 export const SECTIONS: SectionDef[] = [
   HOME,
+  THEME,
   ABOUT,
   CONTACT,
   SERVICES_INDEX,

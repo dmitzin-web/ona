@@ -4,6 +4,7 @@ import type { Field } from "@/lib/admin/schema";
 import { emptyValue } from "@/lib/admin/schema";
 import { btnIcon, btnSecondary, Field as FieldShell, inputCls } from "./ui";
 import { useLang } from "./visual/i18n";
+import { ImageField } from "./ImageField";
 
 // Renders any section described in lib/admin/sections.ts. Fully
 // controlled: the caller owns the value and gets a new one on every change.
@@ -89,37 +90,35 @@ function FieldView({
           </span>
         </label>
       );
+    case "color": {
+      const c = String(value ?? "#000000");
+      return (
+        <FieldShell label={f.label} hint={f.hint} htmlFor={id}>
+          <div className="flex items-center gap-2">
+            <input
+              id={id}
+              type="color"
+              value={/^#[0-9a-fA-F]{6}$/.test(c) ? c : "#000000"}
+              onChange={(e) => onChange(e.target.value.toLowerCase())}
+              className="h-10 w-14 cursor-pointer rounded-[2px] border border-line bg-charcoal p-1"
+            />
+            <input
+              value={c}
+              onChange={(e) => onChange(e.target.value.trim().toLowerCase())}
+              className={`${inputCls} max-w-[130px] font-mono`}
+              aria-label={f.label}
+            />
+          </div>
+        </FieldShell>
+      );
+    }
+    case "image":
+      return (
+        <FieldShell label={f.label} hint={f.hint} htmlFor={id}>
+          <ImageField id={id} value={String(value ?? "")} aspect={f.aspect} allowNone={f.allowNone} onChange={onChange} />
+        </FieldShell>
+      );
     case "select":
-      if (f.thumbs) {
-        const thumbs = f.thumbs;
-        return (
-          <FieldShell label={f.label} hint={f.hint}>
-            <div role="radiogroup" aria-label={f.label} className="flex flex-wrap gap-2">
-              {f.options.map((o) => {
-                const on = value === o;
-                return (
-                  <button
-                    key={o}
-                    type="button"
-                    role="radio"
-                    aria-checked={on}
-                    aria-label={thumbs[o] ? `Photo ${o}` : "No photo"}
-                    onClick={() => onChange(o)}
-                    className={`relative h-16 w-24 overflow-hidden rounded-[2px] border-2 bg-charcoal-soft text-[12px] text-warm-gray ${on ? "border-teal" : "border-transparent opacity-70 hover:opacity-100"}`}
-                  >
-                    {thumbs[o] ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img src={thumbs[o]} alt="" className="h-full w-full object-cover" />
-                    ) : (
-                      "No photo"
-                    )}
-                  </button>
-                );
-              })}
-            </div>
-          </FieldShell>
-        );
-      }
       return (
         <FieldShell label={f.label} hint={f.hint} htmlFor={id}>
           <select id={id} className={`${inputCls} max-w-[260px]`} value={String(value ?? "")} onChange={(e) => onChange(e.target.value)}>

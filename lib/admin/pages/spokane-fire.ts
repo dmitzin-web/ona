@@ -1,4 +1,4 @@
-import { PHOTO, PLACEHOLDERS, THUMBS } from "../fields";
+import {PLACEHOLDERS} from "../fields";
 import type { SectionDef } from "../sections";
 
 // The Spokane wildfire page (/services/fire-damage/spokane-wa), rendered by
@@ -98,7 +98,7 @@ export const SPOKANE_FIRE: SectionDef = {
       { kind: "text", key: "title", label: "Heading", required: true },
       { kind: "textarea", key: "body", label: "Paragraph beside the heading", required: true, rows: 3 },
       { kind: "list", key: "photos", label: "Photos", itemTitle: "Photo", hint: "Laid out for three.", fields: [
-        { kind: "select", key: "photo", label: "Photo", options: PHOTO, thumbs: THUMBS },
+        { kind: "image", key: "photo", label: "Photo", aspect: "3 / 2" },
         { kind: "text", key: "alt", label: "Photo description (read aloud to blind visitors)", required: true, hint: "Only what is visible in the photo: no brands, sizes, places, clients or timelines." },
       ] },
       { kind: "textarea", key: "caption", label: "Caption under the photos", required: true, rows: 3, hint: "Must keep saying these are not Spokane fire jobs." },

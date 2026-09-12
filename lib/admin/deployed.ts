@@ -1,4 +1,5 @@
 import "server-only";
+import theme from "@/content/theme.json";
 import areas from "@/content/areas.json";
 import chrome from "@/content/chrome.json";
 import legal from "@/content/legal.json";
@@ -29,6 +30,7 @@ import site from "@/content/site.json";
 // Static imports: no fs, nothing for the file tracer to widen.
 // `npm run check:content` fails if a section file is missing here.
 export const DEPLOYED: Record<string, unknown> = {
+  "content/theme.json": theme,
   "content/areas.json": areas,
   "content/chrome.json": chrome,
   "content/legal.json": legal,

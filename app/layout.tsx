@@ -5,6 +5,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { Analytics } from "@/components/Analytics";
 import { AskOna } from "@/components/assistant/AskOna";
 import { EditThisPage } from "@/components/admin/EditThisPage";
+import { themeCss } from "@/lib/theme";
 import { EmergencyBanner } from "@/components/EmergencyBanner";
 import { site } from "@/lib/site";
 import { chrome } from "@/lib/chrome";
@@ -79,6 +80,16 @@ export default function RootLayout({
   return (
     <html lang="en-US" className={satoshi.variable}>
       <body className="min-h-screen bg-charcoal font-sans text-ivory antialiased">
+        {/* The site's colours and corner rounding, chosen in the admin
+            (/admin → Appearance), as overrides of the defaults in
+            globals.css (lib/theme.ts). React hoists this into <head>.
+            Nothing is emitted while every colour is the designed default,
+            so those pages are byte-for-byte what they were. */}
+        {themeCss() ? (
+          <style id="ona-theme" href="ona-theme" precedence="high">
+            {themeCss()}
+          </style>
+        ) : null}
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-50 focus:bg-brand focus:px-3 focus:py-2 focus:text-charcoal"

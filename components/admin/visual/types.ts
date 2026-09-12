@@ -16,6 +16,7 @@ export type EditorProps = {
   pages: PageRef[];
   previewPaths: Record<string, string>;
   posts: { slug: string; title: string }[];
+  photos: string[];
   user: string;
   devBypass: boolean;
   siteUrl: string;

@@ -1,9 +1,11 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SectionEditor } from "@/components/admin/SectionEditor";
+import { PhotoLibrary } from "@/components/admin/ImageField";
 import { requireAdmin } from "@/lib/admin/session";
 import { findSection } from "@/lib/admin/sections";
 import { getStore, StoreError } from "@/lib/admin/store";
+import { photoLibrary } from "@/lib/admin/photos";
 
 // A single section opens straight into its editor; a collection lists its
 // items (services, cities) and each item opens in the same editor.
@@ -40,6 +42,7 @@ export default async function SectionPage({
     return (
       <>
         {flash}
+        <PhotoLibrary photos={await photoLibrary()}>
         <SectionEditor
           key={file.sha}
           sectionId={section.id}
@@ -51,6 +54,7 @@ export default async function SectionPage({
           backHref="/admin/content"
           backLabel="All content"
         />
+        </PhotoLibrary>
       </>
     );
   }

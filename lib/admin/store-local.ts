@@ -81,6 +81,21 @@ export const localStore: ContentStore = {
     const at = (ref: string, p: string) => git(["show", `${ref}:${p}`]).catch(() => null);
     return Promise.all(names.map(async (p) => ({ path: p, before: await at(`${sha}^`, p), after: await at(sha, p) })));
   },
+  async listMedia(dir) {
+    assertSafePath(`${dir}/`);
+    const root = path.join(process.cwd(), dir);
+    const walk = async (rel: string): Promise<string[]> => {
+      const entries = await fs.readdir(path.join(root, rel), { withFileTypes: true });
+      const out: string[] = [];
+      for (const e of entries) {
+        const r = rel ? `${rel}/${e.name}` : e.name;
+        if (e.isDirectory()) out.push(...(await walk(r)));
+        else if (/\.(avif|webp|jpe?g|png)$/i.test(e.name)) out.push(`${dir}/${r}`);
+      }
+      return out;
+    };
+    return (await walk("")).sort();
+  },
   async deployStatus() {
     return { state: "local" };
   },

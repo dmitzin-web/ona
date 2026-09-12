@@ -29,12 +29,14 @@ import { fillPlaceholdersDeep } from "@/lib/placeholders";
 //   - "fewer dropped balls" → "tighter communication and more
 //     consistent work"
 //
-// All photos live in /public/photos/projects/ as p1..p9.avif.
-// Same photo may appear in multiple sections — that's fine,
-// different contexts. When MORE photos arrive, add to the
-// `photos` map below and they cascade through the page.
-
-const photos = [
+// Photos are chosen in the admin (/admin → Homepage): each one is a path
+// under /photos, with its own description. Uploading a new photo there adds
+// it to /photos/library.
+//
+// The list below is only for the sample project inside the demo mockup —
+// an illustration of the product, not page copy, so it stays here with the
+// rest of the sample data.
+const demoPhotos = [
   { src: "/photos/projects/p1.avif", alt: "Project — kitchen install" },
   { src: "/photos/projects/p2.avif", alt: "Project — kitchen detail" },
   { src: "/photos/projects/p3.avif", alt: "Project — interior" },
@@ -51,7 +53,6 @@ const photos = [
 // from Company details. The sample project inside the "live project page"
 // demo below is an illustration of the product, not copy, and stays here.
 const t = fillPlaceholdersDeep(homeContent);
-const photo = (name: string) => photos[Number(name.slice(1)) - 1];
 
 export const metadata: Metadata = buildMetadata({
   title: t.seo.title,
@@ -111,7 +112,7 @@ export default function HomePage() {
                 "this is your live project page on day 7." */}
             <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-ivory/10 shadow-[0_1px_0_rgba(0,0,0,0.02),0_30px_70px_-30px_rgba(0,0,0,0.25)]">
               <Image
-                src={photos[0].src}
+                src={t.hero.photo}
                 alt={t.hero.imageAlt}
                 fill
                 priority
@@ -382,7 +383,7 @@ export default function HomePage() {
                   <div>
                     <div className="eyebrow text-ivory/85">Photos</div>
                     <div className="mt-3 grid grid-cols-4 gap-1.5">
-                      {photos.slice(0, 8).map((p) => (
+                      {demoPhotos.slice(0, 8).map((p) => (
                         <div
                           key={p.src}
                           className="relative aspect-square overflow-hidden rounded-md border border-ivory/10 bg-charcoal-soft"
@@ -536,17 +537,17 @@ export default function HomePage() {
                       {
                         title: "Rebuild started",
                         meta: "Today · 24 photos",
-                        photo: photos[3],
+                        photo: demoPhotos[3],
                       },
                       {
                         title: "Adjuster approved",
                         meta: "Mon · scope signed off",
-                        photo: photos[1],
+                        photo: demoPhotos[1],
                       },
                       {
                         title: "Drying complete",
                         meta: "Sun · 18 photos",
-                        photo: photos[6],
+                        photo: demoPhotos[6],
                       },
                     ].map((feed) => (
                       <div
@@ -916,12 +917,12 @@ export default function HomePage() {
         </div>
 
         <div className="mt-14 grid gap-px bg-line sm:grid-cols-2 lg:grid-cols-3">
-          {t.gallery.cards.map((c, i) => ({ ...c, photo: photo(c.photo) })).map((card, i) => (
+          {t.gallery.cards.map((card, i) => (
             <article key={i} className="bg-charcoal">
               <div className="relative aspect-[3/2] bg-charcoal-soft">
                 <Image
-                  src={card.photo.src}
-                  alt={card.photo.alt}
+                  src={card.photo}
+                  alt={card.imageAlt}
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="object-cover"
@@ -956,7 +957,7 @@ export default function HomePage() {
       <section className="border-t border-ivory/10 bg-charcoal">
         <div className="relative aspect-[21/9] w-full overflow-hidden sm:aspect-[21/8]">
           <Image
-            src={photo(t.band.photo).src}
+            src={t.band.photo}
             alt={t.band.imageAlt}
             fill
             sizes="100vw"
@@ -1059,7 +1060,8 @@ export default function HomePage() {
                 kind: c.kind,
                 title: c.title,
                 meta: c.meta,
-                photo: c.photo === "none" ? null : photo(c.photo),
+                photo: c.photo || null,
+                imageAlt: c.imageAlt,
                 signal: c.signalLabel ? { live: c.signalLive, label: c.signalLabel } : null,
               }))
               .map((card, i) => (
@@ -1070,8 +1072,8 @@ export default function HomePage() {
                 {card.photo ? (
                   <div className="relative aspect-[16/10]">
                     <Image
-                      src={card.photo.src}
-                      alt={card.photo.alt}
+                      src={card.photo}
+                      alt={card.imageAlt}
                       fill
                       sizes="(max-width: 768px) 100vw, 33vw"
                       className="object-cover"

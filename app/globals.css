@@ -27,31 +27,31 @@
   /* Ink — graphite, not black and not teal. Body copy stays neutral so
      that teal reads as an accent rather than as a tint over everything.
      12.9:1 on white. */
-  --color-ivory: #172124;
-  --color-ivory-soft: #35484a;
+  --color-ivory: var(--ona-ink, #172124);
+  --color-ivory-soft: var(--ona-ink-soft, #35484a);
 
   /* Ground. `charcoal-soft` and `-mute` were ELEVATED dark surfaces —
      on a light ground elevation reads as slightly darker, not
      lighter, so they descend instead of ascending. */
-  --color-charcoal: #ffffff;
+  --color-charcoal: var(--ona-ground, #ffffff);
   /* Mist was #f4f7f7 and it did not work: two percent of luminance below
      white is invisible, so eleven alternating sections read as one
      unbroken white sheet. These are deep enough to band the page and
      still quiet enough not to become a second colour. */
-  --color-charcoal-soft: #e9f0ef; /* mist — secondary sections */
-  --color-charcoal-mute: #d8e5e3; /* deeper still — insets, wells */
+  --color-charcoal-soft: var(--ona-band, #e9f0ef); /* mist — secondary sections */
+  --color-charcoal-mute: var(--ona-well, #d8e5e3); /* deeper still — insets, wells */
 
   /* Mid-tone. `warm-gray` itself is legible either way and does not
      move; the soft/deep pair swaps, since "soft" meant "closer to the
      ground" and the ground has changed ends. */
   --color-warm-gray: #5b6c6d; /* secondary copy — 5.5:1 on white */
   --color-warm-gray-soft: #46595a;
-  --color-warm-gray-deep: #c9d8d6; /* muted type ON deep teal */
+  --color-warm-gray-deep: var(--ona-surface-muted, #c9d8d6); /* muted type ON deep teal */
 
   /* Hairlines swap: `line` sits on the ground, `line-light` sits on
      inverted (now dark) surfaces. */
-  --color-line: #dce7e5;
-  --color-line-light: #1b4e4b; /* hairline ON deep teal */
+  --color-line: var(--ona-line, #dce7e5);
+  --color-line-light: var(--ona-surface-line, #1b4e4b); /* hairline ON deep teal */
 
   /* ── Brand ────────────────────────────────────────────────────
      Deep teal carries authority and is used ONLY as a full-bleed
@@ -60,21 +60,21 @@
      a site that is teal everywhere is just a contractor site in a
      different hue. Budget for a page: ~65% white, ~15% mist,
      10-15% photography, ~7% deep teal, ~2% bright teal, ~1% coral. */
-  --color-brand: #073b3a;
-  --color-brand-2: #0a4a47;
+  --color-brand: var(--ona-surface, #073b3a);
+  --color-brand-2: var(--ona-surface-2, #0a4a47);
 
   /* Teal — UI, links, positive status, progress. `teal` is the
      type-safe one (5.4:1 on white); `teal-bright` is for fills and
      indicators sitting ON deep teal, never for small type on white. */
-  --color-teal: #00776d;
-  --color-teal-bright: #008f83;
+  --color-teal: var(--ona-accent, #00776d);
+  --color-teal-bright: var(--ona-accent-bright, #008f83);
 
   /* Coral — urgent action ONLY. Call buttons and the live/emergency
      pulse. Never headings, dividers, icons, badges or decoration:
      when coral appears the reader should read it as "act now".
      White type on `coral` measures 4.75:1. */
-  --color-coral: #d23c29;
-  --color-coral-deep: #b33221; /* hover */
+  --color-coral: var(--ona-action, #d23c29);
+  --color-coral-deep: var(--ona-action-deep, #b33221); /* hover */
   --color-coral-bright: #f0523d; /* live/emergency indicator only */
 
   /* Accent. Gold is gone. The name stays because it is used in 91 places and
@@ -83,9 +83,9 @@
      `gold-soft` is the brighter teal for fills and indicators, and
      must not carry small type on white. Call-to-action fills are NOT
      this token — they are `coral`, assigned explicitly per button. */
-  --color-gold: #00776d;
-  --color-gold-soft: #008f83;
-  --color-gold-deep: #00594f;
+  --color-gold: var(--ona-accent, #00776d);
+  --color-gold-soft: var(--ona-accent-bright, #008f83);
+  --color-gold-deep: var(--ona-accent-deep, #00594f);
 
   /* ─── DAYLIGHT (wildfire pages) ────────────────────────────────
      These were a separate palette while the rest of the site was
@@ -93,17 +93,17 @@
      the main tokens rather than a second system — the wildfire pages
      keep their own names, and get the brand's colours. Anything that
      still differs here is a bug, not a decision. */
-  --color-day: #ffffff;
-  --color-day-2: #f4f7f7;
-  --color-day-line: #dce7e5;
-  --color-day-line-soft: #eaf1f0;
-  --color-day-ink: #172124;
-  --color-day-ink-2: #35484a;
+  --color-day: var(--ona-ground, #ffffff);
+  --color-day-2: var(--ona-band, #f4f7f7);
+  --color-day-line: var(--ona-line, #dce7e5);
+  --color-day-line-soft: var(--ona-line-soft, #eaf1f0);
+  --color-day-ink: var(--ona-ink, #172124);
+  --color-day-ink-2: var(--ona-ink-soft, #35484a);
   --color-day-ink-3: #5b6c6d;
   /* The wildfire accent is the brand's coral. `flare-deep` is the
      darker step for small type, where `flare` itself would fail. */
-  --color-flare: #d23c29;
-  --color-flare-deep: #b33221;
+  --color-flare: var(--ona-action, #d23c29);
+  --color-flare-deep: var(--ona-action-deep, #b33221);
 
   --font-display: var(--font-satoshi), ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-satoshi), ui-sans-serif, system-ui, sans-serif;

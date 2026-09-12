@@ -1,0 +1,11 @@
+{
+  "ground": "#ffffff",
+  "ink": "#172124",
+  "band": "#e9f0ef",
+  "well": "#d8e5e3",
+  "line": "#dce7e5",
+  "accent": "#00776d",
+  "surface": "#073b3a",
+  "action": "#d23c29",
+  "radius": 2
+}

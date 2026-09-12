@@ -1,5 +1,7 @@
 import { notFound } from "next/navigation";
 import { SectionEditor } from "@/components/admin/SectionEditor";
+import { PhotoLibrary } from "@/components/admin/ImageField";
+import { photoLibrary } from "@/lib/admin/photos";
 import { requireAdmin } from "@/lib/admin/session";
 import { findSection } from "@/lib/admin/sections";
 import { getStore } from "@/lib/admin/store";
@@ -24,6 +26,7 @@ export default async function SectionItemPage({
   const { slug: _slug, ...value } = found;
 
   return (
+    <PhotoLibrary photos={await photoLibrary()}>
     <SectionEditor
       sectionId={section.id}
       title={String(found[section.titleKey])}
@@ -35,5 +38,6 @@ export default async function SectionItemPage({
       backHref={`/admin/s/${section.id}`}
       backLabel={section.label}
     />
+    </PhotoLibrary>
   );
 }

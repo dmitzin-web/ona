@@ -84,7 +84,14 @@ function candidatesFor(index: Index, text: string): Candidate[] {
 
 const SKIP = new Set(["SCRIPT", "STYLE", "NOSCRIPT", "TEMPLATE", "SVG", "svg"]);
 const ATTRS = ["alt", "aria-label", "title", "placeholder"];
-const PHOTO_RE = /(?:\/|%2F)photos(?:\/|%2F)projects(?:\/|%2F)(p\d+)\.avif/;
+// The photo a rendered <img> comes from: next/image wraps it as
+// /_next/image?url=%2Fphotos%2F… , plain <img> uses the path itself.
+function photoPathOf(img: Element): string | null {
+  const raw = img.getAttribute("data-ona-photo") ?? img.getAttribute("src") ?? "";
+  const m = /[?&]url=([^&]+)/.exec(raw);
+  const path = m ? decodeURIComponent(m[1]) : raw;
+  return path.startsWith("/photos/") ? path : null;
+}
 
 type Pending = Omit<Binding, "leaf" | "vars" | "trail"> & { cands: Candidate[] };
 
@@ -112,14 +119,14 @@ export function bindDocument(doc: Document, index: Index): Binding[] {
   });
 
   doc.body.querySelectorAll("img").forEach((img) => {
-    const m = PHOTO_RE.exec(img.getAttribute("src") ?? "") ?? PHOTO_RE.exec(img.getAttribute("srcset") ?? "");
-    const leavesFor = m ? index.photos.get(m[1]) : undefined;
+    const path = photoPathOf(img);
+    const leavesFor = path ? index.photos.get(path) : undefined;
     if (leavesFor?.length) {
       pending.push({
         kind: "photo",
         node: null,
         el: img,
-        original: m![1],
+        original: path!,
         lead: "",
         tail: "",
         cands: leavesFor.map((leaf) => ({ leaf, vars: {} })),
@@ -202,18 +209,28 @@ export function renderDraft(
   company: Company,
   siteName: string,
   skip: Element | null,
+  localPhoto?: (path: string) => string | undefined,
 ) {
   for (const b of bindings) {
     const raw = rawOf(b.leaf);
     if (typeof raw !== "string") continue;
     if (b.kind === "photo") {
-      if (raw !== b.original && !b.el.hasAttribute("data-ona-photo")) b.el.setAttribute("data-ona-photo", b.original);
-      const from = b.el.getAttribute("data-ona-photo") ?? b.original;
-      for (const a of ["src", "srcset"]) {
-        const v = b.el.getAttribute(a);
-        if (v) b.el.setAttribute(a, v.replace(new RegExp(`(/|%2F)(${from}|p\\d+)\\.avif`, "g"), `$1${raw}.avif`));
+      const changedPhoto = raw !== b.original;
+      if (!b.el.hasAttribute("data-ona-photo")) {
+        b.el.setAttribute("data-ona-photo", b.el.getAttribute("src") ?? "");
+        b.el.setAttribute("data-ona-srcset", b.el.getAttribute("srcset") ?? "");
       }
-      b.el.toggleAttribute("data-ona-changed", raw !== b.original);
+      if (changedPhoto) {
+        // A photo added a minute ago is not on the site until the deploy
+        // finishes, so the preview shows the copy in this browser.
+        b.el.setAttribute("src", localPhoto?.(raw) ?? raw);
+        b.el.removeAttribute("srcset");
+      } else {
+        b.el.setAttribute("src", b.el.getAttribute("data-ona-photo") ?? raw);
+        const ss = b.el.getAttribute("data-ona-srcset");
+        if (ss) b.el.setAttribute("srcset", ss);
+      }
+      b.el.toggleAttribute("data-ona-changed", changedPhoto);
       continue;
     }
     const filled = fillWith(fillWith(raw, company), b.vars);

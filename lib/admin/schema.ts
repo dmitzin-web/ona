@@ -15,8 +15,14 @@ export type Field =
   | (Base & { kind: "textarea"; max?: number; rows?: number })
   | (Base & { kind: "number"; min?: number; max?: number; integer?: boolean })
   | (Base & { kind: "checkbox" })
-  // With `thumbs` (option → image URL) it renders as a row of pictures.
-  | (Base & { kind: "select"; options: readonly string[]; thumbs?: Record<string, string> })
+  | (Base & { kind: "select"; options: readonly string[] })
+  // A photo: the value is a path under /photos (e.g. "/photos/projects/p3.avif").
+  // Rendered as a picker over the photo library, with an upload button.
+  // `aspect` is the shape of the slot on the page ("3 / 2"), so the picker
+  // shows what will actually be visible after the page crops it.
+  | (Base & { kind: "image"; allowNone?: boolean; aspect?: string })
+  // A colour, as #rrggbb.
+  | (Base & { kind: "color" })
   // A list of plain strings, edited one per line.
   | (Base & { kind: "strings"; max?: number })
   // A repeatable group of fields — FAQs, process steps, body sections.
@@ -73,6 +79,25 @@ function walk(fields: Field[], raw: unknown, path: string, errors: string[]): Ob
       case "checkbox":
         out[f.key] = v === true;
         break;
+      case "color": {
+        const c = typeof v === "string" ? v.trim().toLowerCase() : "";
+        if (!/^#[0-9a-f]{6}$/.test(c)) errors.push(`${where}: pick a colour.`);
+        out[f.key] = c;
+        break;
+      }
+      case "image": {
+        const v2 = typeof v === "string" ? v.trim() : "";
+        if (!v2) {
+          if (!f.allowNone) errors.push(`${where}: choose a photo.`);
+          out[f.key] = "";
+          break;
+        }
+        if (!/^\/photos\/[\w./-]+\.(avif|webp|jpe?g|png)$/i.test(v2) || v2.includes("..")) {
+          errors.push(`${where}: that is not a photo from the site's photo library.`);
+        }
+        out[f.key] = v2;
+        break;
+      }
       case "select": {
         const s = typeof v === "string" ? v : "";
         if (!f.options.includes(s)) errors.push(`${where}: pick one of ${f.options.join(", ")}.`);
@@ -122,6 +147,12 @@ export function emptyValue(fields: Field[]): Obj {
         break;
       case "select":
         out[f.key] = f.options[0] ?? "";
+        break;
+      case "image":
+        out[f.key] = "";
+        break;
+      case "color":
+        out[f.key] = "#000000";
         break;
       case "strings":
       case "list":
