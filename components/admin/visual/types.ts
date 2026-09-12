@@ -21,7 +21,6 @@ export type EditorProps = {
   devBypass: boolean;
   siteUrl: string;
   initialPath: string;
-  fieldsRu: Record<string, string>;
 };
 
 // Sections whose text is shared across many pages.

@@ -69,15 +69,3 @@ export function legalFindings(value: unknown): Finding[] {
   }
   return out;
 }
-
-// The same rules in Russian, for the admin's Russian interface. Keyed by the
-// English rule; the quoted English phrases stay English because the site
-// copy they refer to is English.
-export const RULES_RU: Record<string, string> = {
-  [RULES[0].rule]:
-    "В рекламе подрядчика в штате Вашингтон нельзя писать «bonded and insured» (RCW 18.27.100(4)). Вместо этого указывайте регистрационный номер.",
-  [RULES[1].rule]:
-    "Нельзя писать, что у нас есть лицензия, регистрация или бонд в Орегоне (licensed / registered / bonded in Oregon), пока регистрация в Oregon CCB не выдана.",
-  [RULES[2].rule]:
-    "Нельзя предлагать отменить, покрыть или взять на себя франшизу клиента (waive / cover / absorb the deductible, RCW 48.30.230). Разрешённая формулировка: «You pay your deductible, nothing more».",
-};

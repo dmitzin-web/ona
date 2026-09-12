@@ -56,9 +56,8 @@ function FieldView({
 }) {
   // Labels and hints in the editor's language (English when there is no
   // translation, or outside the visual editor); the site copy stays English.
-  const { field: tr, lang } = useLang();
+  const { field: tr } = useLang();
   f = { ...f, label: tr(f.label), hint: f.hint && tr(f.hint) } as Field;
-  const ru = lang === "ru";
   switch (f.kind) {
     case "text":
       return (
@@ -180,14 +179,14 @@ function FieldView({
                     {tr(f.itemTitle ?? "Item")} {i + 1}
                   </span>
                   <div className="flex gap-1">
-                    <button type="button" className={btnIcon} aria-label={ru ? "Выше" : "Move up"} disabled={i === 0} onClick={() => onChange(move(arr, i, -1))}>↑</button>
-                    <button type="button" className={btnIcon} aria-label={ru ? "Ниже" : "Move down"} disabled={i === arr.length - 1} onClick={() => onChange(move(arr, i, 1))}>↓</button>
+                    <button type="button" className={btnIcon} aria-label="Move up" disabled={i === 0} onClick={() => onChange(move(arr, i, -1))}>↑</button>
+                    <button type="button" className={btnIcon} aria-label="Move down" disabled={i === arr.length - 1} onClick={() => onChange(move(arr, i, 1))}>↓</button>
                     <button
                       type="button"
                       className={btnIcon}
-                      aria-label={ru ? "Удалить" : "Remove"}
+                      aria-label="Remove"
                       onClick={() => {
-                        if (confirm(ru ? `Удалить: ${tr(f.itemTitle ?? "Item")} ${i + 1}?` : `Remove ${(f.itemTitle ?? "item").toLowerCase()} ${i + 1}?`)) onChange(arr.filter((_, k) => k !== i));
+                        if (confirm(`Remove ${(f.itemTitle ?? "item").toLowerCase()} ${i + 1}?`)) onChange(arr.filter((_, k) => k !== i));
                       }}
                     >
                       ✕
@@ -199,7 +198,7 @@ function FieldView({
             ))}
           </div>
           <button type="button" className={`${btnSecondary} mt-3`} onClick={() => onChange([...arr, emptyValue(f.fields)])}>
-            {ru ? `+ Добавить: ${tr(f.itemTitle ?? "Item").toLowerCase()}` : `+ Add ${(f.itemTitle ?? "item").toLowerCase()}`}
+            {`+ Add ${(f.itemTitle ?? "item").toLowerCase()}`}
           </button>
         </fieldset>
       );

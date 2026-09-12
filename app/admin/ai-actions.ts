@@ -7,9 +7,9 @@ import { getAt, type Path } from "@/lib/admin/json-path";
 import { fieldsAlong, leaves, trailOf } from "@/components/admin/visual/model";
 import { legalFindings, type Finding } from "@/lib/admin/legal-guard";
 
-// "Tell it what to change": the editor writes a sentence in their own
-// language ("make the call button green", "shorten the headline", "say we
-// work weekends") and this proposes the exact field edits. Nothing is
+// "Tell it what to change": the editor writes a sentence ("make the call
+// button green", "shorten the headline", "say we work weekends") and this
+// proposes the exact field edits. Nothing is
 // saved — the changes land in the draft, the page updates in front of the
 // editor, and they still press Publish.
 //
@@ -29,18 +29,12 @@ const MODEL = "claude-sonnet-5";
 
 export async function askEditor(
   request: string,
-  context: { sectionIds: string[]; page: string; values: Record<string, unknown>; lang: "ru" | "en" },
+  context: { sectionIds: string[]; page: string; values: Record<string, unknown> },
 ): Promise<AskResult> {
   await requireAdmin();
   const key = process.env.ANTHROPIC_API_KEY;
   if (!key) {
-    return {
-      ok: false,
-      message:
-        context.lang === "ru"
-          ? "Помощник не подключён: добавьте ANTHROPIC_API_KEY в переменные окружения Vercel и сделайте Redeploy."
-          : "The assistant is not connected: add ANTHROPIC_API_KEY in Vercel and redeploy.",
-    };
+    return { ok: false, message: "The assistant is not connected: add ANTHROPIC_API_KEY in Vercel and redeploy." };
   }
   if (!request.trim()) return { ok: false, message: "…" };
 
@@ -86,7 +80,7 @@ export async function askEditor(
 
 RULES
 - Only edit fields from the list. Refer to them by their number.
-- Keep the site's copy in ENGLISH even when the request is in another language. Reply to the person in their language (${context.lang === "ru" ? "Russian" : "English"}).
+- Everything — the site's copy and your reply — is in English.
 - Keep {placeholders} exactly as they are: {phone}, {name}, {area}, {service} … They are filled in automatically.
 - Match the existing voice: plain, concrete, no marketing fluff, no exclamation marks.
 - NEVER write claims we cannot prove: no response-time promises, no invented review/project counts, no client names.
@@ -95,7 +89,7 @@ RULES
 - Colours are #rrggbb. Corner rounding is a number of pixels.
 - Make the smallest set of edits that does what was asked. If the request is unclear or would break a rule, make no edits and say why.
 
-Reply with the tool. The "reply" is one or two short sentences for the person, in their language.`;
+Reply with the tool. The "reply" is one or two short sentences for the person.`;
 
   const anthropic = new Anthropic({ apiKey: key });
   let message;
@@ -133,7 +127,7 @@ Reply with the tool. The "reply" is one or two short sentences for the person, i
     });
   } catch (err) {
     console.error("[admin] assistant failed", err);
-    return { ok: false, message: context.lang === "ru" ? "Помощник сейчас не отвечает. Попробуйте ещё раз." : "The assistant did not answer. Try again." };
+    return { ok: false, message: "The assistant did not answer. Try again." };
   }
 
   const block = message.content.find((c) => c.type === "tool_use");

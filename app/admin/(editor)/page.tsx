@@ -4,7 +4,6 @@ import { SECTIONS } from "@/lib/admin/sections";
 import { DEPLOYED } from "@/lib/admin/deployed";
 import { PREVIEW_PATHS } from "@/lib/admin/preview-paths";
 import { photoLibrary } from "@/lib/admin/photos";
-import { FIELDS_RU } from "@/lib/admin/i18n/fields-ru";
 import { site } from "@/lib/site";
 import { services } from "@/lib/services";
 import { areaProfiles } from "@/lib/areas";
@@ -77,7 +76,6 @@ export default async function EditorPage({ searchParams }: { searchParams: Promi
       devBypass={user.email === "dev@localhost"}
       siteUrl={site.url}
       initialPath={initialPath}
-      fieldsRu={FIELDS_RU}
     />
   );
 }

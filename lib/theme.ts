@@ -106,6 +106,23 @@ export function themeCss(t: Theme = theme): string {
   return vars + radius;
 }
 
+// Which colour role a patch of the page is painted with — so right-clicking
+// a background can offer to change THAT background. Compares the colour the
+// browser computed against the roles, with a little tolerance for blends.
+export function roleOfColor(css: string, t: Theme = theme): keyof Theme | null {
+  const m = /rgba?\(([^)]+)\)/.exec(css);
+  if (!m) return null;
+  const [r, g, b, a] = m[1].split(",").map((x) => parseFloat(x));
+  if (a !== undefined && a < 0.5) return null;
+  let best: { key: keyof Theme; d: number } | null = null;
+  for (const key of ["ground", "band", "well", "surface", "action", "accent"] as const) {
+    const [r2, g2, b2] = rgb(t[key]);
+    const d = Math.abs(r - r2) + Math.abs(g - g2) + Math.abs(b - b2);
+    if (!best || d < best.d) best = { key, d };
+  }
+  return best && best.d <= 24 ? best.key : null;
+}
+
 // What the admin warns about before publishing a colour that makes the
 // site hard to read. Thresholds are WCAG AA for body text (4.5:1).
 export function themeWarnings(t: Theme): { key: keyof Theme; message: string }[] {

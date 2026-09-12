@@ -4,7 +4,7 @@ import { useEffect, useMemo } from "react";
 import type { Field } from "@/lib/admin/schema";
 import type { SectionDef } from "@/lib/admin/sections";
 import { diff, getAt, isPrefix, pathKey, type Path } from "@/lib/admin/json-path";
-import { legalFindings, RULES_RU } from "@/lib/admin/legal-guard";
+import { legalFindings } from "@/lib/admin/legal-guard";
 import { themeWarnings, type Theme } from "@/lib/theme";
 import { SchemaForm } from "../SchemaForm";
 import { bindingsForLeaf, type Binding } from "./binder";
@@ -53,7 +53,7 @@ export function Panel(props: {
   onNavigate: (path: string) => void;
   onGoToLeaf: (leaf: { sectionId: string; path: Path; field: Field; trail: string[] }) => void;
 }) {
-  const { t, field: tr, trail: trTrail, lang } = useLang();
+  const { t, field: tr, trail: trTrail } = useLang();
   const { section, selection, draft } = props;
   const block = section && selection ? blockOf(section, selection.path) : null;
 
@@ -82,7 +82,7 @@ export function Panel(props: {
         className={`z-20 flex-none flex-col border-line bg-charcoal lg:static lg:flex lg:max-h-none lg:w-[400px] lg:border-l lg:border-t-0 lg:shadow-none ${
           props.open ? "fixed inset-x-0 bottom-0 flex max-h-[62vh] border-t shadow-[0_-8px_24px_rgba(0,0,0,.12)]" : "hidden"
         }`}
-        aria-label={lang === "ru" ? "Панель" : "Panel"}
+        aria-label="Panel"
       >
         <div className="flex items-center justify-between border-b border-line px-4 py-2 lg:hidden">
           <span className="text-[13px] font-medium">{block ? tr(block.label) : t.onThisPage}</span>
@@ -108,7 +108,7 @@ export function Panel(props: {
 function SelectedBlock(
   props: Parameters<typeof Panel>[0] & { section: SectionDef; selection: NonNullable<Selection>; block: Block },
 ) {
-  const { t, field: tr, trail: trTrail, lang } = useLang();
+  const { t, field: tr, trail: trTrail } = useLang();
   const { section, selection, block, draft, base, company, bindings } = props;
   const value = draft[section.id];
   const leafValue = getAt(value, selection.path);
@@ -172,7 +172,7 @@ function SelectedBlock(
           <p className="font-semibold text-coral-deep">{t.legalTitle}</p>
           {findings.map((f) => (
             <p key={f.rule} className="mt-1.5">
-              {lang === "ru" ? RULES_RU[f.rule] ?? f.rule : f.rule}
+              {f.rule}
             </p>
           ))}
         </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext } from "react";
 
 // The admin's own words in English and Russian. The site's copy is English
 // and stays English; this is only the interface around it. The choice is a
@@ -149,188 +149,25 @@ const EN = {
   menuAfterPublish: "shows on the page after you put it on the site",
   menuOpenLink: "Open the page this links to",
   menuWholeBlock: "Everything in this block",
+  menuPageTitle: "This page",
+  menuThisBackground: "Change this background",
+  menuThisBackgroundHint: "the colour you right-clicked on",
+  menuPageText: "All the text on this page",
 };
 
 type Dict = typeof EN;
 
-const RU: Dict = {
-  editor: "Редактор",
-  page: "Страница",
-  pages: "Страницы",
-  findPage: "Найти страницу…",
-  search: "Найти текст",
-  searchHint: "Введите любые слова с сайта…",
-  searchEmpty: "Ничего не найдено. Попробуйте меньше слов.",
-  undo: "Отменить",
-  redo: "Вернуть",
-  history: "История",
-  changes: "Изменения",
-  publish: "Сохранить на сайт",
-  publishing: "Сохраняю…",
-  noChanges: "Нет изменений",
-  edit: "Правка",
-  browse: "Просмотр",
-  editHelp: "Правка: нажмите на любой текст, чтобы изменить его",
-  browseHelp: "Просмотр: ссылки и меню работают как на сайте",
-  desktop: "Компьютер",
-  tablet: "Планшет",
-  phone: "Телефон",
-  allContent: "Весь контент (формы)",
-  blog: "Статьи блога",
-  gallery: "Галерея ремонтов",
-  signOut: "Выйти",
-  close: "Закрыть",
-  cancel: "Отмена",
-  back: "Назад",
-  clickToEdit: "Нажмите на любой текст на странице, чтобы изменить его.",
-  onThisPage: "На этой странице",
-  onEveryPage: "На всех страницах",
-  notVisible: "Не видно на странице",
-  notVisibleHint: "Текст этой страницы, которого сейчас не видно: для Google, для незрячих, в закрытых меню, сообщения.",
-  searchResult: "Как страница выглядит в Google",
-  titleLabel: "Заголовок",
-  descriptionLabel: "Описание",
-  tooLong: "Слишком длинно — Google обрежет",
-  shared: "Общий текст — изменится везде, где он есть на сайте.",
-  template: "Шаблон — используется на многих страницах. Слова в {фигурных скобках} подставляются для каждой страницы:",
-  fromCompany: "из «Данных компании»",
-  structural: "Добавление, удаление и перестановка пунктов появятся в предпросмотре после публикации.",
-  isLink: "Этот текст — ссылка на",
-  goToPage: "Открыть эту страницу",
-  article: "Эта статья",
-  editArticle: "Редактировать в редакторе блога",
-  galleryPhotos: "Фото галереи",
-  manageGallery: "Управлять фото галереи",
-  newPost: "Написать новую статью",
-  quickTasks: "Быстрые действия",
-  taskPhone: "Сменить телефон, почту или часы работы",
-  taskColors: "Сменить цвета сайта",
-  taskFaq: "Вопросы и ответы",
-  taskPost: "Написать статью в блог",
-  taskPhoto: "Добавить фото в галерею",
-  legalTitle: "Проверьте формулировку",
-  legalAck: "Я проверил(а) и всё равно хочу опубликовать",
-  errorsTitle: "Исправьте перед публикацией",
-  reviewTitle: "Проверка и публикация",
-  reviewIntro: "Эти изменения появятся на сайте вместе, примерно через минуту.",
-  undoChange: "Отменить",
-  discardAll: "Отменить все изменения",
-  discardConfirm: "Отменить все неопубликованные изменения?",
-  before: "Было",
-  after: "Стало",
-  empty: "(пусто)",
-  listChanged: "Список изменён",
-  photoChanged: "Фото изменено",
-  saved: "Сохранено",
-  building: "Сайт пересобирается…",
-  live: "Уже на сайте",
-  deployFailed: "Сайт не удалось пересобрать. На сайте осталась прежняя версия — сообщите разработчику.",
-  localSaved: "Сохранено в файлы на этом компьютере (режим разработки).",
-  reloadPreview: "Обновить предпросмотр",
-  view: "Открыть",
-  conflictTitle: "Кто-то опубликовал изменения одновременно с вами",
-  conflictMerged: "Ваши изменения объединены с их изменениями. Проверьте предпросмотр и опубликуйте ещё раз.",
-  conflictKept: "Это они тоже меняли, поэтому оставлена их версия:",
-  restoreTitle: "Неопубликованные изменения с прошлого раза",
-  restore: "Восстановить",
-  discard: "Удалить",
-  notConnected: "Публикация ещё не подключена. Править и смотреть можно; изменения сохраняются в этом браузере, пока публикация не заработает.",
-  historyTitle: "Опубликованные изменения",
-  historyEmpty: "Изменений пока нет.",
-  showChanges: "Что изменилось",
-  undoPublished: "Отменить это изменение",
-  undoConfirm: "Отменить это изменение на сайте? Всё, что опубликовано после него, останется.",
-  undone: "Отменено",
-  skipped: "не тронуты, потому что их потом меняли ещё раз",
-  developer: "Разработчик",
-  by: "—",
-  loading: "Загрузка…",
-  onboard1: "Нажмите на любой текст на странице и печатайте.",
-  onboard2: "На сайте ничего не изменится, пока вы не нажмёте «Сохранить на сайт».",
-  onboard3: "Или просто скажите словами внизу, что нужно изменить.",
-  gotIt: "Понятно",
-  openForm: "Открыть полную форму",
-  fieldsOf: "Всё в этом блоке",
-  justNow: "только что",
-  minAgo: "мин назад",
-  hAgo: "ч назад",
-  unmatched: "Текст этой страницы не найден в контенте. Воспользуйтесь поиском или «Весь контент».",
-  pageLoading: "Загружаю страницу…",
-  edits: "правок",
-  choosePhoto: "Выбрать фото",
-  uploadPhoto: "Загрузить с устройства",
-  uploading: "Загружаю…",
-  removePhoto: "Без фото",
-  noPhoto: "Нет фото",
-  photoCropNote: "На странице фото показывается обрезанным под эту форму. Размер любой — при загрузке оно само ужимается.",
-  photoAfterPublish: "Это фото появится на сайте после публикации.",
-  photoUnsupported: "Не удалось прочитать это фото. На iPhone: «Настройки → Камера → Форматы → Наиболее совместимые», либо отправьте фото через «Фото → Поделиться».",
-  aiPlaceholder: "Скажите, что изменить — «сделай кнопку зелёной», «укороти заголовок»",
-  aiThinking: "Меняю…",
-  aiSend: "Изменить",
-  aiApplied: "Изменено на странице:",
-  aiUndoHint: "на сайте этого ещё нет — «Отменить» (⌘Z) вернёт как было",
-  aiExamples: ["сделай кнопку зелёной", "укороти заголовок", "добавь вопрос про сроки"],
-  contrastTitle: "Плохо читается — проверьте цвета",
-  publishNothing: "Сохранить на сайт",
-  hoverText: "✎ нажмите, чтобы изменить",
-  hoverPhoto: "📷 нажмите, чтобы заменить",
-  more: "Ещё",
-  tryTheSite: "Посмотреть сайт как посетитель",
-  backToEditing: "Вернуться к правке",
-  showOnPhone: "Показать как на телефоне",
-  showOnComputer: "Показать как на компьютере",
-  menuEditText: "Изменить текст",
-  menuReplacePhoto: "Заменить фото…",
-  menuFromLibrary: "Выбрать фото, которое уже есть на сайте",
-  menuPhotoAlt: "Описать фото",
-  menuPhotoAltHint: "Читается вслух незрячим посетителям",
-  menuMoveUp: "Поднять выше",
-  menuMoveDown: "Опустить ниже",
-  menuAddLike: "Добавить такой же сюда",
-  menuDelete: "Удалить этот",
-  menuDeleteConfirm: "Удалить этот пункт?",
-  menuAfterPublish: "появится на странице после сохранения на сайт",
-  menuOpenLink: "Открыть страницу, куда ведёт ссылка",
-  menuWholeBlock: "Все поля этого блока",
-};
-
-const DICTS: Record<Lang, Dict> = { en: EN, ru: RU };
-
 export type T = Dict;
 
-type Ctx = { lang: Lang; setLang: (l: Lang) => void; t: Dict; field: (s: string) => string; trail: (s: string) => string };
+// The admin is in English, like the site. This stays a hook rather than a
+// plain import so a translation could be added later without touching
+// every component.
+type Ctx = { lang: "en"; t: Dict; field: (s: string) => string; trail: (s: string) => string };
 
-const LangContext = createContext<Ctx>({ lang: "en", setLang: () => {}, t: EN, field: (s) => s, trail: (s) => s });
+const LangContext = createContext<Ctx>({ lang: "en", t: EN, field: (x) => x, trail: (x) => x });
 
-export function LangProvider({
-  children,
-  fieldsRu,
-}: {
-  children: React.ReactNode;
-  fieldsRu?: Record<string, string>;
-}) {
-  const [lang, setLangState] = useState<Lang>("en");
-  useEffect(() => {
-    try {
-      const saved = localStorage.getItem("ona-admin-lang");
-      if (saved === "ru" || saved === "en") setLangState(saved);
-      else if (navigator.language.toLowerCase().startsWith("ru")) setLangState("ru");
-    } catch {}
-  }, []);
-  const setLang = (l: Lang) => {
-    setLangState(l);
-    try {
-      localStorage.setItem("ona-admin-lang", l);
-    } catch {}
-  };
-  const field = (s: string) => (lang === "ru" && fieldsRu?.[s]) || s;
-  // Breadcrumb steps look like "Question 3": translate the name, keep the number.
-  const trail = (s: string) => {
-    const m = /^(.+) (\d+)$/.exec(s);
-    return m ? `${field(m[1])} ${m[2]}` : field(s);
-  };
-  return <LangContext.Provider value={{ lang, setLang, t: DICTS[lang], field, trail }}>{children}</LangContext.Provider>;
+export function LangProvider({ children }: { children: React.ReactNode }) {
+  return <LangContext.Provider value={{ lang: "en", t: EN, field: (x) => x, trail: (x) => x }}>{children}</LangContext.Provider>;
 }
 
 export const useLang = () => useContext(LangContext);

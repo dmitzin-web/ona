@@ -65,7 +65,7 @@ export function ImageField({
   allowNone?: boolean;
   onChange: (v: string) => void;
 }) {
-  const { t, lang } = useLang();
+  const { t } = useLang();
   const { photos, add } = useContext(LibraryContext);
   const [open, setOpen] = useState(false);
   const [busy, setBusy] = useState(false);
@@ -155,7 +155,7 @@ export function ImageField({
       {open && (
         <div className="rounded-[2px] border border-line p-2">
           <p className="px-1 pb-2 text-[12px] text-warm-gray">
-            {photos.length} {lang === "ru" ? "фото на сайте" : "photos on the site"}
+            {photos.length} photos on the site
           </p>
           <div className="grid max-h-64 grid-cols-3 gap-2 overflow-y-auto sm:grid-cols-4">
             {photos.map((p) => (

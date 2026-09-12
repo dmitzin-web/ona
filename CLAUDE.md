@@ -68,9 +68,9 @@ break without knowing them.
   `VisualEditor.tsx` from the field's kind and its list ancestor
   (`listAncestor` in `model.ts`) — add a field kind there when you add one
   to the schema.
-- Admin UI language: English or Russian (`components/admin/visual/i18n.tsx`);
-  field labels are translated by English source string in
-  `lib/admin/i18n/fields-ru.ts`. Add a label → add its translation.
+- The admin is English only, like the site. Its wording lives in
+  `components/admin/visual/i18n.tsx`; `useLang()` is kept as the single
+  place to add a translation later if one is ever wanted.
 - Blog posts → `content/posts/<slug>.json`; remodeling gallery →
   `content/work/<slug>.json` + `public/photos/projects/<slug>/image.*`.
   `lib/posts.ts` and `lib/work.ts` read them at build time. The file format

@@ -4,7 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import type { SectionDef } from "@/lib/admin/sections";
 import { diff, getAt, type Change, type Path } from "@/lib/admin/json-path";
 import { validateBySchema } from "@/lib/admin/schema";
-import { legalFindings, RULES_RU, type Finding } from "@/lib/admin/legal-guard";
+import { legalFindings, type Finding } from "@/lib/admin/legal-guard";
 import {
   loadCommitChanges,
   loadHistory,
@@ -357,7 +357,7 @@ export function ReviewDialog({
               {findings.map((f) => (
                 <li key={f.rule + f.excerpt}>
                   <span className="block italic">“{f.excerpt}”</span>
-                  <span className="block text-[13px] text-warm-gray">{lang === "ru" ? RULES_RU[f.rule] ?? f.rule : f.rule}</span>
+                  <span className="block text-[13px] text-warm-gray">{f.rule}</span>
                 </li>
               ))}
             </ul>
@@ -403,7 +403,7 @@ function ago(iso: string, t: ReturnType<typeof useLang>["t"], lang: string) {
   if (s < 90) return t.justNow;
   if (s < 3600) return `${Math.round(s / 60)} ${t.minAgo}`;
   if (s < 86400) return `${Math.round(s / 3600)} ${t.hAgo}`;
-  return new Date(iso).toLocaleDateString(lang === "ru" ? "ru-RU" : "en-US", { day: "numeric", month: "short", year: "numeric" });
+  return new Date(iso).toLocaleDateString("en-US", { day: "numeric", month: "short", year: "numeric" });
 }
 
 export function HistoryDialog({

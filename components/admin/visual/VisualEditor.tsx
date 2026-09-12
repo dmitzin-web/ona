@@ -24,7 +24,7 @@ import { AskBar } from "./AskBar";
 import { ContextMenu, type MenuItem } from "./ContextMenu";
 import { askEditor } from "@/app/admin/ai-actions";
 import { ADMIN_FLAG } from "../EditThisPage";
-import { themeCss, type Theme } from "@/lib/theme";
+import { roleOfColor, themeCss, type Theme } from "@/lib/theme";
 import { askPhotoField, photoPreviewUrl, PhotoLibrary } from "../ImageField";
 import { SHARED as SHARED_NOTE, type Base, type Draft, type EditorProps, type Selection } from "./types";
 
@@ -45,7 +45,7 @@ type Stored = { savedAt: number; sections: Record<string, { sha: string | null; 
 
 export function VisualEditor(props: EditorProps) {
   return (
-    <LangProvider fieldsRu={props.fieldsRu}>
+    <LangProvider>
       <PhotoLibrary photos={props.photos}>
         <Editor {...props} />
       </PhotoLibrary>
@@ -55,7 +55,7 @@ export function VisualEditor(props: EditorProps) {
 
 function Editor(props: EditorProps) {
   const { sections, deployed, siteUrl } = props;
-  const { t, lang, setLang, field: tr, trail: trTrail } = useLang();
+  const { t, lang, field: tr, trail: trTrail } = useLang();
   const byId = useMemo(() => new Map(sections.map((s) => [s.id, s])), [sections]);
 
   // ── Content state ────────────────────────────────────────────────────
@@ -205,7 +205,7 @@ function Editor(props: EditorProps) {
   selectionRef.current = selection;
   const pendingReveal = useRef<Leaf | null>(null);
   const [panelOpen, setPanelOpen] = useState(false);
-  const [menu, setMenu] = useState<{ x: number; y: number; b: Binding } | null>(null);
+  const [menu, setMenu] = useState<{ x: number; y: number; b: Binding | null; role?: keyof Theme | null } | null>(null);
   const [dialog, setDialog] = useState<"search" | "review" | "history" | "pages" | null>(null);
   const dialogRef = useRef(dialog);
   dialogRef.current = dialog;
@@ -565,13 +565,27 @@ function Editor(props: EditorProps) {
       "contextmenu",
       (e) => {
         if (modeRef.current !== "edit") return;
-        const b = bindingAt(e);
-        if (!b) return;
         e.preventDefault();
-        openMenu(b, e.clientX, e.clientY);
+        const b = bindingAt(e);
+        if (b) return openMenu(b, e.clientX, e.clientY);
+        // Not on any text or photo: whatever background was clicked, and
+        // the things that apply to the whole page.
+        const box = frameRef.current!.getBoundingClientRect();
+        setSelection(null);
+        setMenu({ x: box.left + e.clientX, y: box.top + e.clientY, b: null, role: backgroundRoleAt(e.target as Element) });
       },
       true,
     );
+    // The colour the page actually painted here, matched to the colour
+    // role it came from.
+    const backgroundRoleAt = (start: Element | null): keyof Theme | null => {
+      for (let el: Element | null = start; el && el !== d.documentElement; el = el.parentElement) {
+        const role = roleOfColor(w.getComputedStyle(el).backgroundColor, draftRef.current.theme as Theme);
+        if (role) return role;
+      }
+      return "ground";
+    };
+
     let press: ReturnType<typeof setTimeout> | undefined;
     d.addEventListener(
       "touchstart",
@@ -785,6 +799,25 @@ function Editor(props: EditorProps) {
     return items;
   }
 
+  // Right-click on the background: change that background, or anything
+  // that applies to the page as a whole.
+  function pageMenuItems(role: keyof Theme | null): MenuItem[] {
+    const items: MenuItem[] = [];
+    if (role) {
+      items.push({
+        label: t.menuThisBackground,
+        hint: t.menuThisBackgroundHint,
+        run: () => select({ sectionId: "theme", path: [role] }),
+      });
+    }
+    items.push({ label: t.taskColors, run: () => select({ sectionId: "theme", path: ["ground"] }) });
+    items.push({ label: t.menuPageText, run: () => (setSelection(null), setPanelOpen(true)) });
+    items.push({ label: t.searchResult, run: () => (setSelection(null), setPanelOpen(true)) });
+    items.push({ label: t.pages, run: () => setDialog("pages") });
+    if (history.current.past.length) items.push({ label: t.undo, run: undo });
+    return items;
+  }
+
   const centreOf = (b: Binding): [number, number] => {
     const r = b.el.getBoundingClientRect();
     return [r.left + Math.min(30, r.width / 2), r.top + r.height / 2];
@@ -843,8 +876,6 @@ function Editor(props: EditorProps) {
           canUndo={history.current.past.length > 0}
           devBypass={props.devBypass}
           user={props.user}
-          lang={lang}
-          setLang={setLang}
           mode={mode}
           setMode={setMode}
           device={device}
@@ -862,7 +893,7 @@ function Editor(props: EditorProps) {
       {restore && (
         <div className="flex flex-none flex-wrap items-center gap-3 border-b border-teal/30 bg-teal/10 px-4 py-2 text-[13px]">
           <span>
-            {t.restoreTitle} ({new Date(restore.savedAt).toLocaleString(lang === "ru" ? "ru-RU" : "en-US")})
+            {t.restoreTitle} ({new Date(restore.savedAt).toLocaleString("en-US")})
           </span>
           <button type="button" className="font-semibold text-teal hover:underline" onClick={() => applyRestore(restore)}>
             {t.restore}
@@ -960,7 +991,7 @@ function Editor(props: EditorProps) {
           const ids = [...new Set(bindingsRef.current.map((b) => b.leaf.sectionId))].slice(0, 6);
           if (!ids.includes("theme")) ids.push("theme");
           const values = Object.fromEntries(ids.map((id) => [id, draftRef.current[id]]));
-          const r = await askEditor(request, { sectionIds: ids, page: path, values, lang }).catch(() => null);
+          const r = await askEditor(request, { sectionIds: ids, page: path, values }).catch(() => null);
           if (!r) return { error: t.deployFailed };
           if (!r.ok) return { error: r.message };
           if (r.edits.length) {
@@ -976,8 +1007,8 @@ function Editor(props: EditorProps) {
         <ContextMenu
           x={menu.x}
           y={menu.y}
-          title={menu.b.leaf.trail.slice(-2).map(trTrail).join(" › ")}
-          items={menuItems(menu.b)}
+          title={menu.b ? menu.b.leaf.trail.slice(-2).map(trTrail).join(" › ") : t.menuPageTitle}
+          items={menu.b ? menuItems(menu.b) : pageMenuItems(menu.role ?? null)}
           onClose={() => setMenu(null)}
         />
       )}
@@ -1072,8 +1103,6 @@ function Menu({
   canUndo,
   devBypass,
   user,
-  lang,
-  setLang,
   mode,
   setMode,
   device,
@@ -1085,8 +1114,6 @@ function Menu({
   canUndo: boolean;
   devBypass: boolean;
   user: string;
-  lang: "en" | "ru";
-  setLang: (l: "en" | "ru") => void;
   mode: "edit" | "browse";
   setMode: (m: "edit" | "browse") => void;
   device: Device;
@@ -1145,9 +1172,6 @@ function Menu({
               }}
             >
               {device === "phone" ? t.showOnComputer : t.showOnPhone}
-            </button>
-            <button type="button" className={row} onClick={() => (setLang(lang === "ru" ? "en" : "ru"), setOpen(false))}>
-              {lang === "ru" ? "Switch to English" : "Переключить на русский"}
             </button>
             <hr className="my-1 border-line" />
             <a className={row} href="/admin/content">

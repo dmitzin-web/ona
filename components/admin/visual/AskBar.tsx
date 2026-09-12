@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 import { askEditor, type Edit } from "@/app/admin/ai-actions";
-import { RULES_RU, type Finding } from "@/lib/admin/legal-guard";
+import type { Finding } from "@/lib/admin/legal-guard";
 import { useLang } from "./i18n";
 
 // The simplest way to change the site: say what you want. The assistant
@@ -17,7 +17,7 @@ export function AskBar({
   busyHint?: string;
   onAsk: (request: string) => Promise<{ reply: string; edits: Edit[]; legal: Finding[] } | { error: string }>;
 }) {
-  const { t, lang } = useLang();
+  const { t } = useLang();
   const [text, setText] = useState("");
   const [busy, setBusy] = useState(false);
   const [result, setResult] = useState<{ reply: string; count: number; legal: Finding[] } | null>(null);
@@ -54,7 +54,7 @@ export function AskBar({
                 )}
                 {result!.legal.map((f) => (
                   <p key={f.rule} className="mt-2 text-[13px] text-coral-deep">
-                    {lang === "ru" ? RULES_RU[f.rule] ?? f.rule : f.rule}
+                    {f.rule}
                   </p>
                 ))}
               </>
