@@ -54,7 +54,7 @@ export function VisualEditor(props: EditorProps) {
 
 function Editor(props: EditorProps) {
   const { sections, deployed, siteUrl } = props;
-  const { t, lang, setLang } = useLang();
+  const { t, lang, setLang, field: tr } = useLang();
   const byId = useMemo(() => new Map(sections.map((s) => [s.id, s])), [sections]);
 
   // ── Content state ────────────────────────────────────────────────────
@@ -216,6 +216,11 @@ function Editor(props: EditorProps) {
   }, []);
 
   const doc = () => frameRef.current?.contentDocument ?? null;
+  // Read inside frame listeners, which are wired once per page load.
+  const hintText = useRef(t.hoverText);
+  const hintPhoto = useRef(t.hoverPhoto);
+  hintText.current = t.hoverText;
+  hintPhoto.current = t.hoverPhoto;
 
   const rawOf = useCallback((leaf: Leaf) => getAt(draftRef.current[leaf.sectionId], leaf.path), []);
 
@@ -536,7 +541,8 @@ function Editor(props: EditorProps) {
         const b = bindingAt(e);
         if (!b) return void (tag.style.display = "none");
         const r = b.el.getBoundingClientRect();
-        tag.textContent = b.trail;
+        // What you can do here, in two words — not the field's name.
+        tag.textContent = b.kind === "photo" ? hintPhoto.current : hintText.current;
         tag.style.display = "block";
         tag.style.left = `${Math.max(4, r.left)}px`;
         tag.style.top = `${r.top > 26 ? r.top - 22 : r.bottom + 4}px`;
@@ -669,83 +675,66 @@ function Editor(props: EditorProps) {
   }, [sections, base]);
 
   const selectedSection = selection ? byId.get(selection.sectionId) ?? null : null;
-  const pageLabel = props.pages.find((p) => p.path === path)?.label ?? path;
+  const pageLabel = tr(props.pages.find((p) => p.path === path)?.label ?? path);
 
   return (
     <div className="fixed inset-0 flex flex-col bg-charcoal-soft text-ivory">
-      {/* ── Toolbar ── */}
+      {/* ── Toolbar ──
+          Three things only: which page you are on, the one button that
+          puts your work on the site, and a menu for everything else.
+          Everything a person does day to day happens on the page itself
+          or in the line at the bottom. */}
       <header className="flex h-14 flex-none items-center gap-2 border-b border-line bg-charcoal px-3 sm:gap-3">
-        <span className="hidden text-[15px] font-semibold sm:inline">
-          ONA <span className="font-normal text-warm-gray">· {t.editor}</span>
-        </span>
         <button
           type="button"
           onClick={() => setDialog("pages")}
-          className="flex min-w-0 max-w-[40vw] items-center gap-1.5 rounded-[2px] border border-line px-2.5 py-1.5 text-[14px] hover:border-teal sm:max-w-[280px]"
+          className="flex min-w-0 flex-1 items-center gap-1.5 rounded-full border border-line px-3 py-1.5 text-[14px] hover:border-teal sm:max-w-[320px]"
           title={path}
         >
+          <span aria-hidden className="text-warm-gray">▤</span>
           <span className="truncate">{pageLabel}</span>
-          <span aria-hidden className="text-warm-gray">▾</span>
+          <span aria-hidden className="ml-auto text-warm-gray">▾</span>
         </button>
-        <div className="hidden overflow-hidden rounded-[2px] border border-line md:flex" role="group">
-          {(["edit", "browse"] as const).map((m) => (
-            <button
-              key={m}
-              type="button"
-              title={m === "edit" ? t.editHelp : t.browseHelp}
-              onClick={() => setMode(m)}
-              className={`px-3 py-1.5 text-[13px] ${mode === m ? "bg-brand text-white" : "hover:bg-charcoal-soft"}`}
-            >
-              {m === "edit" ? t.edit : t.browse}
-            </button>
-          ))}
-        </div>
-        <div className="hidden overflow-hidden rounded-[2px] border border-line lg:flex" role="group">
-          {(Object.keys(DEVICES) as Device[]).map((dv) => (
-            <button
-              key={dv}
-              type="button"
-              onClick={() => setDevice(dv)}
-              title={t[dv]}
-              className={`px-2.5 py-1.5 text-[13px] ${device === dv ? "bg-charcoal-mute" : "hover:bg-charcoal-soft"}`}
-            >
-              {dv === "desktop" ? "▭" : dv === "tablet" ? "▯" : "▮"}
-              <span className="sr-only">{t[dv]}</span>
-            </button>
-          ))}
-        </div>
-        <div className="flex-1" />
         <button
           type="button"
           onClick={() => setDialog("search")}
-          className="flex items-center gap-2 rounded-[2px] border border-line px-2.5 py-1.5 text-[13px] text-warm-gray hover:border-teal"
+          title={`${t.search} (⌘K)`}
+          className="hidden rounded-full border border-line px-3 py-1.5 text-[15px] text-warm-gray hover:border-teal sm:block"
         >
           <span aria-hidden>⌕</span>
-          <span className="hidden sm:inline">{t.search}</span>
-          <kbd className="hidden rounded-[2px] border border-line px-1 font-mono text-[10px] lg:inline">⌘K</kbd>
+          <span className="sr-only">{t.search}</span>
         </button>
-        <button type="button" onClick={undo} disabled={!history.current.past.length} title={`${t.undo} (⌘Z)`} className="rounded-[2px] px-2 py-1.5 text-[16px] hover:bg-charcoal-soft disabled:opacity-30">
-          ↶
-        </button>
-        <button type="button" onClick={redo} disabled={!history.current.future.length} title={`${t.redo} (⇧⌘Z)`} className="hidden rounded-[2px] px-2 py-1.5 text-[16px] hover:bg-charcoal-soft disabled:opacity-30 sm:block">
-          ↷
-        </button>
-        <button type="button" onClick={() => setDialog("history")} className="hidden rounded-[2px] px-2.5 py-1.5 text-[13px] hover:bg-charcoal-soft md:block">
-          {t.history}
+        <button
+          type="button"
+          onClick={undo}
+          disabled={!history.current.past.length}
+          title={`${t.undo} (⌘Z)`}
+          className="hidden rounded-full px-3 py-1.5 text-[16px] hover:bg-charcoal-soft disabled:opacity-25 sm:block"
+        >
+          ↶<span className="sr-only">{t.undo}</span>
         </button>
         <button
           type="button"
           onClick={() => setDialog("review")}
           disabled={!changeCount}
-          className="rounded-[2px] bg-brand px-3 py-1.5 text-[14px] font-semibold text-white transition hover:bg-brand-2 disabled:bg-charcoal-mute disabled:text-warm-gray"
+          className="rounded-full bg-brand px-4 py-2 text-[14px] font-semibold text-white transition hover:bg-brand-2 disabled:bg-charcoal-mute disabled:text-warm-gray"
         >
-          {t.publish}
-          {changeCount > 0 && <span className="ml-1.5 rounded-full bg-white/20 px-1.5 text-[12px]">{changeCount}</span>}
+          {changeCount > 0 ? `${t.publish} · ${changeCount}` : t.publishNothing}
         </button>
-        <button type="button" onClick={() => setLang(lang === "ru" ? "en" : "ru")} className="rounded-[2px] px-2 py-1.5 font-mono text-[12px] hover:bg-charcoal-soft" title="Язык / Language">
-          {lang === "ru" ? "EN" : "RU"}
-        </button>
-        <Menu devBypass={props.devBypass} user={props.user} onHistory={() => setDialog("history")} />
+        <Menu
+          onSearch={() => setDialog("search")}
+          onUndo={undo}
+          canUndo={history.current.past.length > 0}
+          devBypass={props.devBypass}
+          user={props.user}
+          lang={lang}
+          setLang={setLang}
+          mode={mode}
+          setMode={setMode}
+          device={device}
+          setDevice={setDevice}
+          onHistory={() => setDialog("history")}
+        />
       </header>
 
       {!props.connected && (
@@ -951,37 +940,99 @@ function Editor(props: EditorProps) {
   );
 }
 
-function Menu({ devBypass, user, onHistory }: { devBypass: boolean; user: string; onHistory: () => void }) {
+function Menu({
+  onSearch,
+  onUndo,
+  canUndo,
+  devBypass,
+  user,
+  lang,
+  setLang,
+  mode,
+  setMode,
+  device,
+  setDevice,
+  onHistory,
+}: {
+  onSearch: () => void;
+  onUndo: () => void;
+  canUndo: boolean;
+  devBypass: boolean;
+  user: string;
+  lang: "en" | "ru";
+  setLang: (l: "en" | "ru") => void;
+  mode: "edit" | "browse";
+  setMode: (m: "edit" | "browse") => void;
+  device: Device;
+  setDevice: (d: Device) => void;
+  onHistory: () => void;
+}) {
   const { t } = useLang();
   const [open, setOpen] = useState(false);
+  const row = "block w-full px-3 py-2.5 text-left text-[14px] hover:bg-charcoal-soft";
   return (
     <div className="relative">
-      <button type="button" onClick={() => setOpen((o) => !o)} className="rounded-[2px] px-2 py-1.5 text-[16px] hover:bg-charcoal-soft" aria-label="Menu" aria-expanded={open}>
+      <button
+        type="button"
+        onClick={() => setOpen((o) => !o)}
+        className="rounded-full px-3 py-1.5 text-[18px] hover:bg-charcoal-soft"
+        aria-label={t.more}
+        aria-expanded={open}
+      >
         ⋯
       </button>
       {open && (
         <>
           <div className="fixed inset-0 z-20" onClick={() => setOpen(false)} />
-          <div className="absolute right-0 top-full z-30 mt-1 w-64 rounded-[2px] border border-line bg-charcoal py-1 text-[14px] shadow-lg">
+          <div className="absolute right-0 top-full z-30 mt-1 w-72 overflow-hidden rounded-[10px] border border-line bg-charcoal py-1 shadow-xl">
             <p className="px-3 py-1.5 text-[12px] text-warm-gray">{user}</p>
-            <button type="button" className="block w-full px-3 py-2 text-left hover:bg-charcoal-soft md:hidden" onClick={() => (setOpen(false), onHistory())}>
+            <button type="button" className={`${row} sm:hidden`} onClick={() => (setOpen(false), onSearch())}>
+              {t.search}
+            </button>
+            <button
+              type="button"
+              className={`${row} sm:hidden disabled:opacity-40`}
+              disabled={!canUndo}
+              onClick={() => (setOpen(false), onUndo())}
+            >
+              {t.undo}
+            </button>
+            <button type="button" className={row} onClick={() => (setOpen(false), onHistory())}>
               {t.history}
             </button>
-            <a className="block px-3 py-2 hover:bg-charcoal-soft" href="/admin/content">
+            <button
+              type="button"
+              className={row}
+              onClick={() => {
+                setMode(mode === "edit" ? "browse" : "edit");
+                setOpen(false);
+              }}
+            >
+              {mode === "edit" ? t.tryTheSite : t.backToEditing}
+            </button>
+            <button
+              type="button"
+              className={row}
+              onClick={() => {
+                setDevice(device === "phone" ? "desktop" : "phone");
+                setOpen(false);
+              }}
+            >
+              {device === "phone" ? t.showOnComputer : t.showOnPhone}
+            </button>
+            <button type="button" className={row} onClick={() => (setLang(lang === "ru" ? "en" : "ru"), setOpen(false))}>
+              {lang === "ru" ? "Switch to English" : "Переключить на русский"}
+            </button>
+            <hr className="my-1 border-line" />
+            <a className={row} href="/admin/content">
               {t.allContent}
             </a>
-            <a className="block px-3 py-2 hover:bg-charcoal-soft" href="/admin/content#posts">
-              {t.blog}
-            </a>
-            <a className="block px-3 py-2 hover:bg-charcoal-soft" href="/admin/content#gallery">
-              {t.gallery}
-            </a>
-            <a className="block px-3 py-2 hover:bg-charcoal-soft" href="/" target="_blank" rel="noopener">
+            <a className={row} href="/" target="_blank" rel="noopener">
               onarestore.com ↗
             </a>
             {!devBypass && (
               <form action={signOutOfAdmin}>
-                <button type="submit" className="block w-full px-3 py-2 text-left hover:bg-charcoal-soft">
+                <button type="submit" className={row}>
                   {t.signOut}
                 </button>
               </form>

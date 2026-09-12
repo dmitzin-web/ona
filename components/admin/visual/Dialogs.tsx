@@ -166,9 +166,9 @@ export function PagePicker({
   onClose: () => void;
   onPick: (path: string) => void;
 }) {
-  const { t } = useLang();
+  const { t, field: tr } = useLang();
   const [q, setQ] = useState("");
-  const list = pages.filter((p) => `${p.label} ${p.path}`.toLowerCase().includes(q.toLowerCase()));
+  const list = pages.filter((p) => `${p.label} ${tr(p.label)} ${p.path}`.toLowerCase().includes(q.toLowerCase()));
   const groups = [...new Set(list.map((p) => p.group))];
   return (
     <Modal title={t.pages} onClose={onClose}>
@@ -184,7 +184,7 @@ export function PagePicker({
       </div>
       {groups.map((g) => (
         <div key={g}>
-          <p className="bg-charcoal-soft px-4 py-1.5 text-[12px] font-medium uppercase tracking-wide text-warm-gray">{g}</p>
+          <p className="bg-charcoal-soft px-4 py-1.5 text-[12px] font-medium uppercase tracking-wide text-warm-gray">{tr(g)}</p>
           <ul>
             {list
               .filter((p) => p.group === g)
@@ -195,7 +195,7 @@ export function PagePicker({
                     onClick={() => onPick(p.path)}
                     className={`flex w-full items-baseline justify-between gap-3 px-4 py-2 text-left text-[14px] hover:bg-teal/10 ${p.path === current ? "font-semibold text-teal" : ""}`}
                   >
-                    <span>{p.label}</span>
+                    <span>{tr(p.label)}</span>
                     <span className="truncate font-mono text-[11px] text-warm-gray">{p.path}</span>
                   </button>
                 </li>

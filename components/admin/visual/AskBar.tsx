@@ -24,8 +24,8 @@ export function AskBar({
   const [error, setError] = useState<string | null>(null);
   const input = useRef<HTMLInputElement>(null);
 
-  const send = async () => {
-    const q = text.trim();
+  const send = async (override?: string) => {
+    const q = (override ?? text).trim();
     if (!q || busy) return;
     setBusy(true);
     setError(null);
@@ -61,20 +61,37 @@ export function AskBar({
             )}
           </div>
         )}
+        {!result && !error && !busy && (
+          <div className="flex flex-wrap justify-center gap-1.5">
+            {t.aiExamples.map((ex) => (
+              <button
+                key={ex}
+                type="button"
+                onClick={() => {
+                  setText(ex);
+                  void send(ex);
+                }}
+                className="rounded-full border border-line bg-charcoal px-3 py-1.5 text-[13px] text-warm-gray shadow-sm transition hover:border-teal hover:text-ivory"
+              >
+                {ex}
+              </button>
+            ))}
+          </div>
+        )}
         <div className="flex items-center gap-2 rounded-full border border-line bg-charcoal p-1.5 pl-4 shadow-[0_8px_30px_rgba(0,0,0,.12)]">
           <span aria-hidden className="text-[16px]">✨</span>
           <input
             ref={input}
             value={text}
             onChange={(e) => setText(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && send()}
+            onKeyDown={(e) => e.key === "Enter" && void send()}
             placeholder={busy ? (busyHint ?? t.aiThinking) : t.aiPlaceholder}
             disabled={busy}
             className="min-w-0 flex-1 bg-transparent py-2 text-[15px] text-ivory outline-none placeholder:text-warm-gray"
           />
           <button
             type="button"
-            onClick={send}
+            onClick={() => void send()}
             disabled={busy || !text.trim()}
             className="rounded-full bg-brand px-4 py-2 text-[14px] font-semibold text-white transition hover:bg-brand-2 disabled:opacity-40"
           >
