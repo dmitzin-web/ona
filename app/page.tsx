@@ -79,14 +79,23 @@ export default function HomePage() {
                   rather than reworded: the fact is still on screen, the
                   H1 gets to start at the top of the hero, and the site
                   is back to one animation. */}
-              <h1 className="text-[40px] font-semibold leading-[1.04] tracking-[-0.025em] text-ivory md:text-[64px]">
+              {/* v4: the headline carries the page. 64px/600 read as
+                  "tidy professionals"; 700 weight on a tighter leading
+                  reads as the first thing in the room. The size only
+                  grows at xl — between 768 and 1280 the text column is
+                  ~430px and 76px wraps to four lines, which pushes the
+                  Call button under the fold on a 1024 laptop. The
+                  second half drops to warm-gray rather than an opacity
+                  mask on ink — same two-tone intent, a colour the
+                  design system actually owns (see globals.css). */}
+              <h1 className="text-[44px] font-bold leading-[0.98] tracking-[-0.03em] text-ivory md:text-[64px] xl:text-[76px]">
                 {t.hero.titleLead}{" "}
-                <span className="text-ivory/85">
+                <span className="text-warm-gray">
                   {t.hero.titleRest}
                 </span>
               </h1>
 
-              <p className="mt-8 max-w-xl text-[17px] leading-relaxed text-ivory/85 md:text-[18px]">
+              <p className="mt-8 max-w-xl text-[17px] leading-relaxed text-warm-gray md:text-[18px]">
                 {t.hero.body}
               </p>
 
@@ -104,6 +113,21 @@ export default function HomePage() {
                   {t.hero.ctaSecondary}
                 </Link>
               </div>
+
+              {/* The live project page is the one thing no competitor
+                  has, and until v4 the only way in was a text link 600px
+                  down the page. Two entries now sit in the first screen:
+                  this one (survives the mobile stack, where the photo
+                  and its card fall below the fold) and the card on the
+                  photo itself. Both go to /work/sample, which labels
+                  itself a sample and is noindex'd. */}
+              <Link
+                href="/work/sample"
+                className="mt-6 inline-flex items-center gap-1.5 text-[14px] font-medium text-teal underline-offset-4 hover:underline"
+              >
+                {t.hero.ctaSample}
+                <span aria-hidden>→</span>
+              </Link>
             </div>
 
             {/* Anchor image + signature Project File overlay.
@@ -119,10 +143,13 @@ export default function HomePage() {
                 sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover"
               />
-              <div className="absolute bottom-4 left-4 right-4 rounded-xl border border-white/15 bg-charcoal/80 p-4 text-ivory shadow-[0_20px_50px_-20px_rgba(0,0,0,0.55)] backdrop-blur-md sm:bottom-5 sm:left-5 sm:right-5">
+              <Link
+                href="/work/sample"
+                className="group absolute bottom-4 left-4 right-4 block rounded-xl border border-white/15 bg-charcoal/80 p-4 text-ivory shadow-[0_20px_50px_-20px_rgba(0,0,0,0.55)] backdrop-blur-md transition hover:border-teal/40 hover:bg-charcoal/95 sm:bottom-5 sm:left-5 sm:right-5"
+              >
                 <div className="flex items-center gap-2">
                   <span className="ona-pulse h-1.5 w-1.5 rounded-full bg-gold" />
-                  <span className="text-[10px] uppercase tracking-[0.22em] text-ivory/80">
+                  <span className="text-[10px] uppercase tracking-[0.22em] text-warm-gray">
                     {t.hero.overlayEyebrow}
                   </span>
                 </div>
@@ -130,7 +157,7 @@ export default function HomePage() {
                   <div className="text-[14px] font-medium">
                     {t.hero.overlayStatus}
                   </div>
-                  <div className="text-[12px] text-ivory/80">
+                  <div className="text-[12px] text-warm-gray">
                     {t.hero.overlayNote}
                   </div>
                 </div>
@@ -140,7 +167,20 @@ export default function HomePage() {
                     style={{ width: "50%" }}
                   />
                 </div>
-              </div>
+                {/* The card looked live and wasn't clickable — the one
+                    thing a reader tries first. It is the entry now, and
+                    saying "sample" here is also the honest reading of a
+                    status that never moves. */}
+                <div className="mt-3 flex items-center gap-1.5 text-[12px] font-medium text-teal">
+                  {t.hero.overlayCta}
+                  <span
+                    aria-hidden
+                    className="transition-transform group-hover:translate-x-0.5"
+                  >
+                    →
+                  </span>
+                </div>
+              </Link>
             </div>
           </div>
         </div>

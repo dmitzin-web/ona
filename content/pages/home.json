@@ -9,11 +9,13 @@
     "body": "IICRC-certified restoration across the Vancouver and Portland metro areas. We stabilize the damage, document it for your insurer, and rebuild what was lost — on a live project page you can share with your family or adjuster. Also remodeling, from the same crew.",
     "ctaCall": "Call {phone}",
     "ctaSecondary": "Start a project",
+    "ctaSample": "See a sample project page",
     "photo": "/photos/projects/p1.avif",
     "imageAlt": "Recent Ona project — interior detail",
     "overlayEyebrow": "Your project · live page",
     "overlayStatus": "On schedule · Day 7 of 14",
-    "overlayNote": "Scope approved"
+    "overlayNote": "Scope approved",
+    "overlayCta": "Open the sample page"
   },
   "projectFile": {
     "eyebrow": "What it looks like to be our customer",

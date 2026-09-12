@@ -21,11 +21,13 @@ export const HOME: SectionDef = {
       { kind: "textarea", key: "body", label: "Paragraph", required: true, rows: 4 },
       { kind: "text", key: "ctaCall", label: "Call button", required: true },
       { kind: "text", key: "ctaSecondary", label: "Second button", required: true },
+      { kind: "text", key: "ctaSample", label: "Link under the buttons", required: true, hint: "Goes to the sample project page. Say “sample” — the project shown there is an illustration, not a real customer." },
       { kind: "image", key: "photo", label: "Photo", aspect: "4 / 5" },
       { kind: "text", key: "imageAlt", label: "Photo description", required: true },
       { kind: "text", key: "overlayEyebrow", label: "Card on the photo — label", required: true },
       { kind: "text", key: "overlayStatus", label: "Card on the photo — status", required: true },
       { kind: "text", key: "overlayNote", label: "Card on the photo — note", required: true },
+      { kind: "text", key: "overlayCta", label: "Card on the photo — link", required: true, hint: "The whole card is a link to the sample project page." },
     ] },
     { kind: "object", key: "projectFile", label: "“Your project page” block", hint: "The sample project shown inside the demo stays as it is.", fields: [
       { kind: "text", key: "eyebrow", label: "Label", required: true },
