@@ -22,6 +22,9 @@ npm install
 npm run dev    # http://localhost:3100
 npm run build  # production build
 npm start
+
+npm run check:content  # content files match what the admin would save
+npm run check:seo      # every page's title/description matches what the admin shows
 ```
 
 ## Edit the brand
@@ -29,7 +32,7 @@ All business data lives in **`lib/site.ts`** — phone, email, service area, cer
 
 Service copy lives in **`lib/services.ts`** — one entry per service, drives the service pages + index + programmatic city × service pages.
 
-Every word on the site is a content file in **`content/`**, edited at **`/admin`**: a visual editor that shows the live site and lets you click any text on the page and type. Blog posts and the gallery have their own editors; the schema-driven forms for everything are at `/admin/content`. Sign-in is Google, restricted to an allowlist; publishing commits to GitHub and deploys. Setup, the matching rules the editor depends on, and the legal constraints are in **`CLAUDE.md`**.
+Every word on the site is a content file in **`content/`**, edited at **`/admin`**: a visual editor that shows the live site and lets you click any text on the page and type. Blog posts and the gallery have their own editors; the schema-driven forms for everything are at `/admin/content`. Sign-in is Google, restricted to an allowlist; publishing commits to GitHub and deploys. The **SEO** button there checks every page the way Google sees it — title and description length, duplicates, thin template pages, missing photo descriptions — and each line opens the field that fixes it. Setup, the matching rules the editor depends on, and the legal constraints are in **`CLAUDE.md`**.
 
 Local-area profiles (weather pattern, common losses, neighborhoods, drive-time-from-HQ) live in **`lib/areas.ts`** and feed the city pages plus the programmatic city × service landing pages.
 

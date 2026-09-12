@@ -1,6 +1,20 @@
 {
   "updated": "May 16, 2026",
   "draftBanner": "Draft — these terms are a working version pending review by counsel. They are published in good faith to disclose how the website and our restoration services operate, but they are not a substitute for a lawyer-reviewed agreement and may be updated before public launch.",
+  "privacyPage": {
+    "eyebrow": "Legal",
+    "heading": "Privacy policy.",
+    "breadcrumb": "Privacy",
+    "seoTitle": "Privacy Policy",
+    "seoDescription": "How {name} collects, uses, and protects the information you share with us."
+  },
+  "termsPage": {
+    "eyebrow": "Legal",
+    "heading": "Terms of service.",
+    "breadcrumb": "Terms",
+    "seoTitle": "Terms of Service",
+    "seoDescription": "The terms that govern use of the {name} website and our restoration services."
+  },
   "privacy": [
     {
       "heading": "Who we are",

@@ -15,13 +15,16 @@ import {
   type Binding,
   type Index,
 } from "./binder";
-import { companyValues, emptyLike, fieldsAlong, listAncestor, type Leaf } from "./model";
+import { companyValues, emptyLike, fieldsAlong, listAncestor, trailOf, type Leaf } from "./model";
 import { LangProvider, useLang } from "./i18n";
 import { Panel } from "./Panel";
 import { HistoryDialog, PagePicker, ReviewDialog, SearchDialog } from "./Dialogs";
 import { DeployTracker } from "./Deploy";
 import { AskBar } from "./AskBar";
+import { SeoScreen } from "./SeoScreen";
 import { ContextMenu, type MenuItem } from "./ContextMenu";
+import { sitePages } from "@/lib/seo-pages";
+import { auditSite, findingsFor, type Finding, type Where } from "@/lib/seo-audit";
 import { askEditor } from "@/app/admin/ai-actions";
 import { ADMIN_FLAG } from "../EditThisPage";
 import { roleOfColor, themeCss, type Theme } from "@/lib/theme";
@@ -137,6 +140,18 @@ function Editor(props: EditorProps) {
     return merged;
   }, [sections, deployed, props.latest, siteUrl]);
 
+  // ── What Google can make of the site ─────────────────────────────────
+  // Measured against the DRAFT: a title fixed here stops being a problem
+  // before it is published, and the count at the top of the SEO screen
+  // moves while the editor types. lib/seo-pages.ts mirrors what each page
+  // sends Google; lib/seo-audit.ts is the rules.
+  const seoPages = useMemo(
+    () => sitePages(draft, { siteName: company.name, siteUrl, posts: props.posts }),
+    [draft, company.name, siteUrl, props.posts],
+  );
+  const seo = useMemo(() => auditSite(seoPages, draft), [seoPages, draft]);
+  const seoToFix = seo.findings.filter((f) => f.severity === "fix").length;
+
   // ── Drafts survive reloads ───────────────────────────────────────────
   const [restore, setRestore] = useState<Stored | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
@@ -203,10 +218,10 @@ function Editor(props: EditorProps) {
   const [selection, setSelection] = useState<Selection>(null);
   const selectionRef = useRef(selection);
   selectionRef.current = selection;
-  const pendingReveal = useRef<Leaf | null>(null);
+  const pendingReveal = useRef<{ sectionId: string; path: Path } | null>(null);
   const [panelOpen, setPanelOpen] = useState(false);
   const [menu, setMenu] = useState<{ x: number; y: number; b: Binding | null; role?: keyof Theme | null } | null>(null);
-  const [dialog, setDialog] = useState<"search" | "review" | "history" | "pages" | null>(null);
+  const [dialog, setDialog] = useState<"search" | "review" | "history" | "pages" | "seo" | null>(null);
   const dialogRef = useRef(dialog);
   dialogRef.current = dialog;
   const [deploy, setDeploy] = useState<{ commit: string; at: number } | null>(null);
@@ -659,6 +674,61 @@ function Editor(props: EditorProps) {
     [select, reveal, pageFor, path, navigate],
   );
 
+  // ── From a line on the SEO screen to the field that fixes it ─────────
+  const openSeoFix = useCallback(
+    (w: Where) => {
+      // Blog posts have their own editor.
+      if (w.href) return void window.open(w.href, "_blank", "noopener");
+      setDialog(null);
+      if (!w.at) return void navigate(w.path);
+      const leaf = { sectionId: w.at.sectionId, path: w.at.path };
+      if (w.path !== path) {
+        // navigate() clears the selection as the page reloads, so make it
+        // again behind it — the same dance as goToLeaf.
+        pendingReveal.current = leaf;
+        navigate(w.path);
+        setTimeout(() => select(leaf), 0);
+      } else {
+        select(leaf);
+        reveal(leaf);
+      }
+    },
+    [navigate, select, reveal, path],
+  );
+
+  // "Write it for me": the same assistant as the line at the bottom, but
+  // told exactly which field and what is wrong with it.
+  const askForFinding = useCallback(
+    async (f: Finding, w: Where): Promise<{ reply: string; count: number } | { error: string }> => {
+      if (!f.ask || !w.at) return { error: t.deployFailed };
+      const sectionId = w.at.sectionId;
+      const section = byId.get(sectionId);
+      const value = draftRef.current[sectionId];
+      const trail = section ? trailOf(section, value, w.at.path).map(trTrail).join(" › ") : "";
+      const request = [
+        f.ask,
+        `The page: ${w.label} (${w.path}).`,
+        trail && `The field to change: ${trail}.`,
+        `It says now: ${JSON.stringify(getAt(value, w.at.path))}`,
+        "Change that field and nothing else.",
+      ]
+        .filter(Boolean)
+        .join("\n");
+      const r = await askEditor(request, { sectionIds: [sectionId], page: w.path, values: { [sectionId]: value } }).catch(
+        () => null,
+      );
+      if (!r) return { error: t.deployFailed };
+      if (!r.ok) return { error: r.message };
+      if (r.edits.length) {
+        let next = { ...draftRef.current };
+        for (const e of r.edits) next = { ...next, [e.sectionId]: setAt(next[e.sectionId], e.path, e.value) };
+        setDraft(next, `ai:${Date.now()}`);
+      }
+      return { reply: r.reply, count: r.edits.length };
+    },
+    [byId, setDraft, t.deployFailed, trTrail],
+  );
+
   // ── Keyboard ─────────────────────────────────────────────────────────
   const handleKeys = (e: KeyboardEvent) => {
     const mod = e.metaKey || e.ctrlKey;
@@ -855,6 +925,17 @@ function Editor(props: EditorProps) {
         </button>
         <button
           type="button"
+          onClick={() => setDialog("seo")}
+          title={t.seoIntro}
+          className="hidden items-center gap-1.5 rounded-full border border-line px-3 py-1.5 text-[13px] hover:border-teal sm:flex"
+        >
+          {t.seo}
+          {seoToFix > 0 && (
+            <span className="rounded-full bg-coral/15 px-1.5 text-[12px] font-semibold text-coral-deep">{seoToFix}</span>
+          )}
+        </button>
+        <button
+          type="button"
           onClick={undo}
           disabled={!history.current.past.length}
           title={`${t.undo} (⌘Z)`}
@@ -871,6 +952,8 @@ function Editor(props: EditorProps) {
           {changeCount > 0 ? `${t.publish} · ${changeCount}` : t.publishNothing}
         </button>
         <Menu
+          onSeo={() => setDialog("seo")}
+          seoToFix={seoToFix}
           onSearch={() => setDialog("search")}
           onUndo={undo}
           canUndo={history.current.past.length > 0}
@@ -983,6 +1066,11 @@ function Editor(props: EditorProps) {
           }}
           onNavigate={navigate}
           onGoToLeaf={goToLeaf}
+          seoPage={seoPages.find((p) => p.path === path) ?? null}
+          seoFindings={findingsFor(seo, path)}
+          host={siteUrl.replace(/^https?:\/\//, "")}
+          onOpenSeo={() => setDialog("seo")}
+          onFix={openSeoFix}
         />
       </div>
 
@@ -1082,6 +1170,17 @@ function Editor(props: EditorProps) {
           }}
         />
       )}
+      {dialog === "seo" && (
+        <SeoScreen
+          report={seo}
+          pages={seoPages}
+          path={path}
+          host={siteUrl.replace(/^https?:\/\//, "")}
+          onClose={() => setDialog(null)}
+          onOpen={openSeoFix}
+          onAsk={askForFinding}
+        />
+      )}
       {dialog === "history" && (
         <HistoryDialog
           sections={sections}
@@ -1098,6 +1197,8 @@ function Editor(props: EditorProps) {
 }
 
 function Menu({
+  onSeo,
+  seoToFix,
   onSearch,
   onUndo,
   canUndo,
@@ -1109,6 +1210,8 @@ function Menu({
   setDevice,
   onHistory,
 }: {
+  onSeo: () => void;
+  seoToFix: number;
   onSearch: () => void;
   onUndo: () => void;
   canUndo: boolean;
@@ -1149,6 +1252,10 @@ function Menu({
               onClick={() => (setOpen(false), onUndo())}
             >
               {t.undo}
+            </button>
+            <button type="button" className={`${row} sm:hidden`} onClick={() => (setOpen(false), onSeo())}>
+              {t.seo}
+              {seoToFix > 0 && <span className="ml-1.5 text-coral-deep">{seoToFix}</span>}
             </button>
             <button type="button" className={row} onClick={() => (setOpen(false), onHistory())}>
               {t.history}

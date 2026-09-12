@@ -2,6 +2,7 @@ import type { Schema } from "./schema";
 import { faqList, PLACEHOLDERS } from "./fields";
 import { HOME } from "./pages/home";
 import { THEME } from "./pages/theme";
+import { SEO } from "./pages/seo";
 import { ABOUT } from "./pages/about";
 import { CONTACT } from "./pages/contact";
 import { SERVICES_INDEX } from "./pages/services-index";
@@ -47,6 +48,7 @@ export type SectionDef = {
 export const SECTIONS: SectionDef[] = [
   HOME,
   THEME,
+  SEO,
   ABOUT,
   CONTACT,
   SERVICES_INDEX,
@@ -221,6 +223,20 @@ export const SECTIONS: SectionDef[] = [
     schema: [
       { kind: "text", key: "updated", label: "Last updated (as shown)", required: true, hint: "Update this whenever the text changes, e.g. “May 16, 2026”." },
       { kind: "textarea", key: "draftBanner", label: "Notice at the top", rows: 2, hint: "Leave empty once a lawyer has reviewed the text." },
+      { kind: "object", key: "privacyPage", label: "Privacy page — heading and search result", fields: [
+        { kind: "text", key: "eyebrow", label: "Label above the heading", required: true },
+        { kind: "text", key: "heading", label: "Heading", required: true },
+        { kind: "text", key: "breadcrumb", label: "Name in the trail at the top", required: true },
+        { kind: "text", key: "seoTitle", label: "Title (browser tab & Google)", required: true },
+        { kind: "textarea", key: "seoDescription", label: "Description", required: true, rows: 2 },
+      ] },
+      { kind: "object", key: "termsPage", label: "Terms page — heading and search result", fields: [
+        { kind: "text", key: "eyebrow", label: "Label above the heading", required: true },
+        { kind: "text", key: "heading", label: "Heading", required: true },
+        { kind: "text", key: "breadcrumb", label: "Name in the trail at the top", required: true },
+        { kind: "text", key: "seoTitle", label: "Title (browser tab & Google)", required: true },
+        { kind: "textarea", key: "seoDescription", label: "Description", required: true, rows: 2 },
+      ] },
       {
         kind: "list",
         key: "privacy",

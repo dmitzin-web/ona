@@ -3,12 +3,17 @@ import { site } from "@/lib/site";
 import { services } from "@/lib/services";
 import { areaProfiles } from "@/lib/areas";
 import { posts } from "@/lib/posts";
+import seo from "@/content/seo.json";
 
 // Static pages were last meaningfully restructured on this date. We don't use
 // new Date() here — emitting "modified today" on every build day undermines
-// the freshness signal because Google learns to discount it. Bump this date
-// when a static page is genuinely edited (copy, schema, structure).
-const STATIC_LAST_MODIFIED = new Date("2026-05-20");
+// the freshness signal because Google learns to discount it. It is edited in
+// the admin (SEO → "Pages last changed"), which is also where the check that
+// it hasn't gone stale lives; an unparseable date falls back to the day the
+// field was introduced rather than failing the build.
+const STATIC_LAST_MODIFIED = Number.isNaN(Date.parse(seo.structureUpdated))
+  ? new Date("2026-05-20")
+  : new Date(seo.structureUpdated);
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticUrls: MetadataRoute.Sitemap = [

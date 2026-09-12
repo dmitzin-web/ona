@@ -15,7 +15,9 @@ export type EditorProps = {
   connectError?: string;
   pages: PageRef[];
   previewPaths: Record<string, string>;
-  posts: { slug: string; title: string }[];
+  // Blog posts: the SEO check needs their search result and their length,
+  // and they are edited in their own editor rather than on the page.
+  posts: { slug: string; title: string; description: string; words: number }[];
   photos: string[];
   user: string;
   devBypass: boolean;

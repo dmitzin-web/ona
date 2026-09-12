@@ -10,6 +10,9 @@ import { SchemaForm } from "../SchemaForm";
 import { bindingsForLeaf, type Binding } from "./binder";
 import { fieldsAlong, trailOf, type Company } from "./model";
 import { useLang } from "./i18n";
+import { SearchPreview } from "./SeoScreen";
+import type { Finding, Where } from "@/lib/seo-audit";
+import type { SitePage } from "@/lib/seo-pages";
 import { EVERY_PAGE, SHARED, type Base, type Draft, type Selection } from "./types";
 
 // The right-hand panel (a bottom sheet on phones). With something selected
@@ -52,6 +55,12 @@ export function Panel(props: {
   onChangeBlock: (sectionId: string, prefix: Path, value: unknown) => void;
   onNavigate: (path: string) => void;
   onGoToLeaf: (leaf: { sectionId: string; path: Path; field: Field; trail: string[] }) => void;
+  // What the SEO check makes of the page being looked at.
+  seoPage: SitePage | null;
+  seoFindings: Finding[];
+  host: string;
+  onOpenSeo: () => void;
+  onFix: (where: Where) => void;
 }) {
   const { t, field: tr, trail: trTrail } = useLang();
   const { section, selection, draft } = props;
@@ -277,24 +286,50 @@ function Overview(props: Parameters<typeof Panel>[0]) {
         </Card>
       )}
 
-      {(title || desc) && (
-        <button
-          type="button"
-          className="block w-full rounded-[2px] border border-line p-3 text-left transition hover:border-teal"
-          onClick={() => {
-            const b = title ?? desc!;
-            props.onSelect({ sectionId: b.leaf.sectionId, path: b.leaf.path });
-          }}
-        >
-          <p className="text-[12px] font-medium uppercase tracking-wide text-warm-gray">{t.searchResult}</p>
-          <p className="mt-1.5 truncate text-[16px] leading-snug text-[#1a0dab]">{title ? `${title.el.ownerDocument.title}` : ""}</p>
-          <p className="truncate text-[12px] text-[#006621]">onarestore.com{path}</p>
-          <p className="line-clamp-2 text-[13px] text-[#4d5156]">{desc?.el.getAttribute("content")}</p>
-          {title && title.el.ownerDocument.title.length > 60 && <p className="mt-1 text-[12px] text-coral-deep">{t.titleLabel}: {t.tooLong}</p>}
-          {desc && (desc.el.getAttribute("content") ?? "").length > 160 && (
-            <p className="mt-1 text-[12px] text-coral-deep">{t.descriptionLabel}: {t.tooLong}</p>
-          )}
-        </button>
+      {/* How this page looks in Google, and what the SEO check says about
+          it. The preview is the draft's own title and description — the same
+          numbers the SEO screen counts. */}
+      {props.seoPage && (
+        <section>
+          <p className="mb-1.5 text-[12px] font-medium uppercase tracking-wide text-warm-gray">{t.searchResult}</p>
+          <SearchPreview page={props.seoPage} host={props.host} />
+          <ul className="mt-1.5 space-y-1">
+            {props.seoFindings.map((f) => {
+              const mine = f.pages.find((w) => w.path === path) ?? f.pages[0];
+              return (
+                <li key={f.key}>
+                  <button
+                    type="button"
+                    onClick={() => props.onFix(mine)}
+                    className={`w-full rounded-[2px] px-2 py-1 text-left text-[13px] hover:bg-charcoal-soft ${
+                      f.severity === "fix" ? "text-coral-deep" : "text-warm-gray"
+                    }`}
+                  >
+                    {f.severity === "fix" ? "⚠ " : "· "}
+                    {f.what}
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+          <div className="mt-1 flex flex-wrap gap-3">
+            {(title || desc) && (
+              <button
+                type="button"
+                className="text-[13px] text-teal hover:underline"
+                onClick={() => {
+                  const b = title ?? desc!;
+                  props.onSelect({ sectionId: b.leaf.sectionId, path: b.leaf.path });
+                }}
+              >
+                {t.edit} →
+              </button>
+            )}
+            <button type="button" className="text-[13px] text-teal hover:underline" onClick={props.onOpenSeo}>
+              {t.seoOpenFull} →
+            </button>
+          </div>
+        </section>
       )}
 
       {pageGroups.length === 0 && !post && <p className="text-[13px] text-warm-gray">{t.unmatched}</p>}

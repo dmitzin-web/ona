@@ -1,4 +1,8 @@
 {
+  "seo": {
+    "title": "Start a Project — {name}",
+    "description": "Tell us what happened in four short questions: what kind of project, where, when, and how to reach you. Restoration and remodeling in Vancouver, WA and the Portland metro."
+  },
   "progress": {
     "stepOf": "Step {step} of {steps}",
     "cancel": "Cancel"

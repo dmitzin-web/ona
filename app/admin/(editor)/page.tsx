@@ -70,7 +70,12 @@ export default async function EditorPage({ searchParams }: { searchParams: Promi
       connectError={connectError}
       pages={pages()}
       previewPaths={PREVIEW_PATHS}
-      posts={posts.map((p) => ({ slug: p.slug, title: p.title }))}
+      posts={posts.map((p) => ({
+        slug: p.slug,
+        title: p.title,
+        description: p.description,
+        words: p.sections.reduce((n, s) => n + JSON.stringify(s).split(/\s+/).length, 0),
+      }))}
       photos={await photoLibrary()}
       user={user.name}
       devBypass={user.email === "dev@localhost"}

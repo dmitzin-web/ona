@@ -19,6 +19,7 @@ export const PREVIEW_PATHS: Record<string, string> = {
   quote: "/quote",
   "work-page": "/work/sample",
   "post-page": "/blog/{firstPost}",
+  seo: "/",
   site: "/contact",
   services: "/services/{slug}",
   areas: "/areas/{slug}",

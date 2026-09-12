@@ -40,6 +40,10 @@ export const START_PROJECT: SectionDef = {
   description: `The four-question “Start a project” form, the buttons under it and the thank-you screen. ${PLACEHOLDERS} {step} and {steps} are filled in with the step the visitor is on and the number of steps; {firstName} with the first name they typed.`,
   kind: "single",
   schema: [
+    { kind: "object", key: "seo", label: "Search result", fields: [
+      { kind: "text", key: "title", label: "Title (browser tab & Google)", required: true },
+      { kind: "textarea", key: "description", label: "Description", required: true, rows: 3 },
+    ] },
     { kind: "object", key: "progress", label: "Above the form", fields: [
       { kind: "text", key: "stepOf", label: "Step counter", required: true, hint: "e.g. “Step {step} of {steps}”." },
       { kind: "text", key: "cancel", label: "Cancel link", required: true },

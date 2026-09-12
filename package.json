@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start -p 3100",
     "lint": "next lint",
-    "check:content": "node --no-warnings --import ./scripts/register-ts.mjs scripts/check-content.mjs"
+    "check:content": "node --no-warnings --import ./scripts/register-ts.mjs scripts/check-content.mjs",
+    "check:seo": "node --no-warnings --import ./scripts/register-ts.mjs scripts/check-seo.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.96.0",

@@ -68,6 +68,22 @@ break without knowing them.
   `VisualEditor.tsx` from the field's kind and its list ancestor
   (`listAncestor` in `model.ts`) — add a field kind there when you add one
   to the schema.
+- **SEO** (the button in the toolbar): every page of the site measured
+  against what Google can actually show — title and description length,
+  two pages saying the same thing, a placeholder left unfilled, a photo
+  nobody described, a page from a template with nothing of its own to say,
+  no reviews, a stale sitemap date. Each line names the page and opens the
+  exact field, or hands the sentence to the assistant. It scores the
+  DRAFT, so the count moves as the editor types.
+  `lib/seo-pages.ts` works out what each of the 91 routes sends Google
+  **without loading them** — it is a mirror of the `generateMetadata`
+  exports, and `npm run check:seo` (after a build, or against a running
+  server: `npm run check:seo -- http://localhost:3100`) reads the real
+  HTML of every route and fails if the two disagree. Run it whenever you
+  touch a page's metadata or that file. `lib/seo-audit.ts` is the rules —
+  every one of them a fact about the content, never a guess at rankings.
+  What each page should be found for, and the date the sitemap gives
+  Google, are content: `content/seo.json` (admin: SEO).
 - The admin is English only, like the site. Its wording lives in
   `components/admin/visual/i18n.tsx`; `useLang()` is kept as the single
   place to add a translation later if one is ever wanted.

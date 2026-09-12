@@ -1,5 +1,5 @@
 import legal from "../content/legal.json";
-import { fillPlaceholders } from "./placeholders";
+import { fillPlaceholders, fillPlaceholdersDeep } from "./placeholders";
 
 // Centralized legal copy. Edit here, both pages stay in sync.
 // Last reviewed: 2026-05-16. Replace before production launch with
@@ -22,3 +22,10 @@ export const legalUpdated = fillPlaceholders(legal.updated);
 export const draftBanner = fillPlaceholders(legal.draftBanner);
 export const privacySections: Section[] = fill(legal.privacy);
 export const termsSections: Section[] = fill(legal.terms);
+
+// The heading, the label above it, the name in the trail and the search
+// result of each of the two pages — they used to be written into
+// app/privacy/page.tsx and app/terms/page.tsx, where the admin could not
+// reach them.
+export const privacyPage = fillPlaceholdersDeep(legal.privacyPage);
+export const termsPage = fillPlaceholdersDeep(legal.termsPage);
