@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import type { Finding, Report, Where } from "@/lib/seo-audit";
 import { targetOf, type SitePage } from "@/lib/seo-pages";
 import { findSection } from "@/lib/admin/sections";
+import { Crawl } from "./Crawl";
 import { SchemaForm } from "../SchemaForm";
 import { useLang } from "./i18n";
 
@@ -47,7 +48,7 @@ export function SeoScreen({
   onRule: (path: string, patch: Partial<PageRule>) => void;
 }) {
   const { t } = useLang();
-  const [tab, setTab] = useState<"fix" | "pages" | "settings">("fix");
+  const [tab, setTab] = useState<"fix" | "pages" | "live" | "settings">("fix");
   const [copied, setCopied] = useState(false);
   const here = pages.find((p) => p.path === path) ?? null;
   const mine = report.findings.filter((f) => f.pages.some((w) => w.path === path));
@@ -76,6 +77,9 @@ export function SeoScreen({
           </button>
           <button type="button" className={tabClass("pages")} onClick={() => setTab("pages")}>
             {t.seoTabPages} ({pages.length})
+          </button>
+          <button type="button" className={tabClass("live")} onClick={() => setTab("live")}>
+            {t.seoTabLive}
           </button>
           <button type="button" className={tabClass("settings")} onClick={() => setTab("settings")}>
             {t.seoTabSettings}
@@ -107,6 +111,20 @@ export function SeoScreen({
 
           {tab === "settings" ? (
             <Settings settings={settings} onSettings={onSettings} />
+          ) : tab === "live" ? (
+            <Crawl
+              pages={pages}
+              onOpen={onOpen}
+              render={(findings) => (
+                <ul className="space-y-2">
+                  {findings.map((f) => (
+                    <li key={f.key}>
+                      <FindingCard finding={f} path={path} onOpen={onOpen} onAsk={null} />
+                    </li>
+                  ))}
+                </ul>
+              )}
+            />
           ) : tab === "fix" ? (
             <>
               {/* The page they are looking at. */}

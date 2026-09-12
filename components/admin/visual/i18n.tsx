@@ -180,6 +180,16 @@ const EN = {
   seoOpenPage: "Open this page",
   seoGreyedOut: "The greyed-out words are what Google cuts off.",
   seoTabSettings: "Settings",
+  seoTabLive: "Live site",
+  crawlTitle: "Walk the live site",
+  crawlIntro:
+    "Opens every page of onarestore.com the way a search engine would and reports what only that can show: a link to a page that is gone, a page nothing links to, a redirect leading to another redirect, a page with no heading, a page that takes too long. It reads the published site — anything you have not put on the site yet is not in it.",
+  crawlRun: "Check the site",
+  crawlAgain: "Check again",
+  crawlStop: "Stop",
+  crawlOk: "pages answered",
+  crawlClean: "Every page answered, every link led somewhere, every page has a heading.",
+  crawlSlowest: "Slowest pages",
   seoSettingsIntro:
     "The controls an SEO works with. Nothing here is visible on the site, and all of it takes effect when you press “Put on the site”.",
   seoHide: "Keep this page out of Google",

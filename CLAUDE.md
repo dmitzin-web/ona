@@ -88,6 +88,17 @@ break without knowing them.
   HTML of every route and fails if the two disagree. Run it whenever you
   touch a page's metadata or that file. `lib/seo-audit.ts` is the rules —
   every one of them a fact about the content, never a guess at rankings.
+- **"Live site"** (fourth tab of the SEO screen) walks the deployed site
+  the way a crawler does — `app/admin/crawl-actions.ts` fetches a dozen
+  pages per request (never one long one), `lib/crawl.ts` reads each page
+  and turns the lot into the same findings cards. It is the half the
+  content checks cannot do: a link to a page that errors, a page nothing
+  links to, an address that redirects, a missing or duplicated h1, a page
+  missing from the sitemap (it found /start-project that way), slow or
+  heavy pages. It reads the PUBLISHED site, so unpublished edits are not
+  in it; the last run is kept in the browser, not committed. Same-origin
+  only: every path is resolved against `site.url` and anything else is
+  refused.
 - **The SEO settings are content** (`content/seo.json`, schema in
   `lib/admin/pages/seo.ts`, third tab of the SEO screen) — everything an
   SEO would otherwise have to ask a developer for, each wired to one
