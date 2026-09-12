@@ -2,12 +2,9 @@
 
 import { createContext, useContext } from "react";
 
-// The admin's own words in English and Russian. The site's copy is English
-// and stays English; this is only the interface around it. The choice is a
-// per-browser preference (localStorage), defaulting to the browser's
-// language.
-
-export type Lang = "en" | "ru";
+// The admin's own words. The site's copy is English and so is the admin;
+// this is only the interface around it, kept in one place so a translation
+// could be added later without touching every component.
 
 const EN = {
   editor: "Editor",
@@ -172,6 +169,15 @@ const EN = {
   seoNoTitle: "(no title)",
   seoNoDescription: "(no description — Google will pick a sentence from the page)",
   seoOpenFull: "See all pages",
+  seoTabFix: "What to fix",
+  seoTabPages: "Every page",
+  seoCopy: "Copy the report",
+  seoCopied: "Copied",
+  seoFilter: "Find a page, a word, a phrase…",
+  seoOwnWords: "words of its own",
+  seoQuestions: "questions",
+  seoOpenPage: "Open this page",
+  seoGreyedOut: "The greyed-out words are what Google cuts off.",
 };
 
 type Dict = typeof EN;

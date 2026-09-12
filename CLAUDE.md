@@ -75,6 +75,12 @@ break without knowing them.
   no reviews, a stale sitemap date. Each line names the page and opens the
   exact field, or hands the sentence to the assistant. It scores the
   DRAFT, so the count moves as the editor types.
+  Two tabs: what to fix, and every page with its numbers — search, filter
+  by kind, title/description lengths, target phrase, words of its own,
+  the schema.org types that page emits, and "copy the report" for whoever
+  asks for one. The Google preview measures the text in Google's own font
+  and greys out what falls past 600px of title / 920px of description,
+  because a character count is not what gets cut (`cutToWidth`).
   `lib/seo-pages.ts` works out what each of the 91 routes sends Google
   **without loading them** — it is a mirror of the `generateMetadata`
   exports, and `npm run check:seo` (after a build, or against a running

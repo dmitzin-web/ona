@@ -45,7 +45,15 @@ export type SitePage = {
   ownAt: At | null;
   faqs: number;
   photos: Photo[];
+  /**
+   * The structured data this page sends Google (schema.org types), from the
+   * `<JsonLd>` blocks in its route. LocalBusiness and WebSite come from the
+   * layout and are on every page.
+   */
+  schema: string[];
 };
+
+const EVERY_PAGE_SCHEMA = ["LocalBusiness", "WebSite"];
 
 export type PostRef = { slug: string; title: string; description: string; words: number };
 export type Content = Record<string, unknown>;
@@ -133,6 +141,7 @@ export function sitePages(values: Content, opts: { siteName: string; siteUrl: st
     all: Source[];
     ownAt?: At | null;
     faqs?: number;
+    schema?: string[];
   }): SitePage => {
     const { words } = contentOf(p.own);
     const { photos } = contentOf(p.all);
@@ -156,6 +165,7 @@ export function sitePages(values: Content, opts: { siteName: string; siteUrl: st
       ownAt: p.ownAt ?? null,
       faqs: p.faqs ?? 0,
       photos,
+      schema: [...EVERY_PAGE_SCHEMA, ...(p.schema ?? [])],
     };
   };
 
@@ -168,7 +178,7 @@ export function sitePages(values: Content, opts: { siteName: string; siteUrl: st
     sectionId: string,
     seoAt: Path,
     headingAt: Path | Path[],
-    o: { noindex?: boolean; faqsAt?: Path; vars?: Record<string, string> } = {},
+    o: { noindex?: boolean; faqsAt?: Path; vars?: Record<string, string>; schema?: string[] } = {},
   ) => {
     const heads = (Array.isArray(headingAt[0]) ? headingAt : [headingAt]) as Path[];
     out.push(
@@ -186,20 +196,22 @@ export function sitePages(values: Content, opts: { siteName: string; siteUrl: st
         own: [{ sectionId }],
         all: [{ sectionId }],
         faqs: o.faqsAt ? countFaqs(sectionId, o.faqsAt) : 0,
+        schema: o.schema,
       }),
     );
   };
 
-  single("/", "Homepage", "home", ["seo"], [["hero", "titleLead"], ["hero", "titleRest"]], { faqsAt: ["faqs"] });
+  single("/", "Homepage", "home", ["seo"], [["hero", "titleLead"], ["hero", "titleRest"]], { faqsAt: ["faqs"], schema: ["FAQPage"] });
   single("/about", "About", "about", ["seo"], ["hero", "title"], {
     faqsAt: ["faq", "faqs"],
     vars: { founded: str((values.site as Record<string, unknown>)?.founded) },
+    schema: ["BreadcrumbList", "FAQPage"],
   });
-  single("/contact", "Contact", "contact", ["seo"], ["hero", "title"]);
-  single("/services", "Services", "services-index", ["seo"], ["hero", "title"]);
-  single("/areas", "Service areas", "areas-index", ["seo"], ["hero", "title"]);
-  single("/blog", "Blog", "blog-index", ["seo"], ["hero", "title"]);
-  single("/quote", "Quote request", "quote", ["seo"], ["intro", "title"], { faqsAt: ["faqs"] });
+  single("/contact", "Contact", "contact", ["seo"], ["hero", "title"], { schema: ["BreadcrumbList"] });
+  single("/services", "Services", "services-index", ["seo"], ["hero", "title"], { schema: ["BreadcrumbList"] });
+  single("/areas", "Service areas", "areas-index", ["seo"], ["hero", "title"], { schema: ["BreadcrumbList"] });
+  single("/blog", "Blog", "blog-index", ["seo"], ["hero", "title"], { schema: ["BreadcrumbList"] });
+  single("/quote", "Quote request", "quote", ["seo"], ["intro", "title"], { faqsAt: ["faqs"], schema: ["BreadcrumbList", "FAQPage"] });
   single("/start-project", "Start a project", "start-project", ["seo"], ["kind", "title"]);
   single("/quote/thanks", "Thank you (after a quote request)", "misc", ["thanks", "seo"], ["thanks", "title"], {
     noindex: true,
@@ -259,6 +271,7 @@ export function sitePages(values: Content, opts: { siteName: string; siteUrl: st
         ],
         ownAt: { sectionId: "services", path: [i, "intro"] },
         faqs: Array.isArray(s.faqs) ? s.faqs.length : 0,
+        schema: ["BreadcrumbList", "Service", "HowTo", "FAQPage"],
       }),
     );
   });
@@ -294,6 +307,8 @@ export function sitePages(values: Content, opts: { siteName: string; siteUrl: st
         own: [{ sectionId: "areas", index: i }],
         all: [{ sectionId: "areas", index: i }, { sectionId: "area-page" }],
         ownAt: { sectionId: "areas", path: [i, "localNote"] },
+        faqs: countFaqs("area-page", ["faq", "items"]),
+        schema: ["BreadcrumbList", "FAQPage"],
       }),
     );
   });
@@ -327,6 +342,8 @@ export function sitePages(values: Content, opts: { siteName: string; siteUrl: st
           own: [{ sectionId: "areas", index: ai }],
           all: [{ sectionId: "areas", index: ai }, { sectionId: "services", index: si }, { sectionId: "service-area-page" }],
           ownAt: { sectionId: "areas", path: [ai, "localNote"] },
+          faqs: Array.isArray(s.faqs) ? s.faqs.length : 0,
+          schema: ["BreadcrumbList", "HowTo", "FAQPage"],
         }),
       );
     });
@@ -348,6 +365,7 @@ export function sitePages(values: Content, opts: { siteName: string; siteUrl: st
       own: [{ sectionId: "spokane-fire" }],
       all: [{ sectionId: "spokane-fire" }],
       faqs: countFaqs("spokane-fire", ["faq", "faqs"]),
+      schema: ["BreadcrumbList", "FAQPage"],
     }),
   );
 
@@ -372,6 +390,7 @@ export function sitePages(values: Content, opts: { siteName: string; siteUrl: st
       ownAt: null,
       faqs: 0,
       photos: [],
+      schema: [...EVERY_PAGE_SCHEMA, "BlogPosting", "BreadcrumbList"],
     });
   }
 

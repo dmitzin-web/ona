@@ -143,8 +143,9 @@ export function auditSite(pages: SitePage[], values: Content, now = new Date()):
       }
     }
 
-    if (p.group === "Services" && p.faqs === 0 && p.template) {
-      add({ rule: "faq-none", severity: "improve", what: `${name} has no questions and answers.`, why: "Questions are what Google shows expanded under a result, and what people actually search.", fix: "Add three or four questions homeowners ask about this service.", ask: `Add three questions homeowners ask about this service, with short, honest answers.` }, p, p.ownAt);
+    // ── A block of questions that has no questions in it ──
+    if (p.schema.includes("FAQPage") && p.faqs === 0) {
+      add({ rule: "faq-none", severity: "improve", what: `${name} sends Google an empty list of questions.`, why: "Questions are what Google shows expanded under a result, and what people type in the first place. An empty block is a wasted slot.", fix: "Add three or four questions people actually ask about this, with short, honest answers.", ask: "Add three questions people ask about this page's subject, with short, honest answers." }, p, p.ownAt);
     }
   }
 
@@ -219,6 +220,30 @@ export function auditSite(pages: SitePage[], values: Content, now = new Date()):
     "Write a line for each page that could not have been written for the other.",
     "Write a Google description for this page that could not be used on any other page of the site.",
   );
+
+  // ── Two pages after the same search ────────────────────────────────────
+  // Whoever writes the targets can point two pages at one phrase without
+  // noticing. Google then has to choose between them, and often picks the
+  // weaker one.
+  const byTarget = new Map<string, SitePage[]>();
+  for (const p of indexable) {
+    const target = targetOf(p).trim().toLowerCase();
+    if (target) byTarget.set(target, [...(byTarget.get(target) ?? []), p]);
+  }
+  for (const [target, group] of byTarget) {
+    if (group.length < 2) continue;
+    const key = `cannibal|${target}`;
+    found.set(key, {
+      key,
+      rule: "cannibal",
+      severity: "improve",
+      what: `${group.length} pages are both meant to be found for “${target}”.`,
+      why: "They compete with each other: Google shows one and holds the other back, and neither is as strong as one page would be.",
+      fix: "Point each page at something different, or fold one into the other.",
+      ask: null,
+      pages: group.map((p) => where(p, p.targetAt)),
+    });
+  }
 
   // ── The same photo description everywhere ──────────────────────────────
   const alts = new Map<string, { page: SitePage; at: At }[]>();
