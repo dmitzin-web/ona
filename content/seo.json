@@ -4,6 +4,10 @@
     "google": "",
     "bing": ""
   },
+  "analytics": {
+    "ga4": "",
+    "gtm": ""
+  },
   "robots": {
     "extraDisallow": [],
     "allowAiCrawlers": true

@@ -39,6 +39,16 @@ export const SEO: SectionDef = {
     },
     {
       kind: "object",
+      key: "analytics",
+      label: "Measurement",
+      hint: "Paste the ID and it is added to every page; empty means nothing is loaded. Plausible (cookieless, already on) is set in Vercel and is not affected. Google Analytics and Tag Manager set cookies in the visitor's browser — the privacy policy has to say so, and the SEO check will remind you until it does.",
+      fields: [
+        { kind: "text", key: "ga4", label: "Google Analytics 4 — measurement ID", mono: true, hint: "Looks like G-XXXXXXXXXX. Anything else is ignored." },
+        { kind: "text", key: "gtm", label: "Google Tag Manager — container ID", mono: true, hint: "Looks like GTM-XXXXXXX. Everything you then put in the container runs on the site, so treat it as the keys to the building." },
+      ],
+    },
+    {
+      kind: "object",
       key: "robots",
       label: "robots.txt",
       fields: [

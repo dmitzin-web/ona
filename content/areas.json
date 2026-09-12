@@ -35,7 +35,8 @@
       "Crawlspace moisture and mold from poor drainage in older Hazel Dell and Fruit Valley homes",
       "Sump-pump failures in basement remodels along the Columbia bluff"
     ],
-    "localNote": "We're headquartered in Vancouver, so this is our shortest dispatch — typically under 20 minutes anywhere in Clark County."
+    "localNote": "We're headquartered in Vancouver, so this is our shortest dispatch — most of Clark County sits inside a 20-minute drive from our door.",
+    "nearby": []
   },
   {
     "slug": "portland-or",
@@ -84,7 +85,8 @@
       "Mold in mid-century daylight basements east of the Willamette",
       "Smoke and ash intrusion during wildfire season — particularly in older homes with leaky envelopes"
     ],
-    "localNote": "Crews cross the I-5 or I-205 bridge — we plan for bridge-lift delays during business hours and stage trucks accordingly."
+    "localNote": "Crews cross the I-5 or I-205 bridge — we plan for bridge-lift delays during business hours and stage trucks accordingly.",
+    "nearby": []
   },
   {
     "slug": "beaverton-or",
@@ -117,7 +119,8 @@
       "Crawlspace mold in Cedar Mill ranches built on flat lots with marginal drainage",
       "Storm-driven tree impact in Forest Park-adjacent streets"
     ],
-    "localNote": "We handle a steady stream of HOA-managed condo and townhome claims here — we coordinate directly with property managers and HOA reserves."
+    "localNote": "We handle a steady stream of HOA-managed condo and townhome claims here — we coordinate directly with property managers and HOA reserves.",
+    "nearby": []
   },
   {
     "slug": "hillsboro-or",
@@ -147,7 +150,8 @@
       "Slab leaks in early-2000s tract homes",
       "Roof leaks from flat low-slope architecture in Orenco Station and Tanasbourne"
     ],
-    "localNote": "Many Hillsboro insureds are corporate-relocations and renters — we work with relocation management companies and corporate landlord portals when needed."
+    "localNote": "Many Hillsboro insureds are corporate-relocations and renters — we work with relocation management companies and corporate landlord portals when needed.",
+    "nearby": []
   },
   {
     "slug": "gresham-or",
@@ -175,7 +179,8 @@
       "Wind-driven rain intrusion in older Rockwood-area rentals",
       "Frozen pipe ruptures during gorge wind events"
     ],
-    "localNote": "Gresham is the east-metro emergency zone during winter storms — we pre-stage trucks at the Gateway and 181st area when warnings issue."
+    "localNote": "Gresham is the east-metro emergency zone during winter storms — we pre-stage trucks at the Gateway and 181st area when warnings issue.",
+    "nearby": []
   },
   {
     "slug": "tigard-or",
@@ -202,7 +207,8 @@
       "Frozen-pipe ruptures in unheated garages along Walnut Street",
       "Aged galvanized-pipe failures in 1970s Summerlake homes"
     ],
-    "localNote": "Crews route via Highway 99W or I-5 depending on time of day; we monitor PortlandTraffic.com before dispatch."
+    "localNote": "Crews route via Highway 99W or I-5 depending on time of day; we monitor PortlandTraffic.com before dispatch.",
+    "nearby": []
   },
   {
     "slug": "lake-oswego-or",
@@ -230,7 +236,8 @@
       "Catastrophic tree-impact losses in Mountain Park during November–February",
       "High-value contents claims — fine art, custom millwork, antiques"
     ],
-    "localNote": "Lake Oswego work calls for dedicated white-glove contents handling and on-site security protocols — these are our defaults here."
+    "localNote": "Lake Oswego work calls for dedicated white-glove contents handling and on-site security protocols — these are our defaults here.",
+    "nearby": []
   },
   {
     "slug": "camas-wa",
@@ -256,7 +263,8 @@
       "Tree-impact losses on Prune Hill",
       "Slab-leak detection in newer Grass Valley construction"
     ],
-    "localNote": "Camas is a 20-minute dispatch for us — a natural east-Clark coverage target with gorge-weather patterns we plan for in dispatch and equipment staging."
+    "localNote": "Camas is a 20-minute drive for us — a natural east-Clark coverage target with gorge-weather patterns we plan for in dispatch and equipment staging.",
+    "nearby": []
   },
   {
     "slug": "battle-ground-wa",
@@ -282,7 +290,8 @@
       "Well-system contamination after flooding",
       "Septic system backflow into finished basements"
     ],
-    "localNote": "Rural Battle Ground means well-and-septic systems — we coordinate with WA-licensed septic contractors when sewage backup is the loss."
+    "localNote": "Rural Battle Ground means well-and-septic systems — we coordinate with WA-licensed septic contractors when sewage backup is the loss.",
+    "nearby": []
   },
   {
     "slug": "salmon-creek-wa",
@@ -307,6 +316,7 @@
       "Storm drainage backups during atmospheric river events",
       "Roof failures on 1990s-era subdivision builds reaching end of shingle life"
     ],
-    "localNote": "Salmon Creek is one of our shortest dispatches — crews can typically be on-site in 15 minutes from our Vancouver base."
+    "localNote": "Salmon Creek is one of our shortest runs — about a 15-minute drive from our Vancouver base.",
+    "nearby": []
   }
 ]

@@ -29,6 +29,7 @@ import { askEditor } from "@/app/admin/ai-actions";
 import { ADMIN_FLAG } from "../EditThisPage";
 import { roleOfColor, themeCss, type Theme } from "@/lib/theme";
 import { askPhotoField, photoPreviewUrl, PhotoLibrary } from "../ImageField";
+import { Collections, type Choices } from "../Collections";
 import { SHARED as SHARED_NOTE, type Base, type Draft, type EditorProps, type Selection } from "./types";
 
 // The visual editor: the real site in a frame, every piece of copy on it
@@ -121,6 +122,20 @@ function Editor(props: EditorProps) {
   );
 
   const company = useMemo(() => companyValues((draft.site ?? {}) as Record<string, unknown>, siteUrl), [draft.site, siteUrl]);
+
+  // What a "pick the pages" field offers, taken from the draft: a city
+  // added a moment ago can already be linked to.
+  const choices: Choices = useMemo(() => {
+    const out: Choices = {};
+    for (const s of sections) {
+      if (s.kind !== "collection") continue;
+      out[s.id] = ((draft[s.id] as Record<string, unknown>[] | undefined) ?? []).map((it) => ({
+        slug: String(it.slug ?? ""),
+        label: String(it[s.titleKey] ?? it.slug ?? ""),
+      }));
+    }
+    return out;
+  }, [sections, draft]);
   const index: Index = useMemo(() => {
     // Match against the version the page was built with AND the latest one
     // (a publish may be live already while this admin page is older).
@@ -916,6 +931,7 @@ function Editor(props: EditorProps) {
   const pageLabel = tr(props.pages.find((p) => p.path === path)?.label ?? path);
 
   return (
+    <Collections value={choices}>
     <div className="fixed inset-0 flex flex-col bg-charcoal-soft text-ivory">
       {/* ── Toolbar ──
           Three things only: which page you are on, the one button that
@@ -1216,6 +1232,7 @@ function Editor(props: EditorProps) {
         />
       )}
     </div>
+    </Collections>
   );
 }
 

@@ -5,6 +5,7 @@ import { emptyValue } from "@/lib/admin/schema";
 import { btnIcon, btnSecondary, Field as FieldShell, inputCls } from "./ui";
 import { useLang } from "./visual/i18n";
 import { ImageField } from "./ImageField";
+import { RefsField } from "./Collections";
 
 // Renders any section described in lib/admin/sections.ts. Fully
 // controlled: the caller owns the value and gets a new one on every change.
@@ -138,6 +139,12 @@ function FieldView({
         </FieldShell>
       );
     }
+    case "refs":
+      return (
+        <FieldShell label={f.label} hint={f.hint} htmlFor={id} required={f.required}>
+          <RefsField id={id} of={f.of} max={f.max} value={Array.isArray(value) ? (value as string[]) : []} onChange={onChange} />
+        </FieldShell>
+      );
     case "object":
       return (
         <fieldset id={id} className="scroll-mt-24 rounded-[2px] border border-line p-4">

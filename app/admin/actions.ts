@@ -216,6 +216,50 @@ export async function deleteWork(fd: FormData) {
 
 // ── Schema-driven sections (lib/admin/sections.ts) ───────────────────────
 
+// Removing a city removes its six pages from the site. Nothing else is
+// touched: whatever pointed at them (the footer's city list, the links
+// between city pages) is built from this same file and follows along. The
+// addresses themselves start returning "not found", so the admin says to
+// add a redirect — SEO → Redirects.
+export async function deleteSectionItem(fd: FormData) {
+  const user = await requireAdmin();
+  const section = findSection(str(fd, "section"));
+  if (!section || section.kind !== "collection" || !section.create) return;
+  const slug = str(fd, "item");
+  if (!SLUG_RE.test(slug)) return;
+
+  const store = await getStore();
+  const cur = await store.read(section.file);
+  if (!cur) return;
+  const items = JSON.parse(cur.text) as Record<string, unknown>[];
+  const gone = items.find((x) => x.slug === slug);
+  if (!gone) redirect(`/admin/s/${section.id}`);
+  // Never leave a collection empty: every page that maps over it would
+  // render a blank section.
+  if (items.length <= 1) redirect(`/admin/s/${section.id}?error=last`);
+
+  // Anything in this file that pointed at it stops pointing: a link to a
+  // page that no longer exists is a 404 waiting to be clicked.
+  const refKeys = section.schema.filter((f) => f.kind === "refs" && f.of === section.id).map((f) => f.key);
+  const left = items
+    .filter((x) => x.slug !== slug)
+    .map((x) => {
+      const copy = { ...x };
+      for (const key of refKeys) {
+        if (Array.isArray(copy[key])) copy[key] = (copy[key] as string[]).filter((v) => v !== slug);
+      }
+      return copy;
+    });
+
+  await store.commit({
+    message: message(`Remove ${section.label}: ${String(gone![section.titleKey])}`, user.name, []),
+    put: [{ path: section.file, content: serializeContent(left) }],
+    remove: [],
+    expect: { [section.file]: cur.sha },
+  });
+  redirect(`/admin/s/${section.id}?removed=${encodeURIComponent(String(gone![section.titleKey]))}`);
+}
+
 export async function saveSection(_prev: ActionState, fd: FormData): Promise<ActionState> {
   const user = await requireAdmin();
   const section = findSection(str(fd, "section"));
@@ -241,17 +285,30 @@ export async function saveSection(_prev: ActionState, fd: FormData): Promise<Act
       content = serializeContent(v.value);
       summary = `Update ${section.label}`;
     } else {
-      // A collection is one file; the slug is taken from the page, never
-      // from the payload, and is not editable — it is the item's URL.
+      // A collection is one file; the slug is the item's URL. On an update
+      // it comes from the page and is not editable. On a new item it is
+      // typed once, and must be a slug nobody is using — it is about to
+      // become six page addresses.
       const slug = str(fd, "item");
+      const isNew = str(fd, "mode") === "new";
       const cur = await store.read(section.file);
       if (!cur) return { errors: ["This section's file is missing — tell the developer."] };
       const items = JSON.parse(cur.text) as Record<string, unknown>[];
       const i = items.findIndex((x) => x.slug === slug);
-      if (i < 0) return { errors: ["This item no longer exists — it may have been removed."] };
-      items[i] = { slug, ...v.value };
+      if (isNew) {
+        if (!section.create) return { errors: ["Items cannot be added here."] };
+        if (!SLUG_RE.test(slug)) {
+          return { errors: ["The address must be lowercase letters, numbers and dashes — for example beaverton-or."] };
+        }
+        if (i >= 0) return { errors: [`There is already one at /${slug}. Pick another address.`] };
+        items.push({ slug, ...v.value });
+        summary = `Add ${section.label}: ${String(v.value[section.titleKey])}`;
+      } else {
+        if (i < 0) return { errors: ["This item no longer exists — it may have been removed."] };
+        items[i] = { slug, ...v.value };
+        summary = `Update ${section.label}: ${String(items[i][section.titleKey])}`;
+      }
       content = serializeContent(items);
-      summary = `Update ${section.label}: ${String(items[i][section.titleKey])}`;
     }
     await store.commit({
       message: message(summary, user.name, gate.findings),
@@ -262,6 +319,5 @@ export async function saveSection(_prev: ActionState, fd: FormData): Promise<Act
   } catch (err) {
     return { errors: [errorText(err)] };
   }
-  const back = section.kind === "single" ? `/admin/s/${section.id}` : `/admin/s/${section.id}`;
-  redirect(`${back}?saved=1`);
+  redirect(`/admin/s/${section.id}?saved=1`);
 }

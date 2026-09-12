@@ -15,11 +15,11 @@ export default async function SectionPage({
   searchParams,
 }: {
   params: Promise<{ section: string }>;
-  searchParams: Promise<{ saved?: string }>;
+  searchParams: Promise<{ saved?: string; removed?: string; error?: string }>;
 }) {
   await requireAdmin();
   const { section: id } = await params;
-  const { saved } = await searchParams;
+  const { saved, removed, error } = await searchParams;
   const section = findSection(id);
   if (!section) notFound();
 
@@ -63,6 +63,17 @@ export default async function SectionPage({
   return (
     <div className="space-y-6">
       {flash}
+      {removed && (
+        <p role="status" className="rounded-[2px] border border-teal/40 bg-teal/5 p-4 text-[14px] text-ivory">
+          {removed} is gone. Its pages disappear from the site in about a minute — if they had been up for a while, send their
+          addresses somewhere useful in <Link href="/admin/s/seo" className="text-teal hover:underline">SEO → Redirects</Link>.
+        </p>
+      )}
+      {error === "last" && (
+        <p role="alert" className="rounded-[2px] border border-coral/40 bg-coral/5 p-4 text-[14px] text-ivory">
+          That was the last one. A section that lists them would render empty, so it stays.
+        </p>
+      )}
       <div>
         <Link href="/admin/content" className="text-[13px] text-teal hover:underline">
           ← All content
@@ -82,9 +93,18 @@ export default async function SectionPage({
           </li>
         ))}
       </ul>
-      <p className="text-[13px] text-warm-gray">
-        Adding or removing a {section.id === "services" ? "service" : "city"} also needs code changes, so it is done by the developer.
-      </p>
+      {section.create ? (
+        <Link
+          href={`/admin/s/${section.id}/new`}
+          className="inline-flex items-center gap-2 rounded-[2px] border border-teal px-4 py-2 text-[14px] font-semibold text-teal transition hover:bg-teal/10"
+        >
+          + {section.create.label}
+        </Link>
+      ) : (
+        <p className="text-[13px] text-warm-gray">
+          Adding or removing a service also needs code — an icon and a place in the navigation — so it is done by the developer.
+        </p>
+      )}
     </div>
   );
 }

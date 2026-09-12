@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 import { site } from "./lib/site";
 import seo from "./content/seo.json";
+import { googleMeasurement, MEASUREMENT_HOSTS } from "./lib/measurement";
 
 // Strict security headers are applied only to production builds. Applying HSTS
 // or `upgrade-insecure-requests` to a localhost dev server causes Safari to
@@ -34,16 +35,19 @@ const ContentSecurityPolicy = [
   // origin (Next Image is local-only — no remotePatterns), plus data:/blob:
   // for inline SVGs and the assistant's photo-upload previews. The Google Maps
   // embed is an <iframe> (frame-src), not an image, so it is unaffected.
-  "img-src 'self' data: blob:",
+  `img-src 'self' data: blob:${googleMeasurement ? " " + MEASUREMENT_HOSTS.img.join(" ") : ""}`,
   "font-src 'self' data:",
   // JSON-LD is inlined via dangerouslySetInnerHTML; Next.js also inlines small
   // runtime scripts. 'unsafe-inline' is acceptable here because there is no
   // user-generated HTML on the site.
-  "script-src 'self' 'unsafe-inline' https://plausible.io",
+  // Google Analytics / Tag Manager are added here ONLY while an ID is set
+  // in the admin (SEO → Measurement). With the fields empty the policy is
+  // exactly what it was before they existed.
+  `script-src 'self' 'unsafe-inline' https://plausible.io${googleMeasurement ? " " + MEASUREMENT_HOSTS.script.join(" ") : ""}`,
   "style-src 'self' 'unsafe-inline'",
   // Supabase: REST (https) + realtime (wss) + storage on the project's
   // pinned subdomain. Plausible covers analytics.
-  "connect-src 'self' https://plausible.io",
+  `connect-src 'self' https://plausible.io${googleMeasurement ? " " + MEASUREMENT_HOSTS.connect.join(" ") : ""}`,
   "manifest-src 'self'",
   "media-src 'self'",
   "worker-src 'self' blob:",

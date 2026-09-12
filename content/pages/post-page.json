@@ -16,6 +16,11 @@
     "allTitle": "Full {serviceLower} overview",
     "allLink": "Read more"
   },
+  "helpCities": [
+    "vancouver-wa",
+    "portland-or",
+    "camas-wa"
+  ],
   "faqTitle": "Questions we hear",
   "more": {
     "eyebrow": "More from the field",

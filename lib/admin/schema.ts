@@ -25,6 +25,11 @@ export type Field =
   | (Base & { kind: "color" })
   // A list of plain strings, edited one per line.
   | (Base & { kind: "strings"; max?: number })
+  // A choice of other pages: the value is a list of slugs from the
+  // collection named by `of` ("areas", "services"), ticked off by name.
+  // Used for the links between pages — which cities a city page points at,
+  // which services sit beside a service.
+  | (Base & { kind: "refs"; of: string; max?: number })
   // A repeatable group of fields — FAQs, process steps, body sections.
   | (Base & { kind: "list"; fields: Field[]; itemTitle?: string })
   | (Base & { kind: "object"; fields: Field[] })
@@ -113,6 +118,14 @@ function walk(fields: Field[], raw: unknown, path: string, errors: string[]): Ob
         out[f.key] = arr;
         break;
       }
+      case "refs": {
+        const arr = (Array.isArray(v) ? v : [])
+          .map((x) => (typeof x === "string" ? x.trim() : ""))
+          .filter((x, i, all) => x && /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(x) && all.indexOf(x) === i);
+        if (f.max && arr.length > f.max) errors.push(`${where}: pick at most ${f.max}.`);
+        out[f.key] = arr;
+        break;
+      }
       case "list": {
         const arr = Array.isArray(v) ? v : [];
         if (f.required && arr.length === 0) errors.push(`${where} needs at least one entry.`);
@@ -155,6 +168,7 @@ export function emptyValue(fields: Field[]): Obj {
         out[f.key] = "#000000";
         break;
       case "strings":
+      case "refs":
       case "list":
         out[f.key] = [];
         break;

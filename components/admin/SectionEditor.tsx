@@ -25,6 +25,7 @@ export function SectionEditor({
   item,
   backHref,
   backLabel,
+  create,
 }: {
   sectionId: string;
   title: string;
@@ -35,8 +36,11 @@ export function SectionEditor({
   item?: string;
   backHref: string;
   backLabel: string;
+  /** Set when this is a new item: the address is typed once, here. */
+  create?: { slugLabel: string; slugHint: string; note: string };
 }) {
   const [state, formAction, pending] = useActionState(saveSection, null);
+  const [slug, setSlug] = useState("");
   const [baseSha] = useState(sha);
   const [value, setValue] = useState<Obj>(initial);
   const [ackLegal, setAckLegal] = useState(false);
@@ -95,9 +99,29 @@ export function SectionEditor({
       <form onSubmit={submit} className="space-y-6">
         <input type="hidden" name="section" value={sectionId} />
         {item && <input type="hidden" name="item" value={item} />}
+        {create && <input type="hidden" name="mode" value="new" />}
         <input type="hidden" name="sha" value={baseSha} />
         <input type="hidden" name="payload" value={payload} />
         <input type="hidden" name="ackLegal" value={ackLegal ? "1" : ""} />
+
+        {create && (
+          <div className="space-y-2 rounded-[2px] border border-line bg-charcoal p-6">
+            <label htmlFor="new-slug" className="block text-[14px] font-medium text-ivory">
+              {create.slugLabel}
+            </label>
+            <p className="text-[13px] text-warm-gray">{create.slugHint}</p>
+            <input
+              id="new-slug"
+              name="item"
+              value={slug}
+              onChange={(e) => setSlug(e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, "-"))}
+              required
+              className="w-full rounded-[2px] border border-line bg-charcoal-soft px-3 py-2 font-mono text-[14px] text-ivory outline-none focus:border-teal"
+              placeholder="beaverton-or"
+            />
+            <p className="text-[13px] text-warm-gray">{create.note}</p>
+          </div>
+        )}
 
         <div className="rounded-[2px] border border-line bg-charcoal p-6">
           <SchemaForm fields={schema} value={value} onChange={setValue} />
@@ -111,7 +135,7 @@ export function SectionEditor({
               {dirty ? "Unpublished changes." : "No changes yet."} Publishing updates the live site in about a minute.
             </p>
             <button type="submit" className={btnPrimary} disabled={pending}>
-              {pending ? "Publishing…" : "Publish changes"}
+              {pending ? "Publishing…" : create ? "Add and publish" : "Publish changes"}
             </button>
           </div>
         </div>

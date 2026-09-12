@@ -29,6 +29,14 @@ export const POST_PAGE: SectionDef = {
       { kind: "text", key: "allTitle", label: "Last card — title", required: true, hint: "Uses {serviceLower}." },
       { kind: "text", key: "allLink", label: "Last card — link", required: true },
     ] },
+    {
+      kind: "refs",
+      key: "helpCities",
+      of: "areas",
+      max: 3,
+      label: "Cities in the “get help near you” block",
+      hint: "The three cities every article offers at the end, in this order.",
+    },
     { kind: "text", key: "faqTitle", label: "Heading above a post's questions", required: true, hint: "The questions are part of each post." },
     { kind: "object", key: "more", label: "“More from the field”", hint: "Three other posts, newest first.", fields: [
       { kind: "text", key: "eyebrow", label: "Label", required: true },

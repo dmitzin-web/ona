@@ -7,8 +7,8 @@ import { FAQ } from "@/components/FAQ";
 import { JsonLd } from "@/components/JsonLd";
 import { ArrowIcon, serviceIcons } from "@/components/icons/ServiceIcons";
 import { SpokaneFireDeployment, spokaneFireMetadata } from "@/components/services/SpokaneFireDeployment";
-import { services, findService, type Service } from "@/lib/services";
-import { areaProfiles, type AreaProfile } from "@/lib/areas";
+import { services, findService, relatedServices, type Service } from "@/lib/services";
+import { areaProfiles, nearbyCities, type AreaProfile } from "@/lib/areas";
 import { site } from "@/lib/site";
 import { buildMetadata } from "@/lib/seo";
 import {
@@ -134,16 +134,14 @@ export default async function ServiceCityPage({
   const home = profile.driveMinutesFromHQ === 0;
   const Icon = serviceIcons[service.slug as keyof typeof serviceIcons];
 
-  // Surface 2 sibling cities (same service, different city) + 2 sibling
-  // services (same city, different service) at the bottom for cross-
-  // linking. This builds the internal-link graph Google uses for local
-  // topical authority.
-  const otherCitiesForService = areaProfiles
-    .filter((a) => a.slug !== profile.slug)
-    .slice(0, 3);
-  const otherServicesForCity = services
-    .filter((s) => s.slug !== service.slug)
-    .slice(0, 3);
+  // Sibling cities (same service, different city) and sibling services
+  // (same city, different service) at the bottom: the internal-link graph
+  // Google uses for local topical authority. Which ones is a decision, not
+  // a coincidence — the admin picks them per city and per service (Cities /
+  // Services → "linked from this one"), and falls back to the nearest
+  // cities by drive time rather than to file order.
+  const otherCitiesForService = nearbyCities(profile, 3);
+  const otherServicesForCity = relatedServices(service, 3);
 
   const responseLine = home ? t.hero.responseHome : t.hero.response;
 

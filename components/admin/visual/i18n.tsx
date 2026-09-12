@@ -59,6 +59,7 @@ const EN = {
   taskPhone: "Change phone, email or hours",
   taskColors: "Change the site's colours",
   taskFaq: "Edit questions & answers",
+  taskCity: "Add a city we serve",
   taskPost: "Write a blog post",
   taskPhoto: "Add a gallery photo",
   legalTitle: "Check this wording",

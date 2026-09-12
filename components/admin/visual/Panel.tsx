@@ -405,6 +405,11 @@ function Overview(props: Parameters<typeof Panel>[0]) {
             </button>
           </li>
           <li>
+            <a className="block rounded-[2px] px-2 py-1 hover:bg-charcoal-soft" href="/admin/s/areas/new">
+              {t.taskCity}
+            </a>
+          </li>
+          <li>
             <a className="block rounded-[2px] px-2 py-1 hover:bg-charcoal-soft" href="/admin/posts/new">
               {t.taskPost}
             </a>

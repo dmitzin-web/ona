@@ -36,11 +36,6 @@ const CATEGORY_TO_SERVICE: Record<string, string> = {
   Remodeling: "remodeling",
 };
 
-// Top-of-mind cities for the "Get help near you" block. Three cities surfaced
-// per post — local-leaning so the user clicking from a Portland-focused post
-// lands in the highest-intent programmatic page.
-const HIGHLIGHT_CITIES = ["vancouver-wa", "portland-or", "camas-wa"];
-
 // Parses markdown-style inline links: "...text [label](/url) more text..."
 // Returns an array of strings and { text, href } objects for the renderer.
 // Internal-link only (href must start with "/") — external links are kept as
@@ -176,9 +171,11 @@ export default async function BlogPostPage(
   // programmatic landing pages that actually convert to phone calls.
   const serviceSlug = CATEGORY_TO_SERVICE[post.category] ?? "water-damage";
   const service = services.find((s) => s.slug === serviceSlug);
-  const cityLinks = HIGHLIGHT_CITIES.map((slug) =>
-    areaProfiles.find((a) => a.slug === slug),
-  ).filter((a): a is NonNullable<typeof a> => a != null);
+  // The three cities offered at the end of every article, picked in the
+  // admin (Blog post template → Cities in the "get help near you" block).
+  const cityLinks = (t.helpCities as string[])
+    .map((slug) => areaProfiles.find((a) => a.slug === slug))
+    .filter((a): a is NonNullable<typeof a> => a != null);
 
   return (
     <>

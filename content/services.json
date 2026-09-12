@@ -5,7 +5,7 @@
     "shortName": "Water Damage",
     "title": "Water Damage Restoration in Vancouver, WA & Portland Metro",
     "description": "24/7 emergency water damage restoration in Vancouver, WA and Portland, OR. IICRC-standard water extraction, structural drying and reconstruction. We bill your insurance directly.",
-    "hero": "Burst pipe, flooded basement, or appliance leak? Our crews are on-site within 60 minutes across the Portland metro area.",
+    "hero": "Burst pipe, flooded basement, or appliance leak? Our on-site target is 60 minutes across the Portland metro area, 24/7.",
     "intro": "Standing water turns into structural damage and mold growth in as little as 24 hours. Ona Restoration is a water-damage restoration company working to IICRC standards, serving Vancouver, WA and the entire Portland metro. We extract water, dry the structure, and rebuild — and we coordinate the claim with your insurance carrier so you don't have to.",
     "body": [
       {
@@ -26,7 +26,7 @@
     "process": [
       {
         "step": "1. Emergency call & dispatch",
-        "text": "Live answer 24/7. Crew dispatched within minutes; on-site target is 60 minutes in the Portland metro."
+        "text": "Live answer 24/7. Closest available crew dispatched; on-site target is 60 minutes in the Portland metro."
       },
       {
         "step": "2. Inspection & moisture mapping",
@@ -57,6 +57,7 @@
       "Unexplained spike in water bill",
       "Peeling paint or bubbling drywall"
     ],
+    "related": [],
     "faqs": [
       {
         "q": "How fast can you be on-site in Portland or Vancouver?",
@@ -133,6 +134,7 @@
       "Heat damage to electrical panels or HVAC",
       "Water damage from fire suppression"
     ],
+    "related": [],
     "faqs": [
       {
         "q": "Can you start before the fire investigation is complete?",
@@ -205,6 +207,7 @@
       "Recent water damage left undried for more than 48 hours",
       "Discoloration around windows, in bathrooms, or in basements"
     ],
+    "related": [],
     "faqs": [
       {
         "q": "Do I need a mold test before remediation?",
@@ -262,7 +265,7 @@
     "process": [
       {
         "step": "1. Emergency dispatch",
-        "text": "Crew with tarps, boards, and extractors en route within minutes."
+        "text": "Crew with tarps, boards, and extractors dispatched as soon as you say go."
       },
       {
         "step": "2. Stabilization",
@@ -288,6 +291,7 @@
       "Interior water intrusion after a storm",
       "Power loss with risk of frozen pipes"
     ],
+    "related": [],
     "faqs": [
       {
         "q": "How fast can you tarp a damaged roof?",
@@ -359,6 +363,7 @@
       "You've inherited or purchased a property that needs full renovation",
       "Multiple subs gave you wildly different timelines — you want one accountable contractor"
     ],
+    "related": [],
     "faqs": [
       {
         "q": "Do you take on remodels without a prior restoration project?",

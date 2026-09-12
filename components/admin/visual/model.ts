@@ -56,6 +56,10 @@ export function leaves(section: SectionDef, value: unknown): Leaf[] {
         case "image":
           out.push({ sectionId: section.id, path: p, field: f, trail: t, photo: true });
           break;
+        case "refs":
+          // Not text and not a photo — a set of links. It shows in the
+          // block's form; there is nothing on the page to match it to.
+          break;
         case "strings":
           (Array.isArray(x) ? x : []).forEach((_, i) =>
             out.push({ sectionId: section.id, path: [...p, i], field: f, trail: [...t, `${i + 1}`] }),

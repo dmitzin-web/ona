@@ -366,6 +366,25 @@ export function auditSite(pages: SitePage[], values: Content, now = new Date()):
     }
   });
 
+  // Cookies the visitor was not told about. Plausible sets none; Google's
+  // two do, and Washington's My Health My Data Act and the FTC both care
+  // what the policy says.
+  const analytics = (seo.analytics ?? {}) as Record<string, string>;
+  const measuring = Boolean(String(analytics.ga4 ?? "").trim() || String(analytics.gtm ?? "").trim());
+  const privacyText = JSON.stringify((values.legal as Record<string, unknown>)?.privacy ?? "").toLowerCase();
+  if (measuring && !privacyText.includes("google analytics") && !privacyText.includes("tag manager")) {
+    found.set("analytics-privacy", {
+      key: "analytics-privacy",
+      rule: "analytics-privacy",
+      severity: "fix",
+      what: "Google Analytics is switched on, and the privacy policy does not mention it.",
+      why: "It sets cookies in the visitor's browser. A privacy policy that does not say which analytics is used is the kind of gap regulators and lawyers look for first.",
+      fix: "Add a line to the privacy policy naming Google Analytics and what it collects, or take the ID out again.",
+      ask: null,
+      pages: [{ path: "/privacy", label: "Privacy policy", at: { sectionId: "legal", path: ["privacy"] }, href: null }],
+    });
+  }
+
   if (!String((seo.verification as Record<string, string>)?.google ?? "").trim()) {
     found.set("no-search-console", {
       key: "no-search-console",
@@ -397,7 +416,10 @@ export function auditSite(pages: SitePage[], values: Content, now = new Date()):
   // 61 characters long" is readable without opening anything.
   for (const f of found.values()) {
     if (f.pages.length === 1 && !f.what.includes(f.pages[0].label) && f.pages[0].label !== "The whole site") {
-      f.what = `${f.pages[0].label} — ${f.what[0].toLowerCase()}${f.what.slice(1)}`;
+      // Lower-case the sentence only where it starts with a word that is
+      // only capitalised because it started a sentence — never "Google".
+      const lead = /^(The|A|An|This|It|Its)\b/.test(f.what) ? f.what[0].toLowerCase() + f.what.slice(1) : f.what;
+      f.what = `${f.pages[0].label} — ${lead}`;
     }
   }
 

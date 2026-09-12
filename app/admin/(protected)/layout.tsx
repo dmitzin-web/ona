@@ -2,6 +2,8 @@ import Link from "next/link";
 import { requireAdmin } from "@/lib/admin/session";
 import { getStore } from "@/lib/admin/store";
 import { signOutOfAdmin } from "../actions";
+import { Collections } from "@/components/admin/Collections";
+import { collectionChoices } from "@/lib/admin/collections";
 
 // Everything behind sign-in. This check guards the pages; the server
 // actions in ../actions.ts each run their own, because an action can be
@@ -18,7 +20,7 @@ export default async function ProtectedLayout({ children }: { children: React.Re
   }
 
   return (
-    <>
+    <Collections value={await collectionChoices()}>
       <header className="border-b border-line bg-charcoal">
         <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-6 py-3">
           <div className="flex items-center gap-4">
@@ -50,6 +52,6 @@ export default async function ProtectedLayout({ children }: { children: React.Re
         </div>
       </header>
       <div className="mx-auto max-w-5xl px-6 py-8">{children}</div>
-    </>
+    </Collections>
   );
 }

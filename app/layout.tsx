@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { JsonLd } from "@/components/JsonLd";
-import { Analytics } from "@/components/Analytics";
+import { Analytics, GoogleMeasurement } from "@/components/Analytics";
 import { AskOna } from "@/components/assistant/AskOna";
 import { EditThisPage } from "@/components/admin/EditThisPage";
 import { themeCss } from "@/lib/theme";
@@ -124,6 +124,7 @@ export default function RootLayout({
         <AskOna />
         <EditThisPage />
         <Analytics />
+        <GoogleMeasurement />
         <JsonLd data={[localBusinessJsonLd(), websiteJsonLd()]} />
       </body>
     </html>

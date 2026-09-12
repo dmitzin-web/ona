@@ -31,9 +31,10 @@ import { WORK_PAGE } from "./pages/work-page";
 // filesystem, and a static import cannot trip the file tracer.
 //
 // `collection` sections are an array of items keyed by `slug`. The slug is
-// never editable here — it is the page's URL — and items cannot be created
-// or deleted from the admin yet, because a new service or city also needs
-// code (icons, routing, cross-links).
+// never editable after the item is created — it is the page's URL. Items can
+// be added and removed only where `create` says so (Cities): everything a
+// city page needs is in content/areas.json, while a new service would also
+// need an icon and a place in the navigation.
 
 export type SectionDef = {
   id: string;
@@ -42,7 +43,21 @@ export type SectionDef = {
   description: string;
 } & (
   | { kind: "single"; schema: Schema }
-  | { kind: "collection"; schema: Schema; titleKey: string; subtitleKey?: string }
+  | {
+      kind: "collection";
+      schema: Schema;
+      titleKey: string;
+      subtitleKey?: string;
+      /**
+       * Set when items can be added and removed from the admin. Only for
+       * collections where an item needs nothing but content: a city brings
+       * its own pages with it (routes, sitemap, structured data and the
+       * links between them all read content/areas.json), a service would
+       * also need an icon and a place in the navigation, so it does not
+       * have this.
+       */
+      create?: { label: string; slugLabel: string; slugHint: string; note: string };
+    }
 );
 
 export const SECTIONS: SectionDef[] = [
@@ -189,6 +204,14 @@ export const SECTIONS: SectionDef[] = [
         ],
       },
       { kind: "strings", key: "signs", label: "Signs you need this (one per line)" },
+      {
+        kind: "refs",
+        key: "related",
+        of: "services",
+        max: 3,
+        label: "Services linked from this one",
+        hint: "Shown at the bottom of this service's city pages, in the order you pick them. Empty means the other services in their usual order.",
+      },
       faqList(),
     ],
   },
@@ -200,6 +223,12 @@ export const SECTIONS: SectionDef[] = [
     kind: "collection",
     titleKey: "name",
     subtitleKey: "county",
+    create: {
+      label: "Add a city",
+      slugLabel: "Address of the city's page",
+      slugHint: "Lowercase, words joined by dashes, the state at the end: beaverton-or. It becomes /areas/beaverton-or and cannot be changed afterwards.",
+      note: "A new city adds six pages: the city's own page and one for each service. They are on the site a minute after publishing, and they start empty — fill in the local details, or Google will see six pages with nothing to say.",
+    },
     schema: [
       { kind: "text", key: "name", label: "City", required: true },
       { kind: "select", key: "region", label: "State", options: ["WA", "OR"] },
@@ -212,6 +241,14 @@ export const SECTIONS: SectionDef[] = [
       { kind: "textarea", key: "weatherPattern", label: "Local weather", rows: 3 },
       { kind: "strings", key: "commonLosses", label: "Common kinds of damage (one per line)" },
       { kind: "textarea", key: "localNote", label: "Local note", rows: 3 },
+      {
+        kind: "refs",
+        key: "nearby",
+        of: "areas",
+        max: 3,
+        label: "Cities linked from this one",
+        hint: "Shown at the bottom of this city's service pages, in the order you pick them. Leave it empty and the nearest cities by drive time are used — pick your own when a neighbour matters more than the map does.",
+      },
     ],
   },
   {

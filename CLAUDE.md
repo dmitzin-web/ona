@@ -107,6 +107,30 @@ break without knowing them.
 - The admin is English only, like the site. Its wording lives in
   `components/admin/visual/i18n.tsx`; `useLang()` is kept as the single
   place to add a translation later if one is ever wanted.
+- **Adding a city** is an admin job now (`/admin/s/areas/new`, or "Add a city
+  we serve" in the panel): everything a city page needs is in
+  `content/areas.json`, so one item there becomes six pages — its own and
+  one per service — plus its sitemap entries, its structured data and the
+  links to it. `create` on a `SectionDef` is what allows it; Services do
+  NOT have it (a service also needs an icon and a place in the nav).
+  Removing one takes those six pages off the site, strips the city out of
+  every other city's `nearby`, and tells the editor to add redirects.
+- **Which pages link to which** is content: `refs` fields (`kind: "refs",
+  of: "areas"`) are picked as tick boxes from another collection, in the
+  order clicked. Cities → `nearby` and services → `related` drive the
+  blocks at the foot of every city × service page; with nothing picked,
+  cities fall back to the nearest by drive time (not to file order, which
+  is what it used to be) and services to the rest in order. The blog
+  template's three cities are `helpCities`. The choices come from
+  `lib/admin/collections.ts` (forms) and from the draft (visual editor),
+  so a city added a minute ago is already pickable.
+- **Google Analytics / Tag Manager**: paste an ID in SEO → Measurement.
+  `lib/measurement.ts` validates it against `G-…` / `GTM-…` before it ever
+  reaches a script URL, and the CSP in next.config.ts opens
+  googletagmanager/google-analytics **only while an ID is set** — with the
+  fields empty the policy is exactly what it was. Plausible stays as it is
+  (env vars, cookieless). GA sets cookies, so the audit refuses to be quiet
+  until the privacy policy names it.
 - Blog posts → `content/posts/<slug>.json`; remodeling gallery →
   `content/work/<slug>.json` + `public/photos/projects/<slug>/image.*`.
   `lib/posts.ts` and `lib/work.ts` read them at build time. The file format

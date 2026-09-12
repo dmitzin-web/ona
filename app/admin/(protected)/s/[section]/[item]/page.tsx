@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { SectionEditor } from "@/components/admin/SectionEditor";
+import { RemoveItem } from "@/components/admin/RemoveItem";
 import { PhotoLibrary } from "@/components/admin/ImageField";
 import { photoLibrary } from "@/lib/admin/photos";
 import { requireAdmin } from "@/lib/admin/session";
@@ -38,6 +39,7 @@ export default async function SectionItemPage({
       backHref={`/admin/s/${section.id}`}
       backLabel={section.label}
     />
+    {section.create && <RemoveItem sectionId={section.id} item={item} label={String(found[section.titleKey])} />}
     </PhotoLibrary>
   );
 }
