@@ -82,13 +82,15 @@ export default function HomePage() {
               {/* v4: the headline carries the page. 64px/600 read as
                   "tidy professionals"; 700 weight on a tighter leading
                   reads as the first thing in the room. The size only
-                  grows at xl — between 768 and 1280 the text column is
-                  ~430px and 76px wraps to four lines, which pushes the
-                  Call button under the fold on a 1024 laptop. The
+                  grows at xl. The cap is the container, not the
+                  viewport: max-w-7xl holds this column at 582px from
+                  1280px up, so 76px wrapped the line to four on every
+                  desktop and pushed the sample link under the fold at
+                  1280x800. 72px is three lines with room to spare. The
                   second half drops to warm-gray rather than an opacity
                   mask on ink — same two-tone intent, a colour the
                   design system actually owns (see globals.css). */}
-              <h1 className="text-[44px] font-bold leading-[0.98] tracking-[-0.03em] text-ivory md:text-[64px] xl:text-[76px]">
+              <h1 className="text-[44px] font-bold leading-[0.98] tracking-[-0.03em] text-ivory md:text-[64px] xl:text-[72px]">
                 {t.hero.titleLead}{" "}
                 <span className="text-warm-gray">
                   {t.hero.titleRest}
