@@ -21,7 +21,7 @@ import { Panel } from "./Panel";
 import { HistoryDialog, PagePicker, ReviewDialog, SearchDialog } from "./Dialogs";
 import { DeployTracker } from "./Deploy";
 import { AskBar } from "./AskBar";
-import { SeoScreen } from "./SeoScreen";
+import { SeoScreen, type PageRule } from "./SeoScreen";
 import { ContextMenu, type MenuItem } from "./ContextMenu";
 import { sitePages } from "@/lib/seo-pages";
 import { auditSite, findingsFor, type Finding, type Where } from "@/lib/seo-audit";
@@ -674,6 +674,25 @@ function Editor(props: EditorProps) {
     [select, reveal, pageFor, path, navigate],
   );
 
+  // Per-page indexing, set from the SEO screen: one line per page that
+  // needs something other than the default, and a line that says nothing
+  // is dropped rather than published as noise.
+  const setPageRule = useCallback(
+    (pagePath: string, patch: Partial<{ hide: boolean; canonical: string }>) => {
+      const cur = (draftRef.current.seo ?? {}) as Record<string, unknown>;
+      const list = [...((cur.pages as { path: string; hide: boolean; canonical: string }[]) ?? [])];
+      const i = list.findIndex((r) => r?.path === pagePath);
+      const next = i < 0 ? { path: pagePath, hide: false, canonical: "", ...patch } : { ...list[i], ...patch };
+      if (i < 0) list.push(next);
+      else list[i] = next;
+      setDraft(
+        { ...draftRef.current, seo: { ...cur, pages: list.filter((r) => r.hide || (r.canonical ?? "").trim()) } },
+        `seo:pages:${pagePath}`,
+      );
+    },
+    [setDraft],
+  );
+
   // ── From a line on the SEO screen to the field that fixes it ─────────
   const openSeoFix = useCallback(
     (w: Where) => {
@@ -1179,6 +1198,10 @@ function Editor(props: EditorProps) {
           onClose={() => setDialog(null)}
           onOpen={openSeoFix}
           onAsk={askForFinding}
+          settings={(draft.seo ?? {}) as Record<string, unknown>}
+          onSettings={(v) => setDraft({ ...draftRef.current, seo: v }, "seo:settings")}
+          rules={((draft.seo as Record<string, unknown>)?.pages ?? []) as PageRule[]}
+          onRule={setPageRule}
         />
       )}
       {dialog === "history" && (

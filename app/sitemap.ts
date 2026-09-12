@@ -76,6 +76,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
+  // A page the admin keeps out of Google (SEO → Per-page indexing) has no
+  // business in the sitemap: offering a noindex page is a contradiction
+  // Search Console reports as an error.
+  const bare = (url: string) => url.replace(/\/$/, "");
+  const hidden = new Set(
+    (seo.pages as { path: string; hide: boolean }[]).filter((p) => p.hide).map((p) => bare(`${site.url}${p.path}`)),
+  );
   return [
     ...staticUrls,
     ...serviceUrls,
@@ -83,5 +90,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...deploymentUrls,
     ...areaUrls,
     ...postUrls,
-  ];
+  ].filter((u) => !hidden.has(bare(u.url)));
 }

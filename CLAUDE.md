@@ -88,8 +88,22 @@ break without knowing them.
   HTML of every route and fails if the two disagree. Run it whenever you
   touch a page's metadata or that file. `lib/seo-audit.ts` is the rules —
   every one of them a fact about the content, never a guess at rankings.
-  What each page should be found for, and the date the sitemap gives
-  Google, are content: `content/seo.json` (admin: SEO).
+- **The SEO settings are content** (`content/seo.json`, schema in
+  `lib/admin/pages/seo.ts`, third tab of the SEO screen) — everything an
+  SEO would otherwise have to ask a developer for, each wired to one
+  place: `verification` → the Search Console / Bing tags in
+  `app/layout.tsx`; `robots` → extra Disallow paths and the AI-crawler
+  policy in `app/robots.ts` (the built-in list there is not editable);
+  `pages` → per-page noindex and canonical in `buildMetadata`
+  (`lib/seo.ts`), which also drops hidden pages from `app/sitemap.ts` and
+  from the SEO count; `redirects` → `next.config.ts`, which drops a
+  malformed one rather than serving it (the four `/remodeling` and `/mold`
+  redirects stay in code); `topics` → `knowsAbout` in `lib/jsonld.ts`;
+  `structureUpdated` → the sitemap's lastmod; `targets` → what the audit
+  measures each page against. A rule can only ADD noindex — pages the code
+  hides stay hidden. Every one of these changes the live site on publish,
+  so the audit checks them too (a redirect onto a real page, a chain, a
+  canonical pointing nowhere).
 - The admin is English only, like the site. Its wording lives in
   `components/admin/visual/i18n.tsx`; `useLang()` is kept as the single
   place to add a translation later if one is ever wanted.

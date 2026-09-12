@@ -9,6 +9,7 @@ import { themeCss } from "@/lib/theme";
 import { EmergencyBanner } from "@/components/EmergencyBanner";
 import { site } from "@/lib/site";
 import { chrome } from "@/lib/chrome";
+import seoSettings from "@/content/seo.json";
 import { localBusinessJsonLd, websiteJsonLd } from "@/lib/jsonld";
 import { satoshi } from "./fonts";
 import "./globals.css";
@@ -32,6 +33,16 @@ export const metadata: Metadata = {
   formatDetection: { telephone: true, email: true, address: true },
   category: t.category,
   alternates: { canonical: site.url },
+  // Search Console / Bing Webmaster verification, pasted in the admin
+  // (SEO → Verification codes). Empty means no tag is written.
+  ...(seoSettings.verification.google || seoSettings.verification.bing
+    ? {
+        verification: {
+          ...(seoSettings.verification.google ? { google: seoSettings.verification.google } : {}),
+          ...(seoSettings.verification.bing ? { other: { "msvalidate.01": seoSettings.verification.bing } } : {}),
+        },
+      }
+    : {}),
   openGraph: {
     type: "website",
     locale: site.locale,

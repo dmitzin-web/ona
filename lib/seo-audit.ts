@@ -330,6 +330,55 @@ export function auditSite(pages: SitePage[], values: Content, now = new Date()):
     });
   }
 
+  // ── The settings themselves ────────────────────────────────────────────
+  // A redirect or a canonical that points at nothing is worse than none:
+  // it takes a page out of Google and gives nothing back. These are
+  // checked here, before publishing, and again in next.config.ts, which
+  // simply drops a malformed redirect rather than serving it.
+  const known = new Set(pages.map((p) => p.path));
+  const redirects = ((seo.redirects ?? []) as { from: string; to: string }[]).filter((r) => r?.from);
+  const froms = new Set(redirects.map((r) => r.from));
+  const settingsPage = (label: string, at: At): Where[] => [{ path: "/", label, at, href: null }];
+
+  redirects.forEach((r, i) => {
+    const at: At = { sectionId: "seo", path: ["redirects", i, "from"] };
+    const note = (rule: string, what: string, why: string, fix: string) =>
+      found.set(`${rule}|${i}`, { key: `${rule}|${i}`, rule, severity: "fix", what, why, fix, ask: null, pages: settingsPage(`Redirect ${r.from}`, at) });
+    if (known.has(r.from)) {
+      note("redirect-shadow", `The redirect from ${r.from} hides a real page.`, "A redirect is applied before the page is: that page can no longer be opened by anyone, including Google.", "Redirect a retired address, not a live one.");
+    } else if (r.from === r.to) {
+      note("redirect-loop", `The redirect from ${r.from} points at itself.`, "The browser gives up after a few rounds and shows an error instead of the page.", "Point it somewhere else, or delete it.");
+    } else if (froms.has(r.to)) {
+      note("redirect-chain", `${r.from} redirects to ${r.to}, which redirects on again.`, "Each hop loses a little of the old page's standing, and Google stops following after a few.", `Send ${r.from} straight to where the chain ends.`);
+    } else if (r.to.startsWith("/") && !known.has(r.to) && !r.to.startsWith("/work/")) {
+      note("redirect-dead", `${r.from} redirects to ${r.to}, which is not a page on this site.`, "Anyone following the old address lands on “page not found”.", "Point it at a page that exists.");
+    }
+  });
+
+  ((seo.pages ?? []) as { path: string; hide: boolean; canonical: string }[]).forEach((r, i) => {
+    if (!r?.path) return;
+    if (!known.has(r.path)) {
+      const key = `rule-unknown|${i}`;
+      found.set(key, { key, rule: "rule-unknown", severity: "improve", what: `The indexing setting for ${r.path} applies to no page.`, why: "There is no such address on the site, so the setting does nothing.", fix: "Correct the address or delete the line.", ask: null, pages: settingsPage(`Setting for ${r.path}`, { sectionId: "seo", path: ["pages", i, "path"] }) });
+    } else if (r.canonical?.trim() && r.canonical.startsWith("/") && !known.has(r.canonical.trim())) {
+      const key = `canonical-dead|${i}`;
+      found.set(key, { key, rule: "canonical-dead", severity: "fix", what: `${r.path} says it is a copy of ${r.canonical}, which is not a page on this site.`, why: "Google is told the real version lives at an address that does not exist, and may drop both.", fix: "Point it at a page that exists, or leave it empty.", ask: null, pages: settingsPage(`Setting for ${r.path}`, { sectionId: "seo", path: ["pages", i, "canonical"] }) });
+    }
+  });
+
+  if (!String((seo.verification as Record<string, string>)?.google ?? "").trim()) {
+    found.set("no-search-console", {
+      key: "no-search-console",
+      rule: "no-search-console",
+      severity: "improve",
+      what: "The site is not verified in Google Search Console.",
+      why: "Search Console is the only place that shows what the site is actually found for, which pages Google has indexed and what it refuses to index. Without it, every SEO decision here is made blind.",
+      fix: "Add the property at search.google.com/search-console, choose the “HTML tag” method, and paste the code here.",
+      ask: null,
+      pages: settingsPage("Verification codes", { sectionId: "seo", path: ["verification", "google"] }),
+    });
+  }
+
   const untargeted = indexable.filter((p) => !targetOf(p) && (p.group === "Main" || p.group === "Services"));
   if (untargeted.length) {
     found.set("no-target", {

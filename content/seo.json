@@ -1,5 +1,13 @@
 {
   "structureUpdated": "2026-05-20",
+  "verification": {
+    "google": "",
+    "bing": ""
+  },
+  "robots": {
+    "extraDisallow": [],
+    "allowAiCrawlers": true
+  },
   "targets": [
     {
       "path": "/",
@@ -53,5 +61,22 @@
       "path": "/services/remodeling",
       "query": "kitchen remodeling vancouver wa"
     }
+  ],
+  "pages": [],
+  "redirects": [],
+  "topics": [
+    "Water damage restoration",
+    "Fire and smoke damage restoration",
+    "Mold remediation",
+    "Storm and wind damage restoration",
+    "Structural drying",
+    "Reconstruction and remodeling",
+    "IICRC S500 water damage standard",
+    "IICRC S520 mold remediation standard",
+    "IICRC S700 fire and smoke damage standard",
+    "Xactimate insurance estimating",
+    "Insurance claim documentation",
+    "Thermal imaging moisture mapping",
+    "HEPA filtration and containment"
   ]
 }

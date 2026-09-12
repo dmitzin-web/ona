@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { site } from "@/lib/site";
+import seo from "@/content/seo.json";
 
 // AI / LLM crawler policy.
 // For a local-service marketing site, surfacing in LLM answers (ChatGPT, Claude,
@@ -31,6 +32,14 @@ const aiCrawlers = [
 ] as const;
 
 export default function robots(): MetadataRoute.Robots {
+  // Paths and the AI policy are set in the admin (SEO → robots.txt). The
+  // built-in list below is not editable — those paths must never be
+  // crawled.
+  const extra = (seo.robots.extraDisallow as string[]).filter((p) => p.startsWith("/"));
+  const aiPolicy = seo.robots.allowAiCrawlers
+    ? aiCrawlers.map((bot) => ({ userAgent: bot, allow: "/", disallow: ["/work/", "/api/", "/admin", ...extra] }))
+    : aiCrawlers.map((bot) => ({ userAgent: bot, disallow: "/" }));
+
   return {
     rules: [
       {
@@ -40,13 +49,9 @@ export default function robots(): MetadataRoute.Robots {
         // keep them, the API, Next internals and the thank-you page out
         // of every index. AI crawlers below inherit /work/ exclusion too.
         // /admin is the content admin: a login screen, not content.
-        disallow: ["/api/", "/_next/", "/quote/thanks", "/work/", "/admin"],
+        disallow: ["/api/", "/_next/", "/quote/thanks", "/work/", "/admin", ...extra],
       },
-      ...aiCrawlers.map((bot) => ({
-        userAgent: bot,
-        allow: "/",
-        disallow: ["/work/", "/api/", "/admin"],
-      })),
+      ...aiPolicy,
     ],
     sitemap: `${site.url}/sitemap.xml`,
     host: site.url,

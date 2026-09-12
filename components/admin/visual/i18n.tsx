@@ -178,6 +178,12 @@ const EN = {
   seoQuestions: "questions",
   seoOpenPage: "Open this page",
   seoGreyedOut: "The greyed-out words are what Google cuts off.",
+  seoTabSettings: "Settings",
+  seoSettingsIntro:
+    "The controls an SEO works with. Nothing here is visible on the site, and all of it takes effect when you press “Put on the site”.",
+  seoHide: "Keep this page out of Google",
+  seoHiddenInCode: "already hidden by the site itself",
+  seoCanonical: "Counts as a copy of (empty = itself)",
 };
 
 type Dict = typeof EN;

@@ -78,6 +78,16 @@ export function sitePages(values: Content, opts: { siteName: string; siteUrl: st
   const services = (values.services ?? []) as Record<string, unknown>[];
   const areas = (values.areas ?? []) as Record<string, unknown>[];
 
+  // Pages the admin keeps out of Google (content/seo.json → Per-page
+  // indexing). lib/seo.ts writes the noindex; here it means the page is
+  // left out of the count and the checks, because it is not trying to
+  // rank at all.
+  const hiddenPaths = new Set(
+    (((values.seo as Record<string, unknown>)?.pages ?? []) as { path: string; hide: boolean }[])
+      .filter((r) => r?.hide)
+      .map((r) => r.path),
+  );
+
   // Stored targets (content/seo.json → SEO in the admin).
   const targetList = ((values.seo as Record<string, unknown>)?.targets ?? []) as Record<string, string>[];
   const targetFor = (path: string): { target: string; at: At | null } => {
@@ -159,7 +169,7 @@ export function sitePages(values: Content, opts: { siteName: string; siteUrl: st
       editHref: p.editHref ?? null,
       target: t.target,
       targetAt: t.at,
-      noindex: p.noindex ?? false,
+      noindex: (p.noindex ?? false) || hiddenPaths.has(p.path),
       template: p.template ?? null,
       ownWords: words,
       ownAt: p.ownAt ?? null,
@@ -384,7 +394,7 @@ export function sitePages(values: Content, opts: { siteName: string; siteUrl: st
       editHref: `/admin/posts/${p.slug}`,
       target: targetFor(`/blog/${p.slug}`).target,
       targetAt: targetFor(`/blog/${p.slug}`).at,
-      noindex: false,
+      noindex: hiddenPaths.has(`/blog/${p.slug}`),
       template: null,
       ownWords: p.words,
       ownAt: null,

@@ -3,7 +3,12 @@
 import { useEffect, useMemo, useState } from "react";
 import type { Finding, Report, Where } from "@/lib/seo-audit";
 import { targetOf, type SitePage } from "@/lib/seo-pages";
+import { findSection } from "@/lib/admin/sections";
+import { SchemaForm } from "../SchemaForm";
 import { useLang } from "./i18n";
+
+/** What the admin can set for one page: keep it out of Google, or declare it a copy of another. */
+export type PageRule = { path: string; hide: boolean; canonical: string };
 
 // The SEO screen: every page of the site measured against what Google can
 // actually show, in the words of someone who has never heard of a meta tag —
@@ -23,6 +28,10 @@ export function SeoScreen({
   onClose,
   onOpen,
   onAsk,
+  settings,
+  onSettings,
+  rules,
+  onRule,
 }: {
   report: Report;
   pages: SitePage[];
@@ -31,9 +40,14 @@ export function SeoScreen({
   onClose: () => void;
   onOpen: (where: Where) => void;
   onAsk: ((finding: Finding, where: Where) => Promise<{ reply: string; count: number } | { error: string }>) | null;
+  /** content/seo.json as it stands in the draft, and the way to change it. */
+  settings: Record<string, unknown>;
+  onSettings: (value: Record<string, unknown>) => void;
+  rules: PageRule[];
+  onRule: (path: string, patch: Partial<PageRule>) => void;
 }) {
   const { t } = useLang();
-  const [tab, setTab] = useState<"fix" | "pages">("fix");
+  const [tab, setTab] = useState<"fix" | "pages" | "settings">("fix");
   const [copied, setCopied] = useState(false);
   const here = pages.find((p) => p.path === path) ?? null;
   const mine = report.findings.filter((f) => f.pages.some((w) => w.path === path));
@@ -63,6 +77,9 @@ export function SeoScreen({
           <button type="button" className={tabClass("pages")} onClick={() => setTab("pages")}>
             {t.seoTabPages} ({pages.length})
           </button>
+          <button type="button" className={tabClass("settings")} onClick={() => setTab("settings")}>
+            {t.seoTabSettings}
+          </button>
         </nav>
         <button type="button" onClick={copy} className="ml-auto hidden text-[13px] text-warm-gray hover:text-ivory sm:block">
           {copied ? t.seoCopied : t.seoCopy}
@@ -88,7 +105,9 @@ export function SeoScreen({
             </p>
           </section>
 
-          {tab === "fix" ? (
+          {tab === "settings" ? (
+            <Settings settings={settings} onSettings={onSettings} />
+          ) : tab === "fix" ? (
             <>
               {/* The page they are looking at. */}
               {here && (
@@ -125,7 +144,7 @@ export function SeoScreen({
               {report.findings.length === 0 && <p className="text-[15px]">{t.seoNothing}</p>}
             </>
           ) : (
-            <PagesTable pages={pages} report={report} path={path} host={host} onOpen={onOpen} />
+            <PagesTable pages={pages} report={report} path={path} host={host} onOpen={onOpen} rules={rules} onRule={onRule} />
           )}
         </div>
       </div>
@@ -217,12 +236,16 @@ function PagesTable({
   path,
   host,
   onOpen,
+  rules,
+  onRule,
 }: {
   pages: SitePage[];
   report: Report;
   path: string;
   host: string;
   onOpen: (where: Where) => void;
+  rules: PageRule[];
+  onRule: (path: string, patch: Partial<PageRule>) => void;
 }) {
   const { t } = useLang();
   const [q, setQ] = useState("");
@@ -320,6 +343,7 @@ function PagesTable({
                       {f.what}
                     </p>
                   ))}
+                  <IndexingControls page={p} rule={rules.find((r) => r.path === p.path)} onRule={onRule} />
                   <button
                     type="button"
                     className="text-[13px] font-semibold text-teal hover:underline"
@@ -336,6 +360,69 @@ function PagesTable({
         })}
       </ul>
       {shown.length === 0 && <p className="text-[13px] text-warm-gray">{t.searchEmpty}</p>}
+    </section>
+  );
+}
+
+// What an SEO decides per page and nobody else needs to see: whether Google
+// may index it, and which address should get the credit when two pages are
+// nearly the same. Both write into content/seo.json → Per-page indexing,
+// and both take effect on the next publish.
+function IndexingControls({
+  page,
+  rule,
+  onRule,
+}: {
+  page: SitePage;
+  rule: PageRule | undefined;
+  onRule: (path: string, patch: Partial<PageRule>) => void;
+}) {
+  const { t } = useLang();
+  const [canonical, setCanonical] = useState(rule?.canonical ?? "");
+  return (
+    <div className="space-y-1.5 rounded-[2px] border border-line p-2">
+      <label className="flex items-center gap-2 text-[13px]">
+        <input
+          type="checkbox"
+          checked={!!rule?.hide}
+          onChange={(e) => onRule(page.path, { hide: e.target.checked })}
+          className="h-4 w-4 accent-[color:var(--color-teal,#00776d)]"
+        />
+        {t.seoHide}
+        {/* Only when the site itself hides the page — not when this very box does. */}
+        {page.noindex && !rule?.hide && <span className="text-warm-gray">({t.seoHiddenInCode})</span>}
+      </label>
+      <label className="block text-[13px]">
+        <span className="text-warm-gray">{t.seoCanonical}</span>
+        <input
+          value={canonical}
+          onChange={(e) => setCanonical(e.target.value)}
+          onBlur={() => canonical !== (rule?.canonical ?? "") && onRule(page.path, { canonical: canonical.trim() })}
+          placeholder={page.path}
+          className="mt-0.5 w-full rounded-[2px] border border-line bg-charcoal px-2 py-1 font-mono text-[12px] outline-none focus:border-teal"
+        />
+      </label>
+    </div>
+  );
+}
+
+// Everything in content/seo.json, in its own form — the same schema the
+// rest of the admin is built from, so it validates and publishes like any
+// other content.
+function Settings({
+  settings,
+  onSettings,
+}: {
+  settings: Record<string, unknown>;
+  onSettings: (value: Record<string, unknown>) => void;
+}) {
+  const { t } = useLang();
+  const section = findSection("seo");
+  if (!section) return null;
+  return (
+    <section className="space-y-3">
+      <p className="text-[13px] leading-snug text-warm-gray">{t.seoSettingsIntro}</p>
+      <SchemaForm fields={section.schema} value={settings} onChange={(v) => onSettings(v)} />
     </section>
   );
 }

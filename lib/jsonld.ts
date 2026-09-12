@@ -1,4 +1,5 @@
 import { site } from "./site";
+import seo from "../content/seo.json";
 import { services } from "./services";
 import { reviews } from "./reviews";
 
@@ -27,21 +28,7 @@ export function localBusinessJsonLd() {
     // Founder Person intentionally omitted for now (founder's name hidden
     // site-wide — see SHOW_FOUNDER in app/about/page.tsx). Restore this
     // block alongside that flag.
-    knowsAbout: [
-      "Water damage restoration",
-      "Fire and smoke damage restoration",
-      "Mold remediation",
-      "Storm and wind damage restoration",
-      "Structural drying",
-      "Reconstruction and remodeling",
-      "IICRC S500 water damage standard",
-      "IICRC S520 mold remediation standard",
-      "IICRC S700 fire and smoke damage standard",
-      "Xactimate insurance estimating",
-      "Insurance claim documentation",
-      "Thermal imaging moisture mapping",
-      "HEPA filtration and containment",
-    ],
+    knowsAbout: seo.topics,
     address: {
       "@type": "PostalAddress",
       addressLocality: site.address.locality,

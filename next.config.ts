@@ -1,5 +1,6 @@
 import type { NextConfig } from "next";
 import { site } from "./lib/site";
+import seo from "./content/seo.json";
 
 // Strict security headers are applied only to production builds. Applying HSTS
 // or `upgrade-insecure-requests` to a localhost dev server causes Safari to
@@ -113,7 +114,24 @@ const nextConfig: NextConfig = {
     minimumCacheTTL: 60 * 60 * 24 * 30,
   },
   async redirects() {
+    // Added in the admin (SEO → Redirects) and checked here before Next
+    // ever sees them: a redirect from an address that is not a path, to
+    // nowhere, or to itself would break the site rather than help it. The
+    // SEO screen reports the same problems before publishing.
+    const custom = (seo.redirects as { from: string; to: string; permanent: boolean }[])
+      .filter(
+        (r) =>
+          typeof r.from === "string" &&
+          typeof r.to === "string" &&
+          r.from.startsWith("/") &&
+          !r.from.startsWith("//") &&
+          (r.to.startsWith("/") || r.to.startsWith("https://")) &&
+          r.from !== r.to,
+      )
+      .map((r) => ({ source: r.from, destination: r.to, permanent: r.permanent !== false }));
+
     return [
+      ...custom,
       // Remodeling is a co-equal business line — surface it via a short
       // typable URL that mirrors how clients refer to the division.
       { source: "/remodeling", destination: "/services/remodeling", permanent: true },
