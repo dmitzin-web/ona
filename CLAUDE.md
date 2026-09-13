@@ -88,6 +88,20 @@ break without knowing them.
   HTML of every route and fails if the two disagree. Run it whenever you
   touch a page's metadata or that file. `lib/seo-audit.ts` is the rules —
   every one of them a fact about the content, never a guess at rankings.
+- **"What Google sees"** (fifth tab) is the only screen in the admin whose
+  numbers come from Google rather than from the site: impressions, clicks,
+  average position and the searches behind them, for the last 28 complete
+  days (Search Console lags ~3 days, so asking for yesterday returns
+  zeros). `app/admin/search-console-actions.ts` signs a JWT for a service
+  account with `node:crypto` — no Google SDK — and reads
+  searchAnalytics/query twice, by page and by page × query;
+  `lib/search-console.ts` turns that into the findings only data can
+  support: a page shown 400 times and never clicked (its title is not
+  earning the click — and the finding opens that title), searches sitting
+  just off the first page, two pages Google shows for one search, pages it
+  has never shown at all. Needs `GSC_CLIENT_EMAIL` / `GSC_PRIVATE_KEY`
+  (and `GSC_PROPERTY` for a domain property); without them the tab prints
+  the four setup steps and nothing else in the admin notices.
 - **"Live site"** (fourth tab of the SEO screen) walks the deployed site
   the way a crawler does — `app/admin/crawl-actions.ts` fetches a dozen
   pages per request (never one long one), `lib/crawl.ts` reads each page
@@ -218,6 +232,8 @@ break without knowing them.
 | `AUTH_GOOGLE_ID`, `AUTH_GOOGLE_SECRET` | Google Cloud OAuth client (Web). Redirect URI: `https://www.onarestore.com/api/auth/callback/google` |
 | `ADMIN_EMAILS` | comma-separated Google addresses allowed in. Never in code — the repo is public |
 | `GITHUB_CONTENT_TOKEN` | fine-grained PAT, repository `dmitzin-web/ona` only, **Contents: Read and write** |
+| `ANTHROPIC_API_KEY` | optional. Without it "Say what to change" and "Write it for me" say they are not connected |
+| `GSC_CLIENT_EMAIL`, `GSC_PRIVATE_KEY` | optional. A Google service account with read access to the Search Console property — that is the "What Google sees" tab. `GSC_PROPERTY` too if the property is `sc-domain:…` |
 
 Adding or removing an editor = editing `ADMIN_EMAILS` and redeploying.
 Without these the admin says it is not set up; the site still builds.

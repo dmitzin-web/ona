@@ -5,6 +5,7 @@ import type { Finding, Report, Where } from "@/lib/seo-audit";
 import { targetOf, type SitePage } from "@/lib/seo-pages";
 import { findSection } from "@/lib/admin/sections";
 import { Crawl } from "./Crawl";
+import { Search } from "./Search";
 import { SchemaForm } from "../SchemaForm";
 import { useLang } from "./i18n";
 
@@ -48,7 +49,7 @@ export function SeoScreen({
   onRule: (path: string, patch: Partial<PageRule>) => void;
 }) {
   const { t } = useLang();
-  const [tab, setTab] = useState<"fix" | "pages" | "live" | "settings">("fix");
+  const [tab, setTab] = useState<"fix" | "pages" | "live" | "google" | "settings">("fix");
   const [copied, setCopied] = useState(false);
   const here = pages.find((p) => p.path === path) ?? null;
   const mine = report.findings.filter((f) => f.pages.some((w) => w.path === path));
@@ -81,6 +82,9 @@ export function SeoScreen({
           <button type="button" className={tabClass("live")} onClick={() => setTab("live")}>
             {t.seoTabLive}
           </button>
+          <button type="button" className={tabClass("google")} onClick={() => setTab("google")}>
+            {t.seoTabGoogle}
+          </button>
           <button type="button" className={tabClass("settings")} onClick={() => setTab("settings")}>
             {t.seoTabSettings}
           </button>
@@ -111,6 +115,20 @@ export function SeoScreen({
 
           {tab === "settings" ? (
             <Settings settings={settings} onSettings={onSettings} />
+          ) : tab === "google" ? (
+            <Search
+              pages={pages}
+              onOpen={onOpen}
+              render={(findings) => (
+                <ul className="space-y-2">
+                  {findings.map((f) => (
+                    <li key={f.key}>
+                      <FindingCard finding={f} path={path} onOpen={onOpen} onAsk={onAsk} />
+                    </li>
+                  ))}
+                </ul>
+              )}
+            />
           ) : tab === "live" ? (
             <Crawl
               pages={pages}
