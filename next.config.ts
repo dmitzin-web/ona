@@ -74,6 +74,15 @@ const AdminContentSecurityPolicy = ContentSecurityPolicy.replace(
   "form-action 'self' https://accounts.google.com",
 );
 
+// /new — the standalone homepage concept served from public/new/index.html.
+// It is one self-contained file, not a React page, and the only thing it
+// loads from outside is Google Fonts. So it differs from the site policy in
+// exactly two directives, and only on its own path; the rest of the site
+// keeps "font-src 'self'" and never talks to Google's font servers.
+const NewPageContentSecurityPolicy = ContentSecurityPolicy
+  .replace("style-src 'self' 'unsafe-inline'", "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com")
+  .replace("font-src 'self' data:", "font-src 'self' data: https://fonts.gstatic.com");
+
 const baseHeaders = [
   { key: "X-Content-Type-Options", value: "nosniff" },
   { key: "X-DNS-Prefetch-Control", value: "on" },
@@ -116,6 +125,11 @@ const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 60 * 60 * 24 * 30,
+  },
+  async rewrites() {
+    // Files in public/ are served at their own path, so the concept lives at
+    // /new/index.html; this makes the short address serve it too.
+    return [{ source: "/new", destination: "/new/index.html" }];
   },
   async redirects() {
     // Added in the admin (SEO → Redirects) and checked here before Next
@@ -170,6 +184,18 @@ const nextConfig: NextConfig = {
           ],
         }),
       ),
+      // The /new concept: Google Fonts allowed, and kept out of search while
+      // it is a preview (the file carries a robots meta as well). After the
+      // `/:path*` rule so this CSP wins.
+      ...["/new", "/new/index.html"].map((source) => ({
+        source,
+        headers: [
+          ...(isProd
+            ? [{ key: "Content-Security-Policy", value: NewPageContentSecurityPolicy }]
+            : []),
+          { key: "X-Robots-Tag", value: "noindex, nofollow" },
+        ],
+      })),
       {
         // Project File pages are private client/claim records. Belt-and-
         // suspenders with the per-page `robots: noindex` metadata: a hard
