@@ -5,8 +5,8 @@
   },
   "hero": {
     "titleLead": "Water. Fire. Mold.",
-    "titleRest": "One call, on-site in an hour.",
-    "body": "IICRC-certified restoration across the Vancouver and Portland metro areas. We stabilize the damage, document it for your insurer, and rebuild what was lost — on a live project page you can share with your family or adjuster. Also remodeling, from the same crew.",
+    "titleRest": "One call, any hour.",
+    "body": "IICRC-certified restoration across the Vancouver and Portland metro areas. Our on-site target is 60 minutes, 24/7 — usually less in Clark County. We stabilize the damage, document it for your insurer, and rebuild what was lost — on a live project page you can share with your family or adjuster. Also remodeling, from the same crew.",
     "ctaCall": "Call {phone}",
     "ctaSecondary": "Start a project",
     "ctaSample": "See a sample project page",
@@ -24,7 +24,8 @@
     "phoneEyebrow": "On your phone too",
     "phoneTitle": "Daily updates in your pocket.",
     "phoneBody": "Photos uploaded the day they're taken. Adjuster approvals as they come in. A small text when something needs your attention. No app to install — it's just a link.",
-    "linkText": "Open the full sample project page"
+    "linkText": "Open the full sample project page",
+    "sampleNote": "Sample project with illustrative data — no real customer is shown. Real client pages are private, and shared only with the homeowner and their adjuster."
   },
   "whatWeDo": {
     "eyebrow": "What we do",
@@ -36,7 +37,7 @@
       "stepsTitle": "When you call",
       "steps": [
         "Answered in person — triage on the call.",
-        "On-site within 25 min for most of Clark Co.",
+        "On-site target: 60 minutes metro-wide, less in Clark Co.",
         "Walk-through, moisture readings, photos.",
         "Documented scope sent to your insurer same day.",
         "Mitigation starts the moment you sign off."
@@ -121,8 +122,8 @@
       "hint": "Day or night. No call centers."
     },
     {
-      "title": "Most of Clark County in 25 min",
-      "hint": "Vancouver and the Portland metro."
+      "title": "60-minute on-site target",
+      "hint": "Metro-wide, 24/7 — usually less in Clark County."
     },
     {
       "title": "Insurance billed direct",
@@ -194,6 +195,19 @@
     ],
     "linkText": "See how we handle remodel projects"
   },
+  "beforeAfter": {
+    "eyebrow": "Before & after",
+    "title": "The same room, twice.",
+    "intro": "Drag the line across. Left is the day we walked in, right is the final walkthrough — same spot, same lens.",
+    "beforePhoto": "",
+    "beforeAlt": "",
+    "afterPhoto": "",
+    "afterAlt": "",
+    "labelBefore": "Before",
+    "labelAfter": "After",
+    "dragLabel": "Drag to move between the before and after photo",
+    "note": "One pair per job, added as work finishes."
+  },
   "band": {
     "photo": "/photos/projects/p7.avif",
     "imageAlt": "Recent finished space"
@@ -224,6 +238,13 @@
     ],
     "note": "Project File access is included on every job — restoration or remodel.",
     "ctaSecondary": "More about how we work"
+  },
+  "reviews": {
+    "eyebrow": "What clients said",
+    "title": "In their words, not ours.",
+    "intro": "Quoted as written, with permission to use the name. Nothing edited, nothing composed here.",
+    "ratingLabel": "{n} out of 5",
+    "note": "Posted by our clients on Google."
   },
   "realWork": {
     "eyebrow": "Real work",

@@ -37,6 +37,7 @@ export const HOME: SectionDef = {
       { kind: "text", key: "phoneTitle", label: "Phone preview — heading", required: true },
       { kind: "textarea", key: "phoneBody", label: "Phone preview — paragraph", required: true, rows: 3 },
       { kind: "text", key: "linkText", label: "Link to the sample project page", required: true },
+      { kind: "textarea", key: "sampleNote", label: "Note under the demo", required: true, rows: 2, hint: "Says the project in the demo is a sample. The demo's own dates move with each deploy." },
     ] },
     { kind: "object", key: "whatWeDo", label: "“What we do” — three lines of work", fields: [
       { kind: "text", key: "eyebrow", label: "Label", required: true },
@@ -111,6 +112,19 @@ export const HOME: SectionDef = {
       ] },
       { kind: "text", key: "linkText", label: "Link under the photos", required: true },
     ] },
+    { kind: "object", key: "beforeAfter", label: "Before & after slider", hint: "Stays off the page until BOTH photos are chosen. The two frames should be the same room from the same spot — that is what makes the slider read.", fields: [
+      { kind: "text", key: "eyebrow", label: "Label", required: true },
+      { kind: "text", key: "title", label: "Heading", required: true },
+      { kind: "textarea", key: "intro", label: "Paragraph", required: true, rows: 2 },
+      { kind: "image", key: "beforePhoto", label: "Before photo", aspect: "3 / 2", allowNone: true, hint: "The shot before work started. Ours only — never stock, never another contractor's." },
+      { kind: "text", key: "beforeAlt", label: "Before photo description", hint: "Read aloud to blind visitors. Only what is visible in the frame." },
+      { kind: "image", key: "afterPhoto", label: "After photo", aspect: "3 / 2", allowNone: true, hint: "The same room at final walkthrough." },
+      { kind: "text", key: "afterAlt", label: "After photo description" },
+      { kind: "text", key: "labelBefore", label: "Corner tag on the left frame", required: true },
+      { kind: "text", key: "labelAfter", label: "Corner tag on the right frame", required: true },
+      { kind: "text", key: "dragLabel", label: "Instruction for screen readers", required: true, hint: "Not shown on screen. Describes the slider to someone who cannot see it." },
+      { kind: "textarea", key: "note", label: "Line under the slider", required: true, rows: 2 },
+    ] },
     { kind: "object", key: "band", label: "Wide photo", fields: [
       { kind: "image", key: "photo", label: "Photo", aspect: "21 / 9" },
       { kind: "text", key: "imageAlt", label: "Photo description", required: true },
@@ -127,6 +141,13 @@ export const HOME: SectionDef = {
       ] },
       { kind: "text", key: "note", label: "Note", required: true },
       { kind: "text", key: "ctaSecondary", label: "Second button", required: true },
+    ] },
+    { kind: "object", key: "reviews", label: "What clients said", hint: "Only the words around the reviews. The reviews themselves are in Reviews — and the whole block stays off the page until there is at least one.", fields: [
+      { kind: "text", key: "eyebrow", label: "Label", required: true },
+      { kind: "text", key: "title", label: "Heading", required: true },
+      { kind: "textarea", key: "intro", label: "Line beside the heading", required: true, rows: 2 },
+      { kind: "text", key: "ratingLabel", label: "Star rating, read aloud", required: true, hint: "Not shown on screen — it describes the stars to someone who cannot see them. {n} is the number of stars." },
+      { kind: "textarea", key: "note", label: "Line under the reviews", required: true, rows: 2 },
     ] },
     { kind: "object", key: "realWork", label: "“Real work” cards", fields: [
       { kind: "text", key: "eyebrow", label: "Label", required: true },

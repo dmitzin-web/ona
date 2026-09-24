@@ -1,7 +1,7 @@
 {
   "seo": {
     "title": "Request a Restoration Quote",
-    "description": "Send us a description and photos of the damage. We respond within the hour during business hours, same morning otherwise. No obligation. Or call {phone} 24/7 for emergencies."
+    "description": "Send us a description and photos of the damage. We aim to respond within the hour during business hours, and the same morning otherwise. No obligation. Or call {phone} 24/7 for emergencies."
   },
   "breadcrumb": {
     "home": "Home",
@@ -68,6 +68,14 @@
       "damageType": "Please select a damage type.",
       "description": "Please tell us what happened (at least a sentence or two).",
       "consent": "Please acknowledge our privacy policy."
+    },
+    "stepper": {
+      "label": "Step {n} of 3",
+      "title1": "What happened",
+      "title2": "The property",
+      "title3": "How we reach you",
+      "next": "Next",
+      "back": "Back"
     }
   },
   "include": {
@@ -126,7 +134,7 @@
       {
         "label": "Emergency phone",
         "value": "Immediate",
-        "note": "Live technician answer 24/7. Crew dispatched in minutes, on-site target 60 minutes anywhere in the Portland metro."
+        "note": "Live technician answer 24/7. Closest available crew dispatched, on-site target 60 minutes anywhere in the Portland metro."
       },
       {
         "label": "Quote form, business hours",
@@ -144,7 +152,7 @@
   "faqs": [
     {
       "q": "How fast will I hear back after I submit this form?",
-      "a": "During business hours (Mon-Sat) we respond within one hour. After hours, we respond the next morning. If your loss is active or you're worried about ongoing damage, call {phone} instead — dispatch is 24/7."
+      "a": "During business hours (Mon-Sat) we typically respond within the hour. After hours, we respond the next morning. If your loss is active or you're worried about ongoing damage, call {phone} instead — dispatch is 24/7."
     },
     {
       "q": "Is the quote free, and am I committing to anything by requesting one?",

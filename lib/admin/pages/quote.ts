@@ -84,6 +84,14 @@ export const QUOTE: SectionDef = {
         { kind: "text", key: "description", label: "Description missing or too short", required: true },
         { kind: "text", key: "consent", label: "Consent box not ticked", required: true },
       ] },
+      { kind: "object", key: "stepper", label: "Step-by-step form", hint: "The form asks its questions in three steps. In the step counter, {n} is the current step.", fields: [
+        { kind: "text", key: "label", label: "Step counter", required: true, hint: "{n} is replaced with 1, 2 or 3." },
+        { kind: "text", key: "title1", label: "Step 1 name", required: true },
+        { kind: "text", key: "title2", label: "Step 2 name", required: true },
+        { kind: "text", key: "title3", label: "Step 3 name", required: true },
+        { kind: "text", key: "next", label: "Button to the next step", required: true },
+        { kind: "text", key: "back", label: "Link back a step", required: true },
+      ] },
     ] },
     { kind: "object", key: "include", label: "“What to include”", fields: [
       { kind: "text", key: "eyebrow", label: "Label", required: true },

@@ -1,7 +1,7 @@
 {
   "seo": {
     "title": "{service} in {area}, {areaState}",
-    "description": "{service} in {area}, {areaState} — working to IICRC standards, {drive}-min dispatch from our Vancouver HQ, insurance-grade documentation. Call {phone} for 24/7 emergency response.",
+    "description": "{service} in {area}, {areaState} — working to IICRC standards, {drive}-min drive from our Vancouver HQ, insurance-grade documentation. Call {phone} for 24/7 emergency response.",
     "descriptionHome": "{service} in {area}, {areaState} — working to IICRC standards, based locally, insurance-grade documentation. Call {phone} for 24/7 emergency response.",
     "structuredName": "{service} in {area}, {areaState}"
   },
@@ -15,8 +15,8 @@
     "titleLead": "{service} in",
     "titleCity": "{area}, {areaState}",
     "titleEnd": ".",
-    "response": "{area} is roughly {drive} minutes from our Vancouver HQ; we hit a 60-minute on-site target city-wide.",
-    "responseHome": "As our home base, {area} gets our fastest dispatch — typically under 20 minutes anywhere in {county}."
+    "response": "{area} is roughly {drive} minutes' drive from our Vancouver HQ; our on-site target is 60 minutes city-wide.",
+    "responseHome": "As our home base, {area} gets our fastest dispatch — our on-site target is 60 minutes and we are typically well inside it across {county}."
   },
   "stats": {
     "responseLabel": "Response target",

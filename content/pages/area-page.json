@@ -1,7 +1,7 @@
 {
   "seo": {
     "title": "Restoration in {area}, {areaState} — Water, Fire & Mold",
-    "description": "24/7 restoration in {area}, {areaStateName} ({county}). {drive}-minute dispatch from our Vancouver, WA HQ. direct insurance billing.",
+    "description": "24/7 restoration in {area}, {areaStateName} ({county}). 60-minute on-site target from our Vancouver, WA HQ. direct insurance billing.",
     "structuredName": "Restoration services in {area}, {areaState}"
   },
   "breadcrumbs": {
@@ -13,7 +13,7 @@
     "eyebrow": "{county} · {areaStateName}",
     "titleLead": "Restoration in {area},",
     "titleRest": "{areaState}.",
-    "body": "{drive}-minute dispatch from our Vancouver, WA headquarters. Population {population}. experienced crews, direct insurance billing, 24/7.",
+    "body": "Our on-site target is 60 minutes from our Vancouver, WA headquarters. Population {population}. experienced crews, direct insurance billing, 24/7.",
     "ctaCall": "Call {phone}",
     "ctaServices": "All services"
   },
@@ -39,7 +39,7 @@
     "items": [
       {
         "q": "How fast can Ona Restoration reach {area}, {areaState}?",
-        "a": "Our typical dispatch time to {area} is {drive} minutes from our Vancouver, WA headquarters. During regional emergencies we dispatch by severity and prioritize the closest available crew first.",
+        "a": "We aim to be on-site within 60 minutes anywhere in the Portland metro, 24/7 — sooner in Clark County, where we are based. During regional emergencies we dispatch by severity and prioritize the closest available crew first.",
         "aOregon": ""
       },
       {
@@ -66,6 +66,6 @@
   },
   "cta": {
     "title": "Emergency in {area}?",
-    "subtitle": "Live dispatch, 24/7. Typical on-site time from Vancouver, WA: {drive} minutes."
+    "subtitle": "Live dispatch, 24/7. Our on-site target from Vancouver, WA is 60 minutes."
   }
 }

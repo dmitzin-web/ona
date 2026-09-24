@@ -27,6 +27,18 @@ const RULES: { rule: string; test: (sentence: string) => boolean }[] = [
   },
   {
     rule:
+      "A response time may only be advertised as a target, not as a promise. One standard for the whole site: a 60-minute on-site target across the Portland metro, 24/7 — faster in Clark County, where the per-city figures are drive times, not commitments.",
+    // Fires on an arrival claim carrying a duration, unless the sentence
+    // qualifies it (target/aim/typical/drive time/…). Deliberately narrow:
+    // "24/7 emergency response" has no duration and "a free inspection
+    // scheduled within 24-48 hours" is a booking, not a dispatch promise.
+    test: (s) =>
+      /\b(on[- ]?site|on site|arrive|arrival|at your door|reach (?:you|your)|dispatch(?:ed|es)?|respond|response time)\b/i.test(s) &&
+      /(\b\d+\s*(?:-\s*\d+\s*)?(?:min(?:ute)?s?|hours?|hrs?)\b|\b(?:an|the|one) hour\b|\bwithin minutes\b|\bin minutes\b)/i.test(s) &&
+      !/\b(target|aim|aims|goal|typical|typically|usual|usually|average|estimate|estimated|roughly|approximately|about|generally|most|drive|driving|schedule|scheduled|window|standard)\b/i.test(s),
+  },
+  {
+    rule:
       "Never offer to waive, cover or absorb a customer's deductible (RCW 48.30.230). “You pay your deductible, nothing more” is the approved line.",
     test: (s) =>
       /\b(waiv\w*|cover\w*|absorb\w*|eliminat\w*|forgiv\w*|refund\w*)\b[^.]{0,40}\bdeductible/i.test(s) ||

@@ -2,6 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { JsonLd } from "@/components/JsonLd";
+import { BeforeAfter } from "@/components/BeforeAfter";
+import { Reviews } from "@/components/Reviews";
+import { reviews } from "@/lib/reviews";
 import { restorationServices } from "@/lib/services";
 import { site } from "@/lib/site";
 import { buildMetadata } from "@/lib/seo";
@@ -47,6 +50,22 @@ const demoPhotos = [
   { src: "/photos/projects/p8.avif", alt: "Project — bath" },
   { src: "/photos/projects/p9.avif", alt: "Project — finished space" },
 ];
+
+// The sample project runs "today minus six days" so the demo never reads as
+// a job that has been sitting still since whenever this file was written —
+// the dates are computed at build time, and every content save redeploys.
+// Pacific time because that is where the work is: a UTC build after 4pm
+// local would otherwise print tomorrow's date.
+const DEMO_DAYS_IN = 6;
+const demoDate = (daysAfterOpen: number) => {
+  const d = new Date();
+  d.setDate(d.getDate() - DEMO_DAYS_IN + daysAfterOpen);
+  return new Intl.DateTimeFormat("en-US", {
+    month: "long",
+    day: "numeric",
+    timeZone: "America/Los_Angeles",
+  }).format(d);
+};
 
 // Every piece of copy on this page lives in content/pages/home.json and is
 // edited through the admin (/admin → Homepage). {phone}, {name} … are filled
@@ -233,7 +252,7 @@ export default function HomePage() {
                     NE Hazel Dell — kitchen leak rebuild
                   </h3>
                   <p className="mt-2 text-[13px] text-ivory/85">
-                    Opened July 29 · Day 7 of 14 · Adjuster: Liberty Mutual
+                    Opened {demoDate(0)} · Day 7 of 14 · Adjuster: Liberty Mutual
                   </p>
                 </div>
                 <div className="inline-flex items-center gap-2 self-start rounded-[2px] border border-gold/40 bg-gold/5 px-3 py-1.5 text-[12px] text-gold">
@@ -298,7 +317,7 @@ export default function HomePage() {
                     {[
                       {
                         day: "Day 1",
-                        ts: "July 29 · 8:42a",
+                        ts: `${demoDate(0)} · 8:42a`,
                         title: "Initial moisture mapping",
                         body: "Identified 6.2 m² of saturated subfloor. Containment set, dehumidifiers placed.",
                         photos: 12,
@@ -306,7 +325,7 @@ export default function HomePage() {
                       },
                       {
                         day: "Day 3",
-                        ts: "July 31 · 11:05a",
+                        ts: `${demoDate(2)} · 11:05a`,
                         title: "Adjuster walkthrough — approved",
                         body: 'Scope agreed: lower cabinets, subfloor, drywall to 18". Insurer photos uploaded.',
                         photos: 38,
@@ -314,7 +333,7 @@ export default function HomePage() {
                       },
                       {
                         day: "Day 5",
-                        ts: "August 2 · 4:18p",
+                        ts: `${demoDate(4)} · 4:18p`,
                         title: "Drying complete",
                         body: "All readings below threshold. Demo scheduled for Day 6.",
                         photos: 18,
@@ -522,6 +541,15 @@ export default function HomePage() {
               </div>
             </div>
           </div>
+
+          {/* Says out loud what the SAMPLE chip in the mockup's browser bar
+              only implies: the project above is an illustration, not a job
+              running right now. The dates inside it move with the build,
+              so without this line a visitor has no way to tell. Same
+              promise as the banner on /work/<slug>. */}
+          <p className="mt-4 max-w-2xl text-[13px] text-warm-gray">
+            {t.projectFile.sampleNote}
+          </p>
 
           {/* Phone mockup w/ real photos.
               Hidden on mobile: the visitor is already on their phone, so a
@@ -991,6 +1019,55 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ─── 4B. BEFORE / AFTER ───────────────────────────────
+          Absent from the page until both photos exist. There is
+          no restoration photography in the library yet — every
+          frame in /photos is a finished remodel — and a slider
+          faking the "before" half with a filter, or borrowing a
+          stock burnt wall, would be the one thing this whole
+          site is built not to do. The block is wired, the fields
+          are in the admin (Homepage → Before & after slider),
+          and the first real pair turns it on with no code. */}
+      {t.beforeAfter.beforePhoto && t.beforeAfter.afterPhoto ? (
+        <section className="border-t border-line bg-charcoal-soft">
+          <div className="mx-auto max-w-7xl px-6 py-24 md:py-32 lg:px-10">
+            <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-center lg:gap-16">
+              <div>
+                <p className="eyebrow text-warm-gray">
+                  {t.beforeAfter.eyebrow}
+                </p>
+                <h2 className="mt-6 text-[32px] font-semibold leading-[1.1] tracking-[-0.02em] text-ivory md:text-[44px]">
+                  {t.beforeAfter.title}
+                </h2>
+                <p className="mt-6 max-w-md text-[17px] leading-relaxed text-warm-gray">
+                  {t.beforeAfter.intro}
+                </p>
+                <p className="mt-6 text-[13px] text-warm-gray">
+                  {t.beforeAfter.note}
+                </p>
+              </div>
+
+              <BeforeAfter
+                before={{
+                  src: t.beforeAfter.beforePhoto,
+                  alt: t.beforeAfter.beforeAlt || t.beforeAfter.labelBefore,
+                }}
+                after={{
+                  src: t.beforeAfter.afterPhoto,
+                  alt: t.beforeAfter.afterAlt || t.beforeAfter.labelAfter,
+                }}
+                labels={{
+                  before: t.beforeAfter.labelBefore,
+                  after: t.beforeAfter.labelAfter,
+                  drag: t.beforeAfter.dragLabel,
+                }}
+                sizes="(max-width: 1024px) 100vw, 60vw"
+              />
+            </div>
+          </div>
+        </section>
+      ) : null}
+
       {/* ─── 4C. FULL-BLEED PHOTO BAND ────────────────────────
           One single large image breaking the max-w-7xl rhythm.
           No card, no border, no overlay text — just a wide
@@ -1074,6 +1151,15 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* ─── 5B. WHAT CLIENTS SAID ────────────────────────────
+          Renders only once content/reviews.json has a real entry
+          (/admin → Reviews). Until then the page goes straight
+          from the crew to the work, which is the honest order
+          for a company whose first jobs are still running. The
+          same reviews already feed LocalBusiness structured data
+          in lib/jsonld.ts. */}
+      <Reviews copy={t.reviews} reviews={reviews} />
 
       {/* ─── 6. REAL WORK — cards with real photos ────────────
           Two cards get real photo tops. Third stays as honest
