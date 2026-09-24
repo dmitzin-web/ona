@@ -1,0 +1,1349 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Ona Restoration — Property damage, undone.</title>
+<meta name="description" content="Property recovery in Vancouver WA and the Portland metro. From the emergency call to the finished room — water, fire, mold, storm and reconstruction, documented for your insurer.">
+
+<!--
+  ═══════════════════════════════════════════════════════════════
+  /newline — Ona Restoration, concept build (third direction)
+  ═══════════════════════════════════════════════════════════════
+  A property RECOVERY company, not a "water damage restoration
+  company": the page walks emergency → mitigation → documentation
+  → insurance → rebuild, and the Live Project File is treated as
+  the product it actually is.
+
+  Deliberately not the industry template: no navy gradient, no
+  water droplet, no six identical hazard tiles. Warm paper,
+  near-black type, one acid accent, architectural hairlines,
+  almost no shadows, Satoshi — self-hosted from the site's own
+  font file, so this page needs no external host at all.
+
+  ── What is real and what is not ───────────────────────────────
+  Real: the WA registration number, the IICRC certificates, the
+  phone number, the service-area cities, and every finished-room
+  photograph (they are Ona's own completed work).
+  Not real, and labelled as such on the page itself: the Live
+  Project File and the claim anatomy are illustrative — no
+  customer is shown — and the damaged halves are generated in the
+  browser from SVG turbulence over a darkened photo, because Ona
+  has no loss photography yet.
+  Absent on purpose: any Oregon licence claim (the CCB
+  registration is pending), any arrival promise (the site's one
+  standard is a 60-minute on-site TARGET), any review, rating or
+  review count (there are none yet — the block says so).
+-->
+
+<style>
+/* ── Type ──────────────────────────────────────────────────── */
+@font-face{
+  font-family:'Satoshi';
+  src:url('/newline/satoshi.woff2') format('woff2-variations');
+  font-weight:300 900;font-style:normal;font-display:swap;
+}
+
+/* ── Tokens ────────────────────────────────────────────────── */
+:root{
+  --paper:#F4F3EF;
+  --paper-2:#EBE9E1;
+  --paper-3:#E2DFD4;
+  --ink:#111111;
+  --ink-2:#4B4B45;
+  --ink-3:#8B8B82;
+  --line:#DCD9CE;
+  --line-2:#C9C5B7;
+  --lime:#D8F24B;
+  --lime-deep:#C2DC2E;
+  --alert:#E2451F;
+  --carbon:#15150F;
+  --carbon-2:#1F1F18;
+  --r:8px;
+  --r-sm:6px;
+  --gut:24px;
+  --max:1280px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--paper);color:var(--ink);
+  font-family:'Satoshi',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-weight:450;line-height:1.5;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gut)}
+.eyebrow{
+  font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-3);
+}
+.rule{height:1px;background:var(--line);border:0}
+
+h1,h2,h3{font-weight:800;letter-spacing:-.035em;line-height:.98}
+h2{font-size:clamp(30px,4.4vw,52px)}
+h3{font-size:19px;letter-spacing:-.02em;line-height:1.15}
+p{color:var(--ink-2)}
+
+/* ── Buttons ───────────────────────────────────────────────── */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  height:52px;padding:0 24px;border-radius:var(--r);
+  font-size:15px;font-weight:700;letter-spacing:-.01em;
+  transition:background .18s,color .18s,border-color .18s,transform .18s;
+}
+.btn:active{transform:translateY(1px)}
+.btn-lime{background:var(--lime);color:var(--ink)}
+.btn-lime:hover{background:var(--lime-deep)}
+.btn-ink{background:var(--ink);color:#fff}
+.btn-ink:hover{background:#2c2c28}
+.btn-ghost{border:1px solid var(--line-2);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--ink);background:rgba(17,17,17,.03)}
+.btn-sm{height:40px;padding:0 16px;font-size:13.5px;border-radius:var(--r-sm)}
+.btn-onDark{border:1px solid rgba(255,255,255,.28);color:#fff}
+.btn-onDark:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+
+.arrow{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:14.5px}
+.arrow svg{transition:transform .18s}
+.arrow:hover svg{transform:translateX(4px)}
+
+/* ── Header ────────────────────────────────────────────────── */
+header{
+  position:sticky;top:0;z-index:60;
+  background:rgba(244,243,239,.86);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.hd{display:flex;align-items:center;gap:28px;height:64px}
+.logo{display:inline-flex;align-items:baseline;gap:1px;font-weight:900;font-size:22px;letter-spacing:-.02em}
+.logo .chev{display:inline-block;width:.62em;height:.62em;position:relative;margin:0 .02em}
+.logo .chev svg{position:absolute;inset:0;width:100%;height:100%}
+.logo .deg{font-size:.5em;line-height:1;position:relative;top:-.62em;color:var(--lime-deep)}
+nav.main{display:flex;gap:22px;font-size:14px;font-weight:600;color:var(--ink-2)}
+nav.main a:hover{color:var(--ink)}
+.hd-right{margin-left:auto;display:flex;align-items:center;gap:14px}
+.hd-loc{font-size:12px;color:var(--ink-3);font-weight:550}
+.pill247{
+  display:inline-flex;align-items:center;gap:7px;
+  font-size:12px;font-weight:700;letter-spacing:.02em;
+  padding:6px 11px;border:1px solid var(--line-2);border-radius:100px;
+}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--lime-deep);flex:none}
+.dot.live{animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.28}}
+
+/* ── Hero ──────────────────────────────────────────────────── */
+.hero{border-bottom:1px solid var(--line)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.04fr);gap:0;align-items:stretch}
+.hero-left{padding:56px var(--gut) 56px;max-width:calc(var(--max)/2);margin-left:auto;width:100%}
+.statuspill{
+  display:inline-flex;align-items:center;gap:9px;
+  font-size:11.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-2);
+}
+h1.display{
+  margin-top:22px;
+  font-size:clamp(44px,7.4vw,104px);font-weight:900;
+  line-height:.9;letter-spacing:-.045em;
+}
+.hero-services{
+  margin-top:26px;font-size:17px;font-weight:650;color:var(--ink);letter-spacing:-.01em;
+}
+.hero-services span{color:var(--line-2);margin:0 8px}
+.hero-meta{margin-top:8px;font-size:14px;color:var(--ink-3);font-weight:550}
+.hero-cta{margin-top:30px;display:flex;flex-wrap:wrap;gap:12px}
+
+/* ── Damage / restored wipe ────────────────────────────────── */
+.wipe{position:relative;overflow:hidden;background:#0d0d0a;touch-action:pan-y;user-select:none;min-height:420px}
+.wipe .side{position:absolute;inset:0}
+.wipe .ph{position:absolute;inset:0;background-size:cover;background-position:center}
+.wipe .before{clip-path:inset(0 var(--clip,50%) 0 0)}
+.wipe .wbar{position:absolute;top:0;bottom:0;width:1px;background:#fff;left:var(--pct,50%);pointer-events:none}
+.wipe .grip{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:44px;height:44px;border-radius:50%;background:#fff;color:var(--ink);
+  display:flex;align-items:center;justify-content:center;pointer-events:auto;
+  cursor:ew-resize;box-shadow:0 2px 18px rgba(0,0,0,.35);
+}
+.wipe .tag{
+  position:absolute;bottom:16px;
+  font-size:10.5px;font-weight:800;letter-spacing:.16em;color:#fff;
+  padding:5px 9px;border:1px solid rgba(255,255,255,.4);border-radius:4px;
+  background:rgba(0,0,0,.34);pointer-events:none;
+}
+.wipe .tag.l{left:16px}
+.wipe .tag.r{right:16px;background:var(--lime);color:var(--ink);border-color:transparent}
+
+/* Generated damage.
+   Ona has no loss photography, so the "before" half is drawn over
+   the real finished room: the frame is pulled down and cold, then
+   warm staining is laid back ON TOP in screen blend. That order
+   matters — a stain painted darker than an already-dark frame is
+   invisible, which is exactly how the first attempt failed. Five
+   layers, each doing one legible thing: cast, ceiling bloom, wall
+   runs, the water standing on the floor, and the tide line it
+   leaves on everything vertical. */
+.dmg{filter:brightness(.46) saturate(.3) contrast(1.22) hue-rotate(-12deg)}
+.dmg-cast{background:linear-gradient(to bottom,rgba(18,30,36,.5),rgba(8,12,14,.3));mix-blend-mode:multiply}
+.dmg-ceil{
+  mix-blend-mode:screen;opacity:.95;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='700' height='500'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.011 0.02' numOctaves='4' seed='11'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.56 0 0 0 0 0.44 0 0 0 0 0.26 0 0 0 -1.45 0.98'/%3E%3C/filter%3E%3Crect width='700' height='500' filter='url(%23f)'/%3E%3C/svg%3E");
+  background-size:cover;
+  -webkit-mask-image:linear-gradient(to bottom,#000 0,#000 16%,transparent 42%);
+  mask-image:linear-gradient(to bottom,#000 0,#000 16%,transparent 42%);
+}
+.dmg-runs{
+  mix-blend-mode:screen;opacity:.8;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='700' height='500'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.09 0.003' numOctaves='4' seed='4'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.5 0 0 0 0 0.41 0 0 0 0 0.25 0 0 0 -1.75 1.08'/%3E%3C/filter%3E%3Crect width='700' height='500' filter='url(%23f)'/%3E%3C/svg%3E");
+  background-size:cover;
+  -webkit-mask-image:linear-gradient(to bottom,#000 0,#000 40%,transparent 72%);
+  mask-image:linear-gradient(to bottom,#000 0,#000 40%,transparent 72%);
+}
+.dmg-water{background:linear-gradient(to top,rgba(168,192,204,.5) 0,rgba(130,154,166,.3) 16%,rgba(0,0,0,0) 32%);mix-blend-mode:screen}
+.dmg-sheen{
+  mix-blend-mode:screen;opacity:.62;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='700' height='500'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.003 0.1' numOctaves='4' seed='19'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.62 0 0 0 0 0.68 0 0 0 0 0.72 0 0 0 -1.5 1.02'/%3E%3C/filter%3E%3Crect width='700' height='500' filter='url(%23f)'/%3E%3C/svg%3E");
+  background-size:cover;
+  -webkit-mask-image:linear-gradient(to top,#000 0,#000 15%,transparent 27%);
+  mask-image:linear-gradient(to top,#000 0,#000 15%,transparent 27%);
+}
+.dmg-tide{background:linear-gradient(to top,rgba(0,0,0,0) 30%,rgba(176,146,84,.5) 32%,rgba(120,98,58,.34) 34.5%,rgba(0,0,0,0) 39%)}
+.dmg-vig{background:radial-gradient(118% 88% at 50% 38%,rgba(0,0,0,0) 32%,rgba(0,0,0,.62) 100%)}
+
+/* ── Trust strip ───────────────────────────────────────────── */
+.trust{border-bottom:1px solid var(--line);background:var(--paper)}
+.trust-grid{display:grid;grid-template-columns:repeat(5,1fr)}
+.trust-item{display:flex;align-items:center;gap:11px;padding:20px 22px 20px 0;border-right:1px solid var(--line)}
+.trust-item:last-child{border-right:0}
+.trust-item svg{flex:none;color:var(--ink)}
+.trust-item b{display:block;font-size:13.5px;font-weight:700;letter-spacing:-.01em}
+.trust-item span{display:block;font-size:11.5px;color:var(--ink-3);margin-top:1px}
+
+/* ── Dark statement band ───────────────────────────────────── */
+.dark{background:var(--carbon);color:#fff;position:relative;overflow:hidden}
+.dark p{color:rgba(255,255,255,.72)}
+.dark .eyebrow{color:var(--lime)}
+.band{position:relative;min-height:520px;display:flex;align-items:flex-end}
+.band .bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:brightness(.42) saturate(.7)}
+.band .scrim{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,7,.92) 0,rgba(10,10,7,.35) 55%,rgba(10,10,7,.55) 100%)}
+.band .inner{position:relative;padding:64px 0 56px;width:100%}
+.band h2{font-size:clamp(34px,5.2vw,62px);color:#fff}
+
+/* ── Section furniture ─────────────────────────────────────── */
+section.scr{padding:88px 0;border-bottom:1px solid var(--line)}
+.dark.scr{border-bottom:0}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.sec-head p.lead{max-width:440px;font-size:15.5px}
+
+/* ── Process ───────────────────────────────────────────────── */
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-top:46px}
+.step{position:relative;padding-right:22px}
+.step .num{
+  width:30px;height:30px;border-radius:50%;border:1px solid var(--ink);
+  display:flex;align-items:center;justify-content:center;
+  font-size:11.5px;font-weight:800;letter-spacing:.02em;background:var(--paper);
+}
+.step .line{position:absolute;top:15px;left:34px;right:14px;height:1px;background:var(--line-2)}
+.step:last-child .line{display:none}
+.step h3{margin-top:18px;font-size:17px}
+.step p{margin-top:5px;font-size:13.5px;line-height:1.45}
+.step.on .num{background:var(--lime);border-color:var(--lime)}
+.strip{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:44px}
+.strip div{aspect-ratio:4/3;border-radius:var(--r-sm);background-size:cover;background-position:center}
+
+/* ── Live project file ─────────────────────────────────────── */
+.live-grid{display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);gap:56px;align-items:center}
+.app{
+  background:#fff;border:1px solid var(--line);border-radius:12px;
+  position:relative;overflow:hidden;
+}
+.app-top{display:flex;align-items:center;gap:9px;padding:13px 16px;border-bottom:1px solid var(--line);font-size:12px;color:var(--ink-3)}
+.app-body{padding:20px}
+.app-h{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
+.app-h h3{font-size:20px}
+.app-h .sub{font-size:12.5px;color:var(--ink-3);margin-top:3px}
+.chips{display:flex;gap:7px;flex-wrap:wrap;margin-top:14px}
+.chip{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:11.5px;font-weight:650;padding:5px 10px;border-radius:100px;
+  background:var(--paper-2);color:var(--ink-2);
+}
+.chip.k{background:var(--lime);color:var(--ink)}
+.rail{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-top:24px}
+.rail .n{position:relative;padding-top:16px;font-size:11px;font-weight:650;color:var(--ink-3);letter-spacing:.01em}
+.rail .n::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--line);border-radius:2px}
+.rail .n.done::before{background:var(--ink)}
+.rail .n.now::before{background:var(--lime)}
+.rail .n.now{color:var(--ink);font-weight:750}
+.feed{margin-top:26px;border-top:1px solid var(--line)}
+.feed .row{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--line);font-size:13.5px}
+.feed .row .t{margin-left:auto;font-size:11.5px;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.feed .row .d{width:6px;height:6px;border-radius:50%;background:var(--line-2);flex:none}
+.feed .row:first-child .d{background:var(--lime-deep)}
+.tabs{display:flex;gap:18px;margin-top:18px;font-size:12px;font-weight:650;color:var(--ink-3)}
+.tabs .on{color:var(--ink);border-bottom:2px solid var(--ink);padding-bottom:4px}
+.sample{
+  position:absolute;top:13px;right:14px;z-index:2;
+  font-size:9.5px;font-weight:800;letter-spacing:.14em;
+  padding:4px 7px;border-radius:4px;background:var(--ink);color:#fff;
+}
+.phone{
+  position:absolute;right:-8px;bottom:-26px;width:212px;
+  border-radius:26px;border:8px solid #16160f;background:#fff;
+  box-shadow:0 18px 50px -18px rgba(0,0,0,.42);overflow:hidden;
+}
+.phone .pb{padding:14px 13px 20px}
+.live-note{margin-top:16px;font-size:12px;color:var(--ink-3)}
+
+/* ── Services ──────────────────────────────────────────────── */
+.svc{margin-top:42px;border-top:1px solid var(--line)}
+.svc a{
+  display:grid;grid-template-columns:52px minmax(0,1fr) minmax(0,1.25fr) 24px;
+  gap:20px;align-items:center;
+  padding:22px 0;border-bottom:1px solid var(--line);
+  transition:padding-left .2s,background .2s;
+}
+.svc a:hover{padding-left:12px;background:rgba(17,17,17,.025)}
+.svc .gx{width:52px;height:52px;border-radius:var(--r-sm);overflow:hidden;position:relative;background:var(--paper-3)}
+.svc h3{font-size:22px;letter-spacing:-.03em}
+.svc p{font-size:13.5px}
+.svc .go{color:var(--ink-3);justify-self:end}
+.svc a:hover .go{color:var(--ink)}
+.svc-note{margin-top:16px;font-size:12px;color:var(--ink-3)}
+
+/* ── Case anatomy ──────────────────────────────────────────── */
+.case-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:48px;align-items:start;margin-top:40px}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:26px;border-top:1px solid var(--line)}
+.metrics div{padding:16px 12px 0 0}
+.metrics b{display:block;font-size:26px;font-weight:800;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.metrics span{display:block;font-size:11px;color:var(--ink-3);margin-top:2px}
+.tl{margin-top:30px}
+.tl .r{display:grid;grid-template-columns:86px 1fr;gap:16px;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px}
+.tl .r b{font-weight:700;font-size:12.5px;color:var(--ink);font-variant-numeric:tabular-nums;padding-top:1px}
+.tl .r span{color:var(--ink-2)}
+
+/* ── Two audiences ─────────────────────────────────────────── */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:40px}
+.aud{border:1px solid var(--line);border-radius:var(--r);padding:30px;background:#fff;position:relative}
+.aud.k{background:var(--carbon);color:#fff;border-color:transparent}
+.aud.k p,.aud.k li{color:rgba(255,255,255,.7)}
+.aud.k .eyebrow{color:var(--lime)}
+.aud h3{margin-top:16px;font-size:26px;letter-spacing:-.03em}
+.aud p{margin-top:10px;font-size:14.5px}
+.aud ul{margin-top:18px;list-style:none;display:grid;gap:8px}
+.aud li{font-size:13.5px;color:var(--ink-2);display:flex;gap:9px}
+.aud li::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--lime-deep);margin-top:8px;flex:none}
+.aud .arrow{margin-top:22px}
+
+/* ── Reviews (honest placeholder) ──────────────────────────── */
+.rv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:38px}
+.rv-slot{
+  border:1px dashed var(--line-2);border-radius:var(--r);padding:26px;
+  min-height:170px;display:flex;flex-direction:column;justify-content:space-between;
+}
+.rv-slot .q{font-size:26px;color:var(--line-2);font-weight:800;line-height:1}
+.rv-slot p{font-size:13.5px;color:var(--ink-3)}
+
+/* ── Service area ──────────────────────────────────────────── */
+.area-grid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:48px;align-items:center;margin-top:8px}
+.cities{display:grid;grid-template-columns:1fr 1fr;gap:6px 24px;margin-top:24px}
+.cities span{font-size:14px;color:var(--ink-2);padding:5px 0;border-bottom:1px solid var(--line)}
+.map{border:1px solid var(--line);border-radius:var(--r);background:#fff;overflow:hidden}
+
+/* ── Final ─────────────────────────────────────────────────── */
+.final{background:var(--carbon);color:#fff;padding:96px 0 104px}
+.final h2{font-size:clamp(34px,5.6vw,66px);color:#fff}
+.final .cta{margin-top:34px;display:flex;flex-wrap:wrap;gap:12px}
+
+footer{background:var(--carbon);color:rgba(255,255,255,.55);padding:0 0 40px;font-size:12.5px}
+footer .fl{border-top:1px solid rgba(255,255,255,.12);padding-top:26px;display:flex;flex-wrap:wrap;gap:18px 34px;align-items:baseline}
+footer a:hover{color:#fff}
+footer .note{width:100%;color:rgba(255,255,255,.34);font-size:11.5px;line-height:1.6;max-width:760px}
+
+/* ── Mobile action bar ─────────────────────────────────────── */
+.bar{
+  position:fixed;left:0;right:0;bottom:0;z-index:70;display:none;gap:10px;
+  padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+  background:rgba(244,243,239,.94);backdrop-filter:blur(14px);
+  border-top:1px solid var(--line);
+}
+.bar .btn{flex:1}
+
+/* ── Reveal ────────────────────────────────────────────────── */
+.rv{opacity:0;transform:translateY(16px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .rv{opacity:1;transform:none;transition:none}
+  .dot.live{animation:none}
+}
+
+/* ── Responsive ────────────────────────────────────────────── */
+@media (max-width:1080px){
+  .live-grid,.case-grid,.area-grid{grid-template-columns:1fr;gap:36px}
+  .phone{display:none}
+  .trust-grid{grid-template-columns:repeat(3,1fr)}
+  .trust-item:nth-child(3n){border-right:0}
+}
+@media (max-width:900px){
+  nav.main,.hd-loc{display:none}
+  .hero-grid{grid-template-columns:1fr}
+  .hero-left{max-width:none;padding:40px var(--gut) 40px}
+  .wipe{min-height:340px}
+  .steps{grid-template-columns:1fr 1fr;gap:26px 18px}
+  .step .line{display:none}
+  .strip{grid-template-columns:repeat(3,1fr)}
+  .strip div:nth-child(n+4){display:none}
+  .two{grid-template-columns:1fr}
+  .rv-grid{grid-template-columns:1fr}
+  .metrics{grid-template-columns:1fr 1fr;gap:14px 0}
+  .svc a{grid-template-columns:44px 1fr 20px;gap:14px}
+  .svc a p{display:none}
+  .bar{display:flex}
+  body{padding-bottom:72px}
+  section.scr{padding:60px 0}
+}
+@media (max-width:560px){
+  .trust-grid{grid-template-columns:1fr 1fr}
+  .trust-item:nth-child(3n){border-right:1px solid var(--line)}
+  .trust-item:nth-child(2n){border-right:0}
+  .cities{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ HEADER ═══════════════════════════════════════════════ -->
+<header>
+  <div class="wrap hd">
+    <a href="#top" class="logo" aria-label="Ona Restoration">ON<span class="chev" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M10 2.6 18.4 17.4H1.6L10 2.6Z" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round"/></svg></span><span class="deg" aria-hidden="true">°</span></a>
+    <nav class="main" aria-label="Sections">
+      <a href="#services">Restoration</a>
+      <a href="#services">Remodel</a>
+      <a href="#anatomy">Projects</a>
+      <a href="#audiences">For Insurance</a>
+      <a href="#story">About</a>
+    </nav>
+    <div class="hd-right">
+      <span class="hd-loc">Vancouver WA / Portland OR</span>
+      <span class="pill247"><i class="dot live"></i>24/7</span>
+      <a class="btn btn-ink btn-sm" href="tel:+13605532138">Call now</a>
+    </div>
+  </div>
+</header>
+
+<!-- ═══ HERO ═════════════════════════════════════════════════
+     Almost empty on purpose. Three words of type, four service
+     nouns, two buttons — and one image that does the arguing:
+     the visitor repairs the room themselves by dragging. -->
+<section class="hero" id="top">
+  <div class="hero-grid">
+    <div class="hero-left">
+      <p class="statuspill"><i class="dot live"></i>Live · Emergency line open</p>
+      <h1 class="display">Property<br>damage,<br>undone.</h1>
+      <p class="hero-services">Water<span>·</span>Fire<span>·</span>Mold<span>·</span>Reconstruction</p>
+      <p class="hero-meta">24/7 response · Vancouver WA + Portland OR · 60-minute on-site target</p>
+      <div class="hero-cta">
+        <a class="btn btn-lime" href="tel:+13605532138">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Call 24/7
+        </a>
+        <button class="btn btn-ghost" data-claim>Start a claim</button>
+      </div>
+    </div>
+
+    <!-- Damage → restored. The "before" half is generated in the
+         browser (SVG turbulence over a darkened frame), because
+         there is no loss photography yet; the "after" half is a
+         real finished Ona room. -->
+    <div class="wipe" id="wipe" style="--clip:50%;--pct:50%">
+      <div class="side"><div class="ph" style="background-image:url(/photos/projects/full-kitchen/image.avif)"></div></div>
+      <div class="side before">
+        <div class="ph dmg" style="background-image:url(/photos/projects/full-kitchen/image.avif)"></div>
+        <div class="dmg-lay dmg-cast"></div>
+        <div class="dmg-lay dmg-ceil"></div>
+        <div class="dmg-lay dmg-runs"></div>
+        <div class="dmg-lay dmg-water"></div>
+        <div class="dmg-lay dmg-sheen"></div>
+        <div class="dmg-lay dmg-tide"></div>
+        <div class="dmg-lay dmg-vig"></div>
+      </div>
+      <span class="tag l">Loss</span>
+      <span class="tag r">Restored</span>
+      <div class="wbar">
+        <button class="grip" type="button" role="slider" aria-label="Drag to compare loss and restored"
+                aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" id="grip">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 6 4 12l5 6M15 6l5 6-5 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TRUST STRIP ══════════════════════════════════════════
+     Every line here is verifiable. The WA registration number is
+     required in advertising anyway (RCW 18.27.100(3)); there is
+     deliberately no Oregon licence claim, because the CCB
+     registration is still pending. -->
+<div class="trust">
+  <div class="wrap trust-grid">
+    <div class="trust-item">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M8.5 12.2l2.4 2.4 4.6-4.9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div><b>IICRC certified</b><span>WRT · ASD · AMRT · FSRT</span></div>
+    </div>
+    <div class="trust-item">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v5.6c0 4.2-2.9 7.6-7 9.4-4.1-1.8-7-5.2-7-9.4V6l7-3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+      <div><b>WA registered</b><span>ONARER*748K8</span></div>
+    </div>
+    <div class="trust-item">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 4h10l4 4v12H5V4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8.5 13h7M8.5 16.5h4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+      <div><b>Insurance claims</b><span>Billed direct to your insurer</span></div>
+    </div>
+    <div class="trust-item">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 11.5 12 5l8 6.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.5 10.4V19h11v-8.6" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+      <div><b>Residential &amp; commercial</b><span>Single room to whole building</span></div>
+    </div>
+    <div class="trust-item">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M12 7v5.2l3.3 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div><b>60-minute target</b><span>On-site across the metro, 24/7</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ FROM LOSS TO WHOLE AGAIN ═════════════════════════════ -->
+<section class="dark band" id="story">
+  <div class="bg" style="background-image:url(/photos/projects/kitchen-through-to-living/image.avif)"></div>
+  <div class="scrim"></div>
+  <div class="inner">
+    <div class="wrap rv">
+      <p class="eyebrow">Real homes. Real results.</p>
+      <h2 style="margin-top:20px;max-width:12ch">From loss<br>to whole again.</h2>
+      <p style="margin-top:22px;max-width:46ch;font-size:16px">We help homeowners and property managers recover, document and rebuild — with less stress and more clarity. One company from the first hour to the last coat of paint.</p>
+      <a class="arrow" href="#live" style="margin-top:28px;color:var(--lime)">
+        See a project file
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ONE COMPANY ══════════════════════════════════════════ -->
+<section class="scr" id="process">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <h2 style="max-width:16ch">One company.<br>From emergency to rebuild.</h2>
+      <a class="btn btn-ghost btn-sm" href="/water-damage">View the process
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+
+    <div class="steps rv">
+      <div class="step on"><div class="num">01</div><div class="line"></div><h3>Respond</h3><p>60-minute on-site target, any hour</p></div>
+      <div class="step"><div class="num">02</div><div class="line"></div><h3>Mitigate</h3><p>Stop the damage spreading</p></div>
+      <div class="step"><div class="num">03</div><div class="line"></div><h3>Document</h3><p>Photos, moisture logs, insurer support</p></div>
+      <div class="step"><div class="num">04</div><div class="line"></div><h3>Restore</h3><p>Dry, clean, rebuild</p></div>
+      <div class="step"><div class="num">05</div><div class="line"></div><h3>Finish</h3><p>Back to normal — or better</p></div>
+    </div>
+
+    <div class="strip rv">
+      <div style="background-image:url(/photos/projects/island-and-cooking-wall/image.avif)"></div>
+      <div style="background-image:url(/photos/projects/guest-bath/image.avif)"></div>
+      <div style="background-image:url(/photos/projects/laundry-room/image.avif)"></div>
+      <div style="background-image:url(/photos/projects/double-vanity/image.avif)"></div>
+      <div style="background-image:url(/photos/projects/full-bath-layout/image.avif)"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ LIVE PROJECT FILE ════════════════════════════════════
+     The one thing no local competitor has. Not described as
+     "technology-driven restoration" — shown, so the visitor
+     draws the conclusion themselves. -->
+<section class="scr" id="live" style="background:var(--paper-2)">
+  <div class="wrap live-grid">
+    <div class="rv">
+      <p class="eyebrow">The project file</p>
+      <h2 style="margin-top:18px">Your restoration.<br>Live.</h2>
+      <p style="margin-top:20px;max-width:40ch;font-size:15.5px">Follow your project in real time — photos, moisture readings, milestones and insurance updates. The same page for you, your family and your adjuster. Nobody has to ask what is happening.</p>
+      <div style="margin-top:26px;display:flex;flex-wrap:wrap;gap:12px">
+        <a class="btn btn-ink btn-sm" href="/start-project">See a live project</a>
+        <a class="arrow" href="#process" style="height:40px;display:inline-flex;align-items:center">How it works
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+      <p class="live-note">Sample project with illustrative data — no real customer, address or claim is shown.</p>
+    </div>
+
+    <div class="app rv">
+      <span class="sample">Sample</span>
+      <div class="app-top">
+        <span style="font-weight:900;color:var(--ink);letter-spacing:-.02em">ONA°</span>
+        <span>/</span><span>Projects</span><span>/</span><span>Residential water loss</span>
+      </div>
+      <div class="app-body">
+        <div class="app-h">
+          <div>
+            <h3>Residential water loss</h3>
+            <p class="sub">Vancouver, WA · Supply line failure</p>
+          </div>
+        </div>
+        <div class="chips">
+          <span class="chip k"><i class="dot" style="background:var(--ink)"></i>Water loss</span>
+          <span class="chip">Day 4 of 22</span>
+          <span class="chip">Adjuster assigned</span>
+        </div>
+
+        <div class="rail">
+          <div class="n now">Drying</div>
+          <div class="n">Scope</div>
+          <div class="n">Approval</div>
+          <div class="n">Rebuild</div>
+          <div class="n">Complete</div>
+        </div>
+
+        <p class="eyebrow" style="margin-top:26px">Today</p>
+        <div class="feed">
+          <div class="row"><i class="d"></i>Moisture readings updated<span class="t">10:24 AM</span></div>
+          <div class="row"><i class="d"></i>18 photos uploaded<span class="t">9:41 AM</span></div>
+          <div class="row"><i class="d"></i>Adjuster contacted<span class="t">8:15 AM</span></div>
+          <div class="row"><i class="d"></i>Kitchen framing dry<span class="t">7:12 AM</span></div>
+        </div>
+
+        <div class="tabs"><span class="on">Timeline</span><span>Photos</span><span>Documents</span><span>Insurance</span><span>Notes</span></div>
+      </div>
+
+      <div class="phone" aria-hidden="true">
+        <div class="pb">
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <span style="font-weight:900;font-size:13px;letter-spacing:-.02em">ONA°</span>
+            <span style="font-size:9px;color:var(--ink-3)">Day 4 of 22</span>
+          </div>
+          <p style="margin-top:12px;font-weight:800;font-size:14px;letter-spacing:-.02em;color:var(--ink)">Residential<br>water loss</p>
+          <div class="rail" style="margin-top:12px;gap:3px">
+            <div class="n now" style="font-size:8px;padding-top:9px">Dry</div>
+            <div class="n" style="font-size:8px;padding-top:9px">Scope</div>
+            <div class="n" style="font-size:8px;padding-top:9px">Appr</div>
+            <div class="n" style="font-size:8px;padding-top:9px">Build</div>
+            <div class="n" style="font-size:8px;padding-top:9px">Done</div>
+          </div>
+          <div class="feed" style="margin-top:14px">
+            <div class="row" style="font-size:10px;padding:7px 0"><i class="d"></i>Readings updated<span class="t" style="font-size:8.5px">10:24</span></div>
+            <div class="row" style="font-size:10px;padding:7px 0"><i class="d"></i>18 photos<span class="t" style="font-size:8.5px">9:41</span></div>
+            <div class="row" style="font-size:10px;padding:7px 0"><i class="d"></i>Adjuster contacted<span class="t" style="font-size:8.5px">8:15</span></div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-top:12px">
+            <div style="aspect-ratio:1;border-radius:3px;background:url(/photos/projects/full-kitchen/image.avif) center/cover"></div>
+            <div style="aspect-ratio:1;border-radius:3px;background:url(/photos/projects/laundry-room/image.avif) center/cover"></div>
+            <div style="aspect-ratio:1;border-radius:3px;background:url(/photos/projects/guest-bath/image.avif) center/cover"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SERVICES ═════════════════════════════════════════════
+     Rows, not six identical hazard tiles. -->
+<section class="scr" id="services">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <h2>Restoration for<br>every situation.</h2>
+      <a class="btn btn-ghost btn-sm" href="/services">View all services
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+
+    <div class="svc rv">
+      <a href="/water-damage">
+        <span class="gx" style="background:linear-gradient(150deg,#2b3d46,#6d8794)"></span>
+        <h3>Water damage</h3>
+        <p>Burst pipes, supply lines, appliance leaks, flooding. Extraction, containment, structural drying to standard.</p>
+        <span class="go"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+      <a href="/fire-damage">
+        <span class="gx" style="background:linear-gradient(150deg,#241c16,#6b4a2c)"></span>
+        <h3>Fire &amp; smoke</h3>
+        <p>Soot and odor removal, contents handling, full reconstruction of what the fire and the water took.</p>
+        <span class="go"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+      <a href="/mold-remediation">
+        <span class="gx" style="background:linear-gradient(150deg,#2f3a2a,#7b8a63)"></span>
+        <h3>Mold remediation</h3>
+        <p>Inspection, containment, controlled removal, and the moisture source fixed so it does not come back.</p>
+        <span class="go"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+      <a href="/storm-damage">
+        <span class="gx" style="background:linear-gradient(150deg,#2a2f38,#79808c)"></span>
+        <h3>Storm damage</h3>
+        <p>Wind, roof and hail damage, fallen trees, emergency board-up and tarping before the next front arrives.</p>
+        <span class="go"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+      <a href="/remodeling">
+        <span class="gx" style="background:linear-gradient(150deg,#d9d3c4,#8f8776)"></span>
+        <h3>Reconstruction &amp; remodel</h3>
+        <p>The half most mitigation companies hand off. Same crew, from open framing back to a finished room.</p>
+        <span class="go"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+    </div>
+    <p class="svc-note">Swatches, not job photos. Our photography is finished work — see Projects.</p>
+  </div>
+</section>
+
+<!-- ═══ ANATOMY OF A CLAIM ═══════════════════════════════════
+     A case study is a timeline and a number, not a gallery.
+     Labelled illustrative: these figures are how a job of this
+     kind runs, not a specific customer's file. -->
+<section class="scr" id="anatomy" style="background:var(--paper-2)">
+  <div class="wrap">
+    <div class="case-grid">
+      <div class="rv">
+        <p class="eyebrow">Illustrative example</p>
+        <h2 style="margin-top:16px;font-size:clamp(28px,3.6vw,42px)">Burst supply line</h2>
+        <p style="margin-top:10px;font-size:14px">Vancouver, WA · Water mitigation + reconstruction</p>
+
+        <div class="metrics">
+          <div><b>22</b><span>Days to complete</span></div>
+          <div><b>187</b><span>Photos</span></div>
+          <div><b>34</b><span>Moisture readings</span></div>
+          <div><b>$38,420</b><span>Approved scope</span></div>
+        </div>
+
+        <div class="tl">
+          <div class="r"><b>03:42 PM</b><span>Loss reported</span></div>
+          <div class="r"><b>04:31 PM</b><span>Crew on site</span></div>
+          <div class="r"><b>Day 1</b><span>Extraction + containment</span></div>
+          <div class="r"><b>Day 4</b><span>Dry standard reached</span></div>
+          <div class="r"><b>Day 8</b><span>Carrier scope approved</span></div>
+          <div class="r"><b>Day 22</b><span>Home restored</span></div>
+        </div>
+        <p class="svc-note" style="margin-top:18px">An illustrative example of how a job of this kind runs. Not a specific customer's file, and not a quote.</p>
+      </div>
+
+      <div class="wipe rv" id="wipe2" style="--clip:50%;--pct:50%;border-radius:var(--r);min-height:460px">
+        <div class="side"><div class="ph" style="background-image:url(/photos/projects/island-and-cooking-wall/image.avif)"></div></div>
+        <div class="side before">
+          <div class="ph dmg" style="background-image:url(/photos/projects/island-and-cooking-wall/image.avif)"></div>
+          <div class="dmg-lay dmg-cast"></div>
+          <div class="dmg-lay dmg-ceil"></div>
+          <div class="dmg-lay dmg-runs"></div>
+          <div class="dmg-lay dmg-water"></div>
+          <div class="dmg-lay dmg-sheen"></div>
+          <div class="dmg-lay dmg-tide"></div>
+          <div class="dmg-lay dmg-vig"></div>
+        </div>
+        <span class="tag l">Before</span>
+        <span class="tag r">After</span>
+        <div class="wbar"><button class="grip" type="button" role="slider" aria-label="Drag to compare before and after" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 6 4 12l5 6M15 6l5 6-5 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TWO AUDIENCES ════════════════════════════════════════ -->
+<section class="scr" id="audiences">
+  <div class="wrap">
+    <div class="sec-head rv"><h2>Two people call us.<br>They need different answers.</h2></div>
+    <div class="two rv">
+      <div class="aud">
+        <p class="eyebrow">For homeowners</p>
+        <h3>Get help fast, and understand what happens next.</h3>
+        <p>Someone picks up. A crew is dispatched. You get a written scope before anyone swings a hammer, and a page you can share with your family.</p>
+        <ul>
+          <li>A person answers the phone, any hour</li>
+          <li>Written scope before work starts</li>
+          <li>You pay your deductible, nothing more</li>
+          <li>One crew from demolition to final paint</li>
+        </ul>
+        <a class="arrow" href="/start-project">Start here
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+      <div class="aud k">
+        <p class="eyebrow">For insurance &amp; property managers</p>
+        <h3>Documentation that closes the file.</h3>
+        <p>Estimates in the format you already work in, readings that hold up, and one person who answers for the whole claim.</p>
+        <ul>
+          <li>Xactimate estimates and supplements</li>
+          <li>Daily moisture logs and drying records</li>
+          <li>Timestamped photo documentation</li>
+          <li>One point of contact per claim</li>
+        </ul>
+        <a class="arrow" href="/for-insurance" style="color:var(--lime)">For adjusters
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ REVIEWS ══════════════════════════════════════════════
+     No invented quotes, no invented star count, no stock faces.
+     Ona opened in 2026 and has no published reviews yet, so the
+     block says exactly that. It is the only version of this
+     section that cannot age into a lie. -->
+<section class="scr" id="reviews">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <h2>What our clients say.</h2>
+      <p class="lead">Ona opened in 2026. Reviews appear here as clients leave them — we do not publish anything we have not received.</p>
+    </div>
+    <div class="rv-grid rv">
+      <div class="rv-slot"><span class="q">“</span><p>Awaiting first published review</p></div>
+      <div class="rv-slot"><span class="q">“</span><p>Awaiting first published review</p></div>
+      <div class="rv-slot"><span class="q">“</span><p>Awaiting first published review</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SERVICE AREA ═════════════════════════════════════════ -->
+<section class="scr" id="area" style="background:var(--paper-2)">
+  <div class="wrap area-grid">
+    <div class="rv">
+      <h2>Service area.</h2>
+      <p style="margin-top:16px;max-width:36ch;font-size:15.5px">Vancouver WA, Clark County and the Portland metro. Our on-site target is 60 minutes across the metro, 24/7 — usually less in Clark County.</p>
+      <div class="cities">
+        <span>Vancouver, WA</span><span>Portland, OR</span>
+        <span>Camas, WA</span><span>Beaverton, OR</span>
+        <span>Battle Ground, WA</span><span>Hillsboro, OR</span>
+        <span>Salmon Creek, WA</span><span>Gresham, OR</span>
+        <span>Clark County</span><span>Tigard &amp; Lake Oswego, OR</span>
+      </div>
+      <a class="btn btn-ghost btn-sm" href="/areas" style="margin-top:26px">View all areas
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+    <div class="map rv">
+      <svg viewBox="0 0 560 360" style="width:100%;height:auto;display:block" role="img" aria-label="Service area across Clark County, Washington and the Portland, Oregon metro">
+        <rect width="560" height="360" fill="#fff"/>
+        <g stroke="#ECEAE2" stroke-width="1">
+          <path d="M0 60h560M0 120h560M0 180h560M0 240h560M0 300h560"/>
+          <path d="M80 0v360M160 0v360M240 0v360M320 0v360M400 0v360M480 0v360"/>
+        </g>
+        <path d="M290 80c-60 0-104 18-140 40-34 20-56 44-54 76 2 34 30 58 68 70 40 12 84 10 128 4 46-6 88-16 114-42 24-24 28-58 14-88-16-34-50-56-92-60-12-2-26 0-38 0Z" fill="#D8F24B" fill-opacity=".34" stroke="#C2DC2E" stroke-width="1.5"/>
+        <path d="M40 176c56 22 112 8 168 20 54 12 92 34 148 30 52-4 92-26 164-22" fill="none" stroke="#9FB6C4" stroke-width="7" stroke-linecap="round" opacity=".55"/>
+        <path d="M40 176c56 22 112 8 168 20 54 12 92 34 148 30 52-4 92-26 164-22" fill="none" stroke="#C6D6E0" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="252" cy="140" r="7" fill="#111"/><circle cx="252" cy="140" r="14" fill="none" stroke="#111" stroke-opacity=".28"/>
+        <text x="274" y="145" font-family="Satoshi,sans-serif" font-size="14" font-weight="700" fill="#111">Vancouver, WA</text>
+        <circle cx="286" cy="236" r="6" fill="#4B4B45"/>
+        <text x="304" y="241" font-family="Satoshi,sans-serif" font-size="14" font-weight="600" fill="#4B4B45">Portland, OR</text>
+        <text x="44" y="330" font-family="Satoshi,sans-serif" font-size="10.5" font-weight="700" letter-spacing="1.6" fill="#8B8B82">COLUMBIA RIVER · CLARK COUNTY · PORTLAND METRO</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FINAL CTA ════════════════════════════════════════════ -->
+<section class="final" id="call">
+  <div class="wrap rv">
+    <p class="eyebrow" style="color:var(--lime)">24/7 emergency response</p>
+    <h2 style="margin-top:22px">Something happened?<br>Start here.</h2>
+    <div class="cta">
+      <a class="btn btn-lime" href="tel:+13605532138">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Call (360) 553-2138
+      </a>
+      <button class="btn btn-onDark" data-claim>Start a claim</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fl">
+      <span style="font-weight:900;color:#fff;font-size:17px;letter-spacing:-.02em">ONA°</span>
+      <a href="tel:+13605532138">(360) 553-2138</a>
+      <a href="mailto:dispatch@onarestore.com">dispatch@onarestore.com</a>
+      <span>Vancouver, WA · 24/7</span>
+      <span>WA L&amp;I ONARER*748K8</span>
+      <a href="/">Current site</a>
+      <p class="note">Concept page. Ona Restoration &amp; Remodeling LLC is registered with Washington L&amp;I as ONARER*748K8, verifiable at secure.lni.wa.gov/verify. Oregon CCB registration is pending; nothing here claims an Oregon licence. The project file and claim anatomy above are illustrative samples, the damaged halves of the comparison images are generated, and no review has been published yet.</p>
+    </div>
+  </div>
+</footer>
+
+<div class="bar">
+  <a class="btn btn-lime" href="tel:+13605532138">Call 24/7</a>
+  <button class="btn btn-ghost" data-claim>Start a claim</button>
+</div>
+
+<!-- ═══ CLAIM / VOICE TRIAGE ═════════════════════════════════
+     The claim intake is not a twelve-field form. The visitor
+     holds a phone in a room that is filling with water: the
+     fastest input they have is their own voice.
+
+     Speech is captured with the browser's own recogniser
+     (SpeechRecognition). The reading underneath is drafted ON
+     THE DEVICE — nothing is uploaded, no audio is stored, and
+     the page says so, because a page that quietly shipped a
+     panicking person's voice to a server would deserve to be
+     distrusted. Wiring this to a real model is a server route
+     away; the seam is the analyse() function and nothing else.
+
+     What it deliberately never does: give a price, promise an
+     arrival time, or claim the reading is a diagnosis. It sorts
+     the loss, flags what is urgent, lists what to do in the next
+     five minutes, and drafts a project outline for a human to
+     confirm on the phone. -->
+<style>
+.sheet{
+  position:fixed;inset:0;z-index:100;background:var(--paper);
+  display:none;overflow-y:auto;overscroll-behavior:contain;
+}
+.sheet.open{display:block}
+.sheet-top{
+  position:sticky;top:0;background:rgba(244,243,239,.94);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);z-index:2;
+}
+.sheet-top .wrap{display:flex;align-items:center;gap:16px;height:60px}
+.sheet-x{margin-left:auto;width:36px;height:36px;border-radius:50%;border:1px solid var(--line-2);display:flex;align-items:center;justify-content:center}
+.sheet-x:hover{border-color:var(--ink)}
+.sheet-body{max-width:760px;margin:0 auto;padding:44px var(--gut) 90px}
+.sheet h2{font-size:clamp(28px,5vw,44px)}
+.stepdots{display:flex;gap:6px}
+.stepdots i{width:26px;height:3px;border-radius:2px;background:var(--line-2);display:block}
+.stepdots i.on{background:var(--ink)}
+
+.mic-wrap{display:flex;flex-direction:column;align-items:center;gap:18px;margin-top:40px}
+.mic{
+  width:132px;height:132px;border-radius:50%;background:var(--lime);color:var(--ink);
+  display:flex;align-items:center;justify-content:center;position:relative;
+  transition:transform .18s,background .18s;
+}
+.mic:hover{transform:scale(1.03)}
+.mic:disabled{opacity:.45;cursor:not-allowed}
+.mic.rec{background:var(--alert);color:#fff}
+.mic .ring{
+  position:absolute;inset:-10px;border-radius:50%;border:2px solid var(--alert);
+  opacity:0;pointer-events:none;
+}
+.mic.rec .ring{animation:ring 1.6s ease-out infinite}
+@keyframes ring{0%{transform:scale(.9);opacity:.7}100%{transform:scale(1.28);opacity:0}}
+.mic-hint{font-size:14px;color:var(--ink-3);text-align:center;max-width:36ch}
+.mic-timer{font-size:13px;font-weight:700;font-variant-numeric:tabular-nums;color:var(--alert);min-height:18px}
+
+.tx{
+  margin-top:26px;width:100%;min-height:150px;border:1px solid var(--line-2);border-radius:var(--r);
+  background:#fff;padding:18px 20px;font:inherit;font-size:16px;line-height:1.55;color:var(--ink);resize:vertical;
+}
+.tx:focus{outline:none;border-color:var(--ink)}
+.tx::placeholder{color:var(--ink-3)}
+.tx-interim{color:var(--ink-3);font-style:italic}
+
+.sheet-actions{margin-top:24px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.privacy{margin-top:18px;font-size:12px;color:var(--ink-3);line-height:1.6;max-width:56ch}
+
+.read{margin-top:8px;display:grid;gap:14px}
+.card{border:1px solid var(--line);border-radius:var(--r);background:#fff;padding:22px}
+.card.k{background:var(--carbon);border-color:transparent;color:#fff}
+.card.k p,.card.k li{color:rgba(255,255,255,.74)}
+.card.k .eyebrow{color:var(--lime)}
+.card.alert{border-color:var(--alert);border-width:1.5px}
+.kv{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.kv span{font-size:12px;font-weight:650;padding:6px 11px;border-radius:100px;background:var(--paper-2);color:var(--ink-2)}
+.kv span.hot{background:var(--alert);color:#fff}
+.kv span.k{background:var(--lime);color:var(--ink)}
+.acts{margin-top:14px;display:grid;gap:10px;list-style:none}
+.acts li{display:flex;gap:11px;font-size:15px;line-height:1.45;color:var(--ink)}
+.acts li b{
+  flex:none;width:22px;height:22px;border-radius:50%;background:var(--ink);color:#fff;
+  font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:1px;
+}
+.card.alert .acts li b{background:var(--alert)}
+.plan{margin-top:14px;border-top:1px solid rgba(255,255,255,.14)}
+.plan .p{display:grid;grid-template-columns:78px 1fr;gap:14px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.14);font-size:14px}
+.plan .p b{font-size:11.5px;font-weight:700;color:var(--lime);letter-spacing:.04em;padding-top:2px}
+.fields{display:grid;gap:14px;margin-top:22px}
+.fields label{display:block;font-size:13px;font-weight:650}
+.fields input{
+  margin-top:7px;width:100%;height:50px;border:1px solid var(--line-2);border-radius:var(--r);
+  background:#fff;padding:0 15px;font:inherit;font-size:16px;color:var(--ink);
+}
+.fields input:focus{outline:none;border-color:var(--ink)}
+.thinking{display:flex;align-items:center;gap:11px;font-size:14px;color:var(--ink-2);margin-top:30px}
+.thinking i{width:9px;height:9px;border-radius:50%;background:var(--lime-deep);animation:blip 1s ease-in-out infinite}
+.thinking i:nth-child(2){animation-delay:.16s}
+.thinking i:nth-child(3){animation-delay:.32s}
+@keyframes blip{0%,100%{opacity:.25;transform:scale(.8)}50%{opacity:1;transform:scale(1)}}
+@media (prefers-reduced-motion:reduce){.thinking i,.mic.rec .ring{animation:none}}
+</style>
+
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-h" hidden>
+  <div class="sheet-top">
+    <div class="wrap">
+      <span style="font-weight:900;font-size:18px;letter-spacing:-.02em">ONA°</span>
+      <div class="stepdots" aria-hidden="true"><i class="on" data-dot></i><i data-dot></i><i data-dot></i></div>
+      <button class="sheet-x" type="button" id="sheetX" aria-label="Close">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="sheet-body">
+    <!-- ── 1 · Talk ──────────────────────────────────────── -->
+    <div data-step="0">
+      <p class="eyebrow">Step 1 of 3</p>
+      <h2 id="sheet-h" style="margin-top:14px">Tell us what<br>happened.</h2>
+      <p style="margin-top:16px;font-size:16px;max-width:44ch">Press the button and just talk. What you see, where it is, whether it is still happening. No form to fill in.</p>
+
+      <div class="mic-wrap">
+        <button class="mic" type="button" id="mic" aria-label="Start recording">
+          <span class="ring" aria-hidden="true"></span>
+          <svg width="46" height="46" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <rect x="9" y="2.5" width="6" height="11" rx="3" stroke="currentColor" stroke-width="1.9"/>
+            <path d="M5.5 11.2a6.5 6.5 0 0 0 13 0M12 17.8V21.5M8.6 21.5h6.8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <p class="mic-timer" id="micTimer"></p>
+        <p class="mic-hint" id="micHint">Tap to talk — or type it below instead.</p>
+      </div>
+
+      <textarea class="tx" id="tx" placeholder="Or type it here. “A pipe burst under the kitchen sink about an hour ago, there is water across the kitchen floor and it is running into the dining room…”"></textarea>
+
+      <div class="sheet-actions">
+        <button class="btn btn-ink" id="go" type="button">Read what I said</button>
+        <a class="arrow" href="tel:+13605532138" style="height:52px;display:inline-flex;align-items:center">Or just call us
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+      <p class="privacy" id="privacy">Your browser does the transcribing — in Chrome that means the audio goes to Google&rsquo;s speech service, the same as a voice search. Ona receives nothing until you choose to send it, and the reading itself is worked out here, on your device.</p>
+    </div>
+
+    <!-- ── 2 · The reading ───────────────────────────────── -->
+    <div data-step="1" hidden>
+      <p class="eyebrow">Step 2 of 3</p>
+      <h2 style="margin-top:14px" id="readH">Here is what<br>we heard.</h2>
+      <div class="read" id="read"></div>
+      <div class="sheet-actions">
+        <button class="btn btn-ink" id="go2" type="button">This is right — continue</button>
+        <button class="btn btn-ghost" id="back1" type="button">Add something</button>
+      </div>
+    </div>
+
+    <!-- ── 3 · Reach you ─────────────────────────────────── -->
+    <div data-step="2" hidden>
+      <p class="eyebrow">Step 3 of 3</p>
+      <h2 style="margin-top:14px">Where do we<br>reach you?</h2>
+      <p style="margin-top:16px;font-size:16px;max-width:42ch">If it is happening right now, call — a person answers, any hour. That is always faster than anything typed.</p>
+
+      <div class="fields">
+        <div><label for="fName">Your name</label><input id="fName" type="text" autocomplete="name"></div>
+        <div><label for="fPhone">Phone</label><input id="fPhone" type="tel" inputmode="tel" autocomplete="tel" placeholder="(360) 555-0134"></div>
+        <div><label for="fAddr">Property address</label><input id="fAddr" type="text" autocomplete="street-address" placeholder="Street, city"></div>
+      </div>
+
+      <div class="sheet-actions">
+        <a class="btn btn-lime" href="tel:+13605532138">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Call (360) 553-2138
+        </a>
+        <a class="btn btn-ghost" href="/quote" id="toQuote">Send it instead</a>
+      </div>
+      <p class="privacy">This is a concept page: the button above hands you to Ona's live quote form, where the request is actually received. Your reading is copied to the clipboard first so you can paste it in.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ── Damage → restored wipe ──────────────────────────────
+     Mouse hovers to wipe; touch must commit to a horizontal
+     gesture first, so the panel never swallows a scroll. */
+  document.querySelectorAll('.wipe').forEach(function(el){
+    var dragging=false, pending=null, SLOP=8;
+    var grip=el.querySelector('.grip');
+    function set(x){
+      var b=el.getBoundingClientRect(); if(!b.width) return;
+      var p=Math.max(0,Math.min(100,((x-b.left)/b.width)*100));
+      el.style.setProperty('--pct',p+'%');
+      el.style.setProperty('--clip',(100-p)+'%');
+      if(grip) grip.setAttribute('aria-valuenow',Math.round(p));
+    }
+    el.addEventListener('pointerdown',function(e){
+      if(e.pointerType==='mouse'){dragging=true;el.setPointerCapture(e.pointerId);set(e.clientX);return;}
+      pending={x:e.clientX,y:e.clientY,id:e.pointerId};
+    });
+    el.addEventListener('pointermove',function(e){
+      if(dragging||e.pointerType==='mouse'){set(e.clientX);return;}
+      if(!pending) return;
+      var dx=Math.abs(e.clientX-pending.x), dy=Math.abs(e.clientY-pending.y);
+      if(dy>SLOP&&dy>=dx){ pending=null; }
+      else if(dx>SLOP){ var id=pending.id; pending=null; dragging=true; el.setPointerCapture(id); set(e.clientX); }
+    });
+    ['pointerup','pointercancel','pointerleave'].forEach(function(t){
+      el.addEventListener(t,function(){dragging=false;pending=null;});
+    });
+    if(grip) grip.addEventListener('keydown',function(e){
+      var cur=parseFloat(el.style.getPropertyValue('--pct'))||50, s=e.shiftKey?10:4, n=cur;
+      if(e.key==='ArrowLeft') n=cur-s; else if(e.key==='ArrowRight') n=cur+s;
+      else if(e.key==='Home') n=0; else if(e.key==='End') n=100; else return;
+      e.preventDefault(); n=Math.max(0,Math.min(100,n));
+      el.style.setProperty('--pct',n+'%'); el.style.setProperty('--clip',(100-n)+'%');
+      grip.setAttribute('aria-valuenow',Math.round(n));
+    });
+  });
+
+  /* ── Reveal ──────────────────────────────────────────────── */
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  },{rootMargin:'0px 0px -12% 0px'});
+  document.querySelectorAll('.rv').forEach(function(n){io.observe(n);});
+
+  /* ═══ VOICE TRIAGE ═══════════════════════════════════════
+     analyse() is the whole "reading". It runs here, in the
+     page, on the transcript the browser produced — which is
+     why the privacy line under the microphone is true. Swap
+     this one function for a fetch to a server route and the
+     same UI is driven by a real model; nothing else changes. */
+
+  var LOSS=[
+    {k:'water',label:'Water loss',re:/\b(water|flood|flooded|flooding|leak|leaks|leaking|leaked|pipe|pipes|burst|supply line|dishwasher|washer|washing machine|water heater|toilet|sewage|soaked|soaking|damp|wet|drip|dripping|overflow|overflowed)\b/gi},
+    {k:'fire',label:'Fire & smoke',re:/\b(fire|smoke|smoky|soot|burn|burnt|burned|burning|flame|flames|charred|ash)\b/gi},
+    {k:'mold',label:'Mold',re:/\b(mold|mould|mildew|musty|spore|spores)\b/gi},
+    {k:'storm',label:'Storm damage',re:/\b(storm|wind|windstorm|hail|tree|branch|roof|shingle|shingles|gutter|tarp)\b/gi}
+  ];
+  var ROOMS=['kitchen','bathroom','basement','crawl space','attic','garage','living room','dining room','bedroom','laundry','hallway','office','stairs'];
+
+  function has(t,re){ return re.test(t); }
+
+  function analyse(text){
+    var t=' '+text.toLowerCase()+' ';
+    var best=null, bestN=0;
+    LOSS.forEach(function(L){
+      var m=t.match(L.re); var n=m?m.length:0;
+      if(n>bestN){bestN=n;best=L;}
+    });
+
+    var sig={
+      running: has(t,/\b(still (running|leaking|coming|going|pouring|flowing)|hasn'?t stopped|has not stopped|can'?t (stop|shut)|cannot (stop|shut)|keeps? (coming|leaking)|right now)\b/),
+      shutoff: has(t,/\b(shut (it |the water )?off|turned (it |the water )?off|shut off the (water|valve|main)|closed the valve|killed the water|put (it|the fire) out|fire (is|was) out|extinguished|under control|fire department)\b/),
+      standing: has(t,/\b(standing water|inches of water|under water|flooded|puddle|soaked through|water everywhere|across the floor)\b/),
+      electric: has(t,/\b(outlet|outlets|breaker|panel|electric|electrical|power|sparking|wires?|wiring)\b/),
+      ceiling: has(t,/\b(ceiling|upstairs|second floor|above|attic)\b/),
+      cavity:  has(t,/\b(inside the wall|in the walls?|behind the wall|drywall|subfloor|insulation|cavity|under the floor)\b/),
+      people:  has(t,/\b(kid|kids|child|children|baby|elderly|pregnant|pet|pets|dog|cat)\b/),
+      insured: has(t,/\b(insurance|claim|adjuster|deductible|policy|carrier)\b/),
+      commercial: has(t,/\b(tenant|tenants|building|units?|office|store|shop|property manag)\b/),
+      smellgas: has(t,/\b(gas|propane|smell(s)? like gas)\b/)
+    };
+    var rooms=ROOMS.filter(function(r){return t.indexOf(' '+r)>-1;}).slice(0,4);
+
+    var type = best ? best.k : 'unclear';
+    var label = best ? best.label : 'Not clear yet';
+
+    var urgency='unknown';
+    if(sig.running||sig.standing||sig.smellgas||(type==='fire'&&!sig.shutoff)) urgency='active';
+    else if(sig.shutoff) urgency='contained';
+
+    /* What to do in the next five minutes. Safety first, then
+       the things that decide whether the claim goes smoothly. */
+    var acts=[];
+    if(sig.smellgas) acts.push('If you smell gas, leave the building and call the gas utility before anything else.');
+    if(type==='water'){
+      if(!sig.shutoff) acts.push('Shut the water off at the main if you can reach it safely. An appliance has its own valve behind it.');
+      if(sig.electric||sig.standing) acts.push('Do not step into standing water near outlets, cords or the panel. Kill that breaker only if you can reach it dry.');
+      acts.push('Lift what you can off the wet floor — furniture legs, boxes, rugs, anything with dye in it.');
+      if(sig.ceiling) acts.push('Stay out from under a sagging ceiling. Water pooling above drywall comes down all at once.');
+    } else if(type==='fire'){
+      acts.push('Do not wipe soot. Wiping sets it into paint and grout — it has to come off chemically.');
+      acts.push('Keep the HVAC off so smoke does not get pushed through the rest of the house.');
+      acts.push('Do not re-enter until the fire department has released the building.');
+    } else if(type==='mold'){
+      acts.push('Do not disturb the growth and do not point a fan at it — that is how spores travel.');
+      acts.push('Close the door to that room and keep air moving away from the rest of the house.');
+      acts.push('Look for the moisture behind it. Growth is the symptom, not the cause.');
+    } else if(type==='storm'){
+      acts.push('Stay out from under a compromised roof or ceiling.');
+      acts.push('If it is safe, get a tarp over the opening before the next band of rain.');
+      acts.push('Do not go near downed lines or anything they are touching.');
+    } else {
+      acts.push('If anyone is in danger or you smell gas or smoke, call 911 first.');
+      acts.push('Stop the source if you can do it safely — a valve, a breaker, a door.');
+    }
+    acts.push('Photograph every affected room before anything is moved. Those photos are worth money on the claim.');
+    acts=acts.slice(0,4);
+
+    var PLANS={
+      water:[['Tonight','Emergency response, extraction, containment'],
+             ['Day 1–4','Structural drying, with daily moisture readings until the dry standard is met'],
+             ['Day 3–8','Documentation and carrier scope — photos, readings, Xactimate estimate'],
+             ['On approval','Reconstruction: drywall, flooring, paint, cabinetry'],
+             ['Close','Final walkthrough, and the whole file handed to you and your adjuster']],
+      fire:[['Tonight','Board-up, power and HVAC secured, the building made safe'],
+            ['Day 1–3','Soot and odor removal; salvageable contents packed out and cleaned'],
+            ['Day 2–7','Documentation and carrier scope'],
+            ['On approval','Reconstruction of the affected structure'],
+            ['Close','Clearance, final walkthrough, file handed over']],
+      mold:[['First visit','Inspection and moisture mapping — we look for the source, not just the growth'],
+            ['Day 1–2','Containment and negative air before anything is disturbed'],
+            ['Day 2–5','Controlled removal and cleaning'],
+            ['After','Moisture source repaired, clearance, and rebuild of what came out']],
+      storm:[['Tonight','Emergency board-up and tarping before the next front'],
+             ['Day 1–2','Water intrusion dried, debris removed'],
+             ['Day 2–7','Documentation and carrier scope'],
+             ['On approval','Roof, envelope and interior reconstruction']],
+      unclear:[['First call','We ask four questions and work out what this actually is'],
+               ['Same day','Someone comes and looks — no charge to be told it is nothing'],
+               ['After','If there is work, you get a written scope before any of it starts']]
+    };
+
+    return {type:type,label:label,urgency:urgency,sig:sig,rooms:rooms,acts:acts,plan:PLANS[type]||PLANS.unclear,text:text};
+  }
+
+  /* ── Rendering the reading ───────────────────────────────── */
+  function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+  function cap(s){ return s.charAt(0).toUpperCase()+s.slice(1); }
+
+  function render(a){
+    var chips=[];
+    chips.push('<span class="k">'+esc(a.label)+'</span>');
+    if(a.urgency==='active') chips.push('<span class="hot">Still active</span>');
+    else if(a.urgency==='contained') chips.push('<span>Source shut off</span>');
+    else chips.push('<span>Status unclear</span>');
+    a.rooms.forEach(function(r){ chips.push('<span>'+esc(cap(r))+'</span>'); });
+    if(a.sig.ceiling) chips.push('<span>Above the ceiling</span>');
+    if(a.sig.cavity) chips.push('<span>Inside walls or floor</span>');
+    if(a.sig.electric) chips.push('<span class="hot">Electrical nearby</span>');
+    if(a.sig.people) chips.push('<span>People or pets at home</span>');
+    if(a.sig.insured) chips.push('<span>Insurance mentioned</span>');
+    if(a.sig.commercial) chips.push('<span>Commercial / tenants</span>');
+
+    var html='';
+
+    html+='<div class="card'+(a.urgency==='active'?' alert':'')+'">'
+       +'<p class="eyebrow">What we picked up</p>'
+       +'<div class="kv">'+chips.join('')+'</div>'
+       +'<p style="margin-top:16px;font-size:13px;color:var(--ink-3)">Drafted on your device from your own words. A person confirms all of it on the phone — this is a head start, not a diagnosis.</p>'
+       +'</div>';
+
+    html+='<div class="card'+(a.urgency==='active'?' alert':'')+'">'
+       +'<p class="eyebrow">'+(a.urgency==='active'?'Do this in the next five minutes':'First, before we arrive')+'</p>'
+       +'<ul class="acts">'+a.acts.map(function(x,i){return '<li><b>'+(i+1)+'</b><span>'+esc(x)+'</span></li>';}).join('')+'</ul>'
+       +'</div>';
+
+    html+='<div class="card k">'
+       +'<p class="eyebrow">The project we would open</p>'
+       +'<h3 style="margin-top:12px;font-size:22px;color:#fff">'+esc(a.label==='Not clear yet'?'Assessment':a.label)+' · '+esc(a.rooms.length?a.rooms.map(cap).join(', '):'scope to confirm')+'</h3>'
+       +'<div class="plan">'+a.plan.map(function(p){return '<div class="p"><b>'+esc(p[0])+'</b><span>'+esc(p[1])+'</span></div>';}).join('')+'</div>'
+       +'<p style="margin-top:16px;font-size:13px">No figure until we have seen it. You get a written scope before any work starts, and you pay your deductible, nothing more.</p>'
+       +'</div>';
+
+    return html;
+  }
+
+  /* ── Sheet plumbing ──────────────────────────────────────── */
+  var sheet=document.getElementById('sheet'),
+      steps=[].slice.call(sheet.querySelectorAll('[data-step]')),
+      dots=[].slice.call(sheet.querySelectorAll('[data-dot]')),
+      tx=document.getElementById('tx'),
+      readEl=document.getElementById('read'),
+      current=null, lastFocus=null;
+
+  function show(n){
+    steps.forEach(function(s,i){ s.hidden = i!==n; });
+    dots.forEach(function(d,i){ d.classList.toggle('on', i<=n); });
+    sheet.scrollTop=0;
+  }
+  function open(){
+    lastFocus=document.activeElement;
+    sheet.hidden=false; sheet.classList.add('open');
+    document.body.style.overflow='hidden';
+    show(0); setTimeout(function(){ document.getElementById('mic').focus(); },40);
+  }
+  function close(){
+    stopRec();
+    sheet.classList.remove('open'); sheet.hidden=true;
+    document.body.style.overflow='';
+    if(lastFocus) lastFocus.focus();
+  }
+  document.querySelectorAll('[data-claim]').forEach(function(b){ b.addEventListener('click',open); });
+  document.getElementById('sheetX').addEventListener('click',close);
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&sheet.classList.contains('open')) close(); });
+
+  /* ── The microphone ──────────────────────────────────────── */
+  var SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  var mic=document.getElementById('mic'),
+      hint=document.getElementById('micHint'),
+      timerEl=document.getElementById('micTimer'),
+      rec=null, recording=false, finalText='', t0=0, tick=null;
+
+  if(!SR){
+    mic.disabled=true;
+    hint.textContent='This browser will not transcribe speech — type it below instead, or just call us.';
+    document.getElementById('privacy').textContent='Nothing you type here is sent anywhere until you choose to send it.';
+  }
+
+  function fmt(ms){ var s=Math.floor(ms/1000); return Math.floor(s/60)+':'+('0'+(s%60)).slice(-2); }
+
+  function startRec(){
+    if(!SR||recording) return;
+    rec=new SR();
+    rec.continuous=true; rec.interimResults=true; rec.lang='en-US';
+    finalText=tx.value ? tx.value.trim()+' ' : '';
+    rec.onresult=function(e){
+      var interim='';
+      for(var i=e.resultIndex;i<e.results.length;i++){
+        var r=e.results[i];
+        if(r.isFinal) finalText+=r[0].transcript+' '; else interim+=r[0].transcript;
+      }
+      tx.value=(finalText+interim).replace(/\s+/g,' ').trim();
+    };
+    rec.onerror=function(e){
+      stopRec();
+      hint.textContent = e.error==='not-allowed'
+        ? 'The microphone is blocked in this browser. Type it below, or call us.'
+        : 'Could not hear that. Try again, or type it below.';
+    };
+    rec.onend=function(){ if(recording) { try{ rec.start(); }catch(_){} } };
+    try{ rec.start(); }catch(_){ return; }
+    recording=true; t0=Date.now();
+    mic.classList.add('rec'); mic.setAttribute('aria-label','Stop recording');
+    hint.textContent='Listening. Say what you see — take your time.';
+    tick=setInterval(function(){ timerEl.textContent=fmt(Date.now()-t0); },250);
+  }
+  function stopRec(){
+    if(!recording) return;
+    recording=false;
+    try{ rec.onend=null; rec.stop(); }catch(_){}
+    clearInterval(tick); timerEl.textContent='';
+    mic.classList.remove('rec'); mic.setAttribute('aria-label','Start recording');
+    hint.textContent='Got it. Read it back below, add anything, then continue.';
+  }
+  mic.addEventListener('click',function(){ recording?stopRec():startRec(); });
+
+  /* ── Steps ───────────────────────────────────────────────── */
+  document.getElementById('go').addEventListener('click',function(){
+    stopRec();
+    var text=tx.value.trim();
+    if(text.length<12){
+      hint.textContent='Tell us a little more — what it is, where it is, and whether it is still happening.';
+      tx.focus(); return;
+    }
+    show(1);
+    readEl.innerHTML='<div class="thinking"><i></i><i></i><i></i><span>Reading what you said…</span></div>';
+    setTimeout(function(){
+      current=analyse(text);
+      readEl.innerHTML=render(current);
+    },620);
+  });
+  document.getElementById('back1').addEventListener('click',function(){ show(0); tx.focus(); });
+  document.getElementById('go2').addEventListener('click',function(){ show(2); document.getElementById('fName').focus(); });
+
+  document.getElementById('toQuote').addEventListener('click',function(){
+    if(!current) return;
+    var out='What happened (in my words): '+current.text
+      +'\n\nRead as: '+current.label+' — '+(current.urgency==='active'?'still active':current.urgency==='contained'?'source shut off':'status unclear')
+      +(current.rooms.length?('\nAreas: '+current.rooms.map(cap).join(', ')):'');
+    try{ if(navigator.clipboard) navigator.clipboard.writeText(out); }catch(_){}
+  });
+})();
+</script>
+</body>
+</html>

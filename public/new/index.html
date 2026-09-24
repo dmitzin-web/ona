@@ -422,6 +422,33 @@
 
     <div class="tri">
       <form class="console" id="tform" novalidate>
+        <!-- 00 / Voice. The three questions below are fast, but a person
+             standing in it is faster still with their mouth than with their
+             thumbs. Speech fills 01-03; the response profile on the right
+             then builds itself exactly as if the chips had been tapped. -->
+        <div class="q vq">
+          <div class="qh"><span class="no">00 / Voice</span><h3>Or just say it.</h3><small>we fill 01-03 from what you said</small></div>
+          <div class="vrow">
+            <button type="button" class="vmic" id="vmic" aria-label="Start recording">
+              <span class="vring" aria-hidden="true"></span>
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="9" y="2.5" width="6" height="11" rx="3" stroke="currentColor" stroke-width="1.9"/>
+                <path d="M5.5 11.2a6.5 6.5 0 0 0 13 0M12 17.8V21.5M8.6 21.5h6.8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/>
+              </svg>
+            </button>
+            <div class="vmeta">
+              <p class="vhint" id="vhint">Tap and describe it out loud &mdash; what it is, where it is, whether it is still going.</p>
+              <p class="vtime m" id="vtime"></p>
+            </div>
+          </div>
+          <textarea class="txt vtx" id="vtx" rows="3" aria-label="What happened" placeholder="OR TYPE IT: A PIPE BURST UNDER THE KITCHEN SINK ABOUT AN HOUR AGO, WATER IS ACROSS THE FLOOR AND RUNNING INTO THE DINING ROOM"></textarea>
+          <div class="vacts">
+            <button type="button" class="btn btn-g btn-sm" id="vgo">Read it &amp; fill 01-03</button>
+            <span class="fine" id="vnote">Your browser does the transcribing; the reading runs here, on your device. Dispatch gets nothing until you send it.</span>
+          </div>
+          <div class="vout" id="vout" hidden></div>
+        </div>
+
         <div class="q">
           <div class="qh"><span class="no">01 / Incident</span><h3>What happened?</h3></div>
           <div class="chips" data-group="loss">
@@ -854,6 +881,202 @@
   });
   document.getElementById("ok-copy").addEventListener("click", function () {
     var b = this; try { navigator.clipboard.writeText(summary()).then(function () { b.textContent = "Copied"; setTimeout(function () { b.textContent = "Copy"; }, 1500); }); } catch (_) {}
+  });
+})();
+</script>
+
+<!-- Voice triage: the microphone, in the page’s own language. -->
+<style>
+  .vq .vrow { display: flex; align-items: center; gap: 18px; margin-top: 14px; }
+  .vmic {
+    position: relative; flex: none; width: 76px; height: 76px; border-radius: 50%;
+    background: var(--amber); color: var(--void); border: 0; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background .18s, transform .18s;
+  }
+  .vmic:hover { background: var(--amber-hot); }
+  .vmic:active { transform: translateY(1px); }
+  .vmic[disabled] { background: var(--equip); color: var(--dim); cursor: not-allowed; }
+  .vmic.rec { background: var(--red); color: #fff; }
+  .vring { position: absolute; inset: -8px; border-radius: 50%; border: 2px solid var(--red); opacity: 0; }
+  .vmic.rec .vring { animation: vring 1.6s ease-out infinite; }
+  @keyframes vring { 0% { transform: scale(.92); opacity: .75 } 100% { transform: scale(1.3); opacity: 0 } }
+  .vmeta { min-width: 0; }
+  .vhint { font-size: 13.5px; color: var(--muted); line-height: 1.45; }
+  .vtime { margin-top: 6px; font-size: 12px; color: var(--red); letter-spacing: .12em; min-height: 16px; }
+  .vtx { margin-top: 14px; width: 100%; min-height: 84px; resize: vertical; line-height: 1.5; }
+  .vacts { margin-top: 12px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+  .vout { margin-top: 14px; border-top: 1px solid var(--line); padding-top: 14px; }
+  .vout .vlead { font: 500 10px "IBM Plex Mono", monospace; letter-spacing: .2em; text-transform: uppercase; color: var(--dim); }
+  .vout .vchips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .vout .vchips span {
+    font: 500 10.5px "IBM Plex Mono", monospace; letter-spacing: .12em; text-transform: uppercase;
+    padding: 5px 9px; border: 1px solid var(--line-hot); border-radius: 2px; color: var(--ink);
+  }
+  .vout .vchips span.a { border-color: var(--amber); color: var(--amber); }
+  .vout .vchips span.r { border-color: var(--red); color: var(--red); }
+  .vout p.vsay { margin-top: 12px; font-size: 13px; color: var(--muted); line-height: 1.5; }
+  @media (prefers-reduced-motion: reduce) { .vmic.rec .vring { animation: none } }
+  @media (max-width: 620px) { .vq .vrow { gap: 14px } .vmic { width: 64px; height: 64px } }
+</style>
+
+<!-- ═══ VOICE TRIAGE ════════════════════════════════════════════
+     The transcript is read here, in the page, and turned into the
+     three answers 01-03 by clicking the chips the visitor would
+     have clicked. Everything downstream — priority, first pass,
+     documentation, the summary message — is the existing code,
+     unchanged, so the voice route and the tapping route can never
+     tell two different stories.
+
+     It never prices the job, never promises an arrival time, and
+     never claims the reading is a diagnosis: it is a head start
+     for the person who answers the phone.
+
+     Making this a real model call is one fetch inside read():
+     the rest of this file would not change. -->
+<script>
+(function () {
+  "use strict";
+  var mic = document.getElementById("vmic");
+  if (!mic) return;
+  var hint = document.getElementById("vhint"),
+      timeEl = document.getElementById("vtime"),
+      tx = document.getElementById("vtx"),
+      go = document.getElementById("vgo"),
+      out = document.getElementById("vout"),
+      note = document.getElementById("vnote"),
+      form = document.getElementById("tform");
+
+  var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SR) {
+    mic.disabled = true;
+    hint.textContent = "This browser will not transcribe speech. Type it below instead, or call dispatch.";
+    note.textContent = "Nothing here is sent until you send it.";
+  }
+
+  /* ── Listening ─────────────────────────────────────────────── */
+  var rec = null, on = false, txt = "", t0 = 0, tick = null;
+  function fmt(ms) { var s = Math.floor(ms / 1000); return Math.floor(s / 60) + ":" + ("0" + (s % 60)).slice(-2); }
+  function start() {
+    if (!SR || on) return;
+    rec = new SR();
+    rec.continuous = true; rec.interimResults = true; rec.lang = "en-US";
+    txt = tx.value ? tx.value.trim() + " " : "";
+    rec.onresult = function (e) {
+      var interim = "";
+      for (var i = e.resultIndex; i < e.results.length; i++) {
+        var r = e.results[i];
+        if (r.isFinal) txt += r[0].transcript + " "; else interim += r[0].transcript;
+      }
+      tx.value = (txt + interim).replace(/\s+/g, " ").trim();
+    };
+    rec.onerror = function (e) {
+      stop();
+      hint.textContent = e.error === "not-allowed"
+        ? "The microphone is blocked in this browser. Type it below, or call dispatch."
+        : "Could not hear that. Try again, or type it below.";
+    };
+    rec.onend = function () { if (on) { try { rec.start(); } catch (_) {} } };
+    try { rec.start(); } catch (_) { return; }
+    on = true; t0 = Date.now();
+    mic.classList.add("rec"); mic.setAttribute("aria-label", "Stop recording");
+    hint.textContent = "Listening. Say what you see — take your time.";
+    tick = setInterval(function () { timeEl.textContent = fmt(Date.now() - t0); }, 250);
+  }
+  function stop() {
+    if (!on) return;
+    on = false;
+    try { rec.onend = null; rec.stop(); } catch (_) {}
+    clearInterval(tick); timeEl.textContent = "";
+    mic.classList.remove("rec"); mic.setAttribute("aria-label", "Start recording");
+    hint.textContent = "Got it. Check the words below, then fill the form.";
+  }
+  mic.addEventListener("click", function () { on ? stop() : start(); });
+
+  /* ── Reading ───────────────────────────────────────────────── */
+  var LOSS = [
+    ["water", /\b(water|flood|flooded|flooding|leak|leaks|leaking|leaked|pipe|pipes|burst|supply line|dishwasher|washer|washing machine|water heater|toilet|sewage|soaked|damp|wet|drip|dripping|overflow|overflowed)\b/g],
+    ["fire",  /\b(fire|smoke|smoky|soot|burn|burnt|burned|burning|flame|flames|charred|ash)\b/g],
+    ["mold",  /\b(mold|mould|mildew|musty|spore|spores)\b/g],
+    ["storm", /\b(storm|wind|windstorm|hail|tree|branch|roof|shingle|shingles|gutter|tarp)\b/g]
+  ];
+  var ROOMS = ["kitchen","bathroom","basement","crawl space","attic","garage","living room","dining room","bedroom","laundry","hallway","office","stairs"];
+
+  function read(text) {
+    var t = " " + text.toLowerCase() + " ";
+    var loss = "unknown", best = 0;
+    LOSS.forEach(function (L) { var m = t.match(L[1]); if (m && m.length > best) { best = m.length; loss = L[0]; } });
+
+    var spread =
+      /\b(upstairs|downstairs|second floor|two floors|both floors|whole house|floor below|through the floor)\b/.test(t) ? "floors" :
+      /\b(inside the wall|in the walls?|behind the wall|ceiling|drywall|subfloor|insulation|cavity|under the floor)\b/.test(t) ? "cavity" :
+      /\b(rooms|multiple|spread|into the|next room|hallway|and the (kitchen|living|dining|bedroom))\b/.test(t) ? "multi" :
+      /\b(one room|just the|only the|single room|contained to)\b/.test(t) ? "one" : "unknown";
+
+    var status =
+      /\b(demo|demoed|demolish|demolished|tore out|torn out|ripped out|already removed|gutted)\b/.test(t) ? "demo" :
+      /\b(ready (to|for) rebuild|put it back|rebuild it|restore it|remodel)\b/.test(t) ? "rebuild" :
+      /\b(still (running|leaking|coming|going|pouring|flowing)|hasn'?t stopped|has not stopped|can'?t stop|cannot stop|right now|as we speak|keeps coming)\b/.test(t) ? "active" :
+      /\b(shut (it |the water )?off|turned (it |the water )?off|shut off|stopped it|closed the valve|killed the water|plumber (came|fixed)|put (it|the fire) out|fire (is|was) out|extinguished|under control|fire department)\b/.test(t) ? "stopped" :
+      /\b(found|discovered|noticed|came back|been there|for (a )?(week|month|while)|last (week|month)|got home)\b/.test(t) ? "later" : "unknown";
+
+    return {
+      loss: loss, spread: spread, status: status,
+      rooms: ROOMS.filter(function (r) { return t.indexOf(" " + r) > -1; }).slice(0, 4),
+      electric: /\b(outlet|outlets|breaker|panel|electric|electrical|power|sparking|wires?|wiring)\b/.test(t),
+      gas: /\b(gas|propane)\b/.test(t),
+      people: /\b(kid|kids|child|children|baby|elderly|pregnant|pet|pets|dog|cat)\b/.test(t),
+      insured: /\b(insurance|claim|adjuster|deductible|policy|carrier)\b/.test(t),
+      commercial: /\b(tenant|tenants|building|units?|store|shop|property manag)\b/.test(t)
+    };
+  }
+
+  var LOSS_LABEL = { water: "Water", fire: "Fire / smoke", mold: "Mold", storm: "Storm / exterior", unknown: "Not clear" };
+  var SPREAD_LABEL = { one: "One area", multi: "Multiple rooms", floors: "Multiple floors", cavity: "Walls / ceiling", unknown: "Spread unknown" };
+  var STATUS_LABEL = { active: "Still active", stopped: "Source stopped", later: "Found later", demo: "Already demolished", rebuild: "Ready for rebuild", unknown: "Status unknown" };
+
+  function pick(group, value) {
+    var chip = form.querySelector('.chips[data-group="' + group + '"] .chip[data-v="' + value + '"]');
+    if (chip) chip.click();
+  }
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+
+  go.addEventListener("click", function () {
+    stop();
+    var text = tx.value.trim();
+    if (text.length < 12) {
+      hint.textContent = "Tell us a bit more — what it is, where it is, and whether it is still going.";
+      tx.focus(); return;
+    }
+    var r = read(text);
+
+    pick("loss", r.loss);
+    if (r.spread !== "unknown") pick("spread", r.spread); else pick("spread", "unknown");
+    if (r.status !== "unknown") pick("status", r.status);
+
+    var chips = [];
+    chips.push('<span class="a">' + esc(LOSS_LABEL[r.loss]) + "</span>");
+    chips.push("<span>" + esc(SPREAD_LABEL[r.spread]) + "</span>");
+    chips.push('<span' + (r.status === "active" ? ' class="r"' : "") + ">" + esc(STATUS_LABEL[r.status]) + "</span>");
+    r.rooms.forEach(function (x) { chips.push("<span>" + esc(x) + "</span>"); });
+    if (r.gas) chips.push('<span class="r">Gas mentioned</span>');
+    if (r.electric) chips.push('<span class="r">Electrical nearby</span>');
+    if (r.people) chips.push("<span>People / pets</span>");
+    if (r.insured) chips.push("<span>Insurance</span>");
+    if (r.commercial) chips.push("<span>Commercial</span>");
+
+    var say = r.gas
+      ? "If you can smell gas, leave the building and call the gas utility before anything else."
+      : r.status === "unknown"
+        ? "We could not tell whether it is still going — answer 03 yourself, it changes the priority."
+        : "Answers 01-03 are filled in from that. Change anything we got wrong — the profile follows.";
+
+    out.hidden = false;
+    out.innerHTML =
+      '<p class="vlead">What we picked up</p>' +
+      '<div class="vchips">' + chips.join("") + "</div>" +
+      '<p class="vsay">' + esc(say) + " Read on your device from your own words, and confirmed by a person on the phone — not a diagnosis, and never a price.</p>";
+    out.scrollIntoView({ behavior: "smooth", block: "nearest" });
   });
 })();
 </script>

@@ -74,6 +74,21 @@ const AdminContentSecurityPolicy = ContentSecurityPolicy.replace(
   "form-action 'self' https://accounts.google.com",
 );
 
+// The site turns every optional browser feature off. Keeping the value in one
+// constant lets a single path re-open a single directive (see /newline) while
+// inheriting the rest, instead of a second copy drifting out of step.
+const PermissionsPolicy =
+  "accelerometer=(), autoplay=(), camera=(), display-capture=(), encrypted-media=(), fullscreen=(self), geolocation=(), gyroscope=(), microphone=(), midi=(), payment=(), picture-in-picture=(), publickey-credentials-get=(), screen-wake-lock=(), sync-xhr=(), usb=(), web-share=(), xr-spatial-tracking=()";
+
+// Both homepage concepts (/new and /newline) carry a voice triage: someone
+// standing in a flooded kitchen talks instead of typing. That needs the one
+// directive the site otherwise turns off, and it is opened on those two
+// paths only — the rest of the site still denies the microphone outright.
+const ConceptPermissionsPolicy = PermissionsPolicy.replace(
+  "microphone=()",
+  "microphone=(self)",
+);
+
 // /new — the standalone homepage concept served from public/new/index.html.
 // It is one self-contained file, not a React page, and the only thing it
 // loads from outside is Google Fonts. So it differs from the site policy in
@@ -87,11 +102,7 @@ const baseHeaders = [
   { key: "X-Content-Type-Options", value: "nosniff" },
   { key: "X-DNS-Prefetch-Control", value: "on" },
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-  {
-    key: "Permissions-Policy",
-    value:
-      "accelerometer=(), autoplay=(), camera=(), display-capture=(), encrypted-media=(), fullscreen=(self), geolocation=(), gyroscope=(), microphone=(), midi=(), payment=(), picture-in-picture=(), publickey-credentials-get=(), screen-wake-lock=(), sync-xhr=(), usb=(), web-share=(), xr-spatial-tracking=()",
-  },
+  { key: "Permissions-Policy", value: PermissionsPolicy },
 ];
 
 const productionOnlyHeaders = [
@@ -129,7 +140,10 @@ const nextConfig: NextConfig = {
   async rewrites() {
     // Files in public/ are served at their own path, so the concept lives at
     // /new/index.html; this makes the short address serve it too.
-    return [{ source: "/new", destination: "/new/index.html" }];
+    return [
+      { source: "/new", destination: "/new/index.html" },
+      { source: "/newline", destination: "/newline/index.html" },
+    ];
   },
   async redirects() {
     // Added in the admin (SEO → Redirects) and checked here before Next
@@ -193,6 +207,17 @@ const nextConfig: NextConfig = {
           ...(isProd
             ? [{ key: "Content-Security-Policy", value: NewPageContentSecurityPolicy }]
             : []),
+          { key: "Permissions-Policy", value: ConceptPermissionsPolicy },
+          { key: "X-Robots-Tag", value: "noindex, nofollow" },
+        ],
+      })),
+      // The /newline concept: the microphone opened for its voice triage, and
+      // kept out of search while it is a preview (the file carries a robots
+      // meta as well).
+      ...["/newline", "/newline/index.html"].map((source) => ({
+        source,
+        headers: [
+          { key: "Permissions-Policy", value: ConceptPermissionsPolicy },
           { key: "X-Robots-Tag", value: "noindex, nofollow" },
         ],
       })),
