@@ -12,38 +12,17 @@ import { useState } from "react";
 export function DemoRibbon() {
   return (
     <div className="bg-[#ffd84d] px-5 py-2 text-center text-[13px] font-bold text-[#172124]">
-      TEST VERSION — demo photos, sample numbers and sample reviews. Not real Ona data.
+      TEST VERSION — demo photos, a sample job and sample reviews. Not real Ona data.
     </div>
   );
 }
 
 
-export function DemoStats() {
-  const stats = [
-    ["4.9 ★", "120+ Google reviews"],
-    ["850+", "homes restored since 2015"],
-    ["47 min", "average on-site time, 2025"],
-    ["1,900+", "insurance claims documented"],
-  ];
-  return (
-    <section className="border-b border-charcoal-mute bg-charcoal">
-      <div className="mx-auto grid max-w-[1320px] grid-cols-2 px-5 lg:grid-cols-4 lg:px-10">
-        {stats.map(([n, l]) => (
-          <div key={l} className="border-charcoal-mute py-6 pr-4 [&:not(:last-child)]:lg:border-r lg:px-6 lg:first:pl-0">
-            <b className="block text-[clamp(30px,3.4vw,44px)] font-semibold leading-none tracking-[-0.03em] text-brand">{n}</b>
-            <span className="mt-1.5 block text-[14px] text-warm-gray">{l}<span className="ml-2 rounded-[2px] bg-[#ffd84d] px-1.5 py-0.5 align-middle text-[11px] font-bold uppercase tracking-wide text-[#172124]">Sample</span></span>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
-
 export function DemoCase() {
   const [pos, setPos] = useState(50);
   return (
-    <section className="bg-charcoal py-16 lg:py-24">
-      <div className="mx-auto grid max-w-[1320px] items-center gap-10 px-5 lg:grid-cols-[1.25fr_.75fr] lg:px-10">
+    <div>
+      <div className="grid items-center gap-10 lg:grid-cols-[1.25fr_.75fr]">
         <div className="relative aspect-[4/3] w-full select-none overflow-hidden rounded-[4px]">
           <Image src="/photos/demo/water-after.webp" alt="Living room after drying and repair" fill sizes="(min-width:1024px) 60vw, 100vw" className="object-cover" />
           <div className="absolute inset-0" style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}>
@@ -70,7 +49,7 @@ export function DemoCase() {
           </dl>
         </div>
       </div>
-    </section>
+    </div>
   );
 }
 
@@ -81,8 +60,8 @@ export function DemoCrew() {
     ["Black mold behind the shower. They sealed the room off, removed it, tested it and rebuilt the bathroom. Clean, honest, on schedule.", "Priya N.", "Portland, OR"],
   ];
   return (
-    <section className="bg-charcoal-soft py-16 lg:py-24">
-      <div className="mx-auto grid max-w-[1320px] gap-10 px-5 lg:grid-cols-[.9fr_1.1fr] lg:px-10">
+    <div>
+      <div className="grid gap-10 lg:grid-cols-[.9fr_1.1fr]">
         <div>
           <div className="relative aspect-[16/10] overflow-hidden rounded-[4px]">
             <Image src="/photos/demo/crew-demo.webp" alt="Ona crew next to a company van" fill sizes="(min-width:1024px) 45vw, 100vw" className="object-cover" />
@@ -92,7 +71,7 @@ export function DemoCrew() {
         </div>
         <div className="grid content-start gap-3">
           {reviews.map(([q, n, c]) => (
-            <figure key={n} className="rounded-[4px] bg-charcoal p-6">
+            <figure key={n} className="rounded-[4px] bg-charcoal-soft p-6">
               <div className="text-[18px] text-coral" aria-label="5 out of 5">★★★★★</div>
               <blockquote className="mt-2 text-[17px] leading-relaxed">“{q}”</blockquote>
               <figcaption className="mt-3 text-[14px] text-warm-gray"><b className="text-ivory">{n}</b> · {c}<span className="ml-2 rounded-[2px] bg-[#ffd84d] px-1.5 py-0.5 align-middle text-[11px] font-bold uppercase tracking-wide text-[#172124]">Sample</span></figcaption>
@@ -100,6 +79,6 @@ export function DemoCrew() {
           ))}
         </div>
       </div>
-    </section>
+    </div>
   );
 }
