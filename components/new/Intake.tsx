@@ -6,7 +6,8 @@ import { fillVarsDeep } from "@/lib/placeholders";
 import { Logo } from "@/components/Logo";
 import type newContent from "@/content/pages/new.json";
 
-// The Talk / Photo / Type intake on /new. Opens over the page from anywhere
+// The intake on /new: one screen to describe it (words, photos, or a voice
+// message), opened with the situation already chosen. Opens over the page from anywhere
 // via openIntake(); reads what the visitor says with lib/intake/understand,
 // always runs the safety check first, asks at most one question, then takes
 // a time, an address and a phone number and sends it to /api/start-project
@@ -22,7 +23,7 @@ export function openIntake(detail: OpenDetail) {
   window.dispatchEvent(new CustomEvent<OpenDetail>("ona:intake", { detail }));
 }
 
-type Screen = "method" | "type" | "talk" | "photo" | "thinking" | "hazard" | "result" | "shutoff" | "contact" | "sent" | "failed";
+type Screen = "tell" | "talk" | "photo" | "thinking" | "hazard" | "result" | "shutoff" | "contact" | "sent" | "failed";
 type Photo = { url: string; name: string };
 
 /* ── small pieces ── */
@@ -45,7 +46,7 @@ const Btn = ({ children, onClick, kind = "ghost", href }: { children: React.Reac
 
 export function Intake({ copy, phone, email }: { copy: IntakeCopy; phone: string; email: string }) {
   const [open, setOpen] = useState(false);
-  const [screen, setScreen] = useState<Screen>("method");
+  const [screen, setScreen] = useState<Screen>("tell");
   const [hint, setHint] = useState<Intent | "">("");
   const [text, setText] = useState("");
   const [draft, setDraft] = useState("");
@@ -118,12 +119,12 @@ export function Intake({ copy, phone, email }: { copy: IntakeCopy; phone: string
       document.documentElement.style.overflow = "hidden";
       if (d.mode === "talk") startTalk();
       else if (d.mode === "show") go("photo");
-      else if (d.mode === "type") { setDraft(""); go("type"); }
+      else if (d.mode === "type" || d.mode === "method") { setDraft(""); setText(""); go("tell"); }
       else if (d.mode === "text" && d.text) think(d.text, d.hint ?? "");
       else if (d.mode === "shutoff") { setText(""); setRes(understand("water still running", "water")); go("shutoff"); }
-      else if (d.mode === "docs") { setDraft(""); go("type"); }
+      else if (d.mode === "docs") { setDraft(""); setText(""); go("tell"); }
       else if (d.mode === "schedule") { setRes(understand("", d.hint ?? "")); setStep(1); go("contact"); }
-      else go("method");
+      else go("tell");
     };
     window.addEventListener("ona:intake", on);
     return () => window.removeEventListener("ona:intake", on);
@@ -226,10 +227,10 @@ export function Intake({ copy, phone, email }: { copy: IntakeCopy; phone: string
   const stepLine = fillVarsDeep(t.contact.stepOf, { step: String(step), steps: String(steps) });
   const resTitle = res && res.intent !== "unsure" ? t.result.titles[res.intent] : "";
   const cardTitle = res && res.intent !== "unsure" ? t.result.cards[res.intent] : "";
-  const methodTitle = hint && hint !== "unsure" ? t.titles[hint] : t.method.title;
+  const tellTitle = hint && hint !== "unsure" ? t.titles[hint] : t.tell.title;
 
   return (
-    <div role="dialog" aria-modal="true" aria-label={t.method.title} className={`fixed inset-0 z-[100] flex flex-col ${tone}`}>
+    <div role="dialog" aria-modal="true" aria-label={t.tell.title} className={`fixed inset-0 z-[100] flex flex-col ${tone}`}>
       <div className="flex h-16 flex-none items-center justify-between gap-3 border-b border-charcoal-mute/30 px-5">
         <Logo variant="horizontal" tone={screen === "hazard" || urgent ? "dark" : "light"} />
         <span className="flex items-center gap-2">
@@ -237,31 +238,29 @@ export function Intake({ copy, phone, email }: { copy: IntakeCopy; phone: string
           <button type="button" onClick={close} aria-label={t.close} className="flex h-11 w-11 items-center justify-center text-[28px] leading-none">×</button>
         </span>
       </div>
+      <input ref={fileCam} type="file" accept="image/*,video/*" capture="environment" multiple hidden onChange={(e) => { addPhotos(e.target.files); e.target.value = ""; }} />
+      <input ref={fileLib} type="file" accept="image/*,video/*" multiple hidden onChange={(e) => { addPhotos(e.target.files); e.target.value = ""; }} />
       <div ref={body} className="flex-1 overflow-y-auto">
         <div className="mx-auto flex min-h-full max-w-[680px] flex-col px-5 pt-9 pb-16">
-          {screen === "method" && (
-            <>
-              <Kick>{t.method.kicker}</Kick>
-              <H2>{methodTitle}</H2>
-              <p className={`mt-3 text-[18px] ${sub}`}>{t.method.text}</p>
-              <div className="mt-7 grid gap-2.5 sm:grid-cols-3">
-                {([["talk", t.method.talk, t.method.talkSub, startTalk], ["show", t.method.show, t.method.showSub, () => go("photo")], ["type", t.method.type, t.method.typeSub, () => { setDraft(""); go("type"); }]] as const).map(([k, a, b, fn]) => (
-                  <button key={k} type="button" onClick={fn} className="rounded-[2px] border border-charcoal-mute p-5 text-left hover:border-current">
-                    <b className="block text-[20px]">{a}</b><span className={`mt-1 block ${sub}`}>{b}</span>
-                  </button>
-                ))}
+          {screen === "tell" && (
+            <form onSubmit={(e) => { e.preventDefault(); const said = draft.trim(); if (said || photos.length) think(said || " ", hint); }}>
+              <Kick>{t.tell.kicker}</Kick>
+              <H2>{tellTitle}</H2>
+              <p className={`mt-3 text-[18px] ${sub}`}>{hint === "remodel" ? t.tell.remodelText : t.tell.text}</p>
+              <label className="sr-only" htmlFor="ona-tell">{t.tell.label}</label>
+              <textarea id="ona-tell" autoFocus value={draft} onChange={(e) => setDraft(e.target.value)} rows={4} placeholder={t.tell.placeholder} className="mt-6 w-full rounded-[2px] border border-charcoal-mute bg-charcoal p-4 text-[18px] text-ivory outline-none placeholder:text-warm-gray focus:border-teal" />
+              {photos.length > 0 && (
+                <div className="mt-3">
+                  <div className="grid grid-cols-4 gap-2 sm:grid-cols-6">{photos.map((p) => <img key={p.url} src={p.url} alt={p.name} className="aspect-square w-full rounded-[2px] object-cover" />)}</div>
+                  <p className={`mt-1.5 text-[14px] ${sub}`}>{photos.length} {t.tell.photosReady}</p>
+                </div>
+              )}
+              <div className="mt-3 flex flex-wrap gap-2.5">
+                <Btn onClick={() => fileLib.current?.click()}>{t.tell.photos}</Btn>
+                <Btn onClick={startTalk}>{t.tell.voice}</Btn>
               </div>
-              {(hint === "water" || hint === "fire") && <a href={tel} className="mt-6 font-semibold underline">{t.method.urgent}</a>}
-            </>
-          )}
-
-          {screen === "type" && (
-            <form onSubmit={(e) => { e.preventDefault(); if (draft.trim()) think(draft.trim(), hint); }}>
-              <H2>{t.type.title}</H2>
-              <label className="sr-only" htmlFor="ona-type">{t.type.title}</label>
-              <textarea id="ona-type" autoFocus value={draft} onChange={(e) => setDraft(e.target.value)} rows={5} className="mt-6 w-full rounded-[2px] border border-charcoal-mute bg-charcoal p-4 text-[18px] text-ivory outline-none focus:border-teal" />
-              <p className={`mt-2 text-[14px] ${sub}`}>{t.type.hint}</p>
-              <div className="mt-6 flex"><button type="submit" className="inline-flex min-h-[52px] flex-1 items-center justify-center rounded-[2px] bg-brand px-5 font-bold text-charcoal">{t.type.continue}</button></div>
+              <div className="mt-3 flex"><button type="submit" className={`inline-flex min-h-[56px] flex-1 items-center justify-center rounded-[2px] px-5 text-[17px] font-bold ${urgent ? "bg-charcoal text-brand" : "bg-brand text-charcoal hover:bg-brand-2"}`}>{t.tell.continue}</button></div>
+              {hint !== "remodel" && <a href={tel} className="mt-6 inline-block font-semibold underline">{t.tell.urgent}</a>}
             </form>
           )}
 
@@ -274,8 +273,8 @@ export function Intake({ copy, phone, email }: { copy: IntakeCopy; phone: string
               <p className={`mt-2 max-w-md ${sub}`}>{listenErr || t.talk.hint}</p>
               <p className="mt-6 min-h-[80px] max-w-xl text-[22px] font-medium leading-snug">{draft} <span className="opacity-50">{interim}</span></p>
               <div className="mt-6 flex w-full max-w-md flex-wrap gap-2.5">
-                {!listenErr && <Btn kind="pri" onClick={() => { stopListening(); const said = `${draft} ${interim}`.trim(); if (said) think(said, hint); else { setDraft(""); go("type"); } }}>{t.talk.done}</Btn>}
-                <Btn onClick={() => { stopListening(); go("type"); }}>{t.talk.typeInstead}</Btn>
+                {!listenErr && <Btn kind="pri" onClick={() => { stopListening(); const said = `${draft} ${interim}`.trim(); if (said) think(said, hint); else { setDraft(""); go("tell"); } }}>{t.talk.done}</Btn>}
+                <Btn onClick={() => { stopListening(); go("tell"); }}>{t.talk.typeInstead}</Btn>
               </div>
             </div>
           )}
@@ -300,8 +299,6 @@ export function Intake({ copy, phone, email }: { copy: IntakeCopy; phone: string
                   <div className="mt-4 flex"><button type="submit" className="inline-flex min-h-[52px] flex-1 items-center justify-center rounded-[2px] bg-brand px-5 font-bold text-charcoal">{t.photo.continue}</button></div>
                 </form>
               )}
-              <input ref={fileCam} type="file" accept="image/*,video/*" capture="environment" multiple hidden onChange={(e) => { addPhotos(e.target.files); e.target.value = ""; }} />
-              <input ref={fileLib} type="file" accept="image/*,video/*" multiple hidden onChange={(e) => { addPhotos(e.target.files); e.target.value = ""; }} />
             </>
           )}
 
@@ -332,7 +329,7 @@ export function Intake({ copy, phone, email }: { copy: IntakeCopy; phone: string
               <>
                 <H2>{t.result.unsureTitle}</H2>
                 <p className={`mt-3 text-[18px] ${sub}`}>{t.result.unsureText}</p>
-                <div className="mt-6 flex flex-wrap gap-2.5"><Btn kind="pri" onClick={startTalk}>{t.method.talk}</Btn><Btn onClick={() => go("photo")}>{t.method.show}</Btn><Btn onClick={() => { setDraft(text); go("type"); }}>{t.method.type}</Btn></div>
+                <div className="mt-6 flex flex-wrap gap-2.5"><Btn kind="pri" onClick={() => { setDraft(text); go("tell"); }}>{t.tell.title}</Btn><Btn onClick={startTalk}>{t.tell.voice}</Btn><Btn onClick={() => go("photo")}>{t.tell.photos}</Btn></div>
               </>
             ) : (
               <>
@@ -342,7 +339,7 @@ export function Intake({ copy, phone, email }: { copy: IntakeCopy; phone: string
                   <div className={`mt-5 rounded-[2px] p-4 ${urgent ? "bg-brand-2" : "bg-charcoal-soft"}`}>
                     <span className={`block text-[13px] font-semibold ${sub}`}>{t.result.youSaid}</span>
                     <span className="mt-1 block text-[16px]">“{text}”</span>
-                    <button type="button" onClick={() => { setDraft(text); go("type"); }} className="mt-2 text-[14px] font-semibold underline">{t.result.edit}</button>
+                    <button type="button" onClick={() => { setDraft(text); go("tell"); }} className="mt-2 text-[14px] font-semibold underline">{t.result.edit}</button>
                   </div>
                 )}
                 <div className={`mt-5 rounded-[2px] border p-5 ${urgent ? "border-brand-2 bg-brand-2" : "border-charcoal-mute bg-charcoal"}`}>

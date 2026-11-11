@@ -38,29 +38,35 @@ export default function NewHomePage() {
   const s = t.situations;
   return (
     <>
-      {/* ── hero: what we do, and a way to start in one sentence ── */}
+      {/* ── hero: what we do, and the three ways in ── */}
       <section className="bg-brand text-charcoal">
-        <div className="mx-auto grid max-w-[1320px] gap-8 px-5 pt-8 lg:min-h-[calc(100vh-var(--chrome-h,120px))] lg:grid-cols-[1.05fr_.95fr] lg:gap-12 lg:px-10 lg:pt-0">
-          <div className="flex flex-col justify-center lg:py-14">
+        <div className="mx-auto grid max-w-[1320px] gap-8 px-5 pt-8 lg:min-h-[calc(100vh-var(--chrome-h,120px))] grid-cols-[minmax(0,1fr)] lg:grid-cols-[1.05fr_.95fr] lg:gap-12 lg:px-10 lg:pt-0">
+          <div className="flex min-w-0 flex-col justify-center lg:py-14">
             <p className="text-[13px] text-warm-gray-deep">{t.hero.eyebrow}</p>
             <h1 className="mt-3 text-[clamp(38px,5.6vw,76px)] font-semibold leading-[1] tracking-[-0.035em]">
-              <span>{t.hero.titleLead}</span> <span className="text-teal-bright">{t.hero.titleRest}</span>
+              <span>{t.hero.titleLead}</span> <span className="text-warm-gray-deep">{t.hero.titleRest}</span>
             </h1>
             <p className="mt-4 max-w-[560px] text-[clamp(17px,1.8vw,21px)] leading-[1.45] text-warm-gray-deep">{t.hero.lead}</p>
             <NightNote lead={t.hero.nightLead} text={t.hero.nightText} phone={site.phone} phoneDisplay={site.phoneDisplay} />
-            <Composer t={t.hero} />
-            <div className="mt-3.5 flex flex-wrap gap-2" role="group">
-              {(["water", "fire", "mold", "insurance", "remodel", "commercial"] as const).map((k) => (
-                <Act key={k} open={{ mode: "method", hint: k }} className="h-10 rounded-full border border-warm-gray-deep px-4 text-[14px] font-semibold hover:border-charcoal">
-                  {t.hero.quick[k]}
-                </Act>
-              ))}
+            <div className="mt-7 grid gap-2.5 sm:grid-cols-3">
+              <a href={tel} className="flex min-h-[76px] flex-col justify-center rounded-[2px] bg-coral px-5 py-3 text-charcoal hover:bg-coral-deep">
+                <b className="text-[19px] leading-tight">{t.hero.call}</b><span className="text-[14px]">{t.hero.callSub}</span>
+              </a>
+              <Act open={{ mode: "show", hint: "water" }} className="flex min-h-[76px] flex-col justify-center rounded-[2px] bg-charcoal px-5 py-3 text-left text-ivory hover:bg-charcoal-soft">
+                <b className="text-[19px] leading-tight">{t.hero.photos}</b><span className="text-[14px] text-warm-gray">{t.hero.photosSub}</span>
+              </Act>
+              <Act open={{ mode: "method", hint: "remodel" }} className="flex min-h-[76px] flex-col justify-center rounded-[2px] border border-warm-gray-deep px-5 py-3 text-left hover:border-charcoal">
+                <b className="text-[19px] leading-tight">{t.hero.remodel}</b><span className="text-[14px] text-warm-gray-deep">{t.hero.remodelSub}</span>
+              </Act>
             </div>
-            <ul className="mt-5 flex flex-wrap gap-x-5 gap-y-2 pb-8 text-[13px] text-warm-gray-deep lg:pb-0">
-              <li>{t.hero.proofAnswers}</li>
-              <li><a href="https://secure.lni.wa.gov/verify/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">{t.hero.proofReg}</a></li>
-              <li>{t.hero.proofIicrc}</li>
+            <Composer t={t.hero} />
+            <ul className="mt-6 grid grid-cols-2 gap-px overflow-hidden rounded-[2px] bg-warm-gray-deep/30 text-[15px] font-semibold sm:grid-cols-4">
+              <li className="bg-brand-2 px-3.5 py-3">{t.hero.proofTarget}</li>
+              <li className="bg-brand-2 px-3.5 py-3">{t.hero.proofAnswers}</li>
+              <li className="bg-brand-2 px-3.5 py-3"><a href="https://secure.lni.wa.gov/verify/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">{t.hero.proofReg}</a></li>
+              <li className="bg-brand-2 px-3.5 py-3">{t.hero.proofIicrc}</li>
             </ul>
+            <div className="pb-8 lg:pb-0" />
           </div>
           <div className="relative -mx-5 h-[260px] lg:mx-0 lg:-mr-10 lg:h-auto">
             <Image src={heroPhoto.image} alt={t.hero.photoAlt} fill priority sizes="(min-width:1024px) 48vw, 100vw" className="object-cover" />
@@ -68,8 +74,64 @@ export default function NewHomePage() {
         </div>
       </section>
 
-      {/* ── pick your situation: each card opens the exact next step ── */}
+      {/* ── our own finished work ── */}
       <section className="py-16 lg:py-24">
+        <div className="mx-auto max-w-[1320px] px-5 lg:px-10">
+          <div className="flex flex-wrap items-end justify-between gap-2">
+            <h2 className="text-[clamp(32px,4.4vw,54px)] font-semibold tracking-[-0.035em]">{t.work.title}</h2>
+            <p className="text-warm-gray">{t.work.text}</p>
+          </div>
+          <div className="mt-8 grid grid-cols-2 gap-3 lg:grid-cols-4">
+            {WORK.map((w) => (
+              <Link key={w.slug} href={`/work/${w.slug}`} className="group">
+                <div className="relative aspect-[4/5] overflow-hidden rounded-[4px]">
+                  <Image src={w.image} alt={w.imageAlt} fill sizes="(min-width:1024px) 25vw, 50vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
+                </div>
+                <span className="mt-2 block font-semibold">{w.title}</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── what happens after you reach us ── */}
+      <section className="bg-charcoal-soft py-16 lg:py-24">
+        <div className="mx-auto max-w-[1320px] px-5 lg:px-10">
+          <h2 className="max-w-[760px] text-[clamp(32px,4.4vw,54px)] font-semibold leading-[1.02] tracking-[-0.035em]">{t.how.title}</h2>
+          <ol className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {t.how.steps.map((st, i) => (
+              <li key={st.title} className="rounded-[4px] bg-charcoal p-5">
+                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-brand text-[14px] font-bold text-charcoal">{i + 1}</span>
+                <b className="mt-4 block text-[19px]">{st.title}</b>
+                <span className="mt-1 block leading-relaxed text-warm-gray">{st.text}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* ── the project page, shown big (sample data, labelled as such) ── */}
+      <section className="py-16 lg:py-24">
+        <div className="mx-auto grid max-w-[1320px] items-center gap-10 px-5 lg:grid-cols-[1fr_1fr] lg:px-10">
+          <div>
+            <h2 className="text-[clamp(34px,5vw,64px)] font-semibold leading-[1] tracking-[-0.04em]"><span>{t.project.title}</span> <span className="text-teal">{t.project.titleRest}</span></h2>
+            <p className="mt-5 max-w-[520px] text-[19px] leading-relaxed text-warm-gray">{t.project.text}</p>
+            <Link href="/work/sample" className="mt-7 inline-flex h-13 min-h-[52px] items-center rounded-[2px] bg-brand px-6 font-bold text-charcoal">{t.project.phoneLink}</Link>
+          </div>
+          <div className="mx-auto w-full max-w-[420px] rounded-[32px] border-[10px] border-ivory bg-charcoal p-6 shadow-[0_40px_80px_-40px_rgba(7,59,58,.6)]">
+            <div className="flex items-center justify-between text-[13px] text-warm-gray"><span>{t.project.phoneLabel}</span><b className="rounded-full bg-charcoal-soft px-2 py-0.5 text-brand">{t.project.phoneDay}</b></div>
+            <h3 className="mt-3 text-[26px] font-bold">{t.project.phoneTitle}</h3>
+            <p className="text-[15px] text-warm-gray">{t.project.phoneStatus}</p>
+            <div className="mt-4 grid grid-cols-5 gap-1">{t.project.stages.map((x, i) => <i key={x} className={`h-[6px] rounded ${i === 0 ? "bg-brand" : i === 1 ? "bg-teal" : "bg-charcoal-mute"}`} />)}</div>
+            <div className="mt-1.5 grid grid-cols-5 gap-1 text-[11px] text-warm-gray">{t.project.stages.map((x) => <span key={x}>{x}</span>)}</div>
+            <div className="mt-4">{t.project.events.map((e) => <div key={e.text} className="flex gap-3 border-t border-charcoal-mute py-3 text-[15px]"><span className="w-12 flex-none text-warm-gray">{e.time}</span><b className="font-semibold">{e.text}</b></div>)}</div>
+            <p className="mt-2 text-center text-[12px] text-warm-gray">{t.project.phoneNote}</p>
+          </div>
+        </div>
+      </section>
+
+      {/* ── pick your situation: each card opens the exact next step ── */}
+      <section className="bg-charcoal-soft py-16 lg:py-24">
         <div className="mx-auto max-w-[1320px] px-5 lg:px-10">
           <h2 className="text-[clamp(32px,4.4vw,54px)] font-semibold leading-[1.02] tracking-[-0.035em]">
             <span>{s.title}</span><br /><span className="text-warm-gray">{s.titleSoft}</span>
@@ -109,56 +171,8 @@ export default function NewHomePage() {
         </div>
       </section>
 
-      {/* ── how it works + the live project page ── */}
-      <section className="bg-charcoal-soft py-16 lg:py-24">
-        <div className="mx-auto grid max-w-[1320px] items-center gap-10 px-5 lg:grid-cols-[1.1fr_.9fr] lg:px-10">
-          <div>
-            <h2 className="text-[clamp(32px,4.4vw,54px)] font-semibold tracking-[-0.035em]">{t.how.title}</h2>
-            <ol className="mt-6">
-              {t.how.steps.map((st, i) => (
-                <li key={st.title} className="relative border-t border-charcoal-mute py-4 pl-12">
-                  <span className="absolute left-0 top-4 flex h-8 w-8 items-center justify-center rounded-full bg-brand text-[14px] font-bold text-charcoal">{i + 1}</span>
-                  <b className="block text-[19px]">{st.title}</b>
-                  <span className="mt-1 block leading-relaxed text-warm-gray">{st.text}</span>
-                </li>
-              ))}
-            </ol>
-          </div>
-          <div className="mx-auto w-full max-w-[360px] rounded-[28px] border-8 border-ivory bg-charcoal p-5 shadow-[0_30px_60px_-30px_rgba(7,59,58,.5)]">
-            <div className="flex items-center justify-between text-[12px] text-warm-gray"><span>{t.how.phoneLabel}</span><b className="rounded-full bg-charcoal-soft px-2 py-0.5 text-brand">{t.how.phoneDay}</b></div>
-            <h4 className="mt-3 text-[22px] font-bold">{t.how.phoneTitle}</h4>
-            <p className="text-[14px] text-warm-gray">{t.how.phoneStatus}</p>
-            <div className="mt-3 grid grid-cols-5 gap-1">{t.how.stages.map((x, i) => <i key={x} className={`h-[5px] rounded ${i === 0 ? "bg-brand" : i === 1 ? "bg-teal" : "bg-charcoal-mute"}`} />)}</div>
-            <div className="mt-1.5 grid grid-cols-5 gap-1 text-[10px] text-warm-gray">{t.how.stages.map((x) => <span key={x}>{x}</span>)}</div>
-            <div className="mt-3">{t.how.events.map((e) => <div key={e.text} className="flex gap-3 border-t border-charcoal-mute py-2.5 text-[14px]"><span className="w-11 flex-none text-warm-gray">{e.time}</span><b className="font-semibold">{e.text}</b></div>)}</div>
-            <Link href="/work/sample" className="mt-2 flex h-11 items-center justify-center rounded-[2px] bg-brand text-[15px] font-bold text-charcoal">{t.how.phoneLink}</Link>
-            <p className="mt-2 text-center text-[11px] text-warm-gray">{t.how.phoneNote}</p>
-          </div>
-        </div>
-      </section>
-
-      {/* ── our own finished work ── */}
-      <section className="py-16 lg:py-24">
-        <div className="mx-auto max-w-[1320px] px-5 lg:px-10">
-          <div className="flex flex-wrap items-end justify-between gap-2">
-            <h2 className="text-[clamp(32px,4.4vw,54px)] font-semibold tracking-[-0.035em]">{t.work.title}</h2>
-            <p className="text-warm-gray">{t.work.text}</p>
-          </div>
-          <div className="mt-8 grid grid-cols-2 gap-3 lg:grid-cols-4">
-            {WORK.map((w) => (
-              <Link key={w.slug} href={`/work/${w.slug}`} className="group">
-                <div className="relative aspect-[4/5] overflow-hidden rounded-[4px]">
-                  <Image src={w.image} alt={w.imageAlt} fill sizes="(min-width:1024px) 25vw, 50vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
-                </div>
-                <span className="mt-2 block font-semibold">{w.title}</span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ── do you come to me ── */}
-      <section className="bg-charcoal-soft py-16 lg:py-24">
+      <section className="py-16 lg:py-24">
         <div className="mx-auto max-w-[1320px] px-5 lg:px-10">
           <h2 className="text-[clamp(32px,4.4vw,54px)] font-semibold tracking-[-0.035em]">{t.area.title}</h2>
           <p className="mt-3 text-[18px] text-warm-gray">{t.area.text}</p>
@@ -172,7 +186,7 @@ export default function NewHomePage() {
       </section>
 
       {/* ── quick answers ── */}
-      <section className="py-16 lg:py-24">
+      <section className="bg-charcoal-soft py-16 lg:py-24">
         <div className="mx-auto grid max-w-[1320px] gap-6 px-5 lg:grid-cols-[.6fr_1.4fr] lg:px-10">
           <h2 className="text-[clamp(32px,4.4vw,54px)] font-semibold tracking-[-0.035em]">{t.faq.title}</h2>
           <div>
@@ -193,8 +207,8 @@ export default function NewHomePage() {
         <div className="mx-auto max-w-[1320px] px-5">
           <h2 className="text-[clamp(36px,5.6vw,72px)] font-semibold leading-none tracking-[-0.04em]"><span>{t.end.title}</span><br /><span>{t.end.titleRest}</span></h2>
           <div className="mt-8 flex flex-wrap justify-center gap-2.5">
-            <Act open={{ mode: "talk" }} className="inline-flex h-14 items-center rounded-[2px] bg-charcoal px-6 font-bold text-brand">{t.end.talk}</Act>
-            <Act open={{ mode: "show" }} className="inline-flex h-14 items-center rounded-[2px] border border-warm-gray-deep px-6 font-bold">{t.end.show}</Act>
+            <Act open={{ mode: "show", hint: "water" }} className="inline-flex h-14 items-center rounded-[2px] bg-charcoal px-6 font-bold text-brand">{t.end.photos}</Act>
+            <Act open={{ mode: "method", hint: "remodel" }} className="inline-flex h-14 items-center rounded-[2px] border border-warm-gray-deep px-6 font-bold">{t.end.remodel}</Act>
             <a href={tel} className="inline-flex h-14 items-center rounded-[2px] bg-coral px-6 font-bold">{t.end.call}</a>
           </div>
         </div>
@@ -203,8 +217,8 @@ export default function NewHomePage() {
       {/* ── always one tap from help (phones) ── */}
       <div className="fixed inset-x-2.5 bottom-[calc(10px+env(safe-area-inset-bottom))] z-40 grid grid-cols-[1.25fr_1fr_1fr] gap-1.5 rounded-[10px] bg-ivory p-1.5 shadow-[0_14px_40px_-12px_rgba(0,0,0,.45)] lg:hidden">
         <a href={tel} className="flex h-[50px] items-center justify-center rounded-[6px] bg-coral font-bold text-charcoal">{t.dock.call}</a>
-        <Act open={{ mode: "talk" }} className="h-[50px] rounded-[6px] font-bold text-charcoal">{t.dock.talk}</Act>
-        <Act open={{ mode: "show" }} className="h-[50px] rounded-[6px] font-bold text-charcoal">{t.dock.show}</Act>
+        <Act open={{ mode: "talk" }} className="h-[50px] rounded-[6px] font-bold text-charcoal">{t.dock.voice}</Act>
+        <Act open={{ mode: "show" }} className="h-[50px] rounded-[6px] font-bold text-charcoal">{t.dock.photos}</Act>
       </div>
 
       <Intake copy={t.intake} phone={site.phone} email={site.email} />

@@ -7,84 +7,56 @@
     "eyebrow": "Restoration + Remodeling · Vancouver WA / Portland OR",
     "titleLead": "Water, fire & mold restoration —",
     "titleRest": "and the remodel after.",
-    "lead": "Tell us what happened — or what you’d like to change. A sentence, a photo or a call is enough.",
+    "lead": "Water, fire or mold — or a kitchen or bath you want to change. Start with whichever fits.",
     "nightLead": "It’s late.",
     "nightText": "The fastest way is a call — a person answers.",
+    "call": "Call 24/7",
+    "callSub": "{phone}",
+    "photos": "Send photos of damage",
+    "photosSub": "From your phone, right here",
+    "remodel": "Plan a remodel",
+    "remodelSub": "Kitchen, bath, interiors",
+    "orLabel": "Or describe it in a sentence",
     "label": "Describe what’s going on",
     "placeholder": "My washing machine leaked upstairs.",
-    "talk": "Talk",
-    "photo": "Photo",
+    "voice": "Voice message",
     "enterHint": "Enter to send",
-    "send": "Send",
-    "quick": {
-      "water": "Water leak",
-      "fire": "Fire or smoke",
-      "mold": "Mold",
-      "insurance": "Insurance paperwork",
-      "remodel": "Remodel",
-      "commercial": "Commercial"
-    },
+    "send": "Continue",
+    "proofTarget": "On-site target: 60 minutes, 24/7",
     "proofAnswers": "A person answers 24/7",
     "proofReg": "WA Reg. ONARER*748K8",
     "proofIicrc": "IICRC certified",
     "photoAlt": "A finished kitchen by Ona Restoration"
   },
-  "situations": {
-    "title": "Pick your situation.",
-    "titleSoft": "We’ll skip the questions you don’t need.",
-    "restore": {
-      "title": "Restore",
-      "text": "Water, fire, smoke, mold.",
-      "running": "Water still running?",
-      "runningSub": "Find the shutoff",
-      "show": "Show the damage",
-      "showSub": "Send photos",
-      "call": "Call now",
-      "callSub": "{phone}"
-    },
-    "rebuild": {
-      "title": "Rebuild",
-      "text": "After the insurance claim.",
-      "upload": "Tell us about the claim",
-      "uploadSub": "Carrier, estimate, what’s done",
-      "schedule": "Book a walkthrough",
-      "scheduleSub": "Pick a time"
-    },
-    "remodel": {
-      "title": "Remodel",
-      "text": "Kitchens, baths, interiors.",
-      "show": "Show the space",
-      "showSub": "A few photos",
-      "talk": "Just tell us",
-      "talkSub": "Talk, we’ll write it down",
-      "schedule": "Plan a call",
-      "scheduleSub": "Pick a time"
-    },
-    "commercial": {
-      "title": "Commercial",
-      "text": "Property recovery, multi-family.",
-      "report": "Report an issue",
-      "reportSub": "Unit, building, what happened",
-      "call": "Call now",
-      "callSub": "{phone}"
-    }
+  "work": {
+    "title": "Our finished work.",
+    "text": "Kitchens and baths we built."
   },
   "how": {
-    "title": "How it works.",
+    "title": "What happens after you reach us.",
     "steps": [
       {
-        "title": "Tell us",
-        "text": "A sentence, a photo, or a call. If something is unsafe — gas, sparks, water near the panel — we tell you what to do first."
+        "title": "A person answers",
+        "text": "Call any time, day or night, or send a sentence and a photo from this page."
       },
       {
-        "title": "We come and measure",
+        "title": "We ask a few questions",
+        "text": "What happened, which rooms, whether it’s still happening, and whether insurance is involved."
+      },
+      {
+        "title": "We set the visit",
+        "text": "We agree on a time by phone and confirm the address."
+      },
+      {
+        "title": "We measure and document",
         "text": "Moisture readings, photos and notes, the same way every visit."
-      },
-      {
-        "title": "You follow it live",
-        "text": "One page with every photo, reading and document. Share it with family or your adjuster."
       }
-    ],
+    ]
+  },
+  "project": {
+    "title": "Your project. Every photo, update and document.",
+    "titleRest": "In one place.",
+    "text": "One page for each job, with photos, moisture readings and documents. Share it with family or your adjuster.",
     "phoneLabel": "Ona · Project page",
     "phoneDay": "Day 4",
     "phoneTitle": "Sample residence",
@@ -113,9 +85,45 @@
     "phoneNote": "Sample page — illustrative",
     "phoneLink": "See the full sample project page"
   },
-  "work": {
-    "title": "Our work.",
-    "text": "Kitchens and baths we finished."
+  "situations": {
+    "title": "Pick your situation.",
+    "titleSoft": "We’ll skip the questions you don’t need.",
+    "restore": {
+      "title": "Restore",
+      "text": "Emergency cleanup after water, fire, smoke or mold.",
+      "running": "Water still running?",
+      "runningSub": "Find the shutoff",
+      "show": "Show the damage",
+      "showSub": "Send photos",
+      "call": "Call now",
+      "callSub": "{phone}"
+    },
+    "rebuild": {
+      "title": "Rebuild",
+      "text": "Repairs after damage, once the claim is in.",
+      "upload": "Tell us about the claim",
+      "uploadSub": "Carrier, estimate, what’s done",
+      "schedule": "Book a walkthrough",
+      "scheduleSub": "Pick a time"
+    },
+    "remodel": {
+      "title": "Remodel",
+      "text": "Kitchen and bath, and the rest of the house.",
+      "show": "Show the space",
+      "showSub": "A few photos",
+      "talk": "Record a voice message",
+      "talkSub": "Say it, we’ll write it down",
+      "schedule": "Plan a call",
+      "scheduleSub": "Pick a time"
+    },
+    "commercial": {
+      "title": "Commercial",
+      "text": "Property recovery, multi-family.",
+      "report": "Report an issue",
+      "reportSub": "Unit, building, what happened",
+      "call": "Call now",
+      "callSub": "{phone}"
+    }
   },
   "area": {
     "title": "Do you come to me?",
@@ -153,28 +161,29 @@
   "end": {
     "title": "Whatever brought you here,",
     "titleRest": "start here.",
-    "talk": "Talk to Ona",
-    "show": "Show a photo",
+    "photos": "Send photos",
+    "remodel": "Plan a remodel",
     "call": "Call {phone}"
   },
   "dock": {
     "call": "Call 24/7",
-    "talk": "Talk",
-    "show": "Show"
+    "voice": "Voice",
+    "photos": "Photos"
   },
   "intake": {
     "close": "Close",
     "call": "Call 24/7",
-    "method": {
-      "kicker": "How do you want to tell us?",
+    "tell": {
+      "kicker": "Tell us what’s going on",
       "title": "Tell us.",
-      "text": "However is easiest for you.",
-      "talk": "Talk",
-      "talkSub": "Just say it.",
-      "show": "Show",
-      "showSub": "Take a photo.",
-      "type": "Type",
-      "typeSub": "Describe it.",
+      "text": "What happened, which rooms, and whether it’s still happening.",
+      "remodelText": "Which rooms, and what you’d like to change.",
+      "placeholder": "My washing machine leaked upstairs and the ceiling below is wet.",
+      "label": "Tell us what’s going on.",
+      "voice": "Record a voice message",
+      "photos": "Add photos",
+      "photosReady": "photos added",
+      "continue": "Continue",
       "urgent": "Water still running or smoke in the house? Call now — {phone}"
     },
     "titles": {
@@ -185,16 +194,11 @@
       "remodel": "What would you change?",
       "commercial": "Commercial."
     },
-    "type": {
-      "title": "Tell us what’s going on.",
-      "hint": "What happened, which rooms, and whether it’s still happening.",
-      "continue": "Continue"
-    },
     "talk": {
       "title": "Listening…",
       "hint": "Say what happened. You’ll see your words as you speak.",
       "done": "Done",
-      "typeInstead": "Type instead",
+      "typeInstead": "Write it instead",
       "unsupported": "This browser can’t listen. Type it instead — it works just as well.",
       "blocked": "The microphone is off. Type it or send a photo instead."
     },

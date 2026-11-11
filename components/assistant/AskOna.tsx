@@ -281,9 +281,10 @@ export function AskOna() {
     setError(null);
   }
 
-  // No floating assistant over the content admin. After every hook — this
-  // component has a dozen — so hook order never changes between renders.
-  if (pathname.startsWith("/admin")) return null;
+  // No floating assistant over the content admin, nor on /new, whose own
+  // intake already does this job — two ways to ask is one too many. After
+  // every hook — this component has a dozen — so hook order never changes.
+  if (pathname.startsWith("/admin") || pathname === "/new") return null;
 
   return (
     <>
