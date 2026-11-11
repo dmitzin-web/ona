@@ -18,6 +18,7 @@ import pages_service_page from "@/content/pages/service-page.json";
 import pages_services_index from "@/content/pages/services-index.json";
 import pages_spokane_fire from "@/content/pages/spokane-fire.json";
 import pages_start_project from "@/content/pages/start-project.json";
+import pages_new from "@/content/pages/new.json";
 import pages_work_page from "@/content/pages/work-page.json";
 import reviews from "@/content/reviews.json";
 import seo from "@/content/seo.json";
@@ -50,6 +51,7 @@ export const DEPLOYED: Record<string, unknown> = {
   "content/pages/services-index.json": pages_services_index,
   "content/pages/spokane-fire.json": pages_spokane_fire,
   "content/pages/start-project.json": pages_start_project,
+  "content/pages/new.json": pages_new,
   "content/pages/work-page.json": pages_work_page,
   "content/reviews.json": reviews,
   "content/seo.json": seo,

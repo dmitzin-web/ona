@@ -223,6 +223,7 @@ export function sitePages(values: Content, opts: { siteName: string; siteUrl: st
   single("/blog", "Blog", "blog-index", ["seo"], ["hero", "title"], { schema: ["BreadcrumbList"] });
   single("/quote", "Quote request", "quote", ["seo"], ["intro", "title"], { faqsAt: ["faqs"], schema: ["BreadcrumbList", "FAQPage"] });
   single("/start-project", "Start a project", "start-project", ["seo"], ["kind", "title"]);
+  single("/new", "New homepage (trial)", "new", ["seo"], [["hero", "titleLead"], ["hero", "titleRest"]], { noindex: true });
   single("/quote/thanks", "Thank you (after a quote request)", "misc", ["thanks", "seo"], ["thanks", "title"], {
     noindex: true,
   });

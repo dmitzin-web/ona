@@ -18,6 +18,7 @@ import { CHROME } from "./pages/chrome";
 import { POST_PAGE } from "./pages/post-page";
 import { QUOTE } from "./pages/quote";
 import { START_PROJECT } from "./pages/start-project";
+import { NEW_HOME } from "./pages/new";
 import { WORK_PAGE } from "./pages/work-page";
 
 // Every schema-driven section of the admin: what file it lives in, how it
@@ -77,6 +78,7 @@ export const SECTIONS: SectionDef[] = [
   SERVICE_AREA_PAGE,
   CHROME,
   START_PROJECT,
+  NEW_HOME,
   QUOTE,
   WORK_PAGE,
   POST_PAGE,

@@ -16,6 +16,7 @@ export const PREVIEW_PATHS: Record<string, string> = {
   "service-area-page": "/services/water-damage/vancouver-wa",
   chrome: "/",
   "start-project": "/start-project",
+  new: "/new",
   quote: "/quote",
   "work-page": "/work/sample",
   "post-page": "/blog/{firstPost}",

@@ -1,0 +1,331 @@
+{
+  "seo": {
+    "title": "Water, fire & mold restoration and remodeling",
+    "description": "Restoration and remodeling in Vancouver WA and Portland OR. Tell us what happened in a sentence, send a photo, or call — a person answers 24/7."
+  },
+  "hero": {
+    "eyebrow": "Restoration + Remodeling · Vancouver WA / Portland OR",
+    "titleLead": "Water, fire & mold restoration —",
+    "titleRest": "and the remodel after.",
+    "lead": "Tell us what happened — or what you’d like to change. A sentence, a photo or a call is enough.",
+    "nightLead": "It’s late.",
+    "nightText": "The fastest way is a call — a person answers.",
+    "label": "Describe what’s going on",
+    "placeholder": "My washing machine leaked upstairs.",
+    "talk": "Talk",
+    "photo": "Photo",
+    "enterHint": "Enter to send",
+    "send": "Send",
+    "quick": {
+      "water": "Water leak",
+      "fire": "Fire or smoke",
+      "mold": "Mold",
+      "insurance": "Insurance paperwork",
+      "remodel": "Remodel",
+      "commercial": "Commercial"
+    },
+    "proofAnswers": "A person answers 24/7",
+    "proofReg": "WA Reg. ONARER*748K8",
+    "proofIicrc": "IICRC certified",
+    "photoAlt": "A finished kitchen by Ona Restoration"
+  },
+  "situations": {
+    "title": "Pick your situation.",
+    "titleSoft": "We’ll skip the questions you don’t need.",
+    "restore": {
+      "title": "Restore",
+      "text": "Water, fire, smoke, mold.",
+      "running": "Water still running?",
+      "runningSub": "Find the shutoff",
+      "show": "Show the damage",
+      "showSub": "Send photos",
+      "call": "Call now",
+      "callSub": "{phone}"
+    },
+    "rebuild": {
+      "title": "Rebuild",
+      "text": "After the insurance claim.",
+      "upload": "Tell us about the claim",
+      "uploadSub": "Carrier, estimate, what’s done",
+      "schedule": "Book a walkthrough",
+      "scheduleSub": "Pick a time"
+    },
+    "remodel": {
+      "title": "Remodel",
+      "text": "Kitchens, baths, interiors.",
+      "show": "Show the space",
+      "showSub": "A few photos",
+      "talk": "Just tell us",
+      "talkSub": "Talk, we’ll write it down",
+      "schedule": "Plan a call",
+      "scheduleSub": "Pick a time"
+    },
+    "commercial": {
+      "title": "Commercial",
+      "text": "Property recovery, multi-family.",
+      "report": "Report an issue",
+      "reportSub": "Unit, building, what happened",
+      "call": "Call now",
+      "callSub": "{phone}"
+    }
+  },
+  "how": {
+    "title": "How it works.",
+    "steps": [
+      {
+        "title": "Tell us",
+        "text": "A sentence, a photo, or a call. If something is unsafe — gas, sparks, water near the panel — we tell you what to do first."
+      },
+      {
+        "title": "We come and measure",
+        "text": "Moisture readings, photos and notes, the same way every visit."
+      },
+      {
+        "title": "You follow it live",
+        "text": "One page with every photo, reading and document. Share it with family or your adjuster."
+      }
+    ],
+    "phoneLabel": "Ona · Project page",
+    "phoneDay": "Day 4",
+    "phoneTitle": "Sample residence",
+    "phoneStatus": "Water loss · Drying",
+    "stages": [
+      "Mitigation",
+      "Drying",
+      "Scope",
+      "Rebuild",
+      "Done"
+    ],
+    "events": [
+      {
+        "time": "10:24",
+        "text": "Moisture readings updated"
+      },
+      {
+        "time": "09:41",
+        "text": "18 photos added"
+      },
+      {
+        "time": "08:55",
+        "text": "Adjuster contacted"
+      }
+    ],
+    "phoneNote": "Sample page — illustrative",
+    "phoneLink": "See the full sample project page"
+  },
+  "work": {
+    "title": "Our work.",
+    "text": "Kitchens and baths we finished."
+  },
+  "area": {
+    "title": "Do you come to me?",
+    "text": "Vancouver WA, Portland OR and the towns around them.",
+    "label": "Your ZIP code",
+    "placeholder": "Your ZIP",
+    "button": "Check",
+    "yesBefore": "Yes —",
+    "yesAfter": "is in our area. Tell us what’s going on, or call {phone}.",
+    "notListed": "isn’t on our list — call {phone} and ask. We may still cover it.",
+    "outside": "That ZIP looks outside the Vancouver–Portland area.",
+    "invalid": "Enter a 5-digit ZIP."
+  },
+  "faq": {
+    "title": "Quick answers.",
+    "items": [
+      {
+        "q": "Can I just call?",
+        "a": "Yes. A person answers 24/7 at {phone}. Talk, photo and text are here for when calling isn’t convenient."
+      },
+      {
+        "q": "Do you work with my insurance?",
+        "a": "We document everything — photos, moisture readings, scope — and share it with you and your adjuster. Your carrier decides coverage. You pay your deductible, nothing more."
+      },
+      {
+        "q": "Someone else did the drying. Can you do the rebuild?",
+        "a": "Yes. Tell us what you have — the estimate, letters, photos — and we’ll walk the job with you."
+      },
+      {
+        "q": "Do you do remodels when nothing is damaged?",
+        "a": "Yes — kitchens, bathrooms and interiors, with the same crew and the same project page."
+      }
+    ]
+  },
+  "end": {
+    "title": "Whatever brought you here,",
+    "titleRest": "start here.",
+    "talk": "Talk to Ona",
+    "show": "Show a photo",
+    "call": "Call {phone}"
+  },
+  "dock": {
+    "call": "Call 24/7",
+    "talk": "Talk",
+    "show": "Show"
+  },
+  "intake": {
+    "close": "Close",
+    "call": "Call 24/7",
+    "method": {
+      "kicker": "How do you want to tell us?",
+      "title": "Tell us.",
+      "text": "However is easiest for you.",
+      "talk": "Talk",
+      "talkSub": "Just say it.",
+      "show": "Show",
+      "showSub": "Take a photo.",
+      "type": "Type",
+      "typeSub": "Describe it.",
+      "urgent": "Water still running or smoke in the house? Call now — {phone}"
+    },
+    "titles": {
+      "water": "Water.",
+      "fire": "Fire or smoke.",
+      "mold": "Mold.",
+      "insurance": "Insurance repair.",
+      "remodel": "What would you change?",
+      "commercial": "Commercial."
+    },
+    "type": {
+      "title": "Tell us what’s going on.",
+      "hint": "What happened, which rooms, and whether it’s still happening.",
+      "continue": "Continue"
+    },
+    "talk": {
+      "title": "Listening…",
+      "hint": "Say what happened. You’ll see your words as you speak.",
+      "done": "Done",
+      "typeInstead": "Type instead",
+      "unsupported": "This browser can’t listen. Type it instead — it works just as well.",
+      "blocked": "The microphone is off. Type it or send a photo instead."
+    },
+    "photo": {
+      "title": "Show us.",
+      "hint": "The ceiling, the stain, the room you want to change. Wide first, then close up.",
+      "take": "Take a photo",
+      "library": "Choose from library",
+      "more": "Add another",
+      "noteLabel": "Anything we should know? (optional)",
+      "notePlaceholder": "Water is still dripping from the light fixture.",
+      "continue": "Continue",
+      "ready": "photos ready"
+    },
+    "thinking": "Got it.",
+    "result": {
+      "kicker": "Here’s what we understood",
+      "youSaid": "You said",
+      "edit": "Not quite? Edit",
+      "oneThing": "One thing first",
+      "unsureTitle": "Tell us a bit more.",
+      "unsureText": "We couldn’t tell what kind of job this is yet. Say a little more, or send a photo.",
+      "titles": {
+        "water": "We’re on it.",
+        "fire": "We’re on it.",
+        "mold": "Let’s take a look.",
+        "insurance": "Let’s rebuild.",
+        "remodel": "Got it.",
+        "commercial": "We’re on it."
+      },
+      "cards": {
+        "water": "Possible water loss",
+        "fire": "Fire and smoke",
+        "mold": "Possible moisture or mold",
+        "insurance": "Insurance repair",
+        "remodel": "Remodel",
+        "commercial": "Commercial property"
+      }
+    },
+    "rows": {
+      "source": "Source",
+      "stopped": "Water stopped",
+      "areas": "Rooms",
+      "started": "Started",
+      "carrier": "Carrier",
+      "estimate": "Estimate",
+      "items": "Ideas",
+      "observed": "Observed",
+      "property": "Property",
+      "photos": "Photos",
+      "yes": "Yes",
+      "no": "No — still active",
+      "unknown": "Not sure yet",
+      "notYet": "Not mentioned yet",
+      "have": "Have it"
+    },
+    "ask": {
+      "running": "Is the water still running?",
+      "fireOut": "Is the fire out?",
+      "leak": "Do you know of a leak in this area?",
+      "estimate": "Do you have their estimate?",
+      "remodel": "What would help most?",
+      "yes": "Yes",
+      "no": "No",
+      "notSure": "Not sure"
+    },
+    "act": {
+      "request": "Request a visit",
+      "photos": "Add photos",
+      "call": "Call now",
+      "turnedOff": "I turned it off",
+      "findShutoff": "Help me find the shutoff",
+      "schedule": "Schedule a walkthrough",
+      "showSpace": "Show the space",
+      "tellMore": "Tell us more",
+      "planCall": "Plan a call"
+    },
+    "alerts": {
+      "shutoff": "First: shut off the water if you can do so safely.",
+      "shutoffText": "If water is near outlets, cords or the electrical panel, stay out of that room.",
+      "sewage": "Keep people and pets out of the water.",
+      "sewageText": "Sewage can carry bacteria. Don’t try to clean it up yourself.",
+      "fire": "Don’t go back inside until the fire department says it’s safe.",
+      "mold": "Try not to scrub or disturb it before we look at it."
+    },
+    "shutoff": {
+      "title": "Let’s find it.",
+      "text": "Only if you can reach it safely.",
+      "steps": [
+        "For one fixture — toilet, sink, washer — look for the small valve on the wall behind it and turn it clockwise.",
+        "For the whole house, the main valve is usually where the water line comes in: garage, basement, crawlspace or near the water heater.",
+        "Turn it clockwise until it stops. If it won’t move, don’t force it — call us."
+      ],
+      "done": "It’s off now",
+      "call": "Call — talk me through it"
+    },
+    "safety": {
+      "kicker": "Safety first",
+      "call911": "Call 911",
+      "continue": "Everyone is safe — continue",
+      "note": "Ona starts once the area is safe. We don’t replace emergency services, an electrician or your gas utility."
+    },
+    "contact": {
+      "stepOf": "Step {step} of {steps}",
+      "when": "When works?",
+      "whenText": "We’ll confirm the exact time by phone.",
+      "times": [
+        "As soon as possible",
+        "Today",
+        "Tomorrow",
+        "This week",
+        "Just call me first"
+      ],
+      "where": "Where is it?",
+      "whereText": "Street address, or at least the ZIP.",
+      "wherePlaceholder": "123 Main St, Vancouver WA 98661",
+      "who": "Best phone number?",
+      "whoText": "We call you on it to confirm.",
+      "namePlaceholder": "Your name",
+      "phonePlaceholder": "(360) 555-0123",
+      "next": "Next",
+      "send": "Send to Ona",
+      "sending": "Sending…",
+      "required": "We need this to reach you."
+    },
+    "sent": {
+      "title": "Sent.",
+      "text": "The Ona team has your request. If it’s urgent, don’t wait — call {phone}.",
+      "failTitle": "We couldn’t send it.",
+      "failText": "Your email app will open with everything filled in — or just call {phone}.",
+      "back": "Back to the site"
+    }
+  }
+}
