@@ -92,3 +92,30 @@ export function ZipCheck({ cities, t }: {
     </>
   );
 }
+
+/** What a restoration job actually involves, one tab per kind of loss. Steps come from content/services.json — the same copy as the service pages. */
+export function ProcessTabs({ jobs, more }: { jobs: { slug: string; name: string; steps: { step: string; text: string }[] }[]; more: string }) {
+  const [i, setI] = useState(0);
+  const job = jobs[i];
+  return (
+    <div className="mt-8">
+      <div role="tablist" className="flex flex-wrap gap-2">
+        {jobs.map((j, k) => (
+          <button key={j.slug} role="tab" type="button" aria-selected={k === i} onClick={() => setI(k)}
+            className={`h-11 rounded-full px-5 text-[15px] font-bold ${k === i ? "bg-charcoal text-ivory" : "border border-warm-gray-deep/50 text-charcoal hover:border-charcoal"}`}>
+            {j.name}
+          </button>
+        ))}
+      </div>
+      <ol role="tabpanel" className="mt-6 grid gap-px overflow-hidden rounded-[2px] bg-warm-gray/40 sm:grid-cols-2 lg:grid-cols-3">
+        {job.steps.map((s) => (
+          <li key={s.step} className="bg-ivory p-5 lg:p-6">
+            <b className="block text-[18px] text-charcoal">{s.step}</b>
+            <span className="mt-2 block leading-relaxed text-warm-gray-deep">{s.text}</span>
+          </li>
+        ))}
+      </ol>
+      <a href={`/services/${job.slug}`} className="mt-5 inline-block font-semibold text-charcoal underline underline-offset-4">{more} {job.name}</a>
+    </div>
+  );
+}

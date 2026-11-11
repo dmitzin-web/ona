@@ -8,7 +8,8 @@ import { workItems } from "@/lib/work";
 import { fillPlaceholdersDeep } from "@/lib/placeholders";
 import content from "@/content/pages/new.json";
 import { Intake } from "@/components/new/Intake";
-import { Act, Composer, NightNote, ZipCheck } from "@/components/new/Bits";
+import { Act, Composer, NightNote, ProcessTabs, ZipCheck } from "@/components/new/Bits";
+import { findService } from "@/lib/services";
 
 // /new — the use-first homepage, trialled next to the current one before it
 // replaces anything. noindex: it repeats the homepage's subject, and two
@@ -27,6 +28,10 @@ const tel = `tel:${site.phone}`;
 const WORK = ["full-kitchen", "freestanding-tub", "kitchen-through-to-living", "double-vanity"]
   .map((s) => workItems.find((w) => w.slug === s))
   .filter((w): w is NonNullable<typeof w> => Boolean(w));
+const JOBS = (["water-damage", "fire-damage", "mold-removal"] as const)
+  .map((slug) => findService(slug))
+  .filter((x): x is NonNullable<typeof x> => Boolean(x))
+  .map((x) => ({ slug: x.slug, name: x.shortName, steps: x.process }));
 const heroPhoto = workItems.find((w) => w.slug === "kitchen-through-to-living") ?? workItems[0];
 
 const card = "flex flex-col rounded-[4px] border border-charcoal-mute bg-charcoal";
@@ -74,23 +79,12 @@ export default function NewHomePage() {
         </div>
       </section>
 
-      {/* ── our own finished work ── */}
-      <section className="py-16 lg:py-24">
+      {/* ── what a restoration job involves (copy from content/services.json) ── */}
+      <section className="bg-ivory py-16 text-charcoal lg:py-24">
         <div className="mx-auto max-w-[1320px] px-5 lg:px-10">
-          <div className="flex flex-wrap items-end justify-between gap-2">
-            <h2 className="text-[clamp(32px,4.4vw,54px)] font-semibold tracking-[-0.035em]">{t.work.title}</h2>
-            <p className="text-warm-gray">{t.work.text}</p>
-          </div>
-          <div className="mt-8 grid grid-cols-2 gap-3 lg:grid-cols-4">
-            {WORK.map((w) => (
-              <Link key={w.slug} href={`/work/${w.slug}`} className="group">
-                <div className="relative aspect-[4/5] overflow-hidden rounded-[4px]">
-                  <Image src={w.image} alt={w.imageAlt} fill sizes="(min-width:1024px) 25vw, 50vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
-                </div>
-                <span className="mt-2 block font-semibold">{w.title}</span>
-              </Link>
-            ))}
-          </div>
+          <h2 className="max-w-[820px] text-[clamp(32px,4.4vw,54px)] font-semibold leading-[1.02] tracking-[-0.035em]">{t.process.title}</h2>
+          <p className="mt-4 max-w-[640px] text-[18px] leading-relaxed text-warm-gray-deep">{t.process.text}</p>
+          <ProcessTabs jobs={JOBS} more={t.process.more} />
         </div>
       </section>
 
@@ -171,8 +165,28 @@ export default function NewHomePage() {
         </div>
       </section>
 
+      {/* ── our own finished work ── */}
+      <section className="py-14 lg:py-20">
+        <div className="mx-auto max-w-[1320px] px-5 lg:px-10">
+          <div className="flex flex-wrap items-end justify-between gap-2">
+            <h2 className="text-[clamp(26px,3vw,36px)] font-semibold tracking-[-0.035em]">{t.work.title}</h2>
+            <p className="text-warm-gray">{t.work.text}</p>
+          </div>
+          <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
+            {WORK.map((w) => (
+              <Link key={w.slug} href={`/work/${w.slug}`} className="group">
+                <div className="relative aspect-[4/3] overflow-hidden rounded-[4px]">
+                  <Image src={w.image} alt={w.imageAlt} fill sizes="(min-width:640px) 25vw, 50vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
+                </div>
+                <span className="mt-2 block font-semibold">{w.title}</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── do you come to me ── */}
-      <section className="py-16 lg:py-24">
+      <section className="bg-charcoal-soft py-16 lg:py-24">
         <div className="mx-auto max-w-[1320px] px-5 lg:px-10">
           <h2 className="text-[clamp(32px,4.4vw,54px)] font-semibold tracking-[-0.035em]">{t.area.title}</h2>
           <p className="mt-3 text-[18px] text-warm-gray">{t.area.text}</p>
@@ -186,7 +200,7 @@ export default function NewHomePage() {
       </section>
 
       {/* ── quick answers ── */}
-      <section className="bg-charcoal-soft py-16 lg:py-24">
+      <section className="py-16 lg:py-24">
         <div className="mx-auto grid max-w-[1320px] gap-6 px-5 lg:grid-cols-[.6fr_1.4fr] lg:px-10">
           <h2 className="text-[clamp(32px,4.4vw,54px)] font-semibold tracking-[-0.035em]">{t.faq.title}</h2>
           <div>

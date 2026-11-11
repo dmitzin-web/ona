@@ -28,9 +28,10 @@
     "proofIicrc": "IICRC certified",
     "photoAlt": "A finished kitchen by Ona Restoration"
   },
-  "work": {
-    "title": "Our finished work.",
-    "text": "Kitchens and baths we built."
+  "process": {
+    "title": "What we do on a restoration job.",
+    "text": "The same steps every time, to IICRC standards. Pick what happened to your home.",
+    "more": "More about"
   },
   "how": {
     "title": "What happens after you reach us.",
@@ -124,6 +125,10 @@
       "call": "Call now",
       "callSub": "{phone}"
     }
+  },
+  "work": {
+    "title": "Remodeling we finished.",
+    "text": "The rebuild end of the job: kitchens and baths."
   },
   "area": {
     "title": "Do you come to me?",
