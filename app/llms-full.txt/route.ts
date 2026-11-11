@@ -21,7 +21,7 @@ export function GET() {
   out.push(`- 24/7 emergency dispatch with a 60-minute on-site response target across the Portland metro.`);
   out.push(`- IICRC-certified technicians (WRT, ASD, AMRT, FSRT). Work performed to IICRC S500/S520/S700 standards.`);
   out.push(
-    `- Washington contractor registration ONARER*748K8 (verify at secure.lni.wa.gov/verify). Oregon CCB registration pending.`,
+    `- Washington contractor registration ONARER*748K8 (verify at secure.lni.wa.gov/verify).`,
   );
   out.push(`- Direct insurance billing — documentation in Xactimate format per IICRC S500/S520/S700.`);
   out.push(`- Single contractor for mitigation + reconstruction (no second-handoff).`);

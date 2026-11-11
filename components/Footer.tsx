@@ -35,7 +35,8 @@ export function Footer() {
           {/* License slots — replace `pending` strings with actual IDs as
               they are issued; do not invent or estimate.
               WA L&I: ONARER*748K8 (issued, verifiable at lni.wa.gov)
-              IICRC: certified (WRT/ASD/AMRT/FSRT). OR CCB: still pending.
+              IICRC: certified (WRT/ASD/AMRT/FSRT). Oregon: the row is hidden while
+              orStatus is empty — fill it with the CCB number once it issues.
               The words are in content/chrome.json → footer.credentials, and
               the same rules are the hint on that field in the admin. The
               verification link stays here, on the WA row. */}
@@ -53,10 +54,12 @@ export function Footer() {
                 </a>
               </dd>
             </div>
-            <div className="flex flex-wrap gap-x-2">
-              <dt className="eyebrow text-white/66">{t.credentials.orLabel}</dt>
-              <dd className="font-mono">{t.credentials.orStatus}</dd>
-            </div>
+            {t.credentials.orStatus && (
+              <div className="flex flex-wrap gap-x-2">
+                <dt className="eyebrow text-white/66">{t.credentials.orLabel}</dt>
+                <dd className="font-mono">{t.credentials.orStatus}</dd>
+              </div>
+            )}
             <div className="flex flex-wrap gap-x-2">
               <dt className="eyebrow text-white/66">{t.credentials.iicrcLabel}</dt>
               <dd className="font-mono">{t.credentials.iicrcStatus}</dd>

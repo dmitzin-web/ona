@@ -16,7 +16,7 @@
     "registration": {
       "beforeNumber": "In Washington we hold contractor registration",
       "number": "ONARER*748K8",
-      "afterNumber": ", which you can check against the state's own records before you call us. Our Oregon CCB registration is pending; the number goes here the day it issues."
+      "afterNumber": ", which you can check against the state's own records before you call us."
     },
     "credentialsLabel": "Credentials"
   },
@@ -83,8 +83,8 @@
         "a": "Yes — we run as a single-source contractor. The same team that extracts the water and dries the structure handles drywall, flooring, paint, cabinetry and finish carpentry. One contract, one schedule, one point of contact. This is unusual in the industry; most restoration outfits hand the rebuild off to a separate general contractor."
       },
       {
-        "q": "Are you licensed in both Washington and Oregon?",
-        "a": "In Washington, yes: contractor registration ONARER*748K8, verifiable at secure.lni.wa.gov/verify. Our Oregon CCB registration is pending and we will publish the number here the day it issues. Our technicians hold IICRC certifications in water, structural drying, microbial remediation and fire and smoke."
+        "q": "Are you licensed?",
+        "a": "In Washington we hold contractor registration ONARER*748K8, verifiable at secure.lni.wa.gov/verify. Our technicians hold IICRC certifications in water, structural drying, microbial remediation and fire and smoke."
       }
     ]
   }

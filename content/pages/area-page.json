@@ -55,7 +55,7 @@
       {
         "q": "Are you licensed to work in {areaStateName}?",
         "a": "Yes — Washington contractor registration ONARER*748K8, verifiable at secure.lni.wa.gov/verify. Our technicians hold IICRC certifications in water, structural drying, microbial remediation and fire and smoke.",
-        "aOregon": "Our Oregon CCB registration is pending. We will publish the number here the day it issues. In Washington we hold contractor registration ONARER*748K8, verifiable at secure.lni.wa.gov/verify, and our technicians hold IICRC certifications in water, structural drying, microbial remediation and fire and smoke."
+        "aOregon": ""
       },
       {
         "q": "Do you handle the insurance claim for {area} customers?",

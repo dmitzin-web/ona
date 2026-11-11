@@ -70,14 +70,17 @@ export default async function AreaPage(
   if (!area) notFound();
 
   const t = copy(area);
-  // Each question may carry a separate answer for Oregon cities. The
-  // licensing one does: the question is per-area, so the answer has to be
-  // too — the Oregon CCB registration is pending (see lib/site.ts), and the
-  // old single answer said yes for both states.
-  const localFaqs = t.faq.items.map((f) => ({
-    q: f.q,
-    a: area.region === "OR" && f.aOregon ? f.aOregon : f.a,
-  }));
+  // Each question may carry a separate answer for Oregon cities. Until the
+  // Oregon CCB number issues, the site says nothing about Oregon licensing,
+  // so on an Oregon city a licensing question with no Oregon answer is left
+  // out — falling back to the Washington "Yes" would claim an Oregon licence.
+  const oregon = area.region === "OR";
+  const localFaqs = t.faq.items
+    .filter((f) => !(oregon && !f.aOregon && /licen[cs]/i.test(f.q)))
+    .map((f) => ({
+      q: f.q,
+      a: oregon && f.aOregon ? f.aOregon : f.a,
+    }));
 
   return (
     <>

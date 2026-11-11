@@ -83,11 +83,11 @@ export const CHROME: SectionDef = {
     { kind: "object", key: "footer", label: "Footer", hint: "Service and city links come from Services and Cities.", fields: [
       { kind: "strings", key: "about", label: "Lines under the logo (one per line)", required: true },
       { kind: "text", key: "location", label: "Location line", required: true },
-      { kind: "object", key: "credentials", label: "Credentials", hint: "Washington requires the L&I registration number in advertising (RCW 18.27.100(3)) — keep it, and it links to the state's verification page. The Oregon CCB registration is PENDING: it must say so until the number is issued. Never add “bonded” or “insured” (RCW 18.27.100(4)).", fields: [
+      { kind: "object", key: "credentials", label: "Credentials", hint: "Washington requires the L&I registration number in advertising (RCW 18.27.100(3)) — keep it, and it links to the state's verification page. Oregon: leave both fields empty (the row is hidden) until the CCB number is issued, then put the number in the status. Never add “bonded” or “insured” (RCW 18.27.100(4)).", fields: [
         { kind: "text", key: "waLabel", label: "Washington — label", required: true },
         { kind: "text", key: "waNumber", label: "Washington — registration number", required: true, mono: true },
-        { kind: "text", key: "orLabel", label: "Oregon — label", required: true },
-        { kind: "text", key: "orStatus", label: "Oregon — status", required: true },
+        { kind: "text", key: "orLabel", label: "Oregon — label" },
+        { kind: "text", key: "orStatus", label: "Oregon — CCB number (empty hides the row)" },
         { kind: "text", key: "iicrcLabel", label: "IICRC — label", required: true },
         { kind: "text", key: "iicrcStatus", label: "IICRC — status", required: true },
       ] },

@@ -67,7 +67,7 @@ export function GET() {
   lines.push(`- Documentation: photo logs, moisture maps, Xactimate-formatted estimates.`);
   lines.push(`- Insurance: direct billing with all major carriers.`);
   lines.push(
-    `- Licensing: Washington contractor registration ONARER*748K8 (verify at secure.lni.wa.gov/verify). Oregon CCB registration pending.`,
+    `- Licensing: Washington contractor registration ONARER*748K8 (verify at secure.lni.wa.gov/verify).`,
   );
   lines.push("");
 

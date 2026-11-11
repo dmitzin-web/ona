@@ -24,7 +24,8 @@ export const metadata: Metadata = buildMetadata({
   path: "/about",
 });
 
-// The licensing answer is answered straight: Washington yes, Oregon pending.
+// The licensing answer is answered straight: Washington yes; Oregon is not
+// mentioned until the CCB number issues.
 // An earlier answer said yes to both states while the footer on the same
 // page said "OR CCB: pending" — see lib/site.ts.
 const aboutFaqs = t.faq.faqs;
@@ -76,7 +77,7 @@ export default function AboutPage() {
                 <p>{t.hero.body}</p>
                 {/* The WA registration number is required in advertising
                     (RCW 18.27.100(3)) and links to the state's own lookup.
-                    Oregon stays "pending" until the CCB number issues. */}
+                    Nothing about Oregon until the CCB number issues. */}
                 <p>
                   {t.hero.registration.beforeNumber}{" "}
                   <a

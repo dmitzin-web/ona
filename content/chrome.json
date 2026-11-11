@@ -67,8 +67,8 @@
     "credentials": {
       "waLabel": "WA L&I",
       "waNumber": "ONARER*748K8",
-      "orLabel": "OR CCB",
-      "orStatus": "pending",
+      "orLabel": "",
+      "orStatus": "",
       "iicrcLabel": "IICRC",
       "iicrcStatus": "Certified"
     },

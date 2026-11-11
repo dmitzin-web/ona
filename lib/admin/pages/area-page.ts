@@ -60,7 +60,7 @@ export const AREA_PAGE: SectionDef = {
       { kind: "list", key: "items", label: "Questions", itemTitle: "Question", fields: [
         { kind: "text", key: "q", label: "Question", required: true },
         { kind: "textarea", key: "a", label: "Answer", required: true, rows: 3, hint: "On Oregon cities the Oregon answer below replaces this one when it is filled in. {topLosses} is the city's first three kinds of damage; {weather} is its local weather." },
-        { kind: "textarea", key: "aOregon", label: "Answer on Oregon cities (optional)", rows: 3, hint: "Leave empty to show the same answer on every city. The Oregon CCB registration is pending: nothing may say we are licensed, registered or bonded in Oregon until the number is issued." },
+        { kind: "textarea", key: "aOregon", label: "Answer on Oregon cities (optional)", rows: 3, hint: "Leave empty to show the same answer on every city — except a licensing question, which is left off Oregon cities when this is empty. Nothing may say we are licensed, registered or bonded in Oregon until the CCB number is issued." },
       ] },
     ] },
     { kind: "object", key: "cta", label: "Closing call-to-action band", fields: [
