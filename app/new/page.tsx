@@ -10,6 +10,7 @@ import content from "@/content/pages/new.json";
 import { Intake } from "@/components/new/Intake";
 import { Act, Composer, NightNote, ProcessTabs, ZipCheck } from "@/components/new/Bits";
 import { findService } from "@/lib/services";
+import { DemoCase, DemoCrew, DemoRibbon, DemoStats } from "@/components/new/DemoProof";
 
 // /new — the use-first homepage, trialled next to the current one before it
 // replaces anything. noindex: it repeats the homepage's subject, and two
@@ -32,7 +33,6 @@ const JOBS = (["water-damage", "fire-damage", "mold-removal"] as const)
   .map((slug) => findService(slug))
   .filter((x): x is NonNullable<typeof x> => Boolean(x))
   .map((x) => ({ slug: x.slug, name: x.shortName, steps: x.process }));
-const heroPhoto = workItems.find((w) => w.slug === "kitchen-through-to-living") ?? workItems[0];
 
 const card = "flex flex-col rounded-[4px] border border-charcoal-mute bg-charcoal";
 const act =
@@ -43,6 +43,7 @@ export default function NewHomePage() {
   const s = t.situations;
   return (
     <>
+      <DemoRibbon />
       {/* ── hero: what we do, and the three ways in ── */}
       <section className="bg-brand text-charcoal">
         <div className="mx-auto grid max-w-[1320px] gap-8 px-5 pt-8 lg:min-h-[calc(100vh-var(--chrome-h,120px))] grid-cols-[minmax(0,1fr)] lg:grid-cols-[1.05fr_.95fr] lg:gap-12 lg:px-10 lg:pt-0">
@@ -74,10 +75,12 @@ export default function NewHomePage() {
             <div className="pb-8 lg:pb-0" />
           </div>
           <div className="relative -mx-5 h-[260px] lg:mx-0 lg:-mr-10 lg:h-auto">
-            <Image src={heroPhoto.image} alt={t.hero.photoAlt} fill priority sizes="(min-width:1024px) 48vw, 100vw" className="object-cover" />
+            <Image src="/photos/demo/hero-restoration.webp" alt="Technician taking a moisture reading on a wall" fill priority sizes="(min-width:1024px) 48vw, 100vw" className="object-cover object-[78%_center]" />
           </div>
         </div>
       </section>
+
+      <DemoStats />
 
       {/* ── what a restoration job involves (copy from content/services.json) ── */}
       <section className="bg-ivory py-16 text-charcoal lg:py-24">
@@ -87,6 +90,9 @@ export default function NewHomePage() {
           <ProcessTabs jobs={JOBS} more={t.process.more} />
         </div>
       </section>
+
+      <DemoCase />
+      <DemoCrew />
 
       {/* ── what happens after you reach us ── */}
       <section className="bg-charcoal-soft py-16 lg:py-24">
