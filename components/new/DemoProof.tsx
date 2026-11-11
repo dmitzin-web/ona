@@ -3,9 +3,11 @@
 import Image from "next/image";
 import { useState } from "react";
 
-// TEST BRANCH ONLY (demo/new-restoration). Demo photos (AI-made, from the
+// DEMO CONTENT on /new, published at the owner's request with a TEST VERSION
+// ribbon and a "Sample" tag on every invented item. Replace with real
+// photos, reviews and numbers, then delete this file. Demo photos (AI-made, from the
 // prototypes) and sample numbers/reviews, to judge the layout before real
-// material exists. Not for main: none of this is Ona's own work or data.
+// material exists. None of this is Ona's own work or data.
 
 export function DemoRibbon() {
   return (
@@ -29,7 +31,7 @@ export function DemoStats() {
         {stats.map(([n, l]) => (
           <div key={l} className="border-charcoal-mute py-6 pr-4 [&:not(:last-child)]:lg:border-r lg:px-6 lg:first:pl-0">
             <b className="block text-[clamp(30px,3.4vw,44px)] font-semibold leading-none tracking-[-0.03em] text-brand">{n}</b>
-            <span className="mt-1.5 block text-[14px] text-warm-gray">{l}</span>
+            <span className="mt-1.5 block text-[14px] text-warm-gray">{l}<span className="ml-2 rounded-[2px] bg-[#ffd84d] px-1.5 py-0.5 align-middle text-[11px] font-bold uppercase tracking-wide text-[#172124]">Sample</span></span>
           </div>
         ))}
       </div>
@@ -53,7 +55,7 @@ export function DemoCase() {
           <input type="range" min={0} max={100} value={pos} onChange={(e) => setPos(Number(e.target.value))} aria-label="Before and after" className="absolute inset-x-0 bottom-3 mx-auto w-[60%] accent-[#00776D]" />
         </div>
         <div>
-          <p className="text-[13px] font-semibold uppercase tracking-[0.08em] text-teal">Case · Camas, WA</p>
+          <p className="text-[13px] font-semibold uppercase tracking-[0.08em] text-teal">Case · Camas, WA<span className="ml-2 rounded-[2px] bg-[#ffd84d] px-1.5 py-0.5 align-middle text-[11px] font-bold uppercase tracking-wide text-[#172124]">Sample</span></p>
           <h2 className="mt-2 text-[clamp(30px,3.6vw,46px)] font-semibold leading-[1.04] tracking-[-0.035em]">Supply line burst behind the TV wall.</h2>
           <dl className="mt-6 text-[16px]">
             {[
@@ -85,7 +87,7 @@ export function DemoCrew() {
           <div className="relative aspect-[16/10] overflow-hidden rounded-[4px]">
             <Image src="/photos/demo/crew-demo.webp" alt="Ona crew next to a company van" fill sizes="(min-width:1024px) 45vw, 100vw" className="object-cover" />
           </div>
-          <h2 className="mt-6 text-[clamp(30px,3.6vw,46px)] font-semibold leading-[1.04] tracking-[-0.035em]">The people who show up.</h2>
+          <h2 className="mt-6 text-[clamp(30px,3.6vw,46px)] font-semibold leading-[1.04] tracking-[-0.035em]">The people who show up.<span className="ml-2 rounded-[2px] bg-[#ffd84d] px-1.5 py-0.5 align-middle text-[11px] font-bold uppercase tracking-wide text-[#172124]">Sample</span></h2>
           <p className="mt-3 max-w-[480px] text-[18px] leading-relaxed text-warm-gray">Our own crew, not subcontractors. Local to Clark County and Portland, on call every night.</p>
         </div>
         <div className="grid content-start gap-3">
@@ -93,7 +95,7 @@ export function DemoCrew() {
             <figure key={n} className="rounded-[4px] bg-charcoal p-6">
               <div className="text-[18px] text-coral" aria-label="5 out of 5">★★★★★</div>
               <blockquote className="mt-2 text-[17px] leading-relaxed">“{q}”</blockquote>
-              <figcaption className="mt-3 text-[14px] text-warm-gray"><b className="text-ivory">{n}</b> · {c} · Google</figcaption>
+              <figcaption className="mt-3 text-[14px] text-warm-gray"><b className="text-ivory">{n}</b> · {c}<span className="ml-2 rounded-[2px] bg-[#ffd84d] px-1.5 py-0.5 align-middle text-[11px] font-bold uppercase tracking-wide text-[#172124]">Sample</span></figcaption>
             </figure>
           ))}
         </div>
