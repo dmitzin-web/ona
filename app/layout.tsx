@@ -115,12 +115,14 @@ export default function RootLayout({
             "24/7 crew available" permanently visible, which for a company
             whose entire promise is that someone answers at 3am is worth
             the 32px it costs. */}
-        <div className="sticky top-0 z-50">
+        <div className="sticky top-0 z-50" data-chrome>
           <EmergencyBanner />
           <Header />
         </div>
         <main id="main">{children}</main>
-        <Footer />
+        <div data-chrome className="contents">
+          <Footer />
+        </div>
         <AskOna />
         <EditThisPage />
         <Analytics />

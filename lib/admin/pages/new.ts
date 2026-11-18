@@ -3,14 +3,12 @@ import type { Field } from "../schema";
 import type { SectionDef } from "../sections";
 import content from "@/content/pages/new.json";
 
-// /new — the use-first homepage being trialled next to the current one.
-// The page has a lot of small copy (the intake's screens, buttons, the
-// questions it asks), so instead of hand-listing ~150 fields the form is
-// derived from the shape of content/pages/new.json: every string becomes a
-// text box, every list of strings a list, every list of objects a repeatable
-// group. Add a key to the JSON and read it in the page, and it is editable.
-// The safety instructions (gas, sparks, fire …) are NOT here on purpose —
-// they live in lib/intake/understand.ts so they can't be softened by accident.
+// /new — the one-screen homepage being trialled next to the current one:
+// "A person answers.", one tappable sentence ("My kitchen is flooded."),
+// Call and Text a photo. The form is derived from the shape of
+// content/pages/new.json: every string becomes a text box, every list of
+// strings a list, every list of objects a repeatable group. Add a key to the
+// JSON and read it in the page, and it is editable.
 const label = (key: string) =>
   key
     .replace(/([a-z0-9])([A-Z])/g, "$1 $2")
@@ -34,7 +32,7 @@ export const NEW_HOME: SectionDef = {
   id: "new",
   label: "New homepage (/new)",
   file: "content/pages/new.json",
-  description: `The trial homepage at /new and its Talk / Photo / Type intake. ${PLACEHOLDERS} In the intake, {step} and {steps} are the step the visitor is on and how many there are.`,
+  description: `The trial homepage at /new: one screen with a person-answers headline, a sentence the visitor can change (places × states, each state with its result line), Call and Text a photo. ${PLACEHOLDERS}`,
   kind: "single",
   schema: fieldsOf(content as unknown as Record<string, unknown>),
 };

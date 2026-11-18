@@ -1,126 +1,87 @@
 {
   "seo": {
-    "title": "Water, fire & mold restoration and remodeling",
-    "description": "Restoration and remodeling in Vancouver WA and Portland OR. Tell us what happened in a sentence, send a photo, or call — a person answers 24/7."
+    "title": "A person answers — water, fire and mold, 24/7",
+    "description": "Water, fire and mold restoration in Vancouver WA and the Portland metro. Call or text a photo to (360) 553-2138 — a person answers, day or night."
   },
   "hero": {
-    "titleLead": "Water, fire, mold.",
-    "titleRest": "We handle what comes next.",
-    "where": "Vancouver WA / Portland OR · 24/7",
-    "call": "Call 24/7",
-    "ask": "What do you need help with?",
-    "proofReg": "WA Reg. ONARER*748K8",
-    "proofIicrc": "IICRC certified",
-    "back": "Back"
-  },
-  "doors": {
-    "happened": {
-      "title": "Something happened",
-      "text": "Water, fire, smoke or mold"
-    },
-    "rebuild": {
-      "title": "Ready to rebuild",
-      "text": "Drying is finished. Repairs are next."
-    },
-    "remodel": {
-      "title": "Planning a remodel",
-      "text": "Kitchen, bathroom or interiors"
-    },
-    "existing": {
-      "title": "An existing project",
-      "text": "Updates, photos and documents"
-    }
-  },
-  "panel": {
-    "happened": {
-      "title": "Let’s get someone on it.",
-      "text": "Call now, or leave your number and a person from Ona calls you back."
-    },
-    "rebuild": {
-      "title": "Let’s plan the repairs.",
-      "text": "Leave your number and ZIP. If you have the estimate or photos, you can send them after."
-    },
-    "remodel": {
-      "title": "Tell us what you’re thinking.",
-      "text": "Pick the room, leave your number, and we’ll call to talk it through."
-    },
-    "existing": {
-      "title": "Your project page.",
-      "text": "Open it with the link we sent you. Lost the link? Leave the phone number on the project and we’ll send it again."
-    },
-    "callNow": "Call now",
-    "callMe": "Have us call you",
-    "rooms": [
-      "Kitchen",
-      "Bathroom",
-      "Other"
+    "title": "A person answers.",
+    "sub": "Day or night. Water, fire, mold.",
+    "my": "My",
+    "is": "is",
+    "places": [
+      "kitchen",
+      "basement",
+      "ceiling",
+      "bathroom",
+      "living room",
+      "office"
     ],
-    "roomLabel": "Which room?",
-    "phone": "Phone",
-    "phonePlaceholder": "(360) 555-0123",
-    "zip": "ZIP",
-    "zipPlaceholder": "98661",
-    "note": "What happened? (optional)",
-    "notePlaceholder": "Washing machine leaked upstairs, ceiling below is wet.",
-    "noteRebuild": "Anything we should know? (optional)",
-    "noteRebuildPlaceholder": "Mitigation done by another company, carrier is State Farm.",
-    "send": "Request a call back",
-    "sendLink": "Send me the link",
-    "sending": "Sending…",
-    "needPhone": "We need a phone number to call you.",
-    "needZip": "Enter a 5-digit ZIP.",
-    "inArea": "is in our area.",
-    "outArea": "We’ll check that ZIP when we call.",
-    "hazardKicker": "Before anything else",
-    "call911": "Call 911"
-  },
-  "done": {
-    "title": "Your request is received.",
-    "text": "A person from Ona will call you at the number below to confirm. Nothing is scheduled until we’ve talked.",
-    "linkText": "We’ll send the project link to the number below.",
-    "rows": {
-      "need": "Need",
-      "phone": "Phone",
-      "zip": "ZIP",
-      "room": "Room",
-      "note": "You said"
-    },
-    "photos": "Add photos",
-    "photosText": "Send them by email with your phone number in the subject — we’ll match them to your request.",
-    "urgent": "If it gets worse, don’t wait — call {phone}.",
-    "again": "Start over",
-    "failTitle": "We couldn’t send it.",
-    "failText": "Your email app will open with everything filled in — or just call {phone}."
-  },
-  "proof": {
-    "tabs": {
-      "job": "See a real job",
-      "team": "Meet your team",
-      "faq": "Questions"
-    }
-  },
-  "faq": {
-    "items": [
+    "states": [
       {
-        "q": "What does the first visit cost?",
-        "a": "We go over it on the phone before anything is scheduled. With an insurance claim, you pay your deductible, nothing more."
+        "word": "flooded",
+        "result": "dry, documented, rebuilt."
       },
       {
-        "q": "Do you work with my insurance?",
-        "a": "We document everything — photos, moisture readings, scope — and share it with you and your adjuster. Your carrier decides coverage. You pay your deductible, nothing more."
+        "word": "leaking",
+        "result": "found, dried, fixed."
       },
       {
-        "q": "Where do you work?",
-        "a": "Vancouver WA, Portland OR and the towns around them — Camas, Battle Ground, Beaverton, Hillsboro, Gresham, Tigard, Lake Oswego and more."
+        "word": "burnt",
+        "result": "cleaned, deodorized, rebuilt."
       },
       {
-        "q": "Someone else did the drying. Can you do the rebuild?",
-        "a": "Yes. Tell us what you have — the estimate, letters, photos — and we’ll walk the job with you."
+        "word": "smoky",
+        "result": "smoke out, cleaned, deodorized."
       },
       {
-        "q": "Can I just call?",
-        "a": "Yes. A person answers 24/7 at {phone}. The call-back request is here for when calling isn’t convenient."
+        "word": "moldy",
+        "result": "contained, removed, rebuilt."
       }
-    ]
+    ],
+    "tapHint": "Tap the words",
+    "resultLead": "We make it",
+    "call": "Call",
+    "callShort": "Call 24/7",
+    "text": "Text us a photo",
+    "textSub": "same number",
+    "save": "We text you back from this same number — save it.",
+    "smsLead": "Hi Ona —",
+    "smsTail": "Photos attached. Address:",
+    "reg": "WA Reg. ONARER*748K8",
+    "iicrc": "IICRC-certified technicians",
+    "next": "What to do while you wait"
+  },
+  "next": {
+    "title": "The next 5 minutes.",
+    "steps": [
+      {
+        "title": "Shut off the water.",
+        "text": "Main valve: garage, basement, crawlspace or by the water heater. Clockwise until it stops."
+      },
+      {
+        "title": "Wet near the panel? Don’t touch it.",
+        "text": "Stay out of that room. Sparks or a burning smell — leave and call 911."
+      },
+      {
+        "title": "Film everything.",
+        "text": "Wide first, then close. Before you move anything. It helps your claim."
+      }
+    ],
+    "target": "Our on-site target: 60 minutes."
+  },
+  "cost": {
+    "kicker": "What it costs you",
+    "title": "If it’s an insurance claim:",
+    "deductible": "Your deductible",
+    "example": "Example",
+    "covered": "The covered repair",
+    "insurer": "Your insurer",
+    "you": "You pay",
+    "line": "You pay your deductible, nothing more.",
+    "find": "It’s on your policy’s declarations page. Can’t find it? Call — we’ll look with you."
+  },
+  "foot": {
+    "legal": "Ona Restoration & Remodeling LLC",
+    "area": "Vancouver WA · Portland metro"
   }
 }

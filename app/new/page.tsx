@@ -1,19 +1,16 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { buildMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
-import { areaProfiles } from "@/lib/areas";
 import { fillPlaceholdersDeep } from "@/lib/placeholders";
 import content from "@/content/pages/new.json";
-import { Doors, ProofTabs } from "@/components/new/Doors";
-import { DemoCase, DemoCrew, DemoRibbon } from "@/components/new/DemoProof";
+import { Deductible, Sentence } from "@/components/new/Sentence";
 
-// /new — a short homepage that shapes itself to the visitor's situation:
-// four ways in, the request made in place (two clicks to sent), and the
-// proof — a job, the team, answers — only when someone asks for it.
-// noindex: it repeats the homepage's subject while it is on trial.
-// Every word is in content/pages/new.json (/admin → New homepage), except
-// the demo job and team, which are placeholders in components/new/DemoProof.
+// /new — one screen, one action. "A person answers.", a sentence the
+// visitor can change to say what happened, Call and Text a photo, and the
+// two checkable facts. Nothing else above the fold: no menu, no photos we
+// don't own, no sample reviews. Below it, only what helps while waiting and
+// what it costs. noindex while it is on trial.
+// Every word is in content/pages/new.json (/admin → New homepage).
 const t = fillPlaceholdersDeep(content);
 
 export const metadata: Metadata = buildMetadata({
@@ -25,48 +22,96 @@ export const metadata: Metadata = buildMetadata({
 
 const tel = `tel:${site.phone}`;
 
+// The site header, strip and footer are marked data-chrome in app/layout.tsx;
+// this page hides them so the one action has the screen to itself.
+const pageCss =
+  "body:has([data-page=new]) [data-chrome]{display:none}" +
+  "@keyframes ona-roll{from{opacity:0;transform:translateY(.3em)}to{opacity:1;transform:none}}" +
+  ".ona-roll{display:inline-block;animation:ona-roll .28s cubic-bezier(.2,.9,.3,1.2)}" +
+  "@media (prefers-reduced-motion:reduce){.ona-roll{animation:none}}";
+
 export default function NewHomePage() {
   return (
-    <>
-      <DemoRibbon />
-      <section className="bg-brand text-charcoal">
-        <div className="mx-auto grid max-w-[1320px] grid-cols-[minmax(0,1fr)] gap-8 px-5 pt-8 pb-10 lg:min-h-[calc(100vh-var(--chrome-h,120px))] lg:grid-cols-[1.1fr_.9fr] lg:gap-14 lg:px-10 lg:py-0">
-          <div className="flex min-w-0 flex-col justify-center lg:py-14">
-            <h1 className="text-[clamp(38px,5.4vw,72px)] font-semibold leading-[1] tracking-[-0.035em]">
-              <span>{t.hero.titleLead}</span> <span className="block text-warm-gray-deep">{t.hero.titleRest}</span>
-            </h1>
-            <p className="mt-4 text-[17px] text-warm-gray-deep">{t.hero.where}</p>
-            <a href={tel} className="mt-6 inline-flex h-14 w-fit items-center gap-3 rounded-[2px] bg-coral px-6 text-[18px] font-bold text-charcoal hover:bg-coral-deep">
-              <span>{t.hero.call}</span><span className="font-semibold">{site.phoneDisplay}</span>
-            </a>
-            <Doors
-              hero={t.hero}
-              doors={t.doors}
-              panel={t.panel}
-              done={t.done}
-              phone={site.phone}
-              phoneDisplay={site.phoneDisplay}
-              email={site.email}
-              cities={areaProfiles.map((a) => ({ name: a.name, zips: a.zips }))}
-            />
-            <ul className="mt-8 flex flex-wrap gap-x-5 gap-y-2 text-[14px] text-warm-gray-deep">
-              <li><a href="https://secure.lni.wa.gov/verify/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">{t.hero.proofReg}</a></li>
-              <li>{t.hero.proofIicrc}</li>
-            </ul>
+    <div data-page="new">
+      <style>{pageCss}</style>
+
+      {/* ── the one screen ── */}
+      <section className="flex min-h-[100svh] flex-col bg-brand text-charcoal">
+        <div className="mx-auto flex w-full max-w-[1180px] items-center justify-between px-5 pt-5 lg:px-10">
+          <a href="/" aria-label={site.name} className="flex flex-col leading-none text-charcoal">
+            <span className="flex items-end gap-[2px] text-[24px] font-semibold tracking-[0.16em]" aria-hidden="true">
+              ON
+              <svg width="18" height="17" viewBox="0 0 17 16" fill="none" stroke="currentColor" strokeWidth="2" className="mb-[1px]"><path d="M1.2 15.4 8.5 1.2l7.3 14.2" /></svg>
+            </span>
+          </a>
+          <a href={tel} className="inline-flex h-11 items-center rounded-full bg-coral px-5 text-[15px] font-bold text-charcoal">{t.hero.callShort}</a>
+        </div>
+
+        <div className="mx-auto flex w-full max-w-[1180px] flex-1 flex-col justify-center px-5 py-10 lg:px-10">
+          <p className="flex items-center gap-2.5 text-[15px] font-semibold text-warm-gray-deep">
+            <span className="h-2 w-2 rounded-full bg-[#43D39B]" aria-hidden="true" />
+            <span>{t.hero.sub}</span>
+          </p>
+          <h1 className="mt-3 text-[clamp(52px,10vw,132px)] font-bold leading-[0.92] tracking-[-0.055em]">{t.hero.title}</h1>
+          <div className="mt-8">
+            <Sentence t={t.hero} phone={site.phone} phoneDisplay={site.phoneDisplay} />
           </div>
-          <div className="relative -mx-5 hidden lg:mx-0 lg:-mr-10 lg:block">
-            <Image src="/photos/demo/hero-restoration.webp" alt="Technician taking a moisture reading on a wall" fill priority sizes="45vw" className="object-cover object-[78%_center]" />
+          <p className="mt-4 text-[16px] text-warm-gray-deep">{t.hero.save}</p>
+          <p className="mt-6 flex flex-wrap gap-x-5 gap-y-1 text-[14px] text-warm-gray-deep">
+            <a href="https://secure.lni.wa.gov/verify/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">{t.hero.reg}</a>
+            <span>{t.hero.iicrc}</span>
+          </p>
+        </div>
+
+        <a href="#next" className="mx-auto mb-5 text-[12px] font-semibold uppercase tracking-[0.12em] text-warm-gray-deep">{t.hero.next} ↓</a>
+      </section>
+
+      {/* ── while you wait ── */}
+      <section id="next" className="bg-charcoal py-16 lg:py-24">
+        <div className="mx-auto max-w-[1180px] px-5 lg:px-10">
+          <h2 className="text-[clamp(34px,5vw,64px)] font-bold leading-none tracking-[-0.04em]">{t.next.title}</h2>
+          <ol className="mt-10 grid gap-8 md:grid-cols-3 md:gap-5">
+            {t.next.steps.map((st, i) => (
+              <li key={st.title} className={`border-t-[3px] pt-5 ${i === 1 ? "border-coral" : "border-ivory"}`}>
+                <span className="font-mono text-[13px] text-warm-gray">0{i + 1}</span>
+                <h3 className={`mt-3 text-[clamp(24px,2.4vw,32px)] font-bold leading-[1.08] tracking-[-0.025em] ${i === 1 ? "text-coral-deep" : ""}`}>{st.title}</h3>
+                <p className="mt-2 text-[17px] text-warm-gray">{st.text}</p>
+              </li>
+            ))}
+          </ol>
+          <p className="mt-10 text-[clamp(20px,2vw,26px)] font-semibold text-brand">{t.next.target}</p>
+        </div>
+      </section>
+
+      {/* ── what it costs you ── */}
+      <section className="bg-brand py-16 text-charcoal lg:py-24">
+        <div className="mx-auto max-w-[1180px] px-5 lg:px-10">
+          <p className="font-mono text-[12px] uppercase tracking-[0.12em] text-[#9CC9C2]">{t.cost.kicker}</p>
+          <h2 className="mt-3 text-[clamp(34px,5vw,64px)] font-bold leading-none tracking-[-0.04em]">{t.cost.title}</h2>
+          <div className="mt-10 grid items-end gap-10 md:grid-cols-2 md:gap-16">
+            <Deductible t={t.cost} />
+            <div>
+              <p className="text-[clamp(24px,2.6vw,34px)] font-bold leading-[1.12] tracking-[-0.02em]">{t.cost.line}</p>
+              <p className="mt-4 text-[16px] text-warm-gray-deep">{t.cost.find}</p>
+            </div>
           </div>
         </div>
       </section>
 
-      <ProofTabs tabs={t.proof.tabs} job={<DemoCase />} team={<DemoCrew />} faq={t.faq.items} />
+      <footer className="bg-charcoal py-7 pb-28 text-[14px] text-warm-gray md:pb-7">
+        <div className="mx-auto flex max-w-[1180px] flex-wrap gap-x-6 gap-y-1 px-5 lg:px-10">
+          <span>{t.foot.legal}</span>
+          <a href="https://secure.lni.wa.gov/verify/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">{t.hero.reg}</a>
+          <span>{t.foot.area}</span>
+          <a href={tel} className="underline underline-offset-2">{site.phoneDisplay}</a>
+          <a href={`mailto:${site.email}`} className="underline underline-offset-2">{site.email}</a>
+        </div>
+      </footer>
 
-      {/* Call stays one tap away on phones, whatever is open above. */}
-      <div className="h-24 lg:hidden" />
-      <a href={tel} className="fixed inset-x-3 bottom-[calc(12px+env(safe-area-inset-bottom))] z-40 flex h-14 items-center justify-center gap-2 rounded-[6px] bg-coral text-[18px] font-bold text-charcoal shadow-[0_14px_40px_-12px_rgba(0,0,0,.45)] lg:hidden">
-        <span>{t.hero.call}</span><span className="font-semibold">{site.phoneDisplay}</span>
+      {/* phones: call is one tap away after the first screen */}
+      <a href={tel} className="fixed inset-x-3 bottom-[calc(12px+env(safe-area-inset-bottom))] z-40 flex h-14 items-center justify-center rounded-[12px] bg-coral text-[17px] font-bold text-charcoal shadow-[0_14px_34px_-14px_rgba(0,0,0,.5)] md:hidden">
+        <span>{t.hero.callShort}</span>&nbsp;<span className="font-medium">{site.phoneDisplay}</span>
       </a>
-    </>
+    </div>
   );
 }
