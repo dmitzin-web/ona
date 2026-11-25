@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { buildMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
 import { JsonLd } from "@/components/JsonLd";
+import { Logo } from "@/components/Logo";
 import { faqJsonLd } from "@/lib/jsonld";
 import { fillPlaceholdersDeep } from "@/lib/placeholders";
 import content from "@/content/pages/new.json";
@@ -42,11 +43,8 @@ export default function HomePage() {
       {/* ── the one screen ── */}
       <section className="flex min-h-[100svh] flex-col bg-brand text-charcoal">
         <div className="mx-auto flex w-full max-w-[1180px] items-center justify-between px-5 pt-5 lg:px-10">
-          <a href="#" aria-label={site.name} className="flex flex-col leading-none text-charcoal">
-            <span className="flex items-end gap-[2px] text-[24px] font-semibold tracking-[0.16em]" aria-hidden="true">
-              ON
-              <svg width="18" height="17" viewBox="0 0 17 16" fill="none" stroke="currentColor" strokeWidth="2" className="mb-[1px]"><path d="M1.2 15.4 8.5 1.2l7.3 14.2" /></svg>
-            </span>
+          <a href="#" aria-label={site.name} className="text-charcoal">
+            <Logo variant="horizontal" tone="dark" />
           </a>
           <a href={tel} className="inline-flex h-11 items-center rounded-full bg-coral px-5 text-[15px] font-bold text-charcoal">{t.hero.callShort}</a>
         </div>
