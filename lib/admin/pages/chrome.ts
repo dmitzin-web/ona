@@ -43,7 +43,7 @@ export const CHROME: SectionDef = {
       { kind: "text", key: "callShort", label: "Call button on phones", required: true, hint: "Wider screens show the phone number itself." },
       { kind: "text", key: "callAriaLabel", label: `Call button ${SR}`, required: true },
       { kind: "text", key: "sendPhotos", label: "“Send photos” button", required: true, hint: "Opens an email to dispatch. Shown on every page except remodeling." },
-      { kind: "text", key: "sendPhotosSubject", label: "Subject of that email", required: true },
+      { kind: "text", key: "sendPhotosSubject", label: "Start of that text message", required: true },
       { kind: "text", key: "startProject", label: "“Start a project” button", required: true, hint: "Shown instead of “Send photos” on the remodeling pages." },
       { kind: "text", key: "menuCall", label: "Call button inside the phone menu", required: true },
       { kind: "text", key: "menuButton", label: `Menu button ${SR}`, required: true },

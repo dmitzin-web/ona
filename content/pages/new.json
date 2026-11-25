@@ -93,6 +93,12 @@
     "emailSubject": "Insurance estimate",
     "fine": "We’re a contractor, not a public adjuster: we document the damage and estimate the work. Your claim stays between you and your insurer."
   },
+  "work": {
+    "kicker": "Our work",
+    "title": "Rooms we finished.",
+    "text": "Kitchens, baths and the rebuild after a claim — photographed when we handed them back.",
+    "remodel": "Planning a remodel? See remodeling"
+  },
   "cost": {
     "kicker": "What it costs you",
     "title": "If it’s an insurance claim:",

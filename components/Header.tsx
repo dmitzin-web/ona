@@ -54,7 +54,9 @@ const nav: NavItem[] = [
 // beside Call and Send photos is a way out of that decision, not into it.
 // The `askona:open` event and everything downstream are unchanged.
 
-const PHOTO_SUBJECT = encodeURIComponent(t.sendPhotosSubject);
+// "Send photos" opens a text to the same number the visitor can call —
+// the homepage's "Text us a photo" does the same, so one action, one channel.
+const PHOTO_SMS = `sms:${site.phone}?&body=${encodeURIComponent(`${t.sendPhotosSubject}. `)}`;
 
 export function Header() {
   const pathname = usePathname() ?? "/";
@@ -180,7 +182,7 @@ export function Header() {
               mailing photos to dispatch (the pattern the Spokane page
               uses). Remodeling is the opposite: a months-long considered
               purchase where "Start a project" is exactly right.
-              Deliberately mailto and not the assistant — "Send photos"
+              Deliberately a text and not the assistant — "Send photos"
               has to reach a person, not a chat window. */}
           {isRemodel ? (
             <Link
@@ -191,7 +193,7 @@ export function Header() {
             </Link>
           ) : (
             <a
-              href={`mailto:${site.email}?subject=${PHOTO_SUBJECT}`}
+              href={PHOTO_SMS}
               className={`hidden rounded-[2px] border px-5 py-2.5 text-[14px] font-medium transition sm:inline-flex ${onHome ? "border-charcoal text-charcoal hover:bg-charcoal hover:text-brand" : "border-ivory text-ivory hover:bg-brand hover:text-charcoal"}`}
             >
               {t.sendPhotos}
@@ -284,7 +286,7 @@ export function Header() {
                     </Link>
                   ) : (
                     <a
-                      href={`mailto:${site.email}?subject=${PHOTO_SUBJECT}`}
+                      href={PHOTO_SMS}
                       onClick={closeMobileMenu}
                       className="inline-flex w-full items-center justify-center rounded-[2px] border border-ivory px-4 py-3 text-[13px] font-medium text-ivory"
                     >
