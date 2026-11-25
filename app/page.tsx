@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { buildMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
 import { JsonLd } from "@/components/JsonLd";
-import { Logo } from "@/components/Logo";
 import { faqJsonLd } from "@/lib/jsonld";
 import { fillPlaceholdersDeep } from "@/lib/placeholders";
 import content from "@/content/pages/new.json";
@@ -10,7 +9,7 @@ import { Deductible, Sentence } from "@/components/new/Sentence";
 
 // The homepage: one screen, one action. "A person answers.", a sentence the
 // visitor can change to say what happened, Call and Text a photo, and the
-// two checkable facts. No menu above the fold, no photos we don't own, no
+// two checkable facts, under the site's usual header. No photos we don't own, no
 // sample reviews. Below it: what to do while waiting, the insurer's
 // estimate, what it costs, and short answers (also sent as FAQPage data).
 // The site footer stays — its links to services and cities matter for search.
@@ -25,15 +24,10 @@ export const metadata: Metadata = buildMetadata({
 
 const tel = `tel:${site.phone}`;
 
-// The site strip + header are marked data-chrome="top" in app/layout.tsx;
-// this page hides them so the one action has the screen to itself.
 const pageCss =
-  "body:has([data-page=home]) [data-chrome=top]{display:none}" +
   "@keyframes ona-roll{from{opacity:0;transform:translateY(.3em)}to{opacity:1;transform:none}}" +
   ".ona-roll{display:inline-block;animation:ona-roll .28s cubic-bezier(.2,.9,.3,1.2)}" +
-  "@media (prefers-reduced-motion:reduce){.ona-roll{animation:none}}" +
-  // the pinned phone Call bar must not cover the end of the site footer
-  "@media (max-width:767px){body:has([data-page=home]) [data-chrome=foot] footer{padding-bottom:96px}}";
+  "@media (prefers-reduced-motion:reduce){.ona-roll{animation:none}}";
 
 export default function HomePage() {
   return (
@@ -41,14 +35,7 @@ export default function HomePage() {
       <style>{pageCss}</style>
 
       {/* ── the one screen ── */}
-      <section className="flex min-h-[100svh] flex-col bg-brand text-charcoal">
-        <div className="mx-auto flex w-full max-w-[1180px] items-center justify-between px-5 pt-5 lg:px-10">
-          <a href="#" aria-label={site.name} className="text-charcoal">
-            <Logo variant="horizontal" tone="dark" />
-          </a>
-          <a href={tel} className="inline-flex h-11 items-center rounded-full bg-coral px-5 text-[15px] font-bold text-charcoal">{t.hero.callShort}</a>
-        </div>
-
+      <section className="flex min-h-[calc(100svh-var(--chrome-h,120px))] flex-col bg-brand text-charcoal">
         <div className="mx-auto flex w-full max-w-[1180px] flex-1 flex-col justify-center px-5 py-10 lg:px-10">
           <p className="flex items-center gap-2.5 text-[15px] font-semibold text-warm-gray-deep">
             <span className="h-2 w-2 rounded-full bg-[#43D39B]" aria-hidden="true" />
@@ -140,10 +127,6 @@ export default function HomePage() {
       </section>
       <JsonLd data={faqJsonLd(t.faqs)} />
 
-      {/* phones: call is one tap away after the first screen */}
-      <a href={tel} className="fixed inset-x-3 bottom-[calc(12px+env(safe-area-inset-bottom))] z-40 flex h-14 items-center justify-center rounded-[12px] bg-coral text-[17px] font-bold text-charcoal shadow-[0_14px_34px_-14px_rgba(0,0,0,.5)] md:hidden">
-        <span>{t.hero.callShort}</span>&nbsp;<span className="font-medium">{site.phoneDisplay}</span>
-      </a>
     </div>
   );
 }
