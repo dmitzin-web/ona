@@ -30,6 +30,7 @@ export const CHROME: SectionDef = {
     ] },
     { kind: "object", key: "statusStrip", label: "Dark strip at the very top", fields: [
       { kind: "text", key: "text", label: "Text", required: true, hint: "One short line — it must fit on one line on a phone. Only promise what the crew can actually do." },
+      { kind: "text", key: "night", label: "Text at night (10 p.m.–6 a.m. Pacific)", required: true, hint: "{time} is the visitor’s current Pacific time, e.g. 2:14 a.m. Must fit on one line on a phone." },
     ] },
     { kind: "object", key: "header", label: "Menu bar", hint: "Where each menu item goes is fixed; only the words change.", fields: [
       { kind: "object", key: "nav", label: "Menu items", fields: [

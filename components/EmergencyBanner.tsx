@@ -24,6 +24,7 @@
 // blocks → Dark strip at the very top).
 
 import { chrome } from "@/lib/chrome";
+import { StripText } from "./StripText";
 
 export function EmergencyBanner() {
   return (
@@ -43,9 +44,7 @@ export function EmergencyBanner() {
             "Now booking fall projects" lived only here and is now off
             the site entirely — put it back in a page if it is wanted,
             not in the chrome, where it goes stale by season. */}
-        <p className="eyebrow whitespace-nowrap text-white">
-          {chrome.statusStrip.text}
-        </p>
+        <StripText day={chrome.statusStrip.text} night={chrome.statusStrip.night} />
       </div>
     </div>
   );

@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { services } from "@/lib/services";
 import { site } from "@/lib/site";
 import { chrome } from "@/lib/chrome";
 import { Logo } from "./Logo";
@@ -10,7 +11,8 @@ import { Logo } from "./Logo";
 // ─────────────────────────────────────────────────────────────
 // Header — Project File concept
 // ────────────────────────────────────────────────────────────
-// Minimal bar. Nav items, no dropdowns. Two CTAs on the right:
+// Minimal bar: Restoration (with a small list of its services) and
+// Remodeling. Two CTAs on the right:
 //   - Phone (coral, primary, visible at every width; recoloured to
 //     `flare` on wildfire pages by a :has() rule in globals.css)
 //   - Start a project (ink outline, secondary, sm and up)
@@ -27,7 +29,14 @@ import { Logo } from "./Logo";
 //
 // Mobile: native <details>/<summary> drawer, no JS state.
 
-type NavItem = { href: string; label: string; mobileOnly?: boolean };
+type NavItem = { href: string; label: string; mobileOnly?: boolean; sub?: { href: string; label: string }[] };
+
+// What sits under "Restoration": the four emergency services, named as
+// on their own pages (content/services.json).
+const RESTORE_SUB = ["water-damage", "fire-damage", "mold-removal", "storm-damage"]
+  .map((slug) => services.find((x) => x.slug === slug))
+  .filter((x): x is NonNullable<typeof x> => Boolean(x))
+  .map((x) => ({ href: `/services/${x.slug}`, label: x.shortName }));
 
 // The words live in content/chrome.json (/admin → Header, footer & shared
 // blocks → Menu bar); where each item goes is route structure and stays here.
@@ -44,7 +53,7 @@ const nav: NavItem[] = [
   // Owner's call (Nov 2026): the bar says what we do — Restoration and
   // Remodeling — and nothing else. Mold lives under Restoration; How we
   // work, Notes and Contact are in the footer.
-  { href: "/services", label: t.nav.restoration },
+  { href: "/services", label: t.nav.restoration, sub: RESTORE_SUB },
   { href: "/services/remodeling", label: t.nav.remodeling },
   { href: "/contact", label: t.nav.contact, mobileOnly: true },
 ];
@@ -61,6 +70,27 @@ const PHOTO_SMS = `sms:${site.phone}?&body=${encodeURIComponent(`${t.sendPhotosS
 export function Header() {
   const pathname = usePathname() ?? "/";
   const mobileMenuRef = useRef<HTMLDetailsElement>(null);
+
+  // On the homepage the first screen has its own big Call / Text buttons;
+  // while they are on screen the header's copies step aside, so the first
+  // screen shows two actions, not four. Starts true on "/" so server and
+  // browser render the same thing.
+  const [heroCtas, setHeroCtas] = useState(pathname === "/");
+  // Desktop only: the bar tightens once the page has scrolled.
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+  useEffect(() => {
+    const el = pathname === "/" ? document.getElementById("hero-actions") : null;
+    if (!el || !("IntersectionObserver" in window)) { setHeroCtas(false); return; }
+    const io = new IntersectionObserver(([e]) => setHeroCtas(e.isIntersecting), { rootMargin: "-80px 0px 0px 0px" });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [pathname]);
 
   // Close the mobile drawer after a selection. The drawer is a native
   // <details>; client-side <Link> navigation doesn't reload the page, so
@@ -114,8 +144,10 @@ export function Header() {
     <header className={onHome ? "border-b border-white/10 bg-brand" : "border-b border-line bg-charcoal shadow-[0_10px_30px_-26px_rgba(23,33,36,0.65)]"}>
       {/* Tighter on phones. The strip and the bar are both pinned now, so
           every pixel here is permanently subtracted from the viewport. */}
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-3 md:py-4 lg:px-10">
-        <Logo variant="horizontal" tone={onHome ? "dark" : "light"} />
+      <div className={`mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-3 transition-[padding] duration-200 md:py-4 lg:px-10 ${scrolled ? "lg:py-2" : ""}`}>
+        <span className={`origin-left transition-transform duration-200 ${scrolled ? "lg:scale-[0.86]" : ""}`}>
+          <Logo variant="horizontal" tone={onHome ? "dark" : "light"} />
+        </span>
 
         {/* Desktop nav. Was 14px / weight 400 / text-ivory/85, which was
             small three times over: 14px against a 31px wordmark, the
@@ -134,7 +166,7 @@ export function Header() {
               if (item.mobileOnly) return null;
               const active = isActive(item.href);
               return (
-                <li key={item.href ?? `nav-${i}`}>
+                <li key={item.href ?? `nav-${i}`} className={item.sub ? "group/sub relative" : undefined}>
                   <Link
                     href={item.href}
                     aria-current={active ? "page" : undefined}
@@ -146,6 +178,17 @@ export function Header() {
                   >
                     {item.label}
                   </Link>
+                  {item.sub && (
+                    <div className="invisible absolute left-1/2 top-full z-50 -translate-x-1/2 pt-3 opacity-0 transition duration-150 group-focus-within/sub:visible group-focus-within/sub:opacity-100 group-hover/sub:visible group-hover/sub:opacity-100">
+                      <ul className="min-w-[220px] rounded-[6px] border border-line bg-charcoal py-2 text-[15px] text-ivory shadow-[0_18px_40px_-18px_rgba(23,33,36,0.45)]">
+                        {item.sub.map((x) => (
+                          <li key={x.href}>
+                            <Link href={x.href} className="block px-4 py-2 transition hover:bg-charcoal-soft hover:text-teal">{x.label}</Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
                 </li>
               );
             })}
@@ -166,7 +209,7 @@ export function Header() {
           <a
             href={`tel:${site.phone}`}
             aria-label={t.callAriaLabel}
-            className="inline-flex items-center gap-2 rounded-[2px] bg-coral px-4 py-2.5 text-[14px] font-semibold text-white transition hover:brightness-90 md:px-5"
+            className={`inline-flex items-center gap-2 rounded-[2px] bg-coral px-4 py-2.5 text-[14px] font-semibold text-white transition hover:brightness-90 md:px-5 ${onHome && heroCtas ? "pointer-events-none invisible opacity-0" : "opacity-100"}`}
           >
             <span
               aria-hidden="true"
@@ -187,14 +230,14 @@ export function Header() {
           {isRemodel ? (
             <Link
               href="/start-project"
-              className={`hidden rounded-[2px] border px-5 py-2.5 text-[14px] font-medium transition sm:inline-flex ${onHome ? "border-charcoal text-charcoal hover:bg-charcoal hover:text-brand" : "border-ivory text-ivory hover:bg-brand hover:text-charcoal"}`}
+              className={`hidden rounded-[2px] border px-5 py-2.5 text-[14px] font-medium transition sm:inline-flex ${onHome ? "border-charcoal text-charcoal hover:bg-charcoal hover:text-brand" : "border-ivory text-ivory hover:bg-brand hover:text-charcoal"} ${onHome && heroCtas ? "pointer-events-none invisible opacity-0" : "opacity-100"}`}
             >
               {t.startProject}
             </Link>
           ) : (
             <a
               href={PHOTO_SMS}
-              className={`hidden rounded-[2px] border px-5 py-2.5 text-[14px] font-medium transition sm:inline-flex ${onHome ? "border-charcoal text-charcoal hover:bg-charcoal hover:text-brand" : "border-ivory text-ivory hover:bg-brand hover:text-charcoal"}`}
+              className={`hidden rounded-[2px] border px-5 py-2.5 text-[14px] font-medium transition sm:inline-flex ${onHome ? "border-charcoal text-charcoal hover:bg-charcoal hover:text-brand" : "border-ivory text-ivory hover:bg-brand hover:text-charcoal"} ${onHome && heroCtas ? "pointer-events-none invisible opacity-0" : "opacity-100"}`}
             >
               {t.sendPhotos}
             </a>
@@ -264,6 +307,15 @@ export function Header() {
                           →
                         </span>
                       </Link>
+                      {item.sub && (
+                        <ul className="-mt-1 pb-3 pl-4">
+                          {item.sub.map((x) => (
+                            <li key={x.href}>
+                              <Link href={x.href} onClick={closeMobileMenu} className="block py-1.5 text-[14px] text-warm-gray">{x.label}</Link>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
                     </li>
                   );
                 })}

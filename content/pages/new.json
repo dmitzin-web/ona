@@ -36,9 +36,14 @@
       {
         "word": "moldy",
         "result": "contained, removed, rebuilt."
+      },
+      {
+        "word": "outdated",
+        "result": "designed, built, finished."
       }
     ],
-    "tapHint": "Tap the words",
+    "pickPlace": "Change the room",
+    "pickState": "Change what happened",
     "resultLead": "We make it",
     "call": "Call",
     "callShort": "Call 24/7",
@@ -49,6 +54,27 @@
     "smsTail": "Photos attached. Address:",
     "reg": "WA Reg. ONARER*748K8",
     "iicrc": "IICRC-certified technicians",
+    "when": {
+      "title": "When you call",
+      "steps": [
+        {
+          "title": "A person picks up.",
+          "text": "Day or night — not a menu."
+        },
+        {
+          "title": "We tell you what to do first.",
+          "text": "Water, power, photos."
+        },
+        {
+          "title": "A crew heads out.",
+          "text": "Our on-site target is 60 minutes."
+        },
+        {
+          "title": "Everything is documented.",
+          "text": "Photos, moisture readings and a scope your adjuster can use."
+        }
+      ]
+    },
     "next": "What to do while you wait"
   },
   "next": {

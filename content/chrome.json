@@ -6,7 +6,8 @@
     "skipLink": "Skip to content"
   },
   "statusStrip": {
-    "text": "24/7 crew available"
+    "text": "24/7 crew available",
+    "night": "It’s {time} — a person still answers"
   },
   "header": {
     "nav": {

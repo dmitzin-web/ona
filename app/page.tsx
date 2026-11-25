@@ -27,7 +27,7 @@ export const metadata: Metadata = buildMetadata({
 });
 
 // Real finished work (content/work) — our own photos only.
-const WORK = ["full-kitchen", "full-bath-layout", "kitchen-through-to-living", "double-vanity", "island-and-cooking-wall", "laundry-room"]
+const WORK = ["full-kitchen", "full-bath-layout", "double-vanity", "island-and-cooking-wall", "laundry-room"]
   .map((s) => workItems.find((w) => w.slug === s))
   .filter((w): w is NonNullable<typeof w> => Boolean(w));
 
@@ -43,20 +43,40 @@ export default function HomePage() {
 
       {/* ── the one screen ── */}
       <section className="flex min-h-[calc(100svh-var(--chrome-h,120px))] flex-col bg-brand text-charcoal">
-        <div className="mx-auto flex w-full max-w-[1180px] flex-1 flex-col justify-center px-5 py-10 lg:px-10">
-          <p className="flex items-center gap-2.5 text-[15px] font-semibold text-warm-gray-deep">
-            <span className="h-2 w-2 rounded-full bg-[#43D39B]" aria-hidden="true" />
-            <span>{t.hero.sub}</span>
-          </p>
-          <h1 className="mt-3 text-[clamp(52px,10vw,132px)] font-bold leading-[0.92] tracking-[-0.055em]">{t.hero.title}</h1>
-          <div className="mt-8">
-            <Sentence t={t.hero} phone={site.phone} phoneDisplay={site.phoneDisplay} />
+        <div className="mx-auto grid w-full max-w-[1180px] flex-1 grid-cols-[minmax(0,1fr)] content-center gap-8 px-5 py-10 lg:grid-cols-[1.25fr_.75fr] lg:items-center lg:gap-14 lg:px-10">
+          <div className="min-w-0">
+            <p className="flex items-start gap-2.5 text-[15px] font-semibold text-warm-gray-deep">
+              <span className="mt-[7px] h-2 w-2 flex-none rounded-full bg-[#43D39B]" aria-hidden="true" />
+              <span>{t.hero.sub}</span>
+            </p>
+            <h1 className="mt-3 text-[clamp(52px,9vw,124px)] font-bold leading-[0.92] tracking-[-0.055em]">{t.hero.title}</h1>
+            {/* The "remote": the sentence, its answer and the two actions in one panel. */}
+            <div id="hero-actions" className="mt-8 rounded-[14px] border border-white/15 bg-brand-2 p-5 sm:p-7">
+              <Sentence t={t.hero} phone={site.phone} phoneDisplay={site.phoneDisplay} />
+              <p className="mt-4 text-[15px] text-warm-gray-deep">{t.hero.save}</p>
+            </div>
+            <p className="mt-5 flex flex-wrap gap-x-5 gap-y-1 text-[14px] text-warm-gray-deep">
+              <a href="https://secure.lni.wa.gov/verify/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">{t.hero.reg}</a>
+              <span>{t.hero.iicrc}</span>
+            </p>
           </div>
-          <p className="mt-4 text-[16px] text-warm-gray-deep">{t.hero.save}</p>
-          <p className="mt-6 flex flex-wrap gap-x-5 gap-y-1 text-[14px] text-warm-gray-deep">
-            <a href="https://secure.lni.wa.gov/verify/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">{t.hero.reg}</a>
-            <span>{t.hero.iicrc}</span>
-          </p>
+
+          {/* What happens when you call — the honest version of a promise. */}
+          <aside aria-labelledby="when-title" className="min-w-0 border-t border-white/15 pt-6 lg:border-l lg:border-t-0 lg:pl-10 lg:pt-0">
+            <p id="when-title" className="font-mono text-[12px] uppercase tracking-[0.12em] text-[#9CC9C2]">{t.hero.when.title}</p>
+            <ol className="mt-5">
+              {t.hero.when.steps.map((st, i) => (
+                <li key={st.title} className="relative grid grid-cols-[32px_minmax(0,1fr)] gap-3 pb-6 last:pb-0">
+                  {i < t.hero.when.steps.length - 1 && <span aria-hidden="true" className="absolute left-[15px] top-8 bottom-0 w-px bg-white/20" />}
+                  <span className="flex h-8 w-8 items-center justify-center rounded-full border border-white/30 font-mono text-[13px] text-charcoal">{i + 1}</span>
+                  <span className="pt-1">
+                    <b className="block text-[18px] leading-tight">{st.title}</b>
+                    <span className="mt-1 block text-[15px] text-warm-gray-deep">{st.text}</span>
+                  </span>
+                </li>
+              ))}
+            </ol>
+          </aside>
         </div>
 
         <a href="#next" className="mx-auto mb-5 text-[12px] font-semibold uppercase tracking-[0.12em] text-warm-gray-deep">{t.hero.next} ↓</a>
@@ -122,13 +142,12 @@ export default function HomePage() {
             <Link href="/services/remodeling" className="text-[17px] font-semibold text-teal underline underline-offset-4 hover:text-gold-deep">{t.work.remodel} →</Link>
           </div>
           <p className="mt-4 max-w-[60ch] text-[18px] text-warm-gray">{t.work.text}</p>
-          <div className="mt-10 grid grid-cols-2 gap-3 lg:grid-cols-3">
-            {WORK.map((w) => (
-              <Link key={w.slug} href={`/work/${w.slug}`} className="group">
-                <div className="relative aspect-[4/3] overflow-hidden rounded-[4px] bg-charcoal-soft">
-                  <Image src={w.image} alt={w.imageAlt} fill sizes="(min-width:1024px) 33vw, 50vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
-                </div>
-                <span className="mt-2 block text-[15px] font-semibold">{w.title}</span>
+          {/* One big room and four smaller: one strong picture is remembered. */}
+          <div className="mt-10 grid grid-cols-2 gap-3 lg:grid-cols-4 lg:grid-rows-2">
+            {WORK.map((w, i) => (
+              <Link key={w.slug} href={`/work/${w.slug}`} className={`group relative overflow-hidden rounded-[6px] bg-charcoal-soft ${i === 0 ? "col-span-2 aspect-[4/3] lg:row-span-2 lg:aspect-auto" : "aspect-[4/3]"}`}>
+                <Image src={w.image} alt={w.imageAlt} fill sizes={i === 0 ? "(min-width:1024px) 50vw, 100vw" : "(min-width:1024px) 25vw, 50vw"} className="object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
+                <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent px-3 pb-2.5 pt-8 text-[15px] font-semibold text-white">{w.title}</span>
               </Link>
             ))}
           </div>

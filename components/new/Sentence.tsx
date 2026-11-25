@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 // "My [kitchen] is [flooded]." — the visitor's task in their own words.
-// Tapping a word cycles it; the line under it answers with what we do, and
+// Tapping a word cycles it ("outdated" turns it into a remodel); the line under it answers with what we do, and
 // the text-a-photo link carries the sentence so the first message is
 // already written. Words come from content/pages/new.json → hero.
 // Drawn for the deep-teal hero (light type on brand).
@@ -11,7 +11,7 @@ import { useState } from "react";
 type State = { word: string; result: string };
 
 export function Sentence({ t, phone, phoneDisplay }: {
-  t: { my: string; is: string; places: string[]; states: State[]; tapHint: string; resultLead: string; text: string; textSub: string; call: string; smsLead: string; smsTail: string };
+  t: { my: string; is: string; places: string[]; states: State[]; pickPlace: string; pickState: string; resultLead: string; text: string; textSub: string; call: string; smsLead: string; smsTail: string };
   phone: string;
   phoneDisplay: string;
 }) {
@@ -22,45 +22,39 @@ export function Sentence({ t, phone, phoneDisplay }: {
   const next = (n: number, len: number, back: boolean) => (n + (back ? len - 1 : 1)) % len;
   const sms = `sms:${phone}?&body=${encodeURIComponent(`${t.smsLead} ${t.my.toLowerCase()} ${place} ${t.is} ${state.word}. ${t.smsTail} `)}`;
 
+  // A picker should look like one without a caption: dotted underline and
+  // a small caret, like a select. The caret turns on each change.
   const slot =
-    "inline-flex cursor-pointer items-baseline rounded-[2px] text-[#9FE0D6] underline decoration-[0.07em] underline-offset-[0.12em] transition-colors hover:text-white";
+    "group inline-flex cursor-pointer items-baseline gap-[0.12em] rounded-[4px] text-[#9FE0D6] underline decoration-dotted decoration-[0.06em] underline-offset-[0.14em] transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white";
+  const caret = (k: string) => (
+    <svg key={k} aria-hidden="true" viewBox="0 0 12 8" className="ona-roll h-[0.26em] w-[0.38em] translate-y-[-0.12em] fill-current opacity-80"><path d="M1 1h10L6 7z" /></svg>
+  );
 
   return (
     <div>
-      <p className="text-[clamp(34px,6vw,76px)] font-bold leading-[1.04] tracking-[-0.04em] text-charcoal">
+      <p className="text-[clamp(28px,3.6vw,46px)] font-bold leading-[1.1] tracking-[-0.035em] text-charcoal">
         <span>{t.my}</span>{" "}
-        <button
-          type="button"
-          className={slot}
-          aria-label={`${place} — change the room`}
-          onClick={(e) => setP((n) => next(n, t.places.length, e.shiftKey))}
-        >
-          <span key={place} className="ona-roll">{place}</span>
+        <button type="button" className={slot} aria-label={`${place} — ${t.pickPlace}`} onClick={(e) => setP((n) => next(n, t.places.length, e.shiftKey))}>
+          <span key={place} className="ona-roll">{place}</span>{caret(`c${p}`)}
         </button>{" "}
         <span>{t.is}</span>{" "}
-        <button
-          type="button"
-          className={slot}
-          aria-label={`${state.word} — change what happened`}
-          onClick={(e) => setS((n) => next(n, t.states.length, e.shiftKey))}
-        >
-          <span key={state.word} className="ona-roll">{state.word}</span>
+        <button type="button" className={slot} aria-label={`${state.word} — ${t.pickState}`} onClick={(e) => setS((n) => next(n, t.states.length, e.shiftKey))}>
+          <span key={state.word} className="ona-roll">{state.word}</span>{caret(`s${s}`)}
         </button>
         <span>.</span>
       </p>
-      <p className="mt-4 text-[13px] font-semibold uppercase tracking-[0.1em] text-warm-gray-deep">{t.tapHint}</p>
-      <p className="mt-5 text-[clamp(19px,2vw,24px)] leading-snug text-charcoal" aria-live="polite">
+      <p className="mt-3 text-[clamp(18px,1.8vw,22px)] leading-snug text-charcoal" aria-live="polite">
         <span className="text-warm-gray-deep">→</span> <span>{t.resultLead}</span> <b key={state.result} className="ona-roll font-bold text-[#9FE0D6]">{state.result}</b>
       </p>
 
-      <div className="mt-8 grid max-w-[640px] gap-2.5">
-        <a href={`tel:${phone}`} className="flex min-h-[72px] items-center justify-between gap-4 rounded-[10px] bg-coral px-6 text-[22px] font-bold text-charcoal transition-colors hover:bg-coral-deep">
+      <div className="mt-6 grid gap-2.5">
+        <a href={`tel:${phone}`} className="flex min-h-[68px] items-center justify-between gap-4 rounded-[10px] bg-coral px-5 text-[21px] font-bold text-charcoal transition-colors hover:bg-coral-deep">
           <span>{t.call}</span>
-          <span className="text-[17px] font-medium">{phoneDisplay}</span>
+          <span className="whitespace-nowrap text-[16px] font-medium">{phoneDisplay}</span>
         </a>
-        <a href={sms} className="flex min-h-[72px] items-center justify-between gap-4 rounded-[10px] border-2 border-charcoal px-6 text-[22px] font-bold text-charcoal transition-colors hover:bg-charcoal hover:text-brand">
-          <span>{t.text}</span>
-          <span className="text-[17px] font-medium">{t.textSub}</span>
+        <a href={sms} className="flex min-h-[68px] items-center justify-between gap-4 rounded-[10px] border-2 border-charcoal px-5 text-[21px] font-bold text-charcoal transition-colors hover:bg-charcoal hover:text-brand">
+          <span className="whitespace-nowrap">{t.text}</span>
+          <span className="hidden text-[16px] font-medium sm:inline">{t.textSub}</span>
         </a>
       </div>
     </div>
