@@ -211,7 +211,7 @@ export function sitePages(values: Content, opts: { siteName: string; siteUrl: st
     );
   };
 
-  single("/", "Homepage", "home", ["seo"], [["hero", "titleLead"], ["hero", "titleRest"]], { faqsAt: ["faqs"], schema: ["FAQPage"] });
+  single("/", "Homepage", "new", ["seo"], ["hero", "title"], { faqsAt: ["faqs"], schema: ["FAQPage"] });
   single("/about", "About", "about", ["seo"], ["hero", "title"], {
     faqsAt: ["faq", "faqs"],
     vars: { founded: str((values.site as Record<string, unknown>)?.founded) },
@@ -223,7 +223,6 @@ export function sitePages(values: Content, opts: { siteName: string; siteUrl: st
   single("/blog", "Blog", "blog-index", ["seo"], ["hero", "title"], { schema: ["BreadcrumbList"] });
   single("/quote", "Quote request", "quote", ["seo"], ["intro", "title"], { faqsAt: ["faqs"], schema: ["BreadcrumbList", "FAQPage"] });
   single("/start-project", "Start a project", "start-project", ["seo"], ["kind", "title"]);
-  single("/new", "New homepage (trial)", "new", ["seo"], ["hero", "title"], { noindex: true });
   single("/quote/thanks", "Thank you (after a quote request)", "misc", ["thanks", "seo"], ["thanks", "title"], {
     noindex: true,
   });

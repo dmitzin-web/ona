@@ -30,9 +30,9 @@ function fieldsOf(obj: Record<string, unknown>): Field[] {
 
 export const NEW_HOME: SectionDef = {
   id: "new",
-  label: "New homepage (/new)",
+  label: "Homepage",
   file: "content/pages/new.json",
-  description: `The trial homepage at /new: one screen with a person-answers headline, a sentence the visitor can change (places × states, each state with its result line), Call and Text a photo. ${PLACEHOLDERS}`,
+  description: `The homepage (onarestore.com): one screen with a person-answers headline, a sentence the visitor can change (places × states, each state with its result line), Call and Text a photo; then the next five minutes, the insurer's estimate, the deductible and short answers (also sent to Google as FAQ data). ${PLACEHOLDERS}`,
   kind: "single",
   schema: fieldsOf(content as unknown as Record<string, unknown>),
 };

@@ -1,11 +1,11 @@
 {
   "seo": {
-    "title": "A person answers — water, fire and mold, 24/7",
-    "description": "Water, fire and mold restoration in Vancouver WA and the Portland metro. Call or text a photo to (360) 553-2138 — a person answers, day or night."
+    "title": "{name} — Restoration & Remodeling in Vancouver, WA",
+    "description": "Remodeling, mold remediation, and restoration in Vancouver, WA — without the chaos. Every project comes with a live page: photos, daily updates, and what's next. One team from emergency cleanup to final paint."
   },
   "hero": {
     "title": "A person answers.",
-    "sub": "Day or night. Water, fire, mold.",
+    "sub": "Water, fire & mold restoration · Vancouver WA & Portland · 24/7",
     "my": "My",
     "is": "is",
     "places": [
@@ -69,6 +69,30 @@
     ],
     "target": "Our on-site target: 60 minutes."
   },
+  "estimate": {
+    "kicker": "The insurer’s estimate",
+    "title": "Got the estimate? Send it before you sign anything.",
+    "intro": "Adjusters write estimates in Xactimate. So do we. We walk the house, write our own scope line by line, and send it to your adjuster with photos and readings.",
+    "points": [
+      {
+        "title": "Same language as your adjuster",
+        "text": "Our scope lines up with theirs item by item, so differences are easy to see — and to discuss."
+      },
+      {
+        "title": "What often needs a second look",
+        "text": "Flooring that has to match room to room, code-required items once walls are open, cabinets and counters that can’t be patched."
+      },
+      {
+        "title": "You’re not the go-between",
+        "text": "Scope, photos and readings go straight to your adjuster as the job runs. You see all of it; you don’t carry it."
+      }
+    ],
+    "textIt": "Text photos of the estimate",
+    "emailIt": "Email the PDF",
+    "smsBody": "Hi Ona — here is my insurance estimate. Address:",
+    "emailSubject": "Insurance estimate",
+    "fine": "We’re a contractor, not a public adjuster: we document the damage and estimate the work. Your claim stays between you and your insurer."
+  },
   "cost": {
     "kicker": "What it costs you",
     "title": "If it’s an insurance claim:",
@@ -80,8 +104,27 @@
     "line": "You pay your deductible, nothing more.",
     "find": "It’s on your policy’s declarations page. Can’t find it? Call — we’ll look with you."
   },
-  "foot": {
-    "legal": "Ona Restoration & Remodeling LLC",
-    "area": "Vancouver WA · Portland metro"
-  }
+  "faqTitle": "Quick answers.",
+  "faqs": [
+    {
+      "q": "Can I just call?",
+      "a": "Yes. A person answers 24/7 at {phone}. Calls and texts go to the same number."
+    },
+    {
+      "q": "Do you work with my insurance?",
+      "a": "Yes. We document the loss — photos, moisture readings, a scope in Xactimate — and share it with your adjuster. Your carrier decides coverage. You pay your deductible, nothing more."
+    },
+    {
+      "q": "Someone else did the drying. Can you do the rebuild?",
+      "a": "Yes. Send us what you have — the estimate, letters, photos — and we’ll walk the job with you."
+    },
+    {
+      "q": "Do you remodel when nothing is damaged?",
+      "a": "Yes — kitchens, bathrooms and interiors."
+    },
+    {
+      "q": "Are you licensed?",
+      "a": "Ona Restoration & Remodeling LLC holds Washington contractor registration ONARER*748K8, verifiable at secure.lni.wa.gov/verify. Our technicians are IICRC-certified in water damage restoration, applied structural drying, microbial remediation, and fire and smoke restoration."
+    }
+  ]
 }

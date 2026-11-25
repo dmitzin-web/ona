@@ -6,9 +6,9 @@ import type { SectionDef } from "../sections";
 // an illustration of the product, not copy, and stays in app/page.tsx.
 export const HOME: SectionDef = {
   id: "home",
-  label: "Homepage",
+  label: "Old homepage (not shown)",
   file: "content/pages/home.json",
-  description: `All text on the homepage, top to bottom. ${PLACEHOLDERS}`,
+  description: `The previous homepage. Not shown on the site since Nov 2026 — the homepage now reads the "Homepage" section (content/pages/new.json). Kept so its copy is not lost. ${PLACEHOLDERS}`,
   kind: "single",
   schema: [
     { kind: "object", key: "seo", label: "Search result", fields: [

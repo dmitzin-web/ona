@@ -281,10 +281,10 @@ export function AskOna() {
     setError(null);
   }
 
-  // No floating assistant over the content admin, nor on /new, whose own
-  // intake already does this job — two ways to ask is one too many. After
+  // No floating assistant over the content admin, nor on the homepage,
+  // whose one action is the call — a chat over it would compete. After
   // every hook — this component has a dozen — so hook order never changes.
-  if (pathname.startsWith("/admin") || pathname === "/new") return null;
+  if (pathname.startsWith("/admin") || pathname === "/") return null;
 
   return (
     <>

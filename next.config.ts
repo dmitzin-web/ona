@@ -141,7 +141,6 @@ const nextConfig: NextConfig = {
     // Files in public/ are served at their own path, so the concept lives at
     // /new/index.html; this makes the short address serve it too.
     return [
-      { source: "/new", destination: "/new/index.html" },
       { source: "/newline", destination: "/newline/index.html" },
     ];
   },
@@ -174,6 +173,8 @@ const nextConfig: NextConfig = {
       },
       // Mold is the third co-equal business line — same short-URL treatment.
       { source: "/mold", destination: "/services/mold-removal", permanent: true },
+      // The trial homepage at /new became the homepage (Nov 2026).
+      { source: "/new", destination: "/", permanent: true },
       {
         source: "/mold/:path*",
         destination: "/services/mold-removal/:path*",
