@@ -87,6 +87,9 @@ export function Header() {
   // the remodel prospect is browsing calmly and will meet "Start a
   // project" on the remodeling pages; the water-at-2am visitor will not
   // go looking.
+  // The homepage's first screen is deep teal, so its header is too, with
+  // white type — one dark block instead of a white bar over it.
+  const onHome = pathname === "/";
   const isRemodel =
     pathname.startsWith("/services/remodeling") ||
     pathname.startsWith("/start-project");
@@ -106,11 +109,11 @@ export function Header() {
     // The shadow is the one on the site: a sticky bar is a genuine
     // physical layer above the scrolling page, which is the only case
     // the design brief allows a shadow for.
-    <header className="border-b border-line bg-charcoal shadow-[0_10px_30px_-26px_rgba(23,33,36,0.65)]">
+    <header className={onHome ? "border-b border-white/10 bg-brand" : "border-b border-line bg-charcoal shadow-[0_10px_30px_-26px_rgba(23,33,36,0.65)]"}>
       {/* Tighter on phones. The strip and the bar are both pinned now, so
           every pixel here is permanently subtracted from the viewport. */}
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-3 md:py-4 lg:px-10">
-        <Logo variant="horizontal" tone="light" />
+        <Logo variant="horizontal" tone={onHome ? "dark" : "light"} />
 
         {/* Desktop nav. Was 14px / weight 400 / text-ivory/85, which was
             small three times over: 14px against a 31px wordmark, the
@@ -124,7 +127,7 @@ export function Header() {
             opacity difference between 85% and 100% is not a state a
             reader can see; a underline is. */}
         <nav aria-label={t.navAriaLabel} className="hidden lg:block">
-          <ul className="flex items-center gap-8 text-[15px] font-[450] text-ivory">
+          <ul className={`flex items-center gap-8 text-[15px] font-[450] ${onHome ? "text-charcoal" : "text-ivory"}`}>
             {nav.map((item, i) => {
               if (item.mobileOnly) return null;
               const active = isActive(item.href);
@@ -133,7 +136,7 @@ export function Header() {
                   <Link
                     href={item.href}
                     aria-current={active ? "page" : undefined}
-                    className={`underline-offset-[7px] transition hover:text-teal ${
+                    className={`underline-offset-[7px] transition ${onHome ? "hover:text-[#9FE0D6]" : "hover:text-teal"} ${
                       active
                         ? "font-medium text-teal underline decoration-teal decoration-1"
                         : ""
@@ -182,14 +185,14 @@ export function Header() {
           {isRemodel ? (
             <Link
               href="/start-project"
-              className="hidden rounded-[2px] border border-ivory px-5 py-2.5 text-[14px] font-medium text-ivory transition hover:bg-brand hover:text-charcoal sm:inline-flex"
+              className={`hidden rounded-[2px] border px-5 py-2.5 text-[14px] font-medium transition sm:inline-flex ${onHome ? "border-charcoal text-charcoal hover:bg-charcoal hover:text-brand" : "border-ivory text-ivory hover:bg-brand hover:text-charcoal"}`}
             >
               {t.startProject}
             </Link>
           ) : (
             <a
               href={`mailto:${site.email}?subject=${PHOTO_SUBJECT}`}
-              className="hidden rounded-[2px] border border-ivory px-5 py-2.5 text-[14px] font-medium text-ivory transition hover:bg-brand hover:text-charcoal sm:inline-flex"
+              className={`hidden rounded-[2px] border px-5 py-2.5 text-[14px] font-medium transition sm:inline-flex ${onHome ? "border-charcoal text-charcoal hover:bg-charcoal hover:text-brand" : "border-ivory text-ivory hover:bg-brand hover:text-charcoal"}`}
             >
               {t.sendPhotos}
             </a>
@@ -200,7 +203,7 @@ export function Header() {
             <summary
               aria-label={t.menuButton}
               aria-controls="mobile-nav"
-              className="inline-flex h-10 w-10 cursor-pointer list-none items-center justify-center rounded-full border border-line text-ivory transition hover:border-ivory/45 [&::-webkit-details-marker]:hidden"
+              className={`inline-flex h-10 w-10 cursor-pointer list-none items-center justify-center rounded-full border transition [&::-webkit-details-marker]:hidden ${onHome ? "border-white/30 text-charcoal hover:border-white/60" : "border-line text-ivory hover:border-ivory/45"}`}
             >
               <span className="sr-only">{t.menuButtonText}</span>
               <span aria-hidden="true" className="relative block h-3 w-5">
