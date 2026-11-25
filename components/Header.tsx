@@ -41,11 +41,11 @@ const t = chrome.header;
 // read larger; Contact is one tap away in the drawer, in the footer, and
 // as the two buttons sitting immediately to the right of this list.
 const nav: NavItem[] = [
+  // Owner's call (Nov 2026): the bar says what we do — Restoration and
+  // Remodeling — and nothing else. Mold lives under Restoration; How we
+  // work, Notes and Contact are in the footer.
   { href: "/services", label: t.nav.restoration },
-  { href: "/services/mold-removal", label: t.nav.mold },
   { href: "/services/remodeling", label: t.nav.remodeling },
-  { href: "/about", label: t.nav.about },
-  { href: "/blog", label: t.nav.blog },
   { href: "/contact", label: t.nav.contact, mobileOnly: true },
 ];
 // "Ask AI" used to be the seventh item here. It is now only the floating

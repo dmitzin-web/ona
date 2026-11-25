@@ -112,6 +112,14 @@ export function Footer() {
             </li>
             <li>
               <Link
+                href="/blog"
+                className="text-white/90 transition hover:text-white"
+              >
+                {t.blogLink}
+              </Link>
+            </li>
+            <li>
+              <Link
                 href="/contact"
                 className="text-white/90 transition hover:text-white"
               >

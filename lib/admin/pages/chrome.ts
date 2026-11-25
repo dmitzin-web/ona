@@ -95,6 +95,7 @@ export const CHROME: SectionDef = {
       { kind: "text", key: "areaTitle", label: "Cities column heading", required: true },
       { kind: "text", key: "companyTitle", label: "Company column heading", required: true },
       { kind: "text", key: "aboutLink", label: "About link", required: true },
+      { kind: "text", key: "blogLink", label: "Notes (blog) link", required: true },
       { kind: "text", key: "contactLink", label: "Contact link", required: true },
       { kind: "text", key: "byCityTitle", label: "“Service by city” heading", required: true, hint: "The folded list of every service in every city." },
       { kind: "text", key: "copyright", label: "Copyright line", required: true, hint: "{year} is the current year." },
