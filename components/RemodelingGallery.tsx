@@ -64,7 +64,7 @@ export function RemodelingGallery() {
           Three across, so nine make three full rows with no orphan. */}
       <ul className="mt-14 grid gap-px bg-line sm:grid-cols-2 lg:grid-cols-3">
         {workItems.map((p) => (
-          <li key={p.slug} className="bg-charcoal">
+          <li key={p.slug} id={p.slug} className="scroll-mt-[calc(var(--chrome-h,120px)+16px)] bg-charcoal">
             <article className="flex h-full flex-col">
               <div className="relative aspect-[3/2] overflow-hidden">
                 {/* next/image, not a bare <img>: these are local files,

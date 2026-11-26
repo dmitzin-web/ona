@@ -145,7 +145,7 @@ export default function HomePage() {
           {/* One big room and four smaller: one strong picture is remembered. */}
           <div className="mt-10 grid grid-cols-2 gap-3 lg:grid-cols-4 lg:grid-rows-2">
             {WORK.map((w, i) => (
-              <Link key={w.slug} href={`/work/${w.slug}`} className={`group relative overflow-hidden rounded-[6px] bg-charcoal-soft ${i === 0 ? "col-span-2 aspect-[4/3] lg:row-span-2 lg:aspect-auto" : "aspect-[4/3]"}`}>
+              <Link key={w.slug} href={`/services/remodeling#${w.slug}`} className={`group relative overflow-hidden rounded-[6px] bg-charcoal-soft ${i === 0 ? "col-span-2 aspect-[4/3] lg:row-span-2 lg:aspect-auto" : "aspect-[4/3]"}`}>
                 <Image src={w.image} alt={w.imageAlt} fill sizes={i === 0 ? "(min-width:1024px) 50vw, 100vw" : "(min-width:1024px) 25vw, 50vw"} className="object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
                 <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent px-3 pb-2.5 pt-8 text-[15px] font-semibold text-white">{w.title}</span>
               </Link>
